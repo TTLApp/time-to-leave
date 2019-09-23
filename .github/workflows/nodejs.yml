@@ -4,14 +4,13 @@ on: [push]
 
 jobs:
   build:
-    matrix:
-      runs-on: [ubuntu-latest, windows-latest]
-    
-    runs-on: ${{ matrix.runs-on }}
     strategy:
       matrix:
         node-version: [8.x, 10.x, 12.x]
+        runs-on: [ubuntu-latest, windows-latest]
         
+    runs-on: ${{ matrix.runs-on }}        
+    
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
