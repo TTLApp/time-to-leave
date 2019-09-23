@@ -4,9 +4,10 @@ on: [push]
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+    matrix:
+      runs-on: [ubuntu-latest, windows-latest]
+    
+    runs-on: ${{ matrix.runs-on }}
     strategy:
       matrix:
         node-version: [8.x, 10.x, 12.x]
