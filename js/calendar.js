@@ -275,6 +275,7 @@ class Calendar {
             monthLength = d.getDate(),
             workingDaysToCompute = 0,
             monthTotalWorked = '00:00';
+        var countDays = false;
 
         for (var day = 1; day <= monthLength; ++day) {
             if (!showDay(this.year, this.month, day)) {
@@ -285,12 +286,15 @@ class Calendar {
                 //balance considers only up until yesterday
                 break;
             }
-            workingDaysToCompute += 1;
 
             var dayStr = this.year + '-' + this.month + '-' + day + '-' + 'day-total';
             var dayTotal = document.getElementById(dayStr).value;
             if (dayTotal) {
+                countDays = true;
                 monthTotalWorked = sumTime(monthTotalWorked, dayTotal);
+            }
+            if (countDays) {
+                workingDaysToCompute += 1;
             }
         }
         var monthTotalToWork = multiplyTime(getHoursPerDay(), workingDaysToCompute * -1);
