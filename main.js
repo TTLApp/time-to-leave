@@ -32,6 +32,7 @@ function createWindow () {
                         let prefWindow = new BrowserWindow({ width: 600, 
                             height: 450, 
                             resizable: false,
+                            icon: iconpath,
                             webPreferences: {
                                 nodeIntegration: true
                             } });
