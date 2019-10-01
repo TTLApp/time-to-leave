@@ -31,6 +31,7 @@ function createWindow () {
                         const htmlPath = path.join('file://', __dirname, 'src/preferences.html');
                         let prefWindow = new BrowserWindow({ width: 600, 
                             height: 450, 
+                            parent: win,
                             resizable: false,
                             webPreferences: {
                                 nodeIntegration: true
