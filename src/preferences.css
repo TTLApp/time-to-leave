@@ -52,3 +52,12 @@ td {
   padding-left: 5px;
   font-variant-caps: all-petite-caps;
 }
+
+.non-working-label {
+  display: block;
+  font-weight: normal;
+  margin-top: 500px;
+  padding-right: 500px;
+  padding-left: 500px;
+  text-align: left;
+}

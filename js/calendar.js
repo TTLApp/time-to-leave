@@ -420,11 +420,16 @@ class Calendar {
             trID = ('tr-' + year + '-' + month + '-' + day);
         
         if (!showDay(year, month, day)) {
-            return  '<tr'+ (isToday ? ' class="today-non-working"' : '') + ' id="' + trID + '">' +
-                    '<td class="weekday ti">' + this.options.weekabbrs[weekDay] + '</td>' +
-                    '<td class="day ti">' + day + '</td>' +
-                    '<td class="day non-working-day" colspan="6">' + '</td>' +
-                '</tr>\n';
+            if (preferences['hide-non-working-days']) {
+                return '';
+            }
+            else {
+                return  '<tr'+ (isToday ? ' class="today-non-working"' : '') + ' id="' + trID + '">' +
+                        '<td class="weekday ti">' + this.options.weekabbrs[weekDay] + '</td>' +
+                        '<td class="day ti">' + day + '</td>' +
+                        '<td class="day non-working-day" colspan="6">' + '</td>' +
+                    '</tr>\n';  
+            }
         }    
 
         var htmlCode = 

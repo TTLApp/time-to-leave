@@ -4,6 +4,7 @@ const fs = require('fs');
 const { validateTime } = require('../js/time_math.js');
 
 const defaultPreferences = {
+    'hide-non-working-days': false,
     'hours-per-day': '08:00',
     'notification': 'enabled',
     'working-days-monday': true,
@@ -81,6 +82,12 @@ function hasValidPreferencesFile() {
         case 'working-days-friday': 
         case 'working-days-saturday': 
         case 'working-days-sunday': {
+            if (value != true && value != false) {
+                return false;
+            }
+            break;
+        }
+        case 'hide-non-working-days': {
             if (value != true && value != false) {
                 return false;
             }
