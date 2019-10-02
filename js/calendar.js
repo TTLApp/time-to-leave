@@ -252,8 +252,8 @@ class Calendar {
     /*
      * Gets month length of displayed calendar.
      */
-    getMonthLengh() {
-        var d = new Date(this.year, this.month, 0);
+    getMonthLength() {
+        var d = new Date(this.year, this.month+1, 0);
         return d.getDate();
     }
 
@@ -270,9 +270,8 @@ class Calendar {
     }
 
     updateBalance() {
-        var d = new Date(this.year, this.month, 0), 
-            now = new Date(),
-            monthLength = d.getDate(),
+        var now = new Date(),
+            monthLength = this.getMonthLength(),
             workingDaysToCompute = 0,
             monthTotalWorked = '00:00';
         var countDays = false;
@@ -281,7 +280,7 @@ class Calendar {
             if (!showDay(this.year, this.month, day)) {
                 continue;
             }
-            d = new Date(this.year, this.month, day);
+            var d = new Date(this.year, this.month, day);
             if (d > now) {
                 //balance considers only up until yesterday
                 break;
@@ -306,7 +305,7 @@ class Calendar {
      * Updates data displayed based on the database.
      */
     updateBasedOnDB() {
-        var d = new Date(this.year, this.month, 0), monthLength = d.getDate();
+        var monthLength = this.getMonthLength();
         var monthTotal = '00:00';
         this.workingDays = 0;
         for (var day = 1; day <= monthLength; ++day) {
@@ -486,8 +485,7 @@ class Calendar {
      * Returns the code of the body of the page.
      */
     _getBody() {
-        var d = new Date(this.year, this.month, 0),
-            monthLength = d.getDate();
+        var monthLength = this.getMonthLength();
         var html = '<div>';
         html += this._getPageHeader(this.year, this.month);
         html += '<table>';
