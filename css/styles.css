@@ -67,9 +67,13 @@ table {
   margin-right: auto;
   table-layout: fixed;
   width: 90%;
+  position: sticky;
+  top: 0;
+  background: #fff;
+
 }
 
-th {
+.table-header th {
   height: 50px;
   vertical-align: center;
 }
@@ -106,7 +110,7 @@ tr {
   font-weight: bold;
 }
 
-td {
+td, th.th-label {
   padding-right: 7px;
   padding-left: 7px;
   text-align: center;
@@ -182,4 +186,15 @@ input[type="time"]::-webkit-clear-button {
 .punch-button:disabled {
   opacity: 0.5;
   color: rgb(134, 134, 134); 
+}
+
+.table-body {
+  overflow-y: auto;
+}
+
+th.th-label{
+  position: sticky;
+  top: 51px;
+  background-color: #fff;
+  box-shadow: 0px 2px 0px 0px #CBCBCB;
 }

@@ -474,16 +474,17 @@ class Calendar {
      * Returns the code of the header of the calendar table
      */
     _getTableHeaderCode () {
-        return '<tr>' +
+        return '<thead>' +
                 '<tr>' +
-                    '<td class="th th-day-name dayheader" colspan="2">Day</td>' +
-                    '<td class="th th-label">Day Start</td>' +
-                    '<td class="th th-label">Lunch Start</td>' +
-                    '<td class="th th-label">Lunch Total</td>' +
-                    '<td class="th th-label">Lunch End</td>' +
-                    '<td class="th th-label">Day End</td>' +
-                    '<td class="th th-label">Day total</td>' +
-                '</tr>\n';
+                    '<th class="th th-label th-day-name dayheader" colspan="2">Day</th>' +
+                    '<th class="th th-label">Day Start</th>' +
+                    '<th class="th th-label">Lunch Start</th>' +
+                    '<th class="th th-label">Lunch Total</th>' +
+                    '<th class="th th-label">Lunch End</th>' +
+                    '<th class="th th-label">Day End</th>' +
+                    '<th class="th th-label">Day total</th>' +
+                '</tr>' +
+                '</thead>\n';
     }
 
     /*
@@ -493,7 +494,7 @@ class Calendar {
         var monthLength = this.getMonthLength();
         var html = '<div>';
         html += this._getPageHeader(this.year, this.month);
-        html += '<table>';
+        html += '<table class="table-body">';
         html += this._getTableHeaderCode();
         for (var day = 1; day <= monthLength; ++day) {
             html += this._getInputsRowCode(this.year, this.month, day);
