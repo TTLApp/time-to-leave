@@ -290,7 +290,13 @@ class Calendar {
             var dayTotal = document.getElementById(dayStr).value;
             if (dayTotal) {
                 countDays = true;
+
+                var dayPlanned = preferences['hours-per-day'];
+                var dayDiff = subtractTime(dayPlanned, dayTotal);
+                var hasOvertime = !(dayDiff.startsWith('-'));
+
                 monthTotalWorked = sumTime(monthTotalWorked, dayTotal);
+                Calendar._getClosingTimeRowCode(dayDiff, hasOvertime);
             }
             if (countDays) {
                 workingDaysToCompute += 1;
@@ -406,6 +412,23 @@ class Calendar {
                      '<td class="leave-by-time">' + leaveByCode + '</td>' +
                    '</tr>';
         return code;
+    }
+
+    /*
+     * Changes summary text to day resume after all work times are proved
+     */
+    static _getClosingTimeRowCode (workTime, hasOvertime) {
+        var closingTimeStr;
+
+        if (hasOvertime) {
+            closingTimeStr = "You've worked " + workTime + "h longer than you should have."
+        } else {
+            workTime = workTime.split('-')[1];
+            closingTimeStr = "Enjoy your " + workTime + "h of more free time today!"
+        }
+
+        $('.leave-by-time').empty();
+        $('.leave-by-text').text(closingTimeStr);
     }
 
     /*
