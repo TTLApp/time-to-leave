@@ -13,7 +13,7 @@ function notifyUser() {
             sound: true, // Only Notification Center or Windows Toasters
             wait: true // Wait with callback, until user action is taken against notification
         },
-      );
+    );
 }
 
 module.exports = {

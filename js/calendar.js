@@ -421,10 +421,10 @@ class Calendar {
         var closingTimeStr;
 
         if (hasOvertime) {
-            closingTimeStr = "You've worked " + workTime + "h longer than you should have."
+            closingTimeStr = 'You\'ve worked ' + workTime + 'h longer than you should have.';
         } else {
             workTime = workTime.split('-')[1];
-            closingTimeStr = "Enjoy your " + workTime + "h of more free time today!"
+            closingTimeStr = 'Enjoy your ' + workTime + 'h of more free time today!';
         }
 
         $('.leave-by-time').empty();
