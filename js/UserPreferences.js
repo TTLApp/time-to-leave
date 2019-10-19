@@ -47,8 +47,7 @@ function readPreferences() {
 }
 
 /*
- * Returns true if there's a valid preferences file.
- * Invalid files don't have all the settings listed.
+ * Returns true if something is missing or invalid in preferences file
  */
 function shouldSaveDerivedPreferencesFile() {
     if (!fs.existsSync(getPreferencesFilePath())) {
