@@ -34,13 +34,13 @@
 }
 
 .title-header-img {
-  float: left;
+  filter: invert(70%) sepia(39%) saturate(257%) hue-rotate(208deg) brightness(86%) contrast(92%);
+  float: right;
+  margin-right: -5px;
   width: 5%;
-  float: left;
 }
 
-.title-header-img {
-  filter: invert(70%) sepia(39%) saturate(257%) hue-rotate(208deg) brightness(86%) contrast(92%);
+.title-header-img img {
   float: right;
 }
 
