@@ -13,6 +13,7 @@ const {
 } = require('./js/time_math.js');
 const { notifyUser } = require('./js/notification.js');
 const { getUserPreferences } = require('./js/UserPreferences.js');
+const { applyTheme } = require('./js/Themes.js');
 
 // Global values for calendar
 const store = new Store();
@@ -25,6 +26,7 @@ let calendar = null;
 ipcRenderer.on('PREFERENCE_SAVED', function (event, inputs) {
     preferences = inputs;
     calendar.redraw();
+    applyTheme(preferences.theme);
 });
 
 /*
@@ -655,4 +657,6 @@ function notifyTimeToLeave() {
 $(() => {
     calendar = new Calendar();
     setInterval(notifyTimeToLeave, 60000);
+    let prefs = getUserPreferences();
+    applyTheme(prefs.theme);
 });
