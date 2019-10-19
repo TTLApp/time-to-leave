@@ -11,7 +11,7 @@ const {
     validateTime,
     hourToMinutes
 } = require('./js/time_math.js');
-const { notifyUser } = require('./js/notification.js');
+const { notify } = require('./js/notification.js');
 const { getUserPreferences } = require('./js/UserPreferences.js');
 
 // Global values for calendar
@@ -646,7 +646,7 @@ function notifyTimeToLeave() {
         var isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval == 0);
 
         if (curTime == timeToLeave || isRepeatingInterval) {
-            notifyUser();
+            notify();
         }
     }
 }
