@@ -4,6 +4,7 @@ const Store = require('electron-store');
 const { ipcRenderer } = require('electron'); 
 const {
     hourMinToHourFormated,
+    isNegative,
     subtractTime, 
     multiplyTime,
     sumTime, 
@@ -298,7 +299,10 @@ class Calendar {
         }
         var monthTotalToWork = multiplyTime(getHoursPerDay(), workingDaysToCompute * -1);
         var balance = sumTime(monthTotalToWork, monthTotalWorked);
-        document.getElementById('month-balance').value = balance;
+        var balanceElement = document.getElementById('month-balance')
+        balanceElement.value = balance;
+        balanceElement.classList.remove('text-success', 'text-danger');
+        balanceElement.classList.add(isNegative(balance) ? 'text-danger' : 'text-success');
     }
 
     /*

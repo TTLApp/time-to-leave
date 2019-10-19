@@ -10,12 +10,19 @@ function hourMinToHourFormated (hours, minutes) {
 }
 
 /**
+ * Determines if a time string holds a negative value
+ */
+function isNegative(str) {
+    return str[0] === '-';
+}
+
+/**
  * Converts hour to min.
  * Hours must be formated as HH:MM
  */
 function hourToMinutes(time) {
     var st = time.split(':');
-    var isNeg = st[0] == '-';
+    var isNeg = isNegative(st);
     st[0] = isNeg ? st[0].substr(1) : st[0];
 
     var min = Number(st[1]) + (Number(st[0]) * 60);
@@ -77,6 +84,7 @@ function validateTime(time) {
 
 module.exports = {
     hourMinToHourFormated,
+    isNegative,
     multiplyTime,
     minutesToHourFormated,
     subtractTime,
