@@ -1,14 +1,15 @@
 'use strict';
 
 const Store = require('electron-store');
-const { ipcRenderer } = require('electron'); 
+const { ipcRenderer } = require('electron');
 const {
     hourMinToHourFormated,
     isNegative,
-    subtractTime, 
+    subtractTime,
     multiplyTime,
-    sumTime, 
-    validateTime
+    sumTime,
+    validateTime,
+    hourToMinutes
 } = require('./js/time_math.js');
 const { notifyUser } = require('./js/notification.js');
 const { getUserPreferences } = require('./js/UserPreferences.js');
@@ -58,7 +59,7 @@ function hasInputError(dayBegin, lunchBegin, lunchEnd, dayEnd) {
     if (validateTime(dayEnd)) {
         dayValues.push(dayEnd);
     }
-    for (var index = 0; index < dayValues.length; index++) { 
+    for (var index = 0; index < dayValues.length; index++) {
         if (index > 0 && (dayValues[index-1] >= dayValues[index])) {
             return true;
         }
@@ -67,7 +68,7 @@ function hasInputError(dayBegin, lunchBegin, lunchEnd, dayEnd) {
 }
 
 /*
- * Returns true if we should display week day. 
+ * Returns true if we should display week day.
  */
 function showWeekDay(weekDay) {
     switch (weekDay) {
@@ -82,7 +83,7 @@ function showWeekDay(weekDay) {
 }
 
 /*
- * Returns true if we should display day. 
+ * Returns true if we should display day.
  */
 function showDay(year, month, day)  {
     var currentDay = new Date(year, month, day), weekDay = currentDay.getDay();
@@ -117,7 +118,7 @@ function punchDate() {
         day = now.getDate(),
         hour = now.getHours(),
         min = now.getMinutes();
-    
+
     if (calendar.getMonth() != month ||
         calendar.getYear() != year ||
         !showDay(year, month, day)) {
@@ -207,7 +208,7 @@ class Calendar {
     _initCalendar() {
         this._generateTemplate();
         this.updateBasedOnDB();
-        
+
         if (!showDay(this.today.getFullYear(), this.today.getMonth(), this.today.getDate())) {
             document.getElementById('punch-button').disabled = true;
         } else {
@@ -226,7 +227,7 @@ class Calendar {
         $('#next-month').on('click', function() {
             nextMonth();
         });
-    
+
         $('#prev-month').on('click', function() {
             prevMonth();
         });
@@ -328,7 +329,7 @@ class Calendar {
             if (dayTotal) {
                 monthTotal = sumTime(monthTotal, dayTotal);
             }
-            
+
             colorErrorLine(this.year, this.month, day, dayBegin, lunchBegin, lunchEnd, dayEnd);
         }
         document.getElementById('month-total').value = monthTotal;
@@ -343,7 +344,7 @@ class Calendar {
      */
     updateLeaveBy() {
         if (!showDay(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()) ||
-            this.today.getMonth() != this.getMonth() || 
+            this.today.getMonth() != this.getMonth() ||
             this.today.getFullYear() != this.getYear()) {
             return;
         }
@@ -385,15 +386,15 @@ class Calendar {
         return '<input type="time" id="' + idTag + '"' +
                (type.endsWith('total') ? ' disabled' : '') +
                '>';
-               
+
     }
 
     /*
      * Returns the total field html code of a date
      */
     static _getTotalCode (year, month, day, type) {
-        return '<input type="text" class="total-input" id="' + 
-               year + '-' + month + '-' + day + '-' + type + 
+        return '<input type="text" class="total-input" id="' +
+               year + '-' + month + '-' + day + '-' + type +
                '" size="5"' +
                (type.endsWith('total') ? ' disabled' : '') +
                '>';
@@ -421,7 +422,7 @@ class Calendar {
             today = new Date(),
             isToday = (today.getDate() == day && today.getMonth() == month && today.getFullYear() == year),
             trID = ('tr-' + year + '-' + month + '-' + day);
-        
+
         if (!showDay(year, month, day)) {
             if (preferences['hide-non-working-days']) {
                 return '';
@@ -431,11 +432,11 @@ class Calendar {
                         '<td class="weekday ti">' + this.options.weekabbrs[weekDay] + '</td>' +
                         '<td class="day ti">' + day + '</td>' +
                         '<td class="day non-working-day" colspan="6">' + '</td>' +
-                    '</tr>\n';  
+                    '</tr>\n';
             }
-        }    
+        }
 
-        var htmlCode = 
+        var htmlCode =
                  '<tr'+ (isToday ? ' class="isToday"' : '') + ' id="' + trID + '">' +
                     '<td class="weekday ti">' + this.options.weekabbrs[weekDay] + '</td>' +
                     '<td class="day ti">' + day + '</td>' +
@@ -465,7 +466,7 @@ class Calendar {
                     '<div class="title-header title-header-img"><img src="assets/timer.svg" height="64" width="64"></div>' +
                     '<div class="title-header title-header-text">Time To Leave</div>' +
                     '<div class="title-header title-header-msg"></div>' +
-               '</div>' + 
+               '</div>' +
                 '<table class="table-header"><tr>' +
                     '<th class="th but-left">' + leftBut + '</th>' +
                     '<th class="th th-month-name" colspan="18"><div class="div-th-month-name" id="month-year">' + this.options.months[month] + ' ' + year + '</div></th>' +
@@ -563,20 +564,20 @@ function updateTimeDay(year, month, day, key, newValue) {
 
     //update totals
     var [dayBegin, lunchBegin, lunchEnd, dayEnd] = getDaysEntries(year, month, day);
-    
+
     //compute lunch time
     var lunchTime = '';
-    if (lunchBegin && lunchEnd && 
+    if (lunchBegin && lunchEnd &&
         validateTime(lunchBegin) && validateTime(lunchEnd) &&
         (lunchEnd > lunchBegin)) {
         lunchTime = subtractTime(lunchBegin, lunchEnd);
     }
     var dayTotal = '';
-    if (dayBegin && dayEnd && 
+    if (dayBegin && dayEnd &&
         validateTime(dayBegin) && validateTime(dayEnd) &&
         (dayEnd > dayBegin)) {
         dayTotal = subtractTime(dayBegin, dayEnd);
-        if (lunchTime.length > 0 && 
+        if (lunchTime.length > 0 &&
             validateTime(lunchTime) &&
             (lunchBegin > dayBegin) &&
             (dayEnd > lunchEnd)) {
@@ -626,17 +627,25 @@ function updateTimeDayCallback(key, value) {
  * Notify user if it's time to leave
  */
 function notifyTimeToLeave() {
-    if (!notificationIsEnabled()) {
+    if (!notificationIsEnabled() || document.getElementById('leave-by') == null) {
         return;
     }
-    if (document.getElementById('leave-by') == null) {
-        return;
-    }
+
     var timeToLeave = document.getElementById('leave-by').value;
     if (validateTime(timeToLeave)) {
-        var [hour, min] = timeToLeave.split(':');
+        /**
+         * How many minutes should pass before the Time-To-Leave notification should be presented again.
+         * @type {number} Minutes post the clockout time
+         */
+        const notificationInterval = 5;
         var now = new Date();
-        if (now.getHours() == hour && now.getMinutes() == min) {
+        var curTime = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+
+        // Let check if it's past the time to leave, and the minutes line up with the interval to check
+        var minutesDiff = hourToMinutes(subtractTime(timeToLeave, curTime));
+        var isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval == 0);
+
+        if (curTime == timeToLeave || isRepeatingInterval) {
             notifyUser();
         }
     }

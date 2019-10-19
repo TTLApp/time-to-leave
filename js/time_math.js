@@ -4,8 +4,8 @@
 function hourMinToHourFormated (hours, minutes) {
     var paddingHour = hours < 10 ?  '0' : '';
     var paddingMin = minutes < 10 ?  '0' : '';
-    return paddingHour + hours + 
-           ':' + 
+    return paddingHour + hours +
+           ':' +
            paddingMin + minutes;
 }
 
@@ -89,5 +89,6 @@ module.exports = {
     minutesToHourFormated,
     subtractTime,
     sumTime,
-    validateTime
+    validateTime,
+    hourToMinutes
 };
