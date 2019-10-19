@@ -299,7 +299,7 @@ class Calendar {
         }
         var monthTotalToWork = multiplyTime(getHoursPerDay(), workingDaysToCompute * -1);
         var balance = sumTime(monthTotalToWork, monthTotalWorked);
-        var balanceElement = document.getElementById('month-balance')
+        var balanceElement = document.getElementById('month-balance');
         balanceElement.value = balance;
         balanceElement.classList.remove('text-success', 'text-danger');
         balanceElement.classList.add(isNegative(balance) ? 'text-danger' : 'text-success');
