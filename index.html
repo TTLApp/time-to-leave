@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="">
 
 <head>
   <meta charset="utf-8">
@@ -16,29 +16,30 @@
   </script>
   <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
   <script src="js/calendar.js" charset="utf-8"></script>
+  <script src="js/theme_init.js" charset="utf-8"></script>
 </head>
 
 <body>
-  <div id="calendar" class="container"></div>    
+  <div id="calendar" class="container"></div>
   <br>
   <br>
   <br>
   <br>
-  <div class="footer-pre"> 
+  <div class="footer-pre">
     <table class="month-summary">
       <tr>
         <tr class="month-total-row">
-            <td class="month-total-text" title="How many working days there's in the month">Total of working days</td> 
-            <td class="month-total-time" title="How many working days there's in the month"><input type="text" id="month-working-days" size="5" disabled></td> 
-            <td class="month-total-text" title="How many hours you logged in this month">Month Total</td> 
-            <td class="month-total-time" title="How many hours you logged in this month"><input type="text" id="month-total" size="8" disabled></td> 
-            <td class="month-total-text" title="Balance up until today for this month. A positive balance means extra hours you don't need to work today (or the rest of the month).">Month Balance</td> 
-            <td class="month-total-time" title="Balance up until today for this month. A positive balance means extra hours you don't need to work today (or the rest of the month)."><input type="text" id="month-balance" size="8" disabled></td> 
+            <td class="month-total-text" title="How many working days there's in the month">Total of working days</td>
+            <td class="month-total-time" title="How many working days there's in the month"><input type="text" id="month-working-days" size="5" disabled></td>
+            <td class="month-total-text" title="How many hours you logged in this month">Month Total</td>
+            <td class="month-total-time" title="How many hours you logged in this month"><input type="text" id="month-total" size="8" disabled></td>
+            <td class="month-total-text" title="Balance up until today for this month. A positive balance means extra hours you don't need to work today (or the rest of the month).">Month Balance</td>
+            <td class="month-total-time" title="Balance up until today for this month. A positive balance means extra hours you don't need to work today (or the rest of the month)."><input type="text" id="month-balance" size="8" disabled></td>
           </tr>
       </tr>
     </table>
   </div>
-  <div class="footer"> 
+  <div class="footer">
     <button class="punch-button" id="punch-button" disabled>
       <img src="assets/fingerprint.svg" height="36" width="36"></img>
       Punch time

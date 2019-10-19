@@ -29,8 +29,8 @@ function createWindow () {
                     accelerator: macOS ? 'Command+,' : 'Control+,',
                     click () {
                         const htmlPath = path.join('file://', __dirname, 'src/preferences.html');
-                        let prefWindow = new BrowserWindow({ width: 600, 
-                            height: 450, 
+                        let prefWindow = new BrowserWindow({ width: 600,
+                            height: 450,
                             parent: win,
                             resizable: false,
                             icon: iconpath,
@@ -42,15 +42,15 @@ function createWindow () {
                         prefWindow.show();
                         //prefWindow.webContents.openDevTools()
                         prefWindow.on('close', function () {
-                            prefWindow = null; 
+                            prefWindow = null;
                             savePreferences(savedPreferences);
                             win.webContents.send('PREFERENCE_SAVED', savedPreferences);
                         });
                     },
                 },
                 {
-                    label:'Clear database', 
-                    click() { 
+                    label:'Clear database',
+                    click() {
                         const options = {
                             type: 'question',
                             buttons: ['Cancel', 'Yes, please', 'No, thanks'],
@@ -58,23 +58,23 @@ function createWindow () {
                             title: 'Clear database',
                             message: 'Are you sure you want to clear all the data?',
                         };
-                  
+
                         dialog.showMessageBox(null, options, (response) => {
                             if (response == 1) {
                                 store.clear();
                                 win.reload();
                             }
                         });
-                    } 
+                    }
                 },
-                {type:'separator'}, 
+                {type:'separator'},
                 {
-                    label:'Exit', 
+                    label:'Exit',
                     accelerator: macOS ? 'CommandOrControl+Q' : 'Control+Q',
-                    click() { 
+                    click() {
                         app.isQuiting = true;
-                        app.quit(); 
-                    } 
+                        app.quit();
+                    }
                 }
             ]
         },
@@ -138,7 +138,7 @@ function createWindow () {
     } else {
         win.setMenu(menu);
     }
-    
+
     // and load the index.html of the app.
     win.loadFile(path.join(__dirname, 'index.html'));
 
@@ -157,13 +157,13 @@ function createWindow () {
         }
     ]);
 
-    tray.on('click', function handleCliked() {       
+    tray.on('click', function handleCliked() {
         win.show();
-    });   
+    });
 
-    tray.on('right-click', function handleCliked() {       
+    tray.on('right-click', function handleCliked() {
         tray.popUpContextMenu(contextMenu);
-    });   
+    });
 
     // Open the DevTools.
     //win.webContents.openDevTools();
@@ -178,8 +178,8 @@ function createWindow () {
         if(app.isQuiting != undefined && !app.isQuiting){
             event.preventDefault();
             win.hide();
-        } 
-  
+        }
+
         return false;
     });
 }

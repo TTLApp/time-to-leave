@@ -2,6 +2,7 @@ const electron = require('electron');
 const path = require('path');
 const fs = require('fs');
 const { validateTime } = require('../js/time_math.js');
+const { isValidTheme } = require('../js/Themes.js');
 
 const defaultPreferences = {
     'hide-non-working-days': false,
@@ -14,6 +15,7 @@ const defaultPreferences = {
     'working-days-friday': true,
     'working-days-saturday': false,
     'working-days-sunday': false,
+    'theme': ''
 };
 
 /*
@@ -31,8 +33,9 @@ function savePreferences(preferencesOptions) {
     fs.writeFileSync(getPreferencesFilePath(), JSON.stringify(preferencesOptions));
 }
 
-/*
+/**
  * Loads preference from file.
+ * @return {Object}
  */
 function readPreferences() {
     var preferences;
@@ -75,12 +78,12 @@ function hasValidPreferencesFile() {
             }
             break;
         }
-        case 'working-days-monday': 
-        case 'working-days-tuesday': 
-        case 'working-days-wednesday': 
-        case 'working-days-thursday': 
-        case 'working-days-friday': 
-        case 'working-days-saturday': 
+        case 'working-days-monday':
+        case 'working-days-tuesday':
+        case 'working-days-wednesday':
+        case 'working-days-thursday':
+        case 'working-days-friday':
+        case 'working-days-saturday':
         case 'working-days-sunday': {
             if (value != true && value != false) {
                 return false;
@@ -93,13 +96,17 @@ function hasValidPreferencesFile() {
             }
             break;
         }
+        case 'theme' : {
+            return isValidTheme(value);
         }
-    } 
+        }
+    }
     return true;
 }
 
-/*
+/**
  * Returns the user preferences.
+ * @return {{string: any}} Associative array of user settings
  */
 function getUserPreferences() {
     // Initialize preferences file if it doesn't exists or is invalid

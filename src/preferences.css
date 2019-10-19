@@ -22,13 +22,13 @@ input {
     height: 90%;
 }
 
-.notification-setting {
+.notification-setting, .theme-setting {
     margin-bottom: 20px;
     display: flex;
     line-height: 30px;
 }
 
-.notification-option {
+.notification-option, .theme-option {
     margin-bottom: 20px;
     display: flex;
     line-height: 30px;
