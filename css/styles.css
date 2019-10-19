@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
-html {
+/* This is an implicit, and an explicit declaration of the Default color scheme */
+html, [data-theme="default"] {
   --page-bground: white;
   --page-color: black;
   --table-bground: white;

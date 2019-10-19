@@ -55,4 +55,5 @@ $(() => {
     if (theme in usersStyles) {
         $('#' + theme).val(usersStyles[theme]);
     }
+    preferences[theme] = $('#' + theme).children('option:selected').val();
 });
