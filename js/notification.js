@@ -11,7 +11,7 @@ function notifyUser() {
             message: 'Hey there! I think it\'s time to leave.',
             icon: path.join(__dirname, 'assets/timer.png'), // Absolute path (doesn't work on balloons)
             sound: true, // Only Notification Center or Windows Toasters
-            wait: true // Wait with callback, until user action is taken against notification
+            wait: true
         },
       );
 }
@@ -23,7 +23,7 @@ function notify(msg) {
             message: msg,
             icon: path.join(__dirname, 'assets/timer.png'), // Absolute path (doesn't work on balloons)
             sound: true, // Only Notification Center or Windows Toasters
-            wait: false // Wait with callback, until user action is taken against notification
+            wait: true
         },
       );
 }
