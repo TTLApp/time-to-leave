@@ -16,6 +16,19 @@ function notifyUser() {
       );
 }
 
+function notify(msg) {
+    notifier.notify(
+        {
+            title: 'Time to leave',
+            message: msg,
+            icon: path.join(__dirname, 'assets/timer.png'), // Absolute path (doesn't work on balloons)
+            sound: true, // Only Notification Center or Windows Toasters
+            wait: false // Wait with callback, until user action is taken against notification
+        },
+      );
+}
+
 module.exports = {
-    notifyUser
+    notifyUser,
+    notify
 };

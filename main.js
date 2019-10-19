@@ -1,7 +1,7 @@
 const { app, BrowserWindow, Menu, dialog, ipcMain, Tray } = require('electron');
 const path = require('path');
 const Store = require('electron-store');
-const notifier = require('node-notifier');
+const { notify } = require('./js/notification');
 
 const { savePreferences } = require('./js/UserPreferences.js');
 
@@ -150,15 +150,7 @@ function createWindow () {
                 var now = new Date();
 
                 win.webContents.executeJavaScript('punchDate()');
-                notifier.notify(
-                    {
-                        title: 'Time to leave',
-                        message: `Punched time ${now.getHours()}:${now.getMinutes()}`,
-                        icon: path.join(__dirname, 'assets/timer.png'), // Absolute path (doesn't work on balloons)
-                        sound: true, // Only Notification Center or Windows Toasters
-                        wait: false // Wait with callback, until user action is taken against notification
-                    },
-                  );
+                notify(`Punched time ${now.getHours()}:${now.getMinutes()}`);
             }
         },
         {
