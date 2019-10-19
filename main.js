@@ -132,7 +132,12 @@ function createWindow () {
             nodeIntegration: true
         }
     });
-    win.setMenu(menu);
+
+    if (macOS) {
+        Menu.setApplicationMenu(menu);
+    } else {
+        win.setMenu(menu);
+    }
     
     // and load the index.html of the app.
     win.loadFile(path.join(__dirname, 'index.html'));
