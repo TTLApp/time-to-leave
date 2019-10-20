@@ -646,7 +646,7 @@ function notifyTimeToLeave() {
         var isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval == 0);
 
         if (curTime == timeToLeave || isRepeatingInterval) {
-            notify();
+            notify('Hey there! I think it\'s time to leave.');
         }
     }
 }
