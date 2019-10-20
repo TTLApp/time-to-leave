@@ -9,7 +9,7 @@ function notify(msg) {
         {
             title: title,
             message: msg || defaultMessage,
-            icon: path.join(__dirname, 'assets/timer.png'), // Absolute path (doesn't work on balloons)
+            icon: path.join(path.dirname(require.main.filename), 'assets/timer.png'), // Absolute path (doesn't work on balloons)
             sound: true, // Only Notification Center or Windows Toasters
             wait: !msg // Wait with callback, until user action is taken against notification
         },

@@ -16,6 +16,8 @@ const defaultPreferences = {
     'working-days-sunday': false,
 };
 
+var derivedPreferences;
+
 /*
  * Returns the preference file path, considering the userData path
  */
@@ -45,33 +47,38 @@ function readPreferences() {
 }
 
 /*
- * Returns true if there's a valid preferences file.
- * Invalid files don't have all the settings listed.
+ * Returns true if something is missing or invalid in preferences file
  */
-function hasValidPreferencesFile() {
+function shouldSaveDerivedPreferencesFile() {
     if (!fs.existsSync(getPreferencesFilePath())) {
-        return false;
+        return true;
     }
+
+    var shouldSaveDerivedPref = false;
+
     // Validate keys
     var prefs = readPreferences();
+    derivedPreferences = Object.assign(defaultPreferences, prefs);
     var loadedPref = Object.keys(prefs).sort();
-    var referencePref = Object.keys(defaultPreferences).sort();
-    if (JSON.stringify(loadedPref) != JSON.stringify(referencePref)) {
-        return false;
+    var derivedPrefKeys = Object.keys(derivedPreferences).sort();
+    if (JSON.stringify(loadedPref) != JSON.stringify(derivedPrefKeys)) {
+        shouldSaveDerivedPref = true;
     }
     // Validate the values
-    for(var key of Object.keys(prefs)) {
-        var value = prefs[key];
+    for(var key of derivedPrefKeys) {
+        var value = derivedPreferences[key];
         switch (key) {
         case 'hours-per-day': {
             if (!validateTime(value)) {
-                return false;
+                derivedPreferences[key] = defaultPreferences[key];
+                shouldSaveDerivedPref = true;
             }
             break;
         }
         case 'notification': {
             if (value != 'enabled' && value != 'disabled') {
-                return false;
+                derivedPreferences[key] = defaultPreferences[key];
+                shouldSaveDerivedPref = true;
             }
             break;
         }
@@ -83,19 +90,21 @@ function hasValidPreferencesFile() {
         case 'working-days-saturday': 
         case 'working-days-sunday': {
             if (value != true && value != false) {
-                return false;
+                derivedPreferences[key] = defaultPreferences[key];
+                shouldSaveDerivedPref = true;
             }
             break;
         }
         case 'hide-non-working-days': {
             if (value != true && value != false) {
-                return false;
+                derivedPreferences[key] = defaultPreferences[key];
+                shouldSaveDerivedPref = true;
             }
             break;
         }
         }
     } 
-    return true;
+    return shouldSaveDerivedPref;
 }
 
 /*
@@ -103,8 +112,8 @@ function hasValidPreferencesFile() {
  */
 function getUserPreferences() {
     // Initialize preferences file if it doesn't exists or is invalid
-    if (!hasValidPreferencesFile()) {
-        savePreferences(defaultPreferences);
+    if (shouldSaveDerivedPreferencesFile()) {
+        savePreferences(derivedPreferences || defaultPreferences);
     }
     return readPreferences();
 }

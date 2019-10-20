@@ -1,8 +1,8 @@
 const { app, BrowserWindow, Menu, dialog, ipcMain, Tray } = require('electron');
 const path = require('path');
 const Store = require('electron-store');
+const { shell } = require('electron');
 const { notify } = require('./js/notification');
-
 const { savePreferences } = require('./js/UserPreferences.js');
 
 let savedPreferences = null;
@@ -122,9 +122,26 @@ function createWindow () {
                     }
                 }
             ]
+        },
+        {
+            label: 'Help',
+            submenu: [
+                {
+                    label: 'TTL GitHub',
+                    click () {
+                        shell.openExternal('https://github.com/thamara/time-to-leave');
+                    }
+                },
+                {
+                    label: 'Latest releases',
+                    click () {
+                        shell.openExternal('https://github.com/thamara/time-to-leave/releases');
+                    }
+                }
+            ]
         }
     ]);
-
+    
     win = new BrowserWindow({
         width: 1000,
         height: 800,
