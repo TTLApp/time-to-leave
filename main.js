@@ -4,6 +4,7 @@ const Store = require('electron-store');
 const { shell } = require('electron');
 const { notify } = require('./js/notification');
 const { savePreferences } = require('./js/UserPreferences.js');
+const os = require('os')
 
 let savedPreferences = null;
 ipcMain.on('PREFERENCE_SAVE_DATA_NEEDED', (event, preferences) => {
@@ -136,6 +137,27 @@ function createWindow () {
                     label: 'Latest releases',
                     click () {
                         shell.openExternal('https://github.com/thamara/time-to-leave/releases');
+                    }
+                },
+                {
+                    type: 'separator'
+                },
+                {
+                    label: 'About',
+                    click () {
+                        const version = app.getVersion();
+                        const electronVersion = process.versions.electron;
+                        const chromeVersion = process.versions.chrome;
+                        const nodeVersion = process.versions.node;
+                        const OSInfo = `${os.type()} ${os.arch()} ${os.release()}`;
+                        const detail = `Version: ${version}\nElectron: ${electronVersion}\nChrome: ${chromeVersion}\nNode.js: ${nodeVersion}\nOS: ${OSInfo}`;
+                        dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
+                            {
+                                title: 'Time to Leave',
+                                message: 'Time to Leave',
+                                type: 'info',
+                                detail: `\n${detail}`
+                            });
                     }
                 }
             ]
