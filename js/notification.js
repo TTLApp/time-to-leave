@@ -5,7 +5,6 @@ const path = require('path');
  * Notify user it's time to leave.
  */
 function notifyUser() {
-    console.log(path.dirname(__filename));
     notifier.notify(
         {
             title: 'Time to leave',
