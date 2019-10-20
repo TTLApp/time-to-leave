@@ -1,0 +1,38 @@
+/* This is an implicit, and an explicit declaration of the Default color scheme */
+html, html[data-theme="light"] {
+  --page-bground: white;
+  --page-color: black;
+  --table-bground: white;
+  --table-border: rgb(203, 203, 203);
+  --table-total-border: rgb(164, 158, 207);
+  --table-cell-offtime-bground: rgb(245, 245, 245);
+  --table-cell-offtime-color: rgb(133, 133, 133);
+  --table-cell-total-bground: var(--table-cell-offtime-bground);
+  --table-cell-total-color: var(--table-cell-offtime-color);
+  --table-header-label-bground: var(--table-bground);
+  --table-header-label-shadow: var(--table-border);
+  --error: red;
+  --punch-bground: var(--table-total-border);
+  --punch-color: black;
+  --punch-disable-bground: rgb(134, 134, 134);
+  --svg-invert: 0;
+}
+
+html[data-theme="dark"] {
+  --page-bground: rgb(39, 39, 39);
+  --page-color: white;
+  --table-bground: rgb(39, 39, 39);
+  --table-border: rgb(90, 90, 90);
+  --table-total-border: rgb(95, 92, 121);
+  --table-cell-offtime-bground: rgb(71, 71, 71);
+  --table-cell-offtime-color: rgb(151, 151, 151);
+  --table-cell-total-bground: var(--table-cell-offtime-bground);
+  --table-cell-total-color: var(--table-cell-offtime-color);
+  --table-header-label-bground: var(--table-bground);
+  --table-header-label-shadow: var(--table-border);
+  --error: red;
+  --punch-bground: rgb(164, 158, 207);
+  --punch-color: white;
+  --punch-disable-bground: rgb(134, 134, 134);
+  --svg-invert: 1;
+}

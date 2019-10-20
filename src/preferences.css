@@ -1,9 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
+/* Utilize the 'after' so as to not overwrite the prior theme colors */
+
+html, html[data-theme="light"]{
+  --title-color: rgb(51, 51, 51);
+  --input-border: rgb(77, 77, 77);
+}
+
+html, html[data-theme="dark"]{
+  --title-color: rgb(--page-color);
+  --input-border: rgb(77, 77, 77);
+}
+
+body {
+  background-color: var(--page-bground);
+  color: var(--page-color);
+}
+
 .preferences-page {
     font-size: 25px;
     height: 60px;
-    border-bottom: 4px solid rgb(164, 158, 207);
+    border-bottom: 4px solid var(--table-total-border);
 }
 
 .header-help {
@@ -36,10 +53,10 @@ input {
 
 .preference-title {
   font-size: 20px;
-  color: #333;
+  color: var(--title-color);
   margin-bottom: 15px;
   margin-top: 30px;
-  border-bottom: 1px solid rgb(164, 158, 207);
+  border-bottom: 1px solid var(--table-total-border);
 }
 
 .working-days {
@@ -62,4 +79,12 @@ td {
 
 #non-working-label input {
    margin-right: 8px;
+}
+
+select, option, input {
+  background-color: var(--page-bground);
+}
+
+select, input {
+  border: solid 1px var(--input-border);
 }

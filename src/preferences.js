@@ -7,6 +7,15 @@ let usersStyles =  getUserPreferences();
 let preferences = {};
 
 $(() => {
+    // Theme-handling should be towards the top. Applies theme early so it's more natural.
+    let theme = 'theme';
+    if (theme in usersStyles) {
+        $('#' + theme).val(usersStyles[theme]);
+    }
+    let selectedThemeOption = $('#' + theme).children('option:selected').val();
+    preferences[theme] = selectedThemeOption;
+    document.querySelector('html').setAttribute('data-theme', selectedThemeOption);
+
     var inputs = document.getElementsByTagName('input');
 
     $('input[type="checkbox"]').change(function() {
@@ -50,10 +59,4 @@ $(() => {
         $('#' + notification).val(usersStyles[notification]);
     }
     preferences[notification] = $('#' + notification).children('option:selected').val();
-
-    let theme = 'theme';
-    if (theme in usersStyles) {
-        $('#' + theme).val(usersStyles[theme]);
-    }
-    preferences[theme] = $('#' + theme).children('option:selected').val();
 });

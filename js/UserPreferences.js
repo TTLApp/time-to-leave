@@ -15,7 +15,7 @@ const defaultPreferences = {
     'working-days-friday': true,
     'working-days-saturday': false,
     'working-days-sunday': false,
-    'theme': ''
+    'theme': 'light'
 };
 
 /*
