@@ -52,6 +52,11 @@ npm run package-mac
 npm run package-win
 ```
 
+## Contributing
+
+If you want to help, do read our [contributing](CONTRIBUTING.md) guidelines.
+
+
 ### Credits
 ---
 Icons made by [freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com).
