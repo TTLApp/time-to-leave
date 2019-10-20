@@ -20,6 +20,8 @@ const store = new Store();
 const waivedWorkdays = new Store({name: 'waived-workdays'});
 let preferences = getUserPreferences();
 let calendar = null;
+let punchBtnPressed = false;
+
 
 /*
  * Get nofified when preferences has been updated.
@@ -202,6 +204,7 @@ class Calendar {
 
         $('#punch-button').on('click', function() {
             punchDate();
+            punchBtnPressed = true;
         });
 
         $('#next-month').on('click', function() {
@@ -633,7 +636,8 @@ function updateTimeDayCallback(key, value) {
  * Notify user if it's time to leave
  */
 function notifyTimeToLeave() {
-    if (!notificationIsEnabled() || document.getElementById('leave-by') == null) {
+    var today = new Date();
+    if (!notificationIsEnabled() || document.getElementById('leave-by') == null || !showDay(today.getFullYear(), today.getMonth(), today.getDate()) || !punchBtnPressed) {
         return;
     }
 
