@@ -4,7 +4,7 @@ const Store = require('electron-store');
 const { shell } = require('electron');
 const { notify } = require('./js/notification');
 const { savePreferences } = require('./js/UserPreferences.js');
-const os = require('os')
+const os = require('os');
 
 let savedPreferences = null;
 ipcMain.on('PREFERENCE_SAVE_DATA_NEEDED', (event, preferences) => {
