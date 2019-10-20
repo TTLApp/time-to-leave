@@ -156,6 +156,7 @@ function createWindow () {
                                 title: 'Time to Leave',
                                 message: 'Time to Leave',
                                 type: 'info',
+                                icon: iconpath,
                                 detail: `\n${detail}`
                             });
                     }
