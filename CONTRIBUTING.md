@@ -1,6 +1,7 @@
 # Contributing to Time to Leave
 
-Hey there! We are so happy you are interested in contributing to TTL. 
+Hey there! We are so happy you are interested in contributing to TTL.
+
 Thank you in advance for your help! :)
 
 ### When you open an issue or a bug report
