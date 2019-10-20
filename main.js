@@ -1,7 +1,7 @@
 const { app, BrowserWindow, Menu, dialog, ipcMain, Tray } = require('electron');
 const path = require('path');
 const Store = require('electron-store');
-const { shell } = require('electron')
+const { shell } = require('electron');
 const { notify } = require('./js/notification');
 const { savePreferences } = require('./js/UserPreferences.js');
 
@@ -141,7 +141,7 @@ function createWindow () {
             ]
         }
     ]);
-    
+
     win = new BrowserWindow({
         width: 1000,
         height: 800,
