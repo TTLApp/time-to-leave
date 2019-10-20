@@ -20,7 +20,6 @@ let preferences = getUserPreferences();
 let calendar = null;
 let punchBtnPressed = false;
 
-
 /*
  * Get nofified when preferences has been updated.
  */
