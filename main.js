@@ -195,6 +195,12 @@ function createWindow () {
                     }
                 },
                 {
+                    label: 'Send feedback',
+                    click() {
+                        shell.openExternal('https://github.com/thamara/time-to-leave/issues/new')
+                    }
+                },
+                {
                     type: 'separator'
                 },
                 {
