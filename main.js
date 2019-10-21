@@ -63,6 +63,14 @@ async function checkForUpdates() {
                             store.set('update-remind-me-after', todayDate);
                         }
                     });
+                } else {
+                    const options = {
+                        type: 'info',
+                        buttons: ['OK'],
+                        title: 'TTL Check for updates',
+                        message: 'Your TTL is up to date.'
+                    };
+                    dialog.showMessageBox(null, options);
                 }
             }
         });
