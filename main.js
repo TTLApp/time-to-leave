@@ -272,7 +272,7 @@ function createWindow () {
     tray = new Tray(trayIcon);
     var contextMenu = Menu.buildFromTemplate([
         {
-            label: 'Punch in time', click: function () {
+            label: 'Punch time', click: function () {
                 var now = new Date();
 
                 win.webContents.executeJavaScript('punchDate()');
