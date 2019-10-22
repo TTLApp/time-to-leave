@@ -151,6 +151,7 @@ input[type="time"]::-webkit-clear-button {
   text-align: right;
   margin-top: auto;
   font-size: 90%;
+  font-variant-caps: all-petite-caps;
 }
 
 .month-total-text {

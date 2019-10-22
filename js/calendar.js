@@ -262,8 +262,8 @@ class Calendar {
             if (!showDay(this.year, this.month, day)) {
                 continue;
             }
-            var d = new Date(this.year, this.month, day);
-            if (d > now) {
+            var isToday = (now.getDate() == day && now.getMonth() == this.month && now.getFullYear() == this.year);
+            if (isToday) {
                 //balance considers only up until yesterday
                 break;
             }
@@ -281,9 +281,12 @@ class Calendar {
         var monthTotalToWork = multiplyTime(getHoursPerDay(), workingDaysToCompute * -1);
         var balance = sumTime(monthTotalToWork, monthTotalWorked);
         var balanceElement = document.getElementById('month-balance');
-        balanceElement.value = balance;
-        balanceElement.classList.remove('text-success', 'text-danger');
-        balanceElement.classList.add(isNegative(balance) ? 'text-danger' : 'text-success');
+        if (balanceElement)
+        {
+            balanceElement.value = balance;
+            balanceElement.classList.remove('text-success', 'text-danger');
+            balanceElement.classList.add(isNegative(balance) ? 'text-danger' : 'text-success');
+        }
     }
 
     /*
@@ -298,6 +301,10 @@ class Calendar {
                 continue;
             }
 
+            var isToday = (this.today.getDate() == day && this.today.getMonth() == this.month && this.today.getFullYear() == this.year);
+            if (isToday) {
+                break;
+            }
             this.workingDays += 1;
 
             var currentDay = new Date(this.year, this.month, day),
@@ -324,8 +331,21 @@ class Calendar {
                 colorErrorLine(this.year, this.month, day, dayBegin, lunchBegin, lunchEnd, dayEnd);
             }
         }
-        document.getElementById('month-total').value = monthTotal;
-        document.getElementById('month-working-days').value = this.workingDays;
+        var monthDayInput = document.getElementById('month-day-input');
+        if (monthDayInput)
+        {
+            monthDayInput.value = this._getValidPreviousDay();
+        }
+        var monthDayTotal = document.getElementById('month-total');
+        if (monthDayTotal)
+        {
+            monthDayTotal.value = monthTotal;
+        }
+        var monthWorkingDays = document.getElementById('month-working-days');
+        if (monthWorkingDays)
+        {
+            monthWorkingDays.value = this.workingDays;
+        }
         this.updateBalance();
 
         this.updateLeaveBy();
@@ -404,11 +424,29 @@ class Calendar {
                    '</tr>';
         return code;
     }
+    
+    /*
+     * Returns the html code for the row with workng days, month total and balance
+     */
+    static _getBalanceRowCode () {
+        return '<tr>' +
+              '<tr class="month-total-row">' +
+                  '<td class="month-total-text" title="Last day used for balance">On</td>' +
+                  '<td class="month-total-time" title="Last day used for balance"><input type="text" id="month-day-input" size="2" disabled></td>' +
+                  '<td class="month-total-text" title="How many working days there\'s in the month">Working days</td>' +
+                  '<td class="month-total-time" title="How many working days there\'s in the month"><input type="text" id="month-working-days" size="5" disabled></td>' +
+                  '<td class="month-total-text" title="How many hours you logged in this month">Month Sum</td>' +
+                  '<td class="month-total-time" title="How many hours you logged in this month"><input type="text" id="month-total" size="8" disabled></td>' +
+                  '<td class="month-total-text" title="Balance up until today for this month. A positive balance means extra hours you don\'t need to work today (or the rest of the month).">Month Balance</td>' +
+                  '<td class="month-total-time" title="Balance up until today for this month. A positive balance means extra hours you don\'t need to work today (or the rest of the month)."><input type="text" id="month-balance" size="8" disabled></td>' +
+                '</tr>' +
+            '</tr>';
+    }
 
     /*
      * Returns the code of a calendar row
      */
-    _getInputsRowCode (year, month, day) {
+    _getInputsRowCode (year, month, day, lastValidDay) {
         var currentDay = new Date(year, month, day),
             weekDay = currentDay.getDay(),
             today = new Date(),
@@ -454,6 +492,10 @@ class Calendar {
                     '<td class="ti ti-total">' + Calendar._getTotalCode(year, month, day, 'day-total') + '</td>' +
                 '</tr>\n';
 
+        if (day == lastValidDay) {
+            htmlCode += Calendar._getBalanceRowCode();
+        }
+
         if (isToday) {
             htmlCode += Calendar._getSummaryRowCode();
         }
@@ -497,6 +539,20 @@ class Calendar {
                 '</tr>' +
                 '</thead>\n';
     }
+    
+    /*
+     * Returns the last valid day before the current one, to print the balance row
+     */
+    _getValidPreviousDay() {
+        var lastValidDay = 0;
+        for (var day = 1; day < this.today.getDate(); ++day) {
+            if (showDay(this.year, this.month, day)) {
+                lastValidDay = day;
+            }
+        }
+        
+        return lastValidDay;
+    }
 
     /*
      * Returns the code of the body of the page.
@@ -507,8 +563,10 @@ class Calendar {
         html += this._getPageHeader(this.year, this.month);
         html += '<table class="table-body">';
         html += this._getTableHeaderCode();
+        var lastValidDay = this._getValidPreviousDay();
+        
         for (var day = 1; day <= monthLength; ++day) {
-            html += this._getInputsRowCode(this.year, this.month, day);
+            html += this._getInputsRowCode(this.year, this.month, day, lastValidDay);
         }
         html += '</table><br>';
         html += '</div>';
