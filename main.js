@@ -29,7 +29,7 @@ function shouldcheckForUpdates() {
     return !lastChecked || todayDate > lastChecked;
 }
 
-async function checkForUpdates() {
+async function checkForUpdates(showUpToDateDialog) {
     var online = await isOnline();
     if (!online) {
         return;
@@ -64,13 +64,16 @@ async function checkForUpdates() {
                         }
                     });
                 } else {
-                    const options = {
-                        type: 'info',
-                        buttons: ['OK'],
-                        title: 'TTL Check for updates',
-                        message: 'Your TTL is up to date.'
-                    };
-                    dialog.showMessageBox(null, options);
+                    if (showUpToDateDialog)
+                    {
+                        const options = {
+                            type: 'info',
+                            buttons: ['OK'],
+                            title: 'TTL Check for updates',
+                            message: 'Your TTL is up to date.'
+                        };
+                        dialog.showMessageBox(null, options);  
+                    }
                 }
             }
         });
@@ -216,7 +219,7 @@ function createWindow () {
                 {
                     label: 'Check for updates',
                     click () {
-                        checkForUpdates();
+                        checkForUpdates(/*showUpToDateDialog=*/true);
                     }
                 },
                 {
@@ -320,7 +323,7 @@ function createWindow () {
     });
 
     if (shouldcheckForUpdates()) {
-        checkForUpdates();
+        checkForUpdates(/*showUpToDateDialog=*/false);
     }
 }
 
