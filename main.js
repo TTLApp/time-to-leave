@@ -214,12 +214,6 @@ function createWindow () {
                     }
                 },
                 {
-                    label: 'Latest releases',
-                    click () {
-                        shell.openExternal('https://github.com/thamara/time-to-leave/releases');
-                    }
-                },
-                {
                     label: 'Check for updates',
                     click () {
                         checkForUpdates();
