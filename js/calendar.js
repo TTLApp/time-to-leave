@@ -20,7 +20,6 @@ const store = new Store();
 const waivedWorkdays = new Store({name: 'waived-workdays'});
 let preferences = getUserPreferences();
 let calendar = null;
-let punchBtnPressed = false;
 
 /*
  * Get nofified when preferences has been updated.
@@ -203,7 +202,6 @@ class Calendar {
 
         $('#punch-button').on('click', function() {
             punchDate();
-            punchBtnPressed = true;
         });
 
         $('#next-month').on('click', function() {
@@ -620,6 +618,21 @@ function updateTimeDay(year, month, day, key, newValue) {
     colorErrorLine(year, month, day, dayBegin, lunchBegin, lunchEnd, dayEnd);
 }
 
+document.addEventListener("DOMContentLoaded", function(event) {
+    var target = document.getElementById("punch-button");
+    observer.observe(target, {attributes: true});
+});
+
+var observer = new MutationObserver(function (mutationRecords, observer) {
+    mutationRecords.forEach(function (mutation) {
+        if (mutation.attributeName == "disabled" && mutation.target.disabled == true) {
+            ipcRenderer.send('updateTray', false)
+        } else {
+            ipcRenderer.send('updateTray', true)
+        }
+    });
+});
+
 /*
  * Based on the key of the input, updates the values for total in db and display it on page
  */
@@ -635,8 +648,7 @@ function updateTimeDayCallback(key, value) {
  * Notify user if it's time to leave
  */
 function notifyTimeToLeave() {
-    var today = new Date();
-    if (!notificationIsEnabled() || document.getElementById('leave-by') == null || !showDay(today.getFullYear(), today.getMonth(), today.getDate()) || !punchBtnPressed) {
+    if (!notificationIsEnabled() || document.getElementById('leave-by') == null) {
         return;
     }
 

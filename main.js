@@ -21,6 +21,7 @@ const waivedWorkdays = new Store({name: 'waived-workdays'});
 const macOS = process.platform === 'darwin';
 var iconpath = path.join(__dirname, macOS ? 'assets/timer.png' : 'assets/timer.ico');
 var trayIcon = path.join(__dirname, macOS ? 'assets/timer-16-Template.png' : 'assets/timer-grey.ico');
+var contextMenu;
 
 function shouldcheckForUpdates() {
     var lastChecked = store.get('update-remind-me-after');
@@ -274,7 +275,7 @@ function createWindow () {
     win.loadFile(path.join(__dirname, 'index.html'));
 
     tray = new Tray(trayIcon);
-    var contextMenu = Menu.buildFromTemplate([
+    var contextMenuTemplate = [
         {
             label: 'Punch time', click: function () {
                 var now = new Date();
@@ -295,7 +296,12 @@ function createWindow () {
                 app.quit();
             }
         }
-    ]);
+    ];
+
+    ipcMain.on('updateTray', function(event, arg) {
+        contextMenuTemplate[0].enabled = arg;
+        contextMenu = Menu.buildFromTemplate(contextMenuTemplate);
+    });
 
     tray.on('click', function handleCliked() {
         win.show();
@@ -318,8 +324,8 @@ function createWindow () {
         if(app.isQuiting != undefined && !app.isQuiting){
             event.preventDefault();
             win.hide();
-        }
-
+        } 
+        
         return false;
     });
 
