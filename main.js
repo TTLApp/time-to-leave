@@ -11,6 +11,9 @@ let savedPreferences = null;
 ipcMain.on('PREFERENCE_SAVE_DATA_NEEDED', (event, preferences) => {
     savedPreferences = preferences;
 });
+ipcMain.on('setWaiverDay', (event, waiverDay) => {
+    global.waiverDay = waiverDay;
+});
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.

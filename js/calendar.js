@@ -15,6 +15,8 @@ const { notify } = require('./js/notification.js');
 const { getUserPreferences, showDay } = require('./js/user-preferences.js');
 const { applyTheme } = require('./js/themes.js');
 const {
+    formatDayId,
+    sendWaiverDay,
     displayWaiverWindow
 } = require('./js/workday_waiver_aux.js')
 
@@ -222,6 +224,9 @@ class Calendar {
         });
 
         $('.waiver-button').on('click', function() {
+            const dayId = $(this).closest('tr').attr('id').substr(3);
+            const waiverDay = formatDayId(dayId);
+            sendWaiverDay(waiverDay);
             displayWaiverWindow();
         });
     }
