@@ -94,7 +94,11 @@ function createWindow () {
                 {
                     label: 'Workday Waiver Manager',
                     id: 'workday-waiver-manager',
-                    click () {
+                    click (item, window, event) {
+                        if (event) {
+                            today = new Date();
+                            global.waiverDay = today.toISOString().substr(0, 10);
+                        }
                         const htmlPath = path.join('file://', __dirname, 'src/workday_waiver.html');
                         let waiverWindow = new BrowserWindow({ width: 600, 
                             height: 500, 
