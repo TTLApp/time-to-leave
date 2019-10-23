@@ -618,17 +618,17 @@ function updateTimeDay(year, month, day, key, newValue) {
     colorErrorLine(year, month, day, dayBegin, lunchBegin, lunchEnd, dayEnd);
 }
 
-document.addEventListener("DOMContentLoaded", function(event) {
-    var target = document.getElementById("punch-button");
+document.addEventListener('DOMContentLoaded', function(event) {
+    var target = document.getElementById('punch-button');
     observer.observe(target, {attributes: true});
 });
 
 var observer = new MutationObserver(function (mutationRecords, observer) {
     mutationRecords.forEach(function (mutation) {
-        if (mutation.attributeName == "disabled" && mutation.target.disabled == true) {
-            ipcRenderer.send('updateTray', false)
+        if (mutation.attributeName == 'disabled' && mutation.target.disabled == true) {
+            ipcRenderer.send('updateTray', false);
         } else {
-            ipcRenderer.send('updateTray', true)
+            ipcRenderer.send('updateTray', true);
         }
     });
 });
