@@ -14,6 +14,9 @@ const {
 const { notify } = require('./js/notification.js');
 const { getUserPreferences, showDay } = require('./js/user-preferences.js');
 const { applyTheme } = require('./js/themes.js');
+const {
+    displayWaiverWindow
+} = require('./js/workday_waiver_aux.js')
 
 // Global values for calendar
 const store = new Store();
@@ -216,6 +219,10 @@ class Calendar {
 
         $('#current-month').on('click', function() {
             goToCurrentDate();
+        });
+
+        $('.waiver-button').on('click', function() {
+            displayWaiverWindow();
         });
     }
 
