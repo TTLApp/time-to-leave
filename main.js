@@ -324,8 +324,7 @@ function createWindow () {
         if(app.isQuiting != undefined && !app.isQuiting){
             event.preventDefault();
             win.hide();
-        } 
-        
+        }
         return false;
     });
 
