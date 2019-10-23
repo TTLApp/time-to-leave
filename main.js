@@ -90,6 +90,7 @@ function createWindow () {
             submenu: [
                 {
                     label: 'Workday Waiver Manager',
+                    id: 'workday-waiver-manager',
                     click () {
                         const htmlPath = path.join('file://', __dirname, 'src/workday_waiver.html');
                         let waiverWindow = new BrowserWindow({ width: 600, 
@@ -265,9 +266,8 @@ function createWindow () {
         }
     });
 
-    if (macOS) {
-        Menu.setApplicationMenu(menu);
-    } else {
+    Menu.setApplicationMenu(menu);
+    if (!macOS) {
         win.setMenu(menu);
     }
 
