@@ -489,6 +489,7 @@ class Calendar {
             var summaryStr = '<b>Waived day: </b>' + waivedInfo['reason'];
             var waivedLineHtmlCode =
                  '<tr'+ (isToday ? ' class="isToday"' : '') + ' id="' + trID + '">' +
+                    '<td></td>' +
                     '<td class="weekday ti">' + this.options.weekabbrs[weekDay] + '</td>' +
                     '<td class="day ti">' + day + '</td>' +
                     '<td class="waived-day-text" colspan="5">' + summaryStr + '</td>' +
@@ -500,7 +501,7 @@ class Calendar {
         var htmlCode =
                  '<tr'+ (isToday ? ' class="isToday"' : '') + ' id="' + trID + '">' +
                     '<td class="waiver-button">' +
-                        '<img src="assets/timer.svg" height="25" title="Add a waiver for this day" class="waiver">' +
+                        '<img src="assets/waiver.svg" height="20" title="Add a waiver for this day" class="waiver">' +
                     '</td>' +
                     '<td class="weekday ti">' + this.options.weekabbrs[weekDay] + '</td>' +
                     '<td class="day ti">' + day + '</td>' +
