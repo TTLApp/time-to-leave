@@ -17,7 +17,7 @@ function formatDayId(dayId) {
  * @param {string} waiverDay - day in 'YYYY-MM-DD' format
  */
 function sendWaiverDay(waiverDay) {
-    ipcRenderer.send("setWaiverDay", waiverDay);
+    ipcRenderer.send('setWaiverDay', waiverDay);
 }
 
 /**
