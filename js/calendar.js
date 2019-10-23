@@ -464,6 +464,7 @@ class Calendar {
             }
             else {
                 return  '<tr'+ (isToday ? ' class="today-non-working"' : '') + ' id="' + trID + '">' +
+                        '<td></td>' + 
                         '<td class="weekday ti">' + this.options.weekabbrs[weekDay] + '</td>' +
                         '<td class="day ti">' + day + '</td>' +
                         '<td class="day non-working-day" colspan="6">' + '</td>' +
@@ -486,6 +487,9 @@ class Calendar {
 
         var htmlCode =
                  '<tr'+ (isToday ? ' class="isToday"' : '') + ' id="' + trID + '">' +
+                    '<td class="waiver-button">' +
+                        '<img src="assets/timer.svg" height="25" title="Add a waiver for this day" class="waiver">' +
+                    '</td>' +
                     '<td class="weekday ti">' + this.options.weekabbrs[weekDay] + '</td>' +
                     '<td class="day ti">' + day + '</td>' +
                     '<td class="ti">' + Calendar._getInputCode(year, month, day, 'day-begin') + '</td>' +
@@ -533,6 +537,7 @@ class Calendar {
     _getTableHeaderCode () {
         return '<thead>' +
                 '<tr>' +
+                    '<th class="th th-label"></th>' +
                     '<th class="th th-label th-day-name dayheader" colspan="2">Day</th>' +
                     '<th class="th th-label">Day Start</th>' +
                     '<th class="th th-label">Lunch Start</th>' +
