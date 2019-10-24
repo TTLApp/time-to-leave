@@ -679,12 +679,12 @@ function updateTimeDay(year, month, day, key, newValue) {
 /*
  * Listens to attribute changes on the punch button, if disabled, it will disable tray punch button
  */
-document.addEventListener('DOMContentLoaded', function (event) {
+document.addEventListener('DOMContentLoaded', function (_event) {
     var target = document.getElementById('punch-button');
     observer.observe(target, { attributes: true });
 });
 
-var observer = new MutationObserver(function (mutationRecords, observer) {
+var observer = new MutationObserver(function (mutationRecords) {
     mutationRecords.forEach(function (mutation) {
         if (mutation.attributeName == 'disabled' && mutation.target.disabled == true) {
             ipcRenderer.send('updateTray', false);

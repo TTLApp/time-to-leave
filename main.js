@@ -298,7 +298,7 @@ function createWindow () {
         }
     ];
 
-    ipcMain.on('updateTray', function(event, arg) {
+    ipcMain.on('updateTray', function(_event, arg) {
         contextMenuTemplate[0].enabled = arg;
         contextMenu = Menu.buildFromTemplate(contextMenuTemplate);
     });
