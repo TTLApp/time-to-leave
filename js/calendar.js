@@ -677,6 +677,24 @@ function updateTimeDay(year, month, day, key, newValue) {
 }
 
 /*
+ * Listens to attribute changes on the punch button, if disabled, it will disable tray punch button
+ */
+document.addEventListener('DOMContentLoaded', function (event) {
+    var target = document.getElementById('punch-button');
+    observer.observe(target, { attributes: true });
+});
+
+var observer = new MutationObserver(function (mutationRecords, observer) {
+    mutationRecords.forEach(function (mutation) {
+        if (mutation.attributeName == 'disabled' && mutation.target.disabled == true) {
+            ipcRenderer.send('updateTray', false);
+        } else {
+            ipcRenderer.send('updateTray', true);
+        }
+    });
+});
+
+/*
  * Based on the key of the input, updates the values for total in db and display it on page
  */
 function updateTimeDayCallback(key, value) {
