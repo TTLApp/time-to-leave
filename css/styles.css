@@ -217,18 +217,18 @@ html[data-theme="dark"] .text-danger{
   color: rgb(226, 93, 90);
 }
 
-.waiver {
+.waiver-img {
   display: none;
 }
 
-.weekday:hover {
+.waiver-trigger:hover {
   cursor: pointer;
 }
 
-.weekday:hover + .day > span {
+.waiver-trigger:hover + .day > .day-number {
   display: none;
 }
 
-.weekday:hover + .day > img {
+.waiver-trigger:hover + .day > .waiver-img {
   display: block;
 }

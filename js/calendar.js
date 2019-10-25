@@ -223,7 +223,7 @@ class Calendar {
             goToCurrentDate();
         });
 
-        $('.weekday').on('click', function() {
+        $('.waiver-trigger').on('click', function() {
             const dayId = $(this).closest('tr').attr('id').substr(3);
             const waiverDay = formatDayId(dayId);
             sendWaiverDay(waiverDay);
@@ -498,10 +498,10 @@ class Calendar {
 
         var htmlCode =
                  '<tr'+ (isToday ? ' class="isToday"' : '') + ' id="' + trID + '">' +
-                    '<td class="weekday ti" title="Add a waiver for this day">' + this.options.weekabbrs[weekDay] + '</td>' +
+                    '<td class="weekday waiver-trigger ti" title="Add a waiver for this day">' + this.options.weekabbrs[weekDay] + '</td>' +
                     '<td class="day ti">' + 
-                        '<span> ' + day + ' </span>' +
-                        '<img src="assets/waiver.svg" height="15" class="waiver">' + 
+                        '<span class="day-number"> ' + day + ' </span>' +
+                        '<img src="assets/waiver.svg" height="15" class="waiver-img">' + 
                     '</td>' +
                     '<td class="ti">' + Calendar._getInputCode(year, month, day, 'day-begin') + '</td>' +
                     '<td class="ti">' + Calendar._getInputCode(year, month, day, 'lunch-begin') + '</td>' +
