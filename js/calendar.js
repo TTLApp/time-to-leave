@@ -687,9 +687,9 @@ document.addEventListener('DOMContentLoaded', function (_event) {
 var observer = new MutationObserver(function (mutationRecords) {
     mutationRecords.forEach(function (mutation) {
         if (mutation.attributeName == 'disabled' && mutation.target.disabled == true) {
-            ipcRenderer.send('updateTray', false);
+            ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', false);
         } else {
-            ipcRenderer.send('updateTray', true);
+            ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', true);
         }
     });
 });

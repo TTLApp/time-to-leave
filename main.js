@@ -298,7 +298,7 @@ function createWindow () {
         }
     ];
 
-    ipcMain.on('updateTray', function(_event, arg) {
+    ipcMain.on('TOGGLE_TRAY_PUNCH_TIME', function(_event, arg) {
         contextMenuTemplate[0].enabled = arg;
         contextMenu = Menu.buildFromTemplate(contextMenuTemplate);
     });
