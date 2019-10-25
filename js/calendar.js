@@ -679,7 +679,7 @@ function updateTimeDay(year, month, day, key, newValue) {
 /*
  * Listens to attribute changes on the punch button, if disabled, it will disable tray punch button
  */
-document.addEventListener('DOMContentLoaded', function (_event) {
+document.addEventListener('DOMContentLoaded', function () {
     var target = document.getElementById('punch-button');
     observer.observe(target, { attributes: true });
 });
