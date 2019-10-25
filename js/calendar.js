@@ -223,7 +223,7 @@ class Calendar {
             goToCurrentDate();
         });
 
-        $('.waiver-button').on('click', function() {
+        $('.weekday').on('click', function() {
             const dayId = $(this).closest('tr').attr('id').substr(3);
             const waiverDay = formatDayId(dayId);
             sendWaiverDay(waiverDay);
@@ -476,7 +476,6 @@ class Calendar {
             }
             else {
                 return  '<tr'+ (isToday ? ' class="today-non-working"' : '') + ' id="' + trID + '">' +
-                        '<td></td>' + 
                         '<td class="weekday ti">' + this.options.weekabbrs[weekDay] + '</td>' +
                         '<td class="day ti">' + day + '</td>' +
                         '<td class="day non-working-day" colspan="6">' + '</td>' +
@@ -489,7 +488,6 @@ class Calendar {
             var summaryStr = '<b>Waived day: </b>' + waivedInfo['reason'];
             var waivedLineHtmlCode =
                  '<tr'+ (isToday ? ' class="isToday"' : '') + ' id="' + trID + '">' +
-                    '<td></td>' +
                     '<td class="weekday ti">' + this.options.weekabbrs[weekDay] + '</td>' +
                     '<td class="day ti">' + day + '</td>' +
                     '<td class="waived-day-text" colspan="5">' + summaryStr + '</td>' +
@@ -500,11 +498,11 @@ class Calendar {
 
         var htmlCode =
                  '<tr'+ (isToday ? ' class="isToday"' : '') + ' id="' + trID + '">' +
-                    '<td class="waiver-button">' +
-                        '<img src="assets/waiver.svg" height="20" title="Add a waiver for this day" class="waiver">' +
+                    '<td class="weekday ti" title="Add a waiver for this day">' + this.options.weekabbrs[weekDay] + '</td>' +
+                    '<td class="day ti">' + 
+                        '<span> ' + day + ' </span>' +
+                        '<img src="assets/waiver.svg" height="15" class="waiver">' + 
                     '</td>' +
-                    '<td class="weekday ti">' + this.options.weekabbrs[weekDay] + '</td>' +
-                    '<td class="day ti">' + day + '</td>' +
                     '<td class="ti">' + Calendar._getInputCode(year, month, day, 'day-begin') + '</td>' +
                     '<td class="ti">' + Calendar._getInputCode(year, month, day, 'lunch-begin') + '</td>' +
                     '<td class="ti ti-total">' + Calendar._getTotalCode(year, month, day, 'lunch-total') + '</td>' +
@@ -550,7 +548,6 @@ class Calendar {
     _getTableHeaderCode () {
         return '<thead>' +
                 '<tr>' +
-                    '<th class="th th-label"></th>' +
                     '<th class="th th-label th-day-name dayheader" colspan="2">Day</th>' +
                     '<th class="th th-label">Day Start</th>' +
                     '<th class="th th-label">Lunch Start</th>' +

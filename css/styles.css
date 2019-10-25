@@ -216,3 +216,19 @@ th.th-label{
 html[data-theme="dark"] .text-danger{
   color: rgb(226, 93, 90);
 }
+
+.waiver {
+  display: none;
+}
+
+.weekday:hover {
+  cursor: pointer;
+}
+
+.weekday:hover + .day > span {
+  display: none;
+}
+
+.weekday:hover + .day > img {
+  display: block;
+}
