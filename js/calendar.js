@@ -191,8 +191,10 @@ class Calendar {
 
         if (!showDay(this.today.getFullYear(), this.today.getMonth(), this.today.getDate())) {
             document.getElementById('punch-button').disabled = true;
+            ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', false);
         } else {
             document.getElementById('punch-button').disabled = false;
+            ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', true);
         }
 
         this.updateLeaveBy();
@@ -376,8 +378,10 @@ class Calendar {
         if (dayBegin.length && lunchBegin.length && lunchEnd.length && dayEnd.length) {
             //All entries computed
             document.getElementById('punch-button').disabled = true;
+            ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', false);
         } else {
             document.getElementById('punch-button').disabled = false;
+            ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', true);
         }
     }
 
@@ -675,24 +679,6 @@ function updateTimeDay(year, month, day, key, newValue) {
 
     colorErrorLine(year, month, day, dayBegin, lunchBegin, lunchEnd, dayEnd);
 }
-
-/*
- * Listens to attribute changes on the punch button, if disabled, it will disable tray punch button
- */
-document.addEventListener('DOMContentLoaded', function () {
-    var target = document.getElementById('punch-button');
-    observer.observe(target, { attributes: true });
-});
-
-var observer = new MutationObserver(function (mutationRecords) {
-    mutationRecords.forEach(function (mutation) {
-        if (mutation.attributeName == 'disabled' && mutation.target.disabled == true) {
-            ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', false);
-        } else {
-            ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', true);
-        }
-    });
-});
 
 /*
  * Based on the key of the input, updates the values for total in db and display it on page
