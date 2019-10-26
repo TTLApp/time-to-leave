@@ -18,7 +18,7 @@ const {
     formatDayId,
     sendWaiverDay,
     displayWaiverWindow
-} = require('./js/workday_waiver_aux.js');
+} = require('./js/workday-waiver-aux.js');
 
 // Global values for calendar
 const store = new Store();
