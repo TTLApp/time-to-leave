@@ -1,6 +1,7 @@
 const { getUserPreferences, showDay } = require('../js/user-preferences.js');
 const { validateTime, diffDays } = require('../js/time-math.js');
 const { applyTheme } = require('../js/themes.js');
+const { remote } = require('electron');
 const Store = require('electron-store');
 
 const store = new Store({name: 'waived-workdays'});
@@ -8,10 +9,9 @@ const store = new Store({name: 'waived-workdays'});
 // Global values
 let usersStyles =  getUserPreferences();
 
-function setToday () {
-    var today = new Date();
-    document.getElementById('start_date').value = today.toISOString().substr(0, 10);
-    document.getElementById('end_date').value = today.toISOString().substr(0, 10);
+function setDates (day) {
+    document.getElementById('start_date').value = day;
+    document.getElementById('end_date').value = day;
 }
 
 function setHours() {
@@ -121,7 +121,7 @@ $(() => {
     let prefs = getUserPreferences();
     applyTheme(prefs.theme);
 
-    setToday();
+    setDates(remote.getGlobal('waiverDay'));
     setHours();
     toggleAddButton();
 
