@@ -11,7 +11,7 @@ let savedPreferences = null;
 ipcMain.on('PREFERENCE_SAVE_DATA_NEEDED', (event, preferences) => {
     savedPreferences = preferences;
 });
-ipcMain.on('setWaiverDay', (event, waiverDay) => {
+ipcMain.on('SET_WAIVER_DAY', (event, waiverDay) => {
     global.waiverDay = waiverDay;
 });
 

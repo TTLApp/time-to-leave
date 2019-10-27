@@ -12,12 +12,12 @@ function formatDayId(dayId) {
 }
 
 /**
- * Sends waiverDay value through setWaiverDay event.
+ * Sends waiverDay value through SET_WAIVER_DAY event.
  *
  * @param {string} waiverDay - day in 'YYYY-MM-DD' format
  */
 function sendWaiverDay(waiverDay) {
-    ipcRenderer.send('setWaiverDay', waiverDay);
+    ipcRenderer.send('SET_WAIVER_DAY', waiverDay);
 }
 
 /**
