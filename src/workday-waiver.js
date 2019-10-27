@@ -67,32 +67,32 @@ function addWaiver() {
         return;
     }
 
-    var temp_date = start_date;
-
     var diff = diffDays(start_date, end_date);
-
     if (diff < 0) {
         alert('End date cannot be less than start date.');
+        return;
     }
 
+    var temp_date = new Date(start_date.getTime());
     for (var i = 0; i <= diff; i++) {
         var temp_date_str = temp_date.toISOString().substr(0, 10);
 
         if (store.has(temp_date_str)) {
             alert(`You already have a waiver on ${temp_date_str}. Remove it before adding a new one.`);
+            return;
         }
 
         temp_date.setDate(temp_date.getDate() + 1);
     }
 
+    temp_date.setDate(start_date.getDate());
     for (i = 0; i <= diff; i++) {
         var temp_year = temp_date.getFullYear(),
             temp_month = temp_date.getMonth(),
             temp_day = temp_date.getDay();
 
         temp_date_str = temp_date.toISOString().substr(0, 10);
-
-        if (showDay(temp_year, temp_month - 1, temp_day) && !store.has(temp_date_str)) {
+        if (showDay(temp_year, temp_month, temp_day) && !store.has(temp_date_str)) {
             store.set(temp_date_str, { 'reason' : reason, 'hours' : hours });
             addRowToListTable(temp_date_str, reason, hours);
         }
