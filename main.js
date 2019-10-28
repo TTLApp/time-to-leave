@@ -25,6 +25,7 @@ const macOS = process.platform === 'darwin';
 var iconpath = path.join(__dirname, macOS ? 'assets/timer.png' : 'assets/timer.ico');
 var trayIcon = path.join(__dirname, macOS ? 'assets/timer-16-Template.png' : 'assets/timer-grey.ico');
 var contextMenu;
+var launchDate = new Date();
 
 function shouldcheckForUpdates() {
     var lastChecked = store.get('update-remind-me-after');
@@ -83,6 +84,15 @@ async function checkForUpdates(showUpToDateDialog) {
         });
     });
     request.end();
+}
+
+function refreshOnDayChange() {
+    var today = new Date();
+    if (today > launchDate)
+    {
+        launchDate = today;
+        win.reload();
+    }
 }
 
 function createWindow () {
@@ -345,6 +355,9 @@ function createWindow () {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
+app.on('ready', () => {
+    setInterval(refreshOnDayChange, 60 * 60 * 1000);
+});
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
