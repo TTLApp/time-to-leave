@@ -291,9 +291,9 @@ function createWindow () {
         webPreferences: {
             nodeIntegration: true
         }
-    })
+    });
     // maximize and then show the window
-    win.maximize()
+    win.maximize();
     win.show();
 
     Menu.setApplicationMenu(menu);
