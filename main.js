@@ -286,12 +286,13 @@ function createWindow () {
     ]);
 
     win = new BrowserWindow({
+        useContentSize: true,
         zoomToPageWidth: true,
         icon: iconpath,
         webPreferences: {
             nodeIntegration: true
         }
-    })
+    });
     win.maximize();
 
     Menu.setApplicationMenu(menu);
