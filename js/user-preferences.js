@@ -103,14 +103,14 @@ function initPreferencesFileIfNotExistsOrInvalid() {
         case 'working-days-friday':
         case 'working-days-saturday':
         case 'working-days-sunday': {
-            if (value != true && value != false) {
+            if (value !== true && value !== false) {
                 derivedPrefs[key] = defaultPreferences[key];
                 shouldSaveDerivedPrefs = true;
             }
             break;
         }
         case 'hide-non-working-days': {
-            if (value != true && value != false) {
+            if (value !== true && value !== false) {
                 derivedPrefs[key] = defaultPreferences[key];
                 shouldSaveDerivedPrefs = true;
             }
