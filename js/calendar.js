@@ -348,11 +348,7 @@ class Calendar {
         var monthDayInput = document.getElementById('month-day-input');
         if (monthDayInput)
         {
-            if (this.year != this.today.getFullYear() || this.month != this.today.getMonth()) {
-                monthDayInput.value = this.getMonthLength();
-            } else {
-                monthDayInput.value = this._getValidPreviousDay();
-            }
+            monthDayInput.value = this._getBalanceRowPosition();
         }
         var monthDayTotal = document.getElementById('month-total');
         if (monthDayTotal)
@@ -466,7 +462,7 @@ class Calendar {
     /*
      * Returns the code of a calendar row
      */
-    _getInputsRowCode (year, month, day, lastValidDay) {
+    _getInputsRowCode (year, month, day, balanceRowPosition) {
         var currentDay = new Date(year, month, day),
             weekDay = currentDay.getDay(),
             today = new Date(),
@@ -515,7 +511,7 @@ class Calendar {
                     '<td class="ti ti-total">' + Calendar._getTotalCode(year, month, day, 'day-total') + '</td>' +
                 '</tr>\n';
 
-        if (day == lastValidDay) {
+        if (day == balanceRowPosition) {
             htmlCode += Calendar._getBalanceRowCode();
         }
 
@@ -566,15 +562,19 @@ class Calendar {
     /*
      * Returns the last valid day before the current one, to print the balance row
      */
-    _getValidPreviousDay() {
-        var lastValidDay = 0;
+    _getBalanceRowPosition() {
+        if (this.year != this.today.getFullYear() || this.month != this.today.getMonth()) {
+            return this.getMonthLength();
+        }
+
+        var balanceRowPosition = 0;
         for (var day = 1; day < this.today.getDate(); ++day) {
             if (showDay(this.year, this.month, day)) {
-                lastValidDay = day;
+                balanceRowPosition = day;
             }
         }
         
-        return lastValidDay;
+        return balanceRowPosition;
     }
 
     /*
@@ -586,15 +586,10 @@ class Calendar {
         html += this._getPageHeader(this.year, this.month);
         html += '<table class="table-body">';
         html += this._getTableHeaderCode();
-        var lastValidDay;
-        if (this.year != this.today.getFullYear() || this.month != this.today.getMonth()) {
-            lastValidDay = this.getMonthLength();
-        } else {
-            lastValidDay = this._getValidPreviousDay();
-        }
+        var balanceRowPosition = this._getBalanceRowPosition();
         
         for (var day = 1; day <= monthLength; ++day) {
-            html += this._getInputsRowCode(this.year, this.month, day, lastValidDay);
+            html += this._getInputsRowCode(this.year, this.month, day, balanceRowPosition);
         }
         html += '</table><br>';
         html += '</div>';
