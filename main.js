@@ -69,7 +69,7 @@ async function checkForUpdates(showUpToDateDialog) {
                     };
               
                     dialog.showMessageBox(null, options, (response) => {
-                        if (response == 1) {
+                        if (response === 1) {
                             //Download latest version
                             shell.openExternal('https://github.com/thamara/time-to-leave/releases/latest');
                         } else if (response == 2) {
@@ -209,7 +209,7 @@ function createWindow () {
                         };
 
                         dialog.showMessageBox(null, options, (response) => {
-                            if (response == 1) {
+                            if (response === 1) {
                                 store.clear();
                                 waivedWorkdays.clear();
                                 win.reload();
