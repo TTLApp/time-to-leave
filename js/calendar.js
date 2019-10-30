@@ -169,7 +169,7 @@ class Calendar {
      * Display previous month.
      */
     prevMonth() {
-        if (this.month == 0) {
+        if (this.month === 0) {
             this.month = 11;
             this.year -= 1;
         } else {
