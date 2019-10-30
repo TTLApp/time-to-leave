@@ -286,15 +286,13 @@ function createWindow () {
     ]);
 
     win = new BrowserWindow({
-        show: false,
+        zoomToPageWidth: true,
         icon: iconpath,
         webPreferences: {
             nodeIntegration: true
         }
-    });
-    // maximize and then show the window
+    })
     win.maximize();
-    win.show();
 
     Menu.setApplicationMenu(menu);
     if (!macOS) {
