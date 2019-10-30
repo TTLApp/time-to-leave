@@ -348,7 +348,11 @@ class Calendar {
         var monthDayInput = document.getElementById('month-day-input');
         if (monthDayInput)
         {
-            monthDayInput.value = this._getValidPreviousDay();
+            if (this.year != this.today.getFullYear() || this.month != this.today.getMonth()) {
+                monthDayInput.value = this.getMonthLength();
+            } else {
+                monthDayInput.value = this._getValidPreviousDay();
+            }
         }
         var monthDayTotal = document.getElementById('month-total');
         if (monthDayTotal)
@@ -582,7 +586,12 @@ class Calendar {
         html += this._getPageHeader(this.year, this.month);
         html += '<table class="table-body">';
         html += this._getTableHeaderCode();
-        var lastValidDay = this._getValidPreviousDay();
+        var lastValidDay;
+        if (this.year != this.today.getFullYear() || this.month != this.today.getMonth()) {
+            lastValidDay = this.getMonthLength();
+        } else {
+            lastValidDay = this._getValidPreviousDay();
+        }
         
         for (var day = 1; day <= monthLength; ++day) {
             html += this._getInputsRowCode(this.year, this.month, day, lastValidDay);
