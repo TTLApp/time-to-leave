@@ -26,6 +26,7 @@ const store = new Store();
 const waivedWorkdays = new Store({name: 'waived-workdays'});
 let preferences = getUserPreferences();
 let calendar = null;
+let repetitions = 0;
 
 /*
  * Get nofified when preferences has been updated.
@@ -40,7 +41,29 @@ ipcRenderer.on('PREFERENCE_SAVED', function(event, inputs) {
  * Returns true if the notification is enabled in preferences.
  */
 function notificationIsEnabled() {
-    return preferences['notification'] === 'enabled';
+    return preferences['notification'];
+}
+
+
+/*
+ * Returns true if the repetition is enabled in preferences.
+ */
+function repetitionIsEnabled() {
+    return preferences['enable-repetition'];
+}
+
+/*
+ * Returns how many minutes are between notifications in preferences.
+ */
+function getMinutesBetweenNotifications() {
+    return parseInt(preferences['notifications-interval'], 10);
+}
+
+/*
+ * Returns max number of notifications repetitions in preferences.
+ */
+function getMaxRepetitionsNumber() {
+    return parseInt(preferences['repetitions-number'], 10);
 }
 
 /*
@@ -726,16 +749,20 @@ function notifyTimeToLeave() {
          * How many minutes should pass before the Time-To-Leave notification should be presented again.
          * @type {number} Minutes post the clockout time
          */
-        const notificationInterval = 5;
+        const notificationInterval = getMinutesBetweenNotifications();
         var now = new Date();
         var curTime = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
 
         // Let check if it's past the time to leave, and the minutes line up with the interval to check
         var minutesDiff = hourToMinutes(subtractTime(timeToLeave, curTime));
-        var isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval === 0);
+        var isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval == 0);
+        
+        let reachedMaxRepetitions = repetitions === getMaxRepetitionsNumber();
+        let shouldRepeat = !reachedMaxRepetitions && repetitionIsEnabled();
 
-        if (curTime === timeToLeave || isRepeatingInterval) {
+        if (curTime == timeToLeave || (isRepeatingInterval && shouldRepeat)) {
             notify('Hey there! I think it\'s time to leave.');
+            repetitions++;
         }
     }
 }
