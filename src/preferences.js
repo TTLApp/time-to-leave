@@ -16,14 +16,14 @@ $(() => {
     preferences[theme] = selectedThemeOption;
     document.querySelector('html').setAttribute('data-theme', selectedThemeOption);
 
-    var inputs = document.getElementsByTagName('input');
+    let inputs = document.getElementsByTagName('input');
 
     $('input[type="checkbox"]').change(function() {
         preferences[this.name] = this.checked;
         ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
     });
 
-    $('input[type="time"]').change(function() {
+    $('input[type="time"], input[type="number"]').change(function() {
         preferences[this.name] = this.value;
         ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
     });

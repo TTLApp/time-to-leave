@@ -92,6 +92,14 @@ function diffDays(date1, date2) {
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 }
 
+/**
+ * Validates that a string is a valid number (integer equal or bigger than one).
+ * @returns true if it's valid
+ */
+function validateNumber(number_string) {
+    return number_string.match(/^\d+$/) && number_string >= 1;
+}
+
 module.exports = {
     hourMinToHourFormated,
     isNegative,
@@ -101,5 +109,6 @@ module.exports = {
     sumTime,
     validateTime,
     hourToMinutes,
-    diffDays
+    diffDays,
+    validateNumber
 };

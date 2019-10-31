@@ -1,7 +1,7 @@
 const electron = require('electron');
 const path = require('path');
 const fs = require('fs');
-const { validateTime } = require('./time-math.js');
+const { validateTime, validateNumber } = require('./time-math.js');
 const { isValidTheme } = require('./themes.js');
 
 const defaultPreferences = {
@@ -9,6 +9,9 @@ const defaultPreferences = {
     'hide-non-working-days': false,
     'hours-per-day': '08:00',
     'notification': true,
+    'enable-repetition': true,
+    'notifications-interval': '5',
+    'repetitions-number': '5',
     'start-at-login': false,
     'theme': 'light',
     'update-remind-me-after' : '2019-01-01',
@@ -92,11 +95,21 @@ function initPreferencesFileIfNotExistsOrInvalid() {
             }
             break;
         }
+        // Handle Number Inputs
+        case 'notifications-interval':
+        case 'repetitions-number': {
+            if (!validateNumber(value)) {
+                derivedPrefs[key] = defaultPreferences[key];
+                shouldSaveDerivedPrefs = true;
+            }
+            break;
+        }
         // Handle Boolean Inputs
         case 'close-to-tray':
         case 'hide-non-working-days':
-        case 'notification':
         case 'start-at-login':
+        case 'notification':
+        case 'enable-repetition':
         case 'working-days-monday':
         case 'working-days-tuesday':
         case 'working-days-wednesday':
