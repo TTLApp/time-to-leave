@@ -41,12 +41,12 @@ $(() => {
 
     for(var i = 0 ; i < inputs.length; i++) {
         let input = inputs[i];
-        if (inputs[i].type == 'checkbox') {
+        if (inputs[i].type === 'checkbox') {
             if (input.name in usersStyles) {
                 input.checked = usersStyles[input.name];
             }
             preferences[input.name] = input.checked;
-        } else if (inputs[i].type == 'time') {
+        } else if (inputs[i].type === 'time') {
             if (input.name in usersStyles) {
                 input.value = usersStyles[input.name];
             }

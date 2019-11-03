@@ -74,7 +74,7 @@ function initPreferencesFileIfNotExistsOrInvalid() {
         derivedPrefsKeys = Object.keys(derivedPrefs).sort();
 
     // Validate keys
-    if (JSON.stringify(loadedPref) != JSON.stringify(derivedPrefsKeys)) {
+    if (JSON.stringify(loadedPref) !== JSON.stringify(derivedPrefsKeys)) {
         shouldSaveDerivedPrefs = true;
     }
 
@@ -90,7 +90,7 @@ function initPreferencesFileIfNotExistsOrInvalid() {
             break;
         }
         case 'notification': {
-            if (value != 'enabled' && value != 'disabled') {
+            if (value !== 'enabled' && value !== 'disabled') {
                 derivedPrefs[key] = defaultPreferences[key];
                 shouldSaveDerivedPrefs = true;
             }

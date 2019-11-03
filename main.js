@@ -72,7 +72,7 @@ async function checkForUpdates(showUpToDateDialog) {
                         if (response === 1) {
                             //Download latest version
                             shell.openExternal('https://github.com/thamara/time-to-leave/releases/latest');
-                        } else if (response == 2) {
+                        } else if (response === 2) {
                             // Remind me later
                             var today = new Date(),
                                 todayDate = today.toISOString().substr(0, 10);
@@ -350,7 +350,7 @@ function createWindow () {
 
     // Emitted when the window is closed.
     win.on('closed', function (event) {
-        if(app.isQuiting != undefined && !app.isQuiting){
+        if(app.isQuiting !== undefined && !app.isQuiting){
             event.preventDefault();
             win.hide();
         }

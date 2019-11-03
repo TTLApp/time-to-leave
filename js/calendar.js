@@ -39,7 +39,7 @@ ipcRenderer.on('PREFERENCE_SAVED', function (event, inputs) {
  * Returns true if the notification is enabled in preferences.
  */
 function notificationIsEnabled() {
-    return preferences['notification'] == 'enabled';
+    return preferences['notification'] === 'enabled';
 }
 
 /*
@@ -104,24 +104,24 @@ function punchDate() {
         hour = now.getHours(),
         min = now.getMinutes();
 
-    if (calendar.getMonth() != month ||
-        calendar.getYear() != year ||
+    if (calendar.getMonth() !== month ||
+        calendar.getYear() !== year ||
         !showDay(year, month, day)) {
         return;
     }
 
     var dayStr = year + '-' + month + '-' + day + '-';
     var entry = '';
-    if (document.getElementById(dayStr + 'day-end').value == '') {
+    if (document.getElementById(dayStr + 'day-end').value === '') {
         entry = 'day-end';
     }
-    if (document.getElementById(dayStr + 'lunch-end').value == '') {
+    if (document.getElementById(dayStr + 'lunch-end').value === '') {
         entry = 'lunch-end';
     }
-    if (document.getElementById(dayStr + 'lunch-begin').value == '') {
+    if (document.getElementById(dayStr + 'lunch-begin').value === '') {
         entry = 'lunch-begin';
     }
-    if (document.getElementById(dayStr + 'day-begin').value == '') {
+    if (document.getElementById(dayStr + 'day-begin').value === '') {
         entry = 'day-begin';
     }
     if (entry.length <= 0) {
@@ -156,7 +156,7 @@ class Calendar {
      * Display next month.
      */
     nextMonth() {
-        if (this.month == 11) {
+        if (this.month === 11) {
             this.month = 0;
             this.year += 1;
         } else {
@@ -276,7 +276,7 @@ class Calendar {
             if (!showDay(this.year, this.month, day)) {
                 continue;
             }
-            var isToday = (now.getDate() == day && now.getMonth() == this.month && now.getFullYear() == this.year);
+            var isToday = (now.getDate() === day && now.getMonth() === this.month && now.getFullYear() === this.year);
             if (isToday) {
                 //balance considers only up until yesterday
                 break;
@@ -315,7 +315,7 @@ class Calendar {
                 continue;
             }
 
-            var isToday = (this.today.getDate() == day && this.today.getMonth() == this.month && this.today.getFullYear() == this.year);
+            var isToday = (this.today.getDate() === day && this.today.getMonth() === this.month && this.today.getFullYear() === this.year);
             if (isToday) {
                 break;
             }
@@ -370,8 +370,8 @@ class Calendar {
      */
     updateLeaveBy() {
         if (!showDay(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()) ||
-            this.today.getMonth() != this.getMonth() ||
-            this.today.getFullYear() != this.getYear()) {
+            this.today.getMonth() !== this.getMonth() ||
+            this.today.getFullYear() !== this.getYear()) {
             return;
         }
         var [dayBegin, lunchBegin, lunchEnd, dayEnd] = getDaysEntriesFromHTML(this.today.getFullYear(), this.today.getMonth(), this.today.getDate());
@@ -466,7 +466,7 @@ class Calendar {
         var currentDay = new Date(year, month, day),
             weekDay = currentDay.getDay(),
             today = new Date(),
-            isToday = (today.getDate() == day && today.getMonth() == month && today.getFullYear() == year),
+            isToday = (today.getDate() === day && today.getMonth() === month && today.getFullYear() === year),
             trID = ('tr-' + year + '-' + month + '-' + day),
             dateStr = currentDay.toISOString().substr(0, 10);
 
@@ -511,7 +511,7 @@ class Calendar {
                     '<td class="ti ti-total">' + Calendar._getTotalCode(year, month, day, 'day-total') + '</td>' +
                 '</tr>\n';
 
-        if (day == balanceRowPosition) {
+        if (day === balanceRowPosition) {
             htmlCode += Calendar._getBalanceRowCode();
         }
 
@@ -563,7 +563,7 @@ class Calendar {
      * Returns the last valid day before the current one, to print the balance row
      */
     _getBalanceRowPosition() {
-        if (this.year != this.today.getFullYear() || this.month != this.today.getMonth()) {
+        if (this.year !== this.today.getFullYear() || this.month !== this.today.getMonth()) {
             return this.getMonthLength();
         }
 
@@ -714,7 +714,7 @@ function updateTimeDayCallback(key, value) {
  * Notify user if it's time to leave
  */
 function notifyTimeToLeave() {
-    if (!notificationIsEnabled() || document.getElementById('leave-by') == null) {
+    if (!notificationIsEnabled() || document.getElementById('leave-by') === null) {
         return;
     }
 
@@ -730,9 +730,9 @@ function notifyTimeToLeave() {
 
         // Let check if it's past the time to leave, and the minutes line up with the interval to check
         var minutesDiff = hourToMinutes(subtractTime(timeToLeave, curTime));
-        var isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval == 0);
+        var isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval === 0);
 
-        if (curTime == timeToLeave || isRepeatingInterval) {
+        if (curTime === timeToLeave || isRepeatingInterval) {
             notify('Hey there! I think it\'s time to leave.');
         }
     }
