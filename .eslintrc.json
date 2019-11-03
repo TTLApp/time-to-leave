@@ -19,9 +19,8 @@
     },
     "rules": {
         "eqeqeq": [
-            "error",
-            "smart"
-        ],
+            "error", "always"
+	],
         "indent": [
             "error",
             4
