@@ -15,7 +15,7 @@
     "lint": "./node_modules/.bin/eslint *.js src/ js/ test/",
     "lint-fix": "./node_modules/.bin/eslint *.js src/ js/ test/ --fix",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icon-mac.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/timer.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Time to Leave\""
+    "package-win": "electron-packager . --overwrite --asar --platform=win32 --arch=ia32 --icon=assets/timer.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Time to Leave\""
   },
   "pre-commit": [
     "lint-fix",
