@@ -1,7 +1,7 @@
 {
   "name": "time-to-leave",
   "productName": "Time to Leave",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Log work hours and get notified when it's time to leave the office and start to live.",
   "homepage": "https://github.com/thamara/time-to-leave#readme",
   "repository": {
