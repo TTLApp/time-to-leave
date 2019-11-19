@@ -29,13 +29,13 @@
     "electron-packager": "^14.0.6",
     "mocha": "^6.2.0",
     "pre-commit": "^1.2.2",
-    "spectron": "^8.0.0"
+    "spectron": "^8.0.0",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.11.0"
   },
   "dependencies": {
     "electron-store": "^5.0.0",
     "is-online": "^8.2.0",
-    "node-notifier": "^5.4.3",
-    "tap-spec": "^5.0.0",
-    "tape": "^4.11.0"
+    "node-notifier": "^5.4.3"
   }
 }
