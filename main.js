@@ -286,19 +286,25 @@ function createWindow () {
     ]);
 
     win = new BrowserWindow({
+        width: 1000,
+        height: 1000,
         useContentSize: true,
-        zoomToPageWidth: true,
+        zoomToPageWidth: true, //MacOS only
         icon: iconpath,
+        show: false,
         webPreferences: {
             nodeIntegration: true
         }
     });
-    win.maximize();
 
     Menu.setApplicationMenu(menu);
-    if (!macOS) {
+    if (macOS) {
+        win.maximize();
+    } else {
         win.setMenu(menu);
     }
+    // Prevents flickering from maximize
+    win.show();
 
     // and load the index.html of the app.
     win.loadFile(path.join(__dirname, 'index.html'));
