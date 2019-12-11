@@ -33,12 +33,12 @@ describe('Application launch', function () {
         });
     });
 
-  // GitHub issue #6
+    // GitHub issue #6
     it('Window displays a calendar, on the current month/year', function () {
         return this.app.client.getText('#month-year').then(function (monthYear) {
         // Check that has any content
             assert(monthYear && monthYear.length > 0, true);
-        // Check that the month/year is the current
+            // Check that the month/year is the current
             const months = [ 'January', 'February', 'March', 'April', 
                 'May', 'June', 'July', 'August', 'September', 
                 'October', 'November', 'December' ];

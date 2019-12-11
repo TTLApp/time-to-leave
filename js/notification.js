@@ -12,7 +12,7 @@ function notify(msg) {
             sound: true, // Only Notification Center or Windows Toasters
             wait: true
         },
-      );
+    );
 }
 
 module.exports = {
