@@ -373,7 +373,8 @@ class Calendar {
     updateLeaveBy() {
         if (!showDay(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()) ||
             this.today.getMonth() !== this.getMonth() ||
-            this.today.getFullYear() !== this.getYear()) {
+            this.today.getFullYear() !== this.getYear() ||
+            waivedWorkdays.has(this.today.toISOString().substr(0, 10))) {
             return;
         }
         var [dayBegin, lunchBegin, lunchEnd, dayEnd] = getDaysEntriesFromHTML(this.today.getFullYear(), this.today.getMonth(), this.today.getDate());
