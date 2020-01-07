@@ -23,7 +23,7 @@
     "test"
   ],
   "author": "Thamara Andrade",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "devDependencies": {
     "electron": "^7.0.1",
     "electron-eslint": "^3.12.2",
