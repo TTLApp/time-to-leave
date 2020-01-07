@@ -1,7 +1,6 @@
-const { app, BrowserWindow, Menu, dialog, ipcMain, Tray, net } = require('electron');
+const { app, BrowserWindow, dialog, ipcMain, Menu, net, shell, Tray } = require('electron');
 const path = require('path');
 const Store = require('electron-store');
-const { shell } = require('electron');
 const isOnline = require('is-online');
 const { notify } = require('./js/notification');
 const { savePreferences } = require('./js/user-preferences.js');
