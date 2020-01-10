@@ -99,7 +99,7 @@ function refreshOnDayChange() {
     {
         launchDate = today;
         // Reload only the calendar itself to avoid a flash
-        win.webContents.executeJavaScript('calendar.redraw()')
+        win.webContents.executeJavaScript('calendar.redraw()');
     }
 }
 
@@ -132,7 +132,7 @@ function createWindow() {
                         waiverWindow.on('close', function() {
                             waiverWindow = null;
                             // Reload only the calendar itself to avoid a flash
-                            win.webContents.executeJavaScript('calendar.redraw()')
+                            win.webContents.executeJavaScript('calendar.redraw()');
                         });
                     },
                 },
@@ -211,7 +211,7 @@ function createWindow() {
                             store.clear();
                             waivedWorkdays.clear();
                             // Reload only the calendar itself to avoid a flash
-                            win.webContents.executeJavaScript('calendar.redraw()')
+                            win.webContents.executeJavaScript('calendar.redraw()');
                             dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                                 {
                                     title: 'Time to Leave',
