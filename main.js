@@ -130,7 +130,8 @@ function createWindow() {
                         waiverWindow.show();
                         waiverWindow.on('close', function() {
                             waiverWindow = null;
-                            win.reload();
+                            // Reload only the calendar itself to avoid a flash
+                            win.webContents.executeJavaScript('calendar.redraw()')
                         });
                     },
                 },
