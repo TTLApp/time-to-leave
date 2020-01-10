@@ -98,7 +98,8 @@ function refreshOnDayChange() {
     if (today > launchDate)
     {
         launchDate = today;
-        win.reload();
+        // Reload only the calendar itself to avoid a flash
+        win.webContents.executeJavaScript('calendar.redraw()')
     }
 }
 
@@ -209,7 +210,8 @@ function createWindow() {
                         if (response === 1) {
                             store.clear();
                             waivedWorkdays.clear();
-                            win.reload();
+                            // Reload only the calendar itself to avoid a flash
+                            win.webContents.executeJavaScript('calendar.redraw()')
                             dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                                 {
                                     title: 'Time to Leave',
