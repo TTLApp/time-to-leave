@@ -22,11 +22,13 @@ body {
 select,
 option,
 input {
+    color: var(--page-color);
     background-color: var(--page-bground);
 }
 
 select,
 input {
+    color: var(--page-color);
     border: solid 1px var(--input-border);
 }
 
@@ -42,6 +44,7 @@ input {
 }
 
 input {
+    color: var(--page-color);
     border: none;
 }
 
