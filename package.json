@@ -13,13 +13,21 @@
     "start": "electron .",
     "mocha": "mocha",
     "test": "node test/time_math.test | tap-spec",
-    "lint": "eslint {*,**/*}.js",
-    "lint-fix": "eslint --fix {*,**/*}.js",
+    "lint": "npm-run-all lint:*",
+    "lint:js": "eslint . --fix",
+    "lint:css": "stylelint **/*.css --fix",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icon-mac.icns --prune=true --out=release-builds",
     "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/timer.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Time to Leave\""
   },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+        "selector-list-comma-newline-after": null,
+        "length-zero-no-unit": null
+    }
+  },
   "pre-commit": [
-    "lint-fix",
+    "lint",
     "test"
   ],
   "author": "Thamara Andrade",
@@ -29,8 +37,11 @@
     "electron-eslint": "^3.12.2",
     "electron-packager": "^14.0.6",
     "mocha": "^6.2.0",
+    "npm-run-all": "^4.1.5",
     "pre-commit": "^1.2.2",
     "spectron": "^8.0.0",
+    "stylelint": "^13.0.0",
+    "stylelint-config-standard": "^19.0.0",
     "tap-spec": "^5.0.0",
     "tape": "^4.11.0"
   },
