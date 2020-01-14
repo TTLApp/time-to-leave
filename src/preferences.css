@@ -29,6 +29,7 @@ body {
 }
 
 input {
+  color: var(--page-color);
     border: none;
   }
 
@@ -39,9 +40,9 @@ input {
     height: 90%;
 }
 
-.notification-setting, 
-.theme-setting, 
-.notification-option, 
+.notification-setting,
+.theme-setting,
+.notification-option,
 .theme-option  {
     display: flex;
     line-height: 30px;
@@ -78,9 +79,11 @@ td {
 }
 
 select, option, input {
+  color: var(--page-color);
   background-color: var(--page-bground);
 }
 
 select, input {
+  color: var(--page-color);
   border: solid 1px var(--input-border);
 }
