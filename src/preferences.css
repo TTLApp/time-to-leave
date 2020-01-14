@@ -2,12 +2,12 @@
 
 /* Utilize the 'after' so as to not overwrite the prior theme colors */
 
-html, html[data-theme="light"]{
+html, html[data-theme="light"] {
   --title-color: rgb(51, 51, 51);
   --input-border: rgb(77, 77, 77);
 }
 
-html, html[data-theme="dark"]{
+html, html[data-theme="dark"] {
   --title-color: rgb(--page-color);
   --input-border: rgb(77, 77, 77);
 }
@@ -18,34 +18,34 @@ body {
 }
 
 .preferences-page {
-    font-size: 25px;
-    height: 60px;
-    border-bottom: 4px solid var(--table-total-border);
+  font-size: 25px;
+  height: 60px;
+  border-bottom: 4px solid var(--table-total-border);
 }
 
 .header-help {
-    font-variant-caps: all-petite-caps;
-    font-size: 15px;
+  font-variant-caps: all-petite-caps;
+  font-size: 15px;
 }
 
 input {
   color: var(--page-color);
-    border: none;
-  }
+  border: none;
+}
 
 .preferences {
-    padding-right: 10px;
-    padding-left: 10px;
-    width: 100%;
-    height: 90%;
+  padding-right: 10px;
+  padding-left: 10px;
+  width: 100%;
+  height: 90%;
 }
 
 .notification-setting,
 .theme-setting,
 .notification-option,
-.theme-option  {
-    display: flex;
-    line-height: 30px;
+.theme-option {
+  display: flex;
+  line-height: 30px;
 }
 
 .preference-title {
@@ -57,7 +57,7 @@ input {
 }
 
 .working-days {
-  font-family: 'montserrat';
+  font-family: 'Montserrat', sans-serif;
   text-align: center;
 }
 
@@ -74,10 +74,6 @@ td {
   margin: 40px 0px 0px 8px;
 }
 
-#non-working-label input {
-   margin-right: 8px;
-}
-
 select, option, input {
   color: var(--page-color);
   background-color: var(--page-bground);
@@ -86,4 +82,8 @@ select, option, input {
 select, input {
   color: var(--page-color);
   border: solid 1px var(--input-border);
+}
+
+#non-working-label input {
+  margin-right: 8px;
 }
