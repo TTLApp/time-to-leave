@@ -124,6 +124,7 @@ td, th.th-label {
 }
 
 input {
+color: var(--page-color);
   border: none;
   background-color: transparent;
 }
