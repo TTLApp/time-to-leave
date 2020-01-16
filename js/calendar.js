@@ -204,7 +204,7 @@ class Calendar {
         }
 
         this.updateLeaveBy();
-        $('input[type=\'time\']').on('input propertychange', function() {
+        $('input[class=\'timepicker\']').on('input propertychange', function() {
             updateTimeDayCallback(this.id, this.value);
         });
 
@@ -223,6 +223,21 @@ class Calendar {
         $('#current-month').on('click', function() {
             goToCurrentDate();
         });
+
+        // jquery-timepicker
+        $(document).ready(function() {
+            const timeformat = 'HH:mm';
+            const mintime = '00:00';
+            const maxtime = '23:59';
+            $('input.timepicker').timepicker({
+                maxTime: maxtime,
+                minTime: mintime,
+                timeFormat: timeformat,
+                defaultTime: 'now'
+            });
+        });
+        //-----------------
+
 
         $('.waiver-trigger').on('click', function() {
             const dayId = $(this).closest('tr').attr('id').substr(3);
@@ -417,7 +432,8 @@ class Calendar {
     static _getInputCode(year, month, day, type) {
         var idTag = year + '-' + month + '-' + day + '-' + type;
 
-        return '<input type="time" id="' + idTag + '"' +
+        // return '<input type="time" id="' + idTag + '"' +
+        return '<input class="timepicker" type="time" id="' + idTag + '"' +
                (type.endsWith('total') ? ' disabled' : '') +
                '>';
 
@@ -446,7 +462,7 @@ class Calendar {
                    '</tr>';
         return code;
     }
-    
+
     /*
      * Returns the html code for the row with workng days, month total and balance
      */
@@ -499,14 +515,14 @@ class Calendar {
                     '<td class="ti ti-total">' + Calendar._getTotalCode(year, month, day, 'day-total') + '</td>' +
                 '</tr>\n';
             return waivedLineHtmlCode;
-        } 
+        }
 
         var htmlCode =
                  '<tr'+ (isToday ? ' class="isToday"' : '') + ' id="' + trID + '">' +
                     '<td class="weekday waiver-trigger ti" title="Add a waiver for this day">' + this.options.weekabbrs[weekDay] + '</td>' +
-                    '<td class="day ti">' + 
+                    '<td class="day ti">' +
                         '<span class="day-number"> ' + day + ' </span>' +
-                        '<img src="assets/waiver.svg" height="15" class="waiver-img">' + 
+                        '<img src="assets/waiver.svg" height="15" class="waiver-img">' +
                     '</td>' +
                     '<td class="ti">' + Calendar._getInputCode(year, month, day, 'day-begin') + '</td>' +
                     '<td class="ti">' + Calendar._getInputCode(year, month, day, 'lunch-begin') + '</td>' +
@@ -559,7 +575,7 @@ class Calendar {
                 '</tr>' +
                 '</thead>\n';
     }
-    
+
     /*
      * Returns the last valid day before the current one, to print the balance row
      */
@@ -574,7 +590,7 @@ class Calendar {
                 balanceRowPosition = day;
             }
         }
-        
+
         return balanceRowPosition;
     }
 
@@ -588,7 +604,7 @@ class Calendar {
         html += '<table class="table-body">';
         html += this._getTableHeaderCode();
         var balanceRowPosition = this._getBalanceRowPosition();
-        
+
         for (var day = 1; day <= monthLength; ++day) {
             html += this._getInputsRowCode(this.year, this.month, day);
             if (day === balanceRowPosition) {
