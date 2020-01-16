@@ -209,7 +209,9 @@ class Calendar {
         });
 
         $('#punch-button').on('click', function() {
+            var now = new Date();
             punchDate();
+            notify(`Punched time ${now.toTimeString().slice(0,5)}`);
         });
 
         $('#next-month').on('click', function() {
