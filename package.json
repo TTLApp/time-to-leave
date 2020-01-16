@@ -22,8 +22,8 @@
   "stylelint": {
     "extends": "stylelint-config-standard",
     "rules": {
-        "selector-list-comma-newline-after": null,
-        "length-zero-no-unit": null
+      "selector-list-comma-newline-after": null,
+      "length-zero-no-unit": null
     }
   },
   "pre-commit": [
@@ -50,7 +50,9 @@
     "electron-store": "^5.0.0",
     "is-online": "^8.2.0",
     "jquery": "^3.4.1",
-    "node-notifier": "^5.4.3"
+    "jquery-timepicker": "^1.3.3",
+    "node-notifier": "^5.4.3",
+    "popper.js": "^1.16.0"
   },
   "resolutions": {
     "core-js": "^3",
