@@ -209,7 +209,7 @@ class Calendar {
         });
 
         $('#punch-button').on('click', function() {
-            var now = new Date();
+            let now = new Date();
             punchDate();
             notify(`Punched time ${now.toTimeString().slice(0,5)}`);
         });
@@ -228,14 +228,17 @@ class Calendar {
 
         // jquery-timepicker
         $(document).ready(function() {
-            const timeformat = 'HH:mm';
-            const mintime = '00:00';
-            const maxtime = '23:59';
+            let now = new Date();
+            let timeformat = 'HH:mm';
+            let maxtime = '23:59';
+            let mintime = '00:00';
             $('input.timepicker').timepicker({
+                interval: 30,
+                dropdown: true,
                 maxTime: maxtime,
                 minTime: mintime,
                 timeFormat: timeformat,
-                defaultTime: 'now'
+                startTime: `${now.toTimeString().slice(0,5)}`
             });
         });
         //-----------------
