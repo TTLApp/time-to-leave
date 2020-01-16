@@ -232,3 +232,21 @@ html[data-theme="dark"] .text-danger {
 .waiver-trigger:hover + .day > .waiver-img {
   display: block;
 }
+
+.ui-timepicker-standard {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 80%;
+  background-color: var(--page-color);
+  border: 1px solid var(--page-color);
+  border-collapse: collapse;
+  display: table-cell;
+}
+
+.ui-timepicker-standard a {
+  text-align: left;
+  border: 0;
+  color: var(--page-bground);
+  display: block;
+  padding: 0 0;
+  text-decoration: none;
+}
