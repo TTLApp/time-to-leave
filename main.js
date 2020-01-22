@@ -141,7 +141,7 @@ function createWindow() {
                     label:'Exit',
                     accelerator: macOS ? 'CommandOrControl+Q' : 'Control+Q',
                     click() {
-                        app.isQuiting = true;
+                        app.isQuitting = true;
                         app.quit();
                     }
                 }
@@ -349,7 +349,7 @@ function createWindow() {
         },
         {
             label: 'Quit', click: function() {
-                app.isQuiting = true;
+                app.isQuitting = true;
                 win = null;
                 app.quit();
             }
@@ -379,7 +379,7 @@ function createWindow() {
 
     // Emitted when the window is closed.
     win.on('close', function(event) {
-        if (!app.isQuiting) {
+        if (!app.isQuitting) {
             event.preventDefault();
             win.hide();
         }
@@ -403,7 +403,7 @@ app.on('ready', () => {
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
-    app.isQuiting = true;
+    app.isQuitting = true;
     app.quit();
 });
 
