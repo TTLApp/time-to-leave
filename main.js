@@ -422,7 +422,6 @@ app.on('activate', () => {
 try {
     require('electron-reloader')(module);
 } catch (_) {
-    // eslint-disable-next-line no-unused-vars
-    let isDev = false;
-    // We don't need to do anything about this.
+    // eslint-disable-next-line no-empty
+    // We don't need to do anything in this block.
 }
