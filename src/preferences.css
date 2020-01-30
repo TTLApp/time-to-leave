@@ -34,6 +34,7 @@ input {
 }
 
 .preferences {
+  font-family: 'Montserrat', sans-serif;
   padding-right: 10px;
   padding-left: 10px;
   width: 100%;
