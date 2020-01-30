@@ -5,10 +5,9 @@
     <link rel="stylesheet" href="../css/themes.css">
     <link rel="stylesheet" href="workday-waiver.css">
 
-    <script>
-        delete module.exports
-    </script>
-    <script>let $ = require('jquery');</script>
+<!-- First we need to declare jQuery and $ globals with jquery -->
+<script>window.$ = window.jQuery = require('jquery');</script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js" charset="utf-8"></script>
     <script src="workday-waiver.js"></script>
 </header>
 <body>
