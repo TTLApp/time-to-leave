@@ -393,8 +393,14 @@ function createWindow() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow);
 app.on('ready', () => {
+    // Check first to see if the app is aleady running,
+    // fail out gracefully if so.
+    if (!app.requestSingleInstanceLock()) {
+        app.exit(0)
+    }
+
+    createWindow();
     setInterval(refreshOnDayChange, 60 * 60 * 1000);
     const { powerMonitor } = require('electron');
     powerMonitor.on('unlock-screen', () => { checkIdleAndNotify(); });
