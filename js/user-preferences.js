@@ -15,6 +15,7 @@ const defaultPreferences = {
     'working-days-friday': true,
     'working-days-saturday': false,
     'working-days-sunday': false,
+    'start-at-login': false,
     'theme': 'light',
     'update-remind-me-after' : '2019-01-01',
 };
@@ -110,6 +111,13 @@ function initPreferencesFileIfNotExistsOrInvalid() {
             break;
         }
         case 'hide-non-working-days': {
+            if (value !== true && value !== false) {
+                derivedPrefs[key] = defaultPreferences[key];
+                shouldSaveDerivedPrefs = true;
+            }
+            break;
+        }
+        case 'start-at-login': {
             if (value !== true && value !== false) {
                 derivedPrefs[key] = defaultPreferences[key];
                 shouldSaveDerivedPrefs = true;
