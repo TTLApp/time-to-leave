@@ -181,8 +181,8 @@ function createWindow() {
                     accelerator: macOS ? 'Command+,' : 'Control+,',
                     click() {
                         const htmlPath = path.join('file://', __dirname, 'src/preferences.html');
-                        let prefWindow = new BrowserWindow({ width: 600,
-                            height: 600,
+                        let prefWindow = new BrowserWindow({ width: 400,
+                            height: 400,
                             parent: win,
                             resizable: true,
                             icon: iconpath,
@@ -208,7 +208,7 @@ function createWindow() {
                             title: 'Export DB to file',
                             defaultPath : 'time_to_leave',
                             buttonLabel : 'Export',
-                  
+
                             filters : [
                                 { name: '.ttldb', extensions: ['ttldb',] },
                                 { name: 'All Files', extensions: ['*'] }
@@ -234,7 +234,7 @@ function createWindow() {
                         var options = {
                             title: 'Import DB from file',
                             buttonLabel : 'Import',
-                  
+
                             filters : [
                               {name: '.ttldb', extensions: ['ttldb',]},
                               {name: 'All Files', extensions: ['*']}
@@ -249,7 +249,7 @@ function createWindow() {
                                 title: 'Import database',
                                 message: 'Are you sure you want to import a database? It will override any current information.',
                             };
-    
+
                             let confirmation = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
                             if (confirmation === /*Yes*/0) {
                                 if (importDatabaseFromFile(response)) {

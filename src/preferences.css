@@ -17,22 +17,6 @@ body {
   color: var(--page-color);
 }
 
-.preferences-page {
-  font-size: 25px;
-  height: 60px;
-  border-bottom: 4px solid var(--table-total-border);
-}
-
-.header-help {
-  font-variant-caps: all-petite-caps;
-  font-size: 15px;
-}
-
-input {
-  color: var(--page-color);
-  border: none;
-}
-
 .preferences {
   font-family: 'Montserrat', sans-serif;
   padding-right: 10px;
@@ -41,50 +25,118 @@ input {
   height: 90%;
 }
 
-.notification-setting,
-.theme-setting,
-.notification-option,
-.theme-option {
-  display: flex;
-  line-height: 30px;
+.preferences-page {
+  font-size: 25px;
+  height: 35px;
+  border-bottom: 4px solid var(--table-total-border);
 }
 
 .preference-title {
   font-size: 20px;
   color: var(--title-color);
-  margin-bottom: 15px;
-  margin-top: 30px;
+  margin-bottom: 5px;
+  margin-top: 15px;
   border-bottom: 1px solid var(--table-total-border);
 }
 
-.working-days {
-  font-family: 'Montserrat', sans-serif;
+select, option, input {
+  font-variant-caps: all-petite-caps;
+  color: var(--page-color);
+  background-color: var(--page-bground);
+  border: solid 1px var(--input-border);
+  height: inherit;
+}
+
+.weekDays-selector input {
+  display: none;
+}
+
+.weekDays-selector input[type=checkbox] + label {
+  font-variant-caps: all-petite-caps;
+  display: inline-block;
+  border-radius: 10px;
+  background: var(--weekday-background);
+  height: 40px;
+  width: 45px;
+  margin-right: 3px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.weekDays-selector input[type=checkbox]:checked + label {
+  background: var(--weekday-selected);
+  color: #fff;
+}
+
+.flex-box {
+  display: flex;
+  height: 25px;
+  justify-content: space-between;
+}
+
+p {
+  font-variant-caps: all-petite-caps;
   text-align: center;
 }
 
-td {
-  padding-right: 5px;
-  padding-left: 5px;
-  font-variant-caps: all-petite-caps;
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 15px;
 }
 
-#non-working-label {
-  display: block;
-  font-weight: normal;
-  text-align: left;
-  margin: 40px 0px 0px 8px;
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
-select, option, input {
-  color: var(--page-color);
-  background-color: var(--page-bground);
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--slider-background-color);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
-select, input {
-  color: var(--page-color);
-  border: solid 1px var(--input-border);
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  background-color: var(--slider-unchecked-color);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
-#non-working-label input {
-  margin-right: 8px;
+input:checked + .slider {
+  background-color: var(--slider-checked-color);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--slider-checked-color);
+}
+
+input:checked + .slider::before {
+  -webkit-transform: translateX(15px);
+  -ms-transform: translateX(15px);
+  transform: translateX(15px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 30px;
+}
+
+.slider.round::before {
+  border-radius: 50%;
 }

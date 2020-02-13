@@ -28,11 +28,6 @@ $(() => {
         ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
     });
 
-    $('#notification').change(function() {
-        preferences['notification'] = this.value;
-        ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
-    });
-
     $('#theme').change(function() {
         preferences['theme'] = this.value;
         ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
@@ -53,10 +48,4 @@ $(() => {
             preferences[input.name] = input.value;
         }
     }
-
-    let notification = 'notification';
-    if (notification in usersStyles) {
-        $('#' + notification).val(usersStyles[notification]);
-    }
-    preferences[notification] = $('#' + notification).children('option:selected').val();
 });

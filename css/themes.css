@@ -15,6 +15,11 @@ html, html[data-theme="light"] {
   --punch-bground: var(--table-total-border);
   --punch-color: black;
   --punch-disable-bground: rgb(134, 134, 134);
+  --slider-background-color: rgb(220, 220, 220);
+  --slider-checked-color: var(--table-total-border);
+  --slider-unchecked-color: white;
+  --weekday-background: var(--slider-background-color);
+  --weekday-selected: var(--punch-bground);
   --svg-invert: 0;
 }
 
@@ -34,5 +39,10 @@ html[data-theme="dark"] {
   --punch-bground: rgb(164, 158, 207);
   --punch-color: white;
   --punch-disable-bground: rgb(134, 134, 134);
+  --slider-background-color: var(--table-cell-offtime-bground);
+  --slider-checked-color: var(--punch-bground);
+  --slider-unchecked-color: white;
+  --weekday-background: var(--slider-background-color);
+  --weekday-selected: var(--punch-bground);
   --svg-invert: 1;
 }

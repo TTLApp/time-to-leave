@@ -7,7 +7,7 @@ const { isValidTheme } = require('./themes.js');
 const defaultPreferences = {
     'hide-non-working-days': false,
     'hours-per-day': '08:00',
-    'notification': 'enabled',
+    'notification': true,
     'working-days-monday': true,
     'working-days-tuesday': true,
     'working-days-wednesday': true,
@@ -91,7 +91,7 @@ function initPreferencesFileIfNotExistsOrInvalid() {
             break;
         }
         case 'notification': {
-            if (value !== 'enabled' && value !== 'disabled') {
+            if (value !== true && value !== false) {
                 derivedPrefs[key] = defaultPreferences[key];
                 shouldSaveDerivedPrefs = true;
             }

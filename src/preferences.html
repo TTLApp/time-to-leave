@@ -14,62 +14,45 @@
     <div class="preferences">
         <div class="preferences-page">
             User preferences
-            <p class="header-help">Preferences are saved automatically when closing this window</p>
         </div>
 
         <div class="preference-title">Working days</div>
-        <div class="working-days">
-            <table>
-                <tbody>
-                <tr>
-                    <td><label for="sunday">Sunday</label></td>
-                    <td><label for="monday">Monday</label></td>
-                    <td><label for="tuesday">Tuesday</label></td>
-                    <td><label for="wednesday">Wednesday</label></td>
-                    <td><label for="thursday">Thursday</label></td>
-                    <td><label for="friday">Friday</label></td>
-                    <td><label for="saturday">Saturday</label></td>
-
-                <tr style="text-align: center;">
-                    <td><input type="checkbox" id="sunday" name="working-days-sunday"></td>
-                    <td><input type="checkbox" id="monday" name="working-days-monday" checked></td>
-                    <td><input type="checkbox" id="tuesday" name="working-days-tuesday" checked></td>
-                    <td><input type="checkbox" id="wednesday" name="working-days-wednesday" checked></td>
-                    <td><input type="checkbox" id="thursday" name="working-days-thursday" checked></td>
-                    <td><input type="checkbox" id="friday" name="working-days-friday" checked></td>
-                    <td><input type="checkbox" id="saturday" name="working-days-saturday"></td>
-                </tr>
-                </tbody>
-            </table>
-            <label id='non-working-label'><input type="checkbox" name="hide-non-working-days" value="value">Hide non-working days</label>
+        <div class="weekDays-selector">
+            <input type="checkbox" id="sunday" name="working-days-sunday" class="weekday"/>
+            <label for="sunday">Sun</label>
+            <input type="checkbox" id="monday" name="working-days-monday" class="weekday"/>
+            <label for="monday">Mon</label>
+            <input type="checkbox" id="tuesday" name="working-days-tuesday" class="weekday"/>
+            <label for="tuesday">Tue</label>
+            <input type="checkbox" id="wednesday" name="working-days-wednesday" class="weekday"/>
+            <label for="wednesday">Wed</label>
+            <input type="checkbox" id="thursday" name="working-days-thursday" class="weekday"/>
+            <label for="thursday">Thu</label>
+            <input type="checkbox" id="friday" name="working-days-friday" class="weekday"/>
+            <label for="friday">Fri</label>
+            <input type="checkbox" id="saturday" name="working-days-saturday" class="weekday"/>
+            <label for="saturday">Sat</label>
         </div>
-
-        <div class="preference-title">Hours per day</div>
-        <div class="hours-per-day">
+        <div class="flex-box">
+            <p>Hide non-working days</p>
+            <label id='non-working-label' class="switch"><input type="checkbox" name="hide-non-working-days"><span class="slider round"></span></label>
+        </div>
+        <div class="flex-box">
+            <p>Hours per day</p>
             <input type="time" name="hours-per-day" id="hours-per-day" min="00:00" max="24:00" value="08:00" required>
         </div>
-
-        <div class="preference-title">Notification</div>
-        <div class="notification-setting">
-            <div class="notification-option">
-                <select id="notification" name="notification">
-                    <option value="enabled" selected>Notification enabled</option>
-                    <option value="disabled">Notification disabled</option>
-                </select>
+        <div class="preference-title">App Behavior</div>
+            <div class="flex-box">
+                <p>Notifications</p>
+                <label id="notification" class="switch"><input type="checkbox" name="notification"><span class="slider round"></span></label>
             </div>
-        </div>
-
-        <div class="preference-title">Start on Login</div>
-        <div class="start-at-login-setting">
-            <div class="start-at-login-option">
-            <label id='start-at-login'><input type="checkbox" name="start-at-login" value="value">  Enable opening the app on start-up.</label>
+            <div class="flex-box">
+                <p>Start on Login</p>
+                <label id='start-at-login' class="switch"><input type="checkbox" name="start-at-login"><span class="slider round"></span></label>
             </div>
-        </div>
-
-        <div class="preference-title">Themes</div>
-        <div class="theme-setting">
-            <div class="theme-option">
-                <select id="theme" name="notification">
+            <div class="flex-box">
+                <p>Themes</p>
+                <select id="theme" name="theme">
                     <option value="light" selected>Light</option>
                     <option value="dark">Dark</option>
                 </select>
