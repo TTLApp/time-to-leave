@@ -9,6 +9,9 @@ const defaultPreferences = {
     'hide-non-working-days': false,
     'hours-per-day': '08:00',
     'notification': true,
+    'start-at-login': false,
+    'theme': 'light',
+    'update-remind-me-after' : '2019-01-01',
     'working-days-monday': true,
     'working-days-tuesday': true,
     'working-days-wednesday': true,
@@ -16,9 +19,6 @@ const defaultPreferences = {
     'working-days-friday': true,
     'working-days-saturday': false,
     'working-days-sunday': false,
-    'start-at-login': false,
-    'theme': 'light',
-    'update-remind-me-after' : '2019-01-01',
 };
 
 /*
