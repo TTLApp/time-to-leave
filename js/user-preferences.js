@@ -84,6 +84,7 @@ function initPreferencesFileIfNotExistsOrInvalid() {
     for (var key of derivedPrefsKeys) {
         var value = derivedPrefs[key];
         switch (key) {
+        // Handle Time Inputs
         case 'hours-per-day': {
             if (!validateTime(value)) {
                 derivedPrefs[key] = defaultPreferences[key];
@@ -91,13 +92,11 @@ function initPreferencesFileIfNotExistsOrInvalid() {
             }
             break;
         }
-        case 'notification': {
-            if (value !== true && value !== false) {
-                derivedPrefs[key] = defaultPreferences[key];
-                shouldSaveDerivedPrefs = true;
-            }
-            break;
-        }
+        // Handle Boolean Inputs
+        case 'close-to-tray':
+        case 'hide-non-working-days':
+        case 'notification':
+        case 'start-at-login':
         case 'working-days-monday':
         case 'working-days-tuesday':
         case 'working-days-wednesday':
@@ -111,27 +110,7 @@ function initPreferencesFileIfNotExistsOrInvalid() {
             }
             break;
         }
-        case 'hide-non-working-days': {
-            if (value !== true && value !== false) {
-                derivedPrefs[key] = defaultPreferences[key];
-                shouldSaveDerivedPrefs = true;
-            }
-            break;
-        }
-        case 'start-at-login': {
-            if (value !== true && value !== false) {
-                derivedPrefs[key] = defaultPreferences[key];
-                shouldSaveDerivedPrefs = true;
-            }
-            break;
-        }
-        case 'close-to-tray': {
-            if (value !== true && value !== false) {
-                derivedPrefs[key] = defaultPreferences[key];
-                shouldSaveDerivedPrefs = true;
-            }
-            break;
-        }
+        // Handle Enum Inputs
         case 'theme' : {
             shouldSaveDerivedPrefs |= !isValidTheme(value);
         }
