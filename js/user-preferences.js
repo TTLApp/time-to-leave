@@ -5,6 +5,7 @@ const { validateTime } = require('./time-math.js');
 const { isValidTheme } = require('./themes.js');
 
 const defaultPreferences = {
+    'close-to-tray': true,
     'hide-non-working-days': false,
     'hours-per-day': '08:00',
     'notification': true,
@@ -118,6 +119,13 @@ function initPreferencesFileIfNotExistsOrInvalid() {
             break;
         }
         case 'start-at-login': {
+            if (value !== true && value !== false) {
+                derivedPrefs[key] = defaultPreferences[key];
+                shouldSaveDerivedPrefs = true;
+            }
+            break;
+        }
+        case 'close-to-tray': {
             if (value !== true && value !== false) {
                 derivedPrefs[key] = defaultPreferences[key];
                 shouldSaveDerivedPrefs = true;

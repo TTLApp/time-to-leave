@@ -5,7 +5,7 @@ const isOnline = require('is-online');
 const { importDatabaseFromFile, exportDatabaseToFile } = require('./js/import-export.js');
 const { notify } = require('./js/notification');
 const { getDateStr } = require('./js/date-aux.js');
-const { savePreferences } = require('./js/user-preferences.js');
+const { getUserPreferences, savePreferences } = require('./js/user-preferences.js');
 const os = require('os');
 
 let savedPreferences = null;
@@ -461,7 +461,8 @@ function createWindow() {
 
     // Emitted when the window is closed.
     win.on('close', function(event) {
-        if (!app.isQuitting) {
+        savedPreferences = getUserPreferences();
+        if (!app.isQuitting && savedPreferences['close-to-tray']) {
             event.preventDefault();
             win.hide();
         }
