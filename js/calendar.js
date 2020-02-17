@@ -44,21 +44,6 @@ function notificationIsEnabled() {
     return preferences['notification'];
 }
 
-
-/*
- * Returns true if the repetition is enabled in preferences.
- */
-function repetitionIsEnabled() {
-    return preferences['repetition'];
-}
-
-/*
- * Returns how many minutes are between notifications in preferences.
- */
-function getMinutesBetweenNotifications() {
-    return parseInt(preferences['notifications-interval'], 10);
-}
-
 /*
  * Returns max number of notifications repetitions in preferences.
  */
