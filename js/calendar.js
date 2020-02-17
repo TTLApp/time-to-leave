@@ -749,7 +749,7 @@ function notifyTimeToLeave() {
          * How many minutes should pass before the Time-To-Leave notification should be presented again.
          * @type {number} Minutes post the clockout time
          */
-        const notificationInterval = getMinutesBetweenNotifications();
+        const notificationInterval = parseInt(preferences['notifications-interval'], 10);
         var now = new Date();
         var curTime = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
 
@@ -758,7 +758,7 @@ function notifyTimeToLeave() {
         var isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval === 0);
         
         let reachedMaxRepetitions = repetitions === getMaxRepetitionsNumber();
-        let shouldRepeat = !reachedMaxRepetitions && repetitionIsEnabled();
+        let shouldRepeat = !reachedMaxRepetitions && preferences['repetition'];
 
         if (curTime === timeToLeave || (isRepeatingInterval && shouldRepeat)) {
             notify('Hey there! I think it\'s time to leave.');
