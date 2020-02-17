@@ -10,7 +10,7 @@ const defaultPreferences = {
     'hours-per-day': '08:00',
     'notification': true,
     'repetition': true,
-    'notifications-interval': '5',
+    'notifications-interval': '00:05',
     'repetitions-number': '5',
     'start-at-login': false,
     'theme': 'light',
@@ -88,6 +88,7 @@ function initPreferencesFileIfNotExistsOrInvalid() {
         var value = derivedPrefs[key];
         switch (key) {
         // Handle Time Inputs
+        case 'notifications-interval':
         case 'hours-per-day': {
             if (!validateTime(value)) {
                 derivedPrefs[key] = defaultPreferences[key];
@@ -96,7 +97,6 @@ function initPreferencesFileIfNotExistsOrInvalid() {
             break;
         }
         // Handle Number Inputs
-        case 'notifications-interval':
         case 'repetitions-number': {
             if (!validateNumber(value)) {
                 derivedPrefs[key] = defaultPreferences[key];

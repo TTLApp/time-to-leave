@@ -734,7 +734,7 @@ function notifyTimeToLeave() {
          * How many minutes should pass before the Time-To-Leave notification should be presented again.
          * @type {number} Minutes post the clockout time
          */
-        const notificationInterval = parseInt(preferences['notifications-interval'], 10);
+        const notificationInterval = hourToMinutes(preferences['notifications-interval']);
         var now = new Date();
         var curTime = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
 
