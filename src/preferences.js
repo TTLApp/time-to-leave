@@ -34,14 +34,14 @@ $(() => {
         applyTheme(this.value);
     });
 
-    for (var i = 0; i < inputs.length; i++) {
+    for (let i = 0; i < inputs.length; i++) {
         let input = inputs[i];
         if (inputs[i].type === 'checkbox') {
             if (input.name in usersStyles) {
                 input.checked = usersStyles[input.name];
             }
             preferences[input.name] = input.checked;
-        } else if (inputs[i].type === 'time') {
+        } else if (inputs[i].type === 'time' || inputs[i].type === 'number') {
             if (input.name in usersStyles) {
                 input.value = usersStyles[input.name];
             }

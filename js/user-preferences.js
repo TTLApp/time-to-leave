@@ -9,7 +9,7 @@ const defaultPreferences = {
     'hide-non-working-days': false,
     'hours-per-day': '08:00',
     'notification': true,
-    'enable-repetition': true,
+    'repetition': true,
     'notifications-interval': '5',
     'repetitions-number': '5',
     'start-at-login': false,
@@ -109,7 +109,7 @@ function initPreferencesFileIfNotExistsOrInvalid() {
         case 'hide-non-working-days':
         case 'start-at-login':
         case 'notification':
-        case 'enable-repetition':
+        case 'repetition':
         case 'working-days-monday':
         case 'working-days-tuesday':
         case 'working-days-wednesday':

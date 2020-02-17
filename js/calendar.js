@@ -49,7 +49,7 @@ function notificationIsEnabled() {
  * Returns true if the repetition is enabled in preferences.
  */
 function repetitionIsEnabled() {
-    return preferences['enable-repetition'];
+    return preferences['repetition'];
 }
 
 /*
@@ -755,12 +755,12 @@ function notifyTimeToLeave() {
 
         // Let check if it's past the time to leave, and the minutes line up with the interval to check
         var minutesDiff = hourToMinutes(subtractTime(timeToLeave, curTime));
-        var isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval == 0);
+        var isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval === 0);
         
         let reachedMaxRepetitions = repetitions === getMaxRepetitionsNumber();
         let shouldRepeat = !reachedMaxRepetitions && repetitionIsEnabled();
 
-        if (curTime == timeToLeave || (isRepeatingInterval && shouldRepeat)) {
+        if (curTime === timeToLeave || (isRepeatingInterval && shouldRepeat)) {
             notify('Hey there! I think it\'s time to leave.');
             repetitions++;
         }
