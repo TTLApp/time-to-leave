@@ -69,25 +69,36 @@ select, option, input {
   color: #fff;
 }
 
-.notificationSetting input[type=number] {
-  display: inline-block;
-  height: 30px;
-  text-align: center;
-}
-
 .notification-check-helper {
   display: inline-block;
   height: 100%;
   vertical-align: middle;
 }
 
-.notificationSetting input[type=checkbox] + label > img {
+.notification-check-helper + img {
   height: 26;
   vertical-align: middle;
 }
 
 .notificationSetting input[type=checkbox]:checked + label > img {
   filter: invert(100%);
+}
+
+.notificationSetting input[type=time], .notificationSetting input[type=number] {
+  width: 90px;
+  margin-right: 3px;
+  padding-left: 2px;
+}
+
+.notificationSetting input[type=time], .notificationSetting input[type=number], .notification-icon {
+  height: 40px;
+  margin-bottom: 0.5rem;
+}
+
+.notification-icon {
+  padding: 5px 3px 5px 3px;
+  border-radius: 10px 0px 0px 10px;
+  background-color: var(--weekday-background);
 }
 
 .flex-box {

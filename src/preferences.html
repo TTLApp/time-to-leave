@@ -51,8 +51,14 @@
             <label for="repetition" title="Enable/disable notifications repetition">
                 <span class="notification-check-helper"></span><img src="../assets/repeat.svg"></img>
             </label>
-            <input class="flex-fill mx-2" type="number" id="notifications-interval" name="notifications-interval" title="Minutes between notifications" min=1 max=100 placeholder="Interval"/>
-            <input class="flex-fill mx-2" type="number" id="repetitions-number" name="repetitions-number" title="Number of repetitions" min=1 max=100 placeholder="#Repetitions"/>
+            <div class="d-flex" title="Minutes between notifications">
+                <img class="notification-icon" src="../assets/timer.svg"></img>
+                <input type="time" id="notifications-interval" name="notifications-interval" min="00:00" max="00:30"/>
+            </div>
+            <div class="d-flex" title="Number of repetitions">
+                <img class="notification-icon" src="../assets/repeat-number.svg"></img>
+                <input type="number" id="repetitions-number" name="repetitions-number" min=1"/>
+            </div>
         </div>
         <div class="preference-title">App Behavior</div>
             <div class="flex-box">

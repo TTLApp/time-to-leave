@@ -182,7 +182,7 @@ function createWindow() {
                     click() {
                         const htmlPath = path.join('file://', __dirname, 'src/preferences.html');
                         let prefWindow = new BrowserWindow({ width: 400,
-                            height: 400,
+                            height: 460,
                             parent: win,
                             resizable: true,
                             icon: iconpath,
