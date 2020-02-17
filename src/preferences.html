@@ -41,11 +41,20 @@
             <p>Hours per day</p>
             <input type="time" name="hours-per-day" id="hours-per-day" min="00:00" max="24:00" value="08:00" required>
         </div>
+        <div class="preference-title">Notifications</div>
+        <div class="notificationSetting d-flex align-items-center">
+            <input type="checkbox" id="notification" name="notification"/>
+            <label for="notification" title="Enable/disable notifications">
+                <span class="notification-check-helper"></span><img src="../assets/notification.svg"></img>
+            </label>
+            <input type="checkbox" id="repetition" name="repetition"/>
+            <label for="repetition" title="Enable/disable notifications repetition">
+                <span class="notification-check-helper"></span><img src="../assets/repeat.svg"></img>
+            </label>
+            <input class="flex-fill mx-2" type="number" id="notifications-interval" name="notifications-interval" title="Minutes between notifications" min=1 max=100 placeholder="Interval"/>
+            <input class="flex-fill mx-2" type="number" id="repetitions-number" name="repetitions-number" title="Number of repetitions" min=1 max=100 placeholder="#Repetitions"/>
+        </div>
         <div class="preference-title">App Behavior</div>
-            <div class="flex-box">
-                <p>Notifications</p>
-                <label id="notification" class="switch"><input type="checkbox" name="notification"><span class="slider round"></span></label>
-            </div>
             <div class="flex-box">
                 <p>Start on Login</p>
                 <label id='start-at-login' class="switch"><input type="checkbox" name="start-at-login"><span class="slider round"></span></label>
