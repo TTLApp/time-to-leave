@@ -101,6 +101,10 @@ select, option, input {
   background-color: var(--weekday-background);
 }
 
+.notificationSetting input[type=time]:disabled, .notificationSetting input[type=number]:disabled {
+  background-color: var(--disabled-input-bground);
+}
+
 .flex-box {
   display: flex;
   height: 25px;

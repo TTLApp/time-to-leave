@@ -34,6 +34,16 @@ $(() => {
         applyTheme(this.value);
     });
 
+    $('#notification').change(function() {
+        $('#repetition, #notifications-interval').prop('disabled', !$('#notification').is(':checked'));    
+        $('#repetition').prop('checked', $('#notification').is(':checked') && usersStyles['repetition']);
+        $('#repetitions-number').prop('disabled', !$('#repetition').is(':checked'));
+    });
+
+    $('#repetition').change(function() {
+        $('#repetitions-number').prop('disabled', !$('#repetition').is(':checked'));
+    });
+
     for (let i = 0; i < inputs.length; i++) {
         let input = inputs[i];
         if (inputs[i].type === 'checkbox') {
@@ -48,4 +58,10 @@ $(() => {
             preferences[input.name] = input.value;
         }
     }
+
+    $(document).ready(function() {
+        $('#repetition, #notifications-interval').prop('disabled', !$('#notification').is(':checked'));    
+        $('#repetition').prop('checked', $('#notification').is(':checked') && usersStyles['repetition']);
+        $('#repetitions-number').prop('disabled', !$('#repetition').is(':checked'));
+    });
 });
