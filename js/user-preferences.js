@@ -1,7 +1,7 @@
 const electron = require('electron');
 const path = require('path');
 const fs = require('fs');
-const { validateTime, validateNumber } = require('./time-math.js');
+const { validateTime } = require('./time-math.js');
 const { isValidTheme } = require('./themes.js');
 
 const defaultPreferences = {
@@ -11,7 +11,6 @@ const defaultPreferences = {
     'notification': true,
     'repetition': true,
     'notifications-interval': '00:05',
-    'repetitions-number': '5',
     'start-at-login': false,
     'theme': 'light',
     'update-remind-me-after' : '2019-01-01',
@@ -91,14 +90,6 @@ function initPreferencesFileIfNotExistsOrInvalid() {
         case 'notifications-interval':
         case 'hours-per-day': {
             if (!validateTime(value)) {
-                derivedPrefs[key] = defaultPreferences[key];
-                shouldSaveDerivedPrefs = true;
-            }
-            break;
-        }
-        // Handle Number Inputs
-        case 'repetitions-number': {
-            if (!validateNumber(value)) {
                 derivedPrefs[key] = defaultPreferences[key];
                 shouldSaveDerivedPrefs = true;
             }

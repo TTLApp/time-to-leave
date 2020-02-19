@@ -23,7 +23,7 @@ $(() => {
         ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
     });
 
-    $('input[type="time"], input[type="number"]').change(function() {
+    $('input[type="time"]').change(function() {
         preferences[this.name] = this.value;
         ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
     });
@@ -37,11 +37,6 @@ $(() => {
     $('#notification').change(function() {
         $('#repetition, #notifications-interval').prop('disabled', !$('#notification').is(':checked'));    
         $('#repetition').prop('checked', $('#notification').is(':checked') && usersStyles['repetition']);
-        $('#repetitions-number').prop('disabled', !$('#repetition').is(':checked'));
-    });
-
-    $('#repetition').change(function() {
-        $('#repetitions-number').prop('disabled', !$('#repetition').is(':checked'));
     });
 
     for (let i = 0; i < inputs.length; i++) {
@@ -51,7 +46,7 @@ $(() => {
                 input.checked = usersStyles[input.name];
             }
             preferences[input.name] = input.checked;
-        } else if (inputs[i].type === 'time' || inputs[i].type === 'number') {
+        } else if (inputs[i].type === 'time') {
             if (input.name in usersStyles) {
                 input.value = usersStyles[input.name];
             }
@@ -62,6 +57,5 @@ $(() => {
     $(document).ready(function() {
         $('#repetition, #notifications-interval').prop('disabled', !$('#notification').is(':checked'));    
         $('#repetition').prop('checked', $('#notification').is(':checked') && usersStyles['repetition']);
-        $('#repetitions-number').prop('disabled', !$('#repetition').is(':checked'));
     });
 });

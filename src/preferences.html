@@ -42,7 +42,7 @@
             <input type="time" name="hours-per-day" id="hours-per-day" min="00:00" max="24:00" value="08:00" required>
         </div>
         <div class="preference-title">Notifications</div>
-        <div class="notificationSetting d-flex align-items-center">
+        <div class="notificationSetting d-flex">
             <input type="checkbox" id="notification" name="notification"/>
             <label for="notification" title="Enable/disable notifications">
                 <span class="notification-check-helper"></span><img src="../assets/notification.svg"></img>
@@ -54,10 +54,6 @@
             <div class="d-flex" title="Minutes between notifications">
                 <img class="notification-icon" src="../assets/timer.svg"></img>
                 <input type="time" id="notifications-interval" name="notifications-interval" min="00:00" max="00:30"/>
-            </div>
-            <div class="d-flex" title="Number of repetitions">
-                <img class="notification-icon" src="../assets/repeat-number.svg"></img>
-                <input type="number" id="repetitions-number" name="repetitions-number" min=1"/>
             </div>
         </div>
         <div class="preference-title">App Behavior</div>

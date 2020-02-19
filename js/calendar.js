@@ -26,7 +26,6 @@ const store = new Store();
 const waivedWorkdays = new Store({name: 'waived-workdays'});
 let preferences = getUserPreferences();
 let calendar = null;
-let repetitions = 0;
 
 /*
  * Get nofified when preferences has been updated.
@@ -42,13 +41,6 @@ ipcRenderer.on('PREFERENCE_SAVED', function(event, inputs) {
  */
 function notificationIsEnabled() {
     return preferences['notification'];
-}
-
-/*
- * Returns max number of notifications repetitions in preferences.
- */
-function getMaxRepetitionsNumber() {
-    return parseInt(preferences['repetitions-number'], 10);
 }
 
 /*
@@ -741,13 +733,9 @@ function notifyTimeToLeave() {
         // Let check if it's past the time to leave, and the minutes line up with the interval to check
         var minutesDiff = hourToMinutes(subtractTime(timeToLeave, curTime));
         var isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval === 0);
-        
-        let reachedMaxRepetitions = repetitions === getMaxRepetitionsNumber();
-        let shouldRepeat = !reachedMaxRepetitions && preferences['repetition'];
 
-        if (curTime === timeToLeave || (isRepeatingInterval && shouldRepeat)) {
+        if (curTime === timeToLeave || (isRepeatingInterval && preferences['repetition'])) {
             notify('Hey there! I think it\'s time to leave.');
-            repetitions++;
         }
     }
 }
