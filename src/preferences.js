@@ -34,11 +34,7 @@ $(() => {
         applyTheme(this.value);
     });
 
-    $('#notification').change(function() {
-        $('#repetition, #notifications-interval').prop('disabled', !$('#notification').is(':checked'));    
-        $('#repetition').prop('checked', $('#notification').is(':checked') && usersStyles['repetition']);
-    });
-
+    
     for (let i = 0; i < inputs.length; i++) {
         let input = inputs[i];
         if (inputs[i].type === 'checkbox') {
@@ -53,9 +49,18 @@ $(() => {
             preferences[input.name] = input.value;
         }
     }
+    
+    const notification = $('#notification');
+    const repetition = $('#repetition');
+    const notificationsInterval = $('#notifications-interval');
+    
+    repetition.prop('disabled', !notification.is(':checked'));
+    notificationsInterval.prop('disabled', !notification.is(':checked'));      
+    repetition.prop('checked', notification.is(':checked') && usersStyles['repetition']);
 
-    $(document).ready(function() {
-        $('#repetition, #notifications-interval').prop('disabled', !$('#notification').is(':checked'));    
-        $('#repetition').prop('checked', $('#notification').is(':checked') && usersStyles['repetition']);
+    notification.change(function() {
+        repetition.prop('disabled', !notification.is(':checked'));
+        notificationsInterval.prop('disabled', !notification.is(':checked'));      
+        repetition.prop('checked', notification.is(':checked') && usersStyles['repetition']);
     });
 });
