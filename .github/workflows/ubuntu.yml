@@ -1,23 +1,26 @@
 name: Ubuntu
-
-on: [push, pull_request]
-
+on:
+  push:
+    branches:
+    - staging
+    tags:
+    - v.*
 jobs:
-  build:
-        
+  Packaging:
     runs-on: ubuntu-latest
-    
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: npm install, lint, build, and test
-      run: |
-        npm ci
-        npm run lint --if-present
-        npm run build --if-present
-        npm test
-      env:
-        CI: true
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - name: Building App
+        run: |
+          npm ci --no-optional
+          npm run package:deb
+      - name: Creating Debian Package...
+        run: npx electron-installer-debian --src 'release-builds/time-to-leave-linux-x64/' --dest 'release-deb/' --arch amd64
+      - name: Uploading Debian Package...
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: 'Time to Leave.deb'
+          path: 'release-deb/'
+    env:
+      CI: true

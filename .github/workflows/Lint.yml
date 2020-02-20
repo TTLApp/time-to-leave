@@ -1,0 +1,14 @@
+name: Lint
+on: [push,pull_request]
+jobs:
+  Standard:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - name: Lint
+        run: |
+          npm ci --no-optional
+          npm run lint
+    env:
+        CI: true
