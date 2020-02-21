@@ -1,7 +1,7 @@
-name: PR/PUSH Checks
-on: [push,pull_request]
+name: PR Checks
+on: pull_request
 jobs:
-  Checking:
+  'Checking':
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
@@ -9,6 +9,7 @@ jobs:
       - name: 'Setup...'
         run: npm ci --no-optional
       - name: 'JS   Standard'
+        # This ensures that CodeCov is happy too.
         if: success()
         run: npm run lint:standard
       - name: 'JS     ESLint'
@@ -24,16 +25,16 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v1.0.0
         with:
-          name: 'Coverage'
+          name: 'COVERAGE'
           path: 'coverage/'
-      - name: '      Codecov'
+      - name: '      CodeCov'
         if: success()
         uses: codecov/codecov-action@v1.0.5
         with:
-          file: 'coverage/*'
+          file: 'COVERAGE*'
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: false
-      - name: 'Tag PreRelease'
+      - name: '   PreRelease'
         if: success()
         uses: mathieudutour/github-tag-action@v3
         with:
@@ -41,5 +42,3 @@ jobs:
           default_bump: patch
           tag_prefix: v.
           release_branches: v.*
-    env:
-        CI: true
