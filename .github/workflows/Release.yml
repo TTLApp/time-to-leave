@@ -1,7 +1,9 @@
 name: 'Release'
-on: 
+on:
+  pull_request:
+    branches: staging-*
   push:
-    branches:
+    tags:
     - v.*
 jobs:
   'MacOS':
@@ -13,13 +15,21 @@ jobs:
       run: |
         npm ci --no-optional
         npm run package:mac
+  
     - name: 'Building DMG Package...'
       run: npx electron-installer-dmg 'release-builds/Time to Leave-darwin-x64/Time to Leave.app/' time-to-leave --out 'release-dmg' --icon=assets/icon-mac.icns
-    - name: 'Uploading...'
+
+    - name: 'Uploading to Artifacts'
       uses: actions/upload-artifact@v1.0.0
       with:
         name: 'Time to Leave - MacOS'
         path: 'release-dmg/time-to-leave.dmg'
+    - name: Download artifact
+      uses: actions/download-artifact@v1.0.0
+      with:
+        name: 'Time to Leave - MacOS'
+        path: './RELEASE/'
+
     - name: 'Creating Pre-Release...'
       uses: marvinpinto/action-automatic-releases@v0.2.2
       with:
@@ -28,7 +38,7 @@ jobs:
         draft: true
         prerelease: true
         title: 'Time to Leave - MacOS'
-        files: 'release-dmg/time-to-leave.dmg'
+        files: './RELEASE/time-to-leave.dmg'
 
   'Debian':
     runs-on: ubuntu-latest
