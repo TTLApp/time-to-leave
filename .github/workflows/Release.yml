@@ -2,7 +2,6 @@ name: 'Release'
 on: 
   push:
     branches:
-    - master
     - v.*
 jobs:
   'MacOS':
@@ -25,6 +24,7 @@ jobs:
       uses: marvinpinto/action-automatic-releases@v0.2.2
       with:
         repo_token: ${{ secrets.TTL_RELEASE_TOKEN }}
+        automatic_release_tag: true
         draft: true
         prerelease: true
         title: 'Time to Leave - MacOS'
