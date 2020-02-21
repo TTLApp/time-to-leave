@@ -1,0 +1,39 @@
+name: PR Checks
+on: [pull_request]
+jobs:
+  Linting:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - name: Setup
+        run: npm ci --no-optional
+      - name: 'JS   Standard'
+        run: npm run lint:standard
+      - name: 'JS     ESLint'
+        run: npm run lint
+      - name: 'CSS Stylelint'
+        run: npm run lint:css
+    env:
+        CI: true
+    
+  Testing:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - name: Jest
+        run: npm cit
+      - name: Uploading coverage
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: 'Coverage'
+          path: 'coverage/'
+      - name: Codecov
+        uses: codecov/codecov-action@v1.0.5
+        with:
+          file: 'coverage/*'
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
+    env:
+        CI: true
