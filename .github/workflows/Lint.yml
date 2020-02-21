@@ -1,14 +1,18 @@
-name: Lint
-on: [push,pull_request]
+name: Checks
+on: [pull_request]
 jobs:
-  Standard:
+  Linting:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
-      - name: Lint
-        run: |
-          npm ci --no-optional
-          npm run lint
+      - name: Setup
+        run: npm ci --no-optional
+      - name: 'JS   Standard'
+        run: npm run lint:standard
+      - name: 'JS     ESLint'
+        run: npm run lint
+      - name: 'CSS Stylelint'
+        run: npm run lint:css
     env:
         CI: true
