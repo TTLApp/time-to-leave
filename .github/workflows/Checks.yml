@@ -1,5 +1,5 @@
-name: PR Checks
-on: [pull_request]
+name: PR/PUSH Checks
+on: [push,pull_request]
 jobs:
   Linting:
     runs-on: macos-latest
