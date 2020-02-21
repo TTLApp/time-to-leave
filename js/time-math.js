@@ -22,7 +22,7 @@ function isNegative(str) {
  */
 function hourToMinutes(time) {
     var st = time.split(':');
-    var isNeg = isNegative(st);
+    var isNeg = isNegative(time);
     st[0] = isNeg ? st[0].substr(1) : st[0];
 
     var min = Number(st[1]) + (Number(st[0]) * 60);

@@ -33,7 +33,12 @@ function getPreferencesFilePath() {
  * Saves preference to file.
  */
 function savePreferences(preferencesOptions) {
-    fs.writeFileSync(getPreferencesFilePath(), JSON.stringify(preferencesOptions));
+    try {
+        fs.writeFileSync(getPreferencesFilePath(), JSON.stringify(preferencesOptions));
+    } catch (err) {
+        return new Error(err);
+    }
+    return true;
 }
 
 /**
@@ -157,6 +162,7 @@ function showDay(year, month, day)  {
 }
 
 module.exports = {
+    defaultPreferences,
     getUserPreferences: getLoadedOrDerivedUserPreferences,
     savePreferences,
     showDay

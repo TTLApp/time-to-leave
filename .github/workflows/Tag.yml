@@ -1,12 +1,10 @@
-name: MacOS
+name: Release on Tag
 on:
   push:
-    branches:
-    - staging
     tags:
     - v.*
 jobs:
-  Packaging:
+  Building:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v1
@@ -27,5 +25,13 @@ jobs:
       with:
         name: 'Time to Leave.dmg'
         path: 'release-dmg/time-to-leave.dmg'
+    - name: Pre-Release
+      uses: marvinpinto/action-automatic-releases@v0.2.2
+      with:
+        repo_token: ${{ secrets.TTL_RELEASE_TOKEN }}
+        draft: true
+        prerelease: true 
+        title: 'Time to Leave - MacOS'
+        files: 'release-dmg/time-to-leave.dmg'
       env:
         CI: true

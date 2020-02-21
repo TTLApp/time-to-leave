@@ -15,11 +15,12 @@ function isValidTheme(testTheme) {
  */
 function applyTheme(theme) {
     if (isValidTheme(theme) === false) {
-        return;
+        return false;
     }
 
     // Applies to the Primary view
     document.querySelector('html').setAttribute('data-theme', theme);
+    return true;
 }
 
 module.exports = {

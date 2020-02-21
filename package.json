@@ -10,14 +10,19 @@
   },
   "main": "main.js",
   "scripts": {
+    "debug:main": "electron --inspect=5858 .",
+    "debug:render": "electron --remote-debugging-port=9222 .",
+    "lint": "eslint .",
+    "lint:fix": "standard . --fix && eslint . --fix && stylelint **/*.css --fix",
+    "lint:standard": "standard .",
+    "lint:css": "stylelint **/*.css",
+    "package:deb": "npx electron-packager . time-to-leave --overwrite --asar --platform=linux --arch=x64 --icon=assets/timer.png --prune=true --out=release-builds --ignore=__tests__",
+    "package:mac": "npx electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icon-mac.icns --prune=true --out=release-builds --ignore=__tests__",
+    "package:win": "npx electron-packager . --overwrite --platform=win32 --arch=ia32 --icon=assets/timer.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Time to Leave\" --ignore=__tests__",
+    "package:win-squirrel": "npx electron-packager . time-to-leave --overwrite --platform=win32 --arch=ia32 --icon=assets/timer.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Time to Leave\" --ignore=__tests__",
     "start": "electron .",
-    "mocha": "mocha",
-    "test": "node test/time_math.test | tap-spec",
-    "lint": "npm-run-all lint:*",
-    "lint:js": "eslint . --fix",
-    "lint:css": "stylelint **/*.css --fix",
-    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icon-mac.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/timer.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Time to Leave\""
+    "test": "jest --detectOpenHandles --verbose --colors",
+    "update": "npx npm-check --skip-unused -u"
   },
   "stylelint": {
     "extends": "stylelint-config-standard",
@@ -27,24 +32,21 @@
     }
   },
   "pre-commit": [
-    "lint",
+    "lint:fix",
     "test"
   ],
   "author": "Thamara Andrade",
   "license": "GPL-3.0",
   "devDependencies": {
+    "@jest-runner/electron": "^2.0.3",
     "electron": "^7.1.11",
-    "electron-eslint": "^3.12.2",
-    "electron-packager": "^14.2.0",
-    "electron-reloader": "^0.3.0",
-    "mocha": "^6.2.2",
-    "npm-run-all": "^4.1.5",
+    "electron-reloader": "^1.0.0",
+    "eslint": "^6.8.0",
+    "jest": "^25.1.0",
     "pre-commit": "^1.2.2",
-    "spectron": "^8.0.0",
-    "stylelint": "^13.0.0",
-    "stylelint-config-standard": "^19.0.0",
-    "tap-spec": "^5.0.0",
-    "tape": "^4.13.0"
+    "standard": "^14.3.1",
+    "stylelint": "^13.2.0",
+    "stylelint-config-standard": "^20.0.0"
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
@@ -53,12 +55,8 @@
     "jquery": "^3.4.1",
     "node-notifier": "^5.4.3"
   },
-  "resolutions": {
-    "core-js": "^3",
-    "flat-cache": "^2.0.1",
-    "object-keys": "^1.1.1"
-  },
   "engines": {
+    "node": "^10.12.6",
     "yarn": "YARN NO LONGER USED - use npm instead."
   }
 }

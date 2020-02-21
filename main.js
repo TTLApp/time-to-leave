@@ -83,7 +83,7 @@ async function checkForUpdates(showUpToDateDialog) {
                         store.set('update-remind-me-after', todayDate);
                     }
                 } else if (showUpToDateDialog)
-                    {
+                {
                     const options = {
                         type: 'info',
                         buttons: ['OK'],
@@ -223,7 +223,7 @@ function createWindow() {
                                     message: 'Database export',
                                     type: 'info',
                                     icon: iconpath,
-                                    detail: '\Okay, database was exported.'
+                                    detail: 'Okay, database was exported.'
                                 });
                         }
                     },
@@ -236,8 +236,8 @@ function createWindow() {
                             buttonLabel : 'Import',
 
                             filters : [
-                              {name: '.ttldb', extensions: ['ttldb',]},
-                              {name: 'All Files', extensions: ['*']}
+                                {name: '.ttldb', extensions: ['ttldb',]},
+                                {name: 'All Files', extensions: ['*']}
                             ]
                         };
                         let response = dialog.showOpenDialogSync(options);
@@ -259,7 +259,7 @@ function createWindow() {
                                             message: 'Database imported',
                                             type: 'info',
                                             icon: iconpath,
-                                            detail: '\Yay! Import successful!'
+                                            detail: '\nYay! Import successful!'
                                         });
                                 }
                                 // Reload only the calendar itself to avoid a flash
@@ -270,7 +270,7 @@ function createWindow() {
                                         message: 'Database imported',
                                         type: 'info',
                                         icon: iconpath,
-                                        detail: '\Yay! Import successful!'
+                                        detail: '\nYay! Import successful!'
                                     }
                                 );
                             }
@@ -476,8 +476,8 @@ function createWindow() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-    // Check first to see if the app is aleady running,
-    // fail out gracefully if so.
+// Check first to see if the app is aleady running,
+// fail out gracefully if so.
 if (!app.requestSingleInstanceLock()) {
     app.exit(0);
 } else {

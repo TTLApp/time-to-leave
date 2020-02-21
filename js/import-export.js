@@ -1,3 +1,4 @@
+/*eslint-disable no-prototype-builtins*/
 const Store = require('electron-store');
 const fs = require('fs');
 const { dialog } = require('electron');
@@ -14,21 +15,25 @@ const waivedWorkdays = new Store({name: 'waived-workdays'});
  *   . hours
  */
 function getRegularEntries() {
-    
-    var output = [];
-    for (const entry of store) {
-        const key = entry[0];
-        const value = entry[1];
 
-        var [year, month, day, stage, step] = key.split('-');
-        //The main database uses a JS-based month index (0-11)
-        //So we need to adjust it to human month index (1-12)
-        var date = year + '-' + (month + 1) + '-' + day;
-        var data = stage + '-' + step;
+    let output = [];
 
-        output.push({'type': 'regular', 'date': date, 'data': data, 'hours': value});
+    try {
+        for (const entry of store) {
+            const key = entry[0];
+            const value = entry[1];
+
+            let [year, month, day, stage, step] = key.split('-');
+            // The main database uses a JS-based month index (0-11)
+            // So we need to adjust it to human month index (1-12)
+            let date = year + '-' + (month + 1) + '-' + day;
+            let data = stage + '-' + step;
+            output.push({'type': 'regular', 'date': date, 'data': data, 'hours': value});
+            return output;
+        }
+    } catch (err) {
+        return new Error(err);
     }
-    return output;
 }
 
 /**
@@ -39,7 +44,7 @@ function getRegularEntries() {
  *   . hours
  */
 function getWaivedEntries() {
-    
+
     var output = [];
     for (const entry of waivedWorkdays) {
         const date = entry[0];
@@ -53,9 +58,13 @@ function getWaivedEntries() {
 }
 
 function exportDatabaseToFile(filename) {
-    var information = getRegularEntries();
-    information = information.concat(getWaivedEntries());
-    fs.writeFileSync(filename, JSON.stringify(information, null,'\t'), 'utf-8');
+    try {
+        var information = getRegularEntries();
+        information = information.concat(getWaivedEntries());
+        return fs.writeFileSync(filename, JSON.stringify(information, null,'\t'), 'utf-8');
+    } catch (err) {
+        return new Error(err);
+    }
 }
 
 function validateDate(dateStr) {
@@ -64,8 +73,8 @@ function validateDate(dateStr) {
 }
 
 function validEntry(entry) {
-    if (!entry.hasOwnProperty('type') || 
-        !entry.hasOwnProperty('date') || 
+    if (!entry.hasOwnProperty('type') ||
+        !entry.hasOwnProperty('date') ||
         !entry.hasOwnProperty('data') ||
         !entry.hasOwnProperty('hours') ||
         !(entry.type === 'regular' || entry.type === 'waived') ||
