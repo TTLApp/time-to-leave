@@ -6,21 +6,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
-      - name: 'Setup...'
-        run: npm ci --no-optional
-      - name: 'JS   Standard'
-        # This ensures that CodeCov is happy too.
-        if: success()
-        run: npm run lint:standard
-      - name: 'JS     ESLint'
-        if: success()
-        run: npm run lint
-      - name: 'CSS Stylelint'
-        if: success()
-        run: npm run lint:css
       - name: '        Tests'
-        if: success()
-        run: npm test
+        run: npm cit
       - name: '     Coverage'
         if: success()
         uses: actions/upload-artifact@v1.0.0
@@ -34,11 +21,3 @@ jobs:
           file: 'COVERAGE*'
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: false
-      - name: '   PreRelease'
-        if: success()
-        uses: mathieudutour/github-tag-action@v3
-        with:
-          github_token: ${{ secrets.TTL_RELEASE_TOKEN }}
-          default_bump: patch
-          tag_prefix: v.
-          release_branches: v.*

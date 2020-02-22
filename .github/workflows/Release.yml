@@ -2,7 +2,9 @@ name: 'Prepare Release'
 on:
   push:
     branches:
+      - master
       - latest
+
 jobs:
 
   'MacOS':
@@ -14,24 +16,10 @@ jobs:
       run: |
         npm ci --no-optional
         npm run package:mac
-        
-   # - name: 'Uploading App to Artifacts'
-   #   if: success()
-   #   uses: actions/upload-artifact@v1.0.0
-   #   with:
-   #     name: 'Time-to-Leave.app'
-   #     path: './release-builds/Time to Leave-darwin-x64/Time to Leave.app'
 
     - name: 'Packing DMG...'
       if: success()
       run: npx electron-installer-dmg './release-builds/Time to Leave-darwin-x64/Time to Leave.app/' time-to-leave --out 'release-dmg/' --icon=assets/icon-mac.icns --verbose
-
-   # - name: 'Upload DMG to Artifacts'
-   #   if: success()
-   #   uses: actions/upload-artifact@v1.0.0
-   #   with:
-   #     name: 'Time to Leave-OSX'
-   #     path: 'release-dmg/time-to-leave.dmg'
     
     - name: 'Create Release'
       if: success()
@@ -68,12 +56,6 @@ jobs:
         run: |
           npx electron-installer-debian --src 'release-builds/time-to-leave-linux-x64/' --dest 'release-deb/' --arch amd64 --verbose
           ls release-deb/
-   #   - name: 'Upload DEB to Artifacts'
-   #     if: success()
-   #     uses: actions/upload-artifact@v1.0.0
-   #     with:
-   #       name: 'time-to-leave.deb'
-   #       path: 'release-deb/time-to-leave_1.4.0~beta.2_amd64.deb'
       
       - name: 'Create Release'
         if: success()
@@ -100,18 +82,10 @@ jobs:
       steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
-      - name: 'Building ASAR...'
+      - name: 'Building...'
         run: |
           npm ci --no-optional
           npm run package:win 
-   # -- --asar
-          
-   #   - name: 'Uploading ASAR Package'
-   #     if: success()
-   #     uses: actions/upload-artifact@v1.0.0
-   #     with:
-   #       name: 'Time to Leave - Windows (Exe)'
-   #       path: 'release-builds\Time to Leave-win32-ia32\Time to Leave.exe'
         
       - name: 'Creating Installer...'
         if: success()
