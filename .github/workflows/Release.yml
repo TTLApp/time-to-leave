@@ -2,8 +2,7 @@ name: 'Prepare Release'
 on:
   push:
     branches:
-      - master
-      - latest
+      - v.*
 
 jobs:
 
@@ -14,7 +13,7 @@ jobs:
     - uses: actions/setup-node@v1
     - name: 'Building...'
       run: |
-        npm ci --no-optional
+        npm ci
         npm run package:mac
 
     - name: 'Packing DMG...'
@@ -31,14 +30,13 @@ jobs:
         artifacts: 'release-dmg/time-to-leave.dmg'
         # The content type of the artifact. Defaults to raw
         # artifactContentType:
-        commit: latest
+        #commit: latest
         # Optionally marks this release as a draft release. Set to true to enable.
         draft: true
         name: 'Time to Leave' 
         prerelease: true
         # An optional tag for the release. If this is omitted the git ref will be used (if it is a tag).
-        tag: latest 
-        # The Github token.
+        #tag: latest 
         token: ${{ secrets.TTL_RELEASE_TOKEN }}
     
   'Debian':
