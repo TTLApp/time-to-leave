@@ -12,10 +12,8 @@
   "scripts": {
     "debug:main": "electron --inspect=5858 .",
     "debug:render": "electron --remote-debugging-port=9222 .",
-    "lint": "eslint .",
-    "lint:fix": "standard . --fix && eslint . --fix && stylelint **/*.css --fix",
-    "lint:standard": "standard .",
-    "lint:css": "stylelint **/*.css",
+    "lint": "npx standard . && npx eslint . && npx markdownlint-cli . && npx styelint **/*.css",
+    "lint:fix": "npx standard . --fix && npx eslint . --fix && npx markdownlint-cli . --fix && npx styelint **/*.css --fix",
     "package:deb": "npx electron-packager . time-to-leave --overwrite --asar --platform=linux --arch=x64 --icon=assets/timer.png --prune=true --out=release-builds --ignore=__tests__",
     "package:mac": "npx electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icon-mac.icns --prune=true --out=release-builds --ignore=__tests__",
     "package:win": "npx electron-packager . --overwrite --platform=win32 --arch=ia32 --icon=assets/timer.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Time to Leave\" --ignore=__tests__",
