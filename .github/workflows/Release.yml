@@ -1,8 +1,8 @@
 name: 'Prepare Release'
 on:
   push:
-    tags:
-    - v.*
+    branches:
+      - latest
 jobs:
 
   'MacOS':
@@ -15,32 +15,44 @@ jobs:
         npm ci --no-optional
         npm run package:mac
         
-    - name: 'Uploading App to Artifacts'
-      if: success()
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        name: 'Time-to-Leave.app'
-        path: './release-builds/Time to Leave-darwin-x64/Time to Leave.app'
+   # - name: 'Uploading App to Artifacts'
+   #   if: success()
+   #   uses: actions/upload-artifact@v1.0.0
+   #   with:
+   #     name: 'Time-to-Leave.app'
+   #     path: './release-builds/Time to Leave-darwin-x64/Time to Leave.app'
 
     - name: 'Packing DMG...'
       if: success()
       run: npx electron-installer-dmg './release-builds/Time to Leave-darwin-x64/Time to Leave.app/' time-to-leave --out 'release-dmg/' --icon=assets/icon-mac.icns --verbose
 
-    - name: 'Upload DMG to Artifacts'
+   # - name: 'Upload DMG to Artifacts'
+   #   if: success()
+   #   uses: actions/upload-artifact@v1.0.0
+   #   with:
+   #     name: 'Time to Leave-OSX'
+   #     path: 'release-dmg/time-to-leave.dmg'
+    
+    - name: 'Create Release'
       if: success()
-      uses: actions/upload-artifact@v1.0.0
+      uses: ncipollo/release-action@v1
       with:
-        name: 'Time-to-Leave.dmg'
-        path: 'release-dmg/time-to-leave.dmg'
-
-    - name: 'GH Release'
-      if: success()
-      uses: softprops/action-gh-release@v0.1.5
-      with:
+        # An optional flag which indicates if we should update a release if it already exists. Defaults to false.
+        allowUpdates: true
+        # An optional set of paths representing artifacts to upload to the release. This may be a single path or a comma delimited list of paths (or globs)
+        artifacts: 'release-dmg/time-to-leave.dmg'
+        # The content type of the artifact. Defaults to raw
+        # artifactContentType:
+        commit: latest
+        # Optionally marks this release as a draft release. Set to true to enable.
         draft: true
+        name: 'Time to Leave' 
         prerelease: true
-        files: 'releases-dmg/**'
-
+        # An optional tag for the release. If this is omitted the git ref will be used (if it is a tag).
+        tag: latest 
+        # The Github token.
+        token: ${{ secrets.TTL_RELEASE_TOKEN }}
+    
   'Debian':
     runs-on: ubuntu-latest
     steps:
@@ -56,13 +68,33 @@ jobs:
         run: |
           npx electron-installer-debian --src 'release-builds/time-to-leave-linux-x64/' --dest 'release-deb/' --arch amd64 --verbose
           ls release-deb/
-      - name: 'Upload DEB to Artifacts'
+   #   - name: 'Upload DEB to Artifacts'
+   #     if: success()
+   #     uses: actions/upload-artifact@v1.0.0
+   #     with:
+   #       name: 'time-to-leave.deb'
+   #       path: 'release-deb/time-to-leave_1.4.0~beta.2_amd64.deb'
+      
+      - name: 'Create Release'
         if: success()
-        uses: actions/upload-artifact@v1.0.0
+        uses: ncipollo/release-action@v1
         with:
-          name: 'time-to-leave.deb'
-          path: 'release-deb/time-to-leave_1.4.0~beta.2_amd64.deb'
-        
+          # An optional flag which indicates if we should update a release if it already exists. Defaults to false.
+          allowUpdates: true
+          # An optional set of paths representing artifacts to upload to the release. This may be a single path or a comma delimited list of paths (or globs)
+          artifacts: 'release-deb/time-to-leave_1.4.0~beta.2_amd64.deb'
+          # The content type of the artifact. Defaults to raw
+          # artifactContentType:
+          commit: latest
+          # Optionally marks this release as a draft release. Set to true to enable.
+          draft: true
+          name: 'Time to Leave' 
+          prerelease: true
+          # An optional tag for the release. If this is omitted the git ref will be used (if it is a tag).
+          tag: latest 
+          # The Github token.
+          token: ${{ secrets.TTL_RELEASE_TOKEN }}
+                
   'Windows':
       runs-on: windows-latest
       steps:
@@ -71,25 +103,42 @@ jobs:
       - name: 'Building ASAR...'
         run: |
           npm ci --no-optional
-          npm run package:win -- --asar
-      - name: 'Uploading ASAR Package'
-        if: success()
-        uses: actions/upload-artifact@v1.0.0
-        with:
-          name: 'Time to Leave - Windows (Exe)'
-          path: 'release-builds\Time to Leave-win32-ia32\Time to Leave.exe'
+          npm run package:win 
+   # -- --asar
+          
+   #   - name: 'Uploading ASAR Package'
+   #     if: success()
+   #     uses: actions/upload-artifact@v1.0.0
+   #     with:
+   #       name: 'Time to Leave - Windows (Exe)'
+   #       path: 'release-builds\Time to Leave-win32-ia32\Time to Leave.exe'
+        
       - name: 'Creating Installer...'
         if: success()
         run: |
           npm run package:win-squirrel
-          npx electron-installer-windows --src 'release-builds/time-to-leave-win32-ia32' --dest 'squirrel-release/time_to_leave.exe' --verbose
-
-      - name: 'Uploading Installer...'
+          npx electron-installer-windows --src 'release-builds/time-to-leave-win32-ia32' --dest 'release-exe/' --verbose
+          ls release-exe
+          
+      - name: 'Create Release'
         if: success()
-        uses: actions/upload-artifact@v1.0.0
+        uses: ncipollo/release-action@v1
         with:
-          name: 'Time to Leave - Windows'
-          path: 'squirrel-release/time_to_leave.exe'
-
+          # An optional flag which indicates if we should update a release if it already exists. Defaults to false.
+          allowUpdates: true
+          # An optional set of paths representing artifacts to upload to the release. This may be a single path or a comma delimited list of paths (or globs)
+          artifacts: 'release-exe/time_to_leave-1.4.0-beta2-setup.msi'
+          # The content type of the artifact. Defaults to raw
+          # artifactContentType:
+          commit: latest
+          # Optionally marks this release as a draft release. Set to true to enable.
+          draft: true
+          name: 'Time to Leave' 
+          prerelease: true
+          # An optional tag for the release. If this is omitted the git ref will be used (if it is a tag).
+          tag: latest 
+          # The Github token.
+          token: ${{ secrets.TTL_RELEASE_TOKEN }}
+          
 env:
   CI: true
