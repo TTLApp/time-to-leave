@@ -26,14 +26,9 @@ jobs:
       if: success()
       uses: ncipollo/release-action@v1
       with:
-        # An optional flag which indicates if we should update a release if it already exists. Defaults to false.
         allowUpdates: true
-        # An optional set of paths representing artifacts to upload to the release. This may be a single path or a comma delimited list of paths (or globs)
         artifacts: 'release-dmg/time-to-leave.dmg'
-        # The content type of the artifact. Defaults to raw
-        # artifactContentType:
-        #commit: latest
-        # Optionally marks this release as a draft release. Set to true to enable.
+        # artifactContentType: raw
         draft: true
         name: 'Time to Leave' 
         prerelease: true
@@ -61,20 +56,14 @@ jobs:
         if: success()
         uses: ncipollo/release-action@v1
         with:
-          # An optional flag which indicates if we should update a release if it already exists. Defaults to false.
           allowUpdates: true
-          # An optional set of paths representing artifacts to upload to the release. This may be a single path or a comma delimited list of paths (or globs)
-          artifacts: 'release-deb/time-to-leave_1.4.0~beta.2_amd64.deb'
-          # The content type of the artifact. Defaults to raw
-          # artifactContentType:
-          #commit: latest
-          # Optionally marks this release as a draft release. Set to true to enable.
+          artifacts: 'release-dmg/time-to-leave.dmg'
+          # artifactContentType: raw
           draft: true
           name: 'Time to Leave' 
           prerelease: true
           # An optional tag for the release. If this is omitted the git ref will be used (if it is a tag).
           tag: latest 
-          # The Github token.
           token: ${{ secrets.TTL_RELEASE_TOKEN }}
                 
   'Windows':
@@ -98,20 +87,14 @@ jobs:
         if: success()
         uses: ncipollo/release-action@v1
         with:
-          # An optional flag which indicates if we should update a release if it already exists. Defaults to false.
           allowUpdates: true
-          # An optional set of paths representing artifacts to upload to the release. This may be a single path or a comma delimited list of paths (or globs)
-          artifacts: 'release-exe/time_to_leave-1.4.0-beta2-setup.msi'
-          # The content type of the artifact. Defaults to raw
-          # artifactContentType:
-          commit: latest
-          # Optionally marks this release as a draft release. Set to true to enable.
+          artifacts: 'release-dmg/time-to-leave.dmg'
+          # artifactContentType: raw
           draft: true
           name: 'Time to Leave' 
           prerelease: true
           # An optional tag for the release. If this is omitted the git ref will be used (if it is a tag).
-          #tag: latest 
-          # The Github token.
+          tag: latest 
           token: ${{ secrets.TTL_RELEASE_TOKEN }}
           
 env:
