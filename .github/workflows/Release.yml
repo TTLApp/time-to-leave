@@ -57,7 +57,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          artifacts: 'release-dmg/time-to-leave.dmg'
+          artifacts: 'release-deb/time-to-leave_1.4.0~beta.2_amd64.deb'
           # artifactContentType: raw
           draft: true
           name: 'Time to Leave' 
@@ -88,7 +88,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          artifacts: 'release-dmg/time-to-leave.dmg'
+          artifacts: 'release-exe/time_to_leave-1.4.0-beta2-setup.msi,release-exe/time_to_leave-1.4.0-beta2-setup.exe,release-exe/time_to_leave-1.4.0-beta2-full.nupkg'
           # artifactContentType: raw
           draft: true
           name: 'Time to Leave' 
