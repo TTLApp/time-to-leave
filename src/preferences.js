@@ -34,7 +34,7 @@ $(() => {
         applyTheme(this.value);
     });
 
-    
+
     for (let i = 0; i < inputs.length; i++) {
         let input = inputs[i];
         if (inputs[i].type === 'checkbox') {
@@ -49,18 +49,22 @@ $(() => {
             preferences[input.name] = input.value;
         }
     }
-    
+
     const notification = $('#notification');
     const repetition = $('#repetition');
     const notificationsInterval = $('#notifications-interval');
-    
+
     repetition.prop('disabled', !notification.is(':checked'));
-    notificationsInterval.prop('disabled', !notification.is(':checked'));      
     repetition.prop('checked', notification.is(':checked') && usersStyles['repetition']);
+    notificationsInterval.prop('disabled', !repetition.is(':checked'));
 
     notification.change(function() {
         repetition.prop('disabled', !notification.is(':checked'));
-        notificationsInterval.prop('disabled', !notification.is(':checked'));      
         repetition.prop('checked', notification.is(':checked') && usersStyles['repetition']);
+        notificationsInterval.prop('disabled', !repetition.is(':checked'));
+    });
+
+    repetition.change(function() {
+        notificationsInterval.prop('disabled', !repetition.is(':checked'));
     });
 });
