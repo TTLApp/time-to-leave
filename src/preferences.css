@@ -84,15 +84,15 @@ select, option, input {
   filter: invert(100%);
 }
 
-.notificationSetting input[type=time], .notification-icon {
+.notificationSetting input[type=time] {
   height: 40px;
   margin-bottom: 0.5rem;
 }
 
-.notification-icon {
+#repetition + label {
   padding: 5px 3px 5px 3px;
   border-radius: 10px 0px 0px 10px;
-  background-color: var(--weekday-background);
+  margin-right: 0px;
 }
 
 .notificationSetting input[type=time]:disabled {

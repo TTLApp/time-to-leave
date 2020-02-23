@@ -47,13 +47,12 @@
             <label for="notification" title="Enable/disable notifications">
                 <span class="notification-check-helper"></span><img src="../assets/notification.svg"></img>
             </label>
-            <input type="checkbox" id="repetition" name="repetition"/>
-            <label for="repetition" title="Enable/disable notifications repetition">
-                <span class="notification-check-helper"></span><img src="../assets/repeat.svg"></img>
-            </label>
-            <div class="d-flex" title="Minutes between notifications">
-                <img class="notification-icon" src="../assets/timer.svg"></img>
-                <input type="time" id="notifications-interval" name="notifications-interval" min="00:00" max="00:30"/>
+            <div class="d-flex">
+                <input type="checkbox" id="repetition" name="repetition"/>
+                <label for="repetition" title="Enable/disable notifications repetition">
+                    <span class="notification-check-helper"></span><img src="../assets/timer.svg"></img>
+                </label>
+                <input type="time" id="notifications-interval" name="notifications-interval" title="Minutes between notifications" min="00:01" max="00:30"/>
             </div>
         </div>
         <div class="preference-title">App Behavior</div>
