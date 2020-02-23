@@ -41,21 +41,15 @@
             <p>Hours per day</p>
             <input type="time" name="hours-per-day" id="hours-per-day" min="00:00" max="24:00" value="08:00" required>
         </div>
-        <div class="preference-title">Notifications</div>
-        <div class="notificationSetting d-flex">
-            <input type="checkbox" id="notification" name="notification"/>
-            <label for="notification" title="Enable/disable notifications">
-                <span class="notification-check-helper"></span><img src="../assets/notification.svg"></img>
-            </label>
-            <div class="d-flex">
-                <input type="checkbox" id="repetition" name="repetition"/>
-                <label for="repetition" title="Enable/disable notifications repetition">
-                    <span class="notification-check-helper"></span><img src="../assets/timer.svg"></img>
-                </label>
-                <input type="time" id="notifications-interval" name="notifications-interval" title="Minutes between notifications" min="00:01" max="00:30"/>
-            </div>
-        </div>
         <div class="preference-title">App Behavior</div>
+            <div class="flex-box">
+                <p>Notification</p>
+                <label id="notification" class="switch"><input type="checkbox" name="notification"><span class="slider round"></span></label>
+            </div>
+            <div class="flex-box">
+                <p>Repetition</p>
+                <label id="repetition" class="switch"><input type="checkbox" name="repetition"><span class="slider round"></span></label>
+            </div>
             <div class="flex-box">
                 <p>Start on Login</p>
                 <label id='start-at-login' class="switch"><input type="checkbox" name="start-at-login"><span class="slider round"></span></label>
@@ -70,6 +64,10 @@
                     <option value="light" selected>Light</option>
                     <option value="dark">Dark</option>
                 </select>
+            </div>
+            <div class="flex-box mt-1">
+                <p>Time between notifications</p>
+                <input type="time" id="notifications-interval" name="notifications-interval" min="00:01" max="00:30"/>
             </div>
         </div>
     </br>

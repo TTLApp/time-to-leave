@@ -47,11 +47,11 @@ select, option, input {
   height: inherit;
 }
 
-.weekDays-selector input, .notificationSetting input[type=checkbox] {
+.weekDays-selector input {
   display: none;
 }
 
-.weekDays-selector input[type=checkbox] + label, .notificationSetting input[type=checkbox] + label {
+.weekDays-selector input[type=checkbox] + label {
   font-variant-caps: all-petite-caps;
   display: inline-block;
   border-radius: 10px;
@@ -64,39 +64,9 @@ select, option, input {
   cursor: pointer;
 }
 
-.weekDays-selector input[type=checkbox]:checked + label, .notificationSetting input[type=checkbox]:checked + label {
+.weekDays-selector input[type=checkbox]:checked + label {
   background: var(--weekday-selected);
   color: #fff;
-}
-
-.notification-check-helper {
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-}
-
-.notification-check-helper + img {
-  height: 26;
-  vertical-align: middle;
-}
-
-.notificationSetting input[type=checkbox]:checked + label > img {
-  filter: invert(100%);
-}
-
-.notificationSetting input[type=time] {
-  height: 40px;
-  margin-bottom: 0.5rem;
-}
-
-#repetition + label {
-  padding: 5px 3px 5px 3px;
-  border-radius: 10px 0px 0px 10px;
-  margin-right: 0px;
-}
-
-.notificationSetting input[type=time]:disabled {
-  background-color: var(--disabled-input-bground);
 }
 
 .flex-box {
