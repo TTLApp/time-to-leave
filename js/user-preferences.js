@@ -98,9 +98,9 @@ function initPreferencesFileIfNotExistsOrInvalid() {
         // Handle Boolean Inputs
         case 'close-to-tray':
         case 'hide-non-working-days':
-        case 'start-at-login':
         case 'notification':
         case 'repetition':
+        case 'start-at-login':
         case 'working-days-monday':
         case 'working-days-tuesday':
         case 'working-days-wednesday':
