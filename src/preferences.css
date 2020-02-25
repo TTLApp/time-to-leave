@@ -140,3 +140,8 @@ input:checked + .slider::before {
 .slider.round::before {
   border-radius: 50%;
 }
+
+/* Notification settings */
+#notifications-interval:disabled, input:disabled + .slider {
+  background-color: var(--disabled-input-bground);
+}

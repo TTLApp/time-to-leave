@@ -21,7 +21,7 @@ html, html[data-theme="light"] {
   --weekday-background: var(--slider-background-color);
   --weekday-selected: var(--punch-bground);
   --svg-invert: 0;
-  --disabled-input-bground: rgb(230, 230, 230);
+  --disabled-input-bground: rgb(175, 175, 175);
 }
 
 html[data-theme="dark"] {

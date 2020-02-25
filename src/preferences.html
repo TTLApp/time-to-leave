@@ -44,11 +44,15 @@
         <div class="preference-title">App Behavior</div>
             <div class="flex-box">
                 <p>Notification</p>
-                <label id="notification" class="switch"><input type="checkbox" name="notification"><span class="slider round"></span></label>
+                <label class="switch"><input type="checkbox" id="notification" name="notification"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
-                <p>Repetition</p>
-                <label id="repetition" class="switch"><input type="checkbox" name="repetition"><span class="slider round"></span></label>
+                <p>Allow recurring notifications</p>
+                <label class="switch"><input type="checkbox" id="repetition" name="repetition"><span class="slider round"></span></label>
+            </div>
+            <div class="flex-box mb-2">
+                <p>Time between notifications</p>
+                <input type="time" id="notifications-interval" name="notifications-interval" min="00:01" max="00:30"/>
             </div>
             <div class="flex-box">
                 <p>Start on Login</p>
@@ -64,10 +68,6 @@
                     <option value="light" selected>Light</option>
                     <option value="dark">Dark</option>
                 </select>
-            </div>
-            <div class="flex-box mt-1">
-                <p>Time between notifications</p>
-                <input type="time" id="notifications-interval" name="notifications-interval" min="00:01" max="00:30"/>
             </div>
         </div>
     </br>
