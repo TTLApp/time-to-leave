@@ -50,9 +50,9 @@ $(() => {
         }
     }
 
-    const notification = $('#notification');
-    const repetition = $('#repetition');
-    const notificationsInterval = $('#notifications-interval');
+    const notification = $(document.getElementById('notification'));
+    const repetition = $(document.getElementById('repetition'));
+    const notificationsInterval = $(document.getElementById('notifications-interval'));
 
     repetition.prop('disabled', !notification.is(':checked'));
     repetition.prop('checked', notification.is(':checked') && usersStyles['repetition']);
