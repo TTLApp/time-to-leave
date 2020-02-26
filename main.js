@@ -253,6 +253,8 @@ function createWindow() {
                             let confirmation = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
                             if (confirmation === /*Yes*/0) {
                                 if (importDatabaseFromFile(response)) {
+                                    // Reload only the calendar itself to avoid a flash
+                                    win.webContents.executeJavaScript('calendar.redraw()');
                                     dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                                         {
                                             title: 'Time to Leave',
@@ -262,17 +264,6 @@ function createWindow() {
                                             detail: '\Yay! Import successful!'
                                         });
                                 }
-                                // Reload only the calendar itself to avoid a flash
-                                win.webContents.executeJavaScript('calendar.redraw()');
-                                dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
-                                    {
-                                        title: 'Time to Leave',
-                                        message: 'Database imported',
-                                        type: 'info',
-                                        icon: iconpath,
-                                        detail: '\Yay! Import successful!'
-                                    }
-                                );
                             }
                         }
                     },
