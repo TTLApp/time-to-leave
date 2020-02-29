@@ -146,7 +146,6 @@ function createWindow() {
                     label:'Exit',
                     accelerator: macOS ? 'CommandOrControl+Q' : 'Control+Q',
                     click() {
-                        app.isQuitting = true;
                         app.quit();
                     }
                 }
@@ -422,8 +421,6 @@ function createWindow() {
         },
         {
             label: 'Quit', click: function() {
-                app.isQuitting = true;
-                win = null;
                 app.quit();
             }
         }
@@ -490,9 +487,14 @@ app.on('ready', () => {
     powerMonitor.on('resume', () => { checkIdleAndNotify(); });
 });
 
+// Emitted before the application starts closing its windows.
+// It's not emitted when closing the windows
+app.on('before-quit', () => {
+    app.isQuitting = true;
+});
+
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
-    app.isQuitting = true;
     app.quit();
 });
 
