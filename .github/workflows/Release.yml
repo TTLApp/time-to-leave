@@ -1,0 +1,101 @@
+name: 'Prepare Release'
+on:
+  push:
+    branches:
+      - v.*
+    tags:
+      - v.*
+
+jobs:
+
+  'MacOS':
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+    - name: 'Building...'
+      run: |
+        npm ci
+        npm run package:mac
+
+    - name: 'Packing DMG...'
+      if: success()
+      run: npx electron-installer-dmg './release-builds/Time to Leave-darwin-x64/Time to Leave.app/' time-to-leave --out 'release-dmg/' --icon=assets/icon-mac.icns --verbose
+    
+    - name: 'Create Release'
+      if: success()
+      uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: true
+        artifacts: 'release-dmg/time-to-leave.dmg'
+        # artifactContentType: raw
+        draft: true
+        name: 'Time to Leave' 
+        prerelease: true
+        # An optional tag for the release. If this is omitted the git ref will be used (if it is a tag).
+        tag: latest 
+        token: ${{ secrets.TTL_RELEASE_TOKEN }}
+    
+  'Debian':
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - name: 'Building...'
+        run: |
+          npm ci
+          npm run package:deb
+          
+      - name: 'Packing DEB'
+        if: success()
+        run: |
+          npx electron-installer-debian --src 'release-builds/time-to-leave-linux-x64/' --dest 'release-deb/' --arch amd64 --verbose
+          ls release-deb/
+      
+      - name: 'Create Release'
+        if: success()
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: 'release-deb/time-to-leave_1.4.0~beta.2_amd64.deb'
+          # artifactContentType: raw
+          draft: true
+          name: 'Time to Leave' 
+          prerelease: true
+          # An optional tag for the release. If this is omitted the git ref will be used (if it is a tag).
+          tag: latest 
+          token: ${{ secrets.TTL_RELEASE_TOKEN }}
+                
+  'Windows':
+      runs-on: windows-latest
+      steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - name: 'Building...'
+        run: |
+          npm ci
+          npm run package:win 
+        
+      - name: 'Creating Installer...'
+        if: success()
+        run: |
+          npm run package:win-squirrel
+          npx electron-installer-windows --src 'release-builds/time-to-leave-win32-ia32' --dest 'release-exe/' --verbose
+          ls release-exe
+          
+      - name: 'Create Release'
+        if: success()
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: 'release-exe/time_to_leave-1.4.0-beta2-setup.msi,release-exe/time_to_leave-1.4.0-beta2-setup.exe,release-exe/time_to_leave-1.4.0-beta2-full.nupkg'
+          # artifactContentType: raw
+          draft: true
+          name: 'Time to Leave' 
+          prerelease: true
+          # An optional tag for the release. If this is omitted the git ref will be used (if it is a tag).
+          tag: latest 
+          token: ${{ secrets.TTL_RELEASE_TOKEN }}
+          
+env:
+  CI: true

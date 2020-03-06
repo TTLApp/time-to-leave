@@ -1,0 +1,23 @@
+name: PR Checks
+on: pull_request
+jobs:
+  'Checking':
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - name: '        Tests'
+        run: npm cit
+      - name: '     Coverage'
+        if: success()
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: 'COVERAGE'
+          path: 'coverage/'
+      - name: '      CodeCov'
+        if: success()
+        uses: codecov/codecov-action@v1.0.5
+        with:
+          file: 'COVERAGE*'
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
