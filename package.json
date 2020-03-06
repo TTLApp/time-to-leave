@@ -1,8 +1,9 @@
 {
   "name": "time-to-leave",
   "productName": "Time to Leave",
-  "version": "1.3.0",
+  "version": "1.4.0-beta.1",
   "description": "Log work hours and get notified when it's time to leave the office and start to live.",
+  "author": "Thamara Andrade",
   "homepage": "https://github.com/thamara/time-to-leave#readme",
   "repository": {
     "type": "git",
@@ -10,15 +11,31 @@
   },
   "main": "main.js",
   "scripts": {
+    "clean": "rimraf coverage node_modules preferences.json",
+    "debug:main": "electron --inspect=5858 .",
+    "debug:render": "electron --remote-debugging-port=9222 .",
+    "lint": "npx npm-run-all lint:*",
+    "lint:css": "stylelint **/*.css",
+    "lint:eslint": "eslint . ",
+    "lint:markdown": "prettier docs/*.md *.md -c",
+    "lint:standard": "standard . ",
+    "lint-fix": "npx npm-run-all lint-fix:*",
+    "lint-fix:css": "npm run lint:css -- --fix",
+    "lint-fix:eslint": "npm run lint:eslint -- --fix",
+    "lint-fix:markdown": "npm run lint:markdown -- --write",
+    "lint-fix:standard": "npm run lint:standard -- --fix",
+    "package:deb": "electron-packager . time-to-leave --overwrite --asar --platform=linux --arch=x64 --icon=assets/timer.png --prune=true --out=release-builds --ignore=__tests__",
+    "package:mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icon-mac.icns --prune=true --out=release-builds --ignore=__tests__",
+    "package:win": "electron-packager . --overwrite --platform=win32 --arch=ia32 --icon=assets/timer.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Time to Leave\" --ignore=__tests__",
+    "package:win-squirrel": "electron-packager . time-to-leave --overwrite --platform=win32 --arch=ia32 --icon=assets/timer.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Time to Leave\" --ignore=__tests__",
+    "preinstall": "npx npm-force-resolutions",
     "start": "electron .",
-    "mocha": "mocha",
-    "test": "node test/time_math.test | tap-spec",
-    "lint": "npm-run-all lint:*",
-    "lint:js": "eslint . --fix",
-    "lint:css": "stylelint **/*.css --fix",
-    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icon-mac.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/timer.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Time to Leave\""
+    "test": "jest --detectOpenHandles --verbose --colors"
   },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
   "stylelint": {
     "extends": "stylelint-config-standard",
     "rules": {
@@ -26,25 +43,18 @@
       "length-zero-no-unit": null
     }
   },
-  "pre-commit": [
-    "lint",
-    "test"
-  ],
-  "author": "Thamara Andrade",
   "license": "GPL-3.0",
   "devDependencies": {
+    "@jest-runner/electron": "^2.0.3",
     "electron": "^7.1.11",
-    "electron-eslint": "^3.12.2",
-    "electron-packager": "^14.2.0",
-    "electron-reloader": "^0.3.0",
-    "mocha": "^6.2.2",
-    "npm-run-all": "^4.1.5",
+    "electron-packager": "^14.2.1",
+    "electron-reloader": "^1.0.0",
+    "eslint": "^6.8.0",
+    "jest": "^25.1.0",
     "pre-commit": "^1.2.2",
-    "spectron": "^8.0.0",
-    "stylelint": "^13.0.0",
-    "stylelint-config-standard": "^19.0.0",
-    "tap-spec": "^5.0.0",
-    "tape": "^4.13.0"
+    "standard": "^14.3.1",
+    "stylelint": "^13.2.0",
+    "stylelint-config-standard": "^20.0.0"
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
@@ -54,11 +64,10 @@
     "node-notifier": "^5.4.3"
   },
   "resolutions": {
-    "core-js": "^3",
-    "flat-cache": "^2.0.1",
-    "object-keys": "^1.1.1"
+    "fsevents": "^2.1.2"
   },
   "engines": {
+    "node": "^10.12.6",
     "yarn": "YARN NO LONGER USED - use npm instead."
   }
 }
