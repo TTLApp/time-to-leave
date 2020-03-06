@@ -646,7 +646,7 @@ function updateTimeDay(year, month, day, key, newValue) {
         store.set(dayStr, newValue);
     } else if (oldValue && validateTime(oldValue)) {
         store.delete(dayStr);
-            //remve entry from db
+        //remve entry from db
     }
 
     var oldDayTotal = store.get(baseStr + 'day-total');

@@ -1,3 +1,4 @@
+/*eslint-disable no-useless-escape*/
 const { app, BrowserWindow, dialog, ipcMain, Menu, net, shell, Tray } = require('electron');
 const path = require('path');
 const Store = require('electron-store');
@@ -83,7 +84,7 @@ async function checkForUpdates(showUpToDateDialog) {
                         store.set('update-remind-me-after', todayDate);
                     }
                 } else if (showUpToDateDialog)
-                    {
+                {
                     const options = {
                         type: 'info',
                         buttons: ['OK'],
@@ -235,8 +236,8 @@ function createWindow() {
                             buttonLabel : 'Import',
 
                             filters : [
-                              {name: '.ttldb', extensions: ['ttldb',]},
-                              {name: 'All Files', extensions: ['*']}
+                                {name: '.ttldb', extensions: ['ttldb',]},
+                                {name: 'All Files', extensions: ['*']}
                             ]
                         };
                         let response = dialog.showOpenDialogSync(options);
@@ -464,8 +465,8 @@ function createWindow() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-    // Check first to see if the app is aleady running,
-    // fail out gracefully if so.
+// Check first to see if the app is aleady running,
+// fail out gracefully if so.
 if (!app.requestSingleInstanceLock()) {
     app.exit(0);
 } else {

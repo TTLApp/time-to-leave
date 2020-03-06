@@ -1,3 +1,4 @@
+/*eslint-disable no-prototype-builtins*/
 const Store = require('electron-store');
 const fs = require('fs');
 const { dialog } = require('electron');
@@ -14,7 +15,7 @@ const waivedWorkdays = new Store({name: 'waived-workdays'});
  *   . hours
  */
 function getRegularEntries() {
-    
+
     var output = [];
     for (const entry of store) {
         const key = entry[0];
@@ -39,7 +40,7 @@ function getRegularEntries() {
  *   . hours
  */
 function getWaivedEntries() {
-    
+
     var output = [];
     for (const entry of waivedWorkdays) {
         const date = entry[0];
@@ -64,8 +65,8 @@ function validateDate(dateStr) {
 }
 
 function validEntry(entry) {
-    if (!entry.hasOwnProperty('type') || 
-        !entry.hasOwnProperty('date') || 
+    if (!entry.hasOwnProperty('type') ||
+        !entry.hasOwnProperty('date') ||
         !entry.hasOwnProperty('data') ||
         !entry.hasOwnProperty('hours') ||
         !(entry.type === 'regular' || entry.type === 'waived') ||
