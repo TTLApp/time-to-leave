@@ -8,8 +8,8 @@ const {
 describe('User Preferences save/load', () => {
     process.env.NODE_ENV = 'test';
 
-    let testPreferences = defaultPreferences
-    testPreferences['working-days-sunday'] = true
+    let testPreferences = defaultPreferences;
+    testPreferences['working-days-sunday'] = true;
 
     const empty = {};
 
