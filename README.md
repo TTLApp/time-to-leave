@@ -1,4 +1,5 @@
 # time-to-leave
+
 Log work hours and get notified when it's time to leave the office and start to live.
 
 ![time-to-leave](https://user-images.githubusercontent.com/846063/67172932-9e1db580-f393-11e9-87bc-1f51d57f8788.png)
@@ -16,10 +17,12 @@ You can also add waivers on the days you did not work.
 ![time-to-leave-waiver](https://user-images.githubusercontent.com/846063/67172943-a4139680-f393-11e9-9f05-67f00da26bc1.png)
 
 ## How to install
+
 ---
 
 ### Dependencies
-- [Node.js](https://nodejs.org/en/): version 8.x or higher
+
+-   [Node.js](https://nodejs.org/en/): version 8.x or higher
 
 ### Starting
 
@@ -44,6 +47,7 @@ npm run test
 ```
 
 ### Packaging
+
 Builds will be available in release-builds
 
 ```bash
@@ -60,6 +64,7 @@ If you want to help, do read our [contributing](CONTRIBUTING.md) guidelines.
 Also, join our [discord channel](https://discord.gg/THph9C) to discuss upcoming features and more.
 
 ## Credits
+
 Icons made by [freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com).
 
 Original Timer icon by [lucy-g](https://icon-icons.com/icon/timer/121243), colored variations and formats modified from it.
