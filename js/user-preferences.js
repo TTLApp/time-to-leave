@@ -6,6 +6,7 @@ const { isValidTheme } = require('./themes.js');
 
 const defaultPreferences = {
     'close-to-tray': true,
+    'count-today': true,
     'hide-non-working-days': false,
     'hours-per-day': '08:00',
     'notification': true,
@@ -97,6 +98,7 @@ function initPreferencesFileIfNotExistsOrInvalid() {
         }
         // Handle Boolean Inputs
         case 'close-to-tray':
+        case 'count-today':
         case 'hide-non-working-days':
         case 'notification':
         case 'repetition':
