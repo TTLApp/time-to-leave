@@ -32,7 +32,7 @@ function getPreferencesFilePath() {
 }
 
 /*
- * Saves preference to file.
+ * Saves preferences to file, returns an error on failure.
  */
 function savePreferences(preferencesOptions) {
     try {
