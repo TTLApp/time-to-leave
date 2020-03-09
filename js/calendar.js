@@ -278,7 +278,7 @@ class Calendar {
                 continue;
             }
             var isToday = (now.getDate() === day && now.getMonth() === this.month && now.getFullYear() === this.year);
-            if (isToday) {
+            if (isToday && !preferences['count-today']) {
                 //balance considers only up until yesterday
                 break;
             }
@@ -446,7 +446,7 @@ class Calendar {
                    '</tr>';
         return code;
     }
-    
+
     /*
      * Returns the html code for the row with workng days, month total and balance
      */
@@ -499,14 +499,14 @@ class Calendar {
                     '<td class="ti ti-total">' + Calendar._getTotalCode(year, month, day, 'day-total') + '</td>' +
                 '</tr>\n';
             return waivedLineHtmlCode;
-        } 
+        }
 
         var htmlCode =
                  '<tr'+ (isToday ? ' class="isToday"' : '') + ' id="' + trID + '">' +
                     '<td class="weekday waiver-trigger ti" title="Add a waiver for this day">' + this.options.weekabbrs[weekDay] + '</td>' +
-                    '<td class="day ti">' + 
+                    '<td class="day ti">' +
                         '<span class="day-number"> ' + day + ' </span>' +
-                        '<img src="assets/waiver.svg" height="15" class="waiver-img">' + 
+                        '<img src="assets/waiver.svg" height="15" class="waiver-img">' +
                     '</td>' +
                     '<td class="ti">' + Calendar._getInputCode(year, month, day, 'day-begin') + '</td>' +
                     '<td class="ti">' + Calendar._getInputCode(year, month, day, 'lunch-begin') + '</td>' +
@@ -559,7 +559,7 @@ class Calendar {
                 '</tr>' +
                 '</thead>\n';
     }
-    
+
     /*
      * Returns the last valid day before the current one, to print the balance row
      */
@@ -574,7 +574,7 @@ class Calendar {
                 balanceRowPosition = day;
             }
         }
-        
+
         return balanceRowPosition;
     }
 
@@ -588,7 +588,7 @@ class Calendar {
         html += '<table class="table-body">';
         html += this._getTableHeaderCode();
         var balanceRowPosition = this._getBalanceRowPosition();
-        
+
         for (var day = 1; day <= monthLength; ++day) {
             html += this._getInputsRowCode(this.year, this.month, day);
             if (day === balanceRowPosition) {
