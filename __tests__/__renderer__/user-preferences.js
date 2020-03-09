@@ -14,8 +14,6 @@ describe('User Preferences save/load', () => {
     const empty = {};
 
     describe('savePreferences() and getUserPreferences()', () => {
-        //let fs = require('fs')
-        //jest.mock('fs')
 
         test('getUserPreferences() before saving any', () => {
             expect(savePreferences(defaultPreferences)).toBeDefined();
