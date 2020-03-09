@@ -12,7 +12,8 @@ function isValidTheme(testTheme) {
 /**
  * Takes the provided theme key, and loads into a data-attribute on the DOM
  * @param {string} theme
- */
+ * @return {boolean} If the theme application was successful
+ * */
 function applyTheme(theme) {
     if (isValidTheme(theme) === false) {
         return false;
