@@ -532,7 +532,7 @@ class Calendar {
         var ritghBut = '<input id="next-month" type="image" src="assets/right-arrow.svg" alt="Next Month" height="24" width="24"></input>';
         return '<div class="title-header">'+
                     '<div class="title-header title-header-img"><img src="assets/timer.svg" height="64" width="64"></div>' +
-                    '<div class="title-header title-header-text">Time To Leave</div>' +
+                    '<div class="title-header title-header-text">Time to Leave</div>' +
                     '<div class="title-header title-header-msg"></div>' +
                '</div>' +
                 '<table class="table-header"><tr>' +
