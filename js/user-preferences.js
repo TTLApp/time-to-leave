@@ -5,6 +5,7 @@ const { validateTime } = require('./time-math.js');
 const { isValidTheme } = require('./themes.js');
 
 const defaultPreferences = {
+    'count-today': false,
     'close-to-tray': true,
     'hide-non-working-days': false,
     'hours-per-day': '08:00',
@@ -101,6 +102,7 @@ function initPreferencesFileIfNotExistsOrInvalid() {
             break;
         }
         // Handle Boolean Inputs
+        case 'count-today':
         case 'close-to-tray':
         case 'hide-non-working-days':
         case 'notification':
