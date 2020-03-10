@@ -56,7 +56,11 @@ function getWaivedEntries() {
 function exportDatabaseToFile(filename) {
     var information = getRegularEntries();
     information = information.concat(getWaivedEntries());
-    fs.writeFileSync(filename, JSON.stringify(information, null,'\t'), 'utf-8');
+    try {
+        fs.writeFileSync(filename, JSON.stringify(information, null,'\t'), 'utf-8');
+    } catch (err) {
+        return false;
+    } return true;
 }
 
 function validateDate(dateStr) {
