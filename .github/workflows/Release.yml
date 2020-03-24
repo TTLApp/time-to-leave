@@ -5,7 +5,9 @@ on:
       - ci/*
     tags:
       - v.*
-      - latest*
+      - devel/v.*
+      - nightly/v.*
+      - stable/v.*
 
 jobs:
 
@@ -29,4 +31,5 @@ jobs:
         artifacts: 'packages/**.dmg'
         artifactContentType: application/x-apple-diskimage
         prerelease: true
+        tag: ci
         token: ${{ secrets.TTL_RELEASE_TOKEN }}
