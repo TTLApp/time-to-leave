@@ -55,3 +55,18 @@ jobs:
         prerelease: true
         tag: ci
         token: ${{ secrets.TTL_RELEASE_TOKEN }}
+    - name: 'Packing RPM'
+      if: success()
+      run: |
+        sudo apt install -yqq rpm
+        npx electron-installer-redhat --src 'release-builds/time-to-leave-linux-x64/' --dest 'packages/' --arch amd64 --verbose
+    - name: 'Release to GH'
+      if: success()
+      uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: true
+        artifacts: 'packages/**.rpm'
+        artifactContentType: application/x-redhat-package-manager
+        prerelease: true
+        tag: ci
+        token: ${{ secrets.TTL_RELEASE_TOKEN }}
