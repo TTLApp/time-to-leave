@@ -4,7 +4,6 @@ on:
     branches:
       - ci/*
     tags:
-      - v.*
       - devel/v.*
       - nightly/v.*
       - stable/v.*
@@ -30,6 +29,29 @@ jobs:
         allowUpdates: true
         artifacts: 'packages/**.dmg'
         artifactContentType: application/x-apple-diskimage
+        prerelease: true
+        tag: ci
+        token: ${{ secrets.TTL_RELEASE_TOKEN }}
+
+  'Linux':
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+    - name: ' Building...'
+      run: |
+        npm ci
+        npm run package:deb
+    - name: 'Packing DEB...'
+      if: success()
+      run: npx electron-installer-debian --src 'release-builds/time-to-leave-linux-x64/' --dest 'packages/' --arch amd64 --verbose
+    - name: 'Release to GH'
+      if: success()
+      uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: true
+        artifacts: 'packages/**.deb'
+        artifactContentType: application/vnd.debian.binary-package
         prerelease: true
         tag: ci
         token: ${{ secrets.TTL_RELEASE_TOKEN }}
