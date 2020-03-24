@@ -4,8 +4,7 @@ on:
     branches:
       - ci/*
     tags:
-      - devel/v.*
-      - nightly/v.*
+      - latest/v.*
       - stable/v.*
 
 jobs:
@@ -29,7 +28,7 @@ jobs:
         allowUpdates: true
         artifacts: 'packages/**.dmg'
         artifactContentType: application/x-apple-diskimage
-        prerelease: true
+        draft: true
         tag: ci
         token: ${{ secrets.TTL_RELEASE_TOKEN }}
 
@@ -52,7 +51,7 @@ jobs:
         allowUpdates: true
         artifacts: 'packages/**.deb'
         artifactContentType: application/vnd.debian.binary-package
-        prerelease: true
+        draft: true
         tag: ci
         token: ${{ secrets.TTL_RELEASE_TOKEN }}
     - name: 'Packing RPM'
@@ -67,7 +66,7 @@ jobs:
         allowUpdates: true
         artifacts: 'packages/**.rpm'
         artifactContentType: application/x-redhat-package-manager
-        prerelease: true
+        draft: true
         tag: ci
         token: ${{ secrets.TTL_RELEASE_TOKEN }}
 
@@ -90,7 +89,7 @@ jobs:
           allowUpdates: true
           artifacts: 'packages/**.msi'
           artifactContentType: application/x-msi
-          prerelease: true
+          draft: true
           tag: ci
           token: ${{ secrets.TTL_RELEASE_TOKEN }}
       - name: 'Release EXE to GH'
@@ -100,6 +99,6 @@ jobs:
           allowUpdates: true
           artifacts: 'packages/**.exe'
           artifactContentType: application/x-executable
-          prerelease: true
+          draft: true
           tag: ci
           token: ${{ secrets.TTL_RELEASE_TOKEN }}
