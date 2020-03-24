@@ -1,6 +1,8 @@
 name: 'Prepare Release'
 on:
   push:
+    branches:
+      - ci*
     tags:
       - v.*
       - latest*
