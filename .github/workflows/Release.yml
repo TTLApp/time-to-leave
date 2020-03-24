@@ -70,3 +70,36 @@ jobs:
         prerelease: true
         tag: ci
         token: ${{ secrets.TTL_RELEASE_TOKEN }}
+
+  'Windows':
+      runs-on: windows-latest
+      steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - name: 'Building...'
+        run: |
+          npm ci
+          npm run package:win
+      - name: 'Packing MSI, EXE, etc'
+        if: success()
+        run: npx electron-installer-windows --src 'release-builds\time-to-leave-win32-ia32\' --dest 'packages\' --verbose
+      - name: 'Release MSI to GH'
+        if: success()
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: 'packages/**.msi'
+          artifactContentType: application/x-msi
+          prerelease: true
+          tag: ci
+          token: ${{ secrets.TTL_RELEASE_TOKEN }}
+      - name: 'Release EXE to GH'
+        if: success()
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: 'packages/**.exe'
+          artifactContentType: application/x-executable
+          prerelease: true
+          tag: ci
+          token: ${{ secrets.TTL_RELEASE_TOKEN }}
