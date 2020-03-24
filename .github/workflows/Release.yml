@@ -20,5 +20,13 @@ jobs:
         npm run package:mac
     - name: 'Packing DMG...'
       if: success()
-      run: npx electron-installer-dmg 'release-builds/Time to Leave-darwin-x64/Time to Leave.app' time-to-leave --out 'packages/' --icon=assets/icon-mac.icns --verbose
-
+      run: npx electron-installer-dmg 'release-builds/Time to Leave-darwin-x64/Time to Leave.app' time-to-leave --out 'packages/' --icon=assets/icon-mac.icns
+    - name: 'Release to GH'
+      if: success()
+      uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: true
+        artifacts: 'packages/**.dmg'
+        artifactContentType: application/x-apple-diskimage
+        prerelease: true
+        token: ${{ secrets.TTL_RELEASE_TOKEN }}
