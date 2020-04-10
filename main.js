@@ -18,7 +18,10 @@ ipcMain.on('PREFERENCE_SAVE_DATA_NEEDED', (event, preferences) => {
 });
 
 ipcMain.on('SET_WAIVER_DAY', (event, waiverDay) => {
-    global.waiverDay = waiverDay;
+    if (!isNan(waiverDay))
+    {
+        global.waiverDay = waiverDay;  
+    }
 });
 
 // Keep a global reference of the window object, if you don't, the window will
