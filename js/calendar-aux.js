@@ -41,12 +41,12 @@ function hasInputError(dayBegin, lunchBegin, lunchEnd, dayEnd) {
  * Returns the entries for the day.
  */
 function getDaysEntries(year, month, day) {
-    const store = new Store();
+    const db = new Store();
     var dayStr = year + '-' + month + '-' + day + '-';
-    return [store.get(dayStr + 'day-begin'),
-        store.get(dayStr + 'lunch-begin'),
-        store.get(dayStr + 'lunch-end'),
-        store.get(dayStr + 'day-end')];
+    return [db.get(dayStr + 'day-begin'),
+            db.get(dayStr + 'lunch-begin'),
+            db.get(dayStr + 'lunch-end'),
+            db.get(dayStr + 'day-end')];
 }
 
 
