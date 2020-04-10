@@ -96,3 +96,4 @@ typings/
 
 # Release builds
 release-builds
+*.ttldb
