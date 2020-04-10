@@ -44,9 +44,9 @@ function getDaysEntries(year, month, day) {
     const db = new Store();
     var dayStr = year + '-' + month + '-' + day + '-';
     return [db.get(dayStr + 'day-begin'),
-            db.get(dayStr + 'lunch-begin'),
-            db.get(dayStr + 'lunch-end'),
-            db.get(dayStr + 'day-end')];
+        db.get(dayStr + 'lunch-begin'),
+        db.get(dayStr + 'lunch-end'),
+        db.get(dayStr + 'day-end')];
 }
 
 
