@@ -47,7 +47,7 @@ describe('Import export', function() {
 
     waivedWorkdays.clear();
     const waivedEntries = {
-        '2019-12-31': {reason: 'example waiver 3', hours: '08:00'},
+        '2019-12-31': {reason: 'New Year\'s eve', hours: '08:00'},
         '2020-01-01': {reason: 'example waiver 2', hours: '08:00'},
         '2020-04-10': {reason: 'example waiver 1', hours: '08:00'}
     };
@@ -82,4 +82,3 @@ describe('Import export', function() {
     });
 
 });
-
