@@ -15,6 +15,7 @@ const { notify } = require('./js/notification.js');
 const { getUserPreferences, showDay } = require('./js/user-preferences.js');
 const { applyTheme } = require('./js/themes.js');
 const { getDateStr } = require('./js/date-aux.js');
+const { hasInputError, getDaysEntries } = require('./js/calendar-aux.js');
 const {
     formatDayId,
     sendWaiverDay,
@@ -48,32 +49,6 @@ function notificationIsEnabled() {
  */
 function getHoursPerDay() {
     return preferences['hours-per-day'];
-}
-
-/*
- * Analyze the inputs of a day, and return if it has an error.
- * An error means that an input earlier in the day is higher than another.
- */
-function hasInputError(dayBegin, lunchBegin, lunchEnd, dayEnd) {
-    var dayValues = new Array();
-    if (validateTime(dayBegin)) {
-        dayValues.push(dayBegin);
-    }
-    if (validateTime(lunchBegin)) {
-        dayValues.push(lunchBegin);
-    }
-    if (validateTime(lunchEnd)) {
-        dayValues.push(lunchEnd);
-    }
-    if (validateTime(dayEnd)) {
-        dayValues.push(dayEnd);
-    }
-    for (var index = 0; index < dayValues.length; index++) {
-        if (index > 0 && (dayValues[index-1] >= dayValues[index])) {
-            return true;
-        }
-    }
-    return false;
 }
 
 /*
@@ -446,7 +421,7 @@ class Calendar {
                    '</tr>';
         return code;
     }
-    
+
     /*
      * Returns the html code for the row with workng days, month total and balance
      */
@@ -499,14 +474,14 @@ class Calendar {
                     '<td class="ti ti-total">' + Calendar._getTotalCode(year, month, day, 'day-total') + '</td>' +
                 '</tr>\n';
             return waivedLineHtmlCode;
-        } 
+        }
 
         var htmlCode =
                  '<tr'+ (isToday ? ' class="isToday"' : '') + ' id="' + trID + '">' +
                     '<td class="weekday waiver-trigger ti" title="Add a waiver for this day">' + this.options.weekabbrs[weekDay] + '</td>' +
-                    '<td class="day ti">' + 
+                    '<td class="day ti">' +
                         '<span class="day-number"> ' + day + ' </span>' +
-                        '<img src="assets/waiver.svg" height="15" class="waiver-img">' + 
+                        '<img src="assets/waiver.svg" height="15" class="waiver-img">' +
                     '</td>' +
                     '<td class="ti">' + Calendar._getInputCode(year, month, day, 'day-begin') + '</td>' +
                     '<td class="ti">' + Calendar._getInputCode(year, month, day, 'lunch-begin') + '</td>' +
@@ -559,7 +534,7 @@ class Calendar {
                 '</tr>' +
                 '</thead>\n';
     }
-    
+
     /*
      * Returns the last valid day before the current one, to print the balance row
      */
@@ -574,7 +549,7 @@ class Calendar {
                 balanceRowPosition = day;
             }
         }
-        
+
         return balanceRowPosition;
     }
 
@@ -588,7 +563,7 @@ class Calendar {
         html += '<table class="table-body">';
         html += this._getTableHeaderCode();
         var balanceRowPosition = this._getBalanceRowPosition();
-        
+
         for (var day = 1; day <= monthLength; ++day) {
             html += this._getInputsRowCode(this.year, this.month, day);
             if (day === balanceRowPosition) {
@@ -600,17 +575,6 @@ class Calendar {
 
         return html;
     }
-}
-
-/*
- * Returns the entries for the day.
- */
-function getDaysEntries(year, month, day) {
-    var dayStr = year + '-' + month + '-' + day + '-';
-    return [store.get(dayStr + 'day-begin'),
-        store.get(dayStr + 'lunch-begin'),
-        store.get(dayStr + 'lunch-end'),
-        store.get(dayStr + 'day-end')];
 }
 
 /*
