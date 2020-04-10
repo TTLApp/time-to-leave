@@ -252,7 +252,8 @@ function createWindow() {
 
                             let confirmation = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
                             if (confirmation === /*Yes*/0) {
-                                if (importDatabaseFromFile(response)) {
+                                const importResult = importDatabaseFromFile(response);
+                                if (importResult['result']) {
                                     // Reload only the calendar itself to avoid a flash
                                     win.webContents.executeJavaScript('calendar.redraw()');
                                     dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
@@ -263,6 +264,21 @@ function createWindow() {
                                             icon: iconpath,
                                             detail: '\Yay! Import successful!'
                                         });
+                                } else if (importResult['failed'] !== 0) {
+                                    if (importResult['failed'] !== 0) {
+                                        const message = importResult['failed'] + ' out of ' + importResult['total'] + ' could not be loaded.';
+                                        dialog.showMessageBoxSync({
+                                            type: 'warning',
+                                            title: 'Failed entries',
+                                            message: message
+                                        });
+                                    }
+                                } else {
+                                    dialog.showMessageBoxSync({
+                                        type: 'warning',
+                                        title: 'Failed entries',
+                                        message: 'Something wrong happened :('
+                                    });
                                 }
                             }
                         }

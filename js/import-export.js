@@ -1,11 +1,7 @@
 /*eslint-disable no-prototype-builtins*/
 const Store = require('electron-store');
 const fs = require('fs');
-const { dialog } = require('electron');
 const { validateTime } = require('./time-math.js');
-
-const store = new Store();
-const waivedWorkdays = new Store({name: 'waived-workdays'});
 
 /**
  * Returns the database (only regular entries) as a array of:
@@ -15,7 +11,7 @@ const waivedWorkdays = new Store({name: 'waived-workdays'});
  *   . hours
  */
 function getRegularEntries() {
-
+    const store = new Store();
     var output = [];
     for (const entry of store) {
         const key = entry[0];
@@ -24,7 +20,7 @@ function getRegularEntries() {
         var [year, month, day, stage, step] = key.split('-');
         //The main database uses a JS-based month index (0-11)
         //So we need to adjust it to human month index (1-12)
-        var date = year + '-' + (month + 1) + '-' + day;
+        var date = year + '-' + (parseInt(month) + 1) + '-' + day;
         var data = stage + '-' + step;
 
         output.push({'type': 'regular', 'date': date, 'data': data, 'hours': value});
@@ -40,7 +36,7 @@ function getRegularEntries() {
  *   . hours
  */
 function getWaivedEntries() {
-
+    const waivedWorkdays = new Store({name: 'waived-workdays'});
     var output = [];
     for (const entry of waivedWorkdays) {
         const date = entry[0];
@@ -82,39 +78,40 @@ function validEntry(entry) {
 }
 
 function importDatabaseFromFile(filename) {
-    const information = JSON.parse(fs.readFileSync(filename[0], 'utf-8'));
-    var failedEntries = 0;
-    for (var i = 0; i < information.length; ++i) {
-        var entry = information[i];
-        if (!validEntry(entry)) {
-            failedEntries += 1;
-            continue;
+    const store = new Store();
+    const waivedWorkdays = new Store({name: 'waived-workdays'});
+    try {
+        const information = JSON.parse(fs.readFileSync(filename[0], 'utf-8'));
+        var failedEntries = 0;
+        for (var i = 0; i < information.length; ++i) {
+            var entry = information[i];
+            if (!validEntry(entry)) {
+                failedEntries += 1;
+                continue;
+            }
+            if (entry.type === 'waived') {
+                waivedWorkdays.set(entry.date, { 'reason' : entry.data, 'hours' : entry.hours });
+            } else {
+                var [year, month, day] = entry.date.split('-');
+                //The main database uses a JS-based month index (0-11)
+                //So we need to adjust it from human month index (1-12)
+                var date = year + '-' + (parseInt(month) - 1) + '-' + day;
+                var key = date + '-' + entry.data;
+                store.set(key, entry.hours);
+            }
         }
-        if (entry.type === 'waived') {
-            waivedWorkdays.set(entry.date, { 'reason' : entry.data, 'hours' : entry.hours });
-        } else if (entry.type === 'regular') {
-            var [year, month, day] = entry.date.split('-');
-            //The main database uses a JS-based month index (0-11)
-            //So we need to adjust it from human month index (1-12)
-            var date = year + '-' + (month - 1) + '-' + day;
-            var key = date + '-' + entry.data;
-            store.set(key, entry.hours);
-        }
-    }
 
-    if (failedEntries !== 0) {
-        const message = failedEntries + ' out of ' + information.length + ' could not be loaded.';
-        dialog.showMessageBoxSync({
-            type: 'warning',
-            title: 'Failed entries',
-            message: message
-        });
-        return false;
+        if (failedEntries !== 0) {
+            return {'result': false, 'total': information.length, 'failed': failedEntries};
+        }
+    } catch (err) {
+        return {'result': false, 'total': 0, 'failed': 0};
     }
-    return true;
+    return {'result': true};
 }
 
 module.exports = {
     importDatabaseFromFile,
-    exportDatabaseToFile
+    exportDatabaseToFile,
+    validEntry
 };
