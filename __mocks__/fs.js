@@ -1,5 +1,5 @@
-const fs = jest.genMockFromModule("fs");
-const path = require("path");
+const fs = jest.genMockFromModule('fs');
+const path = require('path');
 let mockFiles = Object.create(null);
 // example of newMockFiles
 // { "./testFolder/file1.txt": "This is the file content"
@@ -14,9 +14,9 @@ function __createMockFiles(newMockFiles) {
         mockFiles[dir][path.basename(file)] = newMockFiles[file];
     }
 }
-function existsSync(pathToDirectory){
+function existsSync(pathToDirectory) {
     return mockFiles[pathToDirectory];
 }
-fs.existsSync = existsSync
+fs.existsSync = existsSync;
 fs.__createMockFiles = __createMockFiles;
 module.exports = fs;
