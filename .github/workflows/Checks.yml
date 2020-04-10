@@ -2,7 +2,10 @@ name: PR Checks
 on: pull_request
 jobs:
   'Checking':
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
