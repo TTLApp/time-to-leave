@@ -8,7 +8,7 @@ const { Menu } = require('electron').remote;
 function formatDayId(dayId) {
     const [year, month, day] = dayId.split('-').map((i) => { return parseInt(i); });
     const date = new Date(year, month, day);
-    return date.toISOString().substr(0, 10);
+    return isNaN(date.getTime()) ? NaN : date.toISOString().substr(0, 10);
 }
 
 /**
