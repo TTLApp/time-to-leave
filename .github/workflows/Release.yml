@@ -4,8 +4,8 @@ on:
     branches:
       - ci/*
     tags:
-      - latest/v.*
-      - stable/v.*
+      - latest/v*
+      - stable/v*
 
 jobs:
 
