@@ -1,3 +1,12 @@
+---
+name: Bug Report
+about: Found an issue when using Time to Leave? Sorry! Let us know what happened
+title: ''
+labels: 'bug'
+assignees: ''
+
+---
+
 **Describe the issue**
 A clear and concise description of what the issue is.
 
