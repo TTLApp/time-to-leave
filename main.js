@@ -18,6 +18,7 @@ ipcMain.on('PREFERENCE_SAVE_DATA_NEEDED', (event, preferences) => {
 });
 
 ipcMain.on('SET_WAIVER_DAY', (event, waiverDay) => {
+    /*eslint-disable no-undef*/
     if (!isNan(waiverDay))
     {
         global.waiverDay = waiverDay;  
@@ -185,7 +186,7 @@ function createWindow() {
                     click() {
                         const htmlPath = path.join('file://', __dirname, 'src/preferences.html');
                         let prefWindow = new BrowserWindow({ width: 400,
-                            height: 448,
+                            height: 460,
                             parent: win,
                             resizable: true,
                             icon: iconpath,
