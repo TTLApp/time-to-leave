@@ -278,7 +278,7 @@ class Calendar {
                 continue;
             }
             var isToday = (now.getDate() === day && now.getMonth() === this.month && now.getFullYear() === this.year);
-            if (isToday) {
+            if (isToday && !!preferences['count-today']) {
                 //balance considers only up until yesterday
                 break;
             }
