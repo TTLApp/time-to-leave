@@ -7,7 +7,7 @@ const Store = require('electron-store');
  * Check validity of a time input
  */
 function isInvalidInputTime(time) {
-    if (time === undefined || time === "") {
+    if (time === undefined || time === '') {
         return false;
     }
     return !validateTime(time);
