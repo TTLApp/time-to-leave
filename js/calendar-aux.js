@@ -4,16 +4,26 @@ const {
 const Store = require('electron-store');
 
 /*
+ * Check validity of a time input
+ */
+function isInvalidInputTime(time) {
+    if (time === undefined || time === "") {
+        return false;
+    }
+    return !validateTime(time);
+}
+
+/*
  * Analyze the inputs of a day, and return if it has an error.
  * An error means that an input earlier in the day is higher than another.
  */
 function hasInputError(dayBegin, lunchBegin, lunchEnd, dayEnd) {
     var dayValues = new Array();
 
-    if ((dayBegin !== '' && !validateTime(dayBegin)) ||
-        (lunchBegin !== '' && !validateTime(lunchBegin)) ||
-        (lunchEnd !== '' && !validateTime(lunchEnd)) ||
-        (dayEnd !== '' && !validateTime(dayEnd))) {
+    if (isInvalidInputTime(dayBegin) ||
+        isInvalidInputTime(lunchBegin) ||
+        isInvalidInputTime(lunchEnd) ||
+        isInvalidInputTime(dayEnd)) {
         return true;
     }
 
