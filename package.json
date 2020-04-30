@@ -62,7 +62,7 @@
     "bootstrap": "^4.4.1",
     "electron-store": "^5.0.0",
     "is-online": "^8.2.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "node-notifier": "^5.4.3"
   },
   "resolutions": {
