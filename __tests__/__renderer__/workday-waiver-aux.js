@@ -22,7 +22,7 @@ describe('Workday Waiver Aux', function() {
     });
     
     describe('sendWaiverDay(dayId)', function() {
-        test('should do seamless call', async () => {
+        test('should do seamless call', async() => {
             await sendWaiverDay(validJSDay);
             await sendWaiverDay(validJSDay2);
             await sendWaiverDay(garbageString);
