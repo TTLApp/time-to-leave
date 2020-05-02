@@ -204,27 +204,27 @@ class Calendar {
         }
 
         this.updateLeaveBy();
-        $('input[type=\'time\']').on('input propertychange', function() {
+        $('input[type=\'time\']').off('input propertychange').on('input propertychange', function() {
             updateTimeDayCallback(this.id, this.value);
         });
 
-        $('#punch-button').on('click', function() {
+        $('#punch-button').off('click').on('click', function() {
             punchDate();
         });
 
-        $('#next-month').on('click', function() {
+        $('#next-month').off('click').on('click', function() {
             nextMonth();
         });
 
-        $('#prev-month').on('click', function() {
+        $('#prev-month').off('click').on('click', function() {
             prevMonth();
         });
 
-        $('#current-month').on('click', function() {
+        $('#current-month').off('click').on('click', function() {
             goToCurrentDate();
         });
 
-        $('.waiver-trigger').on('click', function() {
+        $('.waiver-trigger').off('click').on('click', function() {
             const dayId = $(this).closest('tr').attr('id').substr(3);
             const waiverDay = formatDayId(dayId);
             sendWaiverDay(waiverDay);
