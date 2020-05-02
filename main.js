@@ -19,7 +19,7 @@ ipcMain.on('PREFERENCE_SAVE_DATA_NEEDED', (event, preferences) => {
 
 ipcMain.on('SET_WAIVER_DAY', (event, waiverDay) => {
     /*eslint-disable no-undef*/
-    if (!isNan(waiverDay))
+    if (!isNaN(waiverDay))
     {
         global.waiverDay = waiverDay;  
     }
