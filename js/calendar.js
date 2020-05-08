@@ -397,9 +397,26 @@ class Calendar {
             //All entries computed
             document.getElementById('punch-button').disabled = true;
             ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', false);
+
+            var dayTotal = document.getElementById(dayKey + 'day-total').value;
+            if (dayTotal) {
+                var dayBalance = subtractTime(getHoursPerDay(), dayTotal);
+                var leaveDayBalanceElement = document.getElementById('leave-day-balance');
+                leaveDayBalanceElement.value = dayBalance;
+                leaveDayBalanceElement.classList.remove('text-success', 'text-danger');
+                leaveDayBalanceElement.classList.add(isNegative(dayBalance) ? 'text-danger' : 'text-success');
+                document.getElementById('summary-unfinished-day').classList.add('hidden');
+                document.getElementById('summary-finished-day').classList.remove('hidden');
+            } else {
+                document.getElementById('summary-unfinished-day').classList.remove('hidden');
+                document.getElementById('summary-finished-day').classList.add('hidden');
+            }
         } else {
             document.getElementById('punch-button').disabled = false;
             ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', true);
+
+            document.getElementById('summary-unfinished-day').classList.remove('hidden');
+            document.getElementById('summary-finished-day').classList.add('hidden');
         }
     }
 
@@ -440,10 +457,16 @@ class Calendar {
     static _getSummaryRowCode() {
         var leaveByCode = '<input type="text" id="leave-by" size="5" disabled>';
         var summaryStr = 'Based on the time you arrived today, you should leave by';
-        var code = '<tr class="summary">' +
+        var code = '<tr class="summary" id="summary-unfinished-day">' +
                      '<td class="leave-by-text" colspan="7">' + summaryStr + '</td>' +
                      '<td class="leave-by-time">' + leaveByCode + '</td>' +
                    '</tr>';
+        var finishedSummaryStr = 'All done for today. Balance of the day:';
+        var dayBalance = '<input type="text" id="leave-day-balance" size="5" disabled>';
+        code += '<tr class="summary hidden" id="summary-finished-day">' +
+                    '<td class="leave-by-text" colspan="7">' + finishedSummaryStr + '</td>' +
+                    '<td class="leave-by-time">' + dayBalance + '</td>' +
+                '</tr>';
         return code;
     }
     

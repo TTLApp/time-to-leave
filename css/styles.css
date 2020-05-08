@@ -232,3 +232,7 @@ html[data-theme="dark"] .text-danger {
 .waiver-trigger:hover + .day > .waiver-img {
   display: block;
 }
+
+.hidden {
+  display: none;
+}
