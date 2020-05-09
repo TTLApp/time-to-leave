@@ -461,7 +461,7 @@ class Calendar {
                      '<td class="leave-by-text" colspan="7">' + summaryStr + '</td>' +
                      '<td class="leave-by-time">' + leaveByCode + '</td>' +
                    '</tr>';
-        var finishedSummaryStr = 'All done for today. Balance of the day:';
+        var finishedSummaryStr = 'All done for today. The balance for today is:';
         var dayBalance = '<input type="text" id="leave-day-balance" size="5" disabled>';
         code += '<tr class="summary hidden" id="summary-finished-day">' +
                     '<td class="leave-by-text" colspan="7">' + finishedSummaryStr + '</td>' +
