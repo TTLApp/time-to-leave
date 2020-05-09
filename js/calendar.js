@@ -113,23 +113,23 @@ function punchDate() {
 
     var dayStr = year + '-' + month + '-' + day + '-';
     var entry = '';
-    if (document.getElementById(dayStr + 'day-end').value === '') {
+    if ($('#' + dayStr + 'day-end').val() === '') {
         entry = 'day-end';
     }
-    if (document.getElementById(dayStr + 'lunch-end').value === '') {
+    if ($('#' + dayStr + 'lunch-end').val() === '') {
         entry = 'lunch-end';
     }
-    if (document.getElementById(dayStr + 'lunch-begin').value === '') {
+    if ($('#' + dayStr + 'lunch-begin').val() === '') {
         entry = 'lunch-begin';
     }
-    if (document.getElementById(dayStr + 'day-begin').value === '') {
+    if ($('#' + dayStr + 'day-begin').val() === '') {
         entry = 'day-begin';
     }
     if (entry.length <= 0) {
         return;
     }
     var value = hourMinToHourFormated(hour, min);
-    document.getElementById(dayStr + entry).value = value;
+    $('#' + dayStr + entry).val(value);
     updateTimeDayCallback(dayStr + entry, value);
 }
 
@@ -196,10 +196,10 @@ class Calendar {
         this.updateBasedOnDB();
 
         if (!showDay(this.today.getFullYear(), this.today.getMonth(), this.today.getDate())) {
-            document.getElementById('punch-button').disabled = true;
+            $('#punch-button').prop('disabled', true);
             ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', false);
         } else {
-            document.getElementById('punch-button').disabled = false;
+            $('#punch-button').prop('disabled', false);
             ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', true);
         }
 
@@ -262,7 +262,7 @@ class Calendar {
         if (store.has(key)) {
             value = store.get(key);
         }
-        document.getElementById(key).value = value;
+        $('#' + key).val(value);
         return value;
     }
 
@@ -284,7 +284,7 @@ class Calendar {
             }
 
             var dayStr = this.year + '-' + this.month + '-' + day + '-' + 'day-total';
-            var dayTotal = document.getElementById(dayStr).value;
+            var dayTotal = $('#' + dayStr).val();
             if (dayTotal) {
                 countDays = true;
                 monthTotalWorked = sumTime(monthTotalWorked, dayTotal);
@@ -295,12 +295,12 @@ class Calendar {
         }
         var monthTotalToWork = multiplyTime(getHoursPerDay(), workingDaysToCompute * -1);
         var balance = sumTime(monthTotalToWork, monthTotalWorked);
-        var balanceElement = document.getElementById('month-balance');
+        var balanceElement = $('#month-balance');
         if (balanceElement)
         {
-            balanceElement.value = balance;
-            balanceElement.classList.remove('text-success', 'text-danger');
-            balanceElement.classList.add(isNegative(balance) ? 'text-danger' : 'text-success');
+            balanceElement.val(balance);
+            balanceElement.removeClass('text-success text-danger');
+            balanceElement.addClass(isNegative(balance) ? 'text-danger' : 'text-success');
         }
     }
 
@@ -326,7 +326,7 @@ class Calendar {
             if (waivedWorkdays.has(dateStr)) {
                 var waivedInfo = waivedWorkdays.get(dateStr);
                 var waivedDayTotal = waivedInfo['hours'];
-                document.getElementById(dayStr + 'day-total').value = waivedDayTotal;
+                $('#' + dayStr + 'day-total').val(waivedDayTotal);
                 dayTotal = waivedDayTotal;
             } else {
                 var lunchBegin = this._setData(dayStr + 'lunch-begin');
@@ -350,20 +350,20 @@ class Calendar {
 
             this.workingDays += 1;
         }
-        var monthDayInput = document.getElementById('month-day-input');
+        var monthDayInput = $('#month-day-input');
         if (monthDayInput)
         {
-            monthDayInput.value = this._getBalanceRowPosition();
+            monthDayInput.val(this._getBalanceRowPosition());
         }
-        var monthDayTotal = document.getElementById('month-total');
+        var monthDayTotal = $('#month-total');
         if (monthDayTotal)
         {
-            monthDayTotal.value = monthTotal;
+            monthDayTotal.val(monthTotal);
         }
-        var monthWorkingDays = document.getElementById('month-working-days');
+        var monthWorkingDays = $('#month-working-days');
         if (monthWorkingDays)
         {
-            monthWorkingDays.value = this.workingDays;
+            monthWorkingDays.val(this.workingDays);
         }
         this.updateBalance();
 
@@ -384,39 +384,39 @@ class Calendar {
         var dayKey = this.today.getFullYear() + '-' + this.today.getMonth() + '-' + this.today.getDate() + '-';
         if (validateTime(dayBegin)) {
             var leaveBy = sumTime(dayBegin, getHoursPerDay());
-            var lunchTotal = document.getElementById(dayKey + 'lunch-total').value;
+            var lunchTotal = $('#' + dayKey + 'lunch-total').val();
             if (lunchTotal) {
                 leaveBy = sumTime(leaveBy, lunchTotal);
             }
-            document.getElementById('leave-by').value = leaveBy <= '23:59' ? leaveBy : '--:--';
+            $('#leave-by').val(leaveBy <= '23:59' ? leaveBy : '--:--');
         } else {
-            document.getElementById('leave-by').value = '';
+            $('#leave-by').val('');
         }
 
-        if (dayBegin.length && lunchBegin.length && lunchEnd.length && dayEnd.length) {
+        if (dayBegin.length && lunchBegin.length && lunchEnd.length && dayEnd.length) { 
             //All entries computed
-            document.getElementById('punch-button').disabled = true;
+            $('#punch-button').prop('disabled', true);
             ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', false);
 
-            var dayTotal = document.getElementById(dayKey + 'day-total').value;
+            var dayTotal = $('#' + dayKey + 'day-total').val();
             if (dayTotal) {
                 var dayBalance = subtractTime(getHoursPerDay(), dayTotal);
-                var leaveDayBalanceElement = document.getElementById('leave-day-balance');
-                leaveDayBalanceElement.value = dayBalance;
-                leaveDayBalanceElement.classList.remove('text-success', 'text-danger');
-                leaveDayBalanceElement.classList.add(isNegative(dayBalance) ? 'text-danger' : 'text-success');
-                document.getElementById('summary-unfinished-day').classList.add('hidden');
-                document.getElementById('summary-finished-day').classList.remove('hidden');
+                var leaveDayBalanceElement = $('#leave-day-balance');
+                leaveDayBalanceElement.val(dayBalance);
+                leaveDayBalanceElement.removeClass('text-success text-danger');
+                leaveDayBalanceElement.addClass(isNegative(dayBalance) ? 'text-danger' : 'text-success');
+                $('#summary-unfinished-day').addClass('hidden');
+                $('#summary-finished-day').removeClass('hidden');
             } else {
-                document.getElementById('summary-unfinished-day').classList.remove('hidden');
-                document.getElementById('summary-finished-day').classList.add('hidden');
+                $('#summary-unfinished-day').removeClass('hidden');
+                $('#summary-finished-day').addClass('hidden');
             }
         } else {
-            document.getElementById('punch-button').disabled = false;
+            $('#punch-button').prop('disabled', false);
             ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', true);
 
-            document.getElementById('summary-unfinished-day').classList.remove('hidden');
-            document.getElementById('summary-finished-day').classList.add('hidden');
+            $('#summary-unfinished-day').removeClass('hidden');
+            $('#summary-finished-day').addClass('hidden');
         }
     }
 
@@ -425,7 +425,7 @@ class Calendar {
      */
     _generateTemplate() {
         var body = this._getBody();
-        document.getElementById('calendar').innerHTML = body;
+        $('#calendar').html(body);
     }
 
     /*
@@ -641,19 +641,15 @@ function getDaysEntries(year, month, day) {
  */
 function getDaysEntriesFromHTML(year, month, day) {
     var dayStr = year + '-' + month + '-' + day + '-';
-    return [document.getElementById(dayStr + 'day-begin').value,
-        document.getElementById(dayStr + 'lunch-begin').value,
-        document.getElementById(dayStr + 'lunch-end').value,
-        document.getElementById(dayStr + 'day-end').value];
+    return [$('#' + dayStr + 'day-begin').val(),
+        $('#' + dayStr + 'lunch-begin').val(),
+        $('#' + dayStr + 'lunch-end').val(),
+        $('#' + dayStr + 'day-end').val()];
 }
 
 function colorErrorLine(year, month, day, dayBegin, lunchBegin, lunchEnd, dayEnd) {
-    var trID = ('tr-' + year + '-' + month + '-' + day);
-    if (hasInputError(dayBegin, lunchBegin, lunchEnd, dayEnd)) {
-        document.getElementById(trID).classList.add('error-tr');
-    } else if (document.getElementById(trID).classList.contains('error-tr')) {
-        document.getElementById(trID).classList.remove('error-tr');
-    }
+    var trID = ('#tr-' + year + '-' + month + '-' + day);
+    $(trID).toggleClass('error-tr', hasInputError(dayBegin, lunchBegin, lunchEnd, dayEnd));
 }
 
 /*
@@ -702,16 +698,16 @@ function updateTimeDay(year, month, day, key, newValue) {
     } else {
         store.delete(baseStr + 'lunch-total');
     }
-    document.getElementById(baseStr + 'lunch-total').value = lunchTime;
+    $('#' + baseStr + 'lunch-total').val(lunchTime);
 
     if (dayTotal.length > 0) {
         store.set(baseStr + 'day-total', dayTotal);
     } else {
         store.delete(baseStr + 'day-total');
     }
-    document.getElementById(baseStr + 'day-total').value = dayTotal;
+    $('#' + baseStr + 'day-total').val(dayTotal);
 
-    var displayedMonthTotal = document.getElementById('month-total').value;
+    var displayedMonthTotal = $('#month-total').val();
     var currentMonthTotal = displayedMonthTotal;
     if (validateTime(oldDayTotal)) {
         currentMonthTotal = subtractTime(oldDayTotal, currentMonthTotal);
@@ -719,7 +715,7 @@ function updateTimeDay(year, month, day, key, newValue) {
     if (dayTotal.length > 0) {
         currentMonthTotal = sumTime(currentMonthTotal, dayTotal);
     }
-    document.getElementById('month-total').value = currentMonthTotal;
+    $('#month-total').val(currentMonthTotal);
 
     colorErrorLine(year, month, day, dayBegin, lunchBegin, lunchEnd, dayEnd);
 }
@@ -739,11 +735,11 @@ function updateTimeDayCallback(key, value) {
  * Notify user if it's time to leave
  */
 function notifyTimeToLeave() {
-    if (!notificationIsEnabled() || document.getElementById('leave-by') === null) {
+    if (!notificationIsEnabled() || $('#leave-by').length === 0) {
         return;
     }
 
-    var timeToLeave = document.getElementById('leave-by').value;
+    var timeToLeave = $('#leave-by').val();
     if (validateTime(timeToLeave)) {
         /**
          * How many minutes should pass before the Time-To-Leave notification should be presented again.

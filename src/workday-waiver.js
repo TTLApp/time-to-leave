@@ -11,16 +11,16 @@ const store = new Store({name: 'waived-workdays'});
 let usersStyles =  getUserPreferences();
 
 function setDates(day) {
-    document.getElementById('start_date').value = day;
-    document.getElementById('end_date').value = day;
+    $('#start_date').val(day);
+    $('#end_date').val(day);
 }
 
 function setHours() {
-    document.getElementById('hours').value = usersStyles['hours-per-day'];
+    $('#hours').val(usersStyles['hours-per-day']);
 }
 
 function toggleAddButton() {
-    var value = document.getElementById('reason').value;
+    var value = $('#reason').val();
     if (value.length > 0) {
         $('#waive-button').removeAttr('disabled');
     } 
@@ -30,7 +30,7 @@ function toggleAddButton() {
 }
 
 function addRowToListTable(day, reason, hours) {
-    var table = document.getElementById('waiver-list-table'),
+    var table = $('#waiver-list-table')[0],
         row = table.insertRow(1),
         dayCell = row.insertCell(0),
         reasonCell = row.insertCell(1),
@@ -62,13 +62,13 @@ function getDateFromISOStr(isoStr) {
 }
 
 function addWaiver() {
-    var [start_year, start_month, start_day] = getDateFromISOStr(document.getElementById('start_date').value);
-    var [end_year, end_month, end_day] = getDateFromISOStr(document.getElementById('end_date').value);
+    var [start_year, start_month, start_day] = getDateFromISOStr($('#start_date').val());
+    var [end_year, end_month, end_day] = getDateFromISOStr($('#end_date').val());
     
     var start_date = new Date(start_year, start_month-1, start_day),
         end_date = new Date(end_year, end_month-1, end_day),
-        reason = document.getElementById('reason').value,
-        hours = document.getElementById('hours').value;
+        reason = $('#reason').val(),
+        hours = $('#hours').val();
 
     if (!(validateTime(hours))) {
         // The error is shown in the page, no need to handle it here
@@ -106,7 +106,7 @@ function addWaiver() {
     }
 
     //Cleanup
-    document.getElementById('reason').value = '';
+    $('#reason').val('');
     toggleAddButton();
 }
 
@@ -115,7 +115,7 @@ function deleteEntry(day) {
         return;
     }
     store.delete(day);
-    var table = document.getElementById('waiver-list-table');
+    var table = $('#waiver-list-table')[0];
     while (table.rows.length > 1) {
         table.deleteRow(1);
     }
