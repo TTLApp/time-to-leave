@@ -20,6 +20,7 @@ let calendar = null;
  */
 ipcRenderer.on('PREFERENCE_SAVED', function(event, inputs) {
     preferences = inputs;
+    calendar.updatePreferences(preferences);
     calendar.redraw();
     applyTheme(preferences.theme);
 });
@@ -61,8 +62,8 @@ function notifyTimeToLeave() {
 
 // On page load, create the calendar and setup notification
 $(() => {
-    calendar = new Calendar();
-    setInterval(notifyTimeToLeave, 60000);
     let prefs = getUserPreferences();
+    calendar = new Calendar(prefs);
+    setInterval(notifyTimeToLeave, 60000);
     applyTheme(prefs.theme);
 });

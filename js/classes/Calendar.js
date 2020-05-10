@@ -10,7 +10,7 @@ const {
     sumTime,
     validateTime
 } = require('../time-math.js');
-const { getUserPreferences, showDay } = require('../user-preferences.js');
+const { showDay } = require('../user-preferences.js');
 const { getDateStr } = require('../date-aux.js');
 const {
     formatDayId,
@@ -20,12 +20,14 @@ const {
 
 // Global values for calendar
 const store = new Store();
-let preferences = getUserPreferences();
 const waivedWorkdays = new Store({name: 'waived-workdays'});
 
 // Holds the calendar information and manipulation functions
 class Calendar {
-    constructor() {
+    /**
+    * @param {Object.<string, any>} preferences
+    */
+    constructor(preferences) {
         this.options = {
             weeks : [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ],
             weekabbrs : [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
@@ -36,6 +38,7 @@ class Calendar {
         this.month = this.today.getMonth();
         this.year = this.today.getFullYear();
         this.workingDays = 0;
+        this.updatePreferences(preferences);
         this._initCalendar();
     }
 
@@ -177,7 +180,7 @@ class Calendar {
             dateStr = getDateStr(currentDay);
 
         if (!showDay(year, month, day)) {
-            if (!preferences['hide-non-working-days']) {
+            if (!this.hideNonWorkingDays) {
                 return '<tr'+ (isToday ? ' class="today-non-working"' : '') + ' id="' + trID + '">' +
                         '<td class="weekday ti">' + this.options.weekabbrs[weekDay] + '</td>' +
                         '<td class="day ti">' + day + '</td>' +
@@ -366,7 +369,17 @@ class Calendar {
     * Returns how many hours a day is set in preferences.
     */
     getHoursPerDay() {
-        return preferences['hours-per-day'];
+        return this.hoursPerDay;
+    }
+
+    /**
+    * Updates calendar settings from a given preferences file.
+    * @param {Object.<string, any>} preferences
+    */
+    updatePreferences(preferences) {
+        this.countToday = preferences['count-today'];
+        this.hideNonWorkingDays = preferences['hide-non-working-days'];
+        this.hoursPerDay = preferences['hours-per-day'];
     }
 
     punchDate() {
@@ -417,7 +430,7 @@ class Calendar {
                 continue;
             }
             var isToday = (now.getDate() === day && now.getMonth() === this.month && now.getFullYear() === this.year);
-            if (isToday && !!preferences['count-today']) {
+            if (isToday && !!this.countToday) {
                 //balance considers only up until yesterday
                 break;
             }
