@@ -3,7 +3,7 @@
 const Store = require('electron-store');
 const { ipcRenderer } = require('electron');
 const {
-    hourMinToHourFormated,
+    hourMinToHourFormatted,
     isNegative,
     multiplyTime,
     subtractTime,
@@ -415,7 +415,7 @@ class Calendar {
         if (entry.length <= 0) {
             return;
         }
-        var value = hourMinToHourFormated(hour, min);
+        var value = hourMinToHourFormatted(hour, min);
         $('#' + dayStr + entry).val(value);
         this.updateTimeDayCallback(dayStr + entry, value);
     }

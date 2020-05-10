@@ -2,7 +2,7 @@
 const {
     isNegative,
     multiplyTime,
-    minutesToHourFormated,
+    minutesToHourFormatted,
     subtractTime,
     sumTime,
     validateTime,
@@ -40,28 +40,28 @@ describe('Time Math Functions', () => {
 
     describe('Minutes formatted to HH:MM', () => {
         test('0 should return 00:00', () => {
-            expect(minutesToHourFormated(0)).toBe('00:00');
-            expect(minutesToHourFormated(-0)).toBe('00:00');
+            expect(minutesToHourFormatted(0)).toBe('00:00');
+            expect(minutesToHourFormatted(-0)).toBe('00:00');
         });
 
         test('1 should return 00:01', () => {
-            expect(minutesToHourFormated(1)).toBe('00:01');
-            expect(minutesToHourFormated(-1)).toBe('-00:01');
+            expect(minutesToHourFormatted(1)).toBe('00:01');
+            expect(minutesToHourFormatted(-1)).toBe('-00:01');
         });
 
         test('59 should return 00:59', () => {
-            expect(minutesToHourFormated(59)).toBe('00:59');
-            expect(minutesToHourFormated(-59)).toBe('-00:59');
+            expect(minutesToHourFormatted(59)).toBe('00:59');
+            expect(minutesToHourFormatted(-59)).toBe('-00:59');
         });
 
         test('60 should return 01:00', () => {
-            expect(minutesToHourFormated(60)).toBe('01:00');
-            expect(minutesToHourFormated(-60)).toBe('-01:00');
+            expect(minutesToHourFormatted(60)).toBe('01:00');
+            expect(minutesToHourFormatted(-60)).toBe('-01:00');
         });
 
         test('61 should return 01:01', () => {
-            expect(minutesToHourFormated(61)).toBe('01:01');
-            expect(minutesToHourFormated(-61)).toBe('-01:01');
+            expect(minutesToHourFormatted(61)).toBe('01:01');
+            expect(minutesToHourFormatted(-61)).toBe('-01:01');
         });
     });
 

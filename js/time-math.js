@@ -1,7 +1,7 @@
 /**
  * Formats hour, min into string HH:MM
  */
-function hourMinToHourFormated(hours, minutes) {
+function hourMinToHourFormatted(hours, minutes) {
     var paddingHour = hours < 10 ?  '0' : '';
     var paddingMin = minutes < 10 ?  '0' : '';
     return paddingHour + hours +
@@ -35,14 +35,14 @@ function hourToMinutes(time) {
 /**
  * Formats a given amount of minutes into string HH:MM
  */
-function minutesToHourFormated(min) {
+function minutesToHourFormatted(min) {
     var signStr = min < 0 ? '-' : '';
     if (min < 0) {
         min = Math.abs(min);
     }
     var hours = Math.floor(min / 60);
     var minutes = Math.floor(min - (hours * 60));
-    return signStr + hourMinToHourFormated(hours, minutes);
+    return signStr + hourMinToHourFormatted(hours, minutes);
 }
 
 /**
@@ -51,7 +51,7 @@ function minutesToHourFormated(min) {
  */
 function subtractTime(t1, t2) {
     var diffMin = hourToMinutes(t2) - hourToMinutes(t1);
-    return minutesToHourFormated(diffMin);
+    return minutesToHourFormatted(diffMin);
 }
 
 /**
@@ -61,7 +61,7 @@ function subtractTime(t1, t2) {
 function multiplyTime(t, n) {
     var totalMin = hourToMinutes(t);
     totalMin = totalMin * n;
-    return minutesToHourFormated(totalMin);
+    return minutesToHourFormatted(totalMin);
 }
 
 /**
@@ -70,7 +70,7 @@ function multiplyTime(t, n) {
  */
 function sumTime(t1, t2) {
     var sumMin = hourToMinutes(t2) + hourToMinutes(t1);
-    return minutesToHourFormated(sumMin);
+    return minutesToHourFormatted(sumMin);
 }
 
 /**
@@ -93,10 +93,10 @@ function diffDays(date1, date2) {
 }
 
 module.exports = {
-    hourMinToHourFormated,
+    hourMinToHourFormatted,
     isNegative,
     multiplyTime,
-    minutesToHourFormated,
+    minutesToHourFormatted,
     subtractTime,
     sumTime,
     validateTime,
