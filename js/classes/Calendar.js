@@ -29,10 +29,8 @@ class Calendar {
     */
     constructor(preferences) {
         this.options = {
-            weeks : [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ],
-            weekabbrs : [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
-            months : [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ],
-            monthabbrs : [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ],
+            dayAbbrs : [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
+            months : [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ]
         };
         this.today = new Date();
         this.month = this.today.getMonth();
@@ -101,7 +99,7 @@ class Calendar {
     }
 
     /*
-     * Generates the calendar HTML view
+     * Generates the calendar HTML view.
      */
     _generateTemplate() {
         var body = this._getBody();
@@ -109,7 +107,7 @@ class Calendar {
     }
 
     /*
-     * Returns the time input html code of a date
+     * Returns the time input HTML code of a date.
      */
     static _getInputCode(year, month, day, type) {
         var idTag = year + '-' + month + '-' + day + '-' + type;
@@ -121,18 +119,19 @@ class Calendar {
     }
 
     /*
-     * Returns the total field html code of a date
+     * Returns the total field HTML code of a date.
      */
     static _getTotalCode(year, month, day, type) {
+        var idTag = year + '-' + month + '-' + day + '-' + type;
+
         return '<input type="text" class="total-input" id="' +
-               year + '-' + month + '-' + day + '-' + type +
-               '" size="5"' +
+               idTag + '" size="5"' +
                (type.endsWith('total') ? ' disabled' : '') +
                '>';
     }
 
     /*
-     * Returns the summary field html code
+     * Returns the summary field HTML code.
      */
     static _getSummaryRowCode() {
         var leaveByCode = '<input type="text" id="leave-by" size="5" disabled>';
@@ -151,25 +150,25 @@ class Calendar {
     }
 
     /*
-     * Returns the html code for the row with workng days, month total and balance
+     * Returns the HTML code for the row with working days, month total and balance.
      */
     static _getBalanceRowCode() {
         return '<tr>' +
-              '<tr class="month-total-row">' +
-                  '<td class="month-total-text" title="Last day used for balance">On</td>' +
-                  '<td class="month-total-time" title="Last day used for balance"><input type="text" id="month-day-input" size="2" disabled></td>' +
-                  '<td class="month-total-text" title="How many working days there\'s in the month">Working days</td>' +
-                  '<td class="month-total-time" title="How many working days there\'s in the month"><input type="text" id="month-working-days" size="5" disabled></td>' +
-                  '<td class="month-total-text" title="How many hours you logged in this month">Month Sum</td>' +
-                  '<td class="month-total-time" title="How many hours you logged in this month"><input type="text" id="month-total" size="8" disabled></td>' +
-                  '<td class="month-total-text" title="Balance up until today for this month. A positive balance means extra hours you don\'t need to work today (or the rest of the month).">Month Balance</td>' +
-                  '<td class="month-total-time" title="Balance up until today for this month. A positive balance means extra hours you don\'t need to work today (or the rest of the month)."><input type="text" id="month-balance" size="8" disabled></td>' +
+                '<tr class="month-total-row">' +
+                    '<td class="month-total-text" title="Last day used for balance">On</td>' +
+                    '<td class="month-total-time" title="Last day used for balance"><input type="text" id="month-day-input"   size="2" disabled></td>' +
+                    '<td class="month-total-text" title="How many working days there\'s in the month">Working days</td>' +
+                    '<td class="month-total-time" title="How many working days there\'s in the month"><input type="text"  id="month-working-days" size="5" disabled></td>' +
+                    '<td class="month-total-text" title="How many hours you logged in this month">Month Sum</td>' +
+                    '<td class="month-total-time" title="How many hours you logged in this month"><input type="text"  id="month-total" size="8" disabled></td>' +
+                    '<td class="month-total-text" title="Balance up until today for this month. A positive balance means extra    hours you don\'t need to work today (or the rest of the month).">Month Balance</td>' +
+                    '<td class="month-total-time" title="Balance up until today for this month. A positive balance means extra    hours you don\'t need to work today (or the rest of the month)."><input type="text" id="month-balance"     size="8" disabled></td>' +
                 '</tr>' +
             '</tr>';
     }
 
     /*
-     * Returns the code of a calendar row
+     * Returns the code of a calendar row.
      */
     _getInputsRowCode(year, month, day) {
         var currentDay = new Date(year, month, day),
@@ -182,7 +181,7 @@ class Calendar {
         if (!showDay(year, month, day)) {
             if (!this.hideNonWorkingDays) {
                 return '<tr'+ (isToday ? ' class="today-non-working"' : '') + ' id="' + trID + '">' +
-                        '<td class="weekday ti">' + this.options.weekabbrs[weekDay] + '</td>' +
+                        '<td class="weekday ti">' + this.options.dayAbbrs[weekDay] + '</td>' +
                         '<td class="day ti">' + day + '</td>' +
                         '<td class="day non-working-day" colspan="6">' + '</td>' +
                     '</tr>\n';
@@ -196,7 +195,7 @@ class Calendar {
             var summaryStr = '<b>Waived day: </b>' + waivedInfo['reason'];
             var waivedLineHtmlCode =
                  '<tr'+ (isToday ? ' class="isToday"' : '') + ' id="' + trID + '">' +
-                    '<td class="weekday ti">' + this.options.weekabbrs[weekDay] + '</td>' +
+                    '<td class="weekday ti">' + this.options.dayAbbrs[weekDay] + '</td>' +
                     '<td class="day ti">' + day + '</td>' +
                     '<td class="waived-day-text" colspan="5">' + summaryStr + '</td>' +
                     '<td class="ti ti-total">' + Calendar._getTotalCode(year, month, day, 'day-total') + '</td>' +
@@ -206,7 +205,7 @@ class Calendar {
 
         var htmlCode =
                  '<tr'+ (isToday ? ' class="isToday"' : '') + ' id="' + trID + '">' +
-                    '<td class="weekday waiver-trigger ti" title="Add a waiver for this day">' + this.options.weekabbrs[weekDay] + '</td>' +
+                    '<td class="weekday waiver-trigger ti" title="Add a waiver for this day">' + this.options.dayAbbrs[weekDay] + '</td>' +
                     '<td class="day ti">' +
                         '<span class="day-number"> ' + day + ' </span>' +
                         '<img src="assets/waiver.svg" height="15" class="waiver-img">' +
@@ -232,7 +231,7 @@ class Calendar {
     _getPageHeader(year, month) {
         var todayBut = '<input id="current-month" type="image" src="assets/calendar.svg" alt="Current Month" title="Go to Current Month" height="24" width="24"></input>';
         var leftBut = '<input id="prev-month" type="image" src="assets/left-arrow.svg" alt="Previous Month" height="24" width="24"></input>';
-        var ritghBut = '<input id="next-month" type="image" src="assets/right-arrow.svg" alt="Next Month" height="24" width="24"></input>';
+        var rigthBut = '<input id="next-month" type="image" src="assets/right-arrow.svg" alt="Next Month" height="24" width="24"></input>';
         return '<div class="title-header">'+
                     '<div class="title-header title-header-img"><img src="assets/timer.svg" height="64" width="64"></div>' +
                     '<div class="title-header title-header-text">Time to Leave</div>' +
@@ -241,7 +240,7 @@ class Calendar {
                 '<table class="table-header"><tr>' +
                     '<th class="th but-left">' + leftBut + '</th>' +
                     '<th class="th th-month-name" colspan="18"><div class="div-th-month-name" id="month-year">' + this.options.months[month] + ' ' + year + '</div></th>' +
-                    '<th class="th but-right">' + ritghBut + '</th>' +
+                    '<th class="th but-right">' + rigthBut + '</th>' +
                     '<th class="th but-today">' + todayBut + '</th>' +
                 '</tr></table>';
     }
@@ -366,7 +365,7 @@ class Calendar {
     }
 
     /*
-    * Returns how many hours a day is set in preferences.
+    * Returns how many "hours per day" were set in preferences.
     */
     getHoursPerDay() {
         return this.hoursPerDay;
@@ -382,6 +381,9 @@ class Calendar {
         this.hoursPerDay = preferences['hours-per-day'];
     }
 
+    /*
+    * Adds the next missing entry on the actual day and updates calendar.
+    */
     punchDate() {
         var now = new Date(),
             year = now.getFullYear(),
@@ -418,6 +420,9 @@ class Calendar {
         this.updateTimeDayCallback(dayStr + entry, value);
     }
 
+    /*
+    * Updates the monthly time balance.
+    */
     updateBalance() {
         var now = new Date(),
             monthLength = this.getMonthLength(),
@@ -523,7 +528,7 @@ class Calendar {
     }
 
     /*
-     * Update field time to leave
+     * Update contents of the "time to leave" bar.
      */
     updateLeaveBy() {
         if (!showDay(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()) ||
@@ -573,7 +578,7 @@ class Calendar {
     }
 
     /*
-     * Based on the key of the input, updates the values for total in db and display it on page
+     * Based on the key of the input, updates the values for total in DB and display it on page.
      */
     updateTimeDayCallback(key, value) {
         var [year, month, day, stage, step] = key.split('-');
@@ -584,7 +589,7 @@ class Calendar {
     }
 
     /*
-    * Updates the DB with the information of computed (total lunch time, and day time)
+    * Updates the DB with the information of computed total lunch time and day time.
     */
     updateTimeDay(year, month, day, key, newValue) {
         var baseStr = year + '-' + month + '-' + day + '-';
@@ -592,11 +597,9 @@ class Calendar {
         var oldValue = store.get(dayStr);
 
         if (validateTime(newValue)) {
-            //update db
             store.set(dayStr, newValue);
         } else if (oldValue && validateTime(oldValue)) {
             store.delete(dayStr);
-            //remve entry from db
         }
 
         var oldDayTotal = store.get(baseStr + 'day-total');
@@ -652,7 +655,7 @@ class Calendar {
     }
 
     /*
-    * Returns the entries for the day.
+    * Returns the entry values for the day, from the DB.
     */
     getDaysEntries(year, month, day) {
         var dayStr = year + '-' + month + '-' + day + '-';
@@ -663,7 +666,7 @@ class Calendar {
     }
 
     /*
-    * Returns the entries for the day, from HTML (for performance).
+    * Returns the entry values for the day, from HTML (for performance).
     */
     getDaysEntriesFromHTML(year, month, day) {
         var dayStr = year + '-' + month + '-' + day + '-';
@@ -674,8 +677,8 @@ class Calendar {
     }
 
     /*
-    * Analyze the inputs of a day, and return if it has an error.
-    * An error means that an input earlier in the day is higher than another.
+    * Analyze the inputs of a day, and return if there is an error.
+    * An error means that an input earlier in the day is higher than one that is after it.
     */
     hasInputError(dayBegin, lunchBegin, lunchEnd, dayEnd) {
         var dayValues = new Array();
@@ -699,6 +702,9 @@ class Calendar {
         return false;
     }
 
+    /*
+    * Toggles the color of a row based on input error.
+    */
     colorErrorLine(year, month, day, dayBegin, lunchBegin, lunchEnd, dayEnd) {
         var trID = ('#tr-' + year + '-' + month + '-' + day);
         $(trID).toggleClass('error-tr', this.hasInputError(dayBegin, lunchBegin, lunchEnd, dayEnd));
