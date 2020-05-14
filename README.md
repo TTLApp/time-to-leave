@@ -31,6 +31,7 @@ Build/Install in Windows or MacOS:
 ```bash
 git clone https://github.com/thamara/time-to-leave.git
 cd time-to-leave
+npm ci
 npm install
 ```
 
