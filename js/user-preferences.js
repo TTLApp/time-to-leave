@@ -145,8 +145,10 @@ function getLoadedOrDerivedUserPreferences() {
 /*
  * Returns true if we should display week day.
  */
-function showWeekDay(weekDay) {
-    var preferences = getLoadedOrDerivedUserPreferences();
+function showWeekDay(weekDay, preferences = undefined) {
+    if (preferences === undefined) {
+        preferences = getLoadedOrDerivedUserPreferences();
+    }
     switch (weekDay) {
     case 0: return preferences['working-days-sunday'];
     case 1: return preferences['working-days-monday'];
@@ -162,9 +164,9 @@ function showWeekDay(weekDay) {
  * Returns true if we should display day.
  * @note: The month should be 0-based (i.e.: 0 is Jan, 11 is Dec).
  */
-function showDay(year, month, day)  {
+function showDay(year, month, day, preferences = undefined)  {
     var currentDay = new Date(year, month, day), weekDay = currentDay.getDay();
-    return showWeekDay(weekDay);
+    return showWeekDay(weekDay, preferences);
 }
 
 module.exports = {

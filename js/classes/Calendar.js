@@ -74,7 +74,7 @@ class Calendar {
         this.updateTableBody();
         this.updateBasedOnDB();
 
-        if (!showDay(this.today.getFullYear(), this.today.getMonth(), this.today.getDate())) {
+        if (!this.showDay(this.today.getFullYear(), this.today.getMonth(), this.today.getDate())) {
             $('#punch-button').prop('disabled', true);
             ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', false);
         } else {
@@ -189,7 +189,7 @@ class Calendar {
             trID = ('tr-' + year + '-' + month + '-' + day),
             dateStr = getDateStr(currentDay);
 
-        if (!showDay(year, month, day)) {
+        if (!this.showDay(year, month, day)) {
             if (!this.hideNonWorkingDays) {
                 return '<tr'+ (isToday ? ' class="today-non-working"' : '') + ' id="' + trID + '">' +
                         '<td class="weekday ti">' + this.options.dayAbbrs[weekDay] + '</td>' +
@@ -283,7 +283,7 @@ class Calendar {
 
         var balanceRowPosition = 0;
         for (var day = 1; day < this.today.getDate(); ++day) {
-            if (showDay(this.year, this.month, day)) {
+            if (this.showDay(this.year, this.month, day)) {
                 balanceRowPosition = day;
             }
         }
@@ -411,9 +411,17 @@ class Calendar {
     * @param {Object.<string, any>} preferences
     */
     updatePreferences(preferences) {
+        this.preferences = preferences;
         this.countToday = preferences['count-today'];
         this.hideNonWorkingDays = preferences['hide-non-working-days'];
         this.hoursPerDay = preferences['hours-per-day'];
+    }
+
+    /*
+    * Calls showDay from user-preferences.js passing the last preferences set.
+    */
+    showDay(year, month, day) {
+        return showDay(year, month, day, this.preferences);
     }
 
     /*
@@ -429,7 +437,7 @@ class Calendar {
 
         if (this.getMonth() !== month ||
             this.getYear() !== year ||
-            !showDay(year, month, day)) {
+            !this.showDay(year, month, day)) {
             return;
         }
 
@@ -466,7 +474,7 @@ class Calendar {
         var countDays = false;
 
         for (var day = 1; day <= monthLength; ++day) {
-            if (!showDay(this.year, this.month, day)) {
+            if (!this.showDay(this.year, this.month, day)) {
                 continue;
             }
             var isToday = (now.getDate() === day && now.getMonth() === this.month && now.getFullYear() === this.year);
@@ -505,7 +513,7 @@ class Calendar {
         this.workingDays = 0;
         var stopCountingMonthStats = false;
         for (var day = 1; day <= monthLength; ++day) {
-            if (!showDay(this.year, this.month, day)) {
+            if (!this.showDay(this.year, this.month, day)) {
                 continue;
             }
 
@@ -566,7 +574,7 @@ class Calendar {
      * Update contents of the "time to leave" bar.
      */
     updateLeaveBy() {
-        if (!showDay(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()) ||
+        if (!this.showDay(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()) ||
             this.today.getMonth() !== this.getMonth() ||
             this.today.getFullYear() !== this.getYear() ||
             waivedWorkdays.has(getDateStr(this.today))) {
