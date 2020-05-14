@@ -45,6 +45,33 @@ class Calendar {
      */
     _initCalendar() {
         this._generateTemplate();
+
+        var calendar = this;
+        $('#punch-button').off('click').on('click', function() {
+            calendar.punchDate();
+        });
+
+        $('#next-month').off('click').on('click', function() {
+            calendar.nextMonth();
+        });
+
+        $('#prev-month').off('click').on('click', function() {
+            calendar.prevMonth();
+        });
+
+        $('#current-month').off('click').on('click', function() {
+            calendar.goToCurrentDate();
+        });
+
+        this._draw();
+    }
+
+    /*
+     * Draws elements of the Calendar that depend on data.
+     */
+    _draw() {
+        this.updateTableHeader();
+        this.updateTableBody();
         this.updateBasedOnDB();
 
         if (!showDay(this.today.getFullYear(), this.today.getMonth(), this.today.getDate())) {
@@ -60,22 +87,6 @@ class Calendar {
         var calendar = this;
         $('input[type=\'time\']').off('input propertychange').on('input propertychange', function() {
             calendar.updateTimeDayCallback(this.id, this.value);
-        });
-
-        $('#punch-button').off('click').on('click', function() {
-            calendar.punchDate();
-        });
-
-        $('#next-month').off('click').on('click', function() {
-            calendar.nextMonth();
-        });
-
-        $('#prev-month').off('click').on('click', function() {
-            calendar.prevMonth();
-        });
-
-        $('#current-month').off('click').on('click', function() {
-            calendar.goToCurrentDate();
         });
 
         $('.waiver-trigger').off('click').on('click', function() {
@@ -228,10 +239,10 @@ class Calendar {
     /*
      * Returns the header of the page, with the image, name and a message.
      */
-    _getPageHeader(year, month) {
+    _getPageHeader() {
         var todayBut = '<input id="current-month" type="image" src="assets/calendar.svg" alt="Current Month" title="Go to Current Month" height="24" width="24"></input>';
         var leftBut = '<input id="prev-month" type="image" src="assets/left-arrow.svg" alt="Previous Month" height="24" width="24"></input>';
-        var rigthBut = '<input id="next-month" type="image" src="assets/right-arrow.svg" alt="Next Month" height="24" width="24"></input>';
+        var rightBut = '<input id="next-month" type="image" src="assets/right-arrow.svg" alt="Next Month" height="24" width="24"></input>';
         return '<div class="title-header">'+
                     '<div class="title-header title-header-img"><img src="assets/timer.svg" height="64" width="64"></div>' +
                     '<div class="title-header title-header-text">Time to Leave</div>' +
@@ -239,8 +250,8 @@ class Calendar {
                '</div>' +
                 '<table class="table-header"><tr>' +
                     '<th class="th but-left">' + leftBut + '</th>' +
-                    '<th class="th th-month-name" colspan="18"><div class="div-th-month-name" id="month-year">' + this.options.months[month] + ' ' + year + '</div></th>' +
-                    '<th class="th but-right">' + rigthBut + '</th>' +
+                    '<th class="th th-month-name" colspan="18"><div class="div-th-month-name" id="month-year"></div></th>' +
+                    '<th class="th but-right">' + rightBut + '</th>' +
                     '<th class="th but-today">' + todayBut + '</th>' +
                 '</tr></table>';
     }
@@ -281,14 +292,27 @@ class Calendar {
     }
 
     /*
-     * Returns the code of the body of the page.
+     * Returns the template code of the body of the page.
      */
     _getBody() {
-        var monthLength = this.getMonthLength();
         var html = '<div>';
         html += this._getPageHeader(this.year, this.month);
         html += '<table class="table-body">';
         html += Calendar._getTableHeaderCode();
+        html += '<tbody id="calendar-table-body">';
+        html += '</tbody>';
+        html += '</table><br>';
+        html += '</div>';
+
+        return html;
+    }
+
+    /*
+     * Returns the code of the table body of the calendar.
+     */
+    generateTableBody() {
+        var html;
+        var monthLength = this.getMonthLength();
         var balanceRowPosition = this._getBalanceRowPosition();
 
         for (var day = 1; day <= monthLength; ++day) {
@@ -297,14 +321,25 @@ class Calendar {
                 html += Calendar._getBalanceRowCode();
             }
         }
-        html += '</table><br>';
-        html += '</div>';
-
         return html;
     }
 
+    /*
+     * Updates the code of the table header of the calendar, to be called on demand.
+     */
+    updateTableHeader() {
+        $('#month-year').html(this.options.months[this.month] + ' ' + this.year);
+    }
+
+    /*
+     * Updates the code of the table body of the calendar, to be called on demand.
+     */
+    updateTableBody() {
+        $('#calendar-table-body').html(this.generateTableBody());
+    }
+
     redraw() {
-        this._initCalendar();
+        this._draw();
     }
 
     /*
@@ -317,7 +352,7 @@ class Calendar {
         } else {
             this.month += 1;
         }
-        this._initCalendar(this.month, this.year);
+        this.redraw();
     }
 
     /*
@@ -330,7 +365,7 @@ class Calendar {
         } else {
             this.month -= 1;
         }
-        this._initCalendar(this.month, this.year);
+        this.redraw();
     }
 
     /*
@@ -339,7 +374,7 @@ class Calendar {
     goToCurrentDate() {
         this.month = this.today.getMonth();
         this.year = this.today.getFullYear();
-        this._initCalendar(this.month, this.year);
+        this.redraw();
     }
 
     /*
