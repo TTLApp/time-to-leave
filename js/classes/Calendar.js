@@ -48,22 +48,10 @@ class Calendar {
     _initCalendar() {
         this._generateTemplate();
 
-        var calendar = this;
-        $('#punch-button').off('click').on('click', function() {
-            calendar.punchDate();
-        });
-
-        $('#next-month').off('click').on('click', function() {
-            calendar.nextMonth();
-        });
-
-        $('#prev-month').off('click').on('click', function() {
-            calendar.prevMonth();
-        });
-
-        $('#current-month').off('click').on('click', function() {
-            calendar.goToCurrentDate();
-        });
+        $('#punch-button').click(() => { this.punchDate(); });
+        $('#next-month').click(() => { this.nextMonth(); });
+        $('#prev-month').click(() => { this.prevMonth(); });
+        $('#current-month').click(() => { this.goToCurrentDate(); });
 
         this._draw();
     }
