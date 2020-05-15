@@ -37,6 +37,7 @@ class Calendar {
         this.year = this.today.getFullYear();
         this.workingDays = 0;
         this.loadInternalStore();
+        this.loadInternalWaiveStore();
         this.updatePreferences(preferences);
         this._initCalendar();
     }
@@ -142,6 +143,15 @@ class Calendar {
     }
 
     /*
+     * Gets value from internal waiver store.
+     */
+    _getWaiverStore(day, month, year) {
+        let dayKey = getDateStr(new Date(year, month, day));
+
+        return this.internalWaiverStore[dayKey];
+    }
+
+    /*
      * Generates the calendar HTML view.
      */
     _generateTemplate() {
@@ -218,8 +228,7 @@ class Calendar {
             weekDay = currentDay.getDay(),
             today = new Date(),
             isToday = (today.getDate() === day && today.getMonth() === month && today.getFullYear() === year),
-            trID = ('tr-' + year + '-' + month + '-' + day),
-            dateStr = getDateStr(currentDay);
+            trID = ('tr-' + year + '-' + month + '-' + day);
 
         if (!this.showDay(year, month, day)) {
             if (!this.hideNonWorkingDays) {
@@ -233,8 +242,8 @@ class Calendar {
             }
         }
 
-        if (waivedWorkdays.has(dateStr)) {
-            var waivedInfo = waivedWorkdays.get(dateStr);
+        var waivedInfo = this._getWaiverStore(day, month, year);
+        if (waivedInfo !== undefined) {
             var summaryStr = '<b>Waived day: </b>' + waivedInfo['reason'];
             var waivedLineHtmlCode =
                  '<tr'+ (isToday ? ' class="isToday"' : '') + ' id="' + trID + '">' +
@@ -455,6 +464,24 @@ class Calendar {
         }
     }
 
+    /**
+    * Stores waiver data in memory to make operations faster
+    */
+    loadInternalWaiveStore() {
+        this.internalWaiverStore = {};
+
+        for (const entry of waivedWorkdays) {
+            const date = entry[0];
+            const reason = entry[1]['reason'];
+            const hours = entry[1]['hours'];
+
+            this.internalWaiverStore[date] = {
+                'hours': hours,
+                'reason': reason
+            };
+        }
+    }
+
     /*
     * Calls showDay from user-preferences.js passing the last preferences set.
     */
@@ -555,14 +582,11 @@ class Calendar {
                 continue;
             }
 
-            var currentDay = new Date(this.year, this.month, day),
-                dateStr = getDateStr(currentDay);
-
             var dayTotal = null;
             var dayStr = this.year + '-' + this.month + '-' + day + '-';
 
-            if (waivedWorkdays.has(dateStr)) {
-                var waivedInfo = waivedWorkdays.get(dateStr);
+            var waivedInfo = this._getWaiverStore(day, this.month, this.year);
+            if (waivedInfo !== undefined) {
                 var waivedDayTotal = waivedInfo['hours'];
                 $('#' + dayStr + 'day-total').val(waivedDayTotal);
                 dayTotal = waivedDayTotal;
@@ -615,7 +639,7 @@ class Calendar {
         if (!this.showDay(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()) ||
             this.today.getMonth() !== this.getMonth() ||
             this.today.getFullYear() !== this.getYear() ||
-            waivedWorkdays.has(getDateStr(this.today))) {
+            this._getWaiverStore(this.today.getDate(), this.month, this.year)) {
             return;
         }
         var [dayBegin, lunchBegin, lunchEnd, dayEnd] = this.getDaysEntries(this.today.getMonth(), this.today.getDate());
