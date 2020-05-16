@@ -1,5 +1,5 @@
 /*eslint-disable no-useless-escape*/
-const { app, BrowserWindow, dialog, ipcMain, Menu, net, shell, Tray } = require('electron');
+const { app, BrowserWindow, clipboard, dialog, ipcMain, Menu, net, shell, Tray } = require('electron');
 const path = require('path');
 const Store = require('electron-store');
 const isOnline = require('is-online');
@@ -376,8 +376,16 @@ function createWindow() {
                                 message: 'Time to Leave',
                                 type: 'info',
                                 icon: iconpath,
-                                detail: `\n${detail}`
-                            });
+                                detail: `\n${detail}`,
+                                buttons: ['Copy', 'OK'],
+                                noLink: true
+                            }
+                        ).then((result) => {
+                            const buttonId = result.response;
+                            if (buttonId === 0) {
+                                clipboard.writeText(detail);
+                            }
+                        });
                     }
                 }
             ]
