@@ -367,6 +367,12 @@ class Calendar {
         $('#calendar-table-body').html(this.generateTableBody());
     }
 
+    reload() {
+        this.loadInternalStore();
+        this.loadInternalWaiveStore();
+        this.redraw();
+    }
+
     redraw() {
         this._draw();
     }

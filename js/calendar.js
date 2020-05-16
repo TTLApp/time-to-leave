@@ -26,7 +26,7 @@ ipcRenderer.on('PREFERENCE_SAVED', function(event, inputs) {
 });
 
 /*
- * Get nofified when preferences has been updated.
+ * Get nofified when waivers get updated.
  */
 ipcRenderer.on('WAIVER_SAVED', function() {
     calendar.loadInternalWaiveStore();

@@ -258,8 +258,7 @@ function createWindow() {
                                 const importResult = importDatabaseFromFile(response);
                                 if (importResult['result']) {
                                     // Reload only the calendar itself to avoid a flash
-                                    win.webContents.executeJavaScript('calendar.loadInternalStore()');
-                                    win.webContents.executeJavaScript('calendar.redraw()');
+                                    win.webContents.executeJavaScript('calendar.reload()');
                                     dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                                         {
                                             title: 'Time to Leave',
@@ -304,8 +303,7 @@ function createWindow() {
                             store.clear();
                             waivedWorkdays.clear();
                             // Reload only the calendar itself to avoid a flash
-                            win.webContents.executeJavaScript('calendar.loadInternalStore()');
-                            win.webContents.executeJavaScript('calendar.redraw()');
+                            win.webContents.executeJavaScript('calendar.reload()');
                             dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                                 {
                                     title: 'Time to Leave',
