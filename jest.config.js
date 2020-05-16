@@ -1,6 +1,6 @@
 module.exports = {
     collectCoverage: true,
-    collectCoverageFrom: ['js/**.js','src/**.js','./main.js'],
+    collectCoverageFrom: ['js/**.js','js/classes/**.js','src/**.js','./main.js'],
     projects: [
         {
             displayName: '    MAIN',
@@ -12,7 +12,7 @@ module.exports = {
             displayName: 'RENDERER',
             runner: '@jest-runner/electron',
             testEnvironment: '@jest-runner/electron/environment',
-            testMatch: ['**/__tests__/**renderer**/*.js']
+            testMatch: ['**/__tests__/**renderer**/*.js', '**/__tests__/**renderer**/classes/*.js']
         }
     ]
 };
