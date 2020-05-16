@@ -411,7 +411,7 @@ function createWindow() {
             label: 'Punch time', click: function() {
                 var now = new Date();
 
-                win.webContents.executeJavaScript('punchDate()');
+                win.webContents.executeJavaScript('calendar.punchDate()');
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
                 notify(`Punched time ${now.toTimeString().slice(0,5)}`);
             }
@@ -437,7 +437,7 @@ function createWindow() {
             label: 'Punch time', click: function() {
                 var now = new Date();
 
-                win.webContents.executeJavaScript('punchDate()');
+                win.webContents.executeJavaScript('calendar.punchDate()');
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
                 notify(`Punched time ${now.toTimeString().slice(0,5)}`);
             }
