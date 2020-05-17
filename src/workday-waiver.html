@@ -2,15 +2,15 @@
 <header>
     <title>Time to Leave - Workday Waiver Manager</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/themes.css">
-    <link rel="stylesheet" href="workday-waiver.css">
+    <link rel="stylesheet" href="../css/styles.css">
 
 <!-- First we need to declare jQuery and $ globals with jquery -->
 <script>window.$ = window.jQuery = require('jquery');</script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js" charset="utf-8"></script>
     <script src="workday-waiver.js"></script>
 </header>
-<body>
+
+<body id="workday-waiver">
     <div class="container">
         <div class="container-page">
             Workday Waiver Manager
@@ -22,28 +22,28 @@
             <form>
                 <table class="data">
                     <tbody>
-                    <tr>
-                        <td></td>
-                        <th>Start date</th>
-                        <td></td>
-                        <th>End date</th>
-                    </tr>
-                    <tr>
-                        <th>From</th>
-                        <td><input id="start_date" type="date"></td>
-                        <th>to</th>
-                        <td><input id="end_date" type="date"></td>
-                    </tr>
-                    <tr>
-                        <th>Hours</th>
-                        <td>
-                            <input type="text" id="hours" maxlength=8 pattern="^\d+:\d+$" placeholder="HH:mm" size=8>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Reason</th>
-                        <td colspan="3"><input id="reason" type="text" maxlength="30" size="60" placeholder="Reason for the waiver"></td>
-                    </tr>
+                        <tr>
+                            <td></td>
+                            <th>Start date</th>
+                            <td></td>
+                            <th>End date</th>
+                        </tr>
+                        <tr>
+                            <th>From</th>
+                            <td><input id="start_date" type="date"></td>
+                            <th>to</th>
+                            <td><input id="end_date" type="date"></td>
+                        </tr>
+                        <tr>
+                            <th>Hours</th>
+                            <td>
+                                <input type="text" id="hours" maxlength=8 pattern="^\d+:\d+$" placeholder="HH:mm" size=8>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Reason</th>
+                            <td colspan="3"><input id="reason" type="text" maxlength="30" size="60" placeholder="Reason for the waiver"></td>
+                        </tr>
                     </tbody>
                 </table>
                 <br>
@@ -57,16 +57,17 @@
         <div class="list-waiver">
             <table class="waiver-list-table data" id="waiver-list-table">
                 <tbody>
-                <thead>
-                    <td class="table-header">Day</td>
-                    <td class="table-header">Waiver Reason</td>
-                    <td class="table-header">Hours waived</td>
-                    <td class="table-header">Delete</td>
-                </thead>
+                    <thead>
+                        <td class="table-header">Day</td>
+                        <td class="table-header">Waiver Reason</td>
+                        <td class="table-header">Hours waived</td>
+                        <td class="table-header">Delete</td>
+                    </thead>
                 </tbody>
             </table>
         </div>
         <br>
     </div>
 </body>
+
 </html>

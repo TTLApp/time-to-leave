@@ -1,13 +1,78 @@
+/* stylelint-disable no-descending-specificity */
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+/* This is an implicit, and an explicit declaration of the Default color scheme */
+
+html,
+html[data-theme="light"] {
+  --page-bground: white;
+  --page-color: black;
+  --table-bground: white;
+  --table-border: rgb(203, 203, 203);
+  --table-total-border: rgb(164, 158, 207);
+  --table-cell-offtime-bground: rgb(245, 245, 245);
+  --table-cell-offtime-color: rgb(133, 133, 133);
+  --table-cell-total-bground: var(--table-cell-offtime-bground);
+  --table-cell-total-color: var(--table-cell-offtime-color);
+  --table-header-label-bground: var(--table-bground);
+  --table-header-label-shadow: var(--table-border);
+  --error: red;
+  --punch-bground: var(--table-total-border);
+  --punch-color: black;
+  --punch-disable-bground: rgb(134, 134, 134);
+  --slider-background-color: rgb(220, 220, 220);
+  --slider-checked-color: var(--table-total-border);
+  --slider-unchecked-color: white;
+  --weekday-background: var(--slider-background-color);
+  --weekday-selected: var(--punch-bground);
+  --svg-invert: 0;
+  --disabled-input-bground: rgb(175, 175, 175);
+  --title-color: rgb(51, 51, 51);
+  --input-border: rgb(77, 77, 77);
+  --datepicker-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJXaW5kb3dUZXh0IiBkPSJNMTEuOTkgMkM2LjQ3IDIgMiA2LjQ4IDIgMTJzNC40NyAxMCA5Ljk5IDEwQzE3LjUyIDIyIDIyIDE3LjUyIDIyIDEyUzE3LjUyIDIgMTEuOTkgMnpNMTIgMjBjLTQuNDIgMC04LTMuNTgtOC04czMuNTgtOCA4LTggOCAzLjU4IDggOC0zLjU4IDgtOCA4eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMTIuNSA3SDExdjZsNS4yNSAzLjE1Ljc1LTEuMjMtNC41LTIuNjd6Ii8+PC9zdmc+) 1x);
+  --calendar-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJXaW5kb3dUZXh0IiBkPSJNMjAgM2gtMVYxaC0ydjJIN1YxSDV2Mkg0Yy0xLjEgMC0yIC45LTIgMnYxNmMwIDEuMS45IDIgMiAyaDE2YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMThINFY4aDE2djEzeiIvPjxwYXRoIGZpbGw9Im5vbmUiIGQ9Ik0wIDBoMjR2MjRIMHoiLz48L3N2Zz4=) 1x);
+}
+
+html[data-theme="dark"] {
+  --page-bground: rgb(39, 39, 39);
+  --page-color: white;
+  --table-bground: rgb(39, 39, 39);
+  --table-border: rgb(90, 90, 90);
+  --table-total-border: rgb(95, 92, 121);
+  --table-cell-offtime-bground: rgb(71, 71, 71);
+  --table-cell-offtime-color: rgb(151, 151, 151);
+  --table-cell-total-bground: var(--table-cell-offtime-bground);
+  --table-cell-total-color: var(--table-cell-offtime-color);
+  --table-header-label-bground: var(--table-bground);
+  --table-header-label-shadow: var(--table-border);
+  --error: red;
+  --punch-bground: rgb(164, 158, 207);
+  --punch-color: white;
+  --punch-disable-bground: rgb(134, 134, 134);
+  --slider-background-color: var(--table-cell-offtime-bground);
+  --slider-checked-color: var(--punch-bground);
+  --slider-unchecked-color: white;
+  --weekday-background: var(--slider-background-color);
+  --weekday-selected: var(--punch-bground);
+  --svg-invert: 1;
+  --disabled-input-bground: rgb(80, 80, 80);
+  --title-color: rgb(--page-color);
+  --input-border: rgb(77, 77, 77);
+  --datepicker-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTExLjk5IDJDNi40NyAyIDIgNi40OCAyIDEyczQuNDcgMTAgOS45OSAxMEMxNy41MiAyMiAyMiAxNy41MiAyMiAxMlMxNy41MiAyIDExLjk5IDJ6TTEyIDIwYy00LjQyIDAtOC0zLjU4LTgtOHMzLjU4LTggOC04IDggMy41OCA4IDgtMy41OCA4LTggOHoiLz48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMi41IDdIMTF2Nmw1LjI1IDMuMTUuNzUtMS4yMy00LjUtMi42N3oiLz48L3N2Zz4=) 1x);
+  --calendar-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTIwIDNoLTFWMWgtMnYySDdWMUg1djJINGMtMS4xIDAtMiAuOS0yIDJ2MTZjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY1YzAtMS4xLS45LTItMi0yem0wIDE4SDRWOGgxNnYxM3oiLz48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PC9zdmc+) 1x);
+}
+
+
+/* There are some libraries that impose their own colors. These may need to be overriden for specific themes */
+
+html[data-theme="dark"] .text-danger {
+  color: rgb(226, 93, 90);
+}
 
 body {
   background-color: var(--page-bground);
   color: var(--page-color);
-}
-
-.th-month-name {
-  text-align: center;
-  font-size: 120%;
 }
 
 .container {
@@ -16,6 +81,11 @@ body {
 
 .dayheader {
   text-align: center;
+}
+
+.th-month-name {
+  text-align: center;
+  font-size: 120%;
 }
 
 .weekday {
@@ -60,14 +130,14 @@ body {
   float: left;
 }
 
-table {
+#calendar table {
   margin-left: auto;
   margin-right: auto;
   table-layout: auto;
   width: 90%;
 }
 
-.table-header {
+#calendar .table-header {
   margin-left: auto;
   margin-right: auto;
   table-layout: fixed;
@@ -77,22 +147,47 @@ table {
   background: var(--table-bground);
 }
 
-.table-header th {
+#calendar .table-header th {
   height: 50px;
   vertical-align: center;
 }
 
-.summary, .today-non-working {
+#calendar .table-body {
+  overflow-y: auto;
+}
+
+#calendar tr {
+  border-bottom: 2px solid var(--table-border);
+}
+
+#calendar .th {
+  font-weight: bold;
+}
+
+#calendar td,
+#calendar th.th-label {
+  padding-right: 7px;
+  padding-left: 7px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#calendar th.th-label {
+  position: sticky;
+  top: 51px;
+  background-color: var(--table-header-label-bground);
+  box-shadow: 0px 2px 0px 0px var(--table-header-label-shadow);
+}
+
+.summary,
+.today-non-working {
   border-bottom: 4px solid var(--table-total-border);
 }
 
 .month-total-row {
   border-bottom: 4px solid var(--table-total-border);
   border-top: 4px solid var(--table-total-border);
-}
-
-tr {
-  border-bottom: 2px solid var(--table-border);
 }
 
 .but-left {
@@ -110,30 +205,18 @@ tr {
   vertical-align: center;
 }
 
-.th {
-  font-weight: bold;
-}
-
-td, th.th-label {
-  padding-right: 7px;
-  padding-left: 7px;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-input {
+#calendar input {
   color: var(--page-color);
   border: none;
   background-color: transparent;
 }
 
-input[type="image"] {
+#calendar input[type="image"] {
   outline: none;
   filter: invert(var(--svg-invert));
 }
 
-input[type="time"]::-webkit-clear-button {
+#calendar input[type="time"]::-webkit-clear-button {
   display: none;
 }
 
@@ -141,9 +224,10 @@ input[type="time"]::-webkit-clear-button {
   width: 0px;
 }
 
-.total-input, .ti-total {
-  background-color: var(--table-cell-total-bground);
-  color: var(--table-cell-total-color);
+.total-input,
+.ti-total {
+  background-color: var(--table-cell-total-bground) !important;
+  color: var(--table-cell-total-color) !important;
 }
 
 .non-working-day {
@@ -151,8 +235,10 @@ input[type="time"]::-webkit-clear-button {
   color: var(--table-cell-offtime-color);
 }
 
-.leave-by-text, .month-total-text, .waived-day-text {
-  text-align: right;
+.leave-by-text,
+.month-total-text,
+.waived-day-text {
+  text-align: right !important;
   margin-top: auto;
   font-size: 90%;
   font-variant-caps: all-petite-caps;
@@ -162,7 +248,8 @@ input[type="time"]::-webkit-clear-button {
   font-weight: bold;
 }
 
-.leave-by-time, .month-total-time {
+.leave-by-time,
+.month-total-time {
   text-align: left;
 }
 
@@ -205,22 +292,6 @@ input[type="time"]::-webkit-clear-button {
   color: var(--punch-disable-bground);
 }
 
-.table-body {
-  overflow-y: auto;
-}
-
-th.th-label {
-  position: sticky;
-  top: 51px;
-  background-color: var(--table-header-label-bground);
-  box-shadow: 0px 2px 0px 0px var(--table-header-label-shadow);
-}
-
-/* There are some libraries that impose their own colors. These may need to be overriden for specific themes */
-html[data-theme="dark"] .text-danger {
-  color: rgb(226, 93, 90);
-}
-
 .waiver-img {
   display: none;
 }
@@ -239,4 +310,230 @@ html[data-theme="dark"] .text-danger {
 
 .hidden {
   display: none;
+}
+
+
+/* Preferences page styles */
+
+.preferences {
+  font-family: 'Montserrat', sans-serif;
+  padding-right: 10px;
+  padding-left: 10px;
+  width: 100%;
+  height: 90%;
+}
+
+.preferences-page {
+  font-size: 25px;
+  height: 35px;
+  border-bottom: 4px solid var(--table-total-border);
+}
+
+.preference-title {
+  font-size: 20px;
+  color: var(--title-color);
+  margin-bottom: 5px;
+  margin-top: 15px;
+  border-bottom: 1px solid var(--table-total-border);
+}
+
+.preferences select,
+.preferences option,
+.preferences input {
+  font-variant-caps: all-petite-caps;
+  color: var(--page-color);
+  background-color: var(--page-bground);
+  border: solid 1px var(--input-border);
+  height: inherit;
+}
+
+.weekDays-selector input {
+  display: none;
+}
+
+.weekDays-selector input[type=checkbox] + label {
+  font-variant-caps: all-petite-caps;
+  display: inline-block;
+  border-radius: 10px;
+  background: var(--weekday-background);
+  height: 40px;
+  width: 45px;
+  margin-right: 3px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.weekDays-selector input[type=checkbox]:checked + label {
+  background: var(--weekday-selected);
+  color: #fff;
+}
+
+.preferences input[type="time" i]::-webkit-calendar-picker-indicator {
+  background-image: var(--datepicker-icon);
+}
+
+.flex-box {
+  display: flex;
+  height: 25px;
+  justify-content: space-between;
+}
+
+.preferences p {
+  font-variant-caps: all-petite-caps;
+  text-align: center;
+}
+
+
+/* The switch - the box around the slider */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 15px;
+}
+
+
+/* Hide default HTML checkbox */
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+
+/* The slider */
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--slider-background-color);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  background-color: var(--slider-unchecked-color);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--slider-checked-color);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--slider-checked-color);
+}
+
+input:checked + .slider::before {
+  -webkit-transform: translateX(15px);
+  -ms-transform: translateX(15px);
+  transform: translateX(15px);
+}
+
+
+/* Rounded sliders */
+
+.slider.round {
+  border-radius: 30px;
+}
+
+.slider.round::before {
+  border-radius: 50%;
+}
+
+
+/* Notification settings */
+
+#notifications-interval:disabled,
+input:disabled + .slider {
+  background-color: var(--disabled-input-bground);
+}
+
+
+/* Waiver page styles */
+
+.container-page {
+  font-size: 25px;
+  height: 60px;
+  border-bottom: 4px solid var(--table-total-border);
+}
+
+.header-help {
+  font-variant-caps: all-petite-caps;
+  font-size: 15px;
+}
+
+#workday-waiver input {
+  color: var(--page-color);
+  background-color: var(--page-bground);
+  border: none;
+}
+
+#workday-waiver input[type="date" i]::-webkit-calendar-picker-indicator {
+  background-image: var(--calendar-icon);
+}
+
+#workday-waiver .container {
+  font-family: 'Montserrat', sans-serif;
+  padding-right: 10px;
+  padding-left: 10px;
+  width: 100%;
+  height: 90%;
+}
+
+#workday-waiver .data {
+  font-size: 12px;
+}
+
+#workday-waiver .table-header {
+  font-weight: bold;
+}
+
+.container-title {
+  font-size: 20px;
+  color: var(--title-color);
+  margin-bottom: 15px;
+  margin-top: 30px;
+  border-bottom: 1px solid var(--table-total-border);
+}
+
+#workday-waiver th {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+#workday-waiver td {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.waive-button {
+  opacity: 0.9;
+  width: 100%;
+  height: 24px;
+  outline: none;
+  border: none;
+  color: var(--punch-color);
+  background-color: var(--punch-bground);
+}
+
+.waive-button:disabled {
+  opacity: 0.5;
+  color: var(--punch-disable-bground);
+}
+
+.waiver-list-table {
+  width: 100%;
 }
