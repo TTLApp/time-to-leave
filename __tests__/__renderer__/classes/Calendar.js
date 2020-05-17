@@ -95,5 +95,59 @@ describe('Calendar class Tests', () => {
         expect(calendar._getWaiverStore(31, 11, 2010)).toStrictEqual({reason: 'New Year\'s eve', hours: '08:00'});
     });
 
+    test('Calendar Month Changes', () => {
+        expect(calendar._month).toBe(today.getMonth());
+        const expectedNextMonth = today.getMonth() + 1 === 12 ? 0 : (today.getMonth() + 1);
+        const expectedPrevMonth = today.getMonth() === 0 ? 11 : (today.getMonth() - 1);
+
+        calendar._nextMonth();
+        expect(calendar._month).toBe(expectedNextMonth);
+        expect(calendar._getMonth()).toBe(expectedNextMonth);
+
+        calendar._prevMonth();
+        expect(calendar._month).toBe(today.getMonth());
+        expect(calendar._getMonth()).toBe(today.getMonth());
+
+        calendar._prevMonth();
+        expect(calendar._month).toBe(expectedPrevMonth);
+        expect(calendar._getMonth()).toBe(expectedPrevMonth);
+
+        calendar._goToCurrentDate();
+        expect(calendar._month).toBe(today.getMonth());
+        expect(calendar._getMonth()).toBe(today.getMonth());
+    });
+
+    test('Calendar Year Changes', () => {
+        expect(calendar._year).toBe(today.getFullYear());
+        expect(calendar._getYear()).toBe(today.getFullYear());
+        const expectedNextYear = today.getFullYear() + 1;
+        const expectedPrevYear = today.getFullYear() - 1;
+
+        for (let i = 0; i < 12; i++) {
+            calendar._nextMonth();
+        }
+
+        expect(calendar._month).toBe(today.getMonth());
+        expect(calendar._getMonth()).toBe(today.getMonth());
+        expect(calendar._year).toBe(expectedNextYear);
+        expect(calendar._getYear()).toBe(expectedNextYear);
+
+        calendar._goToCurrentDate();
+        expect(calendar._year).toBe(today.getFullYear());
+        expect(calendar._getYear()).toBe(today.getFullYear());
+
+        for (let i = 0; i < 12; i++) {
+            calendar._prevMonth();
+        }
+
+        expect(calendar._month).toBe(today.getMonth());
+        expect(calendar._getMonth()).toBe(today.getMonth());
+        expect(calendar._year).toBe(expectedPrevYear);
+        expect(calendar._getYear()).toBe(expectedPrevYear);
+
+        calendar._goToCurrentDate();
+        expect(calendar._year).toBe(today.getFullYear());
+        expect(calendar._getYear()).toBe(today.getFullYear());
+    });
 });
 
