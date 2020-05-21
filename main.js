@@ -423,6 +423,17 @@ function createWindow() {
         app.dock.setMenu(dockMenu);
         win.maximize();
     } else {
+    // Set user tasks menu for Windows
+    app.setUserTasks([
+	{
+		program: process.execPath,
+		arguments: '--new-window',
+		iconPath: process.execPath,
+		iconIndex: 0,
+		title: 'Time to Leave',
+		description: 'tells you when to leave, and live'
+	}
+    ])
         win.setMenu(menu);
     }
     // Prevents flickering from maximize
