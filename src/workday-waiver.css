@@ -32,6 +32,10 @@ input {
   border: solid 1px var(--input-border);
 }
 
+input[type="date" i]::-webkit-calendar-picker-indicator {
+    background-image: var(--calendar-icon);
+}
+
 .container-page {
   font-size: 25px;
   height: 60px;

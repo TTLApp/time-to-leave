@@ -65,7 +65,7 @@ async function checkForUpdates(showUpToDateDialog) {
     request.on('response', (response) => {
         response.on('data', (chunk) => {
             var result = `${chunk}`;
-            var re = new RegExp('.*(tag_name).*');
+            var re = new RegExp('.*(tag_name).*', 'g');
             var matches = result.matchAll(re);
             for (const match of matches) {
                 var res = match[0].replace(/.*v.(\d+\.\d+\.\d+).*/g, '$1');

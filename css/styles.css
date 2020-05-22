@@ -137,6 +137,10 @@ input[type="time"]::-webkit-clear-button {
   display: none;
 }
 
+#calendar input[type="time" i]::-webkit-calendar-picker-indicator {
+  width: 0px;
+}
+
 .total-input, .ti-total {
   background-color: var(--table-cell-total-bground);
   color: var(--table-cell-total-color);

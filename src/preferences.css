@@ -132,6 +132,10 @@ input:checked + .slider::before {
   transform: translateX(15px);
 }
 
+input[type="time" i]::-webkit-calendar-picker-indicator {
+  background-image: var(--datepicker-icon);
+}
+
 /* Rounded sliders */
 .slider.round {
   border-radius: 30px;
