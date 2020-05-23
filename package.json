@@ -51,7 +51,7 @@
     "electron": "^9.0.0",
     "electron-packager": "^14.2.1",
     "electron-reloader": "^1.0.1",
-    "eslint": "^7.0.0",
+    "eslint": "^6.8.0",
     "jest": "^26.0.1",
     "pre-commit": "^1.2.2",
     "standard": "^14.3.4",
@@ -63,7 +63,8 @@
     "electron-store": "^5.1.1",
     "is-online": "^8.3.1",
     "jquery": "^3.5.1",
-    "node-notifier": "^7.0.0"
+    "node-notifier": "^7.0.0",
+    "popper.js": "^1.16.0"
   },
   "resolutions": {
     "fsevents": "^2.1.2"
