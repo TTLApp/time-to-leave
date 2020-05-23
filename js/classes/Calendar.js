@@ -544,9 +544,6 @@ class Calendar {
         var isNextDay = false;
 
         for (var day = 1; day <= monthLength; ++day) {
-            if (!this._showDay(this._year, this._month, day)) {
-                continue;
-            }
             var isToday = (now.getDate() === day && now.getMonth() === this._month && now.getFullYear() === this._year);
             if (isToday && !this._getCountToday()) {
                 //balance considers only up until yesterday
@@ -554,6 +551,11 @@ class Calendar {
             }
             else if (isNextDay && this._getCountToday()) {
                 break;
+            }
+            isNextDay = isToday;
+
+            if (!this._showDay(this._year, this._month, day)) {
+                continue;
             }
 
             var dayStr = this._year + '-' + this._month + '-' + day + '-' + 'day-total';
@@ -565,7 +567,6 @@ class Calendar {
             if (countDays) {
                 workingDaysToCompute += 1;
             }
-            isNextDay = isToday;
         }
         var monthTotalToWork = multiplyTime(this._getHoursPerDay(), workingDaysToCompute * -1);
         var balance = sumTime(monthTotalToWork, monthTotalWorked);
