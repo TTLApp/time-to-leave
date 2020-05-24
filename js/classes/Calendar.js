@@ -63,13 +63,7 @@ class Calendar {
         this._updateTableBody();
         this._updateBasedOnDB();
 
-        if (!this._showDay(this._today.getFullYear(), this._today.getMonth(), this._today.getDate())) {
-            $('#punch-button').prop('disabled', true);
-            ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', false);
-        } else {
-            $('#punch-button').prop('disabled', false);
-            ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', true);
-        }
+        this._togglePunchButton(this._showDay(this._today.getFullYear(), this._today.getMonth(), this._today.getDate()));
 
         this._updateLeaveBy();
 
@@ -666,8 +660,7 @@ class Calendar {
 
         if (dayBegin !== undefined && lunchBegin !== undefined && lunchEnd !== undefined && dayEnd !== undefined) {
             //All entries computed
-            $('#punch-button').prop('disabled', true);
-            ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', false);
+            this._togglePunchButton(false);
 
             var dayTotal = $('#' + dayKey + 'day-total').val();
             if (dayTotal) {
@@ -683,8 +676,7 @@ class Calendar {
                 $('#summary-finished-day').addClass('hidden');
             }
         } else {
-            $('#punch-button').prop('disabled', false);
-            ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', true);
+            this._togglePunchButton(true);
 
             $('#summary-unfinished-day').removeClass('hidden');
             $('#summary-finished-day').addClass('hidden');
@@ -802,7 +794,14 @@ class Calendar {
         }
         return false;
     }
-
+    
+    /*
+    * Toggles the state of the punch butttons and actions on or off
+    */
+    _togglePunchButton(enable) {
+        $('#punch-button').prop('disabled', !enable);
+        ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', enable);
+    }
     /*
     * Toggles the color of a row based on input error.
     */
