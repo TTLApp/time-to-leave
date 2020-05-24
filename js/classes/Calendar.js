@@ -63,7 +63,9 @@ class Calendar {
         this._updateTableBody();
         this._updateBasedOnDB();
 
-        this._togglePunchButton(this._showDay(this._today.getFullYear(), this._today.getMonth(), this._today.getDate()));
+        var waivedInfo = this._getWaiverStore(this._today.getDate(), this._today.getMonth(), this._today.getFullYear());
+        var showCurrentDay = this._showDay(this._today.getFullYear(), this._today.getMonth(), this._today.getDate());
+        this._togglePunchButton(showCurrentDay && waivedInfo === undefined);
 
         this._updateLeaveBy();
 
