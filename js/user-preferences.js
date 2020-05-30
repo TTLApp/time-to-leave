@@ -64,7 +64,7 @@ function getDerivedPrefsFromLoadedPrefs(loadedPreferences) {
         derivedPreferences[key] = loadedPreferences[key] || defaultPreferences[key];
     });
 
-    return defaultPreferences;
+    return derivedPreferences;
 }
 
 /*
