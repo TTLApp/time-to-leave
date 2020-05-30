@@ -2,7 +2,7 @@
 
 const Store = require('electron-store');
 const { defaultPreferences } = require('../../../js/user-preferences');
-const Calendar = require('../../../js/classes/Calendar');
+const { Calendar } = require('../../../js/classes/Calendar');
 
 window.$ = window.jQuery = require('jquery');
 
