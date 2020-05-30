@@ -185,7 +185,7 @@ function createWindow() {
                     click() {
                         const htmlPath = path.join('file://', __dirname, 'src/preferences.html');
                         let prefWindow = new BrowserWindow({ width: 400,
-                            height: 460,
+                            height: 500,
                             parent: win,
                             resizable: true,
                             icon: iconpath,
@@ -462,6 +462,10 @@ function createWindow() {
 
     ipcMain.on('RESIZE_MAIN_WINDOW', (event, width, height) => {
         win.setSize(width, height);
+    });
+
+    ipcMain.on('VIEW_CHANGED', (event, savedPreferences) => {
+        win.webContents.send('PREFERENCE_SAVED', savedPreferences);
     });
 
     tray.on('click', function handleCliked() {

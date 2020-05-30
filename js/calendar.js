@@ -9,7 +9,7 @@ const {
 const { notify } = require('./js/notification.js');
 const { getUserPreferences } = require('./js/user-preferences.js');
 const { applyTheme } = require('./js/themes.js');
-const Calendar = require('./js/classes/Calendar.js');
+const { CalendarFactory } = require('./js/classes/Calendar.js');
 
 // Global values for calendar
 let preferences = getUserPreferences();
@@ -18,10 +18,8 @@ let calendar = null;
 /*
  * Get nofified when preferences has been updated.
  */
-ipcRenderer.on('PREFERENCE_SAVED', function(event, inputs) {
-    preferences = inputs;
-    calendar.updatePreferences(preferences);
-    calendar.redraw();
+ipcRenderer.on('PREFERENCE_SAVED', function(event, preferences) {
+    calendar = CalendarFactory.getInstance(preferences, calendar);
     applyTheme(preferences.theme);
 });
 
@@ -70,8 +68,8 @@ function notifyTimeToLeave() {
 
 // On page load, create the calendar and setup notification
 $(() => {
-    let prefs = getUserPreferences();
-    calendar = new Calendar(prefs);
+    let preferences = getUserPreferences();
+    calendar = CalendarFactory.getInstance(preferences);
     setInterval(notifyTimeToLeave, 60000);
-    applyTheme(prefs.theme);
+    applyTheme(preferences.theme);
 });

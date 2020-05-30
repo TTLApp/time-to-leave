@@ -32,6 +32,7 @@ html[data-theme="light"] {
   --input-border: rgb(77, 77, 77);
   --datepicker-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJXaW5kb3dUZXh0IiBkPSJNMTEuOTkgMkM2LjQ3IDIgMiA2LjQ4IDIgMTJzNC40NyAxMCA5Ljk5IDEwQzE3LjUyIDIyIDIyIDE3LjUyIDIyIDEyUzE3LjUyIDIgMTEuOTkgMnpNMTIgMjBjLTQuNDIgMC04LTMuNTgtOC04czMuNTgtOCA4LTggOCAzLjU4IDggOC0zLjU4IDgtOCA4eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMTIuNSA3SDExdjZsNS4yNSAzLjE1Ljc1LTEuMjMtNC41LTIuNjd6Ii8+PC9zdmc+) 1x);
   --calendar-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJXaW5kb3dUZXh0IiBkPSJNMjAgM2gtMVYxaC0ydjJIN1YxSDV2Mkg0Yy0xLjEgMC0yIC45LTIgMnYxNmMwIDEuMS45IDIgMiAyaDE2YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMThINFY4aDE2djEzeiIvPjxwYXRoIGZpbGw9Im5vbmUiIGQ9Ik0wIDBoMjR2MjRIMHoiLz48L3N2Zz4=) 1x);
+  --day-calendar-select-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiPg0KICAgIDxwb2x5Z29uIHBvaW50cz0iNTAgODUsIDEwMCAwLCAwIDAiIGZpbGw9ImJsYWNrIj48L3BvbHlnb24+DQo8L3N2Zz4=) 1x);
 }
 
 html[data-theme="dark"] {
@@ -61,6 +62,7 @@ html[data-theme="dark"] {
   --input-border: rgb(77, 77, 77);
   --datepicker-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTExLjk5IDJDNi40NyAyIDIgNi40OCAyIDEyczQuNDcgMTAgOS45OSAxMEMxNy41MiAyMiAyMiAxNy41MiAyMiAxMlMxNy41MiAyIDExLjk5IDJ6TTEyIDIwYy00LjQyIDAtOC0zLjU4LTgtOHMzLjU4LTggOC04IDggMy41OCA4IDgtMy41OCA4LTggOHoiLz48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMi41IDdIMTF2Nmw1LjI1IDMuMTUuNzUtMS4yMy00LjUtMi42N3oiLz48L3N2Zz4=) 1x);
   --calendar-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTIwIDNoLTFWMWgtMnYySDdWMUg1djJINGMtMS4xIDAtMiAuOS0yIDJ2MTZjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY1YzAtMS4xLS45LTItMi0yem0wIDE4SDRWOGgxNnYxM3oiLz48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PC9zdmc+) 1x);
+  --day-calendar-select-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiPg0KICAgIDxwb2x5Z29uIHBvaW50cz0iNTAgODUsIDEwMCAwLCAwIDAiIGZpbGw9IndoaXRlIj48L3BvbHlnb24+DQo8L3N2Zz4=) 1x);
 }
 
 
@@ -206,6 +208,10 @@ body {
   vertical-align: center;
 }
 
+.but-switch-view input {
+    width: 85%;
+}
+
 #calendar input {
   color: var(--page-color);
   border: none;
@@ -225,8 +231,30 @@ body {
   width: 0px;
 }
 
-.total-input,
-.ti-total {
+#input-calendar-date::-webkit-datetime-edit {
+  display: none;
+}
+
+#input-calendar-date::-webkit-clear-button {
+  display: none;
+}
+
+#input-calendar-date::-webkit-inner-spin-button {
+  display: none;
+}
+
+#input-calendar-date::-webkit-calendar-picker-indicator {
+  padding-bottom: 0px;
+  color: var(--page-color);
+  opacity: 1;
+  cursor: pointer;
+}
+
+#input-calendar-date::-webkit-calendar-picker-indicator:hover {
+  background-color: var(--table-bground);
+}
+
+.total-input, .ti-total {
   background-color: var(--table-cell-total-bground) !important;
   color: var(--table-cell-total-color) !important;
 }
@@ -310,7 +338,11 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none!important;
+}
+
+.half-width {
+  width: 50%;
 }
 
 /* The switch - the box around the slider */
@@ -523,4 +555,161 @@ input:disabled + .slider {
 
 #workday-waiver-window #waiver-list-table {
   width: 100%;
+}
+
+
+/** Day view related styles **/
+
+html[data-view='day'] .container {
+  margin-bottom: 0px;
+}
+
+html[data-view='day'] .title-header {
+  width: 100%;
+  margin-bottom: 80px;
+}
+
+html[data-view='day'] .title-header-text {
+  font-size: 300%;
+}
+
+html[data-view='day'] .table-header {
+  width: 100%;
+}
+
+html[data-view='day'] #calendar input[type="date" i]::-webkit-calendar-picker-indicator {
+  background-image: var(--day-calendar-select-icon);
+  height: 10px;
+  margin-left: 4px;
+  width: 10px;
+}
+
+html[data-view='day'] #calendar-table-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+html[data-view='day'] #calendar-table-body > div {
+  width: 100%;
+  display: flex;
+  flex: auto;
+  flex-direction: row;
+}
+
+html[data-view='day'] .table-header tr {
+  border-bottom: 2px solid var(--punch-bground);
+}
+
+html[data-view='day'] .th-label {
+  text-align: right;
+  padding-right: 20px;
+  width: 50%;
+}
+
+html[data-view='day'] .th-label.th-label-total {
+  width: 33%;
+}
+
+html[data-view='day'] .but-switch-view {
+    width: 6.5%;
+}
+
+html[data-view='day'] .ti {
+  text-align: left;
+  padding-left: 20px;
+  width: 50%;
+}
+
+html[data-view='day'] .ti-total {
+  width: 13%;
+  overflow: hidden;
+}
+
+html[data-view='day'] .ti-total input {
+  margin-left: -14px;
+}
+
+html[data-view='day'] .table-body {
+  margin-top: 10px;
+}
+
+html[data-view='day'] .row-time {
+  border-bottom: 1px solid var(--table-border);
+  width: 90%!important;
+  margin: auto;
+  padding: 2px 0 2px 0;
+}
+
+html[data-view='day'] .row-total {
+  border-bottom: 4px solid var(--table-total-border);
+  padding: 10px 0 10px 0;
+}
+
+html[data-view='day'] .row-waiver {
+  margin: auto;
+  padding: 2px 0 12px 0;
+  border-bottom: 4px solid var(--table-total-border);
+}
+
+html[data-view='day'] .row-waiver .waived-day-text {
+  margin: auto 20px auto auto;
+}
+
+html[data-view='day'] .row-waiver .ti-total {
+  margin-right: auto;
+}
+
+html[data-view='day'] .non-working-day {
+  background: none;
+  margin: auto auto 10px auto;
+}
+
+html[data-view='day'] .summary {
+  padding: 5px 0 5px 0;
+}
+
+html[data-view='day'] .summary .leave-by-text {
+  margin: 0 20px auto auto;
+}
+
+html[data-view='day'] .summary .leave-by-time {
+  margin-right: auto;
+}
+
+html[data-view='day'] .month-total-row {
+  border-top: none;
+  border-bottom: none;
+  padding-top: 5px;
+}
+
+html[data-view='day'] .month-total-row .month-total-text {
+  padding-right: 10px;
+  text-align: right;
+}
+
+html[data-view='day'] .month-total-row .month-total-element {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  width: fit-content;
+}
+
+html[data-view='day'] .month-total-row .month-total-time {
+  text-align: left;
+}
+
+html[data-view='day'] .footer {
+  height: 32px;
+  font-size: 100%;
+}
+
+html[data-view='day'] .footer .punch-button {
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+}
+
+html[data-view='day'] .punch-button img {
+  display: none;
 }
