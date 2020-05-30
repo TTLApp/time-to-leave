@@ -394,6 +394,7 @@ function createWindow() {
     win = new BrowserWindow({
         width: 1000,
         height: 1000,
+        minWidth: 450,
         useContentSize: true,
         zoomToPageWidth: true, //MacOS only
         icon: iconpath,
@@ -457,6 +458,10 @@ function createWindow() {
     ipcMain.on('TOGGLE_TRAY_PUNCH_TIME', function(_event, arg) {
         contextMenuTemplate[0].enabled = arg;
         contextMenu = Menu.buildFromTemplate(contextMenuTemplate);
+    });
+
+    ipcMain.on('RESIZE_MAIN_WINDOW', (event, width, height) => {
+        win.setSize(width, height);
     });
 
     tray.on('click', function handleCliked() {
