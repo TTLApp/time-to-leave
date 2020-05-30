@@ -233,7 +233,7 @@ class Calendar {
                     '<td class="weekday ti">' + this._options.dayAbbrs[weekDay] + '</td>' +
                     '<td class="day ti">' + day + '</td>' +
                     '<td class="waived-day-text" colspan="5">' + summaryStr + '</td>' +
-                    '<td class="ti ti-total">' + Calendar._getTotalCode(year, month, day, 'day-total') + '</td>' +
+                    '<td class="ti ti-total">' + this.constructor._getTotalCode(year, month, day, 'day-total') + '</td>' +
                 '</tr>\n';
             return waivedLineHtmlCode;
         }
@@ -245,16 +245,16 @@ class Calendar {
                         '<span class="day-number"> ' + day + ' </span>' +
                         '<img src="assets/waiver.svg" height="15" class="waiver-img">' +
                     '</td>' +
-                    '<td class="ti">' + Calendar._getInputCode(year, month, day, 'day-begin') + '</td>' +
-                    '<td class="ti">' + Calendar._getInputCode(year, month, day, 'lunch-begin') + '</td>' +
-                    '<td class="ti ti-total">' + Calendar._getTotalCode(year, month, day, 'lunch-total') + '</td>' +
-                    '<td class="ti">' + Calendar._getInputCode(year, month, day, 'lunch-end') + '</td>' +
-                    '<td class="ti">' + Calendar._getInputCode(year, month, day, 'day-end') + '</td>' +
-                    '<td class="ti ti-total">' + Calendar._getTotalCode(year, month, day, 'day-total') + '</td>' +
+                    '<td class="ti">' + this.constructor._getInputCode(year, month, day, 'day-begin') + '</td>' +
+                    '<td class="ti">' + this.constructor._getInputCode(year, month, day, 'lunch-begin') + '</td>' +
+                    '<td class="ti ti-total">' + this.constructor._getTotalCode(year, month, day, 'lunch-total') + '</td>' +
+                    '<td class="ti">' + this.constructor._getInputCode(year, month, day, 'lunch-end') + '</td>' +
+                    '<td class="ti">' + this.constructor._getInputCode(year, month, day, 'day-end') + '</td>' +
+                    '<td class="ti ti-total">' + this.constructor._getTotalCode(year, month, day, 'day-total') + '</td>' +
                 '</tr>\n';
 
         if (isToday) {
-            htmlCode += Calendar._getSummaryRowCode();
+            htmlCode += this.constructor._getSummaryRowCode();
         }
 
         return htmlCode;
@@ -320,9 +320,9 @@ class Calendar {
      */
     _getBody() {
         var html = '<div>';
-        html += Calendar._getPageHeader();
+        html += this.constructor._getPageHeader();
         html += '<table class="table-body">';
-        html += Calendar._getTableHeaderCode();
+        html += this.constructor._getTableHeaderCode();
         html += '<tbody id="calendar-table-body">';
         html += '</tbody>';
         html += '</table><br>';
@@ -342,7 +342,7 @@ class Calendar {
         for (var day = 1; day <= monthLength; ++day) {
             html += this._getInputsRowCode(this._year, this._month, day);
             if (day === balanceRowPosition) {
-                html += Calendar._getBalanceRowCode();
+                html += this.constructor._getBalanceRowCode();
             }
         }
         return html;
