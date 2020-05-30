@@ -173,9 +173,23 @@ function showDay(year, month, day, preferences = undefined)  {
     return showWeekDay(weekDay, preferences);
 }
 
+function switchCalendarView() {
+    let preferences = getLoadedOrDerivedUserPreferences();
+    if (preferences['view'] === 'month') {
+        preferences['view'] = 'day';
+    }
+    else {
+        preferences['view'] = 'month';
+    }
+    savePreferences(preferences);
+
+    return preferences;
+}
+
 module.exports = {
     defaultPreferences,
     getUserPreferences: getLoadedOrDerivedUserPreferences,
     savePreferences,
-    showDay
+    showDay,
+    switchCalendarView
 };
