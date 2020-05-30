@@ -22,6 +22,7 @@ const defaultPreferences = {
     'working-days-friday': true,
     'working-days-saturday': false,
     'working-days-sunday': false,
+    'view': 'month'
 };
 
 /*
@@ -122,9 +123,12 @@ function initPreferencesFileIfNotExistsOrInvalid() {
             break;
         }
         // Handle Enum Inputs
-        case 'theme' : {
+        case 'theme':
             shouldSaveDerivedPrefs |= !isValidTheme(value);
-        }
+            break;
+        case 'view':
+            shouldSaveDerivedPrefs |= !(value == 'month' || value == 'day');
+            break;
         }
     }
 
