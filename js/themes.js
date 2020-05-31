@@ -20,7 +20,7 @@ function applyTheme(theme) {
     }
 
     // Applies to the Primary view
-    document.querySelector('html').setAttribute('data-theme', theme);
+    $('html').attr('data-theme', theme);
     return true;
 }
 

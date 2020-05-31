@@ -3,7 +3,7 @@ const {
     applyTheme,
     isValidTheme
 } = require('../../js/themes');
-
+window.$ = window.jQuery = require('jquery');
 
 describe('Theme Functions', function() {
 
