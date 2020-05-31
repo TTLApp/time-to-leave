@@ -12,71 +12,75 @@
     <script src="preferences.js"></script>
 </head>
 
-<body>
-    <div class="preferences">
-        <div class="preferences-page">
+<body id="preferences-window" class="common-window">
+    <div>
+        <div class="header-title">
             User preferences
         </div>
 
-        <div class="preference-title">Working days</div>
-        <div class="weekDays-selector">
-            <input type="checkbox" id="sunday" name="working-days-sunday" class="weekday" />
-            <label for="sunday">Sun</label>
-            <input type="checkbox" id="monday" name="working-days-monday" class="weekday" />
-            <label for="monday">Mon</label>
-            <input type="checkbox" id="tuesday" name="working-days-tuesday" class="weekday" />
-            <label for="tuesday">Tue</label>
-            <input type="checkbox" id="wednesday" name="working-days-wednesday" class="weekday" />
-            <label for="wednesday">Wed</label>
-            <input type="checkbox" id="thursday" name="working-days-thursday" class="weekday" />
-            <label for="thursday">Thu</label>
-            <input type="checkbox" id="friday" name="working-days-friday" class="weekday" />
-            <label for="friday">Fri</label>
-            <input type="checkbox" id="saturday" name="working-days-saturday" class="weekday" />
-            <label for="saturday">Sat</label>
-        </div>
-        <div class="flex-box">
-            <p>Hide non-working days</p>
-            <label id='non-working-label' class="switch"><input type="checkbox" name="hide-non-working-days"><span class="slider round"></span></label>
-        </div>
-        <div class="flex-box">
-            <p>Hours per day</p>
-            <input type="time" name="hours-per-day" id="hours-per-day" min="00:00" max="24:00" value="08:00" required>
-        </div>
-        <div class="preference-title">App Behavior</div>
-        <div class="flex-box">
-            <p>Notification</p>
-            <label class="switch"><input type="checkbox" id="notification" name="notification"><span class="slider round"></span></label>
-        </div>
-        <div class="flex-box">
-            <p>Allow recurring notifications</p>
-            <label class="switch"><input type="checkbox" id="repetition" name="repetition"><span class="slider round"></span></label>
-        </div>
-        <div class="flex-box mb-2">
-            <p>Time between notifications</p>
-            <input type="time" id="notifications-interval" name="notifications-interval" min="00:01" max="00:30" />
-        </div>
-        <div class="flex-box">
-            <p>Start on Login</p>
-            <label id='start-at-login' class="switch"><input type="checkbox" name="start-at-login"><span class="slider round"></span></label>
-        </div>
-        <div class="flex-box">
-            <p>Count Today in Totals</p>
-            <label id='count-today' class="switch"><input type="checkbox" name="count-today"><span class="slider round"></span></label>
-        </div>
-        <div class="flex-box">
-            <p>Close button should minimize to tray</p>
-            <label id='close-to-tray' class="switch"><input type="checkbox" name="close-to-tray"><span class="slider round"></span></label>
-        </div>
-        <div class="flex-box">
-            <p>Themes</p>
-            <select id="theme" name="theme">
-                <option value="light" selected>Light</option>
-                <option value="dark">Dark</option>
-            </select>
-        </div>
+        <section>
+            <div class="section-title">Working days</div>
+            <div class="weekdays-selector">
+                <input type="checkbox" id="sunday" name="working-days-sunday" class="weekday" />
+                <label for="sunday">Sun</label>
+                <input type="checkbox" id="monday" name="working-days-monday" class="weekday" />
+                <label for="monday">Mon</label>
+                <input type="checkbox" id="tuesday" name="working-days-tuesday" class="weekday" />
+                <label for="tuesday">Tue</label>
+                <input type="checkbox" id="wednesday" name="working-days-wednesday" class="weekday" />
+                <label for="wednesday">Wed</label>
+                <input type="checkbox" id="thursday" name="working-days-thursday" class="weekday" />
+                <label for="thursday">Thu</label>
+                <input type="checkbox" id="friday" name="working-days-friday" class="weekday" />
+                <label for="friday">Fri</label>
+                <input type="checkbox" id="saturday" name="working-days-saturday" class="weekday" />
+                <label for="saturday">Sat</label>
+            </div>
+            <div class="flex-box">
+                <p>Hide non-working days</p>
+                <label id='non-working-label' class="switch"><input type="checkbox" name="hide-non-working-days"><span class="slider round"></span></label>
+            </div>
+            <div class="flex-box">
+                <p>Hours per day</p>
+                <input type="time" name="hours-per-day" id="hours-per-day" min="00:00" max="24:00" value="08:00" required>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-title">App Behavior</div>
+            <div class="flex-box">
+                <p>Notification</p>
+                <label class="switch"><input type="checkbox" id="notification" name="notification"><span class="slider round"></span></label>
+            </div>
+            <div class="flex-box">
+                <p>Allow recurring notifications</p>
+                <label class="switch"><input type="checkbox" id="repetition" name="repetition"><span class="slider round"></span></label>
+            </div>
+            <div class="flex-box mb-2">
+                <p>Time between notifications</p>
+                <input type="time" id="notifications-interval" name="notifications-interval" min="00:01" max="00:30" />
+            </div>
+            <div class="flex-box">
+                <p>Start on Login</p>
+                <label id='start-at-login' class="switch"><input type="checkbox" name="start-at-login"><span class="slider round"></span></label>
+            </div>
+            <div class="flex-box">
+                <p>Count Today in Totals</p>
+                <label id='count-today' class="switch"><input type="checkbox" name="count-today"><span class="slider round"></span></label>
+            </div>
+            <div class="flex-box">
+                <p>Close button should minimize to tray</p>
+                <label id='close-to-tray' class="switch"><input type="checkbox" name="close-to-tray"><span class="slider round"></span></label>
+            </div>
+            <div class="flex-box">
+                <p>Themes</p>
+                <select id="theme" name="theme">
+                    <option value="light" selected>Light</option>
+                    <option value="dark">Dark</option>
+                </select>
+            </div>
+        </section>
     </div>
-    <br>
 </body>
 
 </html>

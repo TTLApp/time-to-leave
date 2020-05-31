@@ -12,17 +12,17 @@
     <script src="workday-waiver.js"></script>
 </head>
 
-<body id="workday-waiver">
+<body id="workday-waiver-window" class="common-window">
     <div class="container">
-        <div class="container-page">
+        <div class="header-title">
             Workday Waiver Manager
             <p class="header-help">Changes take effect when closing this window</p>
         </div>
 
-        <div class="container-title">Add Waiver</div>
-        <div class="add-waiver">
+        <section>
+            <div class="section-title">Add Waiver</div>
             <form>
-                <table class="data">
+                <table>
                     <tbody>
                         <tr>
                             <td></td>
@@ -32,9 +32,9 @@
                         </tr>
                         <tr>
                             <th>From</th>
-                            <td><input id="start_date" type="date"></td>
+                            <td><input id="start-date" type="date"></td>
                             <th>to</th>
-                            <td><input id="end_date" type="date"></td>
+                            <td><input id="end-date" type="date"></td>
                         </tr>
                         <tr>
                             <th>Hours</th>
@@ -53,22 +53,22 @@
                     Waive
                 </button>
             </form>
-        </div>
+        </section>
 
-        <div class="container-title">Waived workday list</div>
-        <div class="list-waiver">
-            <table class="waiver-list-table data" id="waiver-list-table">
-                <tbody>
-                    <thead>
-                        <td class="table-header">Day</td>
-                        <td class="table-header">Waiver Reason</td>
-                        <td class="table-header">Hours waived</td>
-                        <td class="table-header">Delete</td>
-                    </thead>
-                </tbody>
+        <section>
+            <div class="section-title">Waived workday list</div>
+            <table id="waiver-list-table">
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Waiver Reason</th>
+                        <th>Hours Waived</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
             </table>
-        </div>
-        <br>
+        </section>
     </div>
 </body>
 

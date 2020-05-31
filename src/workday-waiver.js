@@ -12,8 +12,8 @@ const store = new Store({name: 'waived-workdays'});
 let usersStyles =  getUserPreferences();
 
 function setDates(day) {
-    $('#start_date').val(day);
-    $('#end_date').val(day);
+    $('#start-date').val(day);
+    $('#end-date').val(day);
 }
 
 function setHours() {
@@ -31,8 +31,8 @@ function toggleAddButton() {
 }
 
 function addRowToListTable(day, reason, hours) {
-    var table = $('#waiver-list-table')[0],
-        row = table.insertRow(1),
+    var table = $('#waiver-list-table tbody')[0],
+        row = table.insertRow(0),
         dayCell = row.insertCell(0),
         reasonCell = row.insertCell(1),
         hoursCell = row.insertCell(2),
@@ -61,8 +61,8 @@ function getDateFromISOStr(isoStr) {
 }
 
 function addWaiver() {
-    var [start_year, start_month, start_day] = getDateFromISOStr($('#start_date').val());
-    var [end_year, end_month, end_day] = getDateFromISOStr($('#end_date').val());
+    var [start_year, start_month, start_day] = getDateFromISOStr($('#start-date').val());
+    var [end_year, end_month, end_day] = getDateFromISOStr($('#end-date').val());
     
     var start_date = new Date(start_year, start_month-1, start_day),
         end_date = new Date(end_year, end_month-1, end_day),
