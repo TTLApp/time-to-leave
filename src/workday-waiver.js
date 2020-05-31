@@ -86,8 +86,11 @@ function addWaiver() {
     }
 
     var temp_date = new Date(start_date);
+    var noWorkingDaysOnRange = true;
     for (var i = 0; i <= diff; i++) {
         var temp_date_str = getDateStr(temp_date);
+        var [temp_year, temp_month, temp_day] = getDateFromISOStr(temp_date_str);
+        noWorkingDaysOnRange &= !showDay(temp_year, temp_month-1, temp_day) && !store.has(temp_date_str);
         if (store.has(temp_date_str)) {
             dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                 {
@@ -101,11 +104,21 @@ function addWaiver() {
         temp_date.setDate(temp_date.getDate() + 1);
     }
 
+    if (noWorkingDaysOnRange) {
+        dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
+            {
+                message: `You already have a waiver on ${temp_date_str}. Remove it before adding a new one.`
+            }
+        ).then(() => {
+            return;
+        });
+    }
+
     temp_date = new Date(start_date);
 
     for (i = 0; i <= diff; i++) {
         temp_date_str = getDateStr(temp_date);
-        var [temp_year, temp_month, temp_day] = getDateFromISOStr(temp_date_str);
+        [temp_year, temp_month, temp_day] = getDateFromISOStr(temp_date_str);
         if (showDay(temp_year, temp_month-1, temp_day) && !store.has(temp_date_str)) {
             store.set(temp_date_str, { 'reason' : reason, 'hours' : hours });
             addRowToListTable(temp_date_str, reason, hours);

@@ -11,7 +11,9 @@
 - Fix: [#239] Punch button is disabled when current day is waived
 - Fix: [#240] Waiver using electron dialog instead of js confirm/alert
 - Fix: [#249] Fix loading preferences
+- Fix: [#250] Silently ignoring waiver on non-working day or non-working day range
 - Enhancement: [#228] Improved performance of TTL - Now moving through the calendar is much faster
 - Enhancement: [#152] Adding a "Copy" option in the "About message", making it easier to copy information when opening an issue
 - Upgrade: Upgrading jquery to 3.5.0
 - Upgrade: [#236] Upgrade all dependencies
+  
