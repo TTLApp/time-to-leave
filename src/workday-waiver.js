@@ -1,15 +1,13 @@
-const { getUserPreferences, showDay } = require('../js/user-preferences.js');
-const { validateTime, diffDays } = require('../js/time-math.js');
-const { applyTheme } = require('../js/themes.js');
-const { getDateStr } = require('../js/date-aux.js');
 const { remote } = require('electron');
 const { BrowserWindow, dialog } = remote;
 const Store = require('electron-store');
 
-const store = new Store({name: 'waived-workdays'});
+const { getUserPreferences, showDay } = require('../js/user-preferences.js');
+const { validateTime, diffDays } = require('../js/time-math.js');
+const { applyTheme } = require('../js/themes.js');
+const { getDateStr } = require('../js/date-aux.js');
 
-// Global values
-let usersStyles =  getUserPreferences();
+const waiverStore = new Store({name: 'waived-workdays'});
 
 function setDates(day) {
     $('#start-date').val(day);
@@ -17,39 +15,39 @@ function setDates(day) {
 }
 
 function setHours() {
+    let usersStyles = getUserPreferences();
     $('#hours').val(usersStyles['hours-per-day']);
 }
 
 function toggleAddButton() {
-    var value = $('#reason').val();
+    let value = $('#reason').val();
     if (value.length > 0) {
         $('#waive-button').removeAttr('disabled');
-    } 
-    else {
+    } else {
         $('#waive-button').attr('disabled', 'disabled');
     }
 }
 
 function addRowToListTable(day, reason, hours) {
-    var table = $('#waiver-list-table tbody')[0],
+    let table = $('#waiver-list-table tbody')[0],
         row = table.insertRow(0),
         dayCell = row.insertCell(0),
         reasonCell = row.insertCell(1),
         hoursCell = row.insertCell(2),
         delButtonCell = row.insertCell(3);
-  
+
     dayCell.innerHTML = day;
     reasonCell.innerHTML = reason;
     hoursCell.innerHTML = hours;
-    var id = 'delete-' + day;
+    let id = 'delete-' + day;
     delButtonCell.innerHTML = '<input class="delete-btn" data-day="' + day + '" id="' + id + '" type="image" src="../assets/delete.svg" alt="Delete entry" height="12" width="12"></input>';
-    
+
     $('#'+ id).on('click', deleteEntryOnClick);
 }
 
 function populateList() {
-    for (const elem of store) {
-        var date = elem[0],
+    for (const elem of waiverStore) {
+        let date = elem[0],
             reason = elem[1]['reason'],
             hours = elem[1]['hours'];
         addRowToListTable(date, reason, hours);
@@ -61,11 +59,11 @@ function getDateFromISOStr(isoStr) {
 }
 
 function addWaiver() {
-    var [start_year, start_month, start_day] = getDateFromISOStr($('#start-date').val());
-    var [end_year, end_month, end_day] = getDateFromISOStr($('#end-date').val());
-    
-    var start_date = new Date(start_year, start_month-1, start_day),
-        end_date = new Date(end_year, end_month-1, end_day),
+    let [startYear, startMonth, startDay] = getDateFromISOStr($('#start-date').val());
+    let [endYear, endMonth, endDay] = getDateFromISOStr($('#end-date').val());
+
+    let startDate = new Date(startYear, startMonth-1, startDay),
+        endDate = new Date(endYear, endMonth-1, endDay),
         reason = $('#reason').val(),
         hours = $('#hours').val();
 
@@ -74,7 +72,7 @@ function addWaiver() {
         return;
     }
 
-    var diff = diffDays(start_date, end_date);
+    let diff = diffDays(startDate, endDate);
     if (diff < 0) {
         dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
             {
@@ -85,46 +83,46 @@ function addWaiver() {
         });
     }
 
-    var temp_date = new Date(start_date);
-    var noWorkingDaysOnRange = true;
-    for (var i = 0; i <= diff; i++) {
-        var temp_date_str = getDateStr(temp_date);
-        var [temp_year, temp_month, temp_day] = getDateFromISOStr(temp_date_str);
-        noWorkingDaysOnRange &= !showDay(temp_year, temp_month-1, temp_day) && !store.has(temp_date_str);
-        if (store.has(temp_date_str)) {
+    let tempDate = new Date(startDate);
+    let noWorkingDaysOnRange = true;
+    for (let i = 0; i <= diff; i++) {
+        let tempDateStr = getDateStr(tempDate);
+        let [tempYear, tempMonth, tempDay] = getDateFromISOStr(tempDateStr);
+        noWorkingDaysOnRange &= !showDay(tempYear, tempMonth-1, tempDay) && !waiverStore.has(tempDateStr);
+        if (waiverStore.has(tempDateStr)) {
             dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                 {
-                    message: `You already have a waiver on ${temp_date_str}. Remove it before adding a new one.`
+                    message: `You already have a waiver on ${tempDateStr}. Remove it before adding a new one.`
                 }
             ).then(() => {
                 return;
             });
         }
 
-        temp_date.setDate(temp_date.getDate() + 1);
+        tempDate.setDate(tempDate.getDate() + 1);
     }
 
     if (noWorkingDaysOnRange) {
         dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
             {
-                message: `You already have a waiver on ${temp_date_str}. Remove it before adding a new one.`
+                message: 'Cannot add waiver. Range does not contain any working day.'
             }
         ).then(() => {
             return;
         });
     }
 
-    temp_date = new Date(start_date);
+    tempDate = new Date(startDate);
 
-    for (i = 0; i <= diff; i++) {
-        temp_date_str = getDateStr(temp_date);
-        [temp_year, temp_month, temp_day] = getDateFromISOStr(temp_date_str);
-        if (showDay(temp_year, temp_month-1, temp_day) && !store.has(temp_date_str)) {
-            store.set(temp_date_str, { 'reason' : reason, 'hours' : hours });
-            addRowToListTable(temp_date_str, reason, hours);
+    for (let i = 0; i <= diff; i++) {
+        let tempDateStr = getDateStr(tempDate);
+        let [tempYear, tempMonth, tempDay] = getDateFromISOStr(tempDateStr);
+        if (showDay(tempYear, tempMonth-1, tempDay) && !waiverStore.has(tempDateStr)) {
+            waiverStore.set(tempDateStr, { 'reason' : reason, 'hours' : hours });
+            addRowToListTable(tempDateStr, reason, hours);
         }
 
-        temp_date.setDate(temp_date.getDate() + 1);
+        tempDate.setDate(tempDate.getDate() + 1);
     }
 
     //Cleanup
@@ -147,7 +145,7 @@ function deleteEntryOnClick(event) {
         if (buttonId === 1) {
             return;
         }
-        store.delete(day);
+        waiverStore.delete(day);
 
         let row = deleteButton.closest('tr');
         row.remove();
@@ -155,8 +153,8 @@ function deleteEntryOnClick(event) {
 }
 
 $(() => {
-    let prefs = getUserPreferences();
-    applyTheme(prefs.theme);
+    let preferences = getUserPreferences();
+    applyTheme(preferences.theme);
 
     setDates(remote.getGlobal('waiverDay'));
     setHours();
@@ -164,11 +162,11 @@ $(() => {
 
     populateList();
 
-    $('#reason').on('keyup', function() {
+    $('#reason').on('keyup', () => {
         toggleAddButton();
     });
 
-    $('#waive-button').on('click', function() {
+    $('#waive-button').on('click', () => {
         addWaiver();
     });
 });

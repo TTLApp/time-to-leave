@@ -1,9 +1,10 @@
 const { ipcRenderer } = require('electron');
+
 const { getUserPreferences } = require('../js/user-preferences.js');
 const { applyTheme } = require('../js/themes.js');
 
 // Global values for preferences page
-let usersStyles =  getUserPreferences();
+let usersStyles = getUserPreferences();
 let preferences = usersStyles;
 
 $(() => {
@@ -14,7 +15,7 @@ $(() => {
     }
     let selectedThemeOption = $('#' + theme).children('option:selected').val();
     preferences[theme] = selectedThemeOption;
-    document.querySelector('html').setAttribute('data-theme', selectedThemeOption);
+    $('html').attr('data-theme', selectedThemeOption);
 
     $('input[type="checkbox"]').change(function() {
         preferences[this.name] = this.checked;
