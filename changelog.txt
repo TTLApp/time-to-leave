@@ -12,6 +12,7 @@
 - Fix: [#240] Waiver using electron dialog instead of js confirm/alert
 - Fix: [#249] Fix loading preferences
 - Fix: [#250] Silently ignoring waiver on non-working day or non-working day range
+- Fix: [#252] Prevent multiple preferences and workday waiver windows to be opened
 - Enhancement: [#228] Improved performance of TTL - Now moving through the calendar is much faster
 - Enhancement: [#152] Adding a "Copy" option in the "About message", making it easier to copy information when opening an issue
 - Enhancement: [#247] Day View - new minimalist view that shows the calendar day by day

@@ -28,6 +28,8 @@ ipcMain.on('SET_WAIVER_DAY', (event, waiverDay) => {
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
+let waiverWindow = null;
+let prefWindow = null;
 let tray;
 const store = new Store();
 const waivedWorkdays = new Store({name: 'waived-workdays'});
@@ -123,12 +125,17 @@ function createWindow() {
                     label: 'Workday Waiver Manager',
                     id: 'workday-waiver-manager',
                     click(item, window, event) {
+                        if (waiverWindow !== null) {
+                            waiverWindow.show();
+                            return;
+                        }
+                        
                         if (event) {
                             const today = new Date();
                             global.waiverDay = getDateStr(today);
                         }
                         const htmlPath = path.join('file://', __dirname, 'src/workday-waiver.html');
-                        let waiverWindow = new BrowserWindow({ width: 600,
+                        waiverWindow = new BrowserWindow({ width: 600,
                             height: 500,
                             parent: win,
                             resizable: true,
@@ -183,8 +190,13 @@ function createWindow() {
                     label: 'Preferences',
                     accelerator: macOS ? 'Command+,' : 'Control+,',
                     click() {
+                        if (prefWindow !== null) {
+                            prefWindow.show();
+                            return;
+                        }
+                      
                         const htmlPath = path.join('file://', __dirname, 'src/preferences.html');
-                        let prefWindow = new BrowserWindow({ width: 400,
+                        prefWindow = new BrowserWindow({ width: 400,
                             height: 500,
                             parent: win,
                             resizable: true,
