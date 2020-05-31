@@ -12,9 +12,7 @@
 
     <!-- Scripts -->
     <!-- First we need to declare jQuery and $ globals with jquery -->
-    <script>
-        window.$ = window.jQuery = require('jquery');
-    </script>
+    <script>window.$ = window.jQuery = require('jquery');</script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js" charset="utf-8"></script>
     <script src="js/calendar.js" charset="utf-8"></script>
 </head>
@@ -26,10 +24,10 @@
     <br>
     <br>
     <div class="footer">
-        <button class="punch-button" id="punch-button" disabled>
-      <img src="assets/fingerprint.svg" height="36" width="36"></img>
-      Punch time
-    </button>
+        <button class="punch-button" id="punch-button" type="button" disabled>
+            <img src="assets/fingerprint.svg" height="36" width="36"></img>
+            Punch time
+        </button>
     </div>
 </body>
 

@@ -1,16 +1,16 @@
+<!DOCTYPE html>
 <html data-theme="">
-<header>
+
+<head>
     <title>Time to Leave - Preferences</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/styles.css">
 
     <!-- First we need to declare jQuery and $ globals with jquery -->
-    <script>
-        window.$ = window.jQuery = require('jquery');
-    </script>
+    <script>window.$ = window.jQuery = require('jquery');</script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js" charset="utf-8"></script>
     <script src="preferences.js"></script>
-</header>
+</head>
 
 <body>
     <div class="preferences">
@@ -71,13 +71,12 @@
         <div class="flex-box">
             <p>Themes</p>
             <select id="theme" name="theme">
-                    <option value="light" selected>Light</option>
-                    <option value="dark">Dark</option>
-                </select>
+                <option value="light" selected>Light</option>
+                <option value="dark">Dark</option>
+            </select>
         </div>
     </div>
-    </br>
-    </div>
+    <br>
 </body>
 
 </html>
