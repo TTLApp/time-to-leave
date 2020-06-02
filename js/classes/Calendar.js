@@ -25,7 +25,7 @@ const waivedWorkdays = new Store({name: 'waived-workdays'});
 class CalendarFactory {
     static getInstance(preferences, calendar = undefined) {
         let view = preferences.view;
-        if (view == 'day') {
+        if (view === 'day') {
             if (calendar === undefined || calendar.constructor.name !== 'DayCalendar') {
                 ipcRenderer.send('RESIZE_MAIN_WINDOW', 500, 500);
                 return new DayCalendar(preferences);
@@ -34,7 +34,7 @@ class CalendarFactory {
                 calendar.redraw();
                 return calendar;
             }
-        } else if (view == 'month') {
+        } else if (view === 'month') {
             if (calendar === undefined || calendar.constructor.name !== 'Calendar') {
                 if (calendar !== undefined && calendar.constructor.name !== 'Calendar') {
                     ipcRenderer.send('RESIZE_MAIN_WINDOW', 1010, 800);
@@ -1172,25 +1172,20 @@ class DayCalendar extends Calendar {
                 continue;
             }
 
-            let dayTotal = null;
             let dayStr = this._year + '-' + this._month + '-' + day + '-';
 
-            if (day != this._getDay()) {
-                dayTotal = this._getDayTotal(day, this._month, this._year);
-            }
-            else {
+            if (day === this._getDay()) {
                 let waivedInfo = this._getWaiverStore(day, this._month, this._year);
                 if (waivedInfo !== undefined) {
                     let waivedDayTotal = waivedInfo['hours'];
                     $('#' + dayStr + 'day-total').val(waivedDayTotal);
-                    dayTotal = waivedDayTotal;
                 } else {
                     let lunchBegin = this._setTableData(day, this._month, 'lunch-begin');
                     let lunchEnd = this._setTableData(day, this._month, 'lunch-end');
                     this._setTableData(day, this._month, 'lunch-total');
                     let dayBegin = this._setTableData(day, this._month, 'day-begin');
                     let dayEnd = this._setTableData(day, this._month, 'day-end');
-                    dayTotal = this._setTableData(day, this._month, 'day-total');
+                    this._setTableData(day, this._month, 'day-total');
 
                     this._colorErrorLine(this._year, this._month, day, dayBegin, lunchBegin, lunchEnd, dayEnd);
                 }

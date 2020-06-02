@@ -127,7 +127,7 @@ function initPreferencesFileIfNotExistsOrInvalid() {
             shouldSaveDerivedPrefs |= !isValidTheme(value);
             break;
         case 'view':
-            shouldSaveDerivedPrefs |= !(value == 'month' || value == 'day');
+            shouldSaveDerivedPrefs |= !(value === 'month' || value === 'day');
             break;
         }
     }
