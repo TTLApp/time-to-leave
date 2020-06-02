@@ -75,7 +75,6 @@ class Calendar {
     _initCalendar() {
         this._generateTemplate();
 
-        $('#punch-button').click(() => { this.punchDate(); });
         $('#next-month').click(() => { this._nextMonth(); });
         $('#prev-month').click(() => { this._prevMonth(); });
         $('#current-month').click(() => { this._goToCurrentDate(); });
@@ -880,7 +879,6 @@ class DayCalendar extends Calendar {
     _initCalendar() {
         this._generateTemplate();
 
-        $('#punch-button').click(() => { this.punchDate(); });
         $('#next-day').click(() => { this._nextDay(); });
         $('#prev-day').click(() => { this._prevDay(); });
         $('#switch-view').click(() => { this._switchView(); });
