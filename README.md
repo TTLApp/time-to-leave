@@ -71,3 +71,5 @@ Icons made by [freepik](https://www.flaticon.com/authors/freepik) from [www.flat
 Original Timer icon by [lucy-g](https://icon-icons.com/icon/timer/121243), colored variations and formats modified from it.
 
 Sick icon by [SVG Repo](https://www.svgrepo.com/svg/271898/sick).
+
+View Switch icon made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [www.flaticon.com](https://www.flaticon.com).
