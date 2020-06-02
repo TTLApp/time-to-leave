@@ -14,6 +14,7 @@
 - Fix: [#250] Silently ignoring waiver on non-working day or non-working day range
 - Enhancement: [#228] Improved performance of TTL - Now moving through the calendar is much faster
 - Enhancement: [#152] Adding a "Copy" option in the "About message", making it easier to copy information when opening an issue
+- Enhancement: [#247] Day View - new minimalist view that shows the calendar day by day
 - Upgrade: Upgrading jquery to 3.5.0
 - Upgrade: [#236] Upgrade all dependencies
   
