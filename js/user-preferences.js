@@ -186,8 +186,19 @@ function switchCalendarView() {
     return preferences;
 }
 
+function getDefaultWidthHeight() {
+    let preferences = getLoadedOrDerivedUserPreferences();
+    if (preferences['view'] === 'month') {
+        return { width: 1010, height: 800 };
+    }
+    else {
+        return { width: 500, height: 500 };
+    }
+}
+
 module.exports = {
     defaultPreferences,
+    getDefaultWidthHeight,
     getUserPreferences: getLoadedOrDerivedUserPreferences,
     savePreferences,
     showDay,

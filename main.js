@@ -6,7 +6,7 @@ const isOnline = require('is-online');
 const { importDatabaseFromFile, exportDatabaseToFile } = require('./js/import-export.js');
 const { notify } = require('./js/notification');
 const { getDateStr } = require('./js/date-aux.js');
-const { getUserPreferences, savePreferences } = require('./js/user-preferences.js');
+const { getDefaultWidthHeight, getUserPreferences, savePreferences } = require('./js/user-preferences.js');
 const os = require('os');
 
 let savedPreferences = null;
@@ -391,9 +391,11 @@ function createWindow() {
         }
     ]);
 
+    let widthHeight = getDefaultWidthHeight();
+
     win = new BrowserWindow({
-        width: 1000,
-        height: 1000,
+        width: widthHeight.width,
+        height: widthHeight.height,
         minWidth: 450,
         useContentSize: true,
         zoomToPageWidth: true, //MacOS only

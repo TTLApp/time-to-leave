@@ -10,7 +10,7 @@ const {
     sumTime,
     validateTime
 } = require('../time-math.js');
-const { showDay, switchCalendarView } = require('../user-preferences.js');
+const { getDefaultWidthHeight, showDay, switchCalendarView } = require('../user-preferences.js');
 const { getDateStr, getMonthLength } = require('../date-aux.js');
 const {
     formatDayId,
@@ -25,9 +25,10 @@ const waivedWorkdays = new Store({name: 'waived-workdays'});
 class CalendarFactory {
     static getInstance(preferences, calendar = undefined) {
         let view = preferences.view;
+        let widthHeight = getDefaultWidthHeight();
         if (view === 'day') {
             if (calendar === undefined || calendar.constructor.name !== 'DayCalendar') {
-                ipcRenderer.send('RESIZE_MAIN_WINDOW', 500, 500);
+                ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
                 return new DayCalendar(preferences);
             } else {
                 calendar.updatePreferences(preferences);
@@ -37,7 +38,7 @@ class CalendarFactory {
         } else if (view === 'month') {
             if (calendar === undefined || calendar.constructor.name !== 'Calendar') {
                 if (calendar !== undefined && calendar.constructor.name !== 'Calendar') {
-                    ipcRenderer.send('RESIZE_MAIN_WINDOW', 1010, 800);
+                    ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
                 }
                 return new Calendar(preferences);
             } else {
