@@ -397,7 +397,7 @@ function createWindow() {
         width: widthHeight.width,
         height: widthHeight.height,
         minWidth: 450,
-        useContentSize: true,
+        useContentSize: false,
         zoomToPageWidth: true, //MacOS only
         icon: iconpath,
         show: false,

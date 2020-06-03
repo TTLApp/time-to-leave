@@ -28,7 +28,9 @@ class CalendarFactory {
         let widthHeight = getDefaultWidthHeight();
         if (view === 'day') {
             if (calendar === undefined || calendar.constructor.name !== 'DayCalendar') {
-                ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
+                if (calendar !== undefined && calendar.constructor.name !== 'DayCalendar') {
+                    ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
+                }
                 return new DayCalendar(preferences);
             } else {
                 calendar.updatePreferences(preferences);
