@@ -15,9 +15,7 @@
 - Fix: [#252] Prevent multiple preferences and workday waiver windows to be opened
 - Enhancement: [#228] Improved performance of TTL - Now moving through the calendar is much faster
 - Enhancement: [#152] Adding a "Copy" option in the "About message", making it easier to copy information when opening an issue
-- Enhancement: [#245] DevTools shortcut on Preferences and Waiver windows
 - Enhancement: [#247] Day View - new minimalist view that shows the calendar day by day
-- Enhancement: [#245] DevTools shortcut on Preferences and Waiver windows
 - Upgrade: Upgrading jquery to 3.5.0
 - Upgrade: [#236] Upgrade all dependencies
   

@@ -2,7 +2,6 @@ const { ipcRenderer } = require('electron');
 
 const { getUserPreferences } = require('../js/user-preferences.js');
 const { applyTheme } = require('../js/themes.js');
-const { bindDevToolsShortcut } = require('../js/window-aux.js');
 
 // Global values for preferences page
 let usersStyles = getUserPreferences();
@@ -76,6 +75,4 @@ $(() => {
     repetition.change(function() {
         notificationsInterval.prop('disabled', !repetition.is(':checked'));
     });
-
-    bindDevToolsShortcut(window);
 });
