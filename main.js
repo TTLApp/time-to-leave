@@ -212,8 +212,10 @@ function createWindow() {
                         //prefWindow.webContents.openDevTools()
                         prefWindow.on('close', function() {
                             prefWindow = null;
-                            savePreferences(savedPreferences);
-                            win.webContents.send('PREFERENCE_SAVED', savedPreferences);
+                            if (savedPreferences !== null) {
+                                savePreferences(savedPreferences);
+                                win.webContents.send('PREFERENCE_SAVED', savedPreferences);
+                            }
                         });
                     },
                 },
