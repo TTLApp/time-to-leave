@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const { defaultPreferences, getDefaultWidthHeight, getUserPreferences, savePreferences, showDay } = require('../../js/user-preferences');
+const { defaultPreferences, getDefaultWidthHeight, getUserPreferences, savePreferences, showDay, switchCalendarView } = require('../../js/user-preferences');
 
 describe('Preferences Main', () => {
     process.env.NODE_ENV = 'test';
@@ -26,12 +26,39 @@ describe('Preferences Main', () => {
         });
 
         test('Day view', () => {
-            let preferences = defaultPreferences;
+            let preferences = { defaultPreferences };
 
             preferences['view'] = 'day';
             savePreferences(preferences);
 
             expect(getDefaultWidthHeight()).toStrictEqual({ width: 500, height: 500 });
+        });
+    });
+
+    describe('switchCalendarView()', () => {
+
+        test('Month to Day', () => {
+            expect(defaultPreferences['view']).toBe('month');
+            savePreferences(defaultPreferences);
+
+            expect(getUserPreferences()['view']).toBe('month');
+            switchCalendarView();
+
+            let preferences = getUserPreferences();
+            expect(preferences['view']).toBe('day');
+        });
+
+        test('Day to Month', () => {
+            let preferences = { defaultPreferences };
+
+            preferences['view'] = 'day';
+            savePreferences(preferences);
+
+            expect(getUserPreferences()['view']).toBe('day');
+            switchCalendarView();
+
+            preferences = getUserPreferences();
+            expect(preferences['view']).toBe('month');
         });
     });
 });
