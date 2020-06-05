@@ -10,6 +10,7 @@
 - Fix: [#229] Count Today in totals no longer causes problem in the month balance
 - Fix: [#239] Punch button is disabled when current day is waived
 - Fix: [#240] Waiver using electron dialog instead of js confirm/alert
+- Fix: [#244] Waiver opens with filled date when clicking from calendar
 - Fix: [#249] Fix loading preferences
 - Fix: [#250] Silently ignoring waiver on non-working day or non-working day range
 - Fix: [#252] Prevent multiple preferences and workday waiver windows to be opened
