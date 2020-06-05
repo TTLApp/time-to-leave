@@ -27,7 +27,14 @@ $(() => {
         ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
     });
 
-    $('input[type="time"]').change(function() {
+    $('#hours-per-day').change(function() {
+        if (this.checkValidity() === true) {
+            preferences[this.name] = this.value;
+            ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
+        }
+    });
+
+    $('input[type="number"]').change(function() {
         preferences[this.name] = this.value;
         ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
     });
@@ -51,7 +58,7 @@ $(() => {
                 input.prop('checked', usersStyles[name]);
             }
             preferences[name] = input.prop('checked');
-        } else if (input.attr('type') === 'time') {
+        } else if (['text', 'number'].indexOf(input.attr('type')) > -1) {
             if (name in usersStyles) {
                 input.val(usersStyles[name]);
             }

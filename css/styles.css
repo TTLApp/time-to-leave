@@ -498,6 +498,10 @@ input:disabled + .slider {
   color: #fff;
 }
 
+#preferences-window input[type=text]:invalid{
+  color: rgb(255, 71, 71);
+}
+
 #preferences-window .flex-box {
   display: flex;
   height: 25px;

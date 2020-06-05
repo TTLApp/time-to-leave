@@ -18,9 +18,10 @@ let calendar = null;
 /*
  * Get nofified when preferences has been updated.
  */
-ipcRenderer.on('PREFERENCE_SAVED', function(event, preferences) {
-    calendar = CalendarFactory.getInstance(preferences, calendar);
-    applyTheme(preferences.theme);
+ipcRenderer.on('PREFERENCE_SAVED', function(event, prefs) {
+    preferences = prefs;
+    calendar = CalendarFactory.getInstance(prefs, calendar);
+    applyTheme(prefs.theme);
 });
 
 /*
@@ -52,7 +53,7 @@ function notifyTimeToLeave() {
          * How many minutes should pass before the Time-To-Leave notification should be presented again.
          * @type {number} Minutes post the clockout time
          */
-        const notificationInterval = hourToMinutes(preferences['notifications-interval']);
+        const notificationInterval = preferences['notifications-interval'];
         var now = new Date();
         var curTime = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
 

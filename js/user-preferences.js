@@ -11,7 +11,7 @@ const defaultPreferences = {
     'hours-per-day': '08:00',
     'notification': true,
     'repetition': true,
-    'notifications-interval': '00:05',
+    'notifications-interval': '5',
     'start-at-login': false,
     'theme': 'light',
     'update-remind-me-after' : '2019-01-01',
@@ -62,7 +62,7 @@ function readPreferences() {
 function getDerivedPrefsFromLoadedPrefs(loadedPreferences) {
     var derivedPreferences = {};
     Object.keys(defaultPreferences).forEach(function(key) {
-        derivedPreferences[key] = loadedPreferences[key] || defaultPreferences[key];
+        derivedPreferences[key] = (typeof loadedPreferences[key] !== 'undefined') ? loadedPreferences[key] : defaultPreferences[key];
     });
 
     return derivedPreferences;
@@ -95,6 +95,11 @@ function initPreferencesFileIfNotExistsOrInvalid() {
         switch (key) {
         // Handle Time Inputs
         case 'notifications-interval':
+            if (isNaN(Number(value)) || value < 1 || value > 30) {
+                derivedPrefs[key] = defaultPreferences[key];
+                shouldSaveDerivedPrefs = true;
+            }
+            break;
         case 'hours-per-day': {
             if (!validateTime(value)) {
                 derivedPrefs[key] = defaultPreferences[key];
