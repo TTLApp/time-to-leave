@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const { showDay, getUserPreferences } = require('../../js/user-preferences');
+const { defaultPreferences, getDefaultWidthHeight, getUserPreferences, savePreferences, showDay } = require('../../js/user-preferences');
 
 describe('Preferences Main', () => {
     process.env.NODE_ENV = 'test';
@@ -14,8 +14,25 @@ describe('Preferences Main', () => {
         expect(showDay(2020, 1, 5)).toBe(days['working-days-wednesday']);
         expect(showDay(2020, 1, 6)).toBe(days['working-days-thursday']);
         expect(showDay(2020, 1, 7)).toBe(days['working-days-friday']);
-
     });
 
+    describe('getDefaultWidthHeight()', () => {
+
+        test('Month view', () => {
+            expect(defaultPreferences['view']).toBe('month');
+            savePreferences(defaultPreferences);
+
+            expect(getDefaultWidthHeight()).toStrictEqual({ width: 1010, height: 800 });
+        });
+
+        test('Day view', () => {
+            let preferences = defaultPreferences;
+
+            preferences['view'] = 'day';
+            savePreferences(preferences);
+
+            expect(getDefaultWidthHeight()).toStrictEqual({ width: 500, height: 500 });
+        });
+    });
 });
 
