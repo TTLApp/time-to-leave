@@ -63,9 +63,7 @@ class Calendar {
             dayAbbrs : [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
             months : [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ]
         };
-        this._today = new Date();
-        this._month = this._today.getMonth();
-        this._year = this._today.getFullYear();
+        this._calendarDate = new Date();
         this.loadInternalStore();
         this.loadInternalWaiveStore();
         this.updatePreferences(preferences);
@@ -94,8 +92,8 @@ class Calendar {
         this._updateTableBody();
         this._updateBasedOnDB();
 
-        var waivedInfo = this._getWaiverStore(this._today.getDate(), this._today.getMonth(), this._today.getFullYear());
-        var showCurrentDay = this._showDay(this._today.getFullYear(), this._today.getMonth(), this._today.getDate());
+        var waivedInfo = this._getWaiverStore(this._getTodayDate(), this._getTodayMonth(), this._getTodayYear());
+        var showCurrentDay = this._showDay(this._getTodayYear(), this._getTodayMonth(), this._getTodayDate());
         this._togglePunchButton(showCurrentDay && waivedInfo === undefined);
 
         this._updateLeaveBy();
@@ -117,9 +115,9 @@ class Calendar {
      * Updates data displayed based on the database.
      */
     _setTableData(day, month, key) {
-        var idTag = this._year + '-' + month + '-' + day + '-' + key;
+        var idTag = this._getCalendarYear() + '-' + month + '-' + day + '-' + key;
 
-        var value = this._getStore(day, month, this._year, key);
+        var value = this._getStore(day, month, this._getCalendarYear(), key);
         if (value === undefined) {
             value = '';
         }
@@ -335,13 +333,13 @@ class Calendar {
      * Returns the last valid day before the current one, to print the balance row
      */
     _getBalanceRowPosition() {
-        if (this._year !== this._today.getFullYear() || this._month !== this._today.getMonth()) {
-            return getMonthLength(this._year, this._month);
+        if (this._getCalendarYear() !== this._getTodayYear() || this._getCalendarMonth() !== this._getTodayMonth()) {
+            return getMonthLength(this._getCalendarYear(), this._getCalendarMonth());
         }
 
         var balanceRowPosition = 0;
-        for (var day = 1; day < this._today.getDate(); ++day) {
-            if (this._showDay(this._year, this._month, day)) {
+        for (var day = 1; day < this._getTodayDate(); ++day) {
+            if (this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day)) {
                 balanceRowPosition = day;
             }
         }
@@ -370,11 +368,11 @@ class Calendar {
      */
     _generateTableBody() {
         var html;
-        var monthLength = getMonthLength(this._year, this._month);
+        var monthLength = getMonthLength(this._getCalendarYear(), this._getCalendarMonth());
         var balanceRowPosition = this._getBalanceRowPosition();
 
         for (var day = 1; day <= monthLength; ++day) {
-            html += this._getInputsRowCode(this._year, this._month, day);
+            html += this._getInputsRowCode(this._getCalendarYear(), this._getCalendarMonth(), day);
             if (day === balanceRowPosition) {
                 html += this.constructor._getBalanceRowCode();
             }
@@ -386,7 +384,7 @@ class Calendar {
      * Updates the code of the table header of the calendar, to be called on demand.
      */
     _updateTableHeader() {
-        $('#month-year').html(this._options.months[this._month] + ' ' + this._year);
+        $('#month-year').html(this._options.months[this._getCalendarMonth()] + ' ' + this._getCalendarYear());
     }
 
     /*
@@ -410,12 +408,7 @@ class Calendar {
      * Display next month.
      */
     _nextMonth() {
-        if (this._month === 11) {
-            this._month = 0;
-            this._year += 1;
-        } else {
-            this._month += 1;
-        }
+        this._calendarDate.setMonth(this._getCalendarMonth() + 1);
         this.redraw();
     }
 
@@ -423,12 +416,7 @@ class Calendar {
      * Display previous month.
      */
     _prevMonth() {
-        if (this._month === 0) {
-            this._month = 11;
-            this._year -= 1;
-        } else {
-            this._month -= 1;
-        }
+        this._calendarDate.setMonth(this._getCalendarMonth() - 1);
         this.redraw();
     }
 
@@ -436,23 +424,50 @@ class Calendar {
      * Go to current month.
      */
     _goToCurrentDate() {
-        this._month = this._today.getMonth();
-        this._year = this._today.getFullYear();
+        this._calendarDate = new Date();
         this.redraw();
+    }
+
+    /*
+     * Gets today's year
+     */
+    _getTodayYear() {
+        return (new Date()).getFullYear();
+    }
+
+    /*
+     * Gets today's month.
+     */
+    _getTodayMonth() {
+        return (new Date()).getMonth();
+    }
+
+    /*
+     * Gets today's date.
+     */
+    _getTodayDate() {
+        return (new Date()).getDate();
     }
 
     /*
      * Gets year of displayed calendar.
      */
-    _getYear() {
-        return this._year;
+    _getCalendarYear() {
+        return this._calendarDate.getFullYear();
     }
 
     /*
      * Gets month of displayed calendar.
      */
-    _getMonth() {
-        return this._month;
+    _getCalendarMonth() {
+        return this._calendarDate.getMonth();
+    }
+
+    /*
+     * Gets day of displayed calendar. (Used only in DayCalendar)
+     */
+    _getCalendarDate() {
+        return this._calendarDate.getDate();
     }
 
     /*
@@ -549,8 +564,8 @@ class Calendar {
             hour = now.getHours(),
             min = now.getMinutes();
 
-        if (this._getMonth() !== month ||
-            this._getYear() !== year ||
+        if (this._getCalendarMonth() !== month ||
+            this._getCalendarYear() !== year ||
             !this._showDay(year, month, day)) {
             return;
         }
@@ -582,14 +597,14 @@ class Calendar {
     */
     _updateBalance() {
         var now = new Date(),
-            monthLength = getMonthLength(this._year, this._month),
+            monthLength = getMonthLength(this._getCalendarYear(), this._getCalendarMonth()),
             workingDaysToCompute = 0,
             monthTotalWorked = '00:00';
         var countDays = false;
         var isNextDay = false;
 
         for (var day = 1; day <= monthLength; ++day) {
-            var isToday = (now.getDate() === day && now.getMonth() === this._month && now.getFullYear() === this._year);
+            var isToday = (now.getDate() === day && now.getMonth() === this._getCalendarMonth() && now.getFullYear() === this._getCalendarYear());
             if (isToday && !this._getCountToday()) {
                 //balance considers only up until yesterday
                 break;
@@ -599,11 +614,11 @@ class Calendar {
             }
             isNextDay = isToday;
 
-            if (!this._showDay(this._year, this._month, day)) {
+            if (!this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day)) {
                 continue;
             }
 
-            var dayStr = this._year + '-' + this._month + '-' + day + '-' + 'day-total';
+            var dayStr = this._getCalendarYear() + '-' + this._getCalendarMonth() + '-' + day + '-' + 'day-total';
             var dayTotal = $('#' + dayStr).val();
             if (dayTotal) {
                 countDays = true;
@@ -628,35 +643,35 @@ class Calendar {
      * Updates data displayed based on the database.
      */
     _updateBasedOnDB() {
-        var monthLength = getMonthLength(this._year, this._month);
+        var monthLength = getMonthLength(this._getCalendarYear(), this._getCalendarMonth());
         var monthTotal = '00:00';
         let workingDays = 0;
         var stopCountingMonthStats = false;
         for (var day = 1; day <= monthLength; ++day) {
-            if (!this._showDay(this._year, this._month, day)) {
+            if (!this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day)) {
                 continue;
             }
 
             var dayTotal = null;
-            var dayStr = this._year + '-' + this._month + '-' + day + '-';
+            var dayStr = this._getCalendarYear() + '-' + this._getCalendarMonth() + '-' + day + '-';
 
-            var waivedInfo = this._getWaiverStore(day, this._month, this._year);
+            var waivedInfo = this._getWaiverStore(day, this._getCalendarMonth(), this._getCalendarYear());
             if (waivedInfo !== undefined) {
                 var waivedDayTotal = waivedInfo['hours'];
                 $('#' + dayStr + 'day-total').val(waivedDayTotal);
                 dayTotal = waivedDayTotal;
             } else {
-                var lunchBegin = this._setTableData(day, this._month, 'lunch-begin');
-                var lunchEnd = this._setTableData(day, this._month, 'lunch-end');
-                this._setTableData(day, this._month, 'lunch-total');
-                var dayBegin = this._setTableData(day, this._month, 'day-begin');
-                var dayEnd = this._setTableData(day, this._month, 'day-end');
-                dayTotal = this._setTableData(day, this._month, 'day-total');
+                var lunchBegin = this._setTableData(day, this._getCalendarMonth(), 'lunch-begin');
+                var lunchEnd = this._setTableData(day, this._getCalendarMonth(), 'lunch-end');
+                this._setTableData(day, this._getCalendarMonth(), 'lunch-total');
+                var dayBegin = this._setTableData(day, this._getCalendarMonth(), 'day-begin');
+                var dayEnd = this._setTableData(day, this._getCalendarMonth(), 'day-end');
+                dayTotal = this._setTableData(day, this._getCalendarMonth(), 'day-total');
 
-                this._colorErrorLine(this._year, this._month, day, dayBegin, lunchBegin, lunchEnd, dayEnd);
+                this._colorErrorLine(this._getCalendarYear(), this._getCalendarMonth(), day, dayBegin, lunchBegin, lunchEnd, dayEnd);
             }
 
-            stopCountingMonthStats |= (this._today.getDate() === day && this._today.getMonth() === this._month && this._today.getFullYear() === this._year);
+            stopCountingMonthStats |= (this._getTodayDate() === day && this._getTodayMonth() === this._getCalendarMonth() && this._getTodayYear() === this._getCalendarYear());
             if (stopCountingMonthStats) {
                 continue;
             }
@@ -691,14 +706,14 @@ class Calendar {
      * Update contents of the "time to leave" bar.
      */
     _updateLeaveBy() {
-        if (!this._showDay(this._today.getFullYear(), this._today.getMonth(), this._today.getDate()) ||
-            this._today.getMonth() !== this._getMonth() ||
-            this._today.getFullYear() !== this._getYear() ||
-            this._getWaiverStore(this._today.getDate(), this._month, this._year)) {
+        if (!this._showDay(this._getTodayYear(), this._getTodayMonth(), this._getTodayDate()) ||
+            this._getTodayMonth() !== this._getCalendarMonth() ||
+            this._getTodayYear() !== this._getCalendarYear() ||
+            this._getWaiverStore(this._getTodayDate(), this._getCalendarMonth(), this._getCalendarYear())) {
             return;
         }
-        var [dayBegin, lunchBegin, lunchEnd, dayEnd] = this._getDaysEntries(this._today.getMonth(), this._today.getDate());
-        var dayKey = this._today.getFullYear() + '-' + this._today.getMonth() + '-' + this._today.getDate() + '-';
+        var [dayBegin, lunchBegin, lunchEnd, dayEnd] = this._getDaysEntries(this._getTodayMonth(), this._getTodayDate());
+        var dayKey = this._getTodayYear() + '-' + this._getTodayMonth() + '-' + this._getTodayDate() + '-';
         if (validateTime(dayBegin)) {
             var leaveBy = sumTime(dayBegin, this._getHoursPerDay());
             var lunchTotal = $('#' + dayKey + 'lunch-total').val();
@@ -815,10 +830,10 @@ class Calendar {
     * Returns the entry values for the day, from the internal store.
     */
     _getDaysEntries(month, day) {
-        return [this._getStore(day, month, this._year, 'day-begin'),
-            this._getStore(day, month, this._year, 'lunch-begin'),
-            this._getStore(day, month, this._year, 'lunch-end'),
-            this._getStore(day, month, this._year, 'day-end')];
+        return [this._getStore(day, month, this._getCalendarYear(), 'day-begin'),
+            this._getStore(day, month, this._getCalendarYear(), 'lunch-begin'),
+            this._getStore(day, month, this._getCalendarYear(), 'lunch-end'),
+            this._getStore(day, month, this._getCalendarYear(), 'day-end')];
     }
 
     /*
@@ -980,7 +995,7 @@ class DayCalendar extends Calendar {
      * Returns the code of the table body of the calendar.
      */
     _generateTableBody() {
-        return this._getInputsRowCode(this._year, this._month, this._getDay()) + this.constructor._getBalanceRowCode();
+        return this._getInputsRowCode(this._getCalendarYear(), this._getCalendarMonth(), this._getCalendarDate()) + this.constructor._getBalanceRowCode();
     }
 
     _getInputsRowCode(year, month, day) {
@@ -1041,8 +1056,9 @@ class DayCalendar extends Calendar {
      */
     _updateTableHeader() {
         let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        $('#header-date').html(this._today.toLocaleDateString(undefined, options));
-        $('#input-calendar-date').val(getDateStr(this._today));
+        let today = this._calendarDate;
+        $('#header-date').html(today.toLocaleDateString(undefined, options));
+        $('#input-calendar-date').val(getDateStr(today));
     }
 
     /*
@@ -1066,28 +1082,19 @@ class DayCalendar extends Calendar {
         this._goToDate(new Date());
     }
 
-    /*
-     * Gets day of "_today" member variable.
-     */
-    _getDay() {
-        return this._today.getDate();
+    /**
+    * Returns if Calendar date agrees with parameter date.
+    */
+    _isCalendarOnDate(date) {
+        return date.getDate() === this._getCalendarDate() && date.getMonth() === this._getCalendarMonth() && date.getFullYear() === this._getCalendarYear();
     }
 
-
-    /*
-     * Returns if day is really today.
-     */
-    _isToday(date = new Date()) {
-        return date.getDate() === this._today.getDate() && date.getMonth() === this._today.getMonth() && date.getFullYear() === this._today.getFullYear();
-    }
-
-    /*
-     * Go to date.
-     */
+    /**
+    * Go to date.
+    * @param {Date} date
+    */
     _goToDate(date) {
-        this._today = date;
-        this._month = this._today.getMonth();
-        this._year = this._today.getFullYear();
+        this._calendarDate = date;
         this.redraw();
     }
 
@@ -1096,10 +1103,7 @@ class DayCalendar extends Calendar {
      * @param int numDays number of days to be changed (positive/negative)
      */
     _changeDay(numDays) {
-        this._today.setDate(this._today.getDate() + numDays);
-        this._month = this._today.getMonth();
-        this._year = this._today.getFullYear();
-
+        this._calendarDate.setDate(this._calendarDate.getDate() + numDays);
         this.redraw();
     }
 
@@ -1109,7 +1113,7 @@ class DayCalendar extends Calendar {
     _draw() {
         super._draw();
 
-        if (!this._isToday()) {
+        if (!this._isCalendarOnDate(new Date())) {
             $('#punch-button').prop('disabled', true);
             ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', false);
         }
@@ -1119,19 +1123,19 @@ class DayCalendar extends Calendar {
     * Updates the monthly time balance.
     */
     _updateBalance() {
-        let yesterday = new Date(this._today);
-        yesterday.setDate(this._today.getDate() - 1);
+        let yesterday = new Date(this._calendarDate);
+        yesterday.setDate(this._calendarDate.getDate() - 1);
         let workingDaysToCompute = 0,
             monthTotalWorked = '00:00';
         let countDays = false;
 
-        let limit = this._getCountToday() ? this._getDay() : (yesterday.getMonth() !== this._getMonth() ? 0 : yesterday.getDate());
+        let limit = this._getCountToday() ? this._getCalendarDate() : (yesterday.getMonth() !== this._getCalendarMonth() ? 0 : yesterday.getDate());
         for (let day = 1; day <= limit; ++day) {
-            if (!this._showDay(this._year, this._month, day)) {
+            if (!this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day)) {
                 continue;
             }
 
-            let dayTotal = this._getDayTotal(day, this._month, this._year);
+            let dayTotal = this._getDayTotal(day, this._getCalendarMonth(), this._getCalendarYear());
             if (dayTotal !== undefined) {
                 countDays = true;
                 monthTotalWorked = sumTime(monthTotalWorked, dayTotal);
@@ -1160,7 +1164,7 @@ class DayCalendar extends Calendar {
      * Updates data displayed based on the database.
      */
     _updateBasedOnDB() {
-        let monthLength = getMonthLength(this._year, this._month);
+        let monthLength = getMonthLength(this._getCalendarYear(), this._getCalendarMonth());
         let workingDays = 0;
         let stopCountingMonthStats = false;
         for (let day = 1; day <= monthLength; ++day) {
@@ -1169,28 +1173,28 @@ class DayCalendar extends Calendar {
                 break;
             }
 
-            stopCountingMonthStats |= (this._today.getDate() === day && this._today.getMonth() === this._month && this._today.getFullYear() === this._year);
+            stopCountingMonthStats |= (this._getCalendarDate() === day);
 
-            if (!this._showDay(this._year, this._month, day)) {
+            if (!this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day)) {
                 continue;
             }
 
-            let dayStr = this._year + '-' + this._month + '-' + day + '-';
+            let dayStr = this._getCalendarYear() + '-' + this._getCalendarMonth() + '-' + day + '-';
 
-            if (day === this._getDay()) {
-                let waivedInfo = this._getWaiverStore(day, this._month, this._year);
+            if (day === this._getCalendarDate()) {
+                let waivedInfo = this._getWaiverStore(day, this._getCalendarMonth(), this._getCalendarYear());
                 if (waivedInfo !== undefined) {
                     let waivedDayTotal = waivedInfo['hours'];
                     $('#' + dayStr + 'day-total').val(waivedDayTotal);
                 } else {
-                    let lunchBegin = this._setTableData(day, this._month, 'lunch-begin');
-                    let lunchEnd = this._setTableData(day, this._month, 'lunch-end');
-                    this._setTableData(day, this._month, 'lunch-total');
-                    let dayBegin = this._setTableData(day, this._month, 'day-begin');
-                    let dayEnd = this._setTableData(day, this._month, 'day-end');
-                    this._setTableData(day, this._month, 'day-total');
+                    let lunchBegin = this._setTableData(day, this._getCalendarMonth(), 'lunch-begin');
+                    let lunchEnd = this._setTableData(day, this._getCalendarMonth(), 'lunch-end');
+                    this._setTableData(day, this._getCalendarMonth(), 'lunch-total');
+                    let dayBegin = this._setTableData(day, this._getCalendarMonth(), 'day-begin');
+                    let dayEnd = this._setTableData(day, this._getCalendarMonth(), 'day-end');
+                    this._setTableData(day, this._getCalendarMonth(), 'day-total');
 
-                    this._colorErrorLine(this._year, this._month, day, dayBegin, lunchBegin, lunchEnd, dayEnd);
+                    this._colorErrorLine(this._getCalendarYear(), this._getCalendarMonth(), day, dayBegin, lunchBegin, lunchEnd, dayEnd);
                 }
             }
 
