@@ -39,6 +39,14 @@ var launchDate = new Date();
 var recommendPunchIn = false;
 setTimeout(() => { recommendPunchIn = true; }, 30 * 60 * 1000);
 
+process.on('uncaughtException', function(err) {
+    if (!err.message.includes('net::ERR_NETWORK_CHANGED')) {
+        console.error((new Date).toUTCString() + ' uncaughtException:', err.message);
+        console.error(err.stack);
+        process.exit(1);
+    }
+});
+
 function checkIdleAndNotify() {
     if (recommendPunchIn) {
         recommendPunchIn = false;
