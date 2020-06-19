@@ -6,6 +6,7 @@
 - Fix: [#27] Adding day balance on when to leave bar after day is done
 - Fix: [#210] Count today preference is respected
 - Fix: [#211] Adjusted preferences window size to fit the whole content
+- Fix: [#232] Calendar not advancing to next day when system clock does
 - Fix: [#233] Fixes crash when opening the waiver for a day
 - Fix: [#229] Count Today in totals no longer causes problem in the month balance
 - Fix: [#239] Punch button is disabled when current day is waived

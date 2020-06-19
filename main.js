@@ -107,7 +107,7 @@ function refreshOnDayChange() {
     {
         launchDate = today;
         // Reload only the calendar itself to avoid a flash
-        win.webContents.executeJavaScript('calendar.redraw()');
+        win.webContents.executeJavaScript('calendar.goToCurrentDate()');
     }
 }
 

@@ -406,6 +406,10 @@ class Calendar {
         this._draw();
     }
 
+    goToCurrentDate() {
+        this._goToCurrentDate();
+    }
+
     /*
      * Display next month.
      */
