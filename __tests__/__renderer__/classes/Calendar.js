@@ -145,6 +145,31 @@ describe('Calendar class Tests', () => {
         expect(calendar._getCalendarYear()).toBe(today.getFullYear());
     });
 
+    describe('Calendar RefreshOnDayChange', () => {
+        test('Calendar refresh set correctly', () => {
+            // Calendar is set as if someone was looking at previous month
+            calendar._prevMonth();
+            let prevMonthDate = calendar._calendarDate;
+
+            // Refreshing with the date being looked at should push it to today
+            calendar.refreshOnDayChange(prevMonthDate.getDate(), prevMonthDate.getMonth(), prevMonthDate.getFullYear());
+
+            expect(calendar._getCalendarDate()).toBe(today.getDate());
+            expect(calendar._getCalendarYear()).toBe(today.getFullYear());
+            expect(calendar._getCalendarMonth()).toBe(today.getMonth());
+        });
+
+        test('Calendar refresh set to another month', () => {
+            // Calendar is set as if someone was looking at previous month
+            calendar._prevMonth();
+
+            // Refreshing with a date not being looked at should not push it to today
+            calendar.refreshOnDayChange(today.getDate(), today.getMonth(), today.getFullYear());
+
+            expect(calendar._getCalendarMonth()).not.toBe(today.getMonth());
+        });
+    });
+
     test('Calendar to DayCalendar', () => {
         store.clear();
         store.set(regularEntries);
@@ -305,6 +330,31 @@ describe('Calendar class Tests', () => {
         expect(calendar._getCalendarDate()).toBe(today.getDate());
         expect(calendar._getCalendarMonth()).toBe(today.getMonth());
         expect(calendar._getCalendarYear()).toBe(today.getFullYear());
+    });
+
+    describe('DayCalendar RefreshOnDayChange', () => {
+        test('DayCalendar refresh set correctly', () => {
+            // Calendar is set as if someone was looking at previous day
+            calendar._prevDay();
+            let prevDayDate = calendar._calendarDate;
+
+            // Refreshing with the date being looked at should push it to today
+            calendar.refreshOnDayChange(prevDayDate.getDate(), prevDayDate.getMonth(), prevDayDate.getFullYear());
+
+            expect(calendar._getCalendarDate()).toBe(today.getDate());
+            expect(calendar._getCalendarYear()).toBe(today.getFullYear());
+            expect(calendar._getCalendarMonth()).toBe(today.getMonth());
+        });
+
+        test('DayCalendar refresh set to another day', () => {
+            // Calendar is set as if someone was looking at previous day
+            calendar._prevDay();
+
+            // Refreshing with a date not being looked at should not push it to today
+            calendar.refreshOnDayChange(today.getDate(), today.getMonth(), today.getFullYear());
+
+            expect(calendar._getCalendarDate()).not.toBe(today.getDate());
+        });
     });
 });
 
