@@ -8,6 +8,7 @@
 - Fix: [#211] Adjusted preferences window size to fit the whole content
 - Fix: [#233] Fixes crash when opening the waiver for a day
 - Fix: [#229] Count Today in totals no longer causes problem in the month balance
+- Fix: [#232] Total bar not updating on day change
 - Fix: [#239] Punch button is disabled when current day is waived
 - Fix: [#240] Waiver using electron dialog instead of js confirm/alert
 - Fix: [#244] Waiver opens with filled date when clicking from calendar

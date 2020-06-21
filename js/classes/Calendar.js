@@ -404,6 +404,19 @@ class Calendar {
         this._draw();
     }
 
+    /**
+    * Every day change, if the calendar is showing the same month as that of the previous day,
+    * this function is called to redraw the calendar.
+    * @param {int} oldDayDate not used in MonthCalendar, just DayCalendar
+    * @param {int} oldMonthDate
+    * @param {int} oldYearDate
+    */
+    refreshOnDayChange(oldDayDate, oldMonthDate, oldYearDate) {
+        if (this._getCalendarMonth() === oldMonthDate && this._getCalendarYear() === oldYearDate) {
+            this._goToCurrentDate();
+        }
+    }
+
     /*
      * Display next month.
      */
@@ -1116,6 +1129,20 @@ class DayCalendar extends Calendar {
         if (!this._isCalendarOnDate(new Date())) {
             $('#punch-button').prop('disabled', true);
             ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', false);
+        }
+    }
+
+    /**
+    * Every day change, if the calendar is showing the same date as that of the previous date,
+    * this function is called to redraw the calendar.
+    * @param {int} oldDayDate
+    * @param {int} oldMonthDate
+    * @param {int} oldYearDate
+    */
+    refreshOnDayChange(oldDayDate, oldMonthDate, oldYearDate) {
+        let date = new Date(oldYearDate, oldMonthDate, oldDayDate);
+        if (this._isCalendarOnDate(date)) {
+            this._goToCurrentDate();
         }
     }
 

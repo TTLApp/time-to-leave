@@ -113,9 +113,12 @@ function refreshOnDayChange() {
     var today = new Date();
     if (today > launchDate)
     {
+        let oldDate = launchDate.getDate();
+        let oldMonth = launchDate.getMonth();
+        let oldYear = launchDate.getFullYear();
         launchDate = today;
         // Reload only the calendar itself to avoid a flash
-        win.webContents.executeJavaScript('calendar.redraw()');
+        win.webContents.executeJavaScript(`calendar.refreshOnDayChange(${oldDate},${oldMonth},${oldYear})`);
     }
 }
 
