@@ -178,13 +178,13 @@ describe('Calendar class Tests', () => {
         waivedWorkdays.set(waivedEntries);
 
         testPreferences['view'] = 'day';
-        expect(calendar.constructor.name).toBe("Calendar");
+        expect(calendar.constructor.name).toBe('Calendar');
 
         // last state of the internal store was 10 elements
         expect(Object.keys(calendar._internalStore).length).toStrictEqual(10);
 
         calendar = CalendarFactory.getInstance(testPreferences, calendar);
-        expect(calendar.constructor.name).toBe("DayCalendar");
+        expect(calendar.constructor.name).toBe('DayCalendar');
 
         // internal store is again set with 9 elements after store reset
         expect(Object.keys(calendar._internalStore).length).toStrictEqual(9);
