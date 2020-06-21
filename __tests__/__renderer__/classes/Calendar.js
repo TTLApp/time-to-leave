@@ -44,6 +44,12 @@ describe('Calendar class Tests', () => {
         expect(calendar._getCalendarMonth()).toBe(today.getMonth());
     });
 
+    test('Calendar "today" methods return today\'s date', () => {
+        expect(calendar._getTodayDate()).toBe(today.getDate());
+        expect(calendar._getTodayYear()).toBe(today.getFullYear());
+        expect(calendar._getTodayMonth()).toBe(today.getMonth());
+    });
+
     test('Calendar internal storage correct loading', () => {
         expect(calendar._internalStore['2020-3-1-day-begin']).toBe('08:00');
         expect(calendar._getStore(1, 3, 2020, 'day-begin')).toBe('08:00');
@@ -226,12 +232,22 @@ describe('Calendar class Tests', () => {
 
         calendar._nextDay();
         expect(calendar._getCalendarDate()).toBe(expectedNextDay.getDate());
+        expect(calendar._isCalendarOnDate(expectedNextDay)).toBeTruthy();
+        expect(calendar._isCalendarOnDate(expectedPrevDay)).not.toBeTruthy();
 
         calendar._prevDay();
         expect(calendar._getCalendarDate()).toBe(today.getDate());
 
         calendar._prevDay();
         expect(calendar._getCalendarDate()).toBe(expectedPrevDay.getDate());
+        expect(calendar._isCalendarOnDate(expectedNextDay)).not.toBeTruthy();
+        expect(calendar._isCalendarOnDate(expectedPrevDay)).toBeTruthy();
+
+        calendar._goToCurrentDate();
+        expect(calendar._getCalendarDate()).toBe(today.getDate());
+
+        calendar._changeDay(1);
+        expect(calendar._getCalendarDate()).toBe(expectedNextDay.getDate());
 
         calendar._goToCurrentDate();
         expect(calendar._getCalendarDate()).toBe(today.getDate());
