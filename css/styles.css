@@ -209,7 +209,7 @@ body {
 }
 
 .but-switch-view input {
-    width: 85%;
+  width: 85%;
 }
 
 #calendar input {
@@ -338,7 +338,7 @@ body {
 }
 
 .hidden {
-  display: none!important;
+  display: none !important;
 }
 
 .half-width {
@@ -498,7 +498,7 @@ input:disabled + .slider {
   color: #fff;
 }
 
-#preferences-window input[type=text]:invalid{
+#preferences-window input[type=text]:invalid {
   color: rgb(255, 71, 71);
 }
 
@@ -617,7 +617,7 @@ html[data-view='day'] .th-label.th-label-total {
 }
 
 html[data-view='day'] .but-switch-view {
-    width: 6.5%;
+  width: 6.5%;
 }
 
 html[data-view='day'] .ti {
@@ -641,7 +641,7 @@ html[data-view='day'] .table-body {
 
 html[data-view='day'] .row-time {
   border-bottom: 1px solid var(--table-border);
-  width: 90%!important;
+  width: 90% !important;
   margin: auto;
   padding: 2px 0 2px 0;
 }
