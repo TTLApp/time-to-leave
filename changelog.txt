@@ -1,14 +1,14 @@
 1.5.2 (in development)
 ------------------------------------------------------------------------
-- Fix: [#213] Count today preference fixed to work as expected.
-- Fix: [#209] Punch time button to only fill one entry (not the entire row)
-- Fix: [#215] Fixed exception: isNan is not defined
 - Fix: [#27] Adding day balance on when to leave bar after day is done
+- Fix: [#209] Punch time button to only fill one entry (not the entire row)
 - Fix: [#210] Count today preference is respected
 - Fix: [#211] Adjusted preferences window size to fit the whole content
-- Fix: [#233] Fixes crash when opening the waiver for a day
+- Fix: [#213] Count today preference fixed to work as expected.
+- Fix: [#215] Fixed exception: isNan is not defined
 - Fix: [#229] Count Today in totals no longer causes problem in the month balance
 - Fix: [#232] Total bar not updating on day change
+- Fix: [#233] Fixes crash when opening the waiver for a day
 - Fix: [#239] Punch button is disabled when current day is waived
 - Fix: [#240] Waiver using electron dialog instead of js confirm/alert
 - Fix: [#244] Waiver opens with filled date when clicking from calendar
@@ -17,10 +17,10 @@
 - Fix: [#252] Prevent multiple preferences and workday waiver windows to be opened
 - Fix: [#255] Avoiding issue when closing preferences window without changing anything
 - Fix: [#258] Fixing crash when changing network while opening TTL
-- Enhancement: [#228] Improved performance of TTL - Now moving through the calendar is much faster
 - Enhancement: [#152] Adding a "Copy" option in the "About message", making it easier to copy information when opening an issue
+- Enhancement: [#228] Improved performance of TTL - Now moving through the calendar is much faster
 - Enhancement: [#241] Changing input format for notification interval and hours per day on preferences
-- Enhancement: [#247] Day View - new minimalist view that shows the calendar day by day
 - Enhancement: [#245] DevTools shortcut (Ctrl+Shift+I) on Preferences and Waiver windows
+- Enhancement: [#247] Day View - new minimalist view that shows the calendar day by day
 - Upgrade: Upgrading jquery to 3.5.0
 - Upgrade: [#236] Upgrade all dependencies
