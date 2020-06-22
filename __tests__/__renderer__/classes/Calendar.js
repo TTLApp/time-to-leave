@@ -10,7 +10,7 @@ describe('Calendar class Tests', () => {
     process.env.NODE_ENV = 'test';
 
     const store = new Store();
-    const waivedWorkdays = new Store({name: 'waived-workdays'});
+    const waivedWorkdays = new Store({ name: 'waived-workdays' });
 
     store.clear();
     const regularEntries = {
@@ -28,9 +28,9 @@ describe('Calendar class Tests', () => {
 
     waivedWorkdays.clear();
     const waivedEntries = {
-        '2019-12-31': {reason: 'New Year\'s eve', hours: '08:00'},
-        '2020-01-01': {reason: 'New Year\'s Day', hours: '08:00'},
-        '2020-04-10': {reason: 'Good Friday', hours: '08:00'}
+        '2019-12-31': { reason: 'New Year\'s eve', hours: '08:00' },
+        '2020-01-01': { reason: 'New Year\'s Day', hours: '08:00' },
+        '2020-04-10': { reason: 'Good Friday', hours: '08:00' }
     };
     waivedWorkdays.set(waivedEntries);
 
@@ -77,8 +77,8 @@ describe('Calendar class Tests', () => {
 
     test('Calendar internal waiver storage correct loading', () => {
         // Waiver Store internally saves the human month index, but the calendar methods use JS month index
-        expect(calendar._internalWaiverStore['2019-12-31']).toStrictEqual({reason: 'New Year\'s eve', hours: '08:00'});
-        expect(calendar._getWaiverStore(31, 11, 2019)).toStrictEqual({reason: 'New Year\'s eve', hours: '08:00'});
+        expect(calendar._internalWaiverStore['2019-12-31']).toStrictEqual({ reason: 'New Year\'s eve', hours: '08:00' });
+        expect(calendar._getWaiverStore(31, 11, 2019)).toStrictEqual({ reason: 'New Year\'s eve', hours: '08:00' });
         expect(calendar._internalWaiverStore['2010-12-31']).toStrictEqual(undefined);
         expect(calendar._getWaiverStore(31, 11, 2010)).toStrictEqual(undefined);
 
@@ -86,7 +86,7 @@ describe('Calendar class Tests', () => {
         expect(Object.keys(calendar._internalWaiverStore).length).toStrictEqual(3);
 
         const newWaivedEntry = {
-            '2010-12-31': {reason: 'New Year\'s eve', hours: '08:00'}
+            '2010-12-31': { reason: 'New Year\'s eve', hours: '08:00' }
         };
         waivedWorkdays.set(newWaivedEntry);
 
@@ -97,8 +97,8 @@ describe('Calendar class Tests', () => {
 
         expect(Object.keys(calendar._internalWaiverStore).length).toStrictEqual(4);
 
-        expect(calendar._internalWaiverStore['2010-12-31']).toStrictEqual({reason: 'New Year\'s eve', hours: '08:00'});
-        expect(calendar._getWaiverStore(31, 11, 2010)).toStrictEqual({reason: 'New Year\'s eve', hours: '08:00'});
+        expect(calendar._internalWaiverStore['2010-12-31']).toStrictEqual({ reason: 'New Year\'s eve', hours: '08:00' });
+        expect(calendar._getWaiverStore(31, 11, 2010)).toStrictEqual({ reason: 'New Year\'s eve', hours: '08:00' });
     });
 
     test('Calendar Month Changes', () => {
@@ -223,8 +223,8 @@ describe('Calendar class Tests', () => {
 
     test('DayCalendar internal waiver storage correct loading', () => {
         // Waiver Store internally saves the human month index, but the calendar methods use JS month index
-        expect(calendar._internalWaiverStore['2019-12-31']).toStrictEqual({reason: 'New Year\'s eve', hours: '08:00'});
-        expect(calendar._getWaiverStore(31, 11, 2019)).toStrictEqual({reason: 'New Year\'s eve', hours: '08:00'});
+        expect(calendar._internalWaiverStore['2019-12-31']).toStrictEqual({ reason: 'New Year\'s eve', hours: '08:00' });
+        expect(calendar._getWaiverStore(31, 11, 2019)).toStrictEqual({ reason: 'New Year\'s eve', hours: '08:00' });
         expect(calendar._internalWaiverStore['2010-12-31']).toStrictEqual(undefined);
         expect(calendar._getWaiverStore(31, 11, 2010)).toStrictEqual(undefined);
 
@@ -232,7 +232,7 @@ describe('Calendar class Tests', () => {
         expect(Object.keys(calendar._internalWaiverStore).length).toStrictEqual(3);
 
         const newWaivedEntry = {
-            '2010-12-31': {reason: 'New Year\'s eve', hours: '08:00'}
+            '2010-12-31': { reason: 'New Year\'s eve', hours: '08:00' }
         };
         waivedWorkdays.set(newWaivedEntry);
 
@@ -243,8 +243,8 @@ describe('Calendar class Tests', () => {
 
         expect(Object.keys(calendar._internalWaiverStore).length).toStrictEqual(4);
 
-        expect(calendar._internalWaiverStore['2010-12-31']).toStrictEqual({reason: 'New Year\'s eve', hours: '08:00'});
-        expect(calendar._getWaiverStore(31, 11, 2010)).toStrictEqual({reason: 'New Year\'s eve', hours: '08:00'});
+        expect(calendar._internalWaiverStore['2010-12-31']).toStrictEqual({ reason: 'New Year\'s eve', hours: '08:00' });
+        expect(calendar._getWaiverStore(31, 11, 2010)).toStrictEqual({ reason: 'New Year\'s eve', hours: '08:00' });
     });
 
     test('DayCalendar Day Changes', () => {
@@ -357,4 +357,3 @@ describe('Calendar class Tests', () => {
         });
     });
 });
-
