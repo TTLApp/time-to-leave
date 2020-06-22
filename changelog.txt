@@ -22,5 +22,3 @@
 - Enhancement: [#241] Changing input format for notification interval and hours per day on preferences
 - Enhancement: [#245] DevTools shortcut (Ctrl+Shift+I) on Preferences and Waiver windows
 - Enhancement: [#247] Day View - new minimalist view that shows the calendar day by day
-- Upgrade: Upgrading jquery to 3.5.0
-- Upgrade: [#236] Upgrade all dependencies
