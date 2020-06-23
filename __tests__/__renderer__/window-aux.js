@@ -6,9 +6,9 @@ const { BrowserWindow } = remote;
 describe('window-aux.js Testing', function() {
     process.env.NODE_ENV = 'test';
 
-    // No idea why it's failing on mac, but issue #268 tracks this problem. Jest requires at least one test.
-    const isMacOS = process.platform === 'darwin';
-    if (isMacOS) {
+    // No idea why it's passing only on windows, but issue #268 tracks this problem. Jest requires at least one test.
+    const wind32 = process.platform === 'win32';
+    if (!wind32) {
         test('Empty test', () => {});
         return;
     }

@@ -30,8 +30,10 @@ let tray;
 const store = new Store();
 const waivedWorkdays = new Store({name: 'waived-workdays'});
 const macOS = process.platform === 'darwin';
-var iconpath = path.join(__dirname, macOS ? 'assets/timer.png' : 'assets/timer.ico');
-var trayIcon = path.join(__dirname, macOS ? 'assets/timer-16-Template.png' : 'assets/timer-grey.ico');
+const wind32 = process.platform === 'win32';
+var iconpath = path.join(__dirname, wind32 ? 'assets/timer.ico' : 'assets/timer.png');
+var trayIcon = path.join(__dirname, wind32 ? 'assets/timer-grey.ico' : 'assets/timer-16-Template.png');
+
 var contextMenu;
 var launchDate = new Date();
 
