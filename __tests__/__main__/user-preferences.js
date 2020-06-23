@@ -8,7 +8,7 @@ describe('Preferences Main', () => {
     // Remove preferences file to guarantee equal execution of tests
     const preferencesFilePath = getPreferencesFilePath();
     if (fs.existsSync(preferencesFilePath))
-        fs.unlink(preferencesFilePath);
+        fs.unlinkSync(preferencesFilePath);
 
     let days = getUserPreferences();
 

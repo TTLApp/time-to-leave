@@ -13,7 +13,7 @@ describe('User Preferences save/load', () => {
     // Remove preferences file to guarantee equal execution of tests
     const preferencesFilePath = getPreferencesFilePath();
     if (fs.existsSync(preferencesFilePath))
-        fs.unlink(preferencesFilePath);
+        fs.unlinkSync(preferencesFilePath);
 
     let testPreferences = defaultPreferences;
     testPreferences['working-days-sunday'] = true;
