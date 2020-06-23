@@ -1,5 +1,8 @@
 1.5.3 (in development)
 ------------------------------------------------------------------------
+Some new lines here
+to test
+code cov
 
 Who build 1.5.3:
 
