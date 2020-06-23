@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 const { defaultPreferences, getDefaultWidthHeight, getPreferencesFilePath, getUserPreferences, savePreferences, showDay, switchCalendarView } = require('../../js/user-preferences');
+const fs = require('fs');
 
 describe('Preferences Main', () => {
     process.env.NODE_ENV = 'test';

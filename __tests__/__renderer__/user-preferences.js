@@ -5,6 +5,7 @@ const {
     getUserPreferences,
     savePreferences,
 } = require('../../js/user-preferences');
+const fs = require('fs');
 
 describe('User Preferences save/load', () => {
     process.env.NODE_ENV = 'test';
