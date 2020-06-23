@@ -1,5 +1,6 @@
 1.5.3 (in development)
 ------------------------------------------------------------------------
+- Fix: [#276] Fixed lunch of app in debian
 
 Who build 1.5.3:
 
