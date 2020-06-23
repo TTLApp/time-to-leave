@@ -7,8 +7,8 @@ describe('window-aux.js Testing', function() {
     process.env.NODE_ENV = 'test';
 
     // No idea why it's passing only on windows, but issue #268 tracks this problem. Jest requires at least one test.
-    const wind32 = process.platform === 'win32';
-    if (!wind32) {
+    const win32 = process.platform === 'win32';
+    if (!win32) {
         test('Empty test', () => {});
         return;
     }
