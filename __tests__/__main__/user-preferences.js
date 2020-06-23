@@ -1,8 +1,13 @@
 /* eslint-disable no-undef */
-const { defaultPreferences, getDefaultWidthHeight, getUserPreferences, savePreferences, showDay, switchCalendarView } = require('../../js/user-preferences');
+const { defaultPreferences, getDefaultWidthHeight, getPreferencesFilePath, getUserPreferences, savePreferences, showDay, switchCalendarView } = require('../../js/user-preferences');
 
 describe('Preferences Main', () => {
     process.env.NODE_ENV = 'test';
+
+    // Remove preferences file to guarantee equal execution of tests
+    const preferencesFilePath = getPreferencesFilePath();
+    if (fs.existsSync(preferencesFilePath))
+        fs.unlink(preferencesFilePath);
 
     let days = getUserPreferences();
 

@@ -1,12 +1,18 @@
 /* eslint-disable no-undef */
 const {
     defaultPreferences,
+    getPreferencesFilePath,
     getUserPreferences,
     savePreferences,
 } = require('../../js/user-preferences');
 
 describe('User Preferences save/load', () => {
     process.env.NODE_ENV = 'test';
+
+    // Remove preferences file to guarantee equal execution of tests
+    const preferencesFilePath = getPreferencesFilePath();
+    if (fs.existsSync(preferencesFilePath))
+        fs.unlink(preferencesFilePath);
 
     let testPreferences = defaultPreferences;
     testPreferences['working-days-sunday'] = true;

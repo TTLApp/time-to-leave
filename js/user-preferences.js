@@ -205,6 +205,7 @@ module.exports = {
     defaultPreferences,
     getDefaultWidthHeight,
     getUserPreferences: getLoadedOrDerivedUserPreferences,
+    getPreferencesFilePath,
     savePreferences,
     showDay,
     switchCalendarView
