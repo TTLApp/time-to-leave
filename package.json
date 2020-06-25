@@ -30,7 +30,7 @@
     "preinstall": "npx npm-force-resolutions",
     "pretest": "npm run clean",
     "start": "electron .",
-    "test": "jest --detectOpenHandles --verbose --colors --forceExit"
+    "test": "jest --detectOpenHandles --verbose --colors --runInBand"
   },
   "pre-commit": [
     "clean",
