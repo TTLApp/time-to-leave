@@ -65,6 +65,7 @@ html[data-theme="dark"] {
   --day-calendar-select-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiPg0KICAgIDxwb2x5Z29uIHBvaW50cz0iNTAgODUsIDEwMCAwLCAwIDAiIGZpbGw9IndoaXRlIj48L3BvbHlnb24+DQo8L3N2Zz4=) 1x);
 }
 
+
 /* There are some libraries that impose their own colors. These may need to be overriden for specific themes */
 
 html[data-theme="dark"] .text-danger {
@@ -353,6 +354,7 @@ body {
   height: 15px;
 }
 
+
 /* Hide default HTML checkbox */
 
 .switch input {
@@ -360,6 +362,7 @@ body {
   width: 0;
   height: 0;
 }
+
 
 /* The slider */
 
@@ -399,6 +402,7 @@ input:checked + .slider::before {
   transform: translateX(15px);
 }
 
+
 /* Rounded sliders */
 
 .slider.round {
@@ -409,12 +413,14 @@ input:checked + .slider::before {
   border-radius: 50%;
 }
 
+
 /* Notification settings */
 
 #notifications-interval:disabled,
 input:disabled + .slider {
   background-color: var(--disabled-input-bground);
 }
+
 
 /** Common window styles **/
 
@@ -554,6 +560,7 @@ input:disabled + .slider {
 #workday-waiver-window #waiver-list-table {
   width: 100%;
 }
+
 
 /** Day view related styles **/
 
