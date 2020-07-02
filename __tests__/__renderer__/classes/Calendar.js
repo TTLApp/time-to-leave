@@ -282,8 +282,13 @@ describe('Calendar class Tests', () => {
         expect(calendar._getCalendarMonth()).toBe(today.getMonth());
         const expectedNextMonth = today.getMonth() + 1 === 12 ? 0 : (today.getMonth() + 1);
         const expectedPrevMonth = today.getMonth() === 0 ? 11 : (today.getMonth() - 1);
+        
+        // The Distance to next month is the amount of days in the month minus the current day, plust 2
+        // The plus 2 accounts for "finishing" today and moving to the next day (of the next month)
+        const distToNextMonth = (new Date(today.getFullYear(), today.getMonth(), 0)).getDate() - today.getDate() + 2;
+        const distToPrevMonth = today.getDate() + 1;
 
-        for (let i = 0; i < 31; i++) {
+        for (let i = 0; i < distToNextMonth; i++) {
             calendar._nextDay();
         }
 
@@ -293,7 +298,7 @@ describe('Calendar class Tests', () => {
         expect(calendar._getCalendarDate()).toBe(today.getDate());
         expect(calendar._getCalendarMonth()).toBe(today.getMonth());
 
-        for (let i = 0; i < 31; i++) {
+        for (let i = 0; i < distToPrevMonth; i++) {
             calendar._prevDay();
         }
 
