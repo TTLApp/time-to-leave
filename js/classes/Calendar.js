@@ -775,7 +775,7 @@ class Calendar {
     }
 
 
-    _updateDbEntry (year, month, day, key, newValue) {
+    _updateDbEntry(year, month, day, key, newValue) {
         if (validateTime(newValue)) {
             this._setStore(day, month, year, key, newValue);
         } else {
@@ -815,7 +815,7 @@ class Calendar {
     _updateTimeDay(year, month, day, key, newValue) {
         var baseStr = year + '-' + month + '-' + day + '-';
 
-        this._updateDbEntry(year, month, day, key, newValue)
+        this._updateDbEntry(year, month, day, key, newValue);
 
         var oldDayTotal = this._getStore(day, month, year, 'day-total');
 
@@ -823,10 +823,10 @@ class Calendar {
         var lunchTime = this._computeLunchTime(lunchBegin, lunchEnd);
         var dayTotal = this._computeDayTotal(dayBegin, dayEnd, lunchBegin, lunchEnd, lunchTime);
 
-        this._updateDbEntry(year, month, day, 'lunch-total', lunchTime)
+        this._updateDbEntry(year, month, day, 'lunch-total', lunchTime);
         $('#' + baseStr + 'lunch-total').val(lunchTime);
 
-        this._updateDbEntry(year, month, day, 'day-total', dayTotal)
+        this._updateDbEntry(year, month, day, 'day-total', dayTotal);
         $('#' + baseStr + 'day-total').val(dayTotal);
 
         var displayedMonthTotal = $('#month-total').val();
