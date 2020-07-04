@@ -774,31 +774,26 @@ class Calendar {
         this._updateBalance();
     }
 
-    /*
-    * Updates the DB with the information of computed total lunch time and day time.
-    */
-    _updateTimeDay(year, month, day, key, newValue) {
-        var baseStr = year + '-' + month + '-' + day + '-';
-        var oldValue = this._getStore(day, month, year, key);
 
+    _updateDbEntry (year, month, day, key, newValue) {
         if (validateTime(newValue)) {
             this._setStore(day, month, year, key, newValue);
-        } else if (oldValue && validateTime(oldValue)) {
+        } else {
             this._removeStore(day, month, year, key);
         }
+    }
 
-        var oldDayTotal = this._getStore(day, month, year, 'day-total');
-
-        //update totals
-        var [dayBegin, lunchBegin, lunchEnd, dayEnd] = this._getDaysEntries(month, day);
-
-        //compute lunch time
+    _computeLunchTime(lunchBegin, lunchEnd) {
         var lunchTime = '';
         if (lunchBegin && lunchEnd &&
             validateTime(lunchBegin) && validateTime(lunchEnd) &&
             (lunchEnd > lunchBegin)) {
             lunchTime = subtractTime(lunchBegin, lunchEnd);
         }
+        return lunchTime;
+    }
+
+    _computeDayTotal(dayBegin, dayEnd, lunchBegin, lunchEnd, lunchTime) {
         var dayTotal = '';
         if (dayBegin && dayEnd &&
             validateTime(dayBegin) && validateTime(dayEnd) &&
@@ -811,19 +806,27 @@ class Calendar {
                 dayTotal = subtractTime(lunchTime, dayTotal);
             }
         }
+        return dayTotal;
+    }
 
-        if (lunchTime.length > 0) {
-            this._setStore(day, month, year, 'lunch-total', lunchTime);
-        } else {
-            this._removeStore(day, month, year, 'lunch-total');
-        }
+    /*
+    * Updates the DB with the information of computed total lunch time and day time.
+    */
+    _updateTimeDay(year, month, day, key, newValue) {
+        var baseStr = year + '-' + month + '-' + day + '-';
+
+        this._updateDbEntry(year, month, day, key, newValue)
+
+        var oldDayTotal = this._getStore(day, month, year, 'day-total');
+
+        var [dayBegin, lunchBegin, lunchEnd, dayEnd] = this._getDaysEntries(month, day);
+        var lunchTime = this._computeLunchTime(lunchBegin, lunchEnd);
+        var dayTotal = this._computeDayTotal(dayBegin, dayEnd, lunchBegin, lunchEnd, lunchTime);
+
+        this._updateDbEntry(year, month, day, 'lunch-total', lunchTime)
         $('#' + baseStr + 'lunch-total').val(lunchTime);
 
-        if (dayTotal.length > 0) {
-            this._setStore(day, month, year, 'day-total', dayTotal);
-        } else {
-            this._removeStore(day, month, year, 'day-total');
-        }
+        this._updateDbEntry(year, month, day, 'day-total', dayTotal)
         $('#' + baseStr + 'day-total').val(dayTotal);
 
         var displayedMonthTotal = $('#month-total').val();
