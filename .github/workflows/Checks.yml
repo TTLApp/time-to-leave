@@ -23,6 +23,7 @@ jobs:
         with:
           file: 'COVERAGE*'
           token: ${{ secrets.CODECOV_TOKEN }}
+          name: codecov-run-${{ matrix.os }}
           fail_ci_if_error: false
       - name: Coveralls GitHub Action ${{ matrix.os }}
         if: success()
