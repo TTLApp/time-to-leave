@@ -1,8 +1,9 @@
 1.5.5 (in development)
 ------------------------------------------------------------------------
+- Enhancement: [#299] Introducing new theme: Pastel Rainbow
 
 Who built 1.5.5:
-
+- thamara
 
 
 1.5.4
