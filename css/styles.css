@@ -9,6 +9,7 @@ html[data-theme="light"] {
   --page-bground: white;
   --page-color: black;
   --table-bground: white;
+  --input-bground: transparent;
   --table-border: rgb(203, 203, 203);
   --table-total-border: rgb(164, 158, 207);
   --table-cell-offtime-bground: rgb(245, 245, 245);
@@ -40,6 +41,7 @@ html[data-theme="dark"] {
   --page-color: white;
   --table-bground: rgb(39, 39, 39);
   --table-border: rgb(90, 90, 90);
+  --input-bground: transparent;
   --table-total-border: rgb(95, 92, 121);
   --table-cell-offtime-bground: rgb(71, 71, 71);
   --table-cell-offtime-color: rgb(151, 151, 151);
@@ -65,10 +67,49 @@ html[data-theme="dark"] {
   --day-calendar-select-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiPg0KICAgIDxwb2x5Z29uIHBvaW50cz0iNTAgODUsIDEwMCAwLCAwIDAiIGZpbGw9IndoaXRlIj48L3BvbHlnb24+DQo8L3N2Zz4=) 1x);
 }
 
+html[data-theme="pastel-rainbow"] {
+  --page-bground: transparent;
+  --page-color: black;
+  --table-bground: rgba(255, 238, 227, 0.3);
+  --input-bground: transparent;
+  --table-border: #28292F;
+  --table-total-border: rgb(121, 121, 121);
+  --table-cell-offtime-bground: rgba(0, 0, 0, 0.1);
+  --table-cell-offtime-color: rgba(0, 0, 0, 0.5);
+  --table-cell-total-bground: transparent;
+  --table-cell-total-color: var(--table-cell-offtime-color);
+  --table-header-label-bground: rgba(255, 238, 227, 0.5);;
+  --table-header-label-shadow: var(--table-border);
+  --error: red;
+  --punch-bground: var(--table-total-border);
+  --punch-color: rgb(228, 228, 228);
+  --punch-disable-bground: rgb(134, 134, 134);
+  --slider-background-color: rgb(220, 220, 220);
+  --slider-checked-color: var(--table-total-border);
+  --slider-unchecked-color: white;
+  --weekday-background: var(--slider-background-color);
+  --weekday-selected: var(--punch-bground);
+  --svg-invert: 0;
+  --disabled-input-bground: transparent;
+  --title-color: rgb(51, 51, 51);
+  --input-border: transparent;
+  --datepicker-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJXaW5kb3dUZXh0IiBkPSJNMTEuOTkgMkM2LjQ3IDIgMiA2LjQ4IDIgMTJzNC40NyAxMCA5Ljk5IDEwQzE3LjUyIDIyIDIyIDE3LjUyIDIyIDEyUzE3LjUyIDIgMTEuOTkgMnpNMTIgMjBjLTQuNDIgMC04LTMuNTgtOC04czMuNTgtOCA4LTggOCAzLjU4IDggOC0zLjU4IDgtOCA4eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMTIuNSA3SDExdjZsNS4yNSAzLjE1Ljc1LTEuMjMtNC41LTIuNjd6Ii8+PC9zdmc+) 1x);
+  --calendar-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJXaW5kb3dUZXh0IiBkPSJNMjAgM2gtMVYxaC0ydjJIN1YxSDV2Mkg0Yy0xLjEgMC0yIC45LTIgMnYxNmMwIDEuMS45IDIgMiAyaDE2YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMThINFY4aDE2djEzeiIvPjxwYXRoIGZpbGw9Im5vbmUiIGQ9Ik0wIDBoMjR2MjRIMHoiLz48L3N2Zz4=) 1x);
+  --day-calendar-select-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiPg0KICAgIDxwb2x5Z29uIHBvaW50cz0iNTAgODUsIDEwMCAwLCAwIDAiIGZpbGw9ImJsYWNrIj48L3BvbHlnb24+DQo8L3N2Zz4=) 1x);
+}
+
 /* There are some libraries that impose their own colors. These may need to be overriden for specific themes */
 
 html[data-theme="dark"] .text-danger {
   color: rgb(226, 93, 90);
+}
+
+html[data-theme="pastel-rainbow"] .text-danger {
+  color: rgb(226, 93, 90);
+}
+
+html[data-theme="pastel-rainbow"] body {
+  background-image: linear-gradient(to right, #FF9AA2, #FFB7B2, #FFDAC1, #E2F0CB, #B5EAD7, #C7CEEA);
 }
 
 body {
@@ -156,6 +197,7 @@ body {
 
 #calendar .table-body {
   overflow-y: auto;
+  background-color: var(--table-bground);
 }
 
 #calendar tr {
@@ -214,7 +256,7 @@ body {
 #calendar input {
   color: var(--page-color);
   border: none;
-  background-color: transparent;
+  background-color: var(--input-bground);
 }
 
 #calendar input[type="image"] {
