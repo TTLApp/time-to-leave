@@ -11,6 +11,7 @@ describe('Theme Functions', function() {
         test('should validate', () => {
             expect(isValidTheme('light')).toBeTruthy();
             expect(isValidTheme('dark')).toBeTruthy();
+            expect(isValidTheme('pastel-rainbow')).toBeTruthy();
         });
     });
 
@@ -25,6 +26,7 @@ describe('Theme Functions', function() {
         test('should apply', () => {
             expect(applyTheme('light')).toBeTruthy();
             expect(applyTheme('dark')).toBeTruthy();
+            expect(applyTheme('pastel-rainbow')).toBeTruthy();
         });
 
         test('should not apply', function() {
