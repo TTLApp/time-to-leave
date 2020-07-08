@@ -29,5 +29,4 @@ jobs:
         uses: coverallsapp/github-action@v1.1.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          flag-name: run-${{ matrix.os }}
           parallel: true
