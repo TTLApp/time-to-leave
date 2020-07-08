@@ -2,6 +2,7 @@ on:
   schedule:
   - cron: '30 20 * * *'
 name: Update package dependencies
+if: github.repository == 'thamara/time-to-leave'
 jobs:
   package-update:
     runs-on: ubuntu-latest
