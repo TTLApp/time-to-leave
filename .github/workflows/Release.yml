@@ -133,17 +133,18 @@ jobs:
         npm ci
     - name: set env
       run: echo "::set-env name=APP_VERSION::$(node -p "require('./package.json').version")"
-    - name: Create Release notes file for version
+    - name: Parse release information
       run: |
         sed '/^[[:space:]]*$/d' changelog.txt > changelog.plain
         csplit changelog.plain '/^[0-9]+*/' '{*}' -z -n 4 -f version
         csplit version0000  '/^Who built*/' '{*}' -z -n 4 -f block
-        UPDATES=$(tail -n +3 block0000)
-        PEOPLE=$(tail -n +2 block0001)
-        VERSION=$(node -p "require('./package.json').version")
-        awk -v r="$UPDATES" '{gsub(/__UPDATES__/,r)}1' release_template.md > tmp && mv tmp release_template.md
-        awk -v r="$PEOPLE" '{gsub(/__PEOPLE__/,r)}1' release_template.md > tmp && mv tmp release_template.md
-        awk -v r="$VERSION" '{gsub(/__VERSION__/,r)}1' release_template.md > tmp && mv tmp release_template.md
+        echo "::set-env name=UPDATES::$(tail -n +3 block0000)"
+        echo "::set-env name=PEOPLE::$(tail -n +2 block0001)"
+    - name: Create Release Notes file
+      uses: cuchi/jinja2-action@v.1.2.0
+      with:
+        template: release_template.md
+        output_file: release_notes.md
     - name: 'Release to GH'
       if: success()
       uses: ncipollo/release-action@v1
@@ -153,4 +154,4 @@ jobs:
         tag: ${{ env.APP_VERSION }}
         token: ${{ secrets.GITHUB_TOKEN }}
         # Only update body on Release Notes Action
-        bodyFile: 'release_template.md'
+        bodyFile: 'release_notes.md'
