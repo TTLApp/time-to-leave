@@ -246,7 +246,7 @@ describe('Time Balance', () => {
         };
         store.set(entryEx);
         const waivedEntries = {
-            '2020-07-02': { reason: 'Waiver', hours: '02:00' }, // trie
+            '2020-07-02': { reason: 'Waiver', hours: '02:00' }, // tue
         };
         waivedWorkdays.set(waivedEntries);
         expect(computeAllTimeBalancelUntil(new Date(2020, 5, 1))).resolves.toBe('00:00');
