@@ -253,6 +253,8 @@ describe('Time Balance', () => {
     });
 
     test('computeAllTimeBalancelUntilAsync: should do seamless call', async() => {
+        store.clear();
+        waivedWorkdays.clear();
         await computeAllTimeBalancelUntilAsync(new Date(2020, 5, 1));
     });
 });
