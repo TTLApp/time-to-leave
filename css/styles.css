@@ -477,6 +477,14 @@ input:disabled + .slider {
   border-bottom: 4px solid var(--table-total-border);
 }
 
+.common-window .window-tab {
+  padding-top: 10px;
+}
+
+.common-window .tab-content {
+  padding-top: 10px;
+}
+
 .common-window p.header-help {
   font-variant-caps: all-petite-caps;
   font-size: 15px;

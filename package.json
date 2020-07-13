@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.5.0",
+    "date-holidays": "^1.6.1",
     "electron-store": "^6.0.0",
     "is-online": "^8.4.0",
     "jquery": "^3.5.1",
