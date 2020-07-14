@@ -45,6 +45,7 @@ describe('Time Balance', () => {
     });
 
     test('getFirstInputInDb: input 4', () => {
+        const store = new Store();
         store.clear();
         waivedWorkdays.clear();
         const entryEx = {
