@@ -1,5 +1,6 @@
 1.5.5 (in development)
 ------------------------------------------------------------------------
+- Enhancement: [#11] Introducing an easy way of sourcing holidays based on user location
 - Enhancement: [#164] Overall Balance to replace Month Sum - Now you get an all time balance of your working hours. (Too much overtime huh?!)
 - Enhancement: [#299] Introducing new theme: Cadent Star
 
