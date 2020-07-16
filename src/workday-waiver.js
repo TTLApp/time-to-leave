@@ -344,3 +344,7 @@ $(() => {
 
     bindDevToolsShortcut(window);
 });
+
+module.exports = {
+    addWaiver
+};
