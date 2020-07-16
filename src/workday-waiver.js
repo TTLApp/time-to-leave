@@ -346,5 +346,7 @@ $(() => {
 });
 
 module.exports = {
-    addWaiver
+    addWaiver,
+    setDates,
+    setHours
 };

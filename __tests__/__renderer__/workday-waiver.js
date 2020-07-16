@@ -66,15 +66,16 @@ function prepareMockup() {
     `;
 }
 
-beforeAll(() => {
-    prepareMockup();
-});
-
 describe('Test Workday Waiver Window', function() {
     process.env.NODE_ENV = 'test';
+    prepareMockup();
     /* eslint-disable-next-line no-global-assign */
     $ = require('jquery');
-    const { addWaiver } = require('../../src/workday-waiver');
+    const { 
+        addWaiver,
+        setDates,
+        setHours 
+    } = require('../../src/workday-waiver');
 
     describe('Adding new waivers update the db and the page', function() {
         test('New Waiver', () => {
@@ -85,9 +86,8 @@ describe('Test Workday Waiver Window', function() {
             var tableRowsBeforeAddingWaiver = $('#waiver-list-table tbody')[0].rows.length;
 
             $('#reason').val('some reason');
-            $('#start-date').val('2020-07-16');
-            $('#end-date').val('2020-07-16');
-            $('#hours').val('08:00');
+            setDates('2020-07-16');
+            setHours('08:00');
 
             addWaiver();
 
@@ -106,9 +106,8 @@ describe('Test Workday Waiver Window', function() {
             var tableRowsBeforeAddingWaiver = $('#waiver-list-table tbody')[0].rows.length;
 
             $('#reason').val('some other reason');
-            $('#start-date').val('2020-07-17');
-            $('#end-date').val('2020-07-17');
-            $('#hours').val('08:00');
+            setDates('2020-07-17');
+            setHours('08:00');
 
             addWaiver();
 
