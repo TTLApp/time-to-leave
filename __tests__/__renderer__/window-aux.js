@@ -6,14 +6,8 @@ const { BrowserWindow } = remote;
 describe('window-aux.js Testing', function() {
     process.env.NODE_ENV = 'test';
 
-    // No idea why it's passing only on windows, but issue #268 tracks this problem. Jest requires at least one test.
-    const win32 = process.platform === 'win32';
-    if (!win32) {
-        test('Empty test', () => {});
-        return;
-    }
+    const mockHtmlPath = path.join('file://', __dirname, '../../__mocks__/mock.html');
 
-    const mockHtmlPath = path.join(__dirname, '../../__mocks__/mock.html');
     const devToolsShortcut = new KeyboardEvent('keyup', {keyCode: 73, ctrlKey: true, shiftKey: true});
     const badDevToolsShortcut = new KeyboardEvent('keyup', {keyCode: 74, ctrlKey: true, shiftKey: true});
     const browserWindowOptions = {
@@ -34,6 +28,9 @@ describe('window-aux.js Testing', function() {
             testWindow.webContents.on('dom-ready', () => {
                 window.dispatchEvent(devToolsShortcut);
             });
+            testWindow.on('did-fail-load', (event, code, desc, url, isMainFrame) => {
+                console.log('did-fail-load: ', event,  code, desc, url, isMainFrame);
+            });
 
             await new Promise(r => setTimeout(r, timeoutValue));
             expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
@@ -49,6 +46,9 @@ describe('window-aux.js Testing', function() {
                 bindDevToolsShortcut(window);
                 window.dispatchEvent(devToolsShortcut);
             });
+            testWindow.webContents.on('did-fail-load', (event, code, desc, url, isMainFrame) => {
+                console.log('did-fail-load: ', event,  code, desc, url, isMainFrame);
+            });
 
             await new Promise(r => setTimeout(r, timeoutValue));
             expect(testWindow.webContents.isDevToolsOpened()).toBeTruthy();
@@ -63,6 +63,9 @@ describe('window-aux.js Testing', function() {
                 const { bindDevToolsShortcut } = require('../../js/window-aux.js');
                 bindDevToolsShortcut(window);
                 window.dispatchEvent(badDevToolsShortcut);
+            });
+            testWindow.webContents.on('did-fail-load', (event, code, desc, url, isMainFrame) => {
+                console.log('did-fail-load: ', event,  code, desc, url, isMainFrame);
             });
 
             await new Promise(r => setTimeout(r, timeoutValue));
@@ -88,6 +91,9 @@ describe('window-aux.js Testing', function() {
                     return;
                 });
             });
+            testWindow.webContents.on('did-fail-load', (event, code, desc, url, isMainFrame) => {
+                console.log('did-fail-load: ', event,  code, desc, url, isMainFrame);
+            });
 
             await new Promise(r => setTimeout(r, timeoutValue));
             expect(testWindow).toBeDefined();
@@ -111,6 +117,9 @@ describe('window-aux.js Testing', function() {
                 spy = jest.spyOn(dialog, 'showMessageBoxSync').mockImplementation(() => {});
 
                 windowAux.showAlert('Test showAlert');
+            });
+            testWindow.webContents.on('did-fail-load', (event, code, desc, url, isMainFrame) => {
+                console.log('did-fail-load: ', event,  code, desc, url, isMainFrame);
             });
 
             await new Promise(r => setTimeout(r, timeoutValue));
