@@ -59,7 +59,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.5.0",
-    "electron-store": "^5.2.0",
+    "electron-store": "^6.0.0",
     "is-online": "^8.4.0",
     "jquery": "^3.5.1",
     "node-notifier": "^7.0.1",
