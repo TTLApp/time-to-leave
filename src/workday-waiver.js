@@ -178,9 +178,9 @@ function populateCity(country, state) {
 }
 
 function populateYear() {
-    var year = new Date().getFullYear();
-    var obj = {};
-    for (var i = year; i < year + 10; i++) {
+    let year = new Date().getFullYear();
+    let obj = {};
+    for (let i = year; i < year + 10; i++) {
         obj[i] = i;
     }
     $('#year').empty();
@@ -190,7 +190,7 @@ function populateYear() {
 }
 
 function getHolidays() {
-    var year = $('#year').find(':selected').val(),
+    let year = $('#year').find(':selected').val(),
         country = $('#country').find(':selected') ? $('#country').find(':selected').val() : undefined,
         state = $('#state').find(':selected') ? $('#state').find(':selected').val() : undefined,
         city = $('#city').find(':selected') ? $('#city').find(':selected').val() : undefined;
@@ -217,7 +217,7 @@ function iterateOnHolidays(funct) {
             reason = holiday['name'];
         let diff = diffDays(startDate, endDate) - 1;
 
-        var tempDate = new Date(startDate);
+        let tempDate = new Date(startDate);
         for (let i = 0; i <= diff; i++) {
             let tempDateStr = getDateStr(tempDate);
             funct(tempDateStr, reason);
