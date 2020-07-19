@@ -238,7 +238,7 @@ function addHolidayToList(day, reason, workingDay, conflicts) {
     dayCell.innerHTML = day;
     reasonCell.innerHTML = reason;
     workingDayCell.innerHTML = workingDay;
-    if (workingDay === 'Yes')
+    if (workingDay === 'No')
         $(row.cells[2]).addClass('text-danger');
     if (conflicts)
         $(row.cells[3]).addClass('text-danger');
