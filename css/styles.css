@@ -584,6 +584,12 @@ input:disabled + .slider {
   font-weight: bold;
 }
 
+#table-foot-helper {
+  padding-top: 8px;
+  font-weight: bold;
+  text-align: center;
+}
+
 #workday-waiver-window th, #workday-waiver-window td {
   padding-right: 5px;
   padding-left: 5px;
@@ -604,7 +610,8 @@ input:disabled + .slider {
   color: var(--punch-disable-bground);
 }
 
-#workday-waiver-window #waiver-list-table {
+#workday-waiver-window #waiver-list-table,
+#workday-waiver-window #holiday-list-table {
   width: 100%;
 }
 
