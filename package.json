@@ -50,7 +50,7 @@
     "electron": "^9.1.0",
     "electron-packager": "^15.0.0",
     "electron-reloader": "^1.0.1",
-    "eslint": "^7.4.0",
+    "eslint": "^7.5.0",
     "jest": "^26.1.0",
     "pre-commit": "^1.2.2",
     "standard": "^14.3.4",
