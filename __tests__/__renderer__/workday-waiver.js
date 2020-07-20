@@ -1,5 +1,12 @@
 /* eslint-disable no-undef */
 const Store = require('electron-store');
+/* eslint-disable-next-line no-global-assign */
+$ = require('jquery');
+const { 
+    addWaiver,
+    setDates,
+    setHours 
+} = require('../../src/workday-waiver');
 
 function prepareMockup() {
     // There gotta be a bettwe way of doing this, but I just not getting it :(
@@ -69,21 +76,14 @@ function prepareMockup() {
 describe('Test Workday Waiver Window', function() {
     process.env.NODE_ENV = 'test';
     prepareMockup();
-    /* eslint-disable-next-line no-global-assign */
-    $ = require('jquery');
-    const { 
-        addWaiver,
-        setDates,
-        setHours 
-    } = require('../../src/workday-waiver');
 
     describe('Adding new waivers update the db and the page', function() {
         test('New Waiver', () => {
             const waivedWorkdays = new Store({ name: 'waived-workdays' });
             waivedWorkdays.clear();
 
-            var beforeAddingWaiver = waivedWorkdays.size;
-            var tableRowsBeforeAddingWaiver = $('#waiver-list-table tbody')[0].rows.length;
+            let beforeAddingWaiver = waivedWorkdays.size;
+            let tableRowsBeforeAddingWaiver = $('#waiver-list-table tbody')[0].rows.length;
 
             $('#reason').val('some reason');
             setDates('2020-07-16');
@@ -91,19 +91,19 @@ describe('Test Workday Waiver Window', function() {
 
             addWaiver();
 
-            var afterAddingWaiver = waivedWorkdays.size;
-            var tableRowsAfterAddingWaiver = $('#waiver-list-table tbody')[0].rows.length;
+            let afterAddingWaiver = waivedWorkdays.size;
+            let tableRowsAfterAddingWaiver = $('#waiver-list-table tbody')[0].rows.length;
 
             expect(beforeAddingWaiver).toBe(0);
             expect(tableRowsBeforeAddingWaiver).toBe(0);
             expect(afterAddingWaiver).toBe(1);
             expect(tableRowsAfterAddingWaiver).toBe(1);
-
         });
+        
         test('One more Waiver', () => {
             const waivedWorkdays = new Store({ name: 'waived-workdays' });
-            var beforeAddingWaiver = waivedWorkdays.size;
-            var tableRowsBeforeAddingWaiver = $('#waiver-list-table tbody')[0].rows.length;
+            let beforeAddingWaiver = waivedWorkdays.size;
+            let tableRowsBeforeAddingWaiver = $('#waiver-list-table tbody')[0].rows.length;
 
             $('#reason').val('some other reason');
             setDates('2020-07-17');
@@ -111,8 +111,8 @@ describe('Test Workday Waiver Window', function() {
 
             addWaiver();
 
-            var afterAddingWaiver = waivedWorkdays.size;
-            var tableRowsAfterAddingWaiver = $('#waiver-list-table tbody')[0].rows.length;
+            let afterAddingWaiver = waivedWorkdays.size;
+            let tableRowsAfterAddingWaiver = $('#waiver-list-table tbody')[0].rows.length;
 
             expect(beforeAddingWaiver).toBe(1);
             expect(tableRowsBeforeAddingWaiver).toBe(1);
