@@ -9,6 +9,8 @@ const {
 } = require('../../src/workday-waiver');
 
 function prepareMockup() {
+    const waivedWorkdays = new Store({ name: 'waived-workdays' });
+    waivedWorkdays.clear();
     // There gotta be a bettwe way of doing this, but I just not getting it :(
     document.body.innerHTML = `
         <body id="workday-waiver-window" class="common-window">
@@ -73,51 +75,40 @@ function prepareMockup() {
     `;
 }
 
+function addTestWaiver(day, hours, reason) {
+    $('#reason').val(reason);
+    setDates(day);
+    setHours(hours);
+
+    addWaiver();
+}
+
+function testWaiverCount(expected) {
+    const waivedWorkdays = new Store({ name: 'waived-workdays' });
+    expect(waivedWorkdays.size).toBe(expected);
+    expect($('#waiver-list-table tbody')[0].rows.length).toBe(expected);
+}
+
 describe('Test Workday Waiver Window', function() {
     process.env.NODE_ENV = 'test';
-    prepareMockup();
 
     describe('Adding new waivers update the db and the page', function() {
-        test('New Waiver', () => {
-            const waivedWorkdays = new Store({ name: 'waived-workdays' });
-            waivedWorkdays.clear();
+        test('One Waiver', () => {
+            prepareMockup();
 
-            let beforeAddingWaiver = waivedWorkdays.size;
-            let tableRowsBeforeAddingWaiver = $('#waiver-list-table tbody')[0].rows.length;
-
-            $('#reason').val('some reason');
-            setDates('2020-07-16');
-            setHours('08:00');
-
-            addWaiver();
-
-            let afterAddingWaiver = waivedWorkdays.size;
-            let tableRowsAfterAddingWaiver = $('#waiver-list-table tbody')[0].rows.length;
-
-            expect(beforeAddingWaiver).toBe(0);
-            expect(tableRowsBeforeAddingWaiver).toBe(0);
-            expect(afterAddingWaiver).toBe(1);
-            expect(tableRowsAfterAddingWaiver).toBe(1);
+            testWaiverCount(0);
+            addTestWaiver('2020-07-16', '08:00', 'some reason');
+            testWaiverCount(1);
         });
-        
-        test('One more Waiver', () => {
-            const waivedWorkdays = new Store({ name: 'waived-workdays' });
-            let beforeAddingWaiver = waivedWorkdays.size;
-            let tableRowsBeforeAddingWaiver = $('#waiver-list-table tbody')[0].rows.length;
 
-            $('#reason').val('some other reason');
-            setDates('2020-07-17');
-            setHours('08:00');
+        test('Three Waivers', () => {
+            prepareMockup();
 
-            addWaiver();
-
-            let afterAddingWaiver = waivedWorkdays.size;
-            let tableRowsAfterAddingWaiver = $('#waiver-list-table tbody')[0].rows.length;
-
-            expect(beforeAddingWaiver).toBe(1);
-            expect(tableRowsBeforeAddingWaiver).toBe(1);
-            expect(afterAddingWaiver).toBe(2);
-            expect(tableRowsAfterAddingWaiver).toBe(2);
+            testWaiverCount(0);
+            addTestWaiver('2020-07-16', '08:00', 'some reason');
+            addTestWaiver('2020-07-20', '08:00', 'some other reason');
+            addTestWaiver('2020-07-21', '08:00', 'yet another reason');
+            testWaiverCount(3);
         });
     });
 });
