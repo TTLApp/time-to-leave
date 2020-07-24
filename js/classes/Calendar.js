@@ -89,10 +89,14 @@ class Calendar {
         var targetYear = this._getCalendarYear(),
             targetMonth = this._getCalendarMonth(),
             // If we are not displaying the current month we need to compute the balance including the
-            // last day of the month. To do so we move to the first day of the following month.
-            targetDate = (targetYear === this._getTodayYear() && targetMonth === this._getTodayMonth()) ?
+            // last day of the month. To do so we move to the first day of the following month
+            isCurrentMonth = targetYear === this._getTodayYear() && targetMonth === this._getTodayMonth(),
+            targetDate = isCurrentMonth ?
                 new Date(targetYear, targetMonth, this._getCalendarDate()) :
                 new Date(targetYear, targetMonth + 1, 1);
+            if (isCurrentMonth && this._getCountToday()) {
+                targetDate.setDate(targetDate.getDate() + 1);
+            }
         computeAllTimeBalancelUntilAsync(targetDate).then(balance => {
             var balanceElement = $('#overall-balance');
             if (balanceElement) {
@@ -672,6 +676,7 @@ class Calendar {
             balanceElement.removeClass('text-success text-danger');
             balanceElement.addClass(isNegative(balance) ? 'text-danger' : 'text-success');
         }
+        this._updateAllTimeBalance();
     }
 
     /*
