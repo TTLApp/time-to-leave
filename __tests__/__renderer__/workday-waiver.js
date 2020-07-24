@@ -6,9 +6,11 @@ const path = require('path');
 $ = require('jquery');
 const { 
     addWaiver,
+    populateList,
     setDates,
     setHours 
 } = require('../../src/workday-waiver');
+const console = require('console');
 
 function prepareMockup() {
     const waivedWorkdays = new Store({ name: 'waived-workdays' });
@@ -18,6 +20,7 @@ function prepareMockup() {
     var parser = new DOMParser();
     var htmlDoc = parser.parseFromString(content, 'text/html');
     document.body.innerHTML = htmlDoc.body.innerHTML;
+    populateList();
 }
 
 function addTestWaiver(day, hours, reason) {
@@ -46,11 +49,17 @@ describe('Test Workday Waiver Window', function() {
             testWaiverCount(1);
         });
 
-        test('Three Waivers', () => {
+        test('One + two Waivers', () => {
             prepareMockup();
-
+            //Start with none
             testWaiverCount(0);
+
+            // Add one waiver and update the table on the page
             addTestWaiver('2020-07-16', '08:00', 'some reason');
+            populateList();
+            testWaiverCount(1);
+
+            // Add two more waiver
             addTestWaiver('2020-07-20', '08:00', 'some other reason');
             addTestWaiver('2020-07-21', '08:00', 'yet another reason');
             testWaiverCount(3);

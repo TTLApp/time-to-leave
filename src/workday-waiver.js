@@ -47,6 +47,7 @@ function addRowToListTable(day, reason, hours) {
 }
 
 function populateList() {
+    clearWaiverList();
     for (const elem of waiverStore) {
         let date = elem[0],
             reason = elem[1]['reason'],
@@ -247,7 +248,15 @@ function addHolidayToList(day, reason, workingDay, conflicts) {
 }
 
 function clearHolidayTable() {
-    let table = $('#holiday-list-table tbody')[0];
+    clearTable('holiday-list-table');
+}
+
+function clearWaiverList() {
+    clearTable('waiver-list-table');
+}
+
+function clearTable(id) {
+    let table = $(`#${id} tbody`)[0];
     // Clear all rows before adding new ones
     while (table.rows.length >= 1) {
         table.rows[0].remove();
@@ -347,6 +356,7 @@ $(() => {
 
 module.exports = {
     addWaiver,
+    populateList,
     setDates,
     setHours
 };
