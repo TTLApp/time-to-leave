@@ -23,7 +23,7 @@ jobs:
           path: 'coverage/'
       - name: '      CodeCov'
         if: success()
-        uses: codecov/codecov-action@v1.0.10
+        uses: codecov/codecov-action@v1.0.12
         with:
           file: 'COVERAGE*'
           token: ${{ secrets.CODECOV_TOKEN }}
