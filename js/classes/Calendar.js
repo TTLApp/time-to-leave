@@ -447,6 +447,9 @@ class Calendar {
      * Display next month.
      */
     _nextMonth() {
+        // Set day as 1 to avoid problem when the current day on the _calendar_date
+        // is not a day in the next month day's range
+        this._calendarDate.setDate(1);
         this._calendarDate.setMonth(this._getCalendarMonth() + 1);
         this.redraw();
     }
@@ -455,6 +458,9 @@ class Calendar {
      * Display previous month.
      */
     _prevMonth() {
+        // Set day as 1 to avoid problem when the current day on the _calendar_date
+        // is not a day in the prev month day's range
+        this._calendarDate.setDate(1);
         this._calendarDate.setMonth(this._getCalendarMonth() - 1);
         this.redraw();
     }
