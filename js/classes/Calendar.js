@@ -1010,15 +1010,15 @@ class DayCalendar extends Calendar {
         return '<div class="month-total-row">' +
                     '<div class="half-width">' +
                     '<div class="month-total-element">' +
-                        '<div class="month-total-text month-sum" title="Overall balance until end of the month or current day">Overall Balance</div>' +
-                        '<div class="month-total-time month-sum-time" title="Overall balance until end of the month or current day"><span id="overall-balance"></div>' +
-                        '</div>' +
+                        '<div class="month-total-text month-balance" title="Balance up until today for this month. A positive balance means extra hours you don\'t need to work today (or the rest of the month).">Month Balance</div>' +
+                        '<div class="month-total-time month-balance-time" title="Balance up until today for this month. A positive balance means extra hours you don\'t need to work today (or the rest of the month)."><span type="text" id="month-balance"></div>' +
+                    '</div>' +
                     '</div>' +
                     '<div class="half-width">' +
                     '<div class="month-total-element">' +
-                        '<div class="month-total-text month-balance" title="Balance up until today for this month. A positive balance means extra hours you don\'t need to work today (or the rest of the month).">Month Balance</div>' +
-                        '<div class="month-total-time month-balance-time" title="Balance up until today for this month. A positive balance means extra hours you don\'t need to work today (or the rest of the month)."><span type="text" id="month-balance"></div>' +
-                        '</div>' +
+                        '<div class="month-total-text month-sum" title="Overall balance until end of the month or current day">Overall Balance</div>' +
+                        '<div class="month-total-time month-sum-time" title="Overall balance until end of the month or current day"><span id="overall-balance"></div>' +
+                    '</div>' +
                     '</div>' +
                 '</div>';
     }
