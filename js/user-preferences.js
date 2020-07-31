@@ -14,6 +14,7 @@ const defaultPreferences = {
     'notifications-interval': '5',
     'start-at-login': false,
     'theme': 'light',
+    'overall-balance-start-date' : '2019-01-01',
     'update-remind-me-after' : '2019-01-01',
     'working-days-monday': true,
     'working-days-tuesday': true,

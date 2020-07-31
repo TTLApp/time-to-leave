@@ -12,8 +12,15 @@ const waivedWorkdays = new Store({ name: 'waived-workdays' });
 
 function getFirstInputInDb() {
     var inputs = [];
+    const startDateStr = _getOverallBalanceStartDate();
+    let [startYear, startMonth, startDay] = startDateStr.split('-');
+    const startDate = new Date(startYear, startMonth - 1, startDay);
+
     for (let value of store) {
-        inputs.push(value[0]);
+        let [year, month, day] = value[0].split('-');
+        if (new Date(year, month, day) >= startDate) {
+            inputs.push(value[0]);
+        }
     }
     inputs.sort(function(a, b) {
         var [aYear, aMonth, aDay] = a.split('-');
@@ -40,6 +47,11 @@ function _getDateFromWaivedWorkdayDb(dbKey) {
     // and has the month described by 1-12 (jan - dec)
     const [year, month, day] = dbKey.split('-');
     return new Date(year, month-1, day);
+}
+
+function _getOverallBalanceStartDate() {
+    const savedPreferences = getUserPreferences();
+    return savedPreferences['overall-balance-start-date'];
 }
 
 function _getHoursPerDay() {
