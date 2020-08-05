@@ -58,7 +58,7 @@
     "stylelint-config-standard": "^20.0.0"
   },
   "dependencies": {
-    "bootstrap": "^4.5.0",
+    "bootstrap": "^4.5.1",
     "date-holidays": "^1.6.2",
     "electron-store": "^6.0.0",
     "is-online": "^8.4.0",
