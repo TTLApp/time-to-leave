@@ -9,7 +9,7 @@ const {
 const { notify } = require('./js/notification.js');
 const { getUserPreferences } = require('./js/user-preferences.js');
 const { applyTheme } = require('./js/themes.js');
-const { CalendarFactory } = require('./js/classes/Calendar.js');
+const { CalendarFactory } = require('./js/classes/CalendarFactory.js');
 
 // Global values for calendar
 let preferences = getUserPreferences();

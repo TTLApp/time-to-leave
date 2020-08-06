@@ -10,7 +10,7 @@ const {
     sumTime,
     validateTime
 } = require('../time-math.js');
-const { getDefaultWidthHeight, showDay, switchCalendarView } = require('../user-preferences.js');
+const { showDay, switchCalendarView } = require('../user-preferences.js');
 const { getDateStr, getMonthLength } = require('../date-aux.js');
 const {
     formatDayId,
@@ -22,37 +22,6 @@ const { computeAllTimeBalanceUntilAsync } = require('../time-balance.js');
 // Global values for calendar
 const store = new Store();
 const waivedWorkdays = new Store({name: 'waived-workdays'});
-
-class CalendarFactory {
-    static getInstance(preferences, calendar = undefined) {
-        let view = preferences.view;
-        let widthHeight = getDefaultWidthHeight();
-        if (view === 'day') {
-            if (calendar === undefined || calendar.constructor.name !== 'DayCalendar') {
-                if (calendar !== undefined && calendar.constructor.name !== 'DayCalendar') {
-                    ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
-                }
-                return new DayCalendar(preferences);
-            } else {
-                calendar.updatePreferences(preferences);
-                calendar.redraw();
-                return calendar;
-            }
-        } else if (view === 'month') {
-            if (calendar === undefined || calendar.constructor.name !== 'Calendar') {
-                if (calendar !== undefined && calendar.constructor.name !== 'Calendar') {
-                    ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
-                }
-                return new Calendar(preferences);
-            } else {
-                calendar.updatePreferences(preferences);
-                calendar.redraw();
-                return calendar;
-            }
-        }
-        throw new Error(`Could not instantiate ${view}`);
-    }
-}
 
 // Holds the calendar information and manipulation functions
 class Calendar {
@@ -1282,7 +1251,6 @@ class DayCalendar extends Calendar {
 }
 
 module.exports = {
-    CalendarFactory,
     Calendar,
     DayCalendar
 };
