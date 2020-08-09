@@ -372,7 +372,7 @@ class Calendar {
      * Returns the code of the table body of the calendar.
      */
     _generateTableBody() {
-        var html;
+        let html = '';
         var monthLength = getMonthLength(this._getCalendarYear(), this._getCalendarMonth());
         var balanceRowPosition = this._getBalanceRowPosition();
 
