@@ -51,7 +51,7 @@
     "electron-packager": "^15.0.0",
     "electron-reloader": "^1.0.1",
     "eslint": "^7.7.0",
-    "jest": "^26.4.0",
+    "jest": "^26.4.1",
     "pre-commit": "^1.2.2",
     "standard": "^14.3.4",
     "stylelint": "^13.6.1",
