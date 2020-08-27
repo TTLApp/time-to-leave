@@ -23,7 +23,8 @@ const defaultPreferences = {
     'working-days-friday': true,
     'working-days-saturday': false,
     'working-days-sunday': false,
-    'view': 'month'
+    'view': 'month',
+    'number-of-entries': 'fixed'
 };
 
 /*
@@ -133,7 +134,15 @@ function initPreferencesFileIfNotExistsOrInvalid() {
             shouldSaveDerivedPrefs |= !isValidTheme(value);
             break;
         case 'view':
-            shouldSaveDerivedPrefs |= !(value === 'month' || value === 'day');
+            if (derivedPrefs['number-of-entries'] === 'flexible') { // flexible only working with month calendar yet
+                shouldSaveDerivedPrefs |= !(value === 'month');
+            }
+            else {
+                shouldSaveDerivedPrefs |= !(value === 'month' || value === 'day');
+            }
+            break;
+        case 'number-of-entries':
+            shouldSaveDerivedPrefs |= !(value === 'fixed' || value === 'flexible');
             break;
         }
     }

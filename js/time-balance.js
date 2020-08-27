@@ -8,6 +8,7 @@ const { getUserPreferences, showDay } = require('./user-preferences.js');
 
 // Global values for calendar
 const store = new Store();
+const flexibleStore = new Store({ name: 'flexible-store' });
 const waivedWorkdays = new Store({ name: 'waived-workdays' });
 
 function getFirstInputInDb() {
@@ -16,7 +17,8 @@ function getFirstInputInDb() {
     let [startYear, startMonth, startDay] = startDateStr.split('-');
     const startDate = new Date(startYear, startMonth - 1, startDay);
 
-    for (let value of store) {
+    const usedStore = _getNumberOfEntries() === 'fixed' ? store : flexibleStore;
+    for (let value of usedStore) {
         let [year, month, day] = value[0].split('-');
         if (new Date(year, month, day) >= startDate) {
             inputs.push(value[0]);
@@ -59,6 +61,40 @@ function _getHoursPerDay() {
     return savedPreferences['hours-per-day'];
 }
 
+function _getNumberOfEntries() {
+    const savedPreferences = getUserPreferences();
+    return savedPreferences['number-of-entries'];
+}
+
+/**
+* Given an array of times from a day in the flexible calendar, returns the
+* day total according to same calculation rules as those of the calendar.
+* @param {string[]} values
+*/
+function _getFlexibleDayTotal(values) {
+    const inputsHaveExpectedSize = values.length >= 4 && values.length % 2 === 0;
+    const timesOk = values.length > 0 && values.every(time => time !== '--:--');
+    const hasDayEnded = inputsHaveExpectedSize && timesOk;
+
+    if (hasDayEnded) {
+        let dayTotal = '00:00';
+        let timesAreProgressing = true;
+        if (values.length >= 4 && values.length % 2 === 0) {
+            for (let i = 0; i < values.length; i += 2) {
+                const difference = subtractTime(values[i], values[i + 1]);
+                dayTotal = sumTime(dayTotal, difference);
+                if (values[i] >= values[i + 1]) {
+                    timesAreProgressing = false;
+                }
+            }
+        }
+        if (timesAreProgressing) {
+            return dayTotal;
+        }
+    }
+    return '00:00';
+}
+
 /**
 * Iterates over stores and returns total balance.
 * Since waiver store precedes normal store, must not get from normal store if day is waived.
@@ -76,13 +112,27 @@ function _getDayTotalsFromStores(firstDate, limitDate) {
             totals[getDateStr(date)] = value[1]['hours'];
         }
     }
-    for (let value of store) {
-        if (value[0].endsWith('-day-total')) {
-            let date = _getDateFromStoreDb(value[0]);
+    if (_getNumberOfEntries() === 'fixed') {
+        for (let value of store) {
+            if (value[0].endsWith('-day-total')) {
+                let date = _getDateFromStoreDb(value[0]);
+                if (!(getDateStr(date) in totals)) {
+                    const dateShown = showDay(date.getFullYear(), date.getMonth(), date.getDate(), preferences);
+                    if (date >= firstDate && date <= limitDate && dateShown) {
+                        const totalForDay = value[1];
+                        totals[getDateStr(date)] = totalForDay;
+                    }
+                }
+            }
+        }
+    }
+    else {
+        for (let value of flexibleStore) {
+            const date = _getDateFromStoreDb(value[0]);
             if (!(getDateStr(date) in totals)) {
                 const dateShown = showDay(date.getFullYear(), date.getMonth(), date.getDate(), preferences);
                 if (date >= firstDate && date <= limitDate && dateShown) {
-                    const totalForDay = value[1];
+                    const totalForDay = _getFlexibleDayTotal(value[1].values);
                     totals[getDateStr(date)] = totalForDay;
                 }
             }

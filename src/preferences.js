@@ -8,6 +8,15 @@ const { bindDevToolsShortcut } = require('../js/window-aux.js');
 let usersStyles = getUserPreferences();
 let preferences = usersStyles;
 
+function limitCalendarViews(preferences) {
+    const isFlexibleCalendar = preferences['number-of-entries'] === 'flexible';
+    $('#view option[value="day"]').prop('disabled', isFlexibleCalendar);
+    if (isFlexibleCalendar) {
+        $('#view').val('month');
+        preferences['view'] = 'month';
+    }
+}
+
 $(() => {
     // Theme-handling should be towards the top. Applies theme early so it's more natural.
     let theme = 'theme';
@@ -20,6 +29,10 @@ $(() => {
 
     if ('view' in usersStyles) {
         $('#view').val(usersStyles['view']);
+    }
+
+    if ('number-of-entries' in usersStyles) {
+        $('#number-of-entries').val(usersStyles['number-of-entries']);
     }
 
     $('input[type="checkbox"]').change(function() {
@@ -50,6 +63,12 @@ $(() => {
         ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
     });
 
+    $('#number-of-entries').change(function() {
+        preferences['number-of-entries'] = this.value;
+        limitCalendarViews(preferences);
+        ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
+    });
+
     $('input').each(function() {
         let input = $(this);
         let name = input.attr('name');
@@ -65,6 +84,8 @@ $(() => {
             preferences[name] = input.val();
         }
     });
+
+    limitCalendarViews(preferences);
 
     const notification = $('#notification');
     const repetition = $('#repetition');

@@ -381,6 +381,29 @@ body {
   display: block;
 }
 
+.arrow {
+  border: solid;
+  border-color: var(--page-color);
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.arrow.disabled {
+  border-color: var(--disabled-input-bground);
+  cursor: inherit !important;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
 .hidden {
   display: none !important;
 }
@@ -769,4 +792,230 @@ html[data-view='day'] .footer .punch-button {
 
 html[data-view='day'] .punch-button img {
   display: none;
+}
+
+/** Extended view related styles **/
+
+html[data-view='flexible'] .calendar-table-header {
+  display: flow-root;
+  border-bottom: 2px solid var(--table-border);
+  width: 90%;
+  margin: 5px auto 0 auto;
+}
+
+html[data-view='flexible'] .calendar-table-header .header-day,
+html[data-view='flexible'] .calendar-table-header .header-empty,
+html[data-view='flexible'] .calendar-table-header .header-day-total {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+html[data-view='flexible'] .calendar-table-header .header-day {
+  float: left;
+  margin-left: 25px;
+}
+
+html[data-view='flexible'] .calendar-table-header .header-day-total {
+  float: right;
+  margin-right: 22px;
+}
+
+html[data-view='flexible'] .row-time {
+  display: table-cell;
+  width: 50px;
+  margin: auto;
+}
+
+html[data-view='flexible'] .row-waiver .waived-day-text {
+  width: 75%;
+  margin: auto 10px auto;
+}
+
+@media (min-width: 1200px) {
+  html[data-view='flexible'] .row-waiver .waived-day-text {
+    width: 80%;
+  }
+}
+
+html[data-view='flexible'] .arrow {
+  margin-top: 9px;
+  height: 5px;
+  cursor: pointer;
+}
+
+html[data-view='flexible'] .arrow.left {
+  margin-right: 3px;
+}
+
+html[data-view='flexible'] .arrow.right {
+  margin-right: 5px;
+}
+
+html[data-view='flexible'] #calendar-table-body {
+  width: 90%;
+  margin: 0 auto 0 auto;
+}
+
+html[data-view='flexible'] #calendar-table-body > div {
+  display: flex;
+  border-bottom: 2px solid var(--table-border);
+  height: 30px;
+}
+
+html[data-view='flexible'] .ti {
+  text-align: left;
+  padding-left: 20px;
+}
+
+html[data-view='flexible'] .weekday {
+  width: 60px;
+  margin: auto 0 auto 0;
+}
+
+html[data-view='flexible'] .time-cells {
+  width: 69%;
+  overflow-x: scroll;
+  height: 30px;
+}
+
+@media (min-width: 1200px) {
+  html[data-view='flexible'] .time-cells {
+    width: 74%;
+  }
+}
+
+html[data-view='flexible'] .time-cells.error-tr {
+  border-bottom: 2px solid var(--error);
+  margin-bottom: -2px;
+}
+
+html[data-view='flexible'] .row-day-cell {
+  width: 13%;
+}
+
+html[data-view='flexible'] .time-cells::-webkit-scrollbar {
+  display: none;
+}
+
+html[data-view='flexible'] .plus-sign,
+html[data-view='flexible'] .minus-sign {
+  border-color: var(--page-color);
+  font-weight: bold;
+  height: 20px;
+  user-select: none;
+}
+
+html[data-view='flexible'] .plus-sign span,
+html[data-view='flexible'] .minus-sign span {
+  cursor: pointer;
+}
+
+html[data-view='flexible'] .sign-cell {
+  height: 25px;
+  padding: 0 2px 0 2px;
+}
+
+html[data-view='flexible'] .sign-cell.plus-sign {
+  width: 30px;
+  margin-top: -4px;
+}
+
+html[data-view='flexible'] .sign-cell.plus-sign span {
+  font-size: 24px;
+}
+
+html[data-view='flexible'] .sign-cell.minus-sign {
+  width: 22px;
+  margin-top: -8px;
+}
+
+html[data-view='flexible'] .sign-cell.minus-sign span {
+  font-size: 28px;
+}
+
+html[data-view='flexible'] .sign-cell.minus-sign.disabled span {
+  color: var(--disabled-input-bground);
+  cursor: inherit !important;
+}
+
+html[data-view='flexible'] .non-working-day {
+  width: 87%;
+}
+
+@media (min-width: 1200px) {
+  html[data-view='flexible'] .non-working-day {
+    width: 89%;
+  }
+}
+
+html[data-view='flexible'] .day {
+  width: 50px;
+  text-align: center;
+  margin: auto 0 auto 0;
+}
+
+html[data-view='flexible'] .ti input {
+  width: 100px;
+  text-align: center;
+}
+
+html[data-view='flexible'] .ti-total input {
+  margin-left: -14px;
+}
+
+html[data-view='flexible'] .interval,
+html[data-view='flexible'] .day-total-cell {
+  background-color: var(--table-cell-total-bground) !important;
+  color: var(--table-cell-total-color) !important;
+  width: 80px;
+  text-align: center;
+  padding: 2px;
+  user-select: none;
+  height: 28px;
+}
+
+@media (min-width: 1200px) {
+  html[data-view='flexible'] .day-total-cell {
+    width: 81px;
+  }
+}
+
+html[data-view='flexible'] .month-total-row {
+  display: flex;
+  border-bottom: 2px solid var(--table-border) !important;
+  border-top: 2px solid var(--table-total-border) !important;
+  min-height: 31px !important;
+  height: inherit !important;
+}
+
+html[data-view='flexible'] .month-total-time,
+html[data-view='flexible'] .month-total-text {
+  margin: auto;
+  text-align: center !important;
+}
+
+html[data-view='flexible'] .summary {
+  height: 28px;
+}
+
+html[data-view='flexible'] .leave-by-time {
+  width: 80px;
+}
+
+html[data-view='flexible'] .leave-by-time > div {
+  margin-top: 2px;
+  text-align: center;
+}
+
+html[data-view='flexible'] .leave-by-text {
+  width: 91%;
+  margin: auto 10px auto;
+}
+
+html[data-view='flexible'] #month-balance {
+  width: 58px;
+}
+
+html[data-view='flexible'] #overall-balance {
+  width: 70px;
 }
