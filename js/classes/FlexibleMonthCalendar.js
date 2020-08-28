@@ -315,6 +315,11 @@ class FlexibleMonthCalendar extends Calendar {
             const element = $(this).parent().parent().find('.time-cells')[0];
             removeEntries(element);
         });
+
+        $('.time-cells').mousewheel(function(e, delta) {
+            this.scrollLeft -= (delta * 30);
+            e.preventDefault();
+        });
     }
 
     /*
