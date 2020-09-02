@@ -153,8 +153,39 @@ function importDatabaseFromFile(filename) {
     return {'result': true};
 }
 
+function migrateFixedDbToFlexible() {
+    const store = new Store();
+    const flexibleStore = new Store({name: 'flexible-store'});
+    flexibleStore.clear();
+    let regularEntryArray = [];
+    for (const entry of store) {
+        const key = entry[0];
+        const value = entry[1];
+
+        const [year, month, day, /*stage*/, step] = key.split('-');
+        if (['begin', 'end'].indexOf(step) !== -1) {
+            const date = year + '-' + month + '-' + day;
+            if (regularEntryArray[date] === undefined) {
+                regularEntryArray[date] = { values: []};
+            }
+            regularEntryArray[date].values.push(value);
+        }
+    }
+    try {
+        for (const key of Object.keys(regularEntryArray)) {
+            regularEntryArray[key].values.sort();
+            flexibleStore.set(key, regularEntryArray[key]);
+        }
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+    return true;
+}
+
 module.exports = {
     importDatabaseFromFile,
     exportDatabaseToFile,
+    migrateFixedDbToFlexible,
     validEntry
 };

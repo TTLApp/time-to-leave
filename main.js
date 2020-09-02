@@ -3,18 +3,32 @@ const { app, BrowserWindow, clipboard, dialog, ipcMain, Menu, net, shell, Tray }
 const path = require('path');
 const Store = require('electron-store');
 const isOnline = require('is-online');
-const { importDatabaseFromFile, exportDatabaseToFile } = require('./js/import-export.js');
+const { importDatabaseFromFile, exportDatabaseToFile, migrateFixedDbToFlexible } = require('./js/import-export.js');
 const { notify } = require('./js/notification');
 const { getDateStr } = require('./js/date-aux.js');
 const { getDefaultWidthHeight, getUserPreferences, savePreferences } = require('./js/user-preferences.js');
 const os = require('os');
 
 let savedPreferences = null;
+let alreadyAskedForMigration = false;
 ipcMain.on('PREFERENCE_SAVE_DATA_NEEDED', (event, preferences) => {
     savedPreferences = preferences;
     app.setLoginItemSettings({
         openAtLogin: preferences['start-at-login']
     });
+
+    if (!alreadyAskedForMigration && savedPreferences['number-of-entries'] === 'flexible' && store.size !== 0 && flexibleStore.size === 0) {
+        alreadyAskedForMigration = true;
+        const options = {
+            type: 'question',
+            buttons: ['Cancel', 'Yes, please', 'No, thanks'],
+            defaultId: 2,
+            title: 'Migrate fixed calendar database to flexible',
+            message: 'Your flexible calendar is empty. Do you want to start by migrating the existing fixed calendar database to your flexible one?',
+        };
+
+        migrateFixedDbToFlexibleRequest(options);
+    }
 });
 
 ipcMain.on('SET_WAIVER_DAY', (event, waiverDay) => {
@@ -125,6 +139,31 @@ function refreshOnDayChange() {
     }
 }
 
+function migrateFixedDbToFlexibleRequest(options) {
+    let response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
+    if (response === 1) {
+        const migrateResult = migrateFixedDbToFlexible(response);
+        win.webContents.executeJavaScript('calendar.reload()');
+        if (migrateResult) {
+            Menu.getApplicationMenu().getMenuItemById('migrate-to-flexible-calendar').enabled = false;
+            dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
+                {
+                    title: 'Time to Leave',
+                    message: 'Database migrated',
+                    type: 'info',
+                    icon: iconpath,
+                    detail: '\Yay! Migration successful!'
+                });
+        } else {
+            dialog.showMessageBoxSync({
+                type: 'warning',
+                title: 'Failed migrating',
+                message: 'Something wrong happened :('
+            });
+        }
+    }
+}
+
 function createWindow() {
     // Create the browser window.
     var menu = Menu.buildFromTemplate([
@@ -227,6 +266,25 @@ function createWindow() {
                                 win.webContents.send('PREFERENCE_SAVED', savedPreferences);
                             }
                         });
+                    },
+                },
+                {
+                    type: 'separator'
+                },
+                {
+                    label: 'Migrate to flexible calendar',
+                    id: 'migrate-to-flexible-calendar',
+                    enabled: store.size !== 0 && flexibleStore.size === 0,
+                    click() {
+                        const options = {
+                            type: 'question',
+                            buttons: ['Cancel', 'Yes, please', 'No, thanks'],
+                            defaultId: 2,
+                            title: 'Migrate fixed calendar database to flexible',
+                            message: 'Are you sure you want to migrate the fixed calendar database to the flexible calendar?\n\nThe existing flexible calendar database will be cleared.',
+                        };
+
+                        migrateFixedDbToFlexibleRequest(options);
                     },
                 },
                 {type: 'separator'},

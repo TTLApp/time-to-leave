@@ -2,6 +2,7 @@
 const {
     exportDatabaseToFile,
     importDatabaseFromFile,
+    migrateFixedDbToFlexible,
     validEntry
 } = require('../../js/import-export');
 
@@ -93,6 +94,23 @@ describe('Import export', function() {
             expect(importDatabaseFromFile(['/not/a/valid/path'])['failed']).toBe(0);
             expect(importDatabaseFromFile([invalidEntriesFile])['result']).not.toBeTruthy();
             expect(importDatabaseFromFile([invalidEntriesFile])['failed']).toBe(5);
+        });
+    });
+
+    const migratedFlexibleEntries = {
+        '2020-3-1': {'values': ['08:00', '12:00', '13:00', '17:00']},
+        '2020-3-2': {'values': ['10:00', '18:00']}
+    };
+
+    describe('migrateFixedDbToFlexible', function() {
+        test('Check that migration works', () => {
+            expect(flexibleStore.size).toBe(2);
+            flexibleStore.clear();
+            expect(flexibleStore.size).toBe(0);
+            migrateFixedDbToFlexible();
+            expect(flexibleStore.size).toBe(2);
+            expect(flexibleStore.get('2020-3-1')).toStrictEqual(migratedFlexibleEntries['2020-3-1']);
+            expect(flexibleStore.get('2020-3-2')).toStrictEqual(migratedFlexibleEntries['2020-3-2']);
         });
     });
 
