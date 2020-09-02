@@ -28,6 +28,7 @@ let waiverWindow = null;
 let prefWindow = null;
 let tray;
 const store = new Store();
+const flexibleStore = new Store({name: 'flexible-store'});
 const waivedWorkdays = new Store({name: 'waived-workdays'});
 const macOS = process.platform === 'darwin';
 const win32 = process.platform === 'win32';
@@ -281,9 +282,9 @@ function createWindow() {
                             let confirmation = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
                             if (confirmation === /*Yes*/0) {
                                 const importResult = importDatabaseFromFile(response);
+                                // Reload only the calendar itself to avoid a flash
+                                win.webContents.executeJavaScript('calendar.reload()');
                                 if (importResult['result']) {
-                                    // Reload only the calendar itself to avoid a flash
-                                    win.webContents.executeJavaScript('calendar.reload()');
                                     dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                                         {
                                             title: 'Time to Leave',
@@ -326,6 +327,7 @@ function createWindow() {
                         let response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
                         if (response === 1) {
                             store.clear();
+                            flexibleStore.clear();
                             waivedWorkdays.clear();
                             // Reload only the calendar itself to avoid a flash
                             win.webContents.executeJavaScript('calendar.reload()');

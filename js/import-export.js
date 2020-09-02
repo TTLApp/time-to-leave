@@ -17,13 +17,38 @@ function getRegularEntries() {
         const key = entry[0];
         const value = entry[1];
 
-        var [year, month, day, stage, step] = key.split('-');
+        if (key !== 'update-remind-me-after') {
+            var [year, month, day, stage, step] = key.split('-');
+            //The main database uses a JS-based month index (0-11)
+            //So we need to adjust it to human month index (1-12)
+            var date = year + '-' + (parseInt(month) + 1) + '-' + day;
+            var data = stage + '-' + step;
+
+            output.push({'type': 'regular', 'date': date, 'data': data, 'hours': value});
+        }
+    }
+    return output;
+}
+
+/**
+ * Returns the database (only flexible calendar entries) as a array of:
+ *   . type: flexible
+ *   . date
+ *   . values: times
+ */
+function getFlexibleEntries() {
+    const flexibleStore = new Store({name: 'flexible-store'});
+    var output = [];
+    for (const entry of flexibleStore) {
+        const key = entry[0];
+        const value = entry[1];
+
+        var [year, month, day] = key.split('-');
         //The main database uses a JS-based month index (0-11)
         //So we need to adjust it to human month index (1-12)
         var date = year + '-' + (parseInt(month) + 1) + '-' + day;
-        var data = stage + '-' + step;
 
-        output.push({'type': 'regular', 'date': date, 'data': data, 'hours': value});
+        output.push({'type': 'flexible', 'date': date, 'values': value.values});
     }
     return output;
 }
@@ -51,6 +76,7 @@ function getWaivedEntries() {
 
 function exportDatabaseToFile(filename) {
     var information = getRegularEntries();
+    information = information.concat(getFlexibleEntries());
     information = information.concat(getWaivedEntries());
     try {
         fs.writeFileSync(filename, JSON.stringify(information, null,'\t'), 'utf-8');
@@ -65,26 +91,38 @@ function validateDate(dateStr) {
 }
 
 function validEntry(entry) {
-    if (!entry.hasOwnProperty('type') ||
-        !entry.hasOwnProperty('date') ||
-        !entry.hasOwnProperty('data') ||
-        !entry.hasOwnProperty('hours') ||
-        !(entry.type === 'regular' || entry.type === 'waived') ||
-        !validateTime(entry.hours) ||
-        !validateDate(entry.date)) {
-        return false;
+    if (entry.hasOwnProperty('type') && ['regular', 'waived', 'flexible'].indexOf(entry.type) !== -1) {
+        const validatedDate = entry.hasOwnProperty('date') && validateDate(entry.date);
+        let hasExpectedProperties;
+        let validatedTime = true;
+        if (entry.type === 'flexible') {
+            hasExpectedProperties = entry.hasOwnProperty('values') && Array.isArray(entry.values);
+            if (hasExpectedProperties) {
+                for (const value of entry.values) {
+                    validatedTime &= (validateTime(value) || value === '--:--');
+                }
+            }
+        }
+        else {
+            hasExpectedProperties = entry.hasOwnProperty('data');
+            validatedTime = entry.hasOwnProperty('hours') && validateTime(entry.hours);
+        }
+        if (hasExpectedProperties && validatedDate && validatedTime) {
+            return true;
+        }
     }
-    return true;
+    return false;
 }
 
 function importDatabaseFromFile(filename) {
     const store = new Store();
+    const flexibleStore = new Store({name: 'flexible-store'});
     const waivedWorkdays = new Store({name: 'waived-workdays'});
     try {
         const information = JSON.parse(fs.readFileSync(filename[0], 'utf-8'));
-        var failedEntries = 0;
-        for (var i = 0; i < information.length; ++i) {
-            var entry = information[i];
+        let failedEntries = 0;
+        for (let i = 0; i < information.length; ++i) {
+            let entry = information[i];
             if (!validEntry(entry)) {
                 failedEntries += 1;
                 continue;
@@ -92,12 +130,17 @@ function importDatabaseFromFile(filename) {
             if (entry.type === 'waived') {
                 waivedWorkdays.set(entry.date, { 'reason' : entry.data, 'hours' : entry.hours });
             } else {
-                var [year, month, day] = entry.date.split('-');
+                let [year, month, day] = entry.date.split('-');
                 //The main database uses a JS-based month index (0-11)
                 //So we need to adjust it from human month index (1-12)
-                var date = year + '-' + (parseInt(month) - 1) + '-' + day;
-                var key = date + '-' + entry.data;
-                store.set(key, entry.hours);
+                let date = year + '-' + (parseInt(month) - 1) + '-' + day;
+                if (entry.type === 'flexible') {
+                    const flexibleEntry = { values: entry.values };
+                    flexibleStore.set(date, flexibleEntry);
+                } else {
+                    let key = date + '-' + entry.data;
+                    store.set(key, entry.hours);
+                }
             }
         }
 

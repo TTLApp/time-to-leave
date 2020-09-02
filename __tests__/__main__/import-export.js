@@ -14,21 +14,28 @@ describe('Import export', function() {
 
     describe('validEntry(entry)', function() {
         const goodRegularEntry = {'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': '08:00'};
+        const goodFlexibleEntry = {'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00']};
         const goodWaivedEntry = {'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08:00'};
         const badRegularEntry = {'type': 'regular', 'date': 'not-a-date', 'data': 'day-begin', 'hours': '08:00'};
+        const badFlexibleEntry = {'type': 'flexible', 'date': '2020-06-03', 'values': ['not-an-hour']};
+        const badFlexibleEntry2 = {'type': 'flexible', 'date': '2020-06-03', 'values': 'not-an-array'};
         const badWaivedEntry = {'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': 'not-an-hour'};
         test('should be valid', () => {
             expect(validEntry(goodRegularEntry)).toBeTruthy();
             expect(validEntry(goodWaivedEntry)).toBeTruthy();
+            expect(validEntry(goodFlexibleEntry)).toBeTruthy();
         });
 
         test('should not be valid', () => {
             expect(validEntry(badRegularEntry)).not.toBeTruthy();
             expect(validEntry(badWaivedEntry)).not.toBeTruthy();
+            expect(validEntry(badFlexibleEntry)).not.toBeTruthy();
+            expect(validEntry(badFlexibleEntry2)).not.toBeTruthy();
         });
     });
 
     const store = new Store();
+    const flexibleStore = new Store({name: 'flexible-store'});
     const waivedWorkdays = new Store({name: 'waived-workdays'});
 
     store.clear();
@@ -44,6 +51,13 @@ describe('Import export', function() {
         '2020-3-2-day-total': '08:00',
     };
     store.set(regularEntries);
+
+    flexibleStore.clear();
+    const flexibleEntries = {
+        '2020-3-1': {'values': ['08:00', '12:00', '13:00', '17:00']},
+        '2020-3-2': {'values': ['07:00', '11:00', '14:00', '18:00']}
+    };
+    flexibleStore.set(flexibleEntries);
 
     waivedWorkdays.clear();
     const waivedEntries = {
@@ -66,6 +80,7 @@ describe('Import export', function() {
         `[{"type": "regular", "date": "not-a-date", "data": "day-begin", "hours": "08:00"},
           {"type": "waived", "date": "2020-01-01", "data": "example waiver 2", "hours": "not-an-hour"},
           {"type": "regular", "date": "not-a-date", "data": "day-end", "hours": "17:00"},
+          {"type": "flexible", "date": "not-a-date", "values": "not-an-array"},
           {"type": "not-a-type", "date": "not-a-date", "data": "day-end", "hours": "17:00"}
          ]`;
     const invalidEntriesFile = path.join(folder, 'invalid.ttldb');
@@ -77,7 +92,7 @@ describe('Import export', function() {
             expect(importDatabaseFromFile(['/not/a/valid/path'])['result']).not.toBeTruthy();
             expect(importDatabaseFromFile(['/not/a/valid/path'])['failed']).toBe(0);
             expect(importDatabaseFromFile([invalidEntriesFile])['result']).not.toBeTruthy();
-            expect(importDatabaseFromFile([invalidEntriesFile])['failed']).toBe(4);
+            expect(importDatabaseFromFile([invalidEntriesFile])['failed']).toBe(5);
         });
     });
 
