@@ -4,9 +4,11 @@
 - Fix: [#334] Improving performance of overall balance calculation and fixing balance target date after month change
 - Enhancement: [#328] Swap position for overall and month balance on day view
 - Enhancement: [#333] Adding start date for overall balance on preferences
+- Enhancement: [#357] Adding flexible table format for month calendar with variable number of entries per day
 
 Who built 1.5.6:
 - thamara
+- araujoarthur0
 
 
 1.5.5
