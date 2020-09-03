@@ -6,23 +6,29 @@ const {
 } = require('../../js/time-balance');
 const { defaultPreferences, getUserPreferences, savePreferences } = require('../../js/user-preferences');
 
+const store = new Store();
 const flexibleStore = new Store({name: 'flexible-store'});
 const waivedWorkdays = new Store({name: 'waived-workdays'});
 
 describe('Time Balance', () => {
-    test('getFirstInputInDb: no input', () => {
-        const store = new Store();
-        const waivedWorkdays = new Store({ name: 'waived-workdays' });
+    beforeAll(() => {
+        const preferences = defaultPreferences;
+        preferences['number-of-entries'] = 'fixed';
+        savePreferences(preferences);
+    });
+
+    beforeEach(() => {
+        const preferences = getUserPreferences();
+        expect(preferences['number-of-entries']).toBe('fixed');
         store.clear();
         waivedWorkdays.clear();
+    });
+
+    test('getFirstInputInDb: no input', () => {
         expect(getFirstInputInDb()).toBe('');
     });
 
     test('getFirstInputInDb: input 1', () => {
-        const store = new Store();
-        const waivedWorkdays = new Store({ name: 'waived-workdays' });
-        store.clear();
-        waivedWorkdays.clear();
         const entryEx = {
             '2020-3-1-day-begin': '08:00'
         };
@@ -31,10 +37,6 @@ describe('Time Balance', () => {
     });
 
     test('getFirstInputInDb: input 2', () => {
-        const store = new Store();
-        const waivedWorkdays = new Store({ name: 'waived-workdays' });
-        store.clear();
-        waivedWorkdays.clear();
         const entryEx = {
             '2020-3-1-day-begin': '08:00',
             '2020-3-3-day-begin': '08:00'
@@ -44,10 +46,6 @@ describe('Time Balance', () => {
     });
 
     test('getFirstInputInDb: input 3', () => {
-        const store = new Store();
-        const waivedWorkdays = new Store({ name: 'waived-workdays' });
-        store.clear();
-        waivedWorkdays.clear();
         const entryEx = {
             '2020-3-1-day-begin': '08:00',
             '2020-3-3-day-begin': '08:00',
@@ -58,10 +56,6 @@ describe('Time Balance', () => {
     });
 
     test('getFirstInputInDb: input 4', () => {
-        const store = new Store();
-        const waivedWorkdays = new Store({ name: 'waived-workdays' });
-        store.clear();
-        waivedWorkdays.clear();
         const entryEx = {
             '2020-6-6-day-begin': '10:00',
             '2020-6-6-day-end': '14:00',
@@ -99,18 +93,10 @@ describe('Time Balance', () => {
     });
 
     test('computeAllTimeBalanceUntil: no input', () => {
-        const store = new Store();
-        const waivedWorkdays = new Store({ name: 'waived-workdays' });
-        store.clear();
-        waivedWorkdays.clear();
         expect(computeAllTimeBalanceUntil(new Date())).resolves.toBe('00:00');
     });
 
     test('computeAllTimeBalanceUntil: only regular days', () => {
-        const store = new Store();
-        const waivedWorkdays = new Store({ name: 'waived-workdays' });
-        store.clear();
-        waivedWorkdays.clear();
         const entryEx = {
             '2020-6-1-day-total': '08:00' // wed
         };
@@ -130,10 +116,6 @@ describe('Time Balance', () => {
     });
 
     test('computeAllTimeBalanceUntil: only regular days (with overtime)', () => {
-        const store = new Store();
-        const waivedWorkdays = new Store({ name: 'waived-workdays' });
-        store.clear();
-        waivedWorkdays.clear();
         const entryEx = {
             '2020-6-1-day-total': '09:30' // wed
         };
@@ -147,10 +129,6 @@ describe('Time Balance', () => {
     });
 
     test('computeAllTimeBalanceUntil: only regular days (with undertime)', () => {
-        const store = new Store();
-        const waivedWorkdays = new Store({ name: 'waived-workdays' });
-        store.clear();
-        waivedWorkdays.clear();
         const entryEx = {
             '2020-6-1-day-total': '06:15' // wec
         };
@@ -164,10 +142,6 @@ describe('Time Balance', () => {
     });
 
     test('computeAllTimeBalanceUntil: only regular days (with mixed time)', () => {
-        const store = new Store();
-        const waivedWorkdays = new Store({ name: 'waived-workdays' });
-        store.clear();
-        waivedWorkdays.clear();
         const entryEx = {
             '2020-6-1-day-total': '06:15', // wed
             '2020-6-2-day-total': '09:15', // thu
@@ -183,10 +157,6 @@ describe('Time Balance', () => {
     });
 
     test('computeAllTimeBalanceUntil: missing entries', () => {
-        const store = new Store();
-        const waivedWorkdays = new Store({ name: 'waived-workdays' });
-        store.clear();
-        waivedWorkdays.clear();
         const entryEx = {
             '2020-6-1-day-total': '08:00', // wed
             '2020-6-3-day-total': '08:00', // fri
@@ -203,10 +173,6 @@ describe('Time Balance', () => {
     });
 
     test('computeAllTimeBalanceUntil: with waived days', () => {
-        const store = new Store();
-        const waivedWorkdays = new Store({ name: 'waived-workdays' });
-        store.clear();
-        waivedWorkdays.clear();
         const entryEx = {
             '2020-6-1-day-total': '08:00', // wed
             '2020-6-3-day-total': '08:00', // fri
@@ -225,10 +191,6 @@ describe('Time Balance', () => {
     });
 
     test('computeAllTimeBalanceUntil: with waived days 2', () => {
-        const store = new Store();
-        const waivedWorkdays = new Store({ name: 'waived-workdays' });
-        store.clear();
-        waivedWorkdays.clear();
         const entryEx = {
             '2020-6-8-day-total': '08:00', // wed
         };
@@ -249,10 +211,6 @@ describe('Time Balance', () => {
     });
 
     test('computeAllTimeBalanceUntil: with waived days (not full)', () => {
-        const store = new Store();
-        const waivedWorkdays = new Store({ name: 'waived-workdays' });
-        store.clear();
-        waivedWorkdays.clear();
         const entryEx = {
             '2020-6-1-day-total': '08:00', // wed
             '2020-6-3-day-total': '08:00', // fri
@@ -271,10 +229,6 @@ describe('Time Balance', () => {
     });
 
     test('computeAllTimeBalanceUntil: target date in the past of entries', () => {
-        const store = new Store();
-        const waivedWorkdays = new Store({ name: 'waived-workdays' });
-        store.clear();
-        waivedWorkdays.clear();
         const entryEx = {
             '2020-6-1-day-total': '08:00', // wed
             '2020-6-3-day-total': '08:00', // fri
