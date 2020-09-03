@@ -4,25 +4,25 @@ const fs = require('fs');
 const { validateTime } = require('./time-math.js');
 
 /**
- * Returns the database (only regular entries) as a array of:
+ * Returns the database (only regular entries) as an array of:
  *   . type: regular
  *   . date
  *   . data: (day-begin, day-end, day-total, lunch-begin, lunch-end, lunch-total)
  *   . hours
  */
-function getRegularEntries() {
+function _getRegularEntries() {
     const store = new Store();
-    var output = [];
+    let output = [];
     for (const entry of store) {
         const key = entry[0];
         const value = entry[1];
 
         if (key !== 'update-remind-me-after') {
-            var [year, month, day, stage, step] = key.split('-');
+            const [year, month, day, stage, step] = key.split('-');
             //The main database uses a JS-based month index (0-11)
             //So we need to adjust it to human month index (1-12)
-            var date = year + '-' + (parseInt(month) + 1) + '-' + day;
-            var data = stage + '-' + step;
+            const date = year + '-' + (parseInt(month) + 1) + '-' + day;
+            const data = stage + '-' + step;
 
             output.push({'type': 'regular', 'date': date, 'data': data, 'hours': value});
         }
@@ -31,22 +31,22 @@ function getRegularEntries() {
 }
 
 /**
- * Returns the database (only flexible calendar entries) as a array of:
+ * Returns the database (only flexible calendar entries) as an array of:
  *   . type: flexible
  *   . date
  *   . values: times
  */
-function getFlexibleEntries() {
+function _getFlexibleEntries() {
     const flexibleStore = new Store({name: 'flexible-store'});
-    var output = [];
+    let output = [];
     for (const entry of flexibleStore) {
         const key = entry[0];
         const value = entry[1];
 
-        var [year, month, day] = key.split('-');
+        const [year, month, day] = key.split('-');
         //The main database uses a JS-based month index (0-11)
         //So we need to adjust it to human month index (1-12)
-        var date = year + '-' + (parseInt(month) + 1) + '-' + day;
+        const date = year + '-' + (parseInt(month) + 1) + '-' + day;
 
         output.push({'type': 'flexible', 'date': date, 'values': value.values});
     }
@@ -54,15 +54,15 @@ function getFlexibleEntries() {
 }
 
 /**
- * Returns the database (only waived workday entries) as a array of:
+ * Returns the database (only waived workday entries) as an array of:
  *   . type: waived
  *   . date
  *   . data: (reason)
  *   . hours
  */
-function getWaivedEntries() {
+function _getWaivedEntries() {
     const waivedWorkdays = new Store({name: 'waived-workdays'});
-    var output = [];
+    let output = [];
     for (const entry of waivedWorkdays) {
         const date = entry[0];
         const reason = entry[1]['reason'];
@@ -75,9 +75,9 @@ function getWaivedEntries() {
 }
 
 function exportDatabaseToFile(filename) {
-    var information = getRegularEntries();
-    information = information.concat(getFlexibleEntries());
-    information = information.concat(getWaivedEntries());
+    let information = _getRegularEntries();
+    information = information.concat(_getFlexibleEntries());
+    information = information.concat(_getWaivedEntries());
     try {
         fs.writeFileSync(filename, JSON.stringify(information, null,'\t'), 'utf-8');
     } catch (err) {
@@ -85,14 +85,14 @@ function exportDatabaseToFile(filename) {
     } return true;
 }
 
-function validateDate(dateStr) {
-    var date = new Date(dateStr);
+function _validateDate(dateStr) {
+    const date = new Date(dateStr);
     return date instanceof Date && !isNaN(date);
 }
 
 function validEntry(entry) {
     if (entry.hasOwnProperty('type') && ['regular', 'waived', 'flexible'].indexOf(entry.type) !== -1) {
-        const validatedDate = entry.hasOwnProperty('date') && validateDate(entry.date);
+        const validatedDate = entry.hasOwnProperty('date') && _validateDate(entry.date);
         let hasExpectedProperties;
         let validatedTime = true;
         if (entry.type === 'flexible') {
