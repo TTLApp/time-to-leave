@@ -2,7 +2,8 @@
 
 const { ipcRenderer } = require('electron');
 const { getDefaultWidthHeight} = require('../user-preferences.js');
-const { Calendar, DayCalendar } = require('./Calendar.js');
+const { Calendar } = require('./Calendar.js');
+const { FixedDayCalendar } = require('./FixedDayCalendar.js');
 const { FlexibleMonthCalendar } = require('./FlexibleMonthCalendar.js');
 
 class CalendarFactory {
@@ -12,11 +13,11 @@ class CalendarFactory {
         let widthHeight = getDefaultWidthHeight();
         if (numberOfEntries === 'fixed') {
             if (view === 'day') {
-                if (calendar === undefined || calendar.constructor.name !== 'DayCalendar') {
-                    if (calendar !== undefined && calendar.constructor.name !== 'DayCalendar') {
+                if (calendar === undefined || calendar.constructor.name !== 'FixedDayCalendar') {
+                    if (calendar !== undefined && calendar.constructor.name !== 'FixedDayCalendar') {
                         ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
                     }
-                    return new DayCalendar(preferences);
+                    return new FixedDayCalendar(preferences);
                 } else {
                     calendar.updatePreferences(preferences);
                     calendar.redraw();

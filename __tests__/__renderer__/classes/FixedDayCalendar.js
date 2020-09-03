@@ -6,7 +6,7 @@ const { CalendarFactory } = require('../../../js/classes/CalendarFactory');
 
 window.$ = window.jQuery = require('jquery');
 
-describe('Calendar class Tests', () => {
+describe('FixedDayCalendar class Tests', () => {
     process.env.NODE_ENV = 'test';
 
     const store = new Store();
@@ -36,21 +36,17 @@ describe('Calendar class Tests', () => {
 
     const today = new Date();
     let testPreferences = defaultPreferences;
+    testPreferences['view'] = 'day';
     let calendar = CalendarFactory.getInstance(testPreferences);
 
-    test('Calendar creates with today\'s date', () => {
+    test('FixedDayCalendar starts with today\'s date', () => {
+        expect(calendar.constructor.name).toBe('FixedDayCalendar');
         expect(calendar._getCalendarDate()).toBe(today.getDate());
         expect(calendar._getCalendarYear()).toBe(today.getFullYear());
         expect(calendar._getCalendarMonth()).toBe(today.getMonth());
     });
 
-    test('Calendar "today" methods return today\'s date', () => {
-        expect(calendar._getTodayDate()).toBe(today.getDate());
-        expect(calendar._getTodayYear()).toBe(today.getFullYear());
-        expect(calendar._getTodayMonth()).toBe(today.getMonth());
-    });
-
-    test('Calendar internal storage correct loading', () => {
+    test('FixedDayCalendar internal storage correct loading', () => {
         expect(calendar._internalStore['2020-3-1-day-begin']).toBe('08:00');
         expect(calendar._getStore(1, 3, 2020, 'day-begin')).toBe('08:00');
         expect(calendar._internalStore['2010-3-1-day-begin']).toBe(undefined);
@@ -75,7 +71,7 @@ describe('Calendar class Tests', () => {
         expect(store.size).toStrictEqual(9);
     });
 
-    test('Calendar internal waiver storage correct loading', () => {
+    test('FixedDayCalendar internal waiver storage correct loading', () => {
         // Waiver Store internally saves the human month index, but the calendar methods use JS month index
         expect(calendar._internalWaiverStore['2019-12-31']).toStrictEqual({ reason: 'New Year\'s eve', hours: '08:00' });
         expect(calendar._getWaiverStore(31, 11, 2019)).toStrictEqual({ reason: 'New Year\'s eve', hours: '08:00' });
@@ -101,114 +97,118 @@ describe('Calendar class Tests', () => {
         expect(calendar._getWaiverStore(31, 11, 2010)).toStrictEqual({ reason: 'New Year\'s eve', hours: '08:00' });
     });
 
-    test('Calendar Month Changes', () => {
+    test('FixedDayCalendar Day Changes', () => {
+        expect(calendar._getCalendarDate()).toBe(today.getDate());
+
+        let expectedNextDay = new Date(today);
+        expectedNextDay.setDate(expectedNextDay.getDate() + 1);
+        let expectedPrevDay = new Date(today);
+        expectedPrevDay.setDate(expectedPrevDay.getDate() - 1);
+
+        calendar._nextDay();
+        expect(calendar._getCalendarDate()).toBe(expectedNextDay.getDate());
+        expect(calendar._isCalendarOnDate(expectedNextDay)).toBeTruthy();
+        expect(calendar._isCalendarOnDate(expectedPrevDay)).not.toBeTruthy();
+
+        calendar._prevDay();
+        expect(calendar._getCalendarDate()).toBe(today.getDate());
+
+        calendar._prevDay();
+        expect(calendar._getCalendarDate()).toBe(expectedPrevDay.getDate());
+        expect(calendar._isCalendarOnDate(expectedNextDay)).not.toBeTruthy();
+        expect(calendar._isCalendarOnDate(expectedPrevDay)).toBeTruthy();
+
+        calendar._goToCurrentDate();
+        expect(calendar._getCalendarDate()).toBe(today.getDate());
+
+        calendar._changeDay(1);
+        expect(calendar._getCalendarDate()).toBe(expectedNextDay.getDate());
+
+        calendar._goToCurrentDate();
+        expect(calendar._getCalendarDate()).toBe(today.getDate());
+    });
+
+    test('FixedDayCalendar Month Changes', () => {
         expect(calendar._getCalendarMonth()).toBe(today.getMonth());
         const expectedNextMonth = today.getMonth() + 1 === 12 ? 0 : (today.getMonth() + 1);
         const expectedPrevMonth = today.getMonth() === 0 ? 11 : (today.getMonth() - 1);
 
-        calendar._nextMonth();
+        // The Distance to next month is the amount of days in the month minus the current day, plust 2
+        // The plus 2 accounts for "finishing" today and moving to the next day (of the next month)
+        const distToNextMonth = (new Date(today.getFullYear(), today.getMonth(), 0)).getDate() - today.getDate() + 2;
+        const distToPrevMonth = today.getDate() + 1;
+
+        for (let i = 0; i < distToNextMonth; i++) {
+            calendar._nextDay();
+        }
+
         expect(calendar._getCalendarMonth()).toBe(expectedNextMonth);
 
-        calendar._prevMonth();
+        calendar._goToCurrentDate();
+        expect(calendar._getCalendarDate()).toBe(today.getDate());
         expect(calendar._getCalendarMonth()).toBe(today.getMonth());
 
-        calendar._prevMonth();
+        for (let i = 0; i < distToPrevMonth; i++) {
+            calendar._prevDay();
+        }
+
         expect(calendar._getCalendarMonth()).toBe(expectedPrevMonth);
 
         calendar._goToCurrentDate();
+        expect(calendar._getCalendarDate()).toBe(today.getDate());
         expect(calendar._getCalendarMonth()).toBe(today.getMonth());
     });
 
-    test('Calendar Year Changes', () => {
+    test('FixedDayCalendar Year Changes', () => {
         expect(calendar._getCalendarYear()).toBe(today.getFullYear());
         const expectedNextYear = today.getFullYear() + 1;
         const expectedPrevYear = today.getFullYear() - 1;
 
-        for (let i = 0; i < 12; i++) {
-            calendar._nextMonth();
+        for (let i = 0; i < 365; i++) {
+            calendar._nextDay();
         }
 
-        expect(calendar._getCalendarMonth()).toBe(today.getMonth());
         expect(calendar._getCalendarYear()).toBe(expectedNextYear);
 
         calendar._goToCurrentDate();
+        expect(calendar._getCalendarDate()).toBe(today.getDate());
+        expect(calendar._getCalendarMonth()).toBe(today.getMonth());
         expect(calendar._getCalendarYear()).toBe(today.getFullYear());
 
-        for (let i = 0; i < 12; i++) {
-            calendar._prevMonth();
+        for (let i = 0; i < 365; i++) {
+            calendar._prevDay();
         }
 
-        expect(calendar._getCalendarMonth()).toBe(today.getMonth());
         expect(calendar._getCalendarYear()).toBe(expectedPrevYear);
 
         calendar._goToCurrentDate();
+        expect(calendar._getCalendarDate()).toBe(today.getDate());
+        expect(calendar._getCalendarMonth()).toBe(today.getMonth());
         expect(calendar._getCalendarYear()).toBe(today.getFullYear());
     });
 
-    describe('Calendar RefreshOnDayChange', () => {
-        test('Calendar refresh set correctly', () => {
-            // Calendar is set as if someone was looking at previous month
-            calendar._prevMonth();
-            let prevMonthDate = calendar._calendarDate;
+    describe('FixedDayCalendar RefreshOnDayChange', () => {
+        test('FixedDayCalendar refresh set correctly', () => {
+            // Calendar is set as if someone was looking at previous day
+            calendar._prevDay();
+            let prevDayDate = calendar._calendarDate;
 
             // Refreshing with the date being looked at should push it to today
-            calendar.refreshOnDayChange(prevMonthDate.getDate(), prevMonthDate.getMonth(), prevMonthDate.getFullYear());
+            calendar.refreshOnDayChange(prevDayDate.getDate(), prevDayDate.getMonth(), prevDayDate.getFullYear());
 
             expect(calendar._getCalendarDate()).toBe(today.getDate());
             expect(calendar._getCalendarYear()).toBe(today.getFullYear());
             expect(calendar._getCalendarMonth()).toBe(today.getMonth());
         });
 
-        test('Calendar refresh set to another month', () => {
-            // Calendar is set as if someone was looking at previous month
-            calendar._prevMonth();
+        test('FixedDayCalendar refresh set to another day', () => {
+            // Calendar is set as if someone was looking at previous day
+            calendar._prevDay();
 
             // Refreshing with a date not being looked at should not push it to today
             calendar.refreshOnDayChange(today.getDate(), today.getMonth(), today.getFullYear());
 
-            expect(calendar._getCalendarMonth()).not.toBe(today.getMonth());
+            expect(calendar._getCalendarDate()).not.toBe(today.getDate());
         });
     });
-
-    describe('hasInputError(dayBegin, lunchBegin, lunchEnd, dayEnd)', () => {
-        test('Test scenarios where there is no error on the inputs', () => {
-            expect(calendar._hasInputError('00:00', '12:00', '13:00', '20:00')).not.toBeTruthy();
-            expect(calendar._hasInputError('00:00', '12:00', '13:00', '')).not.toBeTruthy();
-            expect(calendar._hasInputError('00:00', '12:00', '', '')).not.toBeTruthy();
-            expect(calendar._hasInputError('00:00', '', '', '')).not.toBeTruthy();
-            expect(calendar._hasInputError('', '', '', '')).not.toBeTruthy();
-            expect(calendar._hasInputError('00:00', '', '', '20:00')).not.toBeTruthy();
-        });
-
-        test('Test scenarios where there is error on the inputs', () => {
-            expect(calendar._hasInputError('23:00', '', '', '00:00')).toBeTruthy();
-            expect(calendar._hasInputError('', '23:00', '', '00:00')).toBeTruthy();
-            expect(calendar._hasInputError('', '', '23:00', '00:00')).toBeTruthy();
-            // TODO: Fix commented
-            // expect(calendar._hasInputError('not-valid-hour', '', '', 'not-valid-hour')).toBeTruthy();
-            //expect(calendar._hasInputError('00:00', '12:00', '', '20:00')).not.toBeTruthy();
-            //expect(calendar._hasInputError('00:00', '', '13:00', '20:00')).not.toBeTruthy();
-        });
-    });
-
-    test('Calendar to FixedDayCalendar', () => {
-        store.clear();
-        store.set(regularEntries);
-
-        waivedWorkdays.clear();
-        waivedWorkdays.set(waivedEntries);
-
-        testPreferences['view'] = 'day';
-        expect(calendar.constructor.name).toBe('Calendar');
-
-        // last state of the internal store was 10 elements
-        expect(Object.keys(calendar._internalStore).length).toStrictEqual(10);
-
-        calendar = CalendarFactory.getInstance(testPreferences, calendar);
-        expect(calendar.constructor.name).toBe('FixedDayCalendar');
-
-        // internal store is again set with 9 elements after store reset
-        expect(Object.keys(calendar._internalStore).length).toStrictEqual(9);
-    });
-
 });
