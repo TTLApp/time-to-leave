@@ -28,6 +28,7 @@
     "package:mac": "electron-packager . 'Time to Leave' --overwrite --platform=darwin --arch=x64 --icon=assets/icon-mac.icns --prune=true --out=release-builds --ignore=__tests__",
     "package:win": "electron-packager . time-to-leave --overwrite --platform=win32 --arch=ia32 --icon=assets/timer.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Time to Leave\" --ignore=__tests__",
     "preinstall": "npx npm-force-resolutions",
+    "postinstall": "patch-package",
     "pretest": "npm run clean",
     "start": "electron .",
     "test": "jest --runInBand --detectOpenHandles --verbose --colors"
@@ -52,6 +53,7 @@
     "electron-reloader": "^1.0.1",
     "eslint": "^7.7.0",
     "jest": "^26.4.2",
+    "patch-package": "^6.2.2",
     "pre-commit": "^1.2.2",
     "standard": "^14.3.4",
     "stylelint": "^13.6.1",
