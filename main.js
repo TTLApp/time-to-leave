@@ -138,7 +138,7 @@ function createWindow() {
                             waiverWindow.show();
                             return;
                         }
-                        
+
                         if (event) {
                             const today = new Date();
                             global.waiverDay = getDateStr(today);
@@ -204,7 +204,7 @@ function createWindow() {
                             prefWindow.show();
                             return;
                         }
-                      
+
                         const htmlPath = path.join('file://', __dirname, 'src/preferences.html');
                         prefWindow = new BrowserWindow({ width: 400,
                             height: 540,
@@ -427,7 +427,8 @@ function createWindow() {
         icon: iconpath,
         show: false,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            enableRemoteModule: true
         }
     });
 
