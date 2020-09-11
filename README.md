@@ -1,18 +1,22 @@
 <div align="center">
   <img src="assets/timetoleave.png" alt="Time to Leave Logo" height="100">
-  
+
   <p>Log work hours and get notified when it's time to leave the office and start to live</p>
-  
+
   <br/>
-  
-  <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">  <img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Downloads in Total">  <a href="https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Latest Release"></a>  <img src="https://img.shields.io/github/workflow/status/thamara/time-to-leave/Code%20Coverage" alt="Build">
+
+<img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
+<img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Downloads in Total">
+<a href="https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Latest Release"></a>
+<img src="https://img.shields.io/github/workflow/status/thamara/time-to-leave/Code%20Coverage" alt="Build">
+<a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="Latest Release"></a>
 
    <br/>
-  
+
   <img src="https://user-images.githubusercontent.com/846063/67172932-9e1db580-f393-11e9-87bc-1f51d57f8788.png" alt="Time to Leave Screenshot">
-  
+
   <br/>
- 
+
 </div>
 
 ---
@@ -29,60 +33,18 @@ You can also add waivers on the days you did not work.
 
 ![time-to-leave-waiver](https://user-images.githubusercontent.com/846063/67172943-a4139680-f393-11e9-9f05-67f00da26bc1.png)
 
-## How to install
+## How to install TTL
 
-Works on MacOS, Windows and Linux!
+Time to Leave works on MacOS, Windows and Linux, and you can download the desired version from [the latest release](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
 
-Download the desired version from [the latest release](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
+## How to build and contribute to TTL
 
-## How to build it
+If you want to help, read our [contributing](CONTRIBUTING.md) guidelines.
+You can also refer to our [development guide](DEVELOPMENT.md) for more information.
 
-### Dependencies
+## Get in touch!
 
--   [Node.js](https://nodejs.org/en/): version 8.x or higher
-
-### Starting
-
-Build/Install in Windows or MacOS:
-
-```bash
-git clone https://github.com/thamara/time-to-leave.git
-cd time-to-leave
-npm ci
-npm install
-```
-
-### Developer build
-
-```bash
-npm start
-```
-
-### Run tests
-
-```bash
-npm run test
-```
-
-### Packaging
-
-Builds will be available in release-builds
-
-```bash
-# macOS
-npm run package-mac
-
-# Windows
-npm run package-win
-
-# Debian
-npm run package-deb
-```
-
-## Contributing
-
-If you want to help, do read our [contributing](CONTRIBUTING.md) guidelines.
-Also, join our [discord channel](https://discord.gg/THph9C) to discuss upcoming features and more.
+Join our [discord channel](https://discord.gg/P3KkEF5) to discuss upcoming features and more.
 
 ## Credits
 
