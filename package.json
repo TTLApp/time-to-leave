@@ -51,13 +51,13 @@
     "electron": "^10.1.1",
     "electron-packager": "^15.1.0",
     "electron-reloader": "^1.0.1",
-    "eslint": "^7.8.1",
+    "eslint": "^7.9.0",
     "jest": "^26.4.2",
     "patch-package": "^6.2.2",
     "jquery-mousewheel": "^3.1.13",
     "pre-commit": "^1.2.2",
     "standard": "^14.3.4",
-    "stylelint": "^13.7.0",
+    "stylelint": "^13.7.1",
     "stylelint-config-standard": "^20.0.0"
   },
   "dependencies": {
