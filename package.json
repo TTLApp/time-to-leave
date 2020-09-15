@@ -48,7 +48,7 @@
   "license": "GPL-3.0",
   "devDependencies": {
     "@jest-runner/electron": "^3.0.0",
-    "electron": "^10.1.1",
+    "electron": "^10.1.2",
     "electron-packager": "^15.1.0",
     "electron-reloader": "^1.0.1",
     "eslint": "^7.9.0",
