@@ -1,7 +1,7 @@
 const path = require('path');
 
-let macOS = process.platform === 'darwin';
-let win32 = process.platform === 'win32';
+const macOS = process.platform === 'darwin';
+const win32 = process.platform === 'win32';
 
 const appConfig = {
     macOS: macOS,

@@ -190,7 +190,6 @@ function getEditMenuTemplate(mainWindow)
                 prefWindow.setMenu(null);
                 prefWindow.loadURL(htmlPath);
                 prefWindow.show();
-                //prefWindow.webContents.openDevTools()
                 prefWindow.on('close', function()
                 {
                     prefWindow = null;

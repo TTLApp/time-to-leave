@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain, Menu, Tray } = require('electron');
 const { getDefaultWidthHeight, getUserPreferences } = require('./user-preferences.js');
 const path = require('path');
-const { checkForUpdates, shouldcheckForUpdates } = require('./update-manager');
+const { checkForUpdates, shouldCheckForUpdates } = require('./update-manager');
 const { appConfig } = require('./app-config');
 const {
     getContextMenuTemplate,
@@ -16,7 +16,7 @@ let { contextMenu, mainWindow, tray } = require('./windows');
 function createWindow()
 {
     // Create the browser window.
-    let widthHeight = getDefaultWidthHeight();
+    const widthHeight = getDefaultWidthHeight();
     mainWindow = new BrowserWindow({
         width: widthHeight.width,
         height: widthHeight.height,
@@ -31,7 +31,7 @@ function createWindow()
         }
     });
 
-    var menu = Menu.buildFromTemplate([
+    const menu = Menu.buildFromTemplate([
         {
             label: 'Menu',
             submenu: getMainMenuTemplate(mainWindow)
@@ -86,24 +86,24 @@ function createWindow()
     });
 
     tray = new Tray(appConfig.trayIcon);
-    tray.on('click', function handleCliked()
+    tray.on('click', () =>
     {
         mainWindow.show();
     });
 
-    tray.on('right-click', function handleCliked()
+    tray.on('right-click', () =>
     {
         tray.popUpContextMenu(contextMenu);
     });
 
-    mainWindow.on('minimize',function(event)
+    mainWindow.on('minimize', () =>
     {
         event.preventDefault();
         mainWindow.hide();
     });
 
     // Emitted when the window is closed.
-    mainWindow.on('close', function(event)
+    mainWindow.on('close', (event) =>
     {
         let savedPreferences = getUserPreferences();
         if (!app.isQuitting && savedPreferences['close-to-tray'])
@@ -113,7 +113,7 @@ function createWindow()
         }
     });
 
-    if (shouldcheckForUpdates())
+    if (shouldCheckForUpdates())
     {
         checkForUpdates(/*showUpToDateDialog=*/false);
     }

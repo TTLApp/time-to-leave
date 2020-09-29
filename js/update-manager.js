@@ -3,18 +3,18 @@ const { getDateStr } = require('./date-aux.js');
 const isOnline = require('is-online');
 const Store = require('electron-store');
 
-function shouldcheckForUpdates()
+function shouldCheckForUpdates()
 {
     const store = new Store();
-    var lastChecked = store.get('update-remind-me-after');
-    var today = new Date(),
+    let lastChecked = store.get('update-remind-me-after');
+    let today = new Date(),
         todayDate = getDateStr(today);
     return !lastChecked || todayDate > lastChecked;
 }
 
 async function checkForUpdates(showUpToDateDialog)
 {
-    var online = await isOnline();
+    let online = await isOnline();
     if (!online)
     {
         return;
@@ -73,5 +73,5 @@ async function checkForUpdates(showUpToDateDialog)
 
 module.exports = {
     checkForUpdates,
-    shouldcheckForUpdates
+    shouldCheckForUpdates
 };

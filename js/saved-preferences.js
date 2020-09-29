@@ -8,6 +8,7 @@ function getSavedPreferences()
     return savedPreferences;
 }
 
+// Sets if TTL already asked for migration. True means it did.
 function setAlreadyAskedForFlexibleDbMigration(opt)
 {
     alreadyAskedForFlexibleDbMigration = opt;
