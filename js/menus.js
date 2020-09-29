@@ -446,6 +446,9 @@ function getHelpMenuTemplate()
                     {
                         clipboard.writeText(detail);
                     }
+                }).catch(err =>
+                {
+                    console.log(err);
                 });
             }
         }
