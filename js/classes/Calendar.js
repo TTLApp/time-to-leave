@@ -18,7 +18,7 @@ const {
     displayWaiverWindow
 } = require('../workday-waiver-aux.js');
 const { computeAllTimeBalanceUntilAsync } = require('../time-balance.js');
-const { generateKey } = require('../date-db-formatter');
+const { generateKey } = require('../date-db-formatter.js');
 
 // Global values for calendar
 const store = new Store();

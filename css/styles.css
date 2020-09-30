@@ -172,7 +172,7 @@ body {
 }
 
 .error-tr {
-  border-bottom: 2px solid var(--error);
+  border-bottom: 2px solid var(--error) !important;
 }
 
 .title-header-text {
@@ -1024,4 +1024,248 @@ html[data-view='flexible'] #month-balance {
 
 html[data-view='flexible'] #overall-balance {
   width: 70px;
+}
+
+/** Flexible Day view related styles **/
+
+html[data-view='flexible-day'] .title-header {
+  width: 100%;
+  margin-bottom: 80px;
+}
+
+html[data-view='flexible-day'] .title-header-text {
+  font-size: 300%;
+}
+
+html[data-view='flexible-day'] .table-header {
+  width: 100%;
+}
+
+html[data-view='flexible-day'] .th-month-name {
+  font-size: 115%;
+}
+
+html[data-view='flexible-day'] #calendar input[type="date" i]::-webkit-calendar-picker-indicator {
+  background-image: var(--day-calendar-select-icon);
+  height: 10px;
+  margin-left: 2px;
+  margin-right: -5px;
+  width: 10px;
+}
+
+html[data-view='flexible-day'] input[type="time" i]::-webkit-calendar-picker-indicator {
+  padding: 0;
+  margin: 0;
+}
+
+html[data-view='flexible-day'] #calendar-table-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+html[data-view='flexible-day'] #calendar-table-body .th-label {
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 30%;
+}
+
+html[data-view='flexible-day'] #calendar-table-body .first-group {
+  width: 30%;
+  text-align: center;
+}
+
+html[data-view='flexible-day'] #calendar-table-body .second-group {
+  width: 63%;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  html[data-view='flexible-day'] #calendar-table-body .second-group {
+    width: 67%;
+  }
+}
+
+html[data-view='flexible-day'] #calendar-table-body .third-group {
+  width: 5%;
+  text-align: center;
+}
+
+html[data-view='flexible-day'] #calendar-table-body .rows-time {
+  display: flex;
+  flex-direction: column;
+}
+
+html[data-view='flexible-day'] #calendar-table-body .row-interval,
+html[data-view='flexible-day'] #calendar-table-body .row-entry-pair,
+html[data-view='flexible-day'] #calendar-table-body .row-controls {
+  display: inline-flex;
+  border-bottom: 1px solid var(--table-border);
+  width: 90% !important;
+  margin: auto;
+  padding: 2px 0 2px 0;
+}
+
+html[data-view='flexible-day'] #calendar-table-body .row-entry-pair input {
+  width: 100px;
+  text-align: center;
+}
+
+html[data-view='flexible-day'] #calendar-table-body .interval,
+html[data-view='flexible-day'] .day-total-cell {
+  width: 80px;
+  margin: auto;
+}
+
+html[data-view='flexible-day'] .interval,
+html[data-view='flexible-day'] .day-total-cell {
+  background-color: var(--table-cell-total-bground) !important;
+  color: var(--table-cell-total-color) !important;
+  text-align: center;
+  padding: 2px;
+  user-select: none;
+  height: 28px;
+}
+
+html[data-view='flexible-day'] #calendar-table-body .sign-cell {
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  width: 24px;
+  user-select: none;
+}
+
+html[data-view='flexible-day'] #calendar-table-body .sign-cell .sign-container {
+  display: inline-block;
+  height: 24px;
+  overflow: hidden;
+  background-color: var(--table-cell-total-bground);
+  border-radius: 15px;
+  width: 25px;
+  cursor: pointer;
+}
+
+html[data-view='flexible-day'] #calendar-table-body .sign-cell .sign-container:hover {
+  background-color: var(--page-color);
+  transition: background-color 0.1s ease;
+}
+
+html[data-view='flexible-day'] #calendar-table-body .sign-cell span {
+  font-weight: bold;
+  font-size: 25px;
+  position: relative;
+  color: var(--page-bground);
+}
+
+html[data-view='flexible-day'] #calendar-table-body .row-total .third-group {
+  margin-top: 1px;
+}
+
+html[data-view='flexible-day'] #calendar-table-body .sign-cell .minus-sign {
+  top: -7px;
+}
+
+html[data-view='flexible-day'] #calendar-table-body .sign-cell .plus-sign {
+  top: -6px;
+}
+
+html[data-view='flexible-day'] .table-header tr {
+  border-bottom: 2px solid var(--punch-bground);
+}
+
+html[data-view='flexible-day'] .but-switch-view {
+  width: 6.5%;
+}
+
+html[data-view='flexible-day'] .table-body {
+  margin-top: 10px;
+}
+
+html[data-view='flexible-day'] .row-total {
+  display: inline-flex;
+  width: 90% !important;
+  margin: auto;
+  border-bottom: none !important;
+  padding: 10px 0 10px 0;
+}
+
+html[data-view='flexible-day'] .row-total .th {
+  margin: auto 0 auto 0;
+}
+
+html[data-view='flexible-day'] .row-waiver {
+  margin: auto;
+  padding: 2px 0 12px 0;
+  display: flex;
+}
+
+html[data-view='flexible-day'] .row-waiver .waived-day-text {
+  margin: auto 20px auto auto;
+}
+
+html[data-view='flexible-day'] .today-non-working {
+  border-bottom: none !important;
+}
+
+html[data-view='flexible-day'] .non-working-day {
+  background: none;
+  margin: auto auto 10px auto;
+  text-align: center;
+}
+
+html[data-view='flexible-day'] .summary {
+  padding: 5px 0 5px 0;
+  display: flex;
+  border-top: 4px solid var(--table-total-border);
+  border-bottom: none !important;
+}
+
+html[data-view='flexible-day'] .summary .leave-by-text {
+  margin: 2px 20px auto auto;
+}
+
+html[data-view='flexible-day'] .summary .leave-by-time {
+  margin-right: auto;
+}
+
+html[data-view='flexible-day'] .month-total-row {
+  width: 100%;
+  display: flex;
+  flex: auto;
+  flex-direction: row;
+  border-top: 4px solid var(--table-total-border);
+  border-bottom: none;
+  margin: auto;
+  padding: 5px 0 2px 0;
+}
+
+html[data-view='flexible-day'] .month-total-row .month-total-text {
+  padding-right: 10px;
+  text-align: right;
+}
+
+html[data-view='flexible-day'] .month-total-row .month-total-element {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  width: fit-content;
+}
+
+html[data-view='flexible-day'] .month-total-row .month-total-time {
+  text-align: left;
+}
+
+html[data-view='flexible-day'] .footer {
+  height: 32px;
+  font-size: 100%;
+}
+
+html[data-view='flexible-day'] .footer .punch-button {
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+}
+
+html[data-view='flexible-day'] .punch-button img {
+  display: none;
 }

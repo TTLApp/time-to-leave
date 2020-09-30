@@ -10,15 +10,6 @@ const { bindDevToolsShortcut } = require('../js/window-aux.js');
 let usersStyles = getUserPreferences();
 let preferences = usersStyles;
 
-function limitCalendarViews(preferences) {
-    const isFlexibleCalendar = preferences['number-of-entries'] === 'flexible';
-    $('#view option[value="day"]').prop('disabled', isFlexibleCalendar);
-    if (isFlexibleCalendar) {
-        $('#view').val('month');
-        preferences['view'] = 'month';
-    }
-}
-
 $(() => {
     // Theme-handling should be towards the top. Applies theme early so it's more natural.
     let theme = 'theme';
@@ -67,7 +58,6 @@ $(() => {
 
     $('#number-of-entries').change(function() {
         preferences['number-of-entries'] = this.value;
-        limitCalendarViews(preferences);
         ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
     });
 
@@ -86,8 +76,6 @@ $(() => {
             preferences[name] = input.val();
         }
     });
-
-    limitCalendarViews(preferences);
 
     const notification = $('#notification');
     const repetition = $('#repetition');
