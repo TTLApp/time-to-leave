@@ -182,11 +182,6 @@ body {
   float: left;
 }
 
-/* @media (max-width:770px){
-  .title-header-text{
-    font-size: 370%;
-  }
-} */
 #calendar table {
   margin-left: auto;
   margin-right: auto;
