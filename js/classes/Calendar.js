@@ -853,16 +853,21 @@ class Calendar {
     */
     _hasInputError(dayBegin, lunchBegin, lunchEnd, dayEnd) {
         var dayValues = new Array();
-        if (validateTime(dayBegin)) {
+        var bDuringLunch = false;
+        if (validateTime(dayBegin)) {            
             dayValues.push(dayBegin);
         }
         if (validateTime(lunchBegin)) {
+            bDuringLunch = true;
             dayValues.push(lunchBegin);
         }
         if (validateTime(lunchEnd)) {
+            if (!bDuringLunch) return true;
+            bDuringLunch = false;
             dayValues.push(lunchEnd);
         }
         if (validateTime(dayEnd)) {
+            if (bDuringLunch) return true;
             dayValues.push(dayEnd);
         }
         for (var index = 0; index < dayValues.length; index++) {
