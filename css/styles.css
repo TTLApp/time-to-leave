@@ -580,7 +580,7 @@ input:disabled + .slider {
 
 #preferences-window p {
   font-variant-caps: all-petite-caps;
-  text-align: center;
+  text-align: left;
 }
 
 /* Waiver page styles */
