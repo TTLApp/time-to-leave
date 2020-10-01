@@ -1,6 +1,5 @@
 ## 1.5.6 (in development)
 
--   Fix: [#372] Added updated screenshots in README.
 -   Fix: Fixed behavior of calendar when moving to next/previous month when current day is in the range of 29-31.
 -   Fix: [#334] Improving performance of overall balance calculation and fixing balance target date after month change
 -   Enhancement: [#328] Swap position for overall and month balance on day view
@@ -10,6 +9,7 @@
 Who built 1.5.6:
 
 -   thamara
+-   parikhdhruv24791
 -   araujoarthur0
 
 ## 1.5.5
