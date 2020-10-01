@@ -26,8 +26,8 @@ const waivedWorkdays = new Store({name: 'waived-workdays'});
 // Holds the calendar information and manipulation functions
 class Calendar {
     /**
-    * @param {Object.<string, any>} preferences
-    */
+     * @param {Object.<string, any>} preferences
+     */
     constructor(preferences) {
         this._options = {
             dayAbbrs : [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
@@ -40,8 +40,8 @@ class Calendar {
         this._initCalendar();
     }
 
-    /*
-     * Display calendar defined.
+    /**
+     * Initializes the calendar by generating the html code, binding JS events and then drawing according to DB.
      */
     _initCalendar() {
         this._generateTemplate();
@@ -74,6 +74,9 @@ class Calendar {
         return targetDate;
     }
 
+    /**
+     * Calls Async method to update the All Time Balance.
+     */
     _updateAllTimeBalance() {
         const targetDate = this._getTargetDayForAllTimeBalance();
         computeAllTimeBalanceUntilAsync(targetDate).then(balance => {
@@ -87,8 +90,8 @@ class Calendar {
         });
     }
 
-    /*
-     * Draws elements of the Calendar that depend on data.
+    /**
+     * Draws elements of the Calendar that depend on DB data.
      */
     _draw() {
         this._updateTableHeader();
@@ -116,8 +119,12 @@ class Calendar {
         this._updateAllTimeBalance();
     }
 
-    /*
+    /**
      * Updates data displayed based on the database.
+     * @param {number} day
+     * @param {number} month
+     * @param {string} key
+     * @return {string|undefined} A time string
      */
     _setTableData(day, month, key) {
         var idTag = this._getCalendarYear() + '-' + month + '-' + day + '-' + key;
@@ -130,8 +137,13 @@ class Calendar {
         return value;
     }
 
-    /*
+    /**
      * Gets value from internal store.
+     * @param {number} day
+     * @param {number} month
+     * @param {number} year
+     * @param {string} key
+     * @return {string|undefined} A time string
      */
     _getStore(day, month, year, key) {
         var idTag = year + '-' + month + '-' + day + '-' + key;
@@ -139,8 +151,13 @@ class Calendar {
         return this._internalStore[idTag];
     }
 
-    /*
+    /**
      * Saves value on store and updates internal store.
+     * @param {number} day
+     * @param {number} month
+     * @param {number} year
+     * @param {string} key
+     * @param {string} newValue valid time value
      */
     _setStore(day, month, year, key, newValue) {
         var idTag = year + '-' + month + '-' + day + '-' + key;
@@ -149,8 +166,12 @@ class Calendar {
         store.set(idTag, newValue);
     }
 
-    /*
+    /**
      * Removes value from store and from internal store.
+     * @param {number} day
+     * @param {number} month
+     * @param {number} year
+     * @param {string} key
      */
     _removeStore(day, month, year, key) {
         var idTag = year + '-' + month + '-' + day + '-' + key;
@@ -159,8 +180,12 @@ class Calendar {
         store.delete(idTag);
     }
 
-    /*
+    /**
      * Gets value from internal waiver store.
+     * @param {number} day
+     * @param {number} month
+     * @param {number} year
+     * @return {string} A time string
      */
     _getWaiverStore(day, month, year) {
         let dayKey = getDateStr(new Date(year, month, day));
@@ -168,7 +193,7 @@ class Calendar {
         return this._internalWaiverStore[dayKey];
     }
 
-    /*
+    /**
      * Generates the calendar HTML view.
      */
     _generateTemplate() {
@@ -177,32 +202,42 @@ class Calendar {
         $('html').attr('data-view', 'month');
     }
 
-    /*
+    /**
      * Returns the time input HTML code of a date.
+     * @param {number} year
+     * @param {number} month
+     * @param {number} day
+     * @param {string} key
+     * @return {string}
      */
-    static _getInputCode(year, month, day, type) {
-        var idTag = year + '-' + month + '-' + day + '-' + type;
+    static _getInputCode(year, month, day, key) {
+        var idTag = year + '-' + month + '-' + day + '-' + key;
 
         return '<input type="time" id="' + idTag + '"' +
-               (type.endsWith('total') ? ' disabled' : '') +
+               (key.endsWith('total') ? ' disabled' : '') +
                '>';
-
     }
 
-    /*
+    /**
      * Returns the total field HTML code of a date.
+     * @param {number} year
+     * @param {number} month
+     * @param {number} day
+     * @param {string} key
+     * @return {string}
      */
-    static _getTotalCode(year, month, day, type) {
-        var idTag = year + '-' + month + '-' + day + '-' + type;
+    static _getTotalCode(year, month, day, key) {
+        var idTag = year + '-' + month + '-' + day + '-' + key;
 
         return '<input type="text" class="total-input" id="' +
                idTag + '" size="5"' +
-               (type.endsWith('total') ? ' disabled' : '') +
+               (key.endsWith('total') ? ' disabled' : '') +
                '>';
     }
 
-    /*
+    /**
      * Returns the summary field HTML code.
+     * @return {string}
      */
     static _getSummaryRowCode() {
         var leaveByCode = '<input type="text" id="leave-by" size="5" disabled>';
@@ -220,8 +255,9 @@ class Calendar {
         return code;
     }
 
-    /*
+    /**
      * Returns the HTML code for the row with working days, month total and balance.
+     * @return {string}
      */
     static _getBalanceRowCode() {
         return '<tr>' +
@@ -238,8 +274,12 @@ class Calendar {
             '</tr>';
     }
 
-    /*
+    /**
      * Returns the code of a calendar row.
+     * @param {number} year
+     * @param {number} month
+     * @param {number} day
+     * @return {string}
      */
     _getInputsRowCode(year, month, day) {
         var currentDay = new Date(year, month, day),
@@ -295,8 +335,9 @@ class Calendar {
         return htmlCode;
     }
 
-    /*
+    /**
      * Returns the header of the page, with the image, name and a message.
+     * @return {string}
      */
     static _getPageHeader() {
         let switchView = '<input id="switch-view" type="image" src="assets/switch.svg" alt="Switch View" title="Switch View" height="24" width="24"></input>';
@@ -317,8 +358,9 @@ class Calendar {
                 '</tr></table>';
     }
 
-    /*
+    /**
      * Returns the code of the header of the calendar table
+     * @return {string}
      */
     static _getTableHeaderCode() {
         return '<thead>' +
@@ -334,8 +376,9 @@ class Calendar {
                 '</thead>\n';
     }
 
-    /*
+    /**
      * Returns the last valid day before the current one, to print the balance row
+     * @return {number} Integer value representing a day (1-31)
      */
     _getBalanceRowPosition() {
         if (this._getCalendarYear() !== this._getTodayYear() || this._getCalendarMonth() !== this._getTodayMonth()) {
@@ -352,8 +395,9 @@ class Calendar {
         return balanceRowPosition;
     }
 
-    /*
+    /**
      * Returns the template code of the body of the page.
+     * @return {string}
      */
     _getBody() {
         var html = '<div>';
@@ -368,8 +412,9 @@ class Calendar {
         return html;
     }
 
-    /*
+    /**
      * Returns the code of the table body of the calendar.
+     * @return {string}
      */
     _generateTableBody() {
         let html = '';
@@ -385,26 +430,32 @@ class Calendar {
         return html;
     }
 
-    /*
+    /**
      * Updates the code of the table header of the calendar, to be called on demand.
      */
     _updateTableHeader() {
         $('#month-year').html(this._options.months[this._getCalendarMonth()] + ' ' + this._getCalendarYear());
     }
 
-    /*
+    /**
      * Updates the code of the table body of the calendar, to be called on demand.
      */
     _updateTableBody() {
         $('#calendar-table-body').html(this._generateTableBody());
     }
 
+    /**
+     * Reloads internal DBs based on external DBs and then redraws the calendar.
+     */
     reload() {
         this.loadInternalStore();
         this.loadInternalWaiveStore();
         this.redraw();
     }
 
+    /**
+     * Alias to Calendar::draw()
+     */
     redraw() {
         this._draw();
     }
@@ -412,9 +463,9 @@ class Calendar {
     /**
     * Every day change, if the calendar is showing the same month as that of the previous day,
     * this function is called to redraw the calendar.
-    * @param {int} oldDayDate not used in MonthCalendar, just DayCalendar
-    * @param {int} oldMonthDate
-    * @param {int} oldYearDate
+    * @param {number} oldDayDate not used in MonthCalendar, just DayCalendar
+    * @param {number} oldMonthDate
+    * @param {number} oldYearDate
     */
     refreshOnDayChange(oldDayDate, oldMonthDate, oldYearDate) {
         if (this._getCalendarMonth() === oldMonthDate && this._getCalendarYear() === oldYearDate) {
@@ -422,7 +473,7 @@ class Calendar {
         }
     }
 
-    /*
+    /**
      * Display next month.
      */
     _nextMonth() {
@@ -433,7 +484,7 @@ class Calendar {
         this.redraw();
     }
 
-    /*
+    /**
      * Display previous month.
      */
     _prevMonth() {
@@ -444,7 +495,7 @@ class Calendar {
         this.redraw();
     }
 
-    /*
+    /**
      * Go to current month.
      */
     _goToCurrentDate() {
@@ -452,50 +503,60 @@ class Calendar {
         this.redraw();
     }
 
-    /*
+    /**
      * Gets today's year
+     * @return {number} Integer year in 4 digits YYYY
      */
     _getTodayYear() {
         return (new Date()).getFullYear();
     }
 
-    /*
+    /**
      * Gets today's month.
+     * @return {number} Integer month in 2 digits MM (0-11)
      */
     _getTodayMonth() {
         return (new Date()).getMonth();
     }
 
-    /*
+    /**
      * Gets today's date.
+     * @return {number} Integer day in 1-2 digits (1-31)
      */
     _getTodayDate() {
         return (new Date()).getDate();
     }
 
-    /*
+    /**
      * Gets year of displayed calendar.
+     * @return {number} Integer year in 4 digits YYYY
      */
     _getCalendarYear() {
         return this._calendarDate.getFullYear();
     }
 
-    /*
+    /**
      * Gets month of displayed calendar.
+     * @return {number} Integer month in 2 digits MM (0-11)
      */
     _getCalendarMonth() {
         return this._calendarDate.getMonth();
     }
 
-    /*
+    /**
      * Gets day of displayed calendar. (Used only in DayCalendar)
+     * @return {number} Integer day in 1-2 digits (1-31)
      */
     _getCalendarDate() {
         return this._calendarDate.getDate();
     }
 
-    /*
+    /**
      * Gets the total for a specific day by looking into both stores.
+     * @param {number} day
+     * @param {number} month
+     * @param {number} year
+     * @return {string|undefined}
      */
     _getDayTotal(day, month, year) {
         let storeTotal = this._getStore(day, month, year, 'day-total');
@@ -509,38 +570,41 @@ class Calendar {
         return undefined;
     }
 
-    /*
-    * Returns how many "hours per day" were set in preferences.
-    */
+    /**
+     * Returns how many "hours per day" were set in preferences.
+     * @return {string}
+     */
     _getHoursPerDay() {
         return this._preferences['hours-per-day'];
     }
 
-    /*
-    * Returns if "hide non-working days" was set in preferences.
-    */
+    /**
+     * Returns if "hide non-working days" was set in preferences.
+     * @return {Boolean}
+     */
     _getHideNonWorkingDays() {
         return this._preferences['hide-non-working-days'];
     }
 
-    /*
-    * Returns if "count today" was set in preferences.
-    */
+    /**
+     * Returns if "count today" was set in preferences.
+     * @return {Boolean}
+     */
     _getCountToday() {
         return this._preferences['count-today'];
     }
 
     /**
-    * Updates calendar settings from a given preferences file.
-    * @param {Object.<string, any>} preferences
-    */
+     * Updates calendar settings from a given preferences file.
+     * @param {Object.<string, any>} preferences
+     */
     updatePreferences(preferences) {
         this._preferences = preferences;
     }
 
     /**
-    * Stores year data in memory to make operations faster
-    */
+     * Stores year data in memory to make operations faster
+     */
     loadInternalStore() {
         this._internalStore = {};
 
@@ -553,8 +617,8 @@ class Calendar {
     }
 
     /**
-    * Stores waiver data in memory to make operations faster
-    */
+     * Stores waiver data in memory to make operations faster
+     */
     loadInternalWaiveStore() {
         this._internalWaiverStore = {};
 
@@ -570,16 +634,20 @@ class Calendar {
         }
     }
 
-    /*
-    * Calls showDay from user-preferences.js passing the last preferences set.
-    */
+    /**
+     * Calls showDay from user-preferences.js passing the last preferences set.
+     * @param {number} year
+     * @param {number} month
+     * @param {number} day
+     * @return {Boolean}
+     */
     _showDay(year, month, day) {
         return showDay(year, month, day, this._preferences);
     }
 
-    /*
-    * Adds the next missing entry on the actual day and updates calendar.
-    */
+    /**
+     * Adds the next missing entry on the actual day and updates calendar.
+     */
     punchDate() {
         var now = new Date(),
             year = now.getFullYear(),
@@ -616,9 +684,9 @@ class Calendar {
         this._updateTimeDayCallback(dayStr + entry, value);
     }
 
-    /*
-    * Updates the monthly time balance.
-    */
+    /**
+     * Updates the monthly time balance and triggers the all time balance update at end.
+     */
     _updateBalance() {
         var now = new Date(),
             monthLength = getMonthLength(this._getCalendarYear(), this._getCalendarMonth()),
@@ -664,8 +732,8 @@ class Calendar {
         this._updateAllTimeBalance();
     }
 
-    /*
-     * Updates data displayed based on the database.
+    /**
+     * Updates data displayed on the calendar based on the internal DB, and updates balances at end.
      */
     _updateBasedOnDB() {
         var monthLength = getMonthLength(this._getCalendarYear(), this._getCalendarMonth());
@@ -722,7 +790,7 @@ class Calendar {
         this._updateLeaveBy();
     }
 
-    /*
+    /**
      * Update contents of the "time to leave" bar.
      */
     _updateLeaveBy() {
@@ -770,8 +838,10 @@ class Calendar {
         }
     }
 
-    /*
+    /**
      * Based on the key of the input, updates the values for total in DB and display it on page.
+     * @param {string} key
+     * @param {string} value Time value
      */
     _updateTimeDayCallback(key, value) {
         var [year, month, day, stage, step] = key.split('-');
@@ -781,7 +851,15 @@ class Calendar {
         this._updateBalance();
     }
 
-
+    /**
+     * Based on the date + key of the input, if a valid newValue is given, the internal DB value is replaced.
+     * If it's invalid, the internal value is removed.
+     * @param {number} year
+     * @param {number} month
+     * @param {number} day
+     * @param {string} key
+     * @param {string} newValue Time value
+     */
     _updateDbEntry(year, month, day, key, newValue) {
         if (validateTime(newValue)) {
             this._setStore(day, month, year, key, newValue);
@@ -790,6 +868,12 @@ class Calendar {
         }
     }
 
+    /**
+     * Validates two time strings and returns the interval if valid.
+     * @param {string} lunchBegin
+     * @param {string} lunchEnd
+     * @return {string}
+     */
     _computeLunchTime(lunchBegin, lunchEnd) {
         var lunchTime = '';
         if (lunchBegin && lunchEnd &&
@@ -800,6 +884,15 @@ class Calendar {
         return lunchTime;
     }
 
+    /**
+     * Validates five time strings and returns the total day time.
+     * @param {string} dayBegin
+     * @param {string} dayEnd
+     * @param {string} lunchBegin
+     * @param {string} lunchEnd
+     * @param {string} lunchTime
+     * @return {string}
+     */
     _computeDayTotal(dayBegin, dayEnd, lunchBegin, lunchEnd, lunchTime) {
         var dayTotal = '';
         if (dayBegin && dayEnd &&
@@ -816,9 +909,14 @@ class Calendar {
         return dayTotal;
     }
 
-    /*
-    * Updates the DB with the information of computed total lunch time and day time.
-    */
+    /**
+     * Updates the DB with the information of computed total lunch time and day time.
+     * @param {number} year
+     * @param {number} month
+     * @param {number} day
+     * @param {string} key
+     * @param {string} newValue Time value
+     */
     _updateTimeDay(year, month, day, key, newValue) {
         var baseStr = year + '-' + month + '-' + day + '-';
 
@@ -837,9 +935,12 @@ class Calendar {
         this._colorErrorLine(year, month, day, dayBegin, lunchBegin, lunchEnd, dayEnd);
     }
 
-    /*
-    * Returns the entry values for the day, from the internal store.
-    */
+    /**
+     * Returns the entry values for the day, from the internal store.
+     * @param {number} month
+     * @param {number} day
+     * @return {string[]}
+     */
     _getDaysEntries(month, day) {
         return [this._getStore(day, month, this._getCalendarYear(), 'day-begin'),
             this._getStore(day, month, this._getCalendarYear(), 'lunch-begin'),
@@ -847,10 +948,15 @@ class Calendar {
             this._getStore(day, month, this._getCalendarYear(), 'day-end')];
     }
 
-    /*
-    * Analyze the inputs of a day, and return if there is an error.
-    * An error means that an input earlier in the day is higher than one that is after it.
-    */
+    /**
+     * Analyze the inputs of a day, and return if there is an error.
+     * An error means that an input earlier in the day is higher than one that is after it.
+     * @param {string} dayBegin
+     * @param {string} lunchBegin
+     * @param {string} lunchEnd
+     * @param {string} dayEnd
+     * @return {Boolean}
+     */
     _hasInputError(dayBegin, lunchBegin, lunchEnd, dayEnd) {
         var dayValues = new Array();
         if (validateTime(dayBegin)) {
@@ -873,21 +979,33 @@ class Calendar {
         return false;
     }
 
-    /*
-    * Toggles the state of the punch butttons and actions on or off
-    */
+    /**
+     * Toggles the state of the punch butttons and actions on or off
+     * @param {Boolean} enable
+     */
     _togglePunchButton(enable) {
         $('#punch-button').prop('disabled', !enable);
         ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', enable);
     }
-    /*
-    * Toggles the color of a row based on input error.
-    */
+
+    /**
+     * Toggles the color of a row based on input error.
+     * @param {number} year
+     * @param {number} month
+     * @param {number} day
+     * @param {string} dayBegin
+     * @param {string} lunchBegin
+     * @param {string} lunchEnd
+     * @param {string} dayEnd
+     */
     _colorErrorLine(year, month, day, dayBegin, lunchBegin, lunchEnd, dayEnd) {
         var trID = ('#tr-' + year + '-' + month + '-' + day);
         $(trID).toggleClass('error-tr', this._hasInputError(dayBegin, lunchBegin, lunchEnd, dayEnd));
     }
 
+    /**
+     * Switches the calendar from Month to Day view.
+     */
     _switchView() {
         let preferences = switchCalendarView();
         ipcRenderer.send('VIEW_CHANGED', preferences);
