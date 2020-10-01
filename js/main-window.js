@@ -106,7 +106,7 @@ function createWindow()
     mainWindow.on('close', (event) =>
     {
         let savedPreferences = getUserPreferences();
-        if (!app.isQuitting && savedPreferences['close-to-tray'])
+        if (!app.isQuitting && savedPreferences['tray-allowed'])
         {
             event.preventDefault();
             mainWindow.hide();
