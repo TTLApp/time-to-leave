@@ -13,7 +13,7 @@
 
    <br/>
 
-  <img src="https://user-images.githubusercontent.com/846063/67172932-9e1db580-f393-11e9-87bc-1f51d57f8788.png" alt="Time to Leave Screenshot">
+  <img src="https://user-images.githubusercontent.com/3754225/94519528-4e549900-0248-11eb-8872-b6fb2d47f43c.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -23,15 +23,15 @@
 
 Log the time you started working today, and the program will compute what time you should leave the office, considering the time you spent on lunch. When it's time, the program will notify you.
 
-![time-to-leave-notification](https://user-images.githubusercontent.com/846063/64999052-c9a51000-d8bc-11e9-9ed5-9e500d084a65.png)
+![time-to-leave-notification](https://user-images.githubusercontent.com/3754225/94519526-4dbc0280-0248-11eb-9738-ffae936cfa4a.jpg)
 
 You can control the preferences, stating your working days, how many hours you work a day and if you want notification or not.
 
-![time-to-leave-settings](https://user-images.githubusercontent.com/846063/67173311-aaeed900-f394-11e9-8f40-9b3cf9ade901.png)
+![time-to-leave-settings](https://user-images.githubusercontent.com/3754225/94519531-4eed2f80-0248-11eb-9303-78f9abe69201.jpg)
 
 You can also add waivers on the days you did not work.
 
-![time-to-leave-waiver](https://user-images.githubusercontent.com/846063/67172943-a4139680-f393-11e9-9f05-67f00da26bc1.png)
+![time-to-leave-waiver](https://user-images.githubusercontent.com/3754225/94519533-4f85c600-0248-11eb-8109-0118a2a69732.jpg)
 
 ## How to install TTL
 
