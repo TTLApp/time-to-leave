@@ -98,8 +98,12 @@ function createWindow()
 
     mainWindow.on('minimize', (event) =>
     {
-        event.preventDefault();
-        mainWindow.hide();
+        let savedPreferences = getUserPreferences();
+        if (savedPreferences['tray-allowed'])
+        {
+            event.preventDefault();
+            mainWindow.hide();
+        }
     });
 
     // Emitted when the window is closed.
