@@ -96,7 +96,7 @@ function createWindow()
         tray.popUpContextMenu(contextMenu);
     });
 
-    mainWindow.on('minimize', () =>
+    mainWindow.on('minimize', (event) =>
     {
         event.preventDefault();
         mainWindow.hide();
