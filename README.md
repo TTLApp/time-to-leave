@@ -31,7 +31,7 @@ You can control the preferences, stating your working days, how many hours you w
 
 You can also add waivers on the days you did not work.
 
-![time-to-leave-waiver](https://user-images.githubusercontent.com/3754225/94519533-4f85c600-0248-11eb-8109-0118a2a69732.jpg)
+![time-to-leave-waiver](https://user-images.githubusercontent.com/3754225/94762058-4e79a380-03c4-11eb-8f28-1c480dbf8b5c.png)
 
 ## How to install TTL
 
