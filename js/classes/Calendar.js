@@ -18,6 +18,7 @@ const {
     displayWaiverWindow
 } = require('../workday-waiver-aux.js');
 const { computeAllTimeBalanceUntilAsync } = require('../time-balance.js');
+const { generateKey } = require('../import-export.js');
 
 // Global values for calendar
 const store = new Store();
@@ -134,8 +135,7 @@ class Calendar {
      * Gets value from internal store.
      */
     _getStore(day, month, year, key) {
-        var idTag = year + '-' + month + '-' + day + '-' + key;
-
+        var idTag = generateKey(year, month, day, key);
         return this._internalStore[idTag];
     }
 
@@ -143,7 +143,7 @@ class Calendar {
      * Saves value on store and updates internal store.
      */
     _setStore(day, month, year, key, newValue) {
-        var idTag = year + '-' + month + '-' + day + '-' + key;
+        var idTag = generateKey(year, month, day, key);
 
         this._internalStore[idTag] = newValue;
         store.set(idTag, newValue);
@@ -153,7 +153,7 @@ class Calendar {
      * Removes value from store and from internal store.
      */
     _removeStore(day, month, year, key) {
-        var idTag = year + '-' + month + '-' + day + '-' + key;
+        var idTag = generateKey(year, month, day, key);
 
         this._internalStore[idTag] = undefined;
         store.delete(idTag);
@@ -181,7 +181,7 @@ class Calendar {
      * Returns the time input HTML code of a date.
      */
     static _getInputCode(year, month, day, type) {
-        var idTag = year + '-' + month + '-' + day + '-' + type;
+        var idTag = generateKey(year, month, day, type);
 
         return '<input type="time" id="' + idTag + '"' +
                (type.endsWith('total') ? ' disabled' : '') +
@@ -193,7 +193,7 @@ class Calendar {
      * Returns the total field HTML code of a date.
      */
     static _getTotalCode(year, month, day, type) {
-        var idTag = year + '-' + month + '-' + day + '-' + type;
+        var idTag = generateKey(year, month, day, type);
 
         return '<input type="text" class="total-input" id="' +
                idTag + '" size="5"' +
@@ -246,7 +246,7 @@ class Calendar {
             weekDay = currentDay.getDay(),
             today = new Date(),
             isToday = (today.getDate() === day && today.getMonth() === month && today.getFullYear() === year),
-            trID = ('tr-' + year + '-' + month + '-' + day);
+            trID = ('tr-' + generateKey(year, month, day));
 
         if (!this._showDay(year, month, day)) {
             if (!this._getHideNonWorkingDays()) {
@@ -594,7 +594,7 @@ class Calendar {
             return;
         }
 
-        var dayStr = year + '-' + month + '-' + day + '-';
+        var dayStr = generateKey(year, month, day) + '-';
         var entry = '';
         if ($('#' + dayStr + 'day-end').val() === '') {
             entry = 'day-end';
@@ -820,7 +820,7 @@ class Calendar {
     * Updates the DB with the information of computed total lunch time and day time.
     */
     _updateTimeDay(year, month, day, key, newValue) {
-        var baseStr = year + '-' + month + '-' + day + '-';
+        var baseStr = generateKey(year, month, day) + '-';
 
         this._updateDbEntry(year, month, day, key, newValue);
 
@@ -884,7 +884,7 @@ class Calendar {
     * Toggles the color of a row based on input error.
     */
     _colorErrorLine(year, month, day, dayBegin, lunchBegin, lunchEnd, dayEnd) {
-        var trID = ('#tr-' + year + '-' + month + '-' + day);
+        var trID = ('#tr-' + generateKey(year, month, day));
         $(trID).toggleClass('error-tr', this._hasInputError(dayBegin, lunchBegin, lunchEnd, dayEnd));
     }
 

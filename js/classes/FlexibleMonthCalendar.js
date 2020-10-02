@@ -17,6 +17,7 @@ const {
 } = require('../workday-waiver-aux.js');
 const { showDialog } = require('../window-aux.js');
 const { Calendar } = require('./Calendar.js');
+const { generateKey } = require('../import-export');
 
 // Global values for calendar
 const flexibleStore = new Store({name: 'flexible-store'});
@@ -130,7 +131,7 @@ class FlexibleMonthCalendar extends Calendar {
             weekDay = currentDay.getDay();
         let today = new Date(),
             isToday = (today.getDate() === day && today.getMonth() === month && today.getFullYear() === year),
-            dateKey = (year + '-' + month + '-' + day);
+            dateKey = generateKey(year, month, day);
 
         if (!this._showDay(year, month, day)) {
             return '<div><div class="weekday">' + this._options.dayAbbrs[weekDay] + '</div>' +
@@ -340,7 +341,7 @@ class FlexibleMonthCalendar extends Calendar {
         }
 
         const value = hourMinToHourFormatted(hour, min);
-        const key = year + '-' + month + '-' + day;
+        const key = generateKey(year, month, day);
         const inputs = $('#' + key + ' input[type="time"]');
         for (const element of inputs) {
             if ($(element).val().length === 0) {

@@ -8,6 +8,7 @@ const {
 } = require('../time-math.js');
 const { getDateStr, getMonthLength } = require('../date-aux.js');
 const { Calendar } = require('./Calendar.js');
+const { generateKey } = require('../import-export');
 
 class FixedDayCalendar extends Calendar {
     /**
@@ -127,7 +128,7 @@ class FixedDayCalendar extends Calendar {
     _getInputsRowCode(year, month, day) {
         let today = new Date(),
             isToday = (today.getDate() === day && today.getMonth() === month && today.getFullYear() === year),
-            trID = ('tr-' + year + '-' + month + '-' + day);
+            trID = ('tr-' + generateKey(year, month, day));
 
         if (!this._showDay(year, month, day)) {
             return '<div class="today-non-working" id="' + trID + '">' +

@@ -21,7 +21,7 @@ function _getRegularEntries() {
             const [year, month, day, stage, step] = key.split('-');
             //The main database uses a JS-based month index (0-11)
             //So we need to adjust it to human month index (1-12)
-            const date = year + '-' + (parseInt(month) + 1) + '-' + day;
+            const date = generateKey(year, (parseInt(month) - 1), day);
             const data = stage + '-' + step;
 
             output.push({'type': 'regular', 'date': date, 'data': data, 'hours': value});
@@ -46,7 +46,7 @@ function _getFlexibleEntries() {
         const [year, month, day] = key.split('-');
         //The main database uses a JS-based month index (0-11)
         //So we need to adjust it to human month index (1-12)
-        const date = year + '-' + (parseInt(month) + 1) + '-' + day;
+        const date = generateKey(year, (parseInt(month) - 1), day);
 
         output.push({'type': 'flexible', 'date': date, 'values': value.values});
     }
@@ -133,7 +133,7 @@ function importDatabaseFromFile(filename) {
                 let [year, month, day] = entry.date.split('-');
                 //The main database uses a JS-based month index (0-11)
                 //So we need to adjust it from human month index (1-12)
-                let date = year + '-' + (parseInt(month) - 1) + '-' + day;
+                let date = generateKey(year, (parseInt(month) - 1), day);
                 if (entry.type === 'flexible') {
                     const flexibleEntry = { values: entry.values };
                     flexibleStore.set(date, flexibleEntry);
@@ -164,7 +164,7 @@ function migrateFixedDbToFlexible() {
 
         const [year, month, day, /*stage*/, step] = key.split('-');
         if (['begin', 'end'].indexOf(step) !== -1) {
-            const date = year + '-' + month + '-' + day;
+            const date = generateKey(year, month, day);
             if (regularEntryArray[date] === undefined) {
                 regularEntryArray[date] = { values: []};
             }
@@ -183,9 +183,15 @@ function migrateFixedDbToFlexible() {
     return true;
 }
 
+function generateKey(year, month, day, key) {
+    const dbKey = year + '-' + month + '-' + day;
+    return key === undefined ? dbKey : dbKey + '-' + key;
+}
+
 module.exports = {
     importDatabaseFromFile,
     exportDatabaseToFile,
     migrateFixedDbToFlexible,
-    validEntry
+    validEntry,
+    generateKey
 };
