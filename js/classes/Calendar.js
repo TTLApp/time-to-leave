@@ -79,15 +79,19 @@ class Calendar {
      */
     _updateAllTimeBalance() {
         const targetDate = this._getTargetDayForAllTimeBalance();
-        computeAllTimeBalanceUntilAsync(targetDate).then(balance => {
-            var balanceElement = $('#overall-balance');
-            if (balanceElement) {
-                balanceElement.val(balance);
-                balanceElement.html(balance);
-                balanceElement.removeClass('text-success text-danger');
-                balanceElement.addClass(isNegative(balance) ? 'text-danger' : 'text-success');
-            }
-        });
+        computeAllTimeBalanceUntilAsync(targetDate)
+            .then(balance => {
+                var balanceElement = $('#overall-balance');
+                if (balanceElement) {
+                    balanceElement.val(balance);
+                    balanceElement.html(balance);
+                    balanceElement.removeClass('text-success text-danger');
+                    balanceElement.addClass(isNegative(balance) ? 'text-danger' : 'text-success');
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     /**
