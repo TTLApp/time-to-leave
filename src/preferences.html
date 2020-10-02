@@ -40,14 +40,11 @@
             </div>
             <div class="flex-box">
                 <p>Hide non-working days (Month View)</p>
-                <label id='non-working-label' class="switch"><input type="checkbox" name="hide-non-working-days"><span
-                        class="slider round"></span></label>
+                <label id='non-working-label' class="switch"><input type="checkbox" name="hide-non-working-days"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
                 <p>Hours per day</p>
-                <input type="text" name="hours-per-day" id="hours-per-day" maxlength=5
-                    pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:mm" value="08:00" size=5 required
-                    oninput="this.reportValidity()" onblur="this.value = this.checkValidity() ? this.value : '08:00'">
+                <input type="text" name="hours-per-day" id="hours-per-day" maxlength=5 pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:mm" value="08:00" size=5 required oninput="this.reportValidity()" onblur="this.value = this.checkValidity() ? this.value : '08:00'">
             </div>
         </section>
 
@@ -55,37 +52,31 @@
             <div class="section-title">App Behavior</div>
             <div class="flex-box">
                 <p>Notification</p>
-                <label class="switch"><input type="checkbox" id="notification" name="notification"><span
-                        class="slider round"></span></label>
+                <label class="switch"><input type="checkbox" id="notification" name="notification"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
                 <p>Allow recurring notifications</p>
-                <label class="switch"><input type="checkbox" id="repetition" name="repetition"><span
-                        class="slider round"></span></label>
+                <label class="switch"><input type="checkbox" id="repetition" name="repetition"><span class="slider round"></span></label>
             </div>
             <div class="flex-box mb-2">
                 <p>Minutes between notifications</p>
-                <input type="number" name="notifications-interval" id="notifications-interval" min="1" max="30"
-                    value="5" required onblur="this.value = this.checkValidity() ? this.value : 5">
+                <input type="number" name="notifications-interval" id="notifications-interval" min="1" max="30" value="5" required onblur="this.value = this.checkValidity() ? this.value : 5">
             </div>
             <div class="flex-box">
                 <p>Start on Login</p>
-                <label id='start-at-login' class="switch"><input type="checkbox" name="start-at-login"><span
-                        class="slider round"></span></label>
+                <label id='start-at-login' class="switch"><input type="checkbox" name="start-at-login"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
                 <p>Count Today in Totals</p>
-                <label id='count-today' class="switch"><input type="checkbox" name="count-today"><span
-                        class="slider round"></span></label>
+                <label id='count-today' class="switch"><input type="checkbox" name="count-today"><span class="slider round"></span></label>
             </div>
             <div class="flex-box mb-2">
                 <p>Overall Balance Start Date</p>
                 <label id='overall-balance-start-date'><input type="date" name="overall-balance-start-date"></label>
             </div>
             <div class="flex-box">
-                <p>Allow TTL to be displayed on the tray</p>
-                <label id=tray-allowed' class="switch"><input type="checkbox" name="close-to-tray"><span
-                        class="slider round"></span></label>
+                <p>Close button should minimize to tray</p>
+                <label id='close-to-tray' class="switch"><input type="checkbox" name="close-to-tray"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
                 <p>Themes</p>
