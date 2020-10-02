@@ -1,9 +1,11 @@
 /* eslint-disable no-undef */
+'use strict';
+
 const Store = require('electron-store');
 const fs = require('fs');
 const path = require('path');
 /* eslint-disable-next-line no-global-assign */
-$ = require('jquery');
+window.$ = require('jquery');
 const {
     addWaiver,
     populateList,

@@ -1,3 +1,5 @@
+'use strict';
+
 const themeOptions = ['light', 'dark', 'cadent-star'];
 
 /**

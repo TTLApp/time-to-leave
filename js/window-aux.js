@@ -1,3 +1,5 @@
+'use strict';
+
 const { remote } = require('electron');
 const { BrowserWindow, dialog } = remote;
 

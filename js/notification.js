@@ -1,3 +1,5 @@
+'use strict';
+
 const notifier = require('node-notifier');
 const path = require('path');
 

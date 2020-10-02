@@ -1,3 +1,5 @@
+'use strict';
+
 const { app, BrowserWindow, clipboard, dialog, shell, Menu } = require('electron');
 const { appConfig } = require('./app-config');
 const { checkForUpdates } = require('./update-manager');

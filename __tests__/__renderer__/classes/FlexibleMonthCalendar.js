@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+'use strict';
 
 const Store = require('electron-store');
 const { defaultPreferences } = require('../../../js/user-preferences');

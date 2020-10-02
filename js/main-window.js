@@ -1,3 +1,5 @@
+'use strict';
+
 const { app, BrowserWindow, ipcMain, Menu, Tray } = require('electron');
 const { getDefaultWidthHeight, getUserPreferences } = require('./user-preferences.js');
 const path = require('path');

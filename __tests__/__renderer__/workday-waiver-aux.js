@@ -1,4 +1,6 @@
 /* eslint-disable no-undef */
+'use strict';
+
 const { formatDayId, sendWaiverDay } = require('../../js/workday-waiver-aux');
 
 describe('Workday Waiver Aux', function() {
@@ -8,7 +10,7 @@ describe('Workday Waiver Aux', function() {
     const validJSDay2 = '2020-00-10';
     const garbageString = '..as';
     const incompleteDate = '---';
-    
+
     describe('formatDayId(dayId)', function() {
         test('should be valid', () => {
             expect(formatDayId(validJSDay)).toBe('2020-04-10');
@@ -20,7 +22,7 @@ describe('Workday Waiver Aux', function() {
             expect(formatDayId(incompleteDate)).toBeNaN();
         });
     });
-    
+
     describe('sendWaiverDay(dayId)', function() {
         test('should do seamless call', async() => {
             await sendWaiverDay(validJSDay);
@@ -29,6 +31,6 @@ describe('Workday Waiver Aux', function() {
             await sendWaiverDay(incompleteDate);
         });
     });
-    
+
     // TODO: Come up with a way to test displayWaiverWindow
 });

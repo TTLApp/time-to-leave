@@ -1,3 +1,5 @@
+'use strict';
+
 const { app, net, shell, dialog, BrowserWindow } = require('electron');
 const { getDateStr } = require('./date-aux.js');
 const isOnline = require('is-online');
