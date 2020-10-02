@@ -1,3 +1,5 @@
+'use strict';
+
 const { app, BrowserWindow, clipboard, dialog, shell, Menu } = require('electron');
 const { appConfig } = require('./app-config');
 const { checkForUpdates } = require('./update-manager');
@@ -18,7 +20,7 @@ let { waiverWindow, prefWindow } = require('./windows');
 function migrateFixedDbToFlexibleRequest(mainWindow, options) {
     let response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
     if (response === 1) {
-        const migrateResult = migrateFixedDbToFlexible(response);
+        const migrateResult = migrateFixedDbToFlexible();
         mainWindow.webContents.executeJavaScript('calendar.reload()');
         if (migrateResult) {
             Menu.getApplicationMenu().getMenuItemById('migrate-to-flexible-calendar').enabled = false;

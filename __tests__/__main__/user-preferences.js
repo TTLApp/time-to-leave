@@ -1,4 +1,6 @@
 /* eslint-disable no-undef */
+'use strict';
+
 const { defaultPreferences, getDefaultWidthHeight, getPreferencesFilePath, getUserPreferences, savePreferences, showDay, switchCalendarView } = require('../../js/user-preferences');
 const fs = require('fs');
 

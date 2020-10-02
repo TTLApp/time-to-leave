@@ -1,3 +1,5 @@
+'use strict';
+
 const { ipcRenderer } = require('electron');
 
 const { getUserPreferences } = require('../js/user-preferences.js');

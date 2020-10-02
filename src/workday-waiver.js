@@ -1,3 +1,5 @@
+'use strict';
+
 const { remote } = require('electron');
 const Store = require('electron-store');
 var Holidays = require('date-holidays');

@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Formats hour, min into string HH:MM
  */

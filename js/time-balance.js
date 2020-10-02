@@ -1,3 +1,5 @@
+'use strict';
+
 const Store = require('electron-store');
 const {
     subtractTime,
