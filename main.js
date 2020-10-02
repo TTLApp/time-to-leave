@@ -2,8 +2,7 @@
 'use strict';
 
 const { app, ipcMain } = require('electron');
-const { createWindow } = require('./js/main-window');
-const { mainWindow } = require('./js/windows');
+const { createWindow, getMainWindow } = require('./js/main-window');
 const { notify } = require('./js/notification');
 
 ipcMain.on('SET_WAIVER_DAY', (event, waiverDay) => {
@@ -32,7 +31,13 @@ function checkIdleAndNotify() {
 }
 
 function refreshOnDayChange() {
-    var today = new Date();
+    const mainWindow = getMainWindow();
+    if (mainWindow === null)
+    {
+        return;
+    }
+
+    let today = new Date();
     if (today > launchDate)
     {
         let oldDate = launchDate.getDate();
@@ -54,6 +59,7 @@ if (!app.requestSingleInstanceLock()) {
 } else {
     app.on('second-instance', () => {
         // Someone tried to run a second instance, we should focus our window.
+        const mainWindow = getMainWindow();
         if (mainWindow) {
             if (mainWindow.isMinimized()) {
                 mainWindow.restore();
@@ -84,6 +90,7 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
+    const mainWindow = getMainWindow();
     if (mainWindow === null) {
         createWindow();
     } else {

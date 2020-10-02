@@ -13,7 +13,15 @@ const {
     getMainMenuTemplate,
     getViewMenuTemplate
 } = require('./menus');
-let { contextMenu, mainWindow, tray } = require('./windows');
+let { contextMenu, tray } = require('./windows.js');
+
+// Keep a global reference of the window object, if you don't, the window will
+// be closed automatically when the JavaScript object is garbage collected.
+let mainWindow = null;
+
+function getMainWindow() {
+    return mainWindow;
+}
 
 function createWindow()
 {
@@ -123,5 +131,6 @@ function createWindow()
 
 
 module.exports = {
-    createWindow
+    createWindow,
+    getMainWindow
 };
