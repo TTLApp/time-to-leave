@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
+'use strict';
 
 const { getDateStr } = require('../../js/date-aux');
-
 
 describe('Date Functions', () => {
     let badDate = ['this', 'is', 'not', 'a', 'date'];

@@ -1,3 +1,5 @@
+'use strict';
+
 const { remote } = require('electron');
 const { BrowserWindow, dialog } = remote;
 
@@ -22,7 +24,11 @@ function bindDevToolsShortcut(window) {
  */
 function showDialog(options, successCallback) {
     options['title'] = options['title'] || 'Time to Leave';
-    dialog.showMessageBox(BrowserWindow.getFocusedWindow(), options).then(successCallback);
+    dialog.showMessageBox(BrowserWindow.getFocusedWindow(), options)
+        .then(successCallback)
+        .catch(err => {
+            console.log(err);
+        });
 }
 
 /**

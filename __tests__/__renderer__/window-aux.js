@@ -1,4 +1,6 @@
 /* eslint-disable no-undef */
+'use strict';
+
 const path = require('path');
 const { remote } = require('electron');
 const { BrowserWindow } = remote;

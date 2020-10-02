@@ -364,11 +364,8 @@ class FlexibleMonthCalendar extends Calendar {
 
         for (let day = 1; day <= monthLength; ++day) {
             let isToday = (now.getDate() === day && now.getMonth() === this._getCalendarMonth() && now.getFullYear() === this._getCalendarYear());
-            if (isToday && !this._getCountToday()) {
-                //balance considers only up until yesterday
-                break;
-            }
-            else if (isNextDay && this._getCountToday()) {
+            // balance should consider preferences and count or not today
+            if (isToday && !this._getCountToday() || isNextDay && this._getCountToday()) {
                 break;
             }
             isNextDay = isToday;

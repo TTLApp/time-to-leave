@@ -1,3 +1,5 @@
+'use strict';
+
 /*
  * Given a JS Date, return the string in the format YYYY-MM-DD.
  */
