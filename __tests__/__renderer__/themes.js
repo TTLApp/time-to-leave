@@ -9,6 +9,7 @@ describe('Theme Functions', function() {
 
     describe('isValidTheme()', function() {
         test('should validate', () => {
+            expect(isValidTheme('system-default')).toBeTruthy();
             expect(isValidTheme('light')).toBeTruthy();
             expect(isValidTheme('dark')).toBeTruthy();
             expect(isValidTheme('cadent-star')).toBeTruthy();
@@ -24,6 +25,7 @@ describe('Theme Functions', function() {
 
     describe('applyTheme()', function() {
         test('should apply', () => {
+            expect(applyTheme('system-default')).toBeTruthy();
             expect(applyTheme('light')).toBeTruthy();
             expect(applyTheme('dark')).toBeTruthy();
             expect(applyTheme('cadent-star')).toBeTruthy();
