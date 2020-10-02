@@ -1,9 +1,11 @@
 /* eslint-disable no-undef */
+'use strict';
+
 const Store = require('electron-store');
 const fs = require('fs');
 const path = require('path');
 /* eslint-disable-next-line no-global-assign */
-$ = require('jquery');
+window.$ = require('jquery');
 const {
     addWaiver,
     populateList,
@@ -22,10 +24,10 @@ function prepareMockup() {
     populateList();
 }
 
-function addTestWaiver(day, hours, reason) {
+function addTestWaiver(day, reason) {
     $('#reason').val(reason);
     setDates(day);
-    setHours(hours);
+    setHours();
 
     addWaiver();
 }
@@ -44,7 +46,7 @@ describe('Test Workday Waiver Window', function() {
             prepareMockup();
 
             testWaiverCount(0);
-            addTestWaiver('2020-07-16', '08:00', 'some reason');
+            addTestWaiver('2020-07-16', 'some reason');
             testWaiverCount(1);
         });
 
@@ -54,13 +56,13 @@ describe('Test Workday Waiver Window', function() {
             testWaiverCount(0);
 
             // Add one waiver and update the table on the page
-            addTestWaiver('2020-07-16', '08:00', 'some reason');
+            addTestWaiver('2020-07-16', 'some reason');
             populateList();
             testWaiverCount(1);
 
             // Add two more waiver
-            addTestWaiver('2020-07-20', '08:00', 'some other reason');
-            addTestWaiver('2020-07-21', '08:00', 'yet another reason');
+            addTestWaiver('2020-07-20', 'some other reason');
+            addTestWaiver('2020-07-21', 'yet another reason');
             testWaiverCount(3);
         });
     });

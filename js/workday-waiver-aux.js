@@ -1,3 +1,5 @@
+'use strict';
+
 const { ipcRenderer } = require('electron');
 const { Menu } = require('electron').remote;
 
@@ -8,7 +10,7 @@ const { Menu } = require('electron').remote;
 function formatDayId(dayId) {
     const [year, month, day] = dayId.split('-').map((i) => { return parseInt(i); });
     const date = new Date(year, month, day);
-    return isNaN(date.getTime()) ? NaN : date.toISOString().substr(0, 10);
+    return Number.isNaN(date.getTime()) ? NaN : date.toISOString().substr(0, 10);
 }
 
 /**

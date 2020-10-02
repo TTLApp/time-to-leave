@@ -1,3 +1,5 @@
+'use strict';
+
 const { app, ipcMain } = require('electron');
 
 let savedPreferences = null;

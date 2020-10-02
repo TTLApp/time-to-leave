@@ -125,6 +125,12 @@ body {
   margin-bottom: 70px;
 }
 
+@media (max-width: 768px) {
+  .container {
+    max-width: initial;
+  }
+}
+
 .dayheader {
   text-align: center;
 }
