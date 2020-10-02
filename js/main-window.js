@@ -98,7 +98,7 @@ function createWindow()
 
     mainWindow.on('minimize', (event) =>
     {
-        let savedPreferences = getUserPreferences();
+        const savedPreferences = getUserPreferences();
         if (savedPreferences['tray-allowed'])
         {
             event.preventDefault();
