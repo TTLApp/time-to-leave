@@ -97,7 +97,7 @@ function initPreferencesFileIfNotExistsOrInvalid() {
         switch (key) {
         // Handle Time Inputs
         case 'notifications-interval':
-            if (isNaN(Number(value)) || value < 1 || value > 30) {
+            if (Number.isNaN(Number(value)) || value < 1 || value > 30) {
                 derivedPrefs[key] = defaultPreferences[key];
                 shouldSaveDerivedPrefs = true;
             }
