@@ -1,0 +1,43 @@
+name: Changelog Updater
+on:
+  pull_request:
+    types: [opened]
+  issue_comment:
+    types: [created]
+
+jobs:
+  update-changelog:
+    runs-on: macos-latest
+    steps:
+      - uses: khan/pull-request-comment-trigger@master
+        id: check
+        with:
+          trigger: '\changelog-update'
+          reaction: rocket
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      - name: Clone git repo
+        uses: actions/checkout@v2
+        if: steps.check.outputs.triggered == 'true'
+      - name: Configure Git Agent
+        run: |
+          git config --global user.name 'Changelog Bot'
+          git config --global user.email 'changelog-bot@users.noreply.github.com'
+      - name: Update Changelog
+        if: github.event.comment.user.login == 'thamara' && steps.check.outputs.triggered == 'true'
+        env:
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          USER: ${{ github.event.comment.user.login }}
+          PR: ${{ context.issue.number }}
+        run: |
+          echo "Found it"
+          echo "Body: $COMMENT_BODY"
+          echo "PR: $PR"
+          echo $COMMENT_BODY > comment_body.file
+          python3 scripts/update-changelog.py -changelog-file changelog.md -changes-file comment_body.file
+      - name: Commit changelog
+        if: steps.check.outputs.triggered == 'true'
+        run: |
+          git add changelog.md
+          git commit -nm "Updated changelog.md"
+          git push

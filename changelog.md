@@ -1,5 +1,7 @@
 ## 1.5.6 (in development)
 
+<!--- Begin changes - Do not remove -->
+
 -   Fix: [#214] Check that lunch has beginning and end, if there is lunch
 -   Fix: [#377] Fixed the layout which was broken when width < 768px
 -   Fix: Fixed behavior of calendar when moving to next/previous month when current day is in the range of 29-31.
@@ -13,7 +15,11 @@
 -   Enhancement: [#383] Adding system default theme that auto-detect if dark or light mode is set
 -   Enhancement: [#394] Adding option to control the behavior of the Minimize button
 
+<!--- End changes - Do not remove -->
+
 Who built 1.5.6:
+
+<!--- Begin users - Do not remove -->
 
 -   thamara
 -   parikhdhruv24791
@@ -25,6 +31,8 @@ Who built 1.5.6:
 -   06b
 -   skevprog
 -   michaelknowles
+
+<!--- End users - Do not remove -->
 
 ## 1.5.5
 
