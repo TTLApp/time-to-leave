@@ -1,4 +1,6 @@
 /*eslint-disable no-prototype-builtins*/
+'use strict';
+
 const Store = require('electron-store');
 const fs = require('fs');
 const { validateTime } = require('./time-math.js');
@@ -87,7 +89,7 @@ function exportDatabaseToFile(filename) {
 
 function _validateDate(dateStr) {
     const date = new Date(dateStr);
-    return date instanceof Date && !isNaN(date);
+    return date instanceof Date && !Number.isNaN(date.getTime());
 }
 
 function validEntry(entry) {

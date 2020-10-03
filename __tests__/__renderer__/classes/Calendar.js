@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+'use strict';
 
 const Store = require('electron-store');
 const { defaultPreferences } = require('../../../js/user-preferences');
@@ -186,8 +187,8 @@ describe('Calendar class Tests', () => {
             expect(calendar._hasInputError('', '', '23:00', '00:00')).toBeTruthy();
             // TODO: Fix commented
             // expect(calendar._hasInputError('not-valid-hour', '', '', 'not-valid-hour')).toBeTruthy();
-            //expect(calendar._hasInputError('00:00', '12:00', '', '20:00')).not.toBeTruthy();
-            //expect(calendar._hasInputError('00:00', '', '13:00', '20:00')).not.toBeTruthy();
+            expect(calendar._hasInputError('00:00', '12:00', '', '20:00')).toBeTruthy();
+            expect(calendar._hasInputError('00:00', '', '13:00', '20:00')).toBeTruthy();
         });
     });
 

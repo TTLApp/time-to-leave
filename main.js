@@ -1,4 +1,6 @@
 /*eslint-disable no-useless-escape*/
+'use strict';
+
 const { app, ipcMain } = require('electron');
 const { createWindow } = require('./js/main-window');
 const { mainWindow } = require('./js/windows');

@@ -1,4 +1,6 @@
 /* eslint-disable no-undef */
+'use strict';
+
 const Store = require('electron-store');
 const {
     computeAllTimeBalanceUntil,

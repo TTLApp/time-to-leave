@@ -1,3 +1,5 @@
+'use strict';
+
 const { app, BrowserWindow, clipboard, dialog, shell, Menu } = require('electron');
 const { appConfig } = require('./app-config');
 const { checkForUpdates } = require('./update-manager');
@@ -9,7 +11,7 @@ const {
 } = require('./saved-preferences.js');
 const { importDatabaseFromFile, exportDatabaseToFile, migrateFixedDbToFlexible } = require('./import-export.js');
 const { notify } = require('./notification');
-const { os } = require('os');
+const os = require('os');
 const { savePreferences } = require('./user-preferences.js');
 const path = require('path');
 const Store = require('electron-store');
@@ -18,7 +20,7 @@ let { waiverWindow, prefWindow } = require('./windows');
 function migrateFixedDbToFlexibleRequest(mainWindow, options) {
     let response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
     if (response === 1) {
-        const migrateResult = migrateFixedDbToFlexible(response);
+        const migrateResult = migrateFixedDbToFlexible();
         mainWindow.webContents.executeJavaScript('calendar.reload()');
         if (migrateResult) {
             Menu.getApplicationMenu().getMenuItemById('migrate-to-flexible-calendar').enabled = false;
@@ -178,7 +180,7 @@ function getEditMenuTemplate(mainWindow)
                 }
 
                 const htmlPath = path.join('file://', __dirname, '../src/preferences.html');
-                prefWindow = new BrowserWindow({ width: 400,
+                prefWindow = new BrowserWindow({ width: 450,
                     height: 560,
                     parent: mainWindow,
                     resizable: true,
