@@ -8,7 +8,7 @@ const {
 } = require('../time-math.js');
 const { getDateStr, getMonthLength } = require('../date-aux.js');
 const { Calendar } = require('./Calendar.js');
-const { generateKey } = require('../import-export');
+const { generateKey } = require('../date-db-formatter');
 
 class FixedDayCalendar extends Calendar {
     /**

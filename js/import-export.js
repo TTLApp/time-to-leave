@@ -4,6 +4,7 @@
 const Store = require('electron-store');
 const fs = require('fs');
 const { validateTime } = require('./time-math.js');
+const { generateKey } = require('./date-db-formatter');
 
 /**
  * Returns the database (only regular entries) as an array of:
@@ -48,8 +49,7 @@ function _getFlexibleEntries() {
         const [year, month, day] = key.split('-');
         //The main database uses a JS-based month index (0-11)
         //So we need to adjust it to human month index (1-12)
-        const date = generateKey(year, (parseInt(month) - 1), day);
-
+        const date = generateKey(year, (parseInt(month) + 1), day);
         output.push({'type': 'flexible', 'date': date, 'values': value.values});
     }
     return output;
@@ -135,7 +135,7 @@ function importDatabaseFromFile(filename) {
                 let [year, month, day] = entry.date.split('-');
                 //The main database uses a JS-based month index (0-11)
                 //So we need to adjust it from human month index (1-12)
-                let date = generateKey(year, (parseInt(month) - 1), day);
+                let date = generateKey(year, (parseInt(month) + 1), day);
                 if (entry.type === 'flexible') {
                     const flexibleEntry = { values: entry.values };
                     flexibleStore.set(date, flexibleEntry);
@@ -185,15 +185,9 @@ function migrateFixedDbToFlexible() {
     return true;
 }
 
-function generateKey(year, month, day, key) {
-    const dbKey = year + '-' + month + '-' + day;
-    return key === undefined ? dbKey : dbKey + '-' + key;
-}
-
 module.exports = {
     importDatabaseFromFile,
     exportDatabaseToFile,
     migrateFixedDbToFlexible,
-    validEntry,
-    generateKey
+    validEntry
 };
