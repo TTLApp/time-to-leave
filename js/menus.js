@@ -11,7 +11,7 @@ const {
 } = require('./saved-preferences.js');
 const { importDatabaseFromFile, exportDatabaseToFile, migrateFixedDbToFlexible } = require('./import-export.js');
 const { notify } = require('./notification');
-const { os } = require('os');
+const os = require('os');
 const { savePreferences } = require('./user-preferences.js');
 const path = require('path');
 const Store = require('electron-store');
