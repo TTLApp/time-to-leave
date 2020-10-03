@@ -24,7 +24,7 @@ function _getRegularEntries() {
             const [year, month, day, stage, step] = key.split('-');
             //The main database uses a JS-based month index (0-11)
             //So we need to adjust it to human month index (1-12)
-            const date = generateKey(year, (parseInt(month) - 1), day);
+            const date = generateKey(year, (parseInt(month) + 1), day);
             const data = stage + '-' + step;
 
             output.push({'type': 'regular', 'date': date, 'data': data, 'hours': value});
@@ -135,7 +135,7 @@ function importDatabaseFromFile(filename) {
                 let [year, month, day] = entry.date.split('-');
                 //The main database uses a JS-based month index (0-11)
                 //So we need to adjust it from human month index (1-12)
-                let date = generateKey(year, (parseInt(month) + 1), day);
+                let date = generateKey(year, (parseInt(month) - 1), day);
                 if (entry.type === 'flexible') {
                     const flexibleEntry = { values: entry.values };
                     flexibleStore.set(date, flexibleEntry);
