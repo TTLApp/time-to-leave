@@ -17,7 +17,7 @@ const {
 } = require('../workday-waiver-aux.js');
 const { showDialog } = require('../window-aux.js');
 const { Calendar } = require('./Calendar.js');
-const { generateKey } = require('../import-export');
+const { generateKey } = require('../date-db-formatter');
 
 // Global values for calendar
 const flexibleStore = new Store({name: 'flexible-store'});
