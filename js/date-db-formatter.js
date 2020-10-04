@@ -8,7 +8,8 @@
  * @param {String|undefined} key Fixed calendar requires key's for the db entries (day-total, lunch-begin, etc)
  * @return {String}
  */
-function generateKey(year, month, day, key = undefined) {
+function generateKey(year, month, day, key = undefined) 
+{
     return year + '-' + month + '-' + day + (key === undefined ? '' : ('-' + key));
 }
 

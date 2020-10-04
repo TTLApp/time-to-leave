@@ -10,67 +10,84 @@ const { bindDevToolsShortcut } = require('../js/window-aux.js');
 let usersStyles = getUserPreferences();
 let preferences = usersStyles;
 
-$(() => {
+$(() => 
+{
     // Theme-handling should be towards the top. Applies theme early so it's more natural.
     let theme = 'theme';
-    if (theme in usersStyles) {
+    if (theme in usersStyles) 
+    {
         $('#' + theme).val(usersStyles[theme]);
     }
     let selectedThemeOption = $('#' + theme).children('option:selected').val();
     preferences[theme] = selectedThemeOption;
     $('html').attr('data-theme', selectedThemeOption);
 
-    if ('view' in usersStyles) {
+    if ('view' in usersStyles) 
+    {
         $('#view').val(usersStyles['view']);
     }
 
-    if ('number-of-entries' in usersStyles) {
+    if ('number-of-entries' in usersStyles) 
+    {
         $('#number-of-entries').val(usersStyles['number-of-entries']);
     }
 
-    $('input[type="checkbox"]').change(function() {
+    $('input[type="checkbox"]').change(function() 
+    {
         preferences[this.name] = this.checked;
         ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
     });
 
-    $('#hours-per-day').change(function() {
-        if (this.checkValidity() === true) {
+    $('#hours-per-day').change(function() 
+    {
+        if (this.checkValidity() === true) 
+        {
             preferences[this.name] = this.value;
             ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
         }
     });
 
-    $('input[type="number"], input[type="date"]').change(function() {
+    $('input[type="number"], input[type="date"]').change(function() 
+    {
         preferences[this.name] = this.value;
         ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
     });
 
-    $('#theme').change(function() {
+    $('#theme').change(function() 
+    {
         preferences['theme'] = this.value;
         ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
         applyTheme(this.value);
     });
 
-    $('#view').change(function() {
+    $('#view').change(function() 
+    {
         preferences['view'] = this.value;
         ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
     });
 
-    $('#number-of-entries').change(function() {
+    $('#number-of-entries').change(function() 
+    {
         preferences['number-of-entries'] = this.value;
         ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
     });
 
-    $('input').each(function() {
+    $('input').each(function() 
+    {
         let input = $(this);
         let name = input.attr('name');
-        if (input.attr('type') === 'checkbox') {
-            if (name in usersStyles) {
+        if (input.attr('type') === 'checkbox') 
+        {
+            if (name in usersStyles) 
+            {
                 input.prop('checked', usersStyles[name]);
             }
             preferences[name] = input.prop('checked');
-        } else if (['text', 'number', 'date'].indexOf(input.attr('type')) > -1) {
-            if (name in usersStyles) {
+        }
+        else if (['text', 'number', 'date'].indexOf(input.attr('type')) > -1) 
+        {
+            if (name in usersStyles) 
+            {
                 input.val(usersStyles[name]);
             }
             preferences[name] = input.val();
@@ -85,13 +102,15 @@ $(() => {
     repetition.prop('checked', notification.is(':checked') && usersStyles['repetition']);
     notificationsInterval.prop('disabled', !repetition.is(':checked'));
 
-    notification.change(function() {
+    notification.change(function() 
+    {
         repetition.prop('disabled', !notification.is(':checked'));
         repetition.prop('checked', notification.is(':checked') && usersStyles['repetition']);
         notificationsInterval.prop('disabled', !repetition.is(':checked'));
     });
 
-    repetition.change(function() {
+    repetition.change(function() 
+    {
         notificationsInterval.prop('disabled', !repetition.is(':checked'));
     });
 

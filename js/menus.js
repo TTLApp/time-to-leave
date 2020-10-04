@@ -17,12 +17,15 @@ const path = require('path');
 const Store = require('electron-store');
 let { waiverWindow, prefWindow } = require('./windows');
 
-function migrateFixedDbToFlexibleRequest(mainWindow, options) {
+function migrateFixedDbToFlexibleRequest(mainWindow, options) 
+{
     let response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
-    if (response === 1) {
+    if (response === 1) 
+    {
         const migrateResult = migrateFixedDbToFlexible();
         mainWindow.webContents.executeJavaScript('calendar.reload()');
-        if (migrateResult) {
+        if (migrateResult) 
+        {
             Menu.getApplicationMenu().getMenuItemById('migrate-to-flexible-calendar').enabled = false;
             dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                 {
@@ -32,7 +35,9 @@ function migrateFixedDbToFlexibleRequest(mainWindow, options) {
                     icon: appConfig.iconpath,
                     detail: 'Yay! Migration successful!'
                 });
-        } else {
+        }
+        else 
+        {
             dialog.showMessageBoxSync({
                 type: 'warning',
                 title: 'Failed migrating',
@@ -207,7 +212,8 @@ function getEditMenuTemplate(mainWindow)
 
                     if (!getAlreadyAskedForFlexibleDbMigration() &&
                         savedPreferences && savedPreferences['number-of-entries'] === 'flexible' &&
-                        store.size !== 0 && flexibleStore.size === 0) {
+                        store.size !== 0 && flexibleStore.size === 0) 
+                    {
                         setAlreadyAskedForFlexibleDbMigration(true);
                         const options = {
                             type: 'question',
@@ -227,7 +233,8 @@ function getEditMenuTemplate(mainWindow)
             label: 'Migrate to flexible calendar',
             id: 'migrate-to-flexible-calendar',
             enabled: enableMigrationToFlexibleButton(),
-            click() {
+            click() 
+            {
                 const options = {
                     type: 'question',
                     buttons: ['Cancel', 'Yes, please', 'No, thanks'],

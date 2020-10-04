@@ -5,12 +5,14 @@ const path = require('path');
 
 const title = 'Time to Leave';
 
-function notify(msg) {
+function notify(msg) 
+{
     const appPath = process.env.NODE_ENV === 'production'
         ? `${process.resourcesPath}/app`
         : path.join(__dirname, '..');
 
-    return new Promise(resolve => {
+    return new Promise(resolve => 
+    {
         notifier.notify({
             title: title,
             message: msg,

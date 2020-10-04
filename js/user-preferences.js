@@ -59,7 +59,8 @@ const isValidPreferenceTime = (val) => validateTime(val) || Number.isNaN(Number(
 /*
  * Returns the preference file path, considering the userData path
  */
-function getPreferencesFilePath() {
+function getPreferencesFilePath() 
+{
     let userDataPath = (electron.app || electron.remote.app).getPath('userData');
     return path.join(userDataPath, 'preferences.json');
 }
@@ -67,10 +68,14 @@ function getPreferencesFilePath() {
 /*
  * Saves preferences to file, returns an error on failure.
  */
-function savePreferences(preferencesOptions) {
-    try {
+function savePreferences(preferencesOptions) 
+{
+    try 
+    {
         fs.writeFileSync(getPreferencesFilePath(), JSON.stringify(preferencesOptions));
-    } catch (err) {
+    }
+    catch (err) 
+    {
         return new Error(err);
     }
     return true;
@@ -80,19 +85,25 @@ function savePreferences(preferencesOptions) {
  * Loads preference from file.
  * @return {Object}
  */
-function readPreferences() {
+function readPreferences() 
+{
     let preferences;
-    try {
+    try 
+    {
         preferences = JSON.parse(fs.readFileSync(getPreferencesFilePath()));
-    } catch (err) {
+    }
+    catch (err) 
+    {
         preferences = {};
     }
     return preferences ? preferences : {};
 }
 
-function getDerivedPrefsFromLoadedPrefs(loadedPreferences) {
+function getDerivedPrefsFromLoadedPrefs(loadedPreferences) 
+{
     let derivedPreferences = {};
-    Object.keys(defaultPreferences).forEach(function(key) {
+    Object.keys(defaultPreferences).forEach(function(key) 
+    {
         derivedPreferences[key] = (typeof loadedPreferences[key] !== 'undefined') ? loadedPreferences[key] : defaultPreferences[key];
     });
 
@@ -103,8 +114,10 @@ function getDerivedPrefsFromLoadedPrefs(loadedPreferences) {
  * initializes users preferences if it is not already exists
  * or any keys of existing preferences is invalid
  */
-function initPreferencesFileIfNotExistsOrInvalid() {
-    if (!fs.existsSync(getPreferencesFilePath())) {
+function initPreferencesFileIfNotExistsOrInvalid() 
+{
+    if (!fs.existsSync(getPreferencesFilePath())) 
+    {
         savePreferences(defaultPreferences);
         return;
     }
@@ -116,20 +129,24 @@ function initPreferencesFileIfNotExistsOrInvalid() {
         derivedPrefsKeys = Object.keys(derivedPrefs).sort();
 
     // Validate keys
-    if (JSON.stringify(loadedPref) !== JSON.stringify(derivedPrefsKeys)) {
+    if (JSON.stringify(loadedPref) !== JSON.stringify(derivedPrefsKeys)) 
+    {
         shouldSaveDerivedPrefs = true;
     }
 
     // Validate the values
-    for (const key of derivedPrefsKeys) {
+    for (const key of derivedPrefsKeys) 
+    {
         let value = derivedPrefs[key];
 
-        if (isNotBoolean(value) && booleanInputs.includes(key)) {
+        if (isNotBoolean(value) && booleanInputs.includes(key)) 
+        {
             derivedPrefs[key] = defaultPreferences[key];
             shouldSaveDerivedPrefs = true;
         }
 
-        if (timeInputs.includes(key) && isValidPreferenceTime(value)) {
+        if (timeInputs.includes(key) && isValidPreferenceTime(value)) 
+        {
             derivedPrefs[key] = defaultPreferences[key];
             shouldSaveDerivedPrefs = true;
         }
@@ -142,7 +159,8 @@ function initPreferencesFileIfNotExistsOrInvalid() {
         if (key in inputEnum) inputEnum[key]();
     }
 
-    if (shouldSaveDerivedPrefs) {
+    if (shouldSaveDerivedPrefs) 
+    {
         savePreferences(derivedPrefs);
     }
 
@@ -152,7 +170,8 @@ function initPreferencesFileIfNotExistsOrInvalid() {
  * Returns the user preferences.
  * @return {{string: any}} Associative array of user settings
  */
-function getLoadedOrDerivedUserPreferences() {
+function getLoadedOrDerivedUserPreferences() 
+{
     initPreferencesFileIfNotExistsOrInvalid();
     return readPreferences();
 }
@@ -160,11 +179,14 @@ function getLoadedOrDerivedUserPreferences() {
 /*
  * Returns true if we should display week day.
  */
-function showWeekDay(weekDay, preferences = undefined) {
-    if (preferences === undefined) {
+function showWeekDay(weekDay, preferences = undefined) 
+{
+    if (preferences === undefined) 
+    {
         preferences = getLoadedOrDerivedUserPreferences();
     }
-    switch (weekDay) {
+    switch (weekDay) 
+    {
     case 0: return preferences['working-days-sunday'];
     case 1: return preferences['working-days-monday'];
     case 2: return preferences['working-days-tuesday'];
@@ -179,17 +201,21 @@ function showWeekDay(weekDay, preferences = undefined) {
  * Returns true if we should display day.
  * @note: The month should be 0-based (i.e.: 0 is Jan, 11 is Dec).
  */
-function showDay(year, month, day, preferences = undefined) {
+function showDay(year, month, day, preferences = undefined) 
+{
     let currentDay = new Date(year, month, day), weekDay = currentDay.getDay();
     return showWeekDay(weekDay, preferences);
 }
 
-function switchCalendarView() {
+function switchCalendarView() 
+{
     let preferences = getLoadedOrDerivedUserPreferences();
-    if (preferences['view'] === 'month') {
+    if (preferences['view'] === 'month') 
+    {
         preferences['view'] = 'day';
     }
-    else {
+    else 
+    {
         preferences['view'] = 'month';
     }
     savePreferences(preferences);
@@ -197,12 +223,15 @@ function switchCalendarView() {
     return preferences;
 }
 
-function getDefaultWidthHeight() {
+function getDefaultWidthHeight() 
+{
     let preferences = getLoadedOrDerivedUserPreferences();
-    if (preferences['view'] === 'month') {
+    if (preferences['view'] === 'month') 
+    {
         return { width: 1010, height: 800 };
     }
-    else {
+    else 
+    {
         return { width: 500, height: 500 };
     }
 }

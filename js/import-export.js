@@ -13,14 +13,17 @@ const { generateKey } = require('./date-db-formatter');
  *   . data: (day-begin, day-end, day-total, lunch-begin, lunch-end, lunch-total)
  *   . hours
  */
-function _getRegularEntries() {
+function _getRegularEntries() 
+{
     const store = new Store();
     let output = [];
-    for (const entry of store) {
+    for (const entry of store) 
+    {
         const key = entry[0];
         const value = entry[1];
 
-        if (key !== 'update-remind-me-after') {
+        if (key !== 'update-remind-me-after') 
+        {
             const [year, month, day, stage, step] = key.split('-');
             //The main database uses a JS-based month index (0-11)
             //So we need to adjust it to human month index (1-12)
@@ -39,10 +42,12 @@ function _getRegularEntries() {
  *   . date
  *   . values: times
  */
-function _getFlexibleEntries() {
+function _getFlexibleEntries() 
+{
     const flexibleStore = new Store({name: 'flexible-store'});
     let output = [];
-    for (const entry of flexibleStore) {
+    for (const entry of flexibleStore) 
+    {
         const key = entry[0];
         const value = entry[1];
 
@@ -62,10 +67,12 @@ function _getFlexibleEntries() {
  *   . data: (reason)
  *   . hours
  */
-function _getWaivedEntries() {
+function _getWaivedEntries() 
+{
     const waivedWorkdays = new Store({name: 'waived-workdays'});
     let output = [];
-    for (const entry of waivedWorkdays) {
+    for (const entry of waivedWorkdays) 
+    {
         const date = entry[0];
         const reason = entry[1]['reason'];
         const hours = entry[1]['hours'];
@@ -76,109 +83,142 @@ function _getWaivedEntries() {
     return output;
 }
 
-function exportDatabaseToFile(filename) {
+function exportDatabaseToFile(filename) 
+{
     let information = _getRegularEntries();
     information = information.concat(_getFlexibleEntries());
     information = information.concat(_getWaivedEntries());
-    try {
+    try 
+    {
         fs.writeFileSync(filename, JSON.stringify(information, null,'\t'), 'utf-8');
-    } catch (err) {
+    }
+    catch (err) 
+    {
         return false;
     } return true;
 }
 
-function _validateDate(dateStr) {
+function _validateDate(dateStr) 
+{
     const date = new Date(dateStr);
     return date instanceof Date && !Number.isNaN(date.getTime());
 }
 
-function validEntry(entry) {
-    if (entry.hasOwnProperty('type') && ['regular', 'waived', 'flexible'].indexOf(entry.type) !== -1) {
+function validEntry(entry) 
+{
+    if (entry.hasOwnProperty('type') && ['regular', 'waived', 'flexible'].indexOf(entry.type) !== -1) 
+    {
         const validatedDate = entry.hasOwnProperty('date') && _validateDate(entry.date);
         let hasExpectedProperties;
         let validatedTime = true;
-        if (entry.type === 'flexible') {
+        if (entry.type === 'flexible') 
+        {
             hasExpectedProperties = entry.hasOwnProperty('values') && Array.isArray(entry.values);
-            if (hasExpectedProperties) {
-                for (const value of entry.values) {
+            if (hasExpectedProperties) 
+            {
+                for (const value of entry.values) 
+                {
                     validatedTime &= (validateTime(value) || value === '--:--');
                 }
             }
         }
-        else {
+        else 
+        {
             hasExpectedProperties = entry.hasOwnProperty('data');
             validatedTime = entry.hasOwnProperty('hours') && validateTime(entry.hours);
         }
-        if (hasExpectedProperties && validatedDate && validatedTime) {
+        if (hasExpectedProperties && validatedDate && validatedTime) 
+        {
             return true;
         }
     }
     return false;
 }
 
-function importDatabaseFromFile(filename) {
+function importDatabaseFromFile(filename) 
+{
     const store = new Store();
     const flexibleStore = new Store({name: 'flexible-store'});
     const waivedWorkdays = new Store({name: 'waived-workdays'});
-    try {
+    try 
+    {
         const information = JSON.parse(fs.readFileSync(filename[0], 'utf-8'));
         let failedEntries = 0;
-        for (let i = 0; i < information.length; ++i) {
+        for (let i = 0; i < information.length; ++i) 
+        {
             let entry = information[i];
-            if (!validEntry(entry)) {
+            if (!validEntry(entry)) 
+            {
                 failedEntries += 1;
                 continue;
             }
-            if (entry.type === 'waived') {
+            if (entry.type === 'waived') 
+            {
                 waivedWorkdays.set(entry.date, { 'reason' : entry.data, 'hours' : entry.hours });
-            } else {
+            }
+            else 
+            {
                 let [year, month, day] = entry.date.split('-');
                 //The main database uses a JS-based month index (0-11)
                 //So we need to adjust it from human month index (1-12)
                 let date = generateKey(year, (parseInt(month) - 1), day);
-                if (entry.type === 'flexible') {
+                if (entry.type === 'flexible') 
+                {
                     const flexibleEntry = { values: entry.values };
                     flexibleStore.set(date, flexibleEntry);
-                } else {
+                }
+                else 
+                {
                     let key = date + '-' + entry.data;
                     store.set(key, entry.hours);
                 }
             }
         }
 
-        if (failedEntries !== 0) {
+        if (failedEntries !== 0) 
+        {
             return {'result': false, 'total': information.length, 'failed': failedEntries};
         }
-    } catch (err) {
+    }
+    catch (err) 
+    {
         return {'result': false, 'total': 0, 'failed': 0};
     }
     return {'result': true};
 }
 
-function migrateFixedDbToFlexible() {
+function migrateFixedDbToFlexible() 
+{
     const store = new Store();
     const flexibleStore = new Store({name: 'flexible-store'});
     flexibleStore.clear();
     let regularEntryArray = [];
-    for (const entry of store) {
+    for (const entry of store) 
+    {
         const key = entry[0];
         const value = entry[1];
 
         const [year, month, day, /*stage*/, step] = key.split('-');
-        if (['begin', 'end'].indexOf(step) !== -1) {
+        if (['begin', 'end'].indexOf(step) !== -1) 
+        {
             const date = generateKey(year, month, day);
-            if (regularEntryArray[date] === undefined) {
+            if (regularEntryArray[date] === undefined) 
+            {
                 regularEntryArray[date] = { values: []};
             }
             regularEntryArray[date].values.push(value);
         }
     }
-    try {
-        for (const key of Object.keys(regularEntryArray)) {
+    try 
+    {
+        for (const key of Object.keys(regularEntryArray)) 
+        {
             regularEntryArray[key].values.sort();
             flexibleStore.set(key, regularEntryArray[key]);
         }
-    } catch (err) {
+    }
+    catch (err) 
+    {
         console.log(err);
         return false;
     }

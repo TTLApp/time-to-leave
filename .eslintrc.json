@@ -23,6 +23,13 @@
         "eqeqeq": [
             "error", "always"
         ],
+        "brace-style": [
+            "error",
+            "allman",
+            {
+                "allowSingleLine": true
+            }
+        ],
         "func-call-spacing": [
             "error", "never"
         ],

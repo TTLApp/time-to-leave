@@ -4,7 +4,8 @@
 const { defaultPreferences, getDefaultWidthHeight, getPreferencesFilePath, getUserPreferences, savePreferences, showDay, switchCalendarView } = require('../../js/user-preferences');
 const fs = require('fs');
 
-describe('Preferences Main', () => {
+describe('Preferences Main', () => 
+{
     process.env.NODE_ENV = 'test';
 
     // Remove preferences file to guarantee equal execution of tests
@@ -14,7 +15,8 @@ describe('Preferences Main', () => {
 
     let days = getUserPreferences();
 
-    test('showDay(year, month, day)', () => {
+    test('showDay(year, month, day)', () => 
+    {
         expect(showDay(2020, 1, 1)).toBe(days['working-days-saturday']);
         expect(showDay(2020, 1, 2)).toBe(days['working-days-sunday']);
         expect(showDay(2020, 1, 3)).toBe(days['working-days-monday']);
@@ -24,16 +26,19 @@ describe('Preferences Main', () => {
         expect(showDay(2020, 1, 7)).toBe(days['working-days-friday']);
     });
 
-    describe('getDefaultWidthHeight()', () => {
+    describe('getDefaultWidthHeight()', () => 
+    {
 
-        test('Month view', () => {
+        test('Month view', () => 
+        {
             expect(defaultPreferences['view']).toBe('month');
             savePreferences(defaultPreferences);
 
             expect(getDefaultWidthHeight()).toStrictEqual({ width: 1010, height: 800 });
         });
 
-        test('Day view', () => {
+        test('Day view', () => 
+        {
             let preferences = { defaultPreferences };
 
             preferences['view'] = 'day';
@@ -43,9 +48,11 @@ describe('Preferences Main', () => {
         });
     });
 
-    describe('switchCalendarView()', () => {
+    describe('switchCalendarView()', () => 
+    {
 
-        test('Month to Day', () => {
+        test('Month to Day', () => 
+        {
             expect(defaultPreferences['view']).toBe('month');
             savePreferences(defaultPreferences);
 
@@ -56,7 +63,8 @@ describe('Preferences Main', () => {
             expect(preferences['view']).toBe('day');
         });
 
-        test('Day to Month', () => {
+        test('Day to Month', () => 
+        {
             let preferences = { defaultPreferences };
 
             preferences['view'] = 'day';

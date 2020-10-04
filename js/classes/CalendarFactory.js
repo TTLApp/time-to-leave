@@ -7,30 +7,44 @@ const { FixedDayCalendar } = require('./FixedDayCalendar.js');
 const { FlexibleMonthCalendar } = require('./FlexibleMonthCalendar.js');
 const { FlexibleDayCalendar } = require('./FlexibleDayCalendar.js');
 
-class CalendarFactory {
-    static getInstance(preferences, calendar = undefined) {
+class CalendarFactory 
+{
+    static getInstance(preferences, calendar = undefined) 
+    {
         const view = preferences['view'];
         const numberOfEntries = preferences['number-of-entries'];
         let widthHeight = getDefaultWidthHeight();
-        if (numberOfEntries === 'fixed') {
-            if (view === 'day') {
-                if (calendar === undefined || calendar.constructor.name !== 'FixedDayCalendar') {
-                    if (calendar !== undefined && calendar.constructor.name !== 'FixedDayCalendar') {
+        if (numberOfEntries === 'fixed') 
+        {
+            if (view === 'day') 
+            {
+                if (calendar === undefined || calendar.constructor.name !== 'FixedDayCalendar') 
+                {
+                    if (calendar !== undefined && calendar.constructor.name !== 'FixedDayCalendar') 
+                    {
                         ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
                     }
                     return new FixedDayCalendar(preferences);
-                } else {
+                }
+                else 
+                {
                     calendar.updatePreferences(preferences);
                     calendar.redraw();
                     return calendar;
                 }
-            } else if (view === 'month') {
-                if (calendar === undefined || calendar.constructor.name !== 'Calendar') {
-                    if (calendar !== undefined && calendar.constructor.name !== 'Calendar') {
+            }
+            else if (view === 'month') 
+            {
+                if (calendar === undefined || calendar.constructor.name !== 'Calendar') 
+                {
+                    if (calendar !== undefined && calendar.constructor.name !== 'Calendar') 
+                    {
                         ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
                     }
                     return new Calendar(preferences);
-                } else {
+                }
+                else 
+                {
                     calendar.updatePreferences(preferences);
                     calendar.redraw();
                     return calendar;
@@ -38,25 +52,37 @@ class CalendarFactory {
             }
             throw new Error(`Could not instantiate ${view}`);
         }
-        else if (numberOfEntries === 'flexible') {
-            if (view === 'day') {
-                if (calendar === undefined || calendar.constructor.name !== 'FlexibleDayCalendar') {
-                    if (calendar !== undefined && calendar.constructor.name !== 'FlexibleDayCalendar') {
+        else if (numberOfEntries === 'flexible') 
+        {
+            if (view === 'day') 
+            {
+                if (calendar === undefined || calendar.constructor.name !== 'FlexibleDayCalendar') 
+                {
+                    if (calendar !== undefined && calendar.constructor.name !== 'FlexibleDayCalendar') 
+                    {
                         ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
                     }
                     return new FlexibleDayCalendar(preferences);
-                } else {
+                }
+                else 
+                {
                     calendar.updatePreferences(preferences);
                     calendar.redraw();
                     return calendar;
                 }
-            } else if (view === 'month') {
-                if (calendar === undefined || calendar.constructor.name !== 'FlexibleMonthCalendar') {
-                    if (calendar !== undefined && calendar.constructor.name !== 'FlexibleMonthCalendar') {
+            }
+            else if (view === 'month') 
+            {
+                if (calendar === undefined || calendar.constructor.name !== 'FlexibleMonthCalendar') 
+                {
+                    if (calendar !== undefined && calendar.constructor.name !== 'FlexibleMonthCalendar') 
+                    {
                         ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
                     }
                     return new FlexibleMonthCalendar(preferences);
-                } else {
+                }
+                else 
+                {
                     calendar.updatePreferences(preferences);
                     calendar.redraw();
                     return calendar;
@@ -64,7 +90,8 @@ class CalendarFactory {
             }
             throw new Error(`Could not instantiate ${view}`);
         }
-        else {
+        else 
+        {
             throw new Error(`Could not instantiate ${numberOfEntries}`);
         }
     }

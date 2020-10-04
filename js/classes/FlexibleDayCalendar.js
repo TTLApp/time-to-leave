@@ -13,25 +13,29 @@ const { generateKey } = require('../date-db-formatter.js');
 const { showDialog } = require('../window-aux.js');
 const { FlexibleMonthCalendar } = require('./FlexibleMonthCalendar.js');
 
-class FlexibleDayCalendar extends FlexibleMonthCalendar {
+class FlexibleDayCalendar extends FlexibleMonthCalendar 
+{
     /**
     * @param {Object.<string, any>} preferences
     */
-    constructor(preferences) {
+    constructor(preferences) 
+    {
         super(preferences);
     }
 
     /**
      * Initializes the calendar by generating the html code, binding JS events and then drawing according to DB.
      */
-    _initCalendar() {
+    _initCalendar() 
+    {
         this._generateTemplate();
 
         $('#next-day').click(() => { this._nextDay(); });
         $('#prev-day').click(() => { this._prevDay(); });
         $('#switch-view').click(() => { this._switchView(); });
         $('#current-day').click(() => { this._goToCurrentDate(); });
-        $('#input-calendar-date').change((event) => {
+        $('#input-calendar-date').change((event) => 
+        {
             let [year, month, day] = $(event.target).val().split('-');
             this._goToDate(new Date(year, month-1, day));
         });
@@ -42,7 +46,8 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
     /**
      * Generates the calendar HTML view.
      */
-    _generateTemplate() {
+    _generateTemplate() 
+    {
         let body = this._getBody();
         $('#calendar').html(body);
         $('html').attr('data-view', 'flexible-day');
@@ -52,7 +57,8 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * Returns the header of the page, with the image, name and a message.
      * @return {string}
      */
-    static _getPageHeader() {
+    static _getPageHeader() 
+    {
         let switchView = '<input id="switch-view" type="image" src="assets/switch.svg" alt="Switch View" title="Switch View" height="24" width="24"></input>';
         let todayBut = '<input id="current-day" type="image" src="assets/calendar.svg" alt="Current Day" title="Go to Current Day" height="24" width="24"></input>';
         let leftBut = '<input id="prev-day" type="image" src="assets/left-arrow.svg" alt="Previous Day" height="24" width="24"></input>';
@@ -75,7 +81,8 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * Returns the template code of the body of the page.
      * @return {string}
      */
-    _getBody() {
+    _getBody() 
+    {
         let html = '<div>';
         html += this.constructor._getPageHeader();
         html += '<div id="calendar-table-body">';
@@ -88,7 +95,8 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * Returns the summary field HTML code.
      * @return {string}
      */
-    static _getSummaryRowCode() {
+    static _getSummaryRowCode() 
+    {
         let leaveByCode = '<input type="text" id="leave-by" size="5" disabled>';
         let summaryStr = 'You should leave by:';
         let code = '<div class="summary" id="summary-unfinished-day">' +
@@ -108,7 +116,8 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * Returns the HTML code for the row with working days, month total and balance.
      * @return {string}
      */
-    static _getBalanceRowCode() {
+    static _getBalanceRowCode() 
+    {
         return '<div class="month-total-row">' +
                     '<div class="half-width">' +
                     '<div class="month-total-element">' +
@@ -129,7 +138,8 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * Returns the code of the table body of the calendar.
      * @return {string}
      */
-    _generateTableBody() {
+    _generateTableBody() 
+    {
         return this._getInputsRowCode(this._getCalendarYear(), this._getCalendarMonth(), this._getCalendarDate()) + this.constructor._getBalanceRowCode();
     }
 
@@ -140,19 +150,22 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * @param {number} day
      * @return {string}
      */
-    _getInputsRowCode(year, month, day) {
+    _getInputsRowCode(year, month, day) 
+    {
         const today = new Date(),
             isToday = (today.getDate() === day && today.getMonth() === month && today.getFullYear() === year),
             dateKey = generateKey(year, month, day);
 
-        if (!this._showDay(year, month, day)) {
+        if (!this._showDay(year, month, day)) 
+        {
             return '<div class="today-non-working" id="' + dateKey + '">' +
                         '<div class="non-working-day">Not a working day</div>' +
                     '</div>\n';
         }
 
         let waivedInfo = this._getWaiverStore(day, month, year);
-        if (waivedInfo !== undefined) {
+        if (waivedInfo !== undefined) 
+        {
             let summaryStr = '<b>Waived day: </b>' + waivedInfo['reason'];
             let waivedLineHtmlCode =
                  '<div class="row-waiver" id="' + dateKey + '">' +
@@ -181,7 +194,8 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
                 '</div>' +
             '</div>\n';
 
-        if (isToday) {
+        if (isToday) 
+        {
             htmlCode += this.constructor._getSummaryRowCode();
         }
 
@@ -191,7 +205,8 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
     /**
      * Updates the code of the table header of the calendar, to be called on demand.
      */
-    _updateTableHeader() {
+    _updateTableHeader() 
+    {
         let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         let today = this._calendarDate;
         $('#header-date').html(today.toLocaleDateString(undefined, options));
@@ -201,21 +216,24 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
     /**
      * Display next day.
      */
-    _nextDay() {
+    _nextDay() 
+    {
         this._changeDay(1);
     }
 
     /**
      * Display previous day.
      */
-    _prevDay() {
+    _prevDay() 
+    {
         this._changeDay(-1);
     }
 
     /**
      * Go to current day.
      */
-    _goToCurrentDate() {
+    _goToCurrentDate() 
+    {
         this._goToDate(new Date());
     }
 
@@ -223,7 +241,8 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * Returns if Calendar date agrees with parameter date.
      * @return {Boolean}
      */
-    _isCalendarOnDate(date) {
+    _isCalendarOnDate(date) 
+    {
         return date.getDate() === this._getCalendarDate() && date.getMonth() === this._getCalendarMonth() && date.getFullYear() === this._getCalendarYear();
     }
 
@@ -231,7 +250,8 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * Go to date.
      * @param {Date} date
      */
-    _goToDate(date) {
+    _goToDate(date) 
+    {
         this._calendarDate = date;
         this.redraw();
     }
@@ -240,7 +260,8 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * Change the calendar view by a number of days.
      * @param int numDays number of days to be changed (positive/negative)
      */
-    _changeDay(numDays) {
+    _changeDay(numDays) 
+    {
         this._calendarDate.setDate(this._calendarDate.getDate() + numDays);
         this.redraw();
     }
@@ -248,10 +269,12 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
     /**
      * Draws elements of the Calendar that depend on DB data.
      */
-    _draw() {
+    _draw() 
+    {
         super._draw();
 
-        if (!this._isCalendarOnDate(new Date())) {
+        if (!this._isCalendarOnDate(new Date())) 
+        {
             $('#punch-button').prop('disabled', true);
             ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', false);
         }
@@ -260,12 +283,15 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
     /**
      * Draws +/- buttons for the flexible calendar. Arrows are not needed for day calendar.
      */
-    _drawArrowsAndButtons() {
+    _drawArrowsAndButtons() 
+    {
         const calendar = this;
 
-        function removeEntries() {
+        function removeEntries() 
+        {
             const existingEntryPairs = $('.row-entry-pair').length;
-            if (existingEntryPairs > 2) {
+            if (existingEntryPairs > 2) 
+            {
                 const dateKey = $('.rows-time').attr('id');
                 const removeEntriesDialogOptions = {
                     title: 'Remove entry',
@@ -273,15 +299,18 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
                     type: 'info',
                     buttons: ['Yes', 'No']
                 };
-                showDialog(removeEntriesDialogOptions, (result) => {
+                showDialog(removeEntriesDialogOptions, (result) => 
+                {
                     const buttonId = result.response;
-                    if (buttonId === 1) {
+                    if (buttonId === 1) 
+                    {
                         return;
                     }
                     $('.rows-time > div:last-of-type').remove();
                     $('.rows-time > div:last-of-type').remove();
 
-                    if (existingEntryPairs - 1 > 2) {
+                    if (existingEntryPairs - 1 > 2) 
+                    {
                         const minusSignCode =
                             '<div class="sign-cell">' +
                                 '<div class="sign-container"><span class="minus-sign">-</span></div>' +
@@ -291,23 +320,27 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
                     }
 
                     calendar._updateTimeDay(dateKey);
-                    setTimeout(() => {
+                    setTimeout(() => 
+                    {
                         calendar._checkTodayPunchButton();
                     }, 0);
                 });
             }
         }
 
-        function addEntries() {
+        function addEntries() 
+        {
             const dateKey = $('.rows-time').attr('id');
             $('.sign-cell:has(span.minus-sign)').remove();
             const existingEntryPairs = 2 * $('.row-entry-pair').length;
             calendar._addNecessaryEntries(dateKey, existingEntryPairs + 2);
             $('.sign-cell:has(span.minus-sign)').off('click').on('click', removeEntries);
-            $('input[type=\'time\']').off('input propertychange').on('input propertychange', function() {
+            $('input[type=\'time\']').off('input propertychange').on('input propertychange', function() 
+            {
                 calendar._updateTimeDayCallback($(this).attr('data-date'));
             });
-            setTimeout(() => {
+            setTimeout(() => 
+            {
                 calendar._checkTodayPunchButton();
             }, 0);
         }
@@ -323,9 +356,11 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * @param {int} oldMonthDate
      * @param {int} oldYearDate
      */
-    refreshOnDayChange(oldDayDate, oldMonthDate, oldYearDate) {
+    refreshOnDayChange(oldDayDate, oldMonthDate, oldYearDate) 
+    {
         let date = new Date(oldYearDate, oldMonthDate, oldDayDate);
-        if (this._isCalendarOnDate(date)) {
+        if (this._isCalendarOnDate(date)) 
+        {
             this._goToCurrentDate();
         }
     }
@@ -337,29 +372,36 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * @param {number} day
      * @return {string|undefined}
      */
-    _getDayTotal(year, month, day) {
+    _getDayTotal(year, month, day) 
+    {
         const dateKey = generateKey(year, month, day);
         const values = this._getStore(dateKey);
-        if (values !== undefined) {
+        if (values !== undefined) 
+        {
             const validatedTimes = this._validateTimes(values);
             const inputsHaveExpectedSize = values.length >= 4 && values.length % 2 === 0;
             const validatedTimesOk = validatedTimes.length > 0 && validatedTimes.every(time => time !== '--:--');
             const hasDayEnded = inputsHaveExpectedSize && validatedTimesOk;
 
             let dayTotal = undefined;
-            if (hasDayEnded) {
+            if (hasDayEnded) 
+            {
                 dayTotal = '00:00';
                 let timesAreProgressing = true;
-                if (validatedTimes.length >= 4 && validatedTimes.length % 2 === 0) {
-                    for (let i = 0; i < validatedTimes.length; i += 2) {
+                if (validatedTimes.length >= 4 && validatedTimes.length % 2 === 0) 
+                {
+                    for (let i = 0; i < validatedTimes.length; i += 2) 
+                    {
                         const difference = subtractTime(validatedTimes[i], validatedTimes[i + 1]);
                         dayTotal = sumTime(dayTotal, difference);
-                        if (validatedTimes[i] >= validatedTimes[i + 1]) {
+                        if (validatedTimes[i] >= validatedTimes[i + 1]) 
+                        {
                             timesAreProgressing = false;
                         }
                     }
                 }
-                if (!timesAreProgressing) {
+                if (!timesAreProgressing) 
+                {
                     return undefined;
                 }
             }
@@ -367,7 +409,8 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
         }
 
         const waiverTotal = this._getWaiverStore(day, month, year);
-        if (waiverTotal !== undefined) {
+        if (waiverTotal !== undefined) 
+        {
             return waiverTotal['hours'];
         }
         return undefined;
@@ -376,7 +419,8 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
     /**
      * Updates the monthly time balance and triggers the all time balance update at end.
      */
-    _updateBalance() {
+    _updateBalance() 
+    {
         let yesterday = new Date(this._calendarDate);
         yesterday.setDate(this._calendarDate.getDate() - 1);
         let workingDaysToCompute = 0,
@@ -384,17 +428,21 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
         let countDays = false;
 
         let limit = this._getCountToday() ? this._getCalendarDate() : (yesterday.getMonth() !== this._getCalendarMonth() ? 0 : yesterday.getDate());
-        for (let day = 1; day <= limit; ++day) {
-            if (!this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day)) {
+        for (let day = 1; day <= limit; ++day) 
+        {
+            if (!this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day)) 
+            {
                 continue;
             }
 
             let dayTotal = this._getDayTotal(this._getCalendarYear(), this._getCalendarMonth(), day);
-            if (dayTotal !== undefined) {
+            if (dayTotal !== undefined) 
+            {
                 countDays = true;
                 monthTotalWorked = sumTime(monthTotalWorked, dayTotal);
             }
-            if (countDays) {
+            if (countDays) 
+            {
                 workingDaysToCompute += 1;
             }
         }
@@ -412,11 +460,13 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
     /**
      * Update contents of the "time to leave" bar.
      */
-    _updateLeaveBy() {
+    _updateLeaveBy() 
+    {
         if (!this._showDay(this._getTodayYear(), this._getTodayMonth(), this._getTodayDate()) ||
             this._getTodayMonth() !== this._getCalendarMonth() ||
             this._getTodayYear() !== this._getCalendarYear() ||
-            this._getWaiverStore(this._getTodayDate(), this._getCalendarMonth(), this._getCalendarYear())) {
+            this._getWaiverStore(this._getTodayDate(), this._getCalendarMonth(), this._getCalendarYear())) 
+        {
             return;
         }
 
@@ -426,14 +476,17 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
         this._checkTodayPunchButton();
 
         const dayTotal = $('.day-total span').html();
-        if (dayTotal !== undefined && dayTotal.length > 0) {
+        if (dayTotal !== undefined && dayTotal.length > 0) 
+        {
             const dayBalance = subtractTime(this._getHoursPerDay(), dayTotal);
             $('#leave-day-balance').val(dayBalance);
             $('#leave-day-balance').removeClass('text-success text-danger');
             $('#leave-day-balance').addClass(isNegative(dayBalance) ? 'text-danger' : 'text-success');
             $('#summary-unfinished-day').addClass('hidden');
             $('#summary-finished-day').removeClass('hidden');
-        } else {
+        }
+        else 
+        {
             $('#summary-unfinished-day').removeClass('hidden');
             $('#summary-finished-day').addClass('hidden');
         }
@@ -442,29 +495,37 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
     /**
      * Updates data displayed on the calendar based on the internal DB, and updates balances at end.
      */
-    _updateBasedOnDB() {
+    _updateBasedOnDB() 
+    {
         let monthLength = getMonthLength(this._getCalendarYear(), this._getCalendarMonth());
         let workingDays = 0;
         let stopCountingMonthStats = false;
-        for (let day = 1; day <= monthLength; ++day) {
+        for (let day = 1; day <= monthLength; ++day) 
+        {
 
-            if (stopCountingMonthStats) {
+            if (stopCountingMonthStats) 
+            {
                 break;
             }
 
             stopCountingMonthStats |= (this._getCalendarDate() === day);
 
-            if (!this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day)) {
+            if (!this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day)) 
+            {
                 continue;
             }
 
             const dateKey = generateKey(this._getCalendarYear(), this._getCalendarMonth(), day);
-            if (day === this._getCalendarDate()) {
+            if (day === this._getCalendarDate()) 
+            {
                 let waivedInfo = this._getWaiverStore(day, this._getCalendarMonth(), this._getCalendarYear());
-                if (waivedInfo !== undefined) {
+                if (waivedInfo !== undefined) 
+                {
                     let waivedDayTotal = waivedInfo['hours'];
                     $('#' + dateKey + ' .day-total').html(waivedDayTotal);
-                } else {
+                }
+                else 
+                {
                     this._setTableData(dateKey);
                     this._checkInputErrors();
                 }
@@ -491,13 +552,15 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * Updates the DB with the information of computed total lunch time and day time.
      * @param {string} dateKey
      */
-    _updateTimeDay(dateKey) {
+    _updateTimeDay(dateKey) 
+    {
         // Cleaning intervals
         $('#' + dateKey + ' div.interval').html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
 
         const inputs = $('#' + dateKey + ' .row-entry-pair input[type=\'time\']');
         let newValues = [];
-        for (const element of inputs) {
+        for (const element of inputs) 
+        {
             newValues.push(element.value);
         }
 
@@ -511,24 +574,30 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * Updates the intervals shown on the calendar
      * @param {string} dateKey
      */
-    _updateDayIntervals(dateKey) {
+    _updateDayIntervals(dateKey) 
+    {
         const inputs = $('#' + dateKey + ' input[type="time"]');
         let i = 0;
         let timeStart = '';
         let timeEnd = '';
-        for (const element of inputs) {
-            if (i !== 0 && (i + 1) % 2 === 1) {
+        for (const element of inputs) 
+        {
+            if (i !== 0 && (i + 1) % 2 === 1) 
+            {
                 timeEnd = element.value;
 
-                if (validateTime(timeEnd) && validateTime(timeStart)) {
-                    if (timeEnd > timeStart) {
+                if (validateTime(timeEnd) && validateTime(timeStart)) 
+                {
+                    if (timeEnd > timeStart) 
+                    {
                         $(element).closest('.row-entry-pair').prev().find('div.interval').html(subtractTime(timeStart, timeEnd));
                     }
                     timeStart = '';
                     timeEnd = '';
                 }
             }
-            else if ((i + 1) % 2 === 0) {
+            else if ((i + 1) % 2 === 0) 
+            {
                 timeStart = element.value;
             }
             i++;
@@ -539,30 +608,36 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * Analyze the inputs of a day, and color entry lines if they have errors.
      * An error means that an input earlier in the day is higher than one that is after it.
      */
-    _checkInputErrors() {
-        function colorErrorLine(entryRow, validated) {
+    _checkInputErrors() 
+    {
+        function colorErrorLine(entryRow, validated) 
+        {
             $(entryRow).toggleClass('error-tr', !validated);
         }
 
         // Checking errors on each row
         const entryRows = $('.row-entry-pair');
-        entryRows.each((index, entryRow) => {
+        entryRows.each((index, entryRow) => 
+        {
             const inputs = $(entryRow).find('input[type=\'time\']');
             let newValues = [];
-            for (const element of inputs) {
+            for (const element of inputs) 
+            {
                 newValues.push(element.value);
             }
 
             const validatedTimes = this._validateTimes(newValues, true /*removeEndingInvalids*/);
 
             const noInputsYet = validatedTimes.length === 0;
-            if (noInputsYet) {
+            if (noInputsYet) 
+            {
                 colorErrorLine(entryRow, true /*validated*/);
                 return;
             }
 
             const invalidInputs = validatedTimes.some(time => time === '--:--');
-            if (invalidInputs) {
+            if (invalidInputs) 
+            {
                 colorErrorLine(entryRow, false /*validated*/);
                 return;
             }
@@ -573,12 +648,15 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
         // Checking errors across rows
         const allInputs = $('input[type=\'time\']');
         let newValues = [];
-        for (const element of allInputs) {
+        for (const element of allInputs) 
+        {
             newValues.push(element.value);
         }
         const validatedTimes = this._validateTimes(newValues, true /*removeEndingInvalids*/);
-        for (let index = 0; index < validatedTimes.length; index++) {
-            if (index > 0 && (validatedTimes[index - 1] >= validatedTimes[index])) {
+        for (let index = 0; index < validatedTimes.length; index++) 
+        {
+            if (index > 0 && (validatedTimes[index - 1] >= validatedTimes[index])) 
+            {
                 const entryRowIndex = Math.floor(index/2);
                 colorErrorLine(entryRows[entryRowIndex], false /*validated*/);
                 return;
@@ -592,11 +670,13 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * @param {string} dateKey
      * @param {number} entrySize
      */
-    _addNecessaryEntries(dateKey, entrySize) {
+    _addNecessaryEntries(dateKey, entrySize) 
+    {
         // 2 pairs is the default minimum size of the table
         const numberOfPairs = Math.ceil(entrySize/2) >= 2 ? Math.ceil(entrySize/2) : 2;
 
-        function entryPairHTMLCode(entryIndex, isLastRow) {
+        function entryPairHTMLCode(entryIndex, isLastRow) 
+        {
 
             const minusSignCode =
                 '<div class="third-group">' +
@@ -616,9 +696,11 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
                 '</div>';
         }
 
-        function intervalHTMLCode(entryIndex) {
+        function intervalHTMLCode(entryIndex) 
+        {
 
-            if (entryIndex === 0) {
+            if (entryIndex === 0) 
+            {
                 return '';
             }
             return '<div class="row-interval">' +
@@ -630,7 +712,8 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
         }
 
         const existingEntryPairs = $('.row-entry-pair').length;
-        for (let i = existingEntryPairs; i < numberOfPairs; i++) {
+        for (let i = existingEntryPairs; i < numberOfPairs; i++) 
+        {
             $(intervalHTMLCode(i)).appendTo('#' + dateKey);
             const isLastRow = i === (numberOfPairs - 1);
             $(entryPairHTMLCode(i + 1, isLastRow)).appendTo('#' + dateKey);
@@ -641,16 +724,19 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * Updates data displayed based on the database.
      * @param {string} dateKey
      */
-    _setTableData(dateKey) {
+    _setTableData(dateKey) 
+    {
         const values = this._getStore(dateKey);
         this._addNecessaryEntries(dateKey, values.length);
 
         const inputs = $('#' + dateKey + ' input[type="time"]');
         let i = 0;
 
-        for (const element of values) {
+        for (const element of values) 
+        {
             let input = inputs[i];
-            if (input !== undefined) {
+            if (input !== undefined) 
+            {
                 $(input).val(element);
             }
             i++;
@@ -666,9 +752,11 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * If "count_today" is active, the following day.
      * @return {Date}
      */
-    _getTargetDayForAllTimeBalance() {
+    _getTargetDayForAllTimeBalance() 
+    {
         let targetDate = new Date(this._getCalendarYear(), this._getCalendarMonth(), this._getCalendarDate());
-        if (this._getCountToday()) {
+        if (this._getCountToday()) 
+        {
             targetDate.setDate(targetDate.getDate() + 1);
         }
         return targetDate;

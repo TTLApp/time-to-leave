@@ -19,7 +19,8 @@ let { contextMenu, tray } = require('./windows.js');
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow = null;
 
-function getMainWindow() {
+function getMainWindow() 
+{
     return mainWindow;
 }
 
