@@ -13,7 +13,7 @@ const store = new Store();
 const flexibleStore = new Store({ name: 'flexible-store' });
 const waivedWorkdays = new Store({ name: 'waived-workdays' });
 
-function getFirstInputInDb() 
+function getFirstInputInDb()
 {
     let inputs = [];
     const startDateStr = _getOverallBalanceStartDate();
@@ -21,15 +21,15 @@ function getFirstInputInDb()
     const startDate = new Date(startYear, startMonth - 1, startDay);
 
     const usedStore = _getNumberOfEntries() === 'fixed' ? store : flexibleStore;
-    for (let value of usedStore) 
+    for (let value of usedStore)
     {
         let [year, month, day] = value[0].split('-');
-        if (new Date(year, month, day) >= startDate) 
+        if (new Date(year, month, day) >= startDate)
         {
             inputs.push(value[0]);
         }
     }
-    inputs.sort(function(a, b) 
+    inputs.sort(function(a, b)
     {
         let [aYear, aMonth, aDay] = a.split('-');
         let [bYear, bMonth, bDay] = b.split('-');
@@ -41,7 +41,7 @@ function getFirstInputInDb()
 /**
 * @param {string} dbKey given key of the db
 */
-function _getDateFromStoreDb(dbKey) 
+function _getDateFromStoreDb(dbKey)
 {
     // Normal Store is formated with month described by 0-11 (jan - dec)
     const [year, month, day] = dbKey.split('-');
@@ -51,7 +51,7 @@ function _getDateFromStoreDb(dbKey)
 /**
 * @param {string} dbKey given key of the db
 */
-function _getDateFromWaivedWorkdayDb(dbKey) 
+function _getDateFromWaivedWorkdayDb(dbKey)
 {
     // WaivedWorkday are formated with two digits for the month/day (01 instead of 1)
     // and has the month described by 1-12 (jan - dec)
@@ -59,19 +59,19 @@ function _getDateFromWaivedWorkdayDb(dbKey)
     return new Date(year, month-1, day);
 }
 
-function _getOverallBalanceStartDate() 
+function _getOverallBalanceStartDate()
 {
     const savedPreferences = getUserPreferences();
     return savedPreferences['overall-balance-start-date'];
 }
 
-function _getHoursPerDay() 
+function _getHoursPerDay()
 {
     const savedPreferences = getUserPreferences();
     return savedPreferences['hours-per-day'];
 }
 
-function _getNumberOfEntries() 
+function _getNumberOfEntries()
 {
     const savedPreferences = getUserPreferences();
     return savedPreferences['number-of-entries'];
@@ -82,29 +82,29 @@ function _getNumberOfEntries()
 * day total according to same calculation rules as those of the calendar.
 * @param {string[]} values
 */
-function _getFlexibleDayTotal(values) 
+function _getFlexibleDayTotal(values)
 {
     const inputsHaveExpectedSize = values.length >= 4 && values.length % 2 === 0;
     const timesOk = values.length > 0 && values.every(time => time !== '--:--');
     const hasDayEnded = inputsHaveExpectedSize && timesOk;
 
-    if (hasDayEnded) 
+    if (hasDayEnded)
     {
         let dayTotal = '00:00';
         let timesAreProgressing = true;
-        if (values.length >= 4 && values.length % 2 === 0) 
+        if (values.length >= 4 && values.length % 2 === 0)
         {
-            for (let i = 0; i < values.length; i += 2) 
+            for (let i = 0; i < values.length; i += 2)
             {
                 const difference = subtractTime(values[i], values[i + 1]);
                 dayTotal = sumTime(dayTotal, difference);
-                if (values[i] >= values[i + 1]) 
+                if (values[i] >= values[i + 1])
                 {
                     timesAreProgressing = false;
                 }
             }
         }
-        if (timesAreProgressing) 
+        if (timesAreProgressing)
         {
             return dayTotal;
         }
@@ -118,52 +118,58 @@ function _getFlexibleDayTotal(values)
 * @param {Date} firstDate
 * @param {Date} limitDate
 */
-function _getDayTotalsFromStores(firstDate, limitDate) 
+function _getDayTotalsFromStores(firstDate, limitDate)
 {
     const preferences = getUserPreferences();
-
     let totals = {};
-    for (let value of waivedWorkdays) 
+
+    const getDateStrAndDateValue = (value, date) => 
     {
-        let date = _getDateFromWaivedWorkdayDb(value[0]);
-        const dateShown = showDay(date.getFullYear(), date.getMonth(), date.getDate(), preferences);
-        if (date >= firstDate && date <= limitDate && dateShown) 
+        const dateStr = getDateStr(date);
+
+        if (!totals[dateStr])
         {
-            totals[getDateStr(date)] = value[1]['hours'];
-        }
-    }
-    if (_getNumberOfEntries() === 'fixed') 
-    {
-        for (let value of store) 
-        {
-            if (value[0].endsWith('-day-total')) 
+            const dateShown = showDay(date.getFullYear(), date.getMonth(), date.getDate(), preferences);
+            if (date >= firstDate && date <= limitDate && dateShown)
             {
-                let date = _getDateFromStoreDb(value[0]);
-                if (!(getDateStr(date) in totals)) 
+                return [dateStr, value[1]];
+            }
+        }
+        return [];
+    };
+
+    for (let value of waivedWorkdays)
+    {
+        const [key, dateValue] = getDateStrAndDateValue(value, _getDateFromWaivedWorkdayDb(value[0]));
+        if (key && dateValue)
+        {
+            totals[key] = dateValue['hours'];
+        }
+
+    }
+
+    if (_getNumberOfEntries() === 'fixed')
+    {
+        for (let value of store)
+        {
+            if (value[0].endsWith('-day-total'))
+            {
+                const [key, dateValue] = getDateStrAndDateValue(value, _getDateFromStoreDb(value[0]));
+                if (key && dateValue)
                 {
-                    const dateShown = showDay(date.getFullYear(), date.getMonth(), date.getDate(), preferences);
-                    if (date >= firstDate && date <= limitDate && dateShown) 
-                    {
-                        const totalForDay = value[1];
-                        totals[getDateStr(date)] = totalForDay;
-                    }
+                    totals[key] = dateValue;
                 }
             }
         }
     }
-    else 
+    else
     {
-        for (let value of flexibleStore) 
+        for (let value of flexibleStore)
         {
-            const date = _getDateFromStoreDb(value[0]);
-            if (!(getDateStr(date) in totals)) 
+            const [key, dateValue] = getDateStrAndDateValue(value, _getDateFromStoreDb(value[0]));
+            if (key && dateValue)
             {
-                const dateShown = showDay(date.getFullYear(), date.getMonth(), date.getDate(), preferences);
-                if (date >= firstDate && date <= limitDate && dateShown) 
-                {
-                    const totalForDay = _getFlexibleDayTotal(value[1].values);
-                    totals[getDateStr(date)] = totalForDay;
-                }
+                totals[key] = _getFlexibleDayTotal(dateValue.values);
             }
         }
     }
@@ -175,10 +181,10 @@ function _getDayTotalsFromStores(firstDate, limitDate)
 * Computation of all time balance, including limitDay.
 * @param {Date} limitDate
 */
-async function computeAllTimeBalanceUntil(limitDate) 
+async function computeAllTimeBalanceUntil(limitDate)
 {
     const firstInput = getFirstInputInDb();
-    if (firstInput === '') 
+    if (firstInput === '')
     {
         return '00:00';
     }
@@ -193,9 +199,9 @@ async function computeAllTimeBalanceUntil(limitDate)
     let date = new Date(firstDate);
     const limitDateStr = getDateStr(limitDate);
     let dateStr = getDateStr(date);
-    while (dateStr !== limitDateStr && limitDate > date) 
+    while (dateStr !== limitDateStr && limitDate > date)
     {
-        if (showDay(date.getFullYear(), date.getMonth(), date.getDate(), preferences)) 
+        if (showDay(date.getFullYear(), date.getMonth(), date.getDate(), preferences))
         {
             const dayTotal = dateStr in totals ? totals[dateStr] : '00:00';
             const dayBalance = subtractTime(hoursPerDay, dayTotal);
@@ -211,11 +217,11 @@ async function computeAllTimeBalanceUntil(limitDate)
 * Computes all time balance using an async promise.
 * @param {Date} limitDate
 */
-async function computeAllTimeBalanceUntilAsync(limitDate) 
+async function computeAllTimeBalanceUntilAsync(limitDate)
 {
-    return new Promise(resolve => 
+    return new Promise(resolve =>
     {
-        setTimeout(() => 
+        setTimeout(() =>
         {
             resolve(computeAllTimeBalanceUntil(limitDate));
         }, 1);
