@@ -47,19 +47,19 @@ function notifyTimeToLeave() {
         return;
     }
 
-    var timeToLeave = $('#leave-by').val();
+    let timeToLeave = $('#leave-by').val();
     if (validateTime(timeToLeave)) {
         /**
          * How many minutes should pass before the Time-To-Leave notification should be presented again.
          * @type {number} Minutes post the clockout time
          */
         const notificationInterval = preferences['notifications-interval'];
-        var now = new Date();
-        var curTime = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+        let now = new Date();
+        let curTime = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
 
         // Let check if it's past the time to leave, and the minutes line up with the interval to check
-        var minutesDiff = hourToMinutes(subtractTime(timeToLeave, curTime));
-        var isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval === 0);
+        let minutesDiff = hourToMinutes(subtractTime(timeToLeave, curTime));
+        let isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval === 0);
 
         if (curTime === timeToLeave || (isRepeatingInterval && preferences['repetition'])) {
             notify('Hey there! I think it\'s time to leave.');

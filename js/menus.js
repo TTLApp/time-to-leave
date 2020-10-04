@@ -106,7 +106,7 @@ function getContextMenuTemplate(mainWindow)
         {
             label: 'Punch time', click: function()
             {
-                var now = new Date();
+                let now = new Date();
 
                 mainWindow.webContents.executeJavaScript('calendar.punchDate()');
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
@@ -134,7 +134,7 @@ function getDockMenuTemplate(mainWindow)
         {
             label: 'Punch time', click: function()
             {
-                var now = new Date();
+                let now = new Date();
 
                 mainWindow.webContents.executeJavaScript('calendar.punchDate()');
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
@@ -244,7 +244,7 @@ function getEditMenuTemplate(mainWindow)
             label: 'Export database',
             click()
             {
-                var options = {
+                let options = {
                     title: 'Export DB to file',
                     defaultPath : 'time_to_leave',
                     buttonLabel : 'Export',
@@ -273,7 +273,7 @@ function getEditMenuTemplate(mainWindow)
             label: 'Import database',
             click()
             {
-                var options = {
+                let options = {
                     title: 'Import DB from file',
                     buttonLabel : 'Import',
 

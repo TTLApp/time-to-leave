@@ -2,7 +2,7 @@
 
 const { remote } = require('electron');
 const Store = require('electron-store');
-var Holidays = require('date-holidays');
+let Holidays = require('date-holidays');
 
 const { getUserPreferences, showDay } = require('../js/user-preferences.js');
 const { validateTime, diffDays } = require('../js/time-math.js');
@@ -11,7 +11,7 @@ const { getDateStr } = require('../js/date-aux.js');
 const { bindDevToolsShortcut, showAlert, showDialog } = require('../js/window-aux.js');
 
 const waiverStore = new Store({name: 'waived-workdays'});
-var hd = new Holidays();
+let hd = new Holidays();
 
 function setDates(day) {
     $('#start-date').val(day);

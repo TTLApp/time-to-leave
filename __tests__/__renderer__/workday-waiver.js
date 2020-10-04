@@ -18,8 +18,8 @@ function prepareMockup() {
     waivedWorkdays.clear();
     const workdayWaiverHtml = path.join(__dirname, '../../src/workday-waiver.html');
     const content = fs.readFileSync(workdayWaiverHtml);
-    var parser = new DOMParser();
-    var htmlDoc = parser.parseFromString(content, 'text/html');
+    let parser = new DOMParser();
+    let htmlDoc = parser.parseFromString(content, 'text/html');
     document.body.innerHTML = htmlDoc.body.innerHTML;
     populateList();
 }

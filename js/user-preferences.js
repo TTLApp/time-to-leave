@@ -54,7 +54,7 @@ function savePreferences(preferencesOptions) {
  * @return {Object}
  */
 function readPreferences() {
-    var preferences;
+    let preferences;
     try {
         preferences = JSON.parse(fs.readFileSync(getPreferencesFilePath()));
     } catch (err) {
@@ -64,7 +64,7 @@ function readPreferences() {
 }
 
 function getDerivedPrefsFromLoadedPrefs(loadedPreferences) {
-    var derivedPreferences = {};
+    let derivedPreferences = {};
     Object.keys(defaultPreferences).forEach(function(key) {
         derivedPreferences[key] = (typeof loadedPreferences[key] !== 'undefined') ? loadedPreferences[key] : defaultPreferences[key];
     });
@@ -82,7 +82,7 @@ function initPreferencesFileIfNotExistsOrInvalid() {
         return;
     }
 
-    var shouldSaveDerivedPrefs = false,
+    let shouldSaveDerivedPrefs = false,
         loadedPrefs = readPreferences(),
         derivedPrefs = getDerivedPrefsFromLoadedPrefs(loadedPrefs),
         loadedPref = Object.keys(loadedPrefs).sort(),
@@ -94,8 +94,8 @@ function initPreferencesFileIfNotExistsOrInvalid() {
     }
 
     // Validate the values
-    for (var key of derivedPrefsKeys) {
-        var value = derivedPrefs[key];
+    for (let key of derivedPrefsKeys) {
+        let value = derivedPrefs[key];
         switch (key) {
         // Handle Time Inputs
         case 'notifications-interval':
@@ -181,7 +181,7 @@ function showWeekDay(weekDay, preferences = undefined) {
  * @note: The month should be 0-based (i.e.: 0 is Jan, 11 is Dec).
  */
 function showDay(year, month, day, preferences = undefined)  {
-    var currentDay = new Date(year, month, day), weekDay = currentDay.getDay();
+    let currentDay = new Date(year, month, day), weekDay = currentDay.getDay();
     return showWeekDay(weekDay, preferences);
 }
 

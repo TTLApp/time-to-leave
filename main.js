@@ -9,10 +9,10 @@ ipcMain.on('SET_WAIVER_DAY', (event, waiverDay) => {
     global.waiverDay = waiverDay;
 });
 
-var launchDate = new Date();
+let launchDate = new Date();
 
 // Logic for recommending user to punch in when they've been idle for too long
-var recommendPunchIn = false;
+let recommendPunchIn = false;
 setTimeout(() => { recommendPunchIn = true; }, 30 * 60 * 1000);
 
 process.on('uncaughtException', function(err) {

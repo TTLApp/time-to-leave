@@ -27,12 +27,12 @@ async function checkForUpdates(showUpToDateDialog)
     {
         response.on('data', (chunk) =>
         {
-            var result = `${chunk}`;
-            var re = new RegExp('.*(tag_name).*', 'g');
-            var matches = result.matchAll(re);
+            let result = `${chunk}`;
+            let re = new RegExp('.*(tag_name).*', 'g');
+            let matches = result.matchAll(re);
             for (const match of matches)
             {
-                var res = match[0].replace(/.*v.(\d+\.\d+\.\d+).*/g, '$1');
+                let res = match[0].replace(/.*v.(\d+\.\d+\.\d+).*/g, '$1');
                 if (app.getVersion() < res)
                 {
                     const options = {
@@ -52,7 +52,7 @@ async function checkForUpdates(showUpToDateDialog)
                     {
                         const store = new Store();
                         // Remind me later
-                        var today = new Date(),
+                        let today = new Date(),
                             todayDate = getDateStr(today);
                         store.set('update-remind-me-after', todayDate);
                     }

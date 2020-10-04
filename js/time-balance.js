@@ -14,7 +14,7 @@ const flexibleStore = new Store({ name: 'flexible-store' });
 const waivedWorkdays = new Store({ name: 'waived-workdays' });
 
 function getFirstInputInDb() {
-    var inputs = [];
+    let inputs = [];
     const startDateStr = _getOverallBalanceStartDate();
     let [startYear, startMonth, startDay] = startDateStr.split('-');
     const startDate = new Date(startYear, startMonth - 1, startDay);
@@ -27,8 +27,8 @@ function getFirstInputInDb() {
         }
     }
     inputs.sort(function(a, b) {
-        var [aYear, aMonth, aDay] = a.split('-');
-        var [bYear, bMonth, bDay] = b.split('-');
+        let [aYear, aMonth, aDay] = a.split('-');
+        let [bYear, bMonth, bDay] = b.split('-');
         return new Date(aYear, aMonth, aDay) - new Date(bYear, bMonth, bDay);
     });
     return inputs.length ? inputs[0] : '';
@@ -153,8 +153,8 @@ async function computeAllTimeBalanceUntil(limitDate) {
     if (firstInput === '') {
         return '00:00';
     }
-    var [firstYear, firstMonth, firstDay] = firstInput.split('-');
-    var firstDate = new Date(firstYear, firstMonth, firstDay);
+    let [firstYear, firstMonth, firstDay] = firstInput.split('-');
+    let firstDate = new Date(firstYear, firstMonth, firstDay);
 
     let totals = _getDayTotalsFromStores(firstDate, limitDate);
 

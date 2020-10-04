@@ -15,7 +15,7 @@ function getDateStr(date) {
  * Given a a year and month, returns how many days the month has
  */
 function getMonthLength(year, month) {
-    var d = new Date(year, month+1, 0);
+    let d = new Date(year, month+1, 0);
     return d.getDate();
 }
 

@@ -40,7 +40,7 @@ class FixedDayCalendar extends Calendar {
      * Generates the calendar HTML view.
      */
     _generateTemplate() {
-        var body = this._getBody();
+        let body = this._getBody();
         $('#calendar').html(body);
         $('html').attr('data-view', 'day');
     }
@@ -71,7 +71,7 @@ class FixedDayCalendar extends Calendar {
      * Returns the template code of the body of the page.
      */
     _getBody() {
-        var html = '<div>';
+        let html = '<div>';
         html += this.constructor._getPageHeader();
         html += '<div id="calendar-table-body">';
         html += '</div>';

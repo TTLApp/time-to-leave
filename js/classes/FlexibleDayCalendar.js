@@ -43,7 +43,7 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * Generates the calendar HTML view.
      */
     _generateTemplate() {
-        var body = this._getBody();
+        let body = this._getBody();
         $('#calendar').html(body);
         $('html').attr('data-view', 'flexible-day');
     }
@@ -76,7 +76,7 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar {
      * @return {string}
      */
     _getBody() {
-        var html = '<div>';
+        let html = '<div>';
         html += this.constructor._getPageHeader();
         html += '<div id="calendar-table-body">';
         html += '</div>';
