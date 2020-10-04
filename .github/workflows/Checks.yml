@@ -19,7 +19,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v1.0.0
         with:
-          name: 'COVERAGE'
+          name: 'COVERAGE-${{ matrix.os }}'
           path: 'coverage/'
       - name: '      CodeCov'
         if: success()
@@ -27,4 +27,5 @@ jobs:
         with:
           file: 'COVERAGE*'
           token: ${{ secrets.CODECOV_TOKEN }}
+          name: codecov-${{ matrix.os }}
           fail_ci_if_error: false
