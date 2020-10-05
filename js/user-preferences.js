@@ -5,6 +5,12 @@ const path = require('path');
 const fs = require('fs');
 const { validateTime } = require('./time-math.js');
 const { isValidTheme } = require('./themes.js');
+const i18n = require('../src/configs/i18next.config');
+
+function isValidLocale(locale)
+{
+    return i18n.languages.includes(locale);
+}
 
 const defaultPreferences = {
     'count-today': false,
@@ -27,7 +33,8 @@ const defaultPreferences = {
     'working-days-saturday': false,
     'working-days-sunday': false,
     'view': 'month',
-    'number-of-entries': 'fixed'
+    'number-of-entries': 'fixed',
+    'language': 'en'
 };
 
 // Handle Boolean Inputs
@@ -155,6 +162,7 @@ function initPreferencesFileIfNotExistsOrInvalid()
             'theme': () => shouldSaveDerivedPrefs |= !isValidTheme,
             'number-of-entries': () => shouldSaveDerivedPrefs |= !(value === 'fixed' || value === 'flexible'),
             'view': () => shouldSaveDerivedPrefs |= !(value === 'month' || value === 'day'),
+            'language': () => shouldSaveDerivedPrefs |= isValidLocale
         };
         if (key in inputEnum) inputEnum[key]();
     }

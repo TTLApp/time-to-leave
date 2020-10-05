@@ -1,0 +1,63 @@
+{
+  "$Language": {
+    "en": "English",
+    "pt-BR": "Portuguese (Brazil)"
+  },
+  "$Menu": {
+    "Workday Waiver Manager": "Workday Waiver Manager",
+    "Exit": "Exit",
+    "Cut": "Cut",
+    "Copy": "Copy",
+    "Paste": "Paste",
+    "Select All": "Select All",
+    "Preferences": "Preferences",
+    "Migrate to flexible calendar": "Migrate to flexible calendar",
+    "Export database": "Export database",
+    "Import database": "Import database",
+    "Clear database": "Clear database",
+    "Reload": "Reload",
+    "Toggle Developer Tools": "Toggle Developer Tools",
+    "TTL GitHub": "TTL GitHub",
+    "Check for updates": "Check for updates",
+    "Send feedback": "Send feedback",
+    "About": "About",
+    "Punch time": "Punch time",
+    "Show App": "Show App",
+    "Quit": "Quit",
+    "Export DB to file": "Export DB to file",
+    "Export": "Export",
+    "All Files": "All Files",
+    "Import DB from file": "Import DB from file",
+    "Import": "Import",
+    "Cancel": "Cancel",
+    "Yes, please": "Yes, please",
+    "No, thanks": "No, thanks",
+    "Are you sure you want to clear all the data?": "Are you sure you want to clear all the data?",
+    "OK": "OK",
+    "Menu": "Menu",
+    "Edit": "Edit",
+    "View": "View",
+    "Help": "Help",
+    "Punched time": "Punched time",
+    "Migrate fixed calendar database to flexible": "Migrate fixed calendar database to flexible",
+    "Are you sure you want to migrate the fixed calendar database to the flexible calendar?\n\nThe existing flexible calendar database will be cleared": {
+      "": "Are you sure you want to migrate the fixed calendar database to the flexible calendar?\n\nThe existing flexible calendar database will be cleared."
+    },
+    "Database migrated": "Database migrated",
+    "Yay! Migration successful!": "Yay! Migration successful!",
+    "Database export": "Database export",
+    "Okay, database was exported": {
+      "": "Okay, database was exported."
+    },
+    "Are you sure you want to import a database? It will override any current information": {
+      "": "Are you sure you want to import a database? It will override any current information."
+    },
+    "Database imported": "Database imported",
+    "Yay! Import successful!": "Yay! Import successful!",
+    "Clear Database": "Clear Database",
+    "All cleared!": "All cleared!",
+    "Failed entries": "Failed entries",
+    "Something wrong happened": "Something wrong happened",
+    "could not be loaded": "could not be loaded"
+  }
+}

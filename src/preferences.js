@@ -5,13 +5,36 @@ const { ipcRenderer } = require('electron');
 const { getUserPreferences } = require('../js/user-preferences.js');
 const { applyTheme } = require('../js/themes.js');
 const { bindDevToolsShortcut } = require('../js/window-aux.js');
+const i18n = require('../src/configs/i18next.config');
 
 // Global values for preferences page
 let usersStyles = getUserPreferences();
 let preferences = usersStyles;
 
+function populateLanguages()
+{
+    let $languageOpts = $('#language');
+    let availableLanguages = i18n.languages.sort();
+    $.each(availableLanguages, function()
+    {
+        $languageOpts.append($('<option />').val(i18n.t(this)).text(i18n.t(`$Language.${this}`)));
+    });
+    // Select current display language
+    if ('language' in usersStyles)
+    {
+        $('#language').val(usersStyles['language']);
+    }
+}
+
 $(() =>
 {
+    i18n.on('loaded', () =>
+    {
+        i18n.changeLanguage('en');
+        i18n.off('loaded');
+        populateLanguages();
+    });
+
     // Theme-handling should be towards the top. Applies theme early so it's more natural.
     let theme = 'theme';
     if (theme in usersStyles)
@@ -69,6 +92,12 @@ $(() =>
     $('#number-of-entries').change(function()
     {
         preferences['number-of-entries'] = this.value;
+        ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
+    });
+
+    $('#language').change(function()
+    {
+        preferences['language'] = this.value;
         ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
     });
 
