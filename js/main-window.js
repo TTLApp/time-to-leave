@@ -29,19 +29,19 @@ function createMenu()
 {
     const menu = Menu.buildFromTemplate([
         {
-            label: i18n.t('$Menu.Menu'),
+            label: i18n.t('$Menu.menu'),
             submenu: getMainMenuTemplate(mainWindow)
         },
         {
-            label: i18n.t('$Menu.Edit'),
+            label: i18n.t('$Menu.edit'),
             submenu: getEditMenuTemplate(mainWindow)
         },
         {
-            label: i18n.t('$Menu.View'),
+            label: i18n.t('$Menu.view'),
             submenu: getViewMenuTemplate()
         },
         {
-            label: i18n.t('$Menu.Help'),
+            label: i18n.t('$Menu.help'),
             submenu: getHelpMenuTemplate()
         }
     ]);

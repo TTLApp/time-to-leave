@@ -31,18 +31,18 @@ function migrateFixedDbToFlexibleRequest(mainWindow, options)
             dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                 {
                     title: 'Time to Leave',
-                    message: i18n.t('$Menu.Database migrated'),
+                    message: i18n.t('$Menu.database-migrated'),
                     type: 'info',
                     icon: appConfig.iconpath,
-                    detail: i18n.t('$Menu.Yay! Migration successful!')
+                    detail: i18n.t('$Menu.migration-successful')
                 });
         }
         else
         {
             dialog.showMessageBoxSync({
                 type: 'warning',
-                title: i18n.t('$Menu.Failed migrating'),
-                message: i18n.t('$Menu.Something wrong happened :(')
+                title: i18n.t('$Menu.failed-migrating'),
+                message: i18n.t('$Menu.something-went-wrong')
             });
         }
     }
@@ -59,7 +59,7 @@ function getMainMenuTemplate(mainWindow)
 {
     return [
         {
-            label: i18n.t('$Menu.Workday Waiver Manager'),
+            label: i18n.t('$Menu.workday-waiver-manager'),
             id: 'workday-waiver-manager',
             click(item, window, event)
             {
@@ -96,7 +96,7 @@ function getMainMenuTemplate(mainWindow)
         },
         {type: 'separator'},
         {
-            label:i18n.t('$Menu.Exit'),
+            label:i18n.t('$Menu.exit'),
             accelerator: appConfig.macOS ? 'CommandOrControl+Q' : 'Control+Q',
             click()
             {
@@ -110,23 +110,23 @@ function getContextMenuTemplate(mainWindow)
 {
     return [
         {
-            label: i18n.t('$Menu.Punch time'), click: function()
+            label: i18n.t('$Menu.punch-time'), click: function()
             {
                 let now = new Date();
 
                 mainWindow.webContents.executeJavaScript('calendar.punchDate()');
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
-                notify(`${i18n.t('$Menu.Punched time')} ${now.toTimeString().slice(0,5)}`);
+                notify(`${i18n.t('$Menu.punched-time')} ${now.toTimeString().slice(0,5)}`);
             }
         },
         {
-            label: i18n.t('$Menu.Show App'), click: function()
+            label: i18n.t('$Menu.show-app'), click: function()
             {
                 mainWindow.show();
             }
         },
         {
-            label: i18n.t('$Menu.Quit'), click: function()
+            label: i18n.t('$Menu.quit'), click: function()
             {
                 app.quit();
             }
@@ -138,13 +138,13 @@ function getDockMenuTemplate(mainWindow)
 {
     return [
         {
-            label: i18n.t('$Menu.Punch time'), click: function()
+            label: i18n.t('$Menu.punch-time'), click: function()
             {
                 let now = new Date();
 
                 mainWindow.webContents.executeJavaScript('calendar.punchDate()');
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
-                notify(`${i18n.t('$Menu.Punched time')} ${now.toTimeString().slice(0,5)}`);
+                notify(`${i18n.t('$Menu.punched-time')} ${now.toTimeString().slice(0,5)}`);
             }
         }
     ];
@@ -154,28 +154,28 @@ function getEditMenuTemplate(mainWindow)
 {
     return [
         {
-            label: i18n.t('$Menu.Cut'),
+            label: i18n.t('$Menu.cut'),
             accelerator: 'Command+X',
             selector: 'cut:'
         },
         {
-            label: i18n.t('$Menu.Copy'),
+            label: i18n.t('$Menu.copy'),
             accelerator: 'Command+C',
             selector: 'copy:'
         },
         {
-            label: i18n.t('$Menu.Paste'),
+            label: i18n.t('$Menu.paste'),
             accelerator: 'Command+V',
             selector: 'paste:'
         },
         {
-            label: i18n.t('$Menu.Select All'),
+            label: i18n.t('$Menu.select-all'),
             accelerator: 'Command+A',
             selector: 'selectAll:'
         },
         {type: 'separator'},
         {
-            label: i18n.t('$Menu.Preferences'),
+            label: i18n.t('$Menu.preferences'),
             accelerator: appConfig.macOS ? 'Command+,' : 'Control+,',
             click()
             {
@@ -218,10 +218,10 @@ function getEditMenuTemplate(mainWindow)
                         setAlreadyAskedForFlexibleDbMigration(true);
                         const options = {
                             type: 'question',
-                            buttons: [i18n.t('$Menu.Cancel'), i18n.t('$Menu.Yes, please'), i18n.t('$Menu.No, thanks')],
+                            buttons: [i18n.t('$Menu.cancel'), i18n.t('$Menu.yes-please'), i18n.t('$Menu.no-thanks')],
                             defaultId: 2,
-                            title: i18n.t('$Menu.Migrate fixed calendar database to flexible'),
-                            message: i18n.t('$Menu.Your flexible calendar is empty. Do you want to start by migrating the existing fixed calendar database to your flexible one?'),
+                            title: i18n.t('$Menu.migrate-calendar-to-flexible'),
+                            message: i18n.t('$Menu.should-migrate-to-flexible'),
                         };
 
                         migrateFixedDbToFlexibleRequest(mainWindow, options);
@@ -231,17 +231,17 @@ function getEditMenuTemplate(mainWindow)
         },
         {type: 'separator'},
         {
-            label: i18n.t('$Menu.Migrate to flexible calendar'),
+            label: i18n.t('$Menu.migrate-to-flexible-calendar'),
             id: 'migrate-to-flexible-calendar',
             enabled: enableMigrationToFlexibleButton(),
             click()
             {
                 const options = {
                     type: 'question',
-                    buttons: [i18n.t('$Menu.Cancel'), i18n.t('$Menu.Yes, please'), i18n.t('$Menu.No, thanks')],
+                    buttons: [i18n.t('$Menu.cancel'), i18n.t('$Menu.yes-please'), i18n.t('$Menu.no-thanks')],
                     defaultId: 2,
-                    title: i18n.t('$Menu.Migrate fixed calendar database to flexible'),
-                    message: i18n.t('$Menu.Are you sure you want to migrate the fixed calendar database to the flexible calendar?\n\nThe existing flexible calendar database will be cleared.'),
+                    title: i18n.t('$Menu.migrate-calendar-to-flexible'),
+                    message: i18n.t('$Menu.confirm-migrate-to-flexible'),
                 };
 
                 migrateFixedDbToFlexibleRequest(mainWindow, options);
@@ -249,17 +249,17 @@ function getEditMenuTemplate(mainWindow)
         },
         {type: 'separator'},
         {
-            label: i18n.t('$Menu.Export database'),
+            label: i18n.t('$Menu.export-database'),
             click()
             {
                 let options = {
-                    title: i18n.t('$Menu.Export DB to file'),
+                    title: i18n.t('$Menu.export-db-to-file'),
                     defaultPath : 'time_to_leave',
-                    buttonLabel : i18n.t('$Menu.Export'),
+                    buttonLabel : i18n.t('$Menu.export'),
 
                     filters : [
                         { name: '.ttldb', extensions: ['ttldb',] },
-                        { name: i18n.t('$Menu.All Files'), extensions: ['*'] }
+                        { name: i18n.t('$Menu.all-files'), extensions: ['*'] }
                     ]
                 };
                 let response = dialog.showSaveDialogSync(options);
@@ -269,25 +269,25 @@ function getEditMenuTemplate(mainWindow)
                     dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                         {
                             title: 'Time to Leave',
-                            message: i18n.t('$Menu.Database export'),
+                            message: i18n.t('$Menu.database-export'),
                             type: 'info',
                             icon: appConfig.iconpath,
-                            detail: i18n.t('$Menu.Okay, database was exported.')
+                            detail: i18n.t('$Menu.database-was-exported.')
                         });
                 }
             },
         },
         {
-            label: i18n.t('$Menu.Import database'),
+            label: i18n.t('$Menu.import-database'),
             click()
             {
                 let options = {
-                    title: i18n.t('$Menu.Import DB from file'),
-                    buttonLabel : i18n.t('$Menu.Import'),
+                    title: i18n.t('$Menu.import-db-from-file'),
+                    buttonLabel : i18n.t('$Menu.import'),
 
                     filters : [
                         {name: '.ttldb', extensions: ['ttldb',]},
-                        {name: i18n.t('$Menu.All Files'), extensions: ['*']}
+                        {name: i18n.t('$Menu.all-files'), extensions: ['*']}
                     ]
                 };
                 let response = dialog.showOpenDialogSync(options);
@@ -295,10 +295,10 @@ function getEditMenuTemplate(mainWindow)
                 {
                     const options = {
                         type: 'question',
-                        buttons: [i18n.t('$Menu.Yes, please'), i18n.t('$Menu.No, thanks')],
+                        buttons: [i18n.t('$Menu.yes-please'), i18n.t('$Menu.no-thanks')],
                         defaultId: 2,
-                        title: i18n.t('$Menu.Import database'),
-                        message: i18n.t('$Menu.Are you sure you want to import a database? It will override any current information.'),
+                        title: i18n.t('$Menu.import-database'),
+                        message: i18n.t('$Menu.confirm-import-db'),
                     };
 
                     let confirmation = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
@@ -312,21 +312,21 @@ function getEditMenuTemplate(mainWindow)
                             dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                                 {
                                     title: 'Time to Leave',
-                                    message: i18n.t('$Menu.Database imported'),
+                                    message: i18n.t('$Menu.database-imported'),
                                     type: 'info',
                                     icon: appConfig.iconpath,
-                                    detail: i18n.t('$Menu.Yay! Import successful!')
+                                    detail: i18n.t('$Menu.import-successful')
                                 });
                         }
                         else if (importResult['failed'] !== 0)
                         {
                             if (importResult['failed'] !== 0)
                             {
-                                const message = `${importResult['failed']}/${importResult['total']} ${i18n.t('$Menu.could not be loaded')}`;
+                                const message = `${importResult['failed']}/${importResult['total']} ${i18n.t('$Menu.could-not-be-loaded')}`;
                                 dialog.showMessageBoxSync({
                                     icon: appConfig.iconpath,
                                     type: 'warning',
-                                    title: i18n.t('$Menu.Failed entries'),
+                                    title: i18n.t('$Menu.failed-entries'),
                                     message: message
                                 });
                             }
@@ -336,8 +336,8 @@ function getEditMenuTemplate(mainWindow)
                             dialog.showMessageBoxSync({
                                 icon: appConfig.iconpath,
                                 type: 'warning',
-                                title: i18n.t('$Menu.Failed entries'),
-                                message: i18n.t('$Menu.Something wrong happened')
+                                title: i18n.t('$Menu.failed-entries'),
+                                message: i18n.t('$Menu.something-went-wrong')
                             });
                         }
                     }
@@ -345,15 +345,15 @@ function getEditMenuTemplate(mainWindow)
             },
         },
         {
-            label: i18n.t('$Menu.Clear database'),
+            label: i18n.t('$Menu.clear-database'),
             click()
             {
                 const options = {
                     type: 'question',
-                    buttons: [i18n.t('$Menu.Cancel'), i18n.t('$Menu.Yes, please'), i18n.t('$Menu.No, thanks')],
+                    buttons: [i18n.t('$Menu.cancel'), i18n.t('$Menu.yes-please'), i18n.t('$Menu.no-thanks')],
                     defaultId: 2,
-                    title: i18n.t('$Menu.Clear database'),
-                    message: i18n.t('$Menu.Are you sure you want to clear all the data?'),
+                    title: i18n.t('$Menu.clear-database'),
+                    message: i18n.t('$Menu.confirm-clear-all-data'),
                 };
 
                 let response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
@@ -371,10 +371,10 @@ function getEditMenuTemplate(mainWindow)
                     dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                         {
                             title: 'Time to Leave',
-                            message: i18n.t('$Menu.Clear Database'),
+                            message: i18n.t('$Menu.clear-database'),
                             type: 'info',
                             icon: appConfig.iconpath,
-                            detail: `\n${i18n.t('$Menu.All cleared!')}`
+                            detail: `\n${i18n.t('$Menu.all-clear')}`
                         });
                 }
             }
@@ -386,7 +386,7 @@ function getViewMenuTemplate()
 {
     return [
         {
-            label: i18n.t('$Menu.Reload'),
+            label: i18n.t('$Menu.reload'),
             accelerator: 'CommandOrControl+R',
             click()
             {
@@ -394,7 +394,7 @@ function getViewMenuTemplate()
             }
         },
         {
-            label: i18n.t('$Menu.Toggle Developer Tools'),
+            label: i18n.t('$Menu.toggle-dev-tools'),
             accelerator: appConfig.macOS ? 'Command+Alt+I' : 'Control+Shift+I',
             click()
             {
@@ -408,21 +408,21 @@ function getHelpMenuTemplate()
 {
     return [
         {
-            label: i18n.t('$Menu.TTL GitHub'),
+            label: i18n.t('$Menu.ttl-github'),
             click()
             {
                 shell.openExternal('https://github.com/thamara/time-to-leave');
             }
         },
         {
-            label: i18n.t('$Menu.Check for updates'),
+            label: i18n.t('$Menu.check-for-updates'),
             click()
             {
                 checkForUpdates(/*showUpToDateDialog=*/true);
             }
         },
         {
-            label: i18n.t('$Menu.Send feedback'),
+            label: i18n.t('$Menu.send-feedback'),
             click()
             {
                 shell.openExternal('https://github.com/thamara/time-to-leave/issues/new');
@@ -432,7 +432,7 @@ function getHelpMenuTemplate()
             type: 'separator'
         },
         {
-            label: i18n.t('$Menu.About'),
+            label: i18n.t('$Menu.about'),
             click()
             {
                 const version = app.getVersion();
@@ -448,7 +448,7 @@ function getHelpMenuTemplate()
                         type: 'info',
                         icon: appConfig.iconpath,
                         detail: `\n${detail}`,
-                        buttons: [i18n.t('$Menu.Copy'), i18n.t('$Menu.OK')],
+                        buttons: [i18n.t('$Menu.copy'), i18n.t('$Menu.ok')],
                         noLink: true
                     }
                 ).then((result) =>
