@@ -589,6 +589,15 @@ input:disabled + .slider {
   text-align: left;
 }
 
+/* Styles for Right Alignment of Select */ 
+#preferences-window .selects-right {
+  text-align: right;
+}
+
+#preferences-window select.selects-right {
+  text-align-last: right;
+}
+
 /* Waiver page styles */
 
 #workday-waiver-window .section-title {
