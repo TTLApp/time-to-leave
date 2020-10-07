@@ -44,7 +44,7 @@
             </div>
             <div class="flex-box">
                 <p>Hours per day</p>
-                <input type="text" name="hours-per-day" id="hours-per-day" maxlength=5 pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:mm" value="08:00" size=5 required oninput="this.reportValidity()" onblur="this.value = this.checkValidity() ? this.value : '08:00'">
+                <input type="text" name="hours-per-day" id="hours-per-day" class="text-right" style="padding-right: 15px;" maxlength=5 pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:mm" value="08:00" size=5 required oninput="this.reportValidity()" onblur="this.value = this.checkValidity() ? this.value : '08:00'">
             </div>
         </section>
 
@@ -60,7 +60,7 @@
             </div>
             <div class="flex-box mb-2">
                 <p>Minutes between notifications</p>
-                <input type="number" name="notifications-interval" id="notifications-interval" min="1" max="30" value="5" required onblur="this.value = this.checkValidity() ? this.value : 5">
+                <input type="number" name="notifications-interval" id="notifications-interval" class="text-right" min="1" max="30" value="5" required onblur="this.value = this.checkValidity() ? this.value : 5">
             </div>
             <div class="flex-box">
                 <p>Start on Login</p>
@@ -72,7 +72,7 @@
             </div>
             <div class="flex-box mb-2">
                 <p>Overall Balance Start Date</p>
-                <label id='overall-balance-start-date'><input type="date" name="overall-balance-start-date"></label>
+                <label id='overall-balance-start-date'><input type="date" name="overall-balance-start-date" class="text-right"></label>
             </div>
             <div class="flex-box">
                 <p>Minimize button should minimize to tray</p>
@@ -84,7 +84,7 @@
             </div>
             <div class="flex-box">
                 <p>Themes</p>
-                <select id="theme" name="theme">
+                <select id="theme" name="theme" class="text-right">
                     <option value="system-default" selected>System Default</option>
                     <option value="light">Light</option>
                     <option value="dark">Dark</option>
@@ -93,14 +93,14 @@
             </div>
             <div class="flex-box">
                 <p>View</p>
-                <select id="view" name="view">
+                <select id="view" name="view" class="text-right">
                     <option value="month" selected>Month</option>
                     <option value="day">Day</option>
                 </select>
             </div>
             <div class="flex-box">
                 <p>Number of Entries</p>
-                <select id="number-of-entries" name="number-of-entries">
+                <select id="number-of-entries" name="number-of-entries" class="text-right">
                     <option value="fixed" selected>Fixed</option>
                     <option value="flexible">Flexible</option>
                 </select>

@@ -589,6 +589,31 @@ input:disabled + .slider {
   text-align: left;
 }
 
+/* #preferences-window input[type="date" i]::-webkit-calendar-picker-indicator {
+  text-align: right;
+  position: relative; 
+  left: 25px;
+} */
+
+#preferences-window input[type="date" i]::-webkit-datetime-edit {
+  text-align: right;
+  position: relative; 
+  left: 25px;
+}
+
+
+#preferences-window .text-right {
+  text-align: right;
+}
+
+#preferences-window select.text-right {
+  text-align-last: right;
+}
+
+#preferences-window select.text-right option {
+  direction: rtl;
+}
+
 /* Waiver page styles */
 
 #workday-waiver-window .section-title {
