@@ -598,6 +598,10 @@ input:disabled + .slider {
   text-align-last: right;
 }
 
+#preferences-window select.selects-right option {
+  direction: rtl;
+}
+
 /* Waiver page styles */
 
 #workday-waiver-window .section-title {
