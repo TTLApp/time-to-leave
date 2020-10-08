@@ -103,6 +103,27 @@ html[data-theme="cadent-star"] {
 
 /* There are some libraries that impose their own colors. These may need to be overriden for specific themes */
 
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--punch-bground);
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--page-bground);
+}
+
+html[data-theme="cadent-star"] ::-webkit-scrollbar-thumb {
+  background-color: #ff9aa2;
+}
+
+html[data-theme="cadent-star"] ::-webkit-scrollbar-track {
+  background-color: #c7ceea;
+}
+
 html[data-theme="dark"] .text-danger {
   color: rgb(226, 93, 90);
 }
