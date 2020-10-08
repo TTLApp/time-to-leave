@@ -589,7 +589,7 @@ input:disabled + .slider {
   text-align: left;
 }
 
-/* Styles for Right Alignment of Select */ 
+/* Styles for Right Alignment of Select */
 #preferences-window .selects-right {
   text-align: right;
 }
