@@ -97,3 +97,5 @@ typings/
 # Release builds
 release-builds
 *.ttldb
+.vscode/settings.json
+*.pyc
