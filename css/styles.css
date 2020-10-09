@@ -104,8 +104,8 @@ html[data-theme="cadent-star"] {
 /* There are some libraries that impose their own colors. These may need to be overriden for specific themes */
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
