@@ -1,7 +1,42 @@
 {
   "$Language": {
     "en": "English",
-    "pt-BR": "Portuguese (Brazil)"
+    "pt-BR": "Português (Brasil)"
+  },
+  "$Preferences": {
+    "title": "Time to Leave - Preferences",
+    "userPreferences": "User preferences",
+    "workingDays": "Working days",
+    "sun": "Sun",
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat",
+    "hideNonWorkingDay": "Hide non-working days (Month View)",
+    "hoursPerDay": "Hours per day",
+    "appBehavior": "App Behavior",
+    "notification": "Notification",
+    "allowRecurringNotifications": "Allow recurring notifications",
+    "minutesBetweenNotifications": "Minutes between notifications",
+    "startOnLogin": "Start on Login",
+    "countTodayOnTotals": "Count Today in Totals",
+    "overallBalanceStart": "Overall Balance Start Date",
+    "minimizeToTray": "Minimize button should minimize to tray",
+    "closeMinimizeToTray": "Close button should minimize to tray",
+    "themes": "Themes",
+    "systemDefault": "System Default",
+    "light": "Light",
+    "dark": "Dark",
+    "cadentStar": "Cadent Star",
+    "view": "View",
+    "month": "Month",
+    "day": "Day",
+    "numberOfEntries": "Number of Entries",
+    "fixed": "Fixed",
+    "flexible": "Flexible",
+    "language": "Language"
   },
   "$Menu": {
     "about": "About",
