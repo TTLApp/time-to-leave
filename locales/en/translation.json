@@ -58,7 +58,7 @@
     "edit": "Edit",
     "exit": "Exit",
     "export-database": "Export database",
-    "export-db-to-file": "Export DB to file",
+    "export-db-to-file": "Export database to file",
     "export": "Export",
     "failed-entries": "Failed entries",
     "failed-migrating": "Failed migrating",
