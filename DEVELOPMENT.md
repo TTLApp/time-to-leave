@@ -166,4 +166,4 @@ All PRs are very welcome, and we'll do our best to review them as fast as possib
 If you want to work on a specific issue, just shout out to us and we'll assign the issue to you.
 Once you are done, just submit a PR with a relevant description of the change, and provide screenshots, if applicable.
 Issues without activity for 7 days will be deemed stale and unassigned, unless justified.
-Tip: Before pushing the PR, make sure the [tests](#Tests) are passing, and that no [lint](#Linting & formatting) issue is present. :)
+Tip: Before pushing the PR, make sure the [tests](#Tests) are passing, and that no [lint](#Linting--formatting) issue is present. :)

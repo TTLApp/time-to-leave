@@ -8,6 +8,8 @@
 -   Enhancement: [#369] Adding flexible table format for day calendar as well
 -   Enhancement: [#383] Adding system default theme that auto-detect if dark or light mode is set
 -   Enhancement: [#394] Adding option to control the behavior of the Minimize button
+-   Enhancement: [#414] Right-align content of selection boxes from Preferences Window
+-   Enhancement: [#442] Modernizing scrollbar styling
 -   Fix: Fixed behavior of calendar when moving to next/previous month when current day is in the range of 29-31.
 -   Fix: [#214] Check that lunch has beginning and end, if there is lunch
 -   Fix: [#334] Improving performance of overall balance calculation and fixing balance target date after month change
@@ -31,6 +33,7 @@ Who built 1.5.6:
 -   kumaranshu72
 -   michaelknowles
 -   parikhdhruv24791
+-   sajeevan16
 -   skevprog
 -   thamara
 
