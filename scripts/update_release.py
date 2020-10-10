@@ -1,6 +1,46 @@
 import re
 import os
 
+RESOURCES_DIR = "resources"
+OUTPUT_DIR = "."
+RELEASE_DEFAULT_TEMPLATE = "release_template.md"
+
+
+class ReleaseComposer:
+    _version = ""
+    _changes = []
+    _users = []
+
+    def __init__(self, template_file=RELEASE_DEFAULT_TEMPLATE):
+        self._template = os.path.join("scripts", RESOURCES_DIR, template_file)
+        self._release = os.path.join(OUTPUT_DIR, r"release_v{V}.md")
+
+    def with_version(self, version):
+        self._version = version
+        return self
+
+    def with_changes(self, changes: list):
+        self._changes = self._stringfy_list(changes)
+        return self
+
+    def with_users(self, users: list):
+        self._users = self._stringfy_list(users)
+        return self
+
+    def _stringfy_list(self, items: list) -> str:
+        return "\n".join(items)
+
+    def write(self):
+        output_file = self._release.replace(r"{V}", self._version)
+        with open(output_file, "w", encoding="utf-8") as output:
+            with open(self._template, "r") as template:
+                for line in template:
+                    output.write(
+                        line.replace(r"{APP_VERSION}", self._version)
+                        .replace(r"{UPDATES}", self._changes)
+                        .replace(r"{PEOPLE}", self._users)
+                    )
+
 
 class ChangeLogParser:
     _g_prefix_line = "-   "
@@ -37,6 +77,11 @@ class ChangeLogParser:
 
         return items
 
+    def parse(self):
+        self.parse_version()
+        self.parse_changes()
+        self.parse_users()
+
     def parse_changes(self):
         self.changes = self.get_list_between(self._g_begin_changes, self._g_end_changes)
 
@@ -50,11 +95,6 @@ class ChangeLogParser:
                 self.version = match.group(1)
                 return
 
-    def parse(self):
-        self.parse_version()
-        self.parse_changes()
-        self.parse_users()
-
     def __repr__(self):
         return (
             "VERSION:"
@@ -67,8 +107,11 @@ class ChangeLogParser:
 
 def main():
     file_path = os.path.join(os.path.curdir, "scripts", "tests", "changelog_mock.md")
-    with ChangeLogParser(file_path) as parser:
-        parser.parse()
+    with ChangeLogParser(file_path) as p:
+        p.parse()
+
+    composer = ReleaseComposer()
+    composer.with_version(p.version).with_changes(p.changes).with_users(p.users).write()
 
 
 if __name__ == "__main__":
