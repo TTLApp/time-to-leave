@@ -81,7 +81,7 @@
     "reload": "Recarregar",
     "select-all": "Selecionar Tudo",
     "send-feedback": "Enviar comentários",
-    "should-migrate-to-flexible": "Your flexible calendar is empty. Do you want to start by migrating the existing fixed calendar database to your flexible one?",
+    "should-migrate-to-flexible": "Seu calendário flexível está vazio. Você quer começar migrando o calendário fixo existente para o flexível?",
     "show-app": "Mostrar App",
     "something-went-wrong": "Algo de errado aconteceu :(",
     "toggle-dev-tools": "Alternar DevTools",
