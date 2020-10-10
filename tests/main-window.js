@@ -5,6 +5,7 @@ const path = require('path');
 
 // TODO: expose API from Calendar so this duplication is not needed
 const months = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
+const weekDay = [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ];
 
 describe('Application launch', function()
 {
@@ -57,6 +58,6 @@ describe('Application launch', function()
         const headerDate = await client.$('#header-date');
         const headerDateText = await headerDate.getText();
         const today = new Date();
-        return assert.equal(headerDateText, `Saturday, ${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`);
+        return assert.equal(headerDateText, `${weekDay[today.getDay()]}, ${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`);
     });
 });
