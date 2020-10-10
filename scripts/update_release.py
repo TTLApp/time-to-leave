@@ -56,8 +56,9 @@ class ChangeLogParser:
     changes = []
     users = []
 
-    def __init__(self, changelog_file: str):
+    def __init__(self, changelog_file: str, version: str = None):
         self.file_path = str(changelog_file)
+        self.version = version
 
     def __enter__(self):
         self.file = open(self.file_path, "r")
@@ -65,6 +66,25 @@ class ChangeLogParser:
 
     def __exit__(self, exc_type, exc_value, traceback):
         self.file.close()
+
+    def parse(self):
+        if not self.version:
+            self.parse_version()
+        self.parse_changes()
+        self.parse_users()
+
+    def parse_version(self):
+        version_regex = re.compile(r"#* *(\d+.\d+.\d+)")
+        for line in self.file:
+            if match := version_regex.match(line):
+                self.version = match.group(1)
+                return
+
+    def parse_changes(self):
+        self.changes = self.get_list_between(self._g_begin_changes, self._g_end_changes)
+
+    def parse_users(self):
+        self.users = self.get_list_between(self._g_begin_users, self._g_end_users)
 
     def get_list_between(self, start_str: str, end_str: str):
         in_items = False
@@ -80,24 +100,6 @@ class ChangeLogParser:
 
         return items
 
-    def parse(self):
-        self.parse_version()
-        self.parse_changes()
-        self.parse_users()
-
-    def parse_changes(self):
-        self.changes = self.get_list_between(self._g_begin_changes, self._g_end_changes)
-
-    def parse_users(self):
-        self.users = self.get_list_between(self._g_begin_users, self._g_end_users)
-
-    def parse_version(self):
-        version_regex = re.compile(r"#* *(\d+.\d+.\d+)")
-        for line in self.file:
-            if match := version_regex.match(line):
-                self.version = match.group(1)
-                return
-
     def __repr__(self):
         return (
             "VERSION:"
@@ -109,7 +111,9 @@ class ChangeLogParser:
 
 
 def get_arguments():
-    parser = argparse.ArgumentParser(description="Parses a changelog file to produce a release file.")
+    parser = argparse.ArgumentParser(
+        description="Parses a changelog file to produce a release file."
+    )
     parser.add_argument("-changelog-file", help="Changelog file", required=True)
     parser.add_argument(
         "-version",
@@ -123,11 +127,10 @@ def main():
     args = get_arguments()
 
     if not os.path.isfile(args.changelog_file):
-        print("Could not file {parser.changelog_file}")
+        print("Could not find file {parser.changelog_file}")
         return
 
-    # file_path = os.path.join(os.path.curdir, "scripts", "tests", "changelog_mock.md")
-    with ChangeLogParser(args.changelog_file) as p:
+    with ChangeLogParser(args.changelog_file, args.version) as p:
         p.parse()
 
     composer = ReleaseComposer()
