@@ -99,3 +99,4 @@ release-builds
 *.ttldb
 .vscode/settings.json
 *.pyc
+scripts/release_*.md
