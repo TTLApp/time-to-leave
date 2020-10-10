@@ -12,6 +12,7 @@ const {
 
 /* eslint-disable-next-line no-global-assign */
 window.$ = require('jquery');
+require('../../src/preferences');
 
 function prepareMockup()
 {
