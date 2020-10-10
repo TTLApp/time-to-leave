@@ -1,3 +1,4 @@
+import argparse
 import re
 import os
 
@@ -12,10 +13,12 @@ class ReleaseComposer:
     _users = []
 
     def __init__(self, template_file=RELEASE_DEFAULT_TEMPLATE):
-        self._template = os.path.join("scripts", RESOURCES_DIR, template_file)
+        self._template = os.path.join(os.path.curdir, RESOURCES_DIR, template_file)
         self._release = os.path.join(OUTPUT_DIR, r"release_v{V}.md")
 
-    def with_version(self, version):
+    def with_version(self, version: str):
+        if not version:
+            print("No version provided. Will use first version from changelog file")
         self._version = version
         return self
 
@@ -105,9 +108,26 @@ class ChangeLogParser:
         )
 
 
+def get_arguments():
+    parser = argparse.ArgumentParser(description="Parses a changelog file to produce a release file.")
+    parser.add_argument("-changelog-file", help="Changelog file", required=True)
+    parser.add_argument(
+        "-version",
+        default=None,
+        help="Version of current changelong. (Default is the top-most change version in changelog file)",
+    )
+    return parser.parse_args()
+
+
 def main():
-    file_path = os.path.join(os.path.curdir, "scripts", "tests", "changelog_mock.md")
-    with ChangeLogParser(file_path) as p:
+    args = get_arguments()
+
+    if not os.path.isfile(args.changelog_file):
+        print("Could not file {parser.changelog_file}")
+        return
+
+    # file_path = os.path.join(os.path.curdir, "scripts", "tests", "changelog_mock.md")
+    with ChangeLogParser(args.changelog_file) as p:
         p.parse()
 
     composer = ReleaseComposer()
