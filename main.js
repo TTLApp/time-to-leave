@@ -2,8 +2,44 @@
 'use strict';
 
 const { app, ipcMain } = require('electron');
-const { createWindow, getMainWindow } = require('./js/main-window');
+const { createWindow, createMenu, getMainWindow } = require('./js/main-window');
 const { notify } = require('./js/notification');
+const { getUserPreferences } = require('./js/user-preferences.js');
+const i18n = require('./src/configs/i18next.config');
+
+i18n.on('loaded', () =>
+{
+    const userPreferences = getUserPreferences();
+    i18n.changeLanguage(userPreferences.language);
+    i18n.off('loaded');
+});
+
+i18n.on('languageChanged', lng =>
+{
+    createMenu();
+    const mainWindow = getMainWindow();
+    mainWindow.webContents.send('LANGUAGE_CHANGED', {
+        language: lng,
+        namespace: 'translation',
+        resource: i18n.getResourceBundle(lng, 'translation')
+    });
+});
+
+ipcMain.on('GET_INITIAL_TRANSLATIONS', (event, arg) =>
+{
+    i18n.loadLanguages(arg, () =>
+    {
+        const initial = {
+            arg: {
+                translation: i18n.getResourceBundle(arg, 'translation')
+            }
+        };
+        event.returnValue = initial;
+    });
+
+    // // todo - fix this ugly hack to get requested language to appear on re-load
+    // i18n.changeLanguage(currentLanguage);
+});
 
 ipcMain.on('SET_WAIVER_DAY', (event, waiverDay) =>
 {

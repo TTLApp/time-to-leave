@@ -61,12 +61,6 @@ function createMenu()
 
 function createWindow()
 {
-    i18n.on('loaded', () =>
-    {
-        const userPreferences = getUserPreferences();
-        i18n.changeLanguage(userPreferences.language);
-        i18n.off('loaded');
-    });
     // Create the browser window.
     const widthHeight = getDefaultWidthHeight();
     mainWindow = new BrowserWindow({
@@ -81,11 +75,6 @@ function createWindow()
             nodeIntegration: true,
             enableRemoteModule: true
         }
-    });
-
-    i18n.on('languageChanged', () =>
-    {
-        createMenu();
     });
 
     createMenu();
@@ -154,5 +143,6 @@ function createWindow()
 
 module.exports = {
     createWindow,
+    createMenu,
     getMainWindow
 };

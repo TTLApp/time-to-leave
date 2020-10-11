@@ -20,6 +20,7 @@ const {
 const { computeAllTimeBalanceUntilAsync } = require('../time-balance.js');
 const { generateKey } = require('../date-db-formatter.js');
 const { getDayAbbr, getMonthName } = require('../date-to-string-util.js');
+const i18n = require('../../src/configs/i18next.config.js');
 
 // Global values for calendar
 const store = new Store();
@@ -264,7 +265,7 @@ class Calendar
     static _getSummaryRowCode()
     {
         let leaveByCode = '<input type="text" id="leave-by" size="5" disabled>';
-        let summaryStr = 'Based on the time you arrived today, you should leave by';
+        let summaryStr = i18n.t('$FixedCalendar.leave-by');
         let code = '<tr class="summary" id="summary-unfinished-day">' +
                      '<td class="leave-by-text" colspan="7">' + summaryStr + '</td>' +
                      '<td class="leave-by-time">' + leaveByCode + '</td>' +

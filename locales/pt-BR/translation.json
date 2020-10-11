@@ -89,5 +89,36 @@
     "view": "Exibir",
     "workday-waiver-manager": "Gerenciador de Folgas",
     "yes-please": "Sim, por favor"
+  },
+  "$FixedCalendar": {
+    "leave-by": "Baseado na hora que você chegou hoje, você deve sair as"
+  },
+  "$DateUtil": {
+    "sunday": "Domingo",
+    "monday": "Segunda",
+    "tuesday": "Terça",
+    "wednesday": "Quarta",
+    "thursday": "Quinta",
+    "friday": "Sexta",
+    "saturday": "Sábado",
+    "sun": "Dom",
+    "mon": "Seg",
+    "tue": "Ter",
+    "wed": "Qua",
+    "thu": "Qui",
+    "fri": "Sex",
+    "sat": "Sab",
+    "january": "Janeiro",
+    "february": "Fevereiro",
+    "march": "Maço",
+    "april": "Abril",
+    "may": "Maio",
+    "june": "Junho",
+    "july": "Julho",
+    "august": "Agosto",
+    "september": "Setembro",
+    "october": "Outubro",
+    "november": "Novembro",
+    "december": "Dezembro"
   }
 }

@@ -10,10 +10,29 @@ const { notify } = require('./js/notification.js');
 const { getUserPreferences } = require('./js/user-preferences.js');
 const { applyTheme } = require('./js/themes.js');
 const { CalendarFactory } = require('./js/classes/CalendarFactory.js');
+const i18n = require('./src/configs/i18next.config.js');
 
 // Global values for calendar
 let preferences = getUserPreferences();
 let calendar = null;
+
+const lang = preferences['language'];
+// Need to force load of translations
+ipcRenderer.sendSync('GET_INITIAL_TRANSLATIONS', lang);
+
+ipcRenderer.on('LANGUAGE_CHANGED', (event, message) =>
+{
+    if (!i18n.hasResourceBundle(message.language, message.namespace))
+    {
+        i18n.addResourceBundle(
+            message.language,
+            message.namespace,
+            message.resource
+        );
+    }
+    i18n.changeLanguage(message.language);
+});
+
 
 /*
  * Get nofified when preferences has been updated.
@@ -77,10 +96,14 @@ function notifyTimeToLeave()
 // On page load, create the calendar and setup notification
 $(() =>
 {
-    let preferences = getUserPreferences();
-    calendar = CalendarFactory.getInstance(preferences);
-    setInterval(notifyTimeToLeave, 60000);
-    applyTheme(preferences.theme);
+    // Wait until translation is complete
+    i18n.changeLanguage(preferences['language']).then(() =>
+    {
+        let preferences = getUserPreferences();
+        calendar = CalendarFactory.getInstance(preferences);
+        setInterval(notifyTimeToLeave, 60000);
+        applyTheme(preferences.theme);
 
-    $('#punch-button').click(() => { calendar.punchDate(); });
+        $('#punch-button').click(() => { calendar.punchDate(); });
+    });
 });

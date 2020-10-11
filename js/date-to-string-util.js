@@ -1,6 +1,8 @@
-const dayAbbrs = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
-const dayNames = [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ];
-const monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
+const i18n = require('../src/configs/i18next.config.js');
+
+const dayAbbrs = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ];
+const dayNames = [ 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday' ];
+const monthNames = [ 'january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december' ];
 
 /**
  * @param dayIndex Week day index, considering a week starting on sunday
@@ -8,7 +10,7 @@ const monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June', 'Ju
  */
 function getDayAbbr(dayIndex)
 {
-    return dayAbbrs[dayIndex];
+    return i18n.t(`$DateUtil.${dayAbbrs[dayIndex]}`);
 }
 
 /**
@@ -17,7 +19,7 @@ function getDayAbbr(dayIndex)
  */
 function getDayName(dayIndex)
 {
-    return dayNames[dayIndex];
+    return i18n.t(`$DateUtil.${dayNames[dayIndex]}`);
 }
 
 /**
@@ -26,7 +28,7 @@ function getDayName(dayIndex)
  */
 function getMonthName(monthIndex)
 {
-    return monthNames[monthIndex];
+    return i18n.t(`$DateUtil.${monthNames[monthIndex]}`);
 }
 
 module.exports =
