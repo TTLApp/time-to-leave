@@ -97,13 +97,18 @@ function notifyTimeToLeave()
 $(() =>
 {
     // Wait until translation is complete
-    i18n.changeLanguage(preferences['language']).then(() =>
-    {
-        let preferences = getUserPreferences();
-        calendar = CalendarFactory.getInstance(preferences);
-        setInterval(notifyTimeToLeave, 60000);
-        applyTheme(preferences.theme);
+    i18n.changeLanguage(preferences['language'])
+        .then(() =>
+        {
+            let preferences = getUserPreferences();
+            calendar = CalendarFactory.getInstance(preferences);
+            setInterval(notifyTimeToLeave, 60000);
+            applyTheme(preferences.theme);
 
-        $('#punch-button').click(() => { calendar.punchDate(); });
-    });
+            $('#punch-button').click(() => { calendar.punchDate(); });
+        })
+        .catch(err =>
+        {
+            console.log('Error when changing language: ' + err);
+        });
 });
