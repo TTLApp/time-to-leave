@@ -21,6 +21,10 @@
 
 ---
 
+## Translations
+
+-   [Portuguese (Brazil)](docs/README-pt-BR.md)
+
 Log the time you started working today, and the program will compute what time you should leave the office, considering the time you spent on lunch. When it's time, the program will notify you.
 
 ![time-to-leave-notification](https://user-images.githubusercontent.com/3754225/94519526-4dbc0280-0248-11eb-9738-ffae936cfa4a.jpg)
