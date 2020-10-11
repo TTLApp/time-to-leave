@@ -19,6 +19,7 @@ const {
 } = require('../workday-waiver-aux.js');
 const { computeAllTimeBalanceUntilAsync } = require('../time-balance.js');
 const { generateKey } = require('../date-db-formatter.js');
+const { getDayAbbr, getMonthName } = require('../date-to-string-util.js');
 
 // Global values for calendar
 const store = new Store();
@@ -32,10 +33,6 @@ class Calendar
      */
     constructor(preferences)
     {
-        this._options = {
-            dayAbbrs : [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
-            months : [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ]
-        };
         this._calendarDate = new Date();
         this.loadInternalStore();
         this.loadInternalWaiveStore();
@@ -321,7 +318,7 @@ class Calendar
             if (!this._getHideNonWorkingDays())
             {
                 return '<tr'+ (isToday ? ' class="today-non-working"' : '') + ' id="' + trID + '">' +
-                        '<td class="weekday ti">' + this._options.dayAbbrs[weekDay] + '</td>' +
+                        '<td class="weekday ti">' + getDayAbbr(weekDay) + '</td>' +
                         '<td class="day ti">' + day + '</td>' +
                         '<td class="day non-working-day" colspan="6">' + '</td>' +
                     '</tr>\n';
@@ -338,7 +335,7 @@ class Calendar
             let summaryStr = '<b>Waived day: </b>' + waivedInfo['reason'];
             let waivedLineHtmlCode =
                  '<tr'+ (isToday ? ' class="isToday"' : '') + ' id="' + trID + '">' +
-                    '<td class="weekday ti">' + this._options.dayAbbrs[weekDay] + '</td>' +
+                    '<td class="weekday ti">' + getDayAbbr(weekDay) + '</td>' +
                     '<td class="day ti">' + day + '</td>' +
                     '<td class="waived-day-text" colspan="5">' + summaryStr + '</td>' +
                     '<td class="ti ti-total">' + this.constructor._getTotalCode(year, month, day, 'day-total') + '</td>' +
@@ -348,7 +345,7 @@ class Calendar
 
         let htmlCode =
                  '<tr'+ (isToday ? ' class="isToday"' : '') + ' id="' + trID + '">' +
-                    '<td class="weekday waiver-trigger ti" title="Add a waiver for this day">' + this._options.dayAbbrs[weekDay] + '</td>' +
+                    '<td class="weekday waiver-trigger ti" title="Add a waiver for this day">' + getDayAbbr(weekDay) + '</td>' +
                     '<td class="day ti">' +
                         '<span class="day-number"> ' + day + ' </span>' +
                         '<img src="assets/waiver.svg" height="15" class="waiver-img">' +
@@ -479,7 +476,7 @@ class Calendar
      */
     _updateTableHeader()
     {
-        $('#month-year').html(this._options.months[this._getCalendarMonth()] + ' ' + this._getCalendarYear());
+        $('#month-year').html(getMonthName(this._getCalendarMonth()) + ' ' + this._getCalendarYear());
     }
 
     /**

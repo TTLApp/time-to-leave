@@ -1,5 +1,6 @@
 module.exports = {
     collectCoverage: true,
+    coverageDirectory: 'coverage_jest',
     collectCoverageFrom: ['js/**.js','js/classes/**.js','src/**.js','./main.js'],
     projects: [
         {

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html data-theme="">
+<html data-theme="" lang="en">
 
 <head>
-    <title>Time to Leave - Preferences</title>
+    <title data-i18n="$Preferences.title">Time to Leave - Preferences</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/styles.css">
 
@@ -16,93 +16,98 @@
 
 <body id="preferences-window" class="common-window">
     <div>
-        <div class="header-title">
+        <div class="header-title" data-i18n="$Preferences.userPreferences">
             User preferences
         </div>
 
         <section>
-            <div class="section-title">Working days</div>
+            <div class="section-title" data-i18n="$Preferences.workingDays">Working days</div>
             <div class="weekdays-selector">
                 <input type="checkbox" id="sunday" name="working-days-sunday" class="weekday" />
-                <label for="sunday">Sun</label>
+                <label for="sunday" data-i18n="$Preferences.sun">Sun</label>
                 <input type="checkbox" id="monday" name="working-days-monday" class="weekday" />
-                <label for="monday">Mon</label>
+                <label for="monday" data-i18n="$Preferences.mon">Mon</label>
                 <input type="checkbox" id="tuesday" name="working-days-tuesday" class="weekday" />
-                <label for="tuesday">Tue</label>
+                <label for="tuesday" data-i18n="$Preferences.tue">Tue</label>
                 <input type="checkbox" id="wednesday" name="working-days-wednesday" class="weekday" />
-                <label for="wednesday">Wed</label>
+                <label for="wednesday" data-i18n="$Preferences.wed">Wed</label>
                 <input type="checkbox" id="thursday" name="working-days-thursday" class="weekday" />
-                <label for="thursday">Thu</label>
+                <label for="thursday" data-i18n="$Preferences.thu">Thu</label>
                 <input type="checkbox" id="friday" name="working-days-friday" class="weekday" />
-                <label for="friday">Fri</label>
+                <label for="friday" data-i18n="$Preferences.fri">Fri</label>
                 <input type="checkbox" id="saturday" name="working-days-saturday" class="weekday" />
-                <label for="saturday">Sat</label>
+                <label for="saturday" data-i18n="$Preferences.sat">Sat</label>
             </div>
             <div class="flex-box">
-                <p>Hide non-working days (Month View)</p>
+                <p data-i18n="$Preferences.hideNonWorkingDay">Hide non-working days (Month View)</p>
                 <label id='non-working-label' class="switch"><input type="checkbox" name="hide-non-working-days"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
-                <p>Hours per day</p>
+                <p data-i18n="$Preferences.hoursPerDay">Hours per day</p>
                 <input type="text" name="hours-per-day" id="hours-per-day" maxlength=5 pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:mm" value="08:00" size=5 required oninput="this.reportValidity()" onblur="this.value = this.checkValidity() ? this.value : '08:00'">
             </div>
         </section>
 
         <section>
-            <div class="section-title">App Behavior</div>
+            <div class="section-title" data-i18n="$Preferences.appBehavior">App Behavior</div>
             <div class="flex-box">
-                <p>Notification</p>
+                <p data-i18n="$Preferences.notification">Notification</p>
                 <label class="switch"><input type="checkbox" id="notification" name="notification"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
-                <p>Allow recurring notifications</p>
+                <p data-i18n="$Preferences.allowRecurringNotifications">Allow recurring notifications</p>
                 <label class="switch"><input type="checkbox" id="repetition" name="repetition"><span class="slider round"></span></label>
             </div>
             <div class="flex-box mb-2">
-                <p>Minutes between notifications</p>
+                <p data-i18n="$Preferences.minutesBetweenNotifications">Minutes between notifications</p>
                 <input type="number" name="notifications-interval" id="notifications-interval" min="1" max="30" value="5" required onblur="this.value = this.checkValidity() ? this.value : 5">
             </div>
             <div class="flex-box">
-                <p>Start on Login</p>
+                <p data-i18n="$Preferences.startOnLogin">Start on Login</p>
                 <label id='start-at-login' class="switch"><input type="checkbox" name="start-at-login"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
-                <p>Count Today in Totals</p>
+                <p data-i18n="$Preferences.countTodayOnTotals">Count Today in Totals</p>
                 <label id='count-today' class="switch"><input type="checkbox" name="count-today"><span class="slider round"></span></label>
             </div>
             <div class="flex-box mb-2">
-                <p>Overall Balance Start Date</p>
+                <p data-i18n="$Preferences.overallBalanceStart">Overall Balance Start Date</p>
                 <label id='overall-balance-start-date'><input type="date" name="overall-balance-start-date"></label>
             </div>
             <div class="flex-box">
-                <p>Minimize button should minimize to tray</p>
+                <p data-i18n="$Preferences.minimizeToTray">Minimize button should minimize to tray</p>
                 <label id='minimize-to-tray' class="switch"><input type="checkbox" name="minimize-to-tray"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
-                <p>Close button should minimize to tray</p>
+                <p data-i18n="$Preferences.closeMinimizeToTray">Close button should minimize to tray</p>
                 <label id='close-to-tray' class="switch"><input type="checkbox" name="close-to-tray"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
-                <p>Themes</p>
+                <p data-i18n="$Preferences.themes">Themes</p>
                 <select class="selects-right" id="theme" name="theme">
-                    <option value="system-default" selected>System Default</option>
-                    <option value="light">Light</option>
-                    <option value="dark">Dark</option>
-                    <option value="cadent-star">Cadent Star</option>
+                    <option value="system-default" data-i18n="$Preferences.systemDefault" selected>System Default</option>
+                    <option value="light" data-i18n="$Preferences.light">Light</option>
+                    <option value="dark" data-i18n="$Preferences.dark">Dark</option>
+                    <option value="cadent-star" data-i18n="$Preferences.cadentStar">Cadent Star</option>
                 </select>
             </div>
             <div class="flex-box">
-                <p>View</p>
+                <p data-i18n="$Preferences.view">View</p>
                 <select class="selects-right" id="view" name="view">
-                    <option value="month" selected>Month</option>
-                    <option value="day">Day</option>
+                    <option value="month" data-i18n="$Preferences.month" selected>Month</option>
+                    <option value="day" data-i18n="$Preferences.day">Day</option>
                 </select>
             </div>
             <div class="flex-box">
-                <p>Number of Entries</p>
+                <p data-i18n="$Preferences.numberOfEntries">Number of Entries</p>
                 <select class="selects-right" id="number-of-entries" name="number-of-entries">
-                    <option value="fixed" selected>Fixed</option>
-                    <option value="flexible">Flexible</option>
+                    <option value="fixed" data-i18n="$Preferences.fixed" selected>Fixed</option>
+                    <option value="flexible" data-i18n="$Preferences.flexible">Flexible</option>
+                </select>
+            </div>
+            <div class="flex-box">
+                <p data-i18n="$Preferences.language">Language</p>
+                <select class="selects-right" id="language" name="language">
                 </select>
             </div>
         </section>

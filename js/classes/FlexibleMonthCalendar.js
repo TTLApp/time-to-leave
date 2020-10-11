@@ -18,6 +18,7 @@ const {
 } = require('../workday-waiver-aux.js');
 const { showDialog } = require('../window-aux.js');
 const { Calendar } = require('./Calendar.js');
+const { getDayAbbr } = require('../date-to-string-util.js');
 
 // Global values for calendar
 const flexibleStore = new Store({name: 'flexible-store'});
@@ -148,7 +149,7 @@ class FlexibleMonthCalendar extends Calendar
 
         if (!this._showDay(year, month, day))
         {
-            return '<div><div class="weekday">' + this._options.dayAbbrs[weekDay] + '</div>' +
+            return '<div><div class="weekday">' + getDayAbbr(weekDay) + '</div>' +
                     '<div class="day">' +
                         '<span class="day-number"> ' + day + ' </span>' +
                     '</div>' +
@@ -162,7 +163,7 @@ class FlexibleMonthCalendar extends Calendar
             let summaryStr = '<b>Waived day: </b>' + waivedInfo['reason'];
             let waivedLineHtmlCode =
                 '<div class="row-waiver" id="' + dateKey + '">' +
-                    '<div class="weekday">' + this._options.dayAbbrs[weekDay] + '</div>' +
+                    '<div class="weekday">' + getDayAbbr(weekDay) + '</div>' +
                     '<div class="day">' +
                         '<span class="day-number"> ' + day + ' </span>' +
                     '</div>' +
@@ -176,7 +177,7 @@ class FlexibleMonthCalendar extends Calendar
 
         let htmlCode =
                 '<div>' +
-                '<div class="weekday waiver-trigger" title="Add a waiver for this day">' + this._options.dayAbbrs[weekDay] + '</div>' +
+                '<div class="weekday waiver-trigger" title="Add a waiver for this day">' + getDayAbbr(weekDay) + '</div>' +
                 '<div class="day">' +
                     '<span class="day-number"> ' + day + ' </span>' +
                     '<img src="assets/waiver.svg" height="15" class="waiver-img">' +
