@@ -25,20 +25,17 @@ i18n.on('languageChanged', lng =>
     });
 });
 
-ipcMain.on('GET_INITIAL_TRANSLATIONS', (event, arg) =>
+ipcMain.on('GET_INITIAL_TRANSLATIONS', (event, language) =>
 {
-    i18n.loadLanguages(arg, () =>
+    i18n.loadLanguages(language, () =>
     {
         const initial = {
             arg: {
-                translation: i18n.getResourceBundle(arg, 'translation')
+                translation: i18n.getResourceBundle(language, 'translation')
             }
         };
         event.returnValue = initial;
     });
-
-    // // todo - fix this ugly hack to get requested language to appear on re-load
-    // i18n.changeLanguage(currentLanguage);
 });
 
 ipcMain.on('SET_WAIVER_DAY', (event, waiverDay) =>

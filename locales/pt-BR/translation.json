@@ -91,10 +91,10 @@
     "yes-please": "Sim, por favor"
   },
   "$FixedCalendar": {
-    "leave-by": "Baseado na hora que você chegou hoje, você deve sair as"
+    "leave-by": "Baseado na hora que chegou hoje, você deve sair às"
   },
   "$FixedDayCalendar": {
-    "leave-by": "Você deve sair as:"
+    "leave-by": "Você deve sair às:"
   },
   "$DateUtil": {
     "sunday": "Domingo",
