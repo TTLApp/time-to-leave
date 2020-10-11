@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>Registre suas horas de trabalho e seja notificado(a) quando é hora de sair do escritório e começar a viver</p>
 
