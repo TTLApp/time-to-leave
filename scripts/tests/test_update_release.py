@@ -38,7 +38,7 @@ users = [
 
 class UnitBaseTest(TestCase):
     def setUp(self):
-        self.changelog_file = os.path.join("scripts", "tests", "changelog_mock.md")
+        self.changelog_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), "changelog_mock.md")
 
     def test_parse_version(self):
         with ChangeLogParser(self.changelog_file) as parser:
