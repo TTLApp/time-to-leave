@@ -49,12 +49,12 @@ class UnitBaseTest(TestCase):
         with ChangeLogParser(self.changelog_file) as parser:
             parser.parse_changes()
             self.assertEqual(len(parser.changes), len(changes))
-            for i in range(len(changes)):
-                self.assertEqual(parser.changes[i], changes[i])
+            for i, change in enumerate(changes):
+                self.assertEqual(change, changes[i])
 
     def test_parse_users(self):
         with ChangeLogParser(self.changelog_file) as parser:
             parser.parse_users()
             self.assertEqual(len(parser.users), len(users))
-            for i in range(len(users)):
-                self.assertEqual(parser.users[i], users[i])
+            for i, user in enumerate(users):
+                self.assertEqual(user, users[i])
