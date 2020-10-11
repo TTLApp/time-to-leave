@@ -9,6 +9,7 @@ const {
 const { getDateStr, getMonthLength } = require('../date-aux.js');
 const { Calendar } = require('./Calendar.js');
 const { generateKey } = require('../date-db-formatter');
+const i18n = require('../../src/configs/i18next.config.js');
 
 class FixedDayCalendar extends Calendar
 {
@@ -92,7 +93,7 @@ class FixedDayCalendar extends Calendar
     static _getSummaryRowCode()
     {
         let leaveByCode = '<input type="text" id="leave-by" size="5" disabled>';
-        let summaryStr = 'You should leave by:';
+        let summaryStr = i18n.t('$FixedDayCalendar.leave-by');
         let code = '<div class="summary" id="summary-unfinished-day">' +
                      '<div class="leave-by-text">' + summaryStr + '</div>' +
                      '<div class="leave-by-time">' + leaveByCode + '</div>' +

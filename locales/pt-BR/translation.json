@@ -93,6 +93,9 @@
   "$FixedCalendar": {
     "leave-by": "Baseado na hora que você chegou hoje, você deve sair as"
   },
+  "$FixedDayCalendar": {
+    "leave-by": "Você deve sair as:"
+  },
   "$DateUtil": {
     "sunday": "Domingo",
     "monday": "Segunda",

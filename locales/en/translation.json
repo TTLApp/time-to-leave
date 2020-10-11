@@ -93,6 +93,9 @@
   "$FixedCalendar": {
     "leave-by": "Based on the time you arrived today, you should leave by"
   },
+  "$FixedDayCalendar": {
+    "leave-by": "You should leave by:"
+  },
   "$DateUtil": {
     "sunday": "Sunday",
     "monday": "Monday",
