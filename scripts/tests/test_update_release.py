@@ -2,7 +2,7 @@ from unittest import TestCase
 from update_release import ChangeLogParser
 import os
 
-changes = [
+expected_changes = [
     "-   Enhancement: [#328] Swap position for overall and month balance on day view",
     "-   Enhancement: [#333] Adding start date for overall balance on preferences",
     "-   Enhancement: [#357] Adding flexible table format for month calendar with variable number of entries per day",
@@ -19,7 +19,7 @@ changes = [
     "-   Fix: [#395] Fixing uncaught exception in main.js on day refresh",
 ]
 
-users = [
+expected_users = [
     "-   06b",
     "-   akaash11",
     "-   anatdagan",
@@ -48,13 +48,13 @@ class UnitBaseTest(TestCase):
     def test_parse_changes(self):
         with ChangeLogParser(self.changelog_file) as parser:
             parser.parse_changes()
-            self.assertEqual(len(parser.changes), len(changes))
-            for i, change in enumerate(changes):
-                self.assertEqual(change, changes[i])
+            self.assertEqual(len(parser.changes), len(expected_changes))
+            for i, change in enumerate(parser.changes):
+                self.assertEqual(change, expected_changes[i])
 
     def test_parse_users(self):
         with ChangeLogParser(self.changelog_file) as parser:
             parser.parse_users()
-            self.assertEqual(len(parser.users), len(users))
-            for i, user in enumerate(users):
-                self.assertEqual(user, users[i])
+            self.assertEqual(len(parser.users), len(expected_users))
+            for i, user in enumerate(parser.users):
+                self.assertEqual(user, expected_users[i])
