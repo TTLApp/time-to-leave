@@ -18,7 +18,6 @@ jobs:
           npm ci
           npm run test:jest
       - name: '        Tests - Mocha'
-        if: matrix.os == 'macOS-latest'
         run: npm run test:mocha
       - name: '        Create COV_REPORT'
         run: |
@@ -27,7 +26,6 @@ jobs:
         run: |
           cp coverage_jest/coverage-final.json COV_REPORT/coverage-final-jest.json
       - name: '        Copy mocha results'
-        if: matrix.os == 'macOS-latest'
         run: |
           cp coverage/coverage-final.json COV_REPORT/coverage-final-mocha.json
       - name: '     Coverage'
