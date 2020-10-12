@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+html {
+  --page-bground: rgb(39, 39, 39);
+  --page-color: white;
+  --accent-color: rgb(164, 158, 207);
+}
+
+body {
+  background-color: var(--page-bground);
+  color: var(--page-color);
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+a {
+  color: var(--accent-color);
+}
+
+.container {
+  padding-top: 3em;
+}
