@@ -66,31 +66,27 @@ class ChangeLogParser:
     users = []
 
     def __init__(self, changelog_file: str, version: str = None):
-        self.file_path = str(changelog_file)
+        self._file_path = str(changelog_file)
         self.version = version
 
-    def __enter__(self):
-        self.file = open(self.file_path, "r")
-        return self
-
-    def __exit__(self, exc_type, exc_value, traceback):
-        self.file.close()
-
     def parse(self):
-        if not self.version:
-            self._parse_version()
-        self._parse_changes()
-        self._parse_users()
+        with open(self._file_path, "r") as self._file:
+            if not self.version:
+                self._parse_version()
+            self._parse_changes()
+            self._parse_users()
 
     def _parse_version(self):
         version_regex = re.compile(r"#* *(\d+.\d+.\d+)")
-        for line in self.file:
+        for line in self._file:
             if match := version_regex.match(line):
                 self.version = match.group(1)
                 return
 
     def _parse_changes(self):
-        self.changes = self._get_list_between(self._g_begin_changes, self._g_end_changes)
+        self.changes = self._get_list_between(
+            self._g_begin_changes, self._g_end_changes
+        )
 
     def _parse_users(self):
         self.users = self._get_list_between(self._g_begin_users, self._g_end_users)
@@ -99,7 +95,7 @@ class ChangeLogParser:
         # retrieves a list of lines between a start and an end token
         in_items = False
         items = []
-        for line in self.file:
+        for line in self._file:
             if start_str in line:
                 in_items = True
             elif in_items and end_str in line:
@@ -143,11 +139,15 @@ def main():
         print("Could not find file {parser.changelog_file}")
         return
 
-    with ChangeLogParser(args.changelog_file, args.version) as p:
-        p.parse()
+    parser = ChangeLogParser(args.changelog_file, args.version)
+    parser.parse()
 
     composer = ReleaseComposer(output_file_name=args.output_file)
-    composer.with_version(p.version).with_changes(p.changes).with_users(p.users).write()
+    composer\
+        .with_version(parser.version)\
+        .with_changes(parser.changes)\
+        .with_users(parser.users)\
+        .write()
 
 
 if __name__ == "__main__":
