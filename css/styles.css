@@ -147,6 +147,8 @@ body {
   background-color: var(--page-bground);
   color: var(--page-color);
 }
+.noborder {    border: 0;
+  outline: 0;}
 
 .container {
   font-family: 'Montserrat', sans-serif;
