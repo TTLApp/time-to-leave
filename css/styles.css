@@ -678,6 +678,10 @@ input:disabled + .slider {
   width: 100%;
 }
 
+#workday-waiver-window a.nav-link:not(.active) {
+  color: var(--page-color);
+}
+
 /** Day view related styles **/
 
 html[data-view='day'] .container {
