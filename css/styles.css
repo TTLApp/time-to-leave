@@ -568,7 +568,7 @@ input:disabled + .slider {
 #preferences-window option,
 #preferences-window input {
   font-variant-caps: all-petite-caps;
-  border: solid 1px var(--input-border);
+  border: none;
   height: inherit;
 }
 
