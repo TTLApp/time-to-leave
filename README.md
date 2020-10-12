@@ -2,6 +2,7 @@
   <img src="assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>Log work hours and get notified when it's time to leave the office and start to live</p>
+  <p>Esse documento também está disponível em <a href="docs/README-pt-BR.md">Português (Brasil)</a></p>
 
   <br/>
 
@@ -20,10 +21,6 @@
 </div>
 
 ---
-
-## Translations
-
--   [Portuguese (Brazil)](docs/README-pt-BR.md)
 
 Log the time you started working today, and the program will compute what time you should leave the office, considering the time you spent on lunch. When it's time, the program will notify you.
 

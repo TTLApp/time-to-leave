@@ -1,7 +1,7 @@
 <div align="center">
   <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
 
-  <p>Registre suas horas de trabalho e seja notificado(a) quando é hora de sair do escritório e começar a viver</p>
+  <p>Registre suas horas de trabalho e receba uma notificação quando for a hora de sair do escritório e começar a viver</p>
 
   <br/>
 
@@ -21,11 +21,11 @@
 
 ---
 
-Registre a hora que começou a trabalhar hoje, e o programa vai computar a hora que você deve deixar o escritório, considerando o tempo que você gastou no almoço. Quando for a hora, o programa irá lhe notificar.
+Registre a hora que começou a trabalhar hoje, e o programa vai calcular a hora que você deve deixar o escritório, considerando o tempo que você gastou no almoço. Quando for a hora, o programa irá lhe notificar.
 
 ![time-to-leave-notification](https://user-images.githubusercontent.com/3754225/94519526-4dbc0280-0248-11eb-9738-ffae936cfa4a.jpg)
 
-Você pode controlar as preferências, informando os dias de trabalho, quantas horas você trabalha por dia e se quer ser notificado(a) ou não.
+Você pode controlar as preferências, informando os dias de trabalho, quantas horas você trabalha por dia e se quer a notificação ou não.
 
 ![time-to-leave-settings](https://user-images.githubusercontent.com/3754225/94519531-4eed2f80-0248-11eb-9303-78f9abe69201.jpg)
 
@@ -35,16 +35,16 @@ Você também pode adicionar folgas nos dias que não trabalhou.
 
 ## Como instalar o TTL
 
-Time to Leave funciona para MacOS, Windows e Linux, e você pode baixar a versão desejada da [última versão](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
+Time to Leave funciona em MacOS, Windows e Linux, e você pode baixar a versão desejada da [última versão](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
 
 ## Como fazer o build e contribuir com o TTL
 
-Se quer ajudar, leia nosso guia de [contribuição](CONTRIBUTING.md).
-Você também pode recorrer ao [guia de desenvolvimento](DEVELOPMENT.md) para mais informação.
+Se quer ajudar, leia nosso guia de [contribuição](../CONTRIBUTING.md).
+Você também pode recorrer ao [guia de desenvolvimento](../DEVELOPMENT.md) para mais informação.
 
 ## Entre em contato!
 
-Junte-se ao nosso [canal do discord](https://discord.gg/P3KkEF5) para discutir novas features e mais.
+Junte-se ao nosso [canal do discord](https://discord.gg/P3KkEF5) para discutir novas funcionalidades e mais.
 
 ## Créditos
 
@@ -54,4 +54,4 @@ Junte-se ao nosso [canal do discord](https://discord.gg/P3KkEF5) para discutir n
 
 Ícone de doente por [SVG Repo](https://www.svgrepo.com/svg/271898/sick).
 
-Veja ícone do Switch feito por [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) de [www.flaticon.com](https://www.flaticon.com).
+Ícone do troca de visualização feito por [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) de [www.flaticon.com](https://www.flaticon.com).
