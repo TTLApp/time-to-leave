@@ -120,7 +120,7 @@ html[data-theme="cadent-star"] {
 }
 
 *:focus {
-    outline: var(--outline);
+  outline: var(--outline);
 }
 
 html[data-theme="cadent-star"] ::-webkit-scrollbar-thumb {
