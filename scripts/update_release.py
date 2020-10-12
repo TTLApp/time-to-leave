@@ -4,7 +4,8 @@ import os
 
 RESOURCES_DIR = "resources"
 OUTPUT_DIR = "."
-RELEASE_DEFAULT_TEMPLATE = "release_template.md"
+DEFAULT_OUTPUT_FILE = r"release_v{V}.md"
+DEFAULT_RELEASE_TEMPLATE = "release_template.md"
 
 
 class ReleaseComposer:
@@ -12,9 +13,17 @@ class ReleaseComposer:
     _changes = []
     _users = []
 
-    def __init__(self, template_file=RELEASE_DEFAULT_TEMPLATE):
-        self._template = os.path.join(os.path.curdir, RESOURCES_DIR, template_file)
-        self._release = os.path.join(OUTPUT_DIR, r"release_v{V}.md")
+    def __init__(
+        self,
+        output_file_name: str = DEFAULT_OUTPUT_FILE,
+        template_file: str = DEFAULT_RELEASE_TEMPLATE,
+    ):
+        if not output_file_name:
+            output_file_name = DEFAULT_OUTPUT_FILE
+        script_path = os.path.dirname(os.path.realpath(__file__))
+        self._template = os.path.join(script_path, RESOURCES_DIR, template_file)
+        assert os.path.isfile(self._template)
+        self._release = os.path.join(OUTPUT_DIR, output_file_name)
 
     def with_version(self, version: str):
         if not version:
@@ -69,24 +78,25 @@ class ChangeLogParser:
 
     def parse(self):
         if not self.version:
-            self.parse_version()
-        self.parse_changes()
-        self.parse_users()
+            self._parse_version()
+        self._parse_changes()
+        self._parse_users()
 
-    def parse_version(self):
+    def _parse_version(self):
         version_regex = re.compile(r"#* *(\d+.\d+.\d+)")
         for line in self.file:
             if match := version_regex.match(line):
                 self.version = match.group(1)
                 return
 
-    def parse_changes(self):
-        self.changes = self.get_list_between(self._g_begin_changes, self._g_end_changes)
+    def _parse_changes(self):
+        self.changes = self._get_list_between(self._g_begin_changes, self._g_end_changes)
 
-    def parse_users(self):
-        self.users = self.get_list_between(self._g_begin_users, self._g_end_users)
+    def _parse_users(self):
+        self.users = self._get_list_between(self._g_begin_users, self._g_end_users)
 
-    def get_list_between(self, start_str: str, end_str: str):
+    def _get_list_between(self, start_str: str, end_str: str):
+        # retrieves a list of lines between a start and an end token
         in_items = False
         items = []
         for line in self.file:
@@ -96,7 +106,7 @@ class ChangeLogParser:
                 in_items = False
                 break
             elif in_items and "-" in line[0]:
-                items.append(line.replace("\n", ""))
+                items.append(line.strip())
 
         return items
 
@@ -116,6 +126,9 @@ def get_arguments():
     )
     parser.add_argument("-changelog-file", help="Changelog file", required=True)
     parser.add_argument(
+        "-output-file", help="The output file name. If omitted will be {OUTPUT_FILE}"
+    )
+    parser.add_argument(
         "-version",
         default=None,
         help="Version of current changelong. (Default is the top-most change version in changelog file)",
@@ -133,7 +146,7 @@ def main():
     with ChangeLogParser(args.changelog_file, args.version) as p:
         p.parse()
 
-    composer = ReleaseComposer()
+    composer = ReleaseComposer(output_file_name=args.output_file)
     composer.with_version(p.version).with_changes(p.changes).with_users(p.users).write()
 
 

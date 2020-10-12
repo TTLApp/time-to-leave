@@ -36,25 +36,30 @@ expected_users = [
 ]
 
 
-class UnitBaseTest(TestCase):
+class TestChangelogParser(TestCase):
     def setUp(self):
-        self.changelog_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), "changelog_mock.md")
+        self.changelog_file = os.path.join(
+            os.path.dirname(os.path.realpath(__file__)), "changelog_mock.md"
+        )
 
     def test_parse_version(self):
         with ChangeLogParser(self.changelog_file) as parser:
-            parser.parse_version()
+            parser._parse_version()
             self.assertEqual(parser.version, "1.25.6")
-
+ 
     def test_parse_changes(self):
         with ChangeLogParser(self.changelog_file) as parser:
-            parser.parse_changes()
+            parser._parse_changes()
             self.assertEqual(len(parser.changes), len(expected_changes))
             for i, change in enumerate(parser.changes):
                 self.assertEqual(change, expected_changes[i])
 
     def test_parse_users(self):
         with ChangeLogParser(self.changelog_file) as parser:
-            parser.parse_users()
+            parser._parse_users()
             self.assertEqual(len(parser.users), len(expected_users))
             for i, user in enumerate(parser.users):
                 self.assertEqual(user, expected_users[i])
+
+if __name__ == '__main__':
+    unittest.main()
