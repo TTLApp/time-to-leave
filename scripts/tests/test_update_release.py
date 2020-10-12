@@ -42,16 +42,25 @@ class TestChangelogParser(TestCase):
             os.path.dirname(os.path.realpath(__file__)), "changelog_mock.md"
         )
 
-    def test_parser(self):
+    def test_parsing_changelog(self):
         parser = ChangeLogParser(self.changelog_file)
         parser.parse()
 
+        # Version
         self.assertEqual(parser.version, "1.25.6")
 
+        # Changelog changes list
         self.assertEqual(len(parser.changes), len(expected_changes))
         for i, change in enumerate(parser.changes):
             self.assertEqual(change, expected_changes[i])
 
+        # Changelog users
         self.assertEqual(len(parser.users), len(expected_users))
         for i, user in enumerate(parser.users):
             self.assertEqual(user, expected_users[i])
+
+    def test_parging_providing_fix_version(self):
+        parser = ChangeLogParser(self.changelog_file, "1.2.42")
+        parser.parse()
+
+        self.assertEqual(parser.version, "1.2.42")
