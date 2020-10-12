@@ -115,14 +115,14 @@ class FixedDayCalendar extends Calendar
         return '<div class="month-total-row">' +
                     '<div class="half-width">' +
                     '<div class="month-total-element">' +
-                        `<div class="month-total-text month-balance" title="${i18n.t('$FixedDayCalender.month-balance-title')}">${i18n.t('$FixedDayCalender.month-balance')}</div>` +
-                        `<div class="month-total-time month-balance-time" title="${i18n.t('$FixedDayCalender.month-balance-title')}"><span type="text" id="month-balance"></div>` +
+                        `<div class="month-total-text month-balance" title="${i18n.t('$FixedDayCalendar.month-balance-title')}">${i18n.t('$FixedDayCalendar.month-balance')}</div>` +
+                        `<div class="month-total-time month-balance-time" title="${i18n.t('$FixedDayCalendar.month-balance-title')}"><span type="text" id="month-balance"></div>` +
                     '</div>' +
                     '</div>' +
                     '<div class="half-width">' +
                     '<div class="month-total-element">' +
-                        `<div class="month-total-text month-sum" title="${i18n.t('$FixedDayCalender.overall-balance-title')}">${i18n.t('$FixedDayCalender.overall-balance')}</div>` +
-                        `<div class="month-total-time month-sum-time" title="${i18n.t('$FixedDayCalender.overall-balance-title')}"><span id="overall-balance"></div>` +
+                        `<div class="month-total-text month-sum" title="${i18n.t('$FixedDayCalendar.overall-balance-title')}">${i18n.t('$FixedDayCalendar.overall-balance')}</div>` +
+                        `<div class="month-total-time month-sum-time" title="${i18n.t('$FixedDayCalendar.overall-balance-title')}"><span id="overall-balance"></div>` +
                     '</div>' +
                     '</div>' +
                 '</div>';
@@ -145,14 +145,14 @@ class FixedDayCalendar extends Calendar
         if (!this._showDay(year, month, day))
         {
             return '<div class="today-non-working" id="' + trID + '">' +
-                        `<div class="non-working-day">${i18n.t('$FixedDayCalender.no-working-day')}</div>` +
+                        `<div class="non-working-day">${i18n.t('$FixedDayCalendar.no-working-day')}</div>` +
                     '</div>\n';
         }
 
         let waivedInfo = this._getWaiverStore(day, month, year);
         if (waivedInfo !== undefined)
         {
-            let summaryStr = `<b>${i18n.t('$FixedDayCalender.waived-day')}: </b>` + waivedInfo['reason'];
+            let summaryStr = `<b>${i18n.t('$FixedDayCalendar.waived-day')}: </b>` + waivedInfo['reason'];
             let waivedLineHtmlCode =
                  '<div class="row-waiver" id="' + trID + '">' +
                     '<div class="waived-day-text" colspan="5">' + summaryStr + '</div>' +
@@ -163,25 +163,25 @@ class FixedDayCalendar extends Calendar
 
         let htmlCode =
                 '<div class="row-time">' +
-                    `<div class="th th-label" colspan="4">${i18n.t('$FixedDayCalender.day-start')}</div>` +
+                    `<div class="th th-label" colspan="4">${i18n.t('$FixedDayCalendar.day-start')}</div>` +
                     '<div class="ti" colspan="4">' + this.constructor._getInputCode(year, month, day, 'day-begin') + '</div>' +
                 '</div>' +
                 '<div class="row-time">' +
-                    `<div class="th th-label" colspan="4">${i18n.t('$FixedDayCalender.lunch-begin')}</div>` +
+                    `<div class="th th-label" colspan="4">${i18n.t('$FixedDayCalendar.lunch-begin')}</div>` +
                     '<div class="ti" colspan="4">' + this.constructor._getInputCode(year, month, day, 'lunch-begin') + '</div>' +
                 '</div>' +
                 '<div class="row-time">' +
-                    `<div class="th th-label" colspan="4">${i18n.t('$FixedDayCalender.lunch-end')}</div>` +
+                    `<div class="th th-label" colspan="4">${i18n.t('$FixedDayCalendar.lunch-end')}</div>` +
                     '<div class="ti" colspan="4">' + this.constructor._getInputCode(year, month, day, 'lunch-end') + '</div>' +
                 '</div>' +
                 '<div class="row-time">' +
-                    `<div class="th th-label" colspan="4">${i18n.t('$FixedDayCalender.day-end')}</div>` +
+                    `<div class="th th-label" colspan="4">${i18n.t('$FixedDayCalendar.day-end')}</div>` +
                     '<div class="ti" colspan="4">' + this.constructor._getInputCode(year, month, day, 'day-end') + '</div>' +
                 '</div>' +
                 '<div class="row-total">' +
-                    `<div class="th th-label th-label-total" colspan="3">${i18n.t('$FixedDayCalender.lunch-total')}</div>` +
+                    `<div class="th th-label th-label-total" colspan="3">${i18n.t('$FixedDayCalendar.lunch-total')}</div>` +
                     '<div class="ti ti-total">' + this.constructor._getTotalCode(year, month, day, 'lunch-total') + '</div>' +
-                    `<div class="th th-label th-label-total" colspan="3">${i18n.t('$FixedDayCalender.day-total')}</div>` +
+                    `<div class="th th-label th-label-total" colspan="3">${i18n.t('$FixedDayCalendar.day-total')}</div>` +
                     '<div class="ti ti-total">' + this.constructor._getTotalCode(year, month, day, 'day-total') + '</div>' +
                 '</div>\n';
 
