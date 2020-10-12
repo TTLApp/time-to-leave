@@ -145,7 +145,7 @@ class FixedDayCalendar extends Calendar
         if (!this._showDay(year, month, day))
         {
             return '<div class="today-non-working" id="' + trID + '">' +
-                        `<div class="non-working-day">${i18n.t('$FixedDayCalendar.no-working-day')}</div>` +
+                        `<div class="non-working-day">${i18n.t('$FixedDayCalendar.non-working-day')}</div>` +
                     '</div>\n';
         }
 

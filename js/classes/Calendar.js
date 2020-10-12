@@ -289,8 +289,8 @@ class Calendar
                 '<tr class="month-total-row">' +
                     `<td class="month-total-text" title="${i18n.t('$Calendar.last-day-balance')}">${i18n.t('$Calendar.on')}</td>` +
                     `<td class="month-total-time" title="${i18n.t('$Calendar.last-day-balance')}"><input type="text" id="month-day-input" size="2" disabled></td>` +
-                    `<td class="month-total-text" title="${i18n.t('$Calendar.working-days-count')}">${i18n.t('$Calendar.working-days')}</td>` +
-                    `<td class="month-total-time" title="${i18n.t('$Calendar.working-days-count')}"><input type="text"  id="month-working-days" size="5" disabled></td>` +
+                    `<td class="month-total-text" title="${i18n.t('$Calendar.working-days-title')}">${i18n.t('$Calendar.working-days')}</td>` +
+                    `<td class="month-total-time" title="${i18n.t('$Calendar.working-days-title')}"><input type="text"  id="month-working-days" size="5" disabled></td>` +
                     `<td class="month-total-text" title="${i18n.t('$Calendar.month-balance-title')}">${i18n.t('$Calendar.month-balance')}</td>` +
                     `<td class="month-total-time" title="${i18n.t('$Calendar.month-balance-title')}"><input type="text" id="month-balance" size="8" disabled></td>` +
                     `<td class="month-total-text" title="${i18n.t('$Calendar.overall-balance-title')}">${i18n.t('$Calendar.overall-balance')}</td>` +
