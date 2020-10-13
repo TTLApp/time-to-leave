@@ -294,10 +294,10 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
             {
                 const dateKey = $('.rows-time').attr('id');
                 const removeEntriesDialogOptions = {
-                    title: i18n.t('FlexibleDayCalendar.remove-entry'),
-                    message: i18n.t('FlexibleDayCalendar.entry-removal-confirmation'),
+                    title: i18n.t('$FlexibleDayCalendar.remove-entry'),
+                    message: i18n.t('$FlexibleDayCalendar.entry-removal-confirmation'),
                     type: 'info',
-                    buttons: [i18n.t('FlexibleDayCalendar.yes'), i18n.t('FlexibleDayCalendar.no')]
+                    buttons: [i18n.t('$FlexibleDayCalendar.yes'), i18n.t('$FlexibleDayCalendar.no')]
                 };
                 showDialog(removeEntriesDialogOptions, (result) =>
                 {
