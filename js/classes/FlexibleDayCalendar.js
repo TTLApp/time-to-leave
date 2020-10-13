@@ -687,7 +687,7 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
             const shouldPrintMinusSign = numberOfPairs > 2 && isLastRow;
 
             return '<div class="row-entry-pair">' +
-                `<div class="th th-label first-group">${i18n.t('FlexibleDayCalendar.entry')} #` + entryIndex + '</div>' +
+                `<div class="th th-label first-group">${i18n.t('$FlexibleDayCalendar.entry')} #` + entryIndex + '</div>' +
                 '<div class="second-group">' +
                     '<input type="time" data-date="' + dateKey + '">' +
                     '<input type="time" data-date="' + dateKey + '">' +
