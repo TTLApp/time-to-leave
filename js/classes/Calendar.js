@@ -47,11 +47,11 @@ class Calendar
     _initCalendar()
     {
         this._generateTemplate();
-
-        $('#next-month').click(() => { this._nextMonth(); });
-        $('#prev-month').click(() => { this._prevMonth(); });
-        $('#current-month').click(() => { this._goToCurrentDate(); });
-        $('#switch-view').click(() => { this._switchView(); });
+        // .click() is deprecated in jQuery 3. Changed to 'on' syntax.
+        $('#next-month').on('click', () => { this._nextMonth(); });
+        $('#prev-month').on('click', () => { this._prevMonth(); });
+        $('#current-month').on('click', () => { this._goToCurrentDate(); });
+        $('#switch-view').on('click', () => { this._switchView(); });
 
         this._draw();
     }
@@ -91,8 +91,8 @@ class Calendar
                 if (balanceElement)
                 {
                     balanceElement.val(balance);
-                    balanceElement.html(balance);
                     balanceElement.removeClass('text-success text-danger');
+                    balanceElement.html(balance);
                     balanceElement.addClass(isNegative(balance) ? 'text-danger' : 'text-success');
                 }
             })

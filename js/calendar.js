@@ -105,7 +105,7 @@ $(() =>
             setInterval(notifyTimeToLeave, 60000);
             applyTheme(preferences.theme);
 
-            $('#punch-button').click(() => { calendar.punchDate(); });
+            $('#punch-button').on('click', () => { calendar.punchDate(); });
         })
         .catch(err =>
         {

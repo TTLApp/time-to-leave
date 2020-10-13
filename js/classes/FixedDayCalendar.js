@@ -28,11 +28,11 @@ class FixedDayCalendar extends Calendar
     {
         this._generateTemplate();
 
-        $('#next-day').click(() => { this._nextDay(); });
-        $('#prev-day').click(() => { this._prevDay(); });
-        $('#switch-view').click(() => { this._switchView(); });
-        $('#current-day').click(() => { this._goToCurrentDate(); });
-        $('#input-calendar-date').change((event) =>
+        $('#next-day').on('click', () => { this._nextDay(); });
+        $('#prev-day').on('click', () => { this._prevDay(); });
+        $('#switch-view').on('click', () => { this._switchView(); });
+        $('#current-day').on('click', () => { this._goToCurrentDate(); });
+        $('#input-calendar-date').on('change', (event) =>
         {
             let [year, month, day] = $(event.target).val().split('-');
             this._goToDate(new Date(year, month-1, day));
