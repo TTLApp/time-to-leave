@@ -12,6 +12,7 @@ const { getDateStr, getMonthLength } = require('../date-aux.js');
 const { generateKey } = require('../date-db-formatter.js');
 const { showDialog } = require('../window-aux.js');
 const { FlexibleMonthCalendar } = require('./FlexibleMonthCalendar.js');
+const i18n = require('../../src/configs/i18next.config.js');
 
 class FlexibleDayCalendar extends FlexibleMonthCalendar
 {
@@ -59,13 +60,13 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
      */
     static _getPageHeader()
     {
-        let switchView = '<input id="switch-view" type="image" src="assets/switch.svg" alt="Switch View" title="Switch View" height="24" width="24"></input>';
-        let todayBut = '<input id="current-day" type="image" src="assets/calendar.svg" alt="Current Day" title="Go to Current Day" height="24" width="24"></input>';
-        let leftBut = '<input id="prev-day" type="image" src="assets/left-arrow.svg" alt="Previous Day" height="24" width="24"></input>';
+        let switchView = `<input id="switch-view" type="image" src="assets/switch.svg" alt="${i18n.t('$FlexibleDayCalendar.switch-view')}" title="${i18n.t('$FlexibleDayCalendar.switch-view')}" height="24" width="24"></input>`;
+        let todayBut = `<input id="current-day" type="image" src="assets/calendar.svg" alt="${i18n.t('$FlexibleDayCalendar.current-day')}" title="${i18n.t('$FlexibleDayCalendar.current-day')}" height="24" width="24"></input>`;
+        let leftBut = `<input id="prev-day" type="image" src="assets/left-arrow.svg" alt="${i18n.t('$FlexibleDayCalendar.previous-day')}" height="24" width="24"></input>`;
         let rightBut = '<input id="next-day" type="image" src="assets/right-arrow.svg" alt="Next Day" height="24" width="24"></input>';
         return '<div class="title-header">'+
                     '<div class="title-header-img"><img src="assets/timer.svg" height="64" width="64"></div>' +
-                    '<div class="title-header-text">Time to Leave</div>' +
+                    `<div class="title-header-text">${i18n.t('$FlexibleDayCalendar.time-to-leave')}</div>` +
                     '<div class="title-header-msg"></div>' +
                '</div>' +
                 '<table class="table-header"><tr>' +
@@ -98,12 +99,12 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
     static _getSummaryRowCode()
     {
         let leaveByCode = '<input type="text" id="leave-by" size="5" disabled>';
-        let summaryStr = 'You should leave by:';
+        let summaryStr = i18n.t('$FlexibleDayCalendar.leave-by');
         let code = '<div class="summary" id="summary-unfinished-day">' +
                      '<div class="leave-by-text">' + summaryStr + '</div>' +
                      '<div class="leave-by-time">' + leaveByCode + '</div>' +
                    '</div>';
-        let finishedSummaryStr = 'All done for today. Balance of the day:';
+        let finishedSummaryStr = i18n.t('$FlexibleDayCalendar.day-done-balance');
         let dayBalance = '<input type="text" id="leave-day-balance" size="5" disabled>';
         code += '<div class="summary hidden" id="summary-finished-day">' +
                     '<div class="leave-by-text">' + finishedSummaryStr + '</div>' +
@@ -111,7 +112,6 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
                 '</div>';
         return code;
     }
-
     /**
      * Returns the HTML code for the row with working days, month total and balance.
      * @return {string}
@@ -121,14 +121,14 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
         return '<div class="month-total-row">' +
                     '<div class="half-width">' +
                     '<div class="month-total-element">' +
-                        '<div class="month-total-text month-balance" title="Balance up until today for this month. A positive balance means extra hours you don\'t need to work today (or the rest of the month).">Month Balance</div>' +
-                        '<div class="month-total-time month-balance-time" title="Balance up until today for this month. A positive balance means extra hours you don\'t need to work today (or the rest of the month)."><span type="text" id="month-balance"></div>' +
+                        `<div class="month-total-text month-balance" title="${i18n.t('$FlexibleDayCalendar.balance-up-until-today-for-this-month')}">${i18n.t('$FlexibleDayCalendar.month-balance')}</div>` +
+                        `<div class="month-total-time month-balance-time" title="${i18n.t('$FlexibleDayCalendar.balance-up-until-today-for-this-month')}"><span type="text" id="month-balance"></div>` +
                     '</div>' +
                     '</div>' +
                     '<div class="half-width">' +
                     '<div class="month-total-element">' +
-                        '<div class="month-total-text month-sum" title="Overall balance until end of the month or current day">Overall Balance</div>' +
-                        '<div class="month-total-time month-sum-time" title="Overall balance until end of the month or current day"><span id="overall-balance"></div>' +
+                        `<div class="month-total-text month-sum" title="${i18n.t('$FlexibleDayCalendar.overall-balance-month')}">${i18n.t('$FlexibleDayCalendar.overall-balance')}</div>` +
+                        `<div class="month-total-time month-sum-time" title="${i18n.t('$FlexibleDayCalendar.overall-balance-month')}"><span id="overall-balance"></div>` +
                     '</div>' +
                     '</div>' +
                 '</div>';
@@ -159,14 +159,14 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
         if (!this._showDay(year, month, day))
         {
             return '<div class="today-non-working" id="' + dateKey + '">' +
-                        '<div class="non-working-day">Not a working day</div>' +
+                        `<div class="non-working-day">${i18n.t('$FlexibleDayCalendar.not-a-working-day')}</div>` +
                     '</div>\n';
         }
 
         let waivedInfo = this._getWaiverStore(day, month, year);
         if (waivedInfo !== undefined)
         {
-            let summaryStr = '<b>Waived day: </b>' + waivedInfo['reason'];
+            let summaryStr = `<b>${i18n.t('$FlexibleDayCalendar.waived-day')}</b>` + waivedInfo['reason'];
             let waivedLineHtmlCode =
                  '<div class="row-waiver" id="' + dateKey + '">' +
                     '<div class="waived-day-text" colspan="5">' + summaryStr + '</div>' +
@@ -181,7 +181,7 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
             '<div class="rows-time" id="' + dateKey + '">' +
             '</div>' +
             '<div class="row-total">' +
-                '<div class="th th-label first-group" colspan="3">Day Total</div>' +
+                `<div class="th th-label first-group" colspan="3">${i18n.t('$FlexibleDayCalendar.day-total')}</div>` +
                 '<div class="second-group">' +
                     '<div class="day-total-cell">' +
                         '<div class="day-total"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>' +
@@ -294,10 +294,10 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
             {
                 const dateKey = $('.rows-time').attr('id');
                 const removeEntriesDialogOptions = {
-                    title: 'Remove entry',
-                    message: 'Are you sure you want to remove the last entry row?',
+                    title: i18n.t('FlexibleDayCalendar.remove-entry'),
+                    message: i18n.t('FlexibleDayCalendar.entry-removal-confirmation'),
                     type: 'info',
-                    buttons: ['Yes', 'No']
+                    buttons: [i18n.t('FlexibleDayCalendar.yes'), i18n.t('FlexibleDayCalendar.no')]
                 };
                 showDialog(removeEntriesDialogOptions, (result) =>
                 {
@@ -687,7 +687,7 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
             const shouldPrintMinusSign = numberOfPairs > 2 && isLastRow;
 
             return '<div class="row-entry-pair">' +
-                '<div class="th th-label first-group">Entry #' + entryIndex + '</div>' +
+                `<div class="th th-label first-group">${i18n.t('FlexibleDayCalendar.entry')} #` + entryIndex + '</div>' +
                 '<div class="second-group">' +
                     '<input type="time" data-date="' + dateKey + '">' +
                     '<input type="time" data-date="' + dateKey + '">' +

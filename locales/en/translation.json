@@ -96,6 +96,26 @@
   "$FixedDayCalendar": {
     "leave-by": "You should leave by:"
   },
+  "$FlexibleDayCalendar": {
+    "switch-view": "Switch View",
+    "previous-day": "Previous Day",
+    "time-to-leave": "Time to Leave",
+    "current-day": "Go to Current Day",
+    "day-done-balance": "All done for today. Balance of the day:",
+    "leave-by": "You should leave by:",
+    "balance-up-until-today-for-this-month": "Balance up until today for this month. A positive balance means extra hours you don't need to work today (or the rest of the month).",
+    "month-balance": "Month Balance",
+    "overall-balance-month": "Overall balance until end of the month or current day",
+    "overall-balance": "Overall Balance",
+    "not-a-working-day": "Not a working day",
+    "waived-day": "Waived day",
+    "day-total": "Day Total",
+    "remove-entry": "Remove entry",
+    "entry-removal-confirmation": "Are you sure you want to remove the last entry row?",
+    "yes": "Yes",
+    "no": "No",
+    "entry": "Entry"
+  },
   "$DateUtil": {
     "sunday": "Sunday",
     "monday": "Monday",
