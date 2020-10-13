@@ -90,12 +90,10 @@
         "workday-waiver-manager": "Workday Waiver Manager",
         "yes-please": "Yes, please"
     },
-    "$FixedCalendar": {
-        "leave-by": "Based on the time you arrived today, you should leave by"
-    },
     "$FlexibleDayCalendar": {
         "switch-view": "Switch View",
         "previous-day": "Previous Day",
+        "next-day": "Next Day",
         "time-to-leave": "Time to Leave",
         "current-day": "Go to Current Day",
         "day-done-balance": "All done for today. Balance of the day:",

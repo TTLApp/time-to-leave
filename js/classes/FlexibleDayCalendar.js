@@ -63,7 +63,7 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
         let switchView = `<input id="switch-view" type="image" src="assets/switch.svg" alt="${i18n.t('$FlexibleDayCalendar.switch-view')}" title="${i18n.t('$FlexibleDayCalendar.switch-view')}" height="24" width="24"></input>`;
         let todayBut = `<input id="current-day" type="image" src="assets/calendar.svg" alt="${i18n.t('$FlexibleDayCalendar.current-day')}" title="${i18n.t('$FlexibleDayCalendar.current-day')}" height="24" width="24"></input>`;
         let leftBut = `<input id="prev-day" type="image" src="assets/left-arrow.svg" alt="${i18n.t('$FlexibleDayCalendar.previous-day')}" height="24" width="24"></input>`;
-        let rightBut = '<input id="next-day" type="image" src="assets/right-arrow.svg" alt="Next Day" height="24" width="24"></input>';
+        let rightBut = `<input id="next-day" type="image" src="assets/right-arrow.svg" alt="${i18n.t('$FlexibleDayCalendar.next-day')}" height="24" width="24"></input>`;
         return '<div class="title-header">'+
                     '<div class="title-header-img"><img src="assets/timer.svg" height="64" width="64"></div>' +
                     `<div class="title-header-text">${i18n.t('$FlexibleDayCalendar.time-to-leave')}</div>` +

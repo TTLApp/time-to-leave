@@ -90,13 +90,11 @@
         "workday-waiver-manager": "Gerenciador de Folgas",
         "yes-please": "Sim, por favor"
     },
-    "$FixedCalendar": {
-        "leave-by": "Baseado na hora que chegou hoje, você deve sair às"
-    },
     "$FlexibleDayCalendar": {
         "switch-view": "Trocar Visualização",
         "current-day": "Ir para o Dia Atual",
         "previous-day": "Dia Anterior",
+        "next-day": "Próximo Dia",
         "time-to-leave": "Hora de Ir Embora",
         "leave-by": "Você deve sair às:",
         "day-done-balance": "Tudo finalizado por hoje. Saldo do dia:",
