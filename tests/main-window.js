@@ -9,11 +9,10 @@ const weekDay = [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
 
 describe('Application launch', function()
 {
-    this.timeout(10000);
-
     //  deepcode ignore UseArrowFunction: => will not work on here
     beforeEach(function()
     {
+        this.timeout(25000); // Estimated pessimistic time taken for the app to the brought up in CI
         this.app = new Application({
             path: electronPath,
             args: [path.join(__dirname, '..')]
@@ -23,6 +22,7 @@ describe('Application launch', function()
 
     afterEach(function()
     {
+        this.timeout(10000); // Estimated pessimistic time taken for the app to be stopped in CI
         if (this.app && this.app.isRunning())
         {
             return this.app.stop();

@@ -265,12 +265,12 @@ class Calendar
     static _getSummaryRowCode()
     {
         let leaveByCode = '<input type="text" id="leave-by" size="5" disabled>';
-        let summaryStr = i18n.t('$FixedCalendar.leave-by');
+        let summaryStr = i18n.t('$Calendar.leave-by');
         let code = '<tr class="summary" id="summary-unfinished-day">' +
                      '<td class="leave-by-text" colspan="7">' + summaryStr + '</td>' +
                      '<td class="leave-by-time">' + leaveByCode + '</td>' +
                    '</tr>';
-        let finishedSummaryStr = 'All done for today. Balance of the day:';
+        let finishedSummaryStr = i18n.t('$Calendar.all-done');
         let dayBalance = '<input type="text" id="leave-day-balance" size="5" disabled>';
         code += '<tr class="summary hidden" id="summary-finished-day">' +
                     '<td class="leave-by-text" colspan="7">' + finishedSummaryStr + '</td>' +
@@ -287,14 +287,14 @@ class Calendar
     {
         return '<tr>' +
                 '<tr class="month-total-row">' +
-                    '<td class="month-total-text" title="Last day used for balance">On</td>' +
-                    '<td class="month-total-time" title="Last day used for balance"><input type="text" id="month-day-input"   size="2" disabled></td>' +
-                    '<td class="month-total-text" title="How many working days there\'s in the month">Working days</td>' +
-                    '<td class="month-total-time" title="How many working days there\'s in the month"><input type="text"  id="month-working-days" size="5" disabled></td>' +
-                    '<td class="month-total-text" title="Balance up until today for this month. A positive balance means extra hours you don\'t need to work today (or the rest of the month).">Month Balance</td>' +
-                    '<td class="month-total-time" title="Balance up until today for this month. A positive balance means extra hours you don\'t need to work today (or the rest of the month)."><input type="text" id="month-balance"     size="8" disabled></td>' +
-                    '<td class="month-total-text" title="Overall balance until end of the month or current day">Overall Balance</td>' +
-                    '<td class="month-total-time" title="Overall balance until end of the month or current day"><input type="text" id="overall-balance" size="8" placeholder="..." disabled></td>' +
+                    `<td class="month-total-text" title="${i18n.t('$Calendar.last-day-balance')}">${i18n.t('$Calendar.on')}</td>` +
+                    `<td class="month-total-time" title="${i18n.t('$Calendar.last-day-balance')}"><input type="text" id="month-day-input" size="2" disabled></td>` +
+                    `<td class="month-total-text" title="${i18n.t('$Calendar.working-days-title')}">${i18n.t('$Calendar.working-days')}</td>` +
+                    `<td class="month-total-time" title="${i18n.t('$Calendar.working-days-title')}"><input type="text"  id="month-working-days" size="5" disabled></td>` +
+                    `<td class="month-total-text" title="${i18n.t('$Calendar.month-balance-title')}">${i18n.t('$Calendar.month-balance')}</td>` +
+                    `<td class="month-total-time" title="${i18n.t('$Calendar.month-balance-title')}"><input type="text" id="month-balance" size="8" disabled></td>` +
+                    `<td class="month-total-text" title="${i18n.t('$Calendar.overall-balance-title')}">${i18n.t('$Calendar.overall-balance')}</td>` +
+                    `<td class="month-total-time" title="${i18n.t('$Calendar.overall-balance-title')}"><input type="text" id="overall-balance" size="8" placeholder="..." disabled></td>` +
                 '</tr>' +
             '</tr>';
     }
@@ -373,13 +373,13 @@ class Calendar
      */
     static _getPageHeader()
     {
-        let switchView = '<input id="switch-view" type="image" src="assets/switch.svg" alt="Switch View" title="Switch View" height="24" width="24"></input>';
-        let todayBut = '<input id="current-month" type="image" src="assets/calendar.svg" alt="Current Month" title="Go to Current Month" height="24" width="24"></input>';
-        let leftBut = '<input id="prev-month" type="image" src="assets/left-arrow.svg" alt="Previous Month" height="24" width="24"></input>';
-        let rightBut = '<input id="next-month" type="image" src="assets/right-arrow.svg" alt="Next Month" height="24" width="24"></input>';
+        let switchView = `<input id="switch-view" type="image" src="assets/switch.svg" alt="${i18n.t('$Calendar.switch-view')}" title="${i18n.t('$Calendar.switch-view-title')}" height="24" width="24"></input>`;
+        let todayBut = `<input id="current-month" type="image" src="assets/calendar.svg" alt="${i18n.t('$Calendar.current-month')}" title="${i18n.t('$Calendar.current-month-title')}" height="24" width="24"></input>`;
+        let leftBut = `<input id="prev-month" type="image" src="assets/left-arrow.svg" alt="${i18n.t('$Calendar.previous-month')}" height="24" width="24"></input>`;
+        let rightBut = `<input id="next-month" type="image" src="assets/right-arrow.svg" alt="${i18n.t('$Calendar.next-month')}" height="24" width="24"></input>`;
         return '<div class="title-header">'+
                     '<div class="title-header title-header-img"><img src="assets/timer.svg" height="64" width="64"></div>' +
-                    '<div class="title-header title-header-text">Time to Leave</div>' +
+                    `<div class="title-header title-header-text">${i18n.t('$Calendar.time-to-leave')}</div>` +
                     '<div class="title-header title-header-msg"></div>' +
                '</div>' +
                 '<table class="table-header"><tr>' +
@@ -399,13 +399,13 @@ class Calendar
     {
         return '<thead>' +
                 '<tr>' +
-                    '<th class="th th-label th-day-name dayheader" colspan="2">Day</th>' +
-                    '<th class="th th-label">Day Start</th>' +
-                    '<th class="th th-label">Lunch Start</th>' +
-                    '<th class="th th-label">Lunch Total</th>' +
-                    '<th class="th th-label">Lunch End</th>' +
-                    '<th class="th th-label">Day End</th>' +
-                    '<th class="th th-label">Day total</th>' +
+                    `<th class="th th-label th-day-name dayheader" colspan="2">${i18n.t('$Calendar.day')}</th>` +
+                    `<th class="th th-label">${i18n.t('$Calendar.day-start')}</th>` +
+                    `<th class="th th-label">${i18n.t('$Calendar.lunch-start')}</th>` +
+                    `<th class="th th-label">${i18n.t('$Calendar.lunch-total')}</th>` +
+                    `<th class="th th-label">${i18n.t('$Calendar.lunch-end')}</th>` +
+                    `<th class="th th-label">${i18n.t('$Calendar.day-end')}</th>` +
+                    `<th class="th th-label">${i18n.t('$Calendar.day-total')}</th>` +
                 '</tr>' +
                 '</thead>\n';
     }

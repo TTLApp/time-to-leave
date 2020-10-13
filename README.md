@@ -2,6 +2,7 @@
   <img src="assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>Log work hours and get notified when it's time to leave the office and start to live</p>
+  <p>Esse documento também está disponível em <a href="docs/README-pt-BR.md">Português (Brasil)</a></p>
 
   <br/>
 

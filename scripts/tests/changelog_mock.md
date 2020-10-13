@@ -1,8 +1,7 @@
-## 1.5.6 (in development)
+## 1.25.6 (in development)
 
 <!--- Begin changes - Do not remove -->
 
--   Accessibility: [#447] Including focus ring/outline for inputs in the App
 -   Enhancement: [#328] Swap position for overall and month balance on day view
 -   Enhancement: [#333] Adding start date for overall balance on preferences
 -   Enhancement: [#357] Adding flexible table format for month calendar with variable number of entries per day
@@ -11,7 +10,6 @@
 -   Enhancement: [#394] Adding option to control the behavior of the Minimize button
 -   Enhancement: [#414] Right-align content of selection boxes from Preferences Window
 -   Enhancement: [#442] Modernizing scrollbar styling
--   Enhancementnt: [#448] Changed link color in Workday Waiver Manager to match themes
 -   Fix: Fixed behavior of calendar when moving to next/previous month when current day is in the range of 29-31.
 -   Fix: [#214] Check that lunch has beginning and end, if there is lunch
 -   Fix: [#334] Improving performance of overall balance calculation and fixing balance target date after month change
@@ -26,22 +24,16 @@ Who built 1.5.6:
 <!--- Begin users - Do not remove -->
 
 -   06b
--   BamButz
--   Tailine
 -   akaash11
 -   anatdagan
 -   araujoarthur0
--   cssCoder
 -   daretobedifferent18
--   fikimaul
 -   greyGroot
 -   ibamibrhm
 -   kumaranshu72
 -   michaelknowles
--   nilold
 -   parikhdhruv24791
 -   sajeevan16
--   sano2019
 -   skevprog
 -   thamara
 
