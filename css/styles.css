@@ -107,8 +107,8 @@ html[data-theme="cadent-star"] {
 /* There are some libraries that impose their own colors. These may need to be overriden for specific themes */
 
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -385,7 +385,7 @@ body {
 
 .punch-button {
   opacity: 0.9;
-  width: calc(100vw - 40px);
+  width: calc(100vw - 60px);
   height: 100%;
   border: none;
   color: var(--punch-color);
