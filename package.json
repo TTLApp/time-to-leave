@@ -73,8 +73,8 @@
     "tape": "^5.0.1"
   },
   "dependencies": {
-    "bootstrap": "^4.5.2",
-    "date-holidays": "^1.7.1",
+    "bootstrap": "^4.5.3",
+    "date-holidays": "^1.8.0",
     "electron-store": "^6.0.1",
     "is-online": "^8.5.0",
     "jquery": "^3.5.1",
