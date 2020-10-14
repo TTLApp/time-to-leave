@@ -628,6 +628,13 @@ input:disabled + .slider {
   direction: rtl;
 }
 
+/* Styles for Right Alignment of input type date */
+#preferences-window input[type="date"].date-right::-webkit-datetime-edit {
+  text-align: right;
+  position: relative;
+  left: 25px;
+}
+
 /* Waiver page styles */
 
 #workday-waiver-window .section-title {
