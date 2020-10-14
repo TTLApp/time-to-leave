@@ -47,7 +47,6 @@ class Calendar
     _initCalendar()
     {
         this._generateTemplate();
-        // .click() is deprecated in jQuery 3. Changed to 'on' syntax.
         $('#next-month').on('click', () => { this._nextMonth(); });
         $('#prev-month').on('click', () => { this._prevMonth(); });
         $('#current-month').on('click', () => { this._goToCurrentDate(); });
@@ -90,10 +89,8 @@ class Calendar
                 let balanceElement = $('#overall-balance');
                 if (balanceElement)
                 {
-                    balanceElement.val(balance);
-                    balanceElement.removeClass('text-success text-danger');
-                    balanceElement.html(balance);
-                    balanceElement.addClass(isNegative(balance) ? 'text-danger' : 'text-success');
+                    balanceElement.val(balance).removeClass('text-success text-danger')
+                        .html(balance).addClass(isNegative(balance) ? 'text-danger' : 'text-success');
                 }
             })
             .catch(err =>
