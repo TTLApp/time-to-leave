@@ -209,7 +209,7 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
     {
         let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         let today = this._calendarDate;
-        $('#header-date').html(today.toLocaleDateString(undefined, options));
+        $('#header-date').html(today.toLocaleDateString(i18n.language, options));
         $('#input-calendar-date').val(getDateStr(today));
     }
 
