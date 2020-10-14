@@ -1308,3 +1308,6 @@ html[data-view='flexible-day'] .footer .punch-button {
 html[data-view='flexible-day'] .punch-button img {
   display: none;
 }
+#workday-waiver-window select {
+  border: none;
+}
