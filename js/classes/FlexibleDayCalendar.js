@@ -166,7 +166,7 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
         let waivedInfo = this._getWaiverStore(year, month, day);
         if (waivedInfo !== undefined)
         {
-            let summaryStr = `<b>${i18n.t('$FlexibleDayCalendar.waived-day')}</b>` + waivedInfo['reason'];
+            let summaryStr = `<b>${i18n.t('$FlexibleDayCalendar.waived-day')}: </b>` + waivedInfo['reason'];
             let waivedLineHtmlCode =
                  '<div class="row-waiver" id="' + dateKey + '">' +
                     '<div class="waived-day-text" colspan="5">' + summaryStr + '</div>' +
