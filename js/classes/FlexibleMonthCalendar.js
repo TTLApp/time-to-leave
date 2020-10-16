@@ -68,7 +68,7 @@ class FlexibleMonthCalendar extends Calendar
         let rightBut = `<input id="next-month" type="image" src="assets/right-arrow.svg" alt="${i18n.t('$FlexibleDayCalendar.next-month')}" height="24" width="24"></input>`;
         return '<div class="title-header">'+
                     '<div class="title-header title-header-img"><img src="assets/timer.svg" height="64" width="64"></div>' +
-                    `<div class="title-header title-header-text">${i18n.t('$FlexibleDayCalendar.next-month')}</div>` +
+                    `<div class="title-header title-header-text">${i18n.t('$FlexibleDayCalendar.time-to-leave')}</div>` +
                     '<div class="title-header title-header-msg"></div>' +
                '</div>' +
                 '<table class="table-header"><tr>' +
