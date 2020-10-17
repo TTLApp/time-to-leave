@@ -214,7 +214,9 @@
         "waived-workday-list": "Waived workday list",
         "waiver-manager": "Workday Waiver Manager",
         "waiver-reason": "Waiver Reason",
-        "year": "Year"
+        "year": "Year",
+        "yes": "Yes",
+        "no": "No"
     },
     "$DateUtil": {
         "sunday": "Sunday",

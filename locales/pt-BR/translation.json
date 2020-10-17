@@ -209,12 +209,14 @@
         "state": "Estado:",
         "time-to-leave": "Time to Leave",
         "title": "Time to Leave - Gerenciador de folgas",
-        "to": "para",
+        "to": "até",
         "waive": "Carregar",
         "waived-workday-list": "Lista de folgas",
         "waiver-manager": "Gerenciador de folgas",
         "waiver-reason": "Razão da folga",
-        "year": "Ano"
+        "year": "Ano",
+        "yes": "Sim",
+        "no": "Não"
     },
     "$DateUtil": {
         "sunday": "Domingo",

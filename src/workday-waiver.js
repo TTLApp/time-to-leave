@@ -11,6 +11,9 @@ const { getDateStr } = require('../js/date-aux.js');
 const { bindDevToolsShortcut, showAlert, showDialog } = require('../js/window-aux.js');
 const i18n = require('./configs/i18next.config.js');
 
+const $ = require('jquery');
+const jqueryI18next = require('jquery-i18next');
+
 const waiverStore = new Store({name: 'waived-workdays'});
 let hd = new Holidays();
 
@@ -151,7 +154,7 @@ function deleteEntryOnClick(event)
         title: timeToLeaveStr,
         message: `${deleteWaiverMessageStr} ${day} ?`,
         type: 'info',
-        buttons: ['Yes', 'No']
+        buttons: [i18n.t('$WorkdayWaiver.yes'), i18n.t('$WorkdayWaiver.no')]
     };
     showDialog(options, (result) =>
     {
@@ -336,7 +339,7 @@ function loadHolidaysTable()
     {
         let [tempYear, tempMonth, tempDay] = getDateFromISOStr(holidayDate);
         // Holiday returns month with 1-12 index, but showDay expects 0-11
-        let workingDay = showDay(tempYear, tempMonth - 1, tempDay) ? 'Yes' : 'No';
+        let workingDay = showDay(tempYear, tempMonth - 1, tempDay) ? i18n.t('$WorkdayWaiver.yes') : i18n.t('$WorkdayWaiver.no');
         let conflicts = waiverStore.get(holidayDate);
         addHolidayToList(holidayDate, holidayReason, workingDay, conflicts ? conflicts['reason'] : '');
     }
@@ -380,6 +383,26 @@ function initializeHolidayInfo()
     // Clear all rows before adding new ones
     clearHolidayTable();
 }
+
+function translatePage(language)
+{
+    $('html').attr('lang', language);
+    $('body').localize();
+    $('title').localize();
+    $('label').localize();
+    $('div').localize();
+}
+
+i18n.on('loaded', () =>
+{
+    const usersStyles = getUserPreferences();
+    i18n.changeLanguage(usersStyles['language']);
+    i18n.off('loadded');
+    i18n.off('languageChanged');
+
+    jqueryI18next.init(i18n, $);
+    translatePage(i18n.language);
+});
 
 $(() =>
 {
