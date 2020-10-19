@@ -121,11 +121,13 @@ class Calendar
         });
 
 
-        $('input[type=\'time\']').keydown(function(e) {
+        $('input[type=\'time\']').keydown(function(e)
+        {
             let code = e.keyCode || e.which;
-        
-            if (code === 9 && !this.value) {  
-                this.value = '00:00'
+
+            if (code === 9 && !this.value)
+            {
+                this.value = '00:00';
                 calendar._updateTimeDayCallback(this.id, this.value);
             }
         });
