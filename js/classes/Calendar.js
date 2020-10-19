@@ -120,6 +120,16 @@ class Calendar
             calendar._updateTimeDayCallback(this.id, this.value);
         });
 
+
+        $('input[type=\'time\']').keydown(function(e) {
+            let code = e.keyCode || e.which;
+        
+            if (code === 9 && !this.value) {  
+                this.value = '00:00'
+                calendar._updateTimeDayCallback(this.id, this.value);
+            }
+        });
+
         $('.waiver-trigger').off('click').on('click', function()
         {
             const dayId = $(this).closest('tr').attr('id').substr(3);
@@ -231,7 +241,6 @@ class Calendar
     static _getInputCode(year, month, day, key)
     {
         let idTag = generateKey(year, month, day, key);
-
         return '<input type="time" id="' + idTag + '"' +
                (key.endsWith('total') ? ' disabled' : '') +
                '>';
