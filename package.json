@@ -67,9 +67,9 @@
   },
   "dependencies": {
     "bootstrap": "^4.5.3",
-    "date-holidays": "^1.8.0",
+    "date-holidays": "^1.8.1",
     "electron-store": "^6.0.1",
-    "is-online": "^8.5.0",
+    "is-online": "^8.5.1",
     "jquery": "^3.5.1",
     "jquery-i18next": "^1.2.1",
     "node-notifier": "^8.0.0",
