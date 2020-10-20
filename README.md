@@ -3,6 +3,7 @@
 
   <p>Log work hours and get notified when it's time to leave the office and start to live</p>
   <p>Esse documento também está disponível em <a href="docs/README-pt-BR.md">Português (Brasil)</a></p>
+  <p>Este documento también está disponíble en <a href="docs/README-es-LA.md">Español (Latinoamérica)</a></p>
 
   <br/>
 
