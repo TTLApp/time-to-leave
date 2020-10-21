@@ -88,7 +88,7 @@ function notifyTimeToLeave()
 
         if (curTime === timeToLeave || (isRepeatingInterval && preferences['repetition']))
         {
-            notify('Hey there! I think it\'s time to leave.');
+            notify(i18n.t('$Notification.time-to-leave'));
         }
     }
 }

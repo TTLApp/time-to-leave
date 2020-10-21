@@ -64,7 +64,7 @@ function checkIdleAndNotify()
     if (recommendPunchIn)
     {
         recommendPunchIn = false;
-        notify('Don\'t forget to punch in!');
+        notify(i18n.t('$Notification.punch-reminder'));
     }
 }
 

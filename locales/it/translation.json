@@ -166,6 +166,10 @@
         "lunch-start": "Inizio pranzo",
         "punch-time": "Ora di registrazione"
     },
+    "$Notification": {
+        "time-to-leave": "Hey there! I think it's time to leave.",
+        "punch-reminder": "Don't forget to punch in!"
+    },
     "$FixedDayCalendar": {
         "leave-by": "Dovresti andartene per le:",
         "all-done": "Tutto fatto per oggi. Bilancio della giornata:",

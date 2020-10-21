@@ -166,6 +166,10 @@
         "lunch-start": "Início do Almoço",
         "punch-time": "Bater ponto"
     },
+    "$Notification": {
+        "time-to-leave": "Ei você! Acho que é hora de ir.",
+        "punch-reminder": "Não esqueça de bater ponto!"
+    },
     "$FixedDayCalendar": {
         "leave-by": "Você deve sair às:",
         "all-done": "Tudo certo por hoje. Saldo do dia:",
