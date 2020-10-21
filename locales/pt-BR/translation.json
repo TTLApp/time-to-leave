@@ -163,7 +163,8 @@
         "lunch-total": "Total do Almoço",
         "day-total": "Total do Dia",
         "day": "Dia",
-        "lunch-start": "Início do Almoço"
+        "lunch-start": "Início do Almoço",
+        "punch-time": "Bater ponto"
     },
     "$FixedDayCalendar": {
         "leave-by": "Você deve sair às:",

@@ -163,7 +163,8 @@
         "lunch-total": "Totale pranzo",
         "day-total": "Totale giornata",
         "day": "Giorno",
-        "lunch-start": "Inizio pranzo"
+        "lunch-start": "Inizio pranzo",
+        "punch-time": "Ora di registrazione"
     },
     "$FixedDayCalendar": {
         "leave-by": "Dovresti andartene per le:",

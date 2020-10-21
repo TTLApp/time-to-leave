@@ -163,7 +163,8 @@
         "lunch-total": "Lunch Total",
         "day-total": "Day Total",
         "day": "Day",
-        "lunch-start": "Lunch Start"
+        "lunch-start": "Lunch Start",
+        "punch-time": "Punch time"
     },
     "$FixedDayCalendar": {
         "leave-by": "You should leave by:",

@@ -107,6 +107,7 @@ class Calendar
         this._updateTableHeader();
         this._updateTableBody();
         this._updateBasedOnDB();
+        this._updatePunchButtonText();
 
         let waivedInfo = this._getWaiverStore(this._getTodayYear(), this._getTodayMonth(), this._getTodayDate());
         let showCurrentDay = this._showDay(this._getTodayYear(), this._getTodayMonth(), this._getTodayDate());
@@ -483,6 +484,11 @@ class Calendar
     _updateTableBody()
     {
         $('#calendar-table-body').html(this._generateTableBody());
+    }
+
+    _updatePunchButtonText()
+    {
+        $('#punch-button-label').html(i18n.t('$Calendar.punch-time'));
     }
 
     /**
