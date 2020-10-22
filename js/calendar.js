@@ -7,12 +7,16 @@ const {
     hourToMinutes
 } = require('./js/time-math.js');
 const { notify } = require('./js/notification.js');
-const { getUserPreferences } = require('./js/user-preferences.js');
+const {
+    getUserPreferences,
+    notificationIsEnabled
+} = require('./js/user-preferences.js');
 const { applyTheme } = require('./js/themes.js');
 const { CalendarFactory } = require('./js/classes/CalendarFactory.js');
 const i18n = require('./src/configs/i18next.config.js');
 
 // Global values for calendar
+// Ideally, remove this prefs \/\/\/\/\/\/
 let preferences = getUserPreferences();
 let calendar = null;
 
@@ -35,31 +39,24 @@ ipcRenderer.on('LANGUAGE_CHANGED', (event, message) =>
 
 
 /*
- * Get nofified when preferences has been updated.
+ * Get notified when preferences has been updated.
  */
 ipcRenderer.on('PREFERENCE_SAVED', function(event, prefs)
 {
     preferences = prefs;
     calendar = CalendarFactory.getInstance(prefs, calendar);
     applyTheme(prefs.theme);
-});
+}
+);
 
 /*
- * Get nofified when waivers get updated.
+ * Get notified when waivers get updated.
  */
 ipcRenderer.on('WAIVER_SAVED', function()
 {
     calendar.loadInternalWaiveStore();
     calendar.redraw();
 });
-
-/*
- * Returns true if the notification is enabled in preferences.
- */
-function notificationIsEnabled()
-{
-    return preferences['notification'];
-}
 
 /*
  * Notify user if it's time to leave

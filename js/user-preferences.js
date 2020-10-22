@@ -185,6 +185,15 @@ function getLoadedOrDerivedUserPreferences()
 }
 
 /*
+ * Returns true if the notification is enabled in preferences.
+ */
+function notificationIsEnabled()
+{
+    let preferences = getLoadedOrDerivedUserPreferences();
+    return preferences['notification'];
+}
+
+/*
  * Returns true if we should display week day.
  */
 function showWeekDay(weekDay, preferences = undefined)
@@ -253,5 +262,6 @@ module.exports = {
     showDay,
     switchCalendarView,
     isNotBoolean,
-    isValidPreferenceTime
+    isValidPreferenceTime,
+    notificationIsEnabled
 };
