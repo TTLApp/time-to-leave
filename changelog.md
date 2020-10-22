@@ -3,7 +3,6 @@
 <!--- Begin changes - Do not remove -->
 
 -   Accessibility: [#447] Including focus ring/outline for inputs in the App
--   Enhancement: Time to Leave is now available in pt-BR!
 -   Enhancement: [#328] Swap position for overall and month balance on day view
 -   Enhancement: [#333] Adding start date for overall balance on preferences
 -   Enhancement: [#357] Adding flexible table format for month calendar with variable number of entries per day
@@ -21,8 +20,10 @@
 -   Fix: [#362] Fixed initial size of preferences window
 -   Fix: [#377] Fixed the layout which was broken when width < 768px
 -   Fix: [#395] Fixing uncaught exception in main.js on day refresh
--   Translation: Time to Leave is not available in Italian (it).
--   Translation: Time to Leave is not available in Spanish (es).
+-   Translation: Time to Leave is now available in Brazilian Portuguese (pt-BR)!
+-   Translation: Time to Leave is not available in Italian (it)!
+-   Translation: Time to Leave is not available in Spanish (es)!
+-   Translation: Time to Leave is now available in Traditional Chinese (zh-TW)!
 
 <!--- End changes - Do not remove -->
 
@@ -39,13 +40,13 @@ Who built 1.5.6:
 -   araujoarthur0
 -   bobsany16
 -   ccsCoder
--   cssCoder
 -   daretobedifferent18
 -   fikimaul
 -   giovannipessiva
 -   greyGroot
 -   ibamibrhm
 -   jcombs0929
+-   jswildcards
 -   ju-pinheiro
 -   kumaranshu72
 -   mfayaq
@@ -60,6 +61,7 @@ Who built 1.5.6:
 -   taismassaro
 -   thamara
 -   tiagohermano
+-   tupaschoal
 
 <!--- End users - Do not remove -->
 
