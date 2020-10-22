@@ -96,10 +96,11 @@ class FlexibleMonthCalendar extends Calendar
      */
     static _getSummaryRowCode()
     {
+        let leaveByCode = '<input type="text" id="leave-by" size="5" disabled>';
         return  '<div class="summary" id="summary-unfinished-day">' +
                     `<div class="leave-by-text" colspan="7">${i18n.t('$FlexibleMonthCalendar.leave-by')}</div>` +
                     '<div class="leave-by-time">' +
-                        '<div id="leave-by"></div>' +
+                        leaveByCode +
                     '</div>' +
                 '</div>' +
                 '<div class="summary hidden" id="summary-finished-day">' +
@@ -536,7 +537,7 @@ class FlexibleMonthCalendar extends Calendar
         }
 
         const leaveBy = this._calculateLeaveBy();
-        $('#leave-by').html(leaveBy <= '23:59' ? leaveBy : '--:--');
+        $('#leave-by').val(leaveBy <= '23:59' ? leaveBy : '--:--');
 
         this._checkTodayPunchButton();
 
