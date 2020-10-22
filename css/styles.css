@@ -444,6 +444,13 @@ body {
   width: 50%;
 }
 
+/* remove borders for inputs on Holiday Waiver manager */
+
+#year, #country, #state, #city {
+  border: none;
+}
+
+
 /* The switch - the box around the slider */
 
 .switch {
