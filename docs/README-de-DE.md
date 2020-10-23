@@ -40,9 +40,9 @@ Time to Leave funktioniert unter MacOS, Windows und Linux, und Sie können die g
 
 ## Wie man TTL baut und dazu beiträgt
 
-Wenn Sie helfen möchten, lesen Sie unseren Leitfaden.[Beitrag](../CONTRIBUTING.md).
+Wenn Sie helfen möchten, lesen Sie unseren Leitfaden [Beitrag](../CONTRIBUTING.md).
 
-Sie können auch den verwenden.[Entwicklungsleitfaden] (../DEVELOPMENT.md) für mehr Informationen.
+Sie können auch den verwenden.[Entwicklungsleitfaden](../DEVELOPMENT.md) für mehr Informationen.
 
 
 ## In Kontakt kommen!
