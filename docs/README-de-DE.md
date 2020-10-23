@@ -51,7 +51,7 @@ Tritt unser ... bei [Kanal der Zwietracht](https://discord.gg/P3KkEF5) um neue F
 ## Credits
 
 
-Von [freepik](https://www.flaticon.com/authors/freepik) von [www.flaticoncom](https://www.flaticon.com) erstellte Symbole.
+Icons von [freepik](https://www.flaticon.com/authors/freepik) von [www.flaticoncom](https://www.flaticon.com).
 
 Uhrensymbol von [lucy-g](https://icon-icons.com/icon/timer/121243), Farbvariationen und daraus modifizierte Formate.
 
