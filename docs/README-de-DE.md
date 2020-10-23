@@ -36,7 +36,7 @@ Sie können auch Freizeit an den Tagen hinzufügen, an denen Sie nicht gearbeite
 
 ## So installieren Sie TTL
 
-Time to Leave funktioniert unter MacOS, Windows und Linux, und Sie können die gewünschte Version der herunterladen. [neuesten Version](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
+Time to Leave funktioniert unter MacOS, Windows und Linux, und Sie können die gewünschte Version von der herunterladen. [neuesten Version](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
 
 ## Wie man TTL baut und dazu beiträgt
 
@@ -51,10 +51,10 @@ Tritt unser ... bei [Kanal der Zwietracht](https://discord.gg/P3KkEF5) um neue F
 ## Créditos
 
 
-Von [freepik] (https://www.flaticon.com/authors/freepik) von [www.flaticon.com] (https://www.flaticon.com) erstellte Symbole.
+Von [freepik](https://www.flaticon.com/authors/freepik) von [www.flaticon.com](https://www.flaticon.com) erstellte Symbole.
 
-Uhrensymbol von [lucy-g] (https://icon-icons.com/icon/timer/121243), Farbvariationen und daraus modifizierte Formate.
+Uhrensymbol von [lucy-g](https://icon-icons.com/icon/timer/121243), Farbvariationen und daraus modifizierte Formate.
 
-Patientensymbol von [SVG Repo] (https://www.svgrepo.com/svg/271898/sick).
+Patientensymbol von [SVG Repo](https://www.svgrepo.com/svg/271898/sick).
 
-Symbol für den Displayaustausch von [Pixel perfect] (https://www.flaticon.com/authors/pixel-perfect) von [www.flaticon.com] (https://www.flaticon.com).
+Symbol für den Displayaustausch von [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) von [www.flaticon.com](https://www.flaticon.com).
