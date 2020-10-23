@@ -170,14 +170,6 @@
         "time-to-leave": "Hey there! I think it's time to leave.",
         "punch-reminder": "Don't forget to punch in!"
     },
-    "$UpdateManager": {
-        "dismissBtn": "Dismiss",
-        "downloadBtn": "Download latest version",
-        "remindBtn": "Remind me later",
-        "title": "TTL Check for updates",
-        "upto-date-msg": "Your TTL is up to date.",
-        "old-version-msg": "You are using an old version of TTL and is missing out on a lot of new cool things!"
-    },
     "$FixedDayCalendar": {
         "leave-by": "You should leave by:",
         "all-done": "All done for today. Balance of the day:",
@@ -260,5 +252,13 @@
         "october": "October",
         "november": "November",
         "december": "December"
+    },
+    "$UpdateManager": {
+        "dismissBtn": "Dismiss",
+        "downloadBtn": "Download latest version",
+        "remindBtn": "Remind me later",
+        "title": "TTL Check for updates",
+        "upto-date-msg": "Your TTL is up to date.",
+        "old-version-msg": "You are using an old version of TTL and is missing out on a lot of new cool things!"
     }
 }
