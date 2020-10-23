@@ -21,7 +21,7 @@
 
 ---
 
-Notieren Sie sich die Zeit, zu der Sie heute mit der Arbeit begonnen haben, und das Programm berechnet die Zeit, die Sie das Büro verlassen sollten, unter Berücksichtigung der Zeit, die Sie beim Mittagessen verbracht haben. Wenn es Zeit ist, werden Sie vom Programm benachrichtigt.
+Logge die Zeit, zu der du heute mit der Arbeit begonnen hast und das Programm berechnet unter Berücksichtigung der Zeit, die du beim Mitagessen verbracht hast, wann du das Büro verlassen solltest. Wenn es Zeit ist zu gehen, werden Sie vom Programm benachrichtigt.
 
 ![time-to-leave-notification](https://user-images.githubusercontent.com/3754225/94519526-4dbc0280-0248-11eb-9738-ffae936cfa4a.jpg)
 
