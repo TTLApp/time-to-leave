@@ -1,7 +1,7 @@
 <div align="center">
   <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
 
-  <p>Notieren Sie Ihre Arbeitszeiten und werden Sie benachrichtigt, wenn es Zeit ist, das Büro zu verlassen und zu leben</p>
+  <p>Logge deine Arbeitszeiten und werde benachrichtigt, wenn es Zeit ist, das Büro zu verlassen und dein Leben zu genießen</p>
 
   <br/>
 
