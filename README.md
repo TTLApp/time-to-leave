@@ -45,7 +45,7 @@ Time to Leave works on MacOS, Windows and Linux, and you can download the desire
 
 If you want to help, read our [contributing](CONTRIBUTING.md) guidelines.
 You can also refer to our [development guide](DEVELOPMENT.md) for more information.
-
+## Follow our contribution Guidelines ##
 ## Get in touch!
 
 Join our [discord channel](https://discord.gg/P3KkEF5) to discuss upcoming features and more.
