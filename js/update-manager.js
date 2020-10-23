@@ -4,6 +4,7 @@ const { app, net, shell, dialog, BrowserWindow } = require('electron');
 const { getDateStr } = require('./date-aux.js');
 const isOnline = require('is-online');
 const Store = require('electron-store');
+const i18n = require('../src/configs/i18next.config');
 
 function shouldCheckForUpdates()
 {
@@ -37,10 +38,14 @@ async function checkForUpdates(showUpToDateDialog)
                 {
                     const options = {
                         type: 'question',
-                        buttons: ['Dismiss', 'Download latest version', 'Remind me later'],
+                        buttons: [
+                            i18n.t('$UpdateManager.dismissBtn'),
+                            i18n.t('$UpdateManager.downloadBtn'),
+                            i18n.t('$UpdateManager.remindBtn')
+                        ],
                         defaultId: 1,
-                        title: 'TTL Check for updates',
-                        message: 'You are using an old version of TTL and is missing out on a lot of new cool things!',
+                        title: i18n.t('$UpdateManager.title'),
+                        message: i18n.t('$UpdateManager.old-version-msg'),
                     };
                     let response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
                     if (response === 1)
@@ -61,9 +66,9 @@ async function checkForUpdates(showUpToDateDialog)
                 {
                     const options = {
                         type: 'info',
-                        buttons: ['OK'],
-                        title: 'TTL Check for updates',
-                        message: 'Your TTL is up to date.'
+                        buttons: [i18n.t('$Menu.ok')],
+                        title: i18n.t('$UpdateManager.title'),
+                        message: i18n.t('$UpdateManager.upto-date-msg')
                     };
                     dialog.showMessageBox(null, options);
                 }
