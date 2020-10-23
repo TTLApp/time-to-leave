@@ -253,18 +253,28 @@ function getDefaultWidthHeight()
     }
 }
 
+
+/*
+ * Returns the value of language in preferences.
+ */
 function getUserLanguage()
 {
     let preferences = getLoadedOrDerivedUserPreferences();
     return preferences['language'];
 }
 
+/*
+ * Returns the value of notification-interval in preferences.
+ */
 function getNotificationsInterval()
 {
     let preferences = getLoadedOrDerivedUserPreferences();
     return preferences['notifications-interval'];
 }
 
+/*
+ * Returns true if repetition is enabled in preferences.
+ */
 function repetitionIsEnabled()
 {
     let preferences = getLoadedOrDerivedUserPreferences();
