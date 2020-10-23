@@ -892,7 +892,7 @@ html[data-view='flexible'] .row-waiver .waived-day-text {
   }
 
   html[data-view='flexible'] .row-time {
-    width: 300px;
+    width: 25%;
   }
 }
 
