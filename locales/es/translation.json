@@ -4,7 +4,10 @@
         "pt-BR": "Português - Brasil",
         "es": "Español",
         "it": "Italiano",
-        "zh-TW": "繁體中文"
+        "zh-TW": "繁體中文",
+        "de-DE": "Deutsch",
+        "hi": "हिंदी",
+        "mr": "मराठी"
     },
     "$Preferences": {
         "title": "Time to Leave - Preferencias",

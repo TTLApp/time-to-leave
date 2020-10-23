@@ -272,7 +272,7 @@ function getEditMenuTemplate(mainWindow)
                             message: i18n.t('$Menu.database-export'),
                             type: 'info',
                             icon: appConfig.iconpath,
-                            detail: i18n.t('$Menu.database-was-exported.')
+                            detail: i18n.t('$Menu.database-was-exported')
                         });
                 }
             },
