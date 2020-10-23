@@ -26,7 +26,7 @@ Logge die Zeit, zu der du heute mit der Arbeit begonnen hast und das Programm be
 ![time-to-leave-notification](https://user-images.githubusercontent.com/3754225/94519526-4dbc0280-0248-11eb-9738-ffae936cfa4a.jpg)
 
 
-Sie können Ihre Einstellungen steuern, indem Sie Ihre Arbeitstage eingeben, wie viele Stunden Sie pro Tag arbeiten und ob Sie benachrichtigt werden möchten oder nicht.
+Du kannst Einstellungen setzen indem du deine Arbeitstage angibst, wieviele Stunden pro Tag du arbeitest und ob du benachrichtigt werden möchtest oder nicht.
 
 ![time-to-leave-settings](https://user-images.githubusercontent.com/3754225/94519531-4eed2f80-0248-11eb-9303-78f9abe69201.jpg)
 
