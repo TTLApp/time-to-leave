@@ -253,15 +253,36 @@ function getDefaultWidthHeight()
     }
 }
 
+function getUserLanguage()
+{
+    let preferences = getLoadedOrDerivedUserPreferences();
+    return preferences['language'];
+}
+
+function getNotificationsInterval()
+{
+    let preferences = getLoadedOrDerivedUserPreferences();
+    return preferences['notifications-interval'];
+}
+
+function repetitionIsEnabled()
+{
+    let preferences = getLoadedOrDerivedUserPreferences();
+    return preferences['repetition'];
+}
+
 module.exports = {
     defaultPreferences,
     getDefaultWidthHeight,
     getUserPreferences: getLoadedOrDerivedUserPreferences,
+    getUserLanguage,
+    getNotificationsInterval,
     getPreferencesFilePath,
     savePreferences,
     showDay,
     switchCalendarView,
     isNotBoolean,
     isValidPreferenceTime,
-    notificationIsEnabled
+    notificationIsEnabled,
+    repetitionIsEnabled
 };

@@ -9,18 +9,19 @@ const {
 const { notify } = require('./js/notification.js');
 const {
     getUserPreferences,
-    notificationIsEnabled
+    getUserLanguage,
+    getNotificationsInterval,
+    notificationIsEnabled,
+    repetitionIsEnabled
 } = require('./js/user-preferences.js');
 const { applyTheme } = require('./js/themes.js');
 const { CalendarFactory } = require('./js/classes/CalendarFactory.js');
 const i18n = require('./src/configs/i18next.config.js');
 
 // Global values for calendar
-// Ideally, remove this prefs \/\/\/\/\/\/
-let preferences = getUserPreferences();
 let calendar = null;
 
-const lang = preferences['language'];
+const lang = getUserLanguage();
 // Need to force load of translations
 ipcRenderer.sendSync('GET_INITIAL_TRANSLATIONS', lang);
 
@@ -37,13 +38,11 @@ ipcRenderer.on('LANGUAGE_CHANGED', (event, message) =>
     i18n.changeLanguage(message.language);
 });
 
-
 /*
  * Get notified when preferences has been updated.
  */
 ipcRenderer.on('PREFERENCE_SAVED', function(event, prefs)
 {
-    preferences = prefs;
     calendar = CalendarFactory.getInstance(prefs, calendar);
     applyTheme(prefs.theme);
 }
@@ -75,7 +74,7 @@ function notifyTimeToLeave()
          * How many minutes should pass before the Time-To-Leave notification should be presented again.
          * @type {number} Minutes post the clockout time
          */
-        const notificationInterval = preferences['notifications-interval'];
+        const notificationInterval = getNotificationsInterval();
         let now = new Date();
         let curTime = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
 
@@ -83,7 +82,7 @@ function notifyTimeToLeave()
         let minutesDiff = hourToMinutes(subtractTime(timeToLeave, curTime));
         let isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval === 0);
 
-        if (curTime === timeToLeave || (isRepeatingInterval && preferences['repetition']))
+        if (curTime === timeToLeave || (isRepeatingInterval && repetitionIsEnabled()))
         {
             notify(i18n.t('$Notification.time-to-leave'));
         }
@@ -94,7 +93,7 @@ function notifyTimeToLeave()
 $(() =>
 {
     // Wait until translation is complete
-    i18n.changeLanguage(preferences['language'])
+    i18n.changeLanguage(lang)
         .then(() =>
         {
             let preferences = getUserPreferences();
