@@ -36,7 +36,7 @@ Sie können auch Freizeit an den Tagen hinzufügen, an denen Sie nicht gearbeite
 
 ## So installieren Sie TTL
 
-Time to Leave funktioniert unter MacOS, Windows und Linux, und Sie können die gewünschte Version der [neuesten Version] herunterladen.(https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
+Time to Leave funktioniert unter MacOS, Windows und Linux, und Sie können die gewünschte Version der herunterladen. [neuesten Version](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
 
 ## Wie man TTL baut und dazu beiträgt
 
@@ -46,7 +46,7 @@ Sie können auch den [Entwicklungsleitfaden] verwenden.(../DEVELOPMENT.md) für 
 
 
 ## In Kontakt kommen!
-Tritt unser ... bei[Kanal der Zwietracht](https://discord.gg/P3KkEF5) um neue Funktionen und mehr zu diskutieren.
+Tritt unser ... bei [Kanal der Zwietracht](https://discord.gg/P3KkEF5) um neue Funktionen und mehr zu diskutieren.
 
 ## Créditos
 
