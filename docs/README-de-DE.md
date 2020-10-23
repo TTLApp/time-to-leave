@@ -57,4 +57,4 @@ Originales Timer Icon sowie Variationen und modifizierte Formate von [lucy-g](ht
 
 Kranken-Icon von [SVG Repo](https://www.svgrepo.com/svg/271898/sick).
 
-Symbol für den Displayaustausch von [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) von [www.flaticon.com](https://www.flaticon.com).
+"View Switch" Icon von [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) von [www.flaticon.com](https://www.flaticon.com).
