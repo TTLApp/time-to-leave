@@ -7,6 +7,7 @@
   <p>हे कागदजत्र देखील उपलब्ध आहे<a href="docs/README-mr.md">मराठी</a>तसेच उपलब्ध आहे</p>
   <p>Questo documento è disponibile anche in <a href="docs/README-it.md">Italiano</a></p>
   <p>Ce document est également disponible en<a href="docs/README-french.md"> français</a></p>
+  <p>Dieses Dokument ist auch in<a href="docs/README-german.md"> Deutsche</a></p>
 
   <p>यह दस्तावेज़ <a href="docs/README-hi.md">Hindi</a> में भी उपलब्ध है </p>
 
