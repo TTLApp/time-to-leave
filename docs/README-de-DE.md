@@ -42,7 +42,7 @@ Time to Leave funktioniert unter MacOS, Windows und Linux, und Sie können die g
 
 Wenn Sie helfen möchten, lesen Sie unseren Leitfaden [Beitrag](../CONTRIBUTING.md).
 
-Sie können auch den verwenden.[Entwicklungsleitfaden](../DEVELOPMENT.md) für mehr Informationen.
+Sie können auch den verwenden [Entwicklungsleitfaden](../DEVELOPMENT.md) für mehr Informationen.
 
 
 ## In Kontakt kommen!
@@ -51,7 +51,7 @@ Tritt unser ... bei [Kanal der Zwietracht](https://discord.gg/P3KkEF5) um neue F
 ## Créditos
 
 
-Von [freepik](https://www.flaticon.com/authors/freepik) von [www.flaticon.com](https://www.flaticon.com) erstellte Symbole.
+Von [freepik](https://www.flaticon.com/authors/freepik) von [www.flaticoncom](https://www.flaticon.com) erstellte Symbole.
 
 Uhrensymbol von [lucy-g](https://icon-icons.com/icon/timer/121243), Farbvariationen und daraus modifizierte Formate.
 
