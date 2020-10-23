@@ -55,6 +55,6 @@ Icons von [freepik](https://www.flaticon.com/authors/freepik) von [www.flaticonc
 
 Originales Timer Icon sowie Variationen und modifizierte Formate von [lucy-g](https://icon-icons.com/icon/timer/121243).
 
-Patientensymbol von [SVG Repo](https://www.svgrepo.com/svg/271898/sick).
+Kranken-Icon von [SVG Repo](https://www.svgrepo.com/svg/271898/sick).
 
 Symbol für den Displayaustausch von [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) von [www.flaticon.com](https://www.flaticon.com).
