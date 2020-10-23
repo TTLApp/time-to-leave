@@ -48,7 +48,7 @@ Sie können auch den verwenden [Entwicklungsleitfaden](../DEVELOPMENT.md) für m
 ## In Kontakt kommen!
 Tritt unser ... bei [Kanal der Zwietracht](https://discord.gg/P3KkEF5) um neue Funktionen und mehr zu diskutieren.
 
-## Créditos
+## Credits
 
 
 Von [freepik](https://www.flaticon.com/authors/freepik) von [www.flaticoncom](https://www.flaticon.com) erstellte Symbole.
