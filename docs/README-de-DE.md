@@ -30,23 +30,23 @@ Du kannst Einstellungen setzen indem du deine Arbeitstage angibst, wieviele Stun
 
 ![time-to-leave-settings](https://user-images.githubusercontent.com/3754225/94519531-4eed2f80-0248-11eb-9303-78f9abe69201.jpg)
 
-Sie können auch Freizeit an den Tagen hinzufügen, an denen Sie nicht gearbeitet haben.
+Du kannst Tage an denen du nicht gearbeitet hast als Freizeit festlegen.
 
 ![time-to-leave-waiver](https://user-images.githubusercontent.com/3754225/94762058-4e79a380-03c4-11eb-8f28-1c480dbf8b5c.png)
 
 ## So installieren Sie TTL
 
-Time to Leave funktioniert unter MacOS, Windows und Linux, und Sie können die gewünschte Version von der herunterladen. [neuesten Version](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
+Time to Leave ist kompatibel mit MacOS, Windows und Linux. Du kannst die gewünschte Version vom [neuesten Release an herunterladen](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
 
 ## Wie man TTL baut und dazu beiträgt
 
-Wenn Sie helfen möchten, lesen Sie unseren Leitfaden [Beitrag](../CONTRIBUTING.md).
+Wenn du helfen möchtest, lese unseren [Contribution-Leitfaden](../CONTRIBUTING.md).
 
-Sie können auch den verwenden [Entwicklungsleitfaden](../DEVELOPMENT.md) für mehr Informationen.
+Du kannst auch den [Entwicklungsleitfaden](../DEVELOPMENT.md) für mehr Informationen verwenden.
 
 
-## In Kontakt kommen!
-Tritt unser ... bei [Kanal der Zwietracht](https://discord.gg/P3KkEF5) um neue Funktionen und mehr zu diskutieren.
+## In Kontakt treten!
+Tritt unserem [Discord Server](https://discord.gg/P3KkEF5) bei, um über neue Funktion und mehr zu diskutieren.
 
 ## Credits
 
