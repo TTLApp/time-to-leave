@@ -11,8 +11,7 @@
 
   <p>此文檔亦適用於<a href="docs/README-zh-TW.md">繁體中文</a></p>
 
-  <p>இந்த ஆவணம் <a href="docs/README-ta.md">
-தமிழ்(Tamil)</a> இல் கிடைக்கிறது </p>
+  <p>இந்த ஆவணம் <a href="docs/README-ta.md"> தமிழ்(Tamil)</a> இல் கிடைக்கிறது </p>
 
   <br/>
 
