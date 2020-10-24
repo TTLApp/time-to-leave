@@ -309,6 +309,10 @@ body {
   width: 0px;
 }
 
+#header-date {
+  text-transform: capitalize;
+}
+
 #input-calendar-date::-webkit-datetime-edit {
   display: none;
 }

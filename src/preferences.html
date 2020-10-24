@@ -44,7 +44,7 @@
             </div>
             <div class="flex-box">
                 <p data-i18n="$Preferences.hoursPerDay">Hours per day</p>
-                <input type="text" name="hours-per-day" id="hours-per-day" maxlength=5 pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" placeholder="HH:mm" value="08:00" size=5 required oninput="this.reportValidity()" onblur="this.value = this.checkValidity() ? this.value : '08:00'">
+                <input data-i18n="[placeholder]$Preferences.hours-per-day" type="text" name="hours-per-day" id="hours-per-day" maxlength=5 pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" value="08:00" size=5 required oninput="this.reportValidity()" onblur="this.value = this.checkValidity() ? this.value : '08:00'">
             </div>
         </section>
 

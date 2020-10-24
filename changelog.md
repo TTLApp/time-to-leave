@@ -43,9 +43,12 @@ Who built 1.5.6:
 -   Squizzi3
 -   Tailine
 -   akaash11
+-   alsvader
+-   amitchakraborti9
 -   anatdagan
 -   araujoarthur0
 -   bobsany16
+-   cbanupama
 -   ccsCoder
 -   daretobedifferent18
 -   fikimaul
