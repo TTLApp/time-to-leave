@@ -185,6 +185,15 @@ function getLoadedOrDerivedUserPreferences()
 }
 
 /*
+ * Returns true if the notification is enabled in preferences.
+ */
+function notificationIsEnabled()
+{
+    let preferences = getLoadedOrDerivedUserPreferences();
+    return preferences['notification'];
+}
+
+/*
  * Returns true if we should display week day.
  */
 function showWeekDay(weekDay, preferences = undefined)
@@ -244,14 +253,46 @@ function getDefaultWidthHeight()
     }
 }
 
+
+/*
+ * Returns the value of language in preferences.
+ */
+function getUserLanguage()
+{
+    let preferences = getLoadedOrDerivedUserPreferences();
+    return preferences['language'];
+}
+
+/*
+ * Returns the value of notification-interval in preferences.
+ */
+function getNotificationsInterval()
+{
+    let preferences = getLoadedOrDerivedUserPreferences();
+    return preferences['notifications-interval'];
+}
+
+/*
+ * Returns true if repetition is enabled in preferences.
+ */
+function repetitionIsEnabled()
+{
+    let preferences = getLoadedOrDerivedUserPreferences();
+    return preferences['repetition'];
+}
+
 module.exports = {
     defaultPreferences,
     getDefaultWidthHeight,
     getUserPreferences: getLoadedOrDerivedUserPreferences,
+    getUserLanguage,
+    getNotificationsInterval,
     getPreferencesFilePath,
     savePreferences,
     showDay,
     switchCalendarView,
     isNotBoolean,
-    isValidPreferenceTime
+    isValidPreferenceTime,
+    notificationIsEnabled,
+    repetitionIsEnabled
 };

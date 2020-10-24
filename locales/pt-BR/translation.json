@@ -5,7 +5,9 @@
         "es": "Español",
         "it": "Italiano",
         "zh-TW": "繁體中文",
-        "de-DE": "Deutsch"
+        "de-DE": "Deutsch",
+        "hi": "हिंदी",
+        "mr": "मराठी"
     },
     "$Preferences": {
         "title": "Time to Leave - Preferências",
@@ -40,7 +42,8 @@
         "numberOfEntries": "Número de entradas",
         "fixed": "Fixo",
         "flexible": "Flexível",
-        "language": "Idioma"
+        "language": "Idioma",
+        "hours-per-day": "HH:mm"
     },
     "$Menu": {
         "about": "Sobre",
@@ -254,5 +257,13 @@
         "october": "Outubro",
         "november": "Novembro",
         "december": "Dezembro"
+    },
+    "$UpdateManager": {
+        "dismissBtn": "Dismiss",
+        "downloadBtn": "Download latest version",
+        "remindBtn": "Remind me later",
+        "title": "TTL Check for updates",
+        "upto-date-msg": "Your TTL is up to date.",
+        "old-version-msg": "You are using an old version of TTL and is missing out on a lot of new cool things!"
     }
 }

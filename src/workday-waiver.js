@@ -89,14 +89,15 @@ function addWaiver()
     if (!(validateTime(hours)))
     {
         // The error is shown in the page, no need to handle it here
-        return;
+        return false;
     }
 
     let diff = diffDays(startDate, endDate);
+
     if (diff < 0)
     {
         showAlert(i18n.t('$WorkdayWaiver.end-date-cannot-be-less'));
-        return;
+        return false;
     }
 
     let tempDate = new Date(startDate);
@@ -108,10 +109,11 @@ function addWaiver()
         let removeWaiverStr = i18n.t('$WorkdayWaiver.remove-waiver');
         let [tempYear, tempMonth, tempDay] = getDateFromISOStr(tempDateStr);
         noWorkingDaysOnRange &= !showDay(tempYear, tempMonth-1, tempDay) && !waiverStore.has(tempDateStr);
+
         if (waiverStore.has(tempDateStr))
         {
             showAlert(`${alreadyHaveWaiverStr} ${tempDateStr}. ${removeWaiverStr}`);
-            return;
+            return false;
         }
 
         tempDate.setDate(tempDate.getDate() + 1);
@@ -120,7 +122,7 @@ function addWaiver()
     if (noWorkingDaysOnRange)
     {
         showAlert(i18n.t('$WorkdayWaiver.no-working-days-on-range'));
-        return;
+        return false;
     }
 
     tempDate = new Date(startDate);
@@ -272,7 +274,6 @@ function iterateOnHolidays(funct)
             endDate = new Date(holiday['end']),
             reason = holiday['name'];
         let diff = diffDays(startDate, endDate) - 1;
-
         let tempDate = new Date(startDate);
         for (let i = 0; i <= diff; i++)
         {
@@ -301,7 +302,7 @@ function addHolidayToList(day, reason, workingDay, conflicts)
     if (conflicts)
         $(row.cells[3]).addClass('text-danger');
     conflictsCell.innerHTML = conflicts;
-    importCell.innerHTML = `<label class="switch"><input type="checkbox" ${conflicts || workingDay === 'No' ? '' : 'checked'} name="import-${day}" id="import-${day}"><span class="slider round"></span></label>`;
+    importCell.innerHTML = `<label class="switch"><input type="checkbox" checked="${conflicts || workingDay === 'No' ? '' : 'checked'}" name="import-${day}" id="import-${day}"><span class="slider round"></span></label>`;
 }
 
 function clearHolidayTable()
@@ -450,8 +451,22 @@ $(() =>
 });
 
 module.exports = {
+    addHolidayToList,
     addWaiver,
+    clearTable,
+    clearHolidayTable,
+    clearWaiverList,
+    deleteEntryOnClick,
+    getHolidays,
+    initializeHolidayInfo,
+    iterateOnHolidays,
+    loadHolidaysTable,
+    populateCity,
+    populateCountry,
     populateList,
+    populateState,
+    populateYear,
     setDates,
-    setHours
+    setHours,
+    toggleAddButton,
 };

@@ -309,6 +309,10 @@ body {
   width: 0px;
 }
 
+#header-date {
+  text-transform: capitalize;
+}
+
 #input-calendar-date::-webkit-datetime-edit {
   display: none;
 }
@@ -896,6 +900,10 @@ html[data-view='flexible'] .row-waiver .waived-day-text {
 @media (min-width: 1200px) {
   html[data-view='flexible'] .row-waiver .waived-day-text {
     width: 80%;
+  }
+
+  html[data-view='flexible'] .row-time {
+    width: 25%;
   }
 }
 

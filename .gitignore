@@ -101,3 +101,5 @@ release-builds
 .vscode/settings.json
 *.pyc
 scripts/release_*.md
+
+.idea

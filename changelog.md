@@ -21,7 +21,9 @@
 -   Fix: [#377] Fixed the layout which was broken when width < 768px
 -   Fix: [#395] Fixing uncaught exception in main.js on day refresh
 -   Fix: [#510] Flexible calendar header mixing with table
+-   Translation: Time to Leave is not available in Hindi (hi)!
 -   Translation: Time to Leave is not available in Italian (it)!
+-   Translation: Time to Leave is not available in Marathi (mr)!
 -   Translation: Time to Leave is not available in Spanish (es)!
 -   Translation: Time to Leave is now available in Brazilian Portuguese (pt-BR)!
 -   Translation: Time to Leave is now available in German (de-DE)!
@@ -35,15 +37,21 @@ Who built 1.5.6:
 
 -   06b
 -   BamButz
+-   DevDaveFrame
 -   MichaelYogar
+-   RuteshRathod
 -   SolKuczala
 -   Squizzi3
 -   Tailine
 -   akaash11
+-   alsvader
+-   amitchakraborti9
 -   anatdagan
 -   araujoarthur0
 -   bobsany16
+-   cbanupama
 -   ccsCoder
+-   damirJa
 -   daretobedifferent18
 -   fikimaul
 -   giovannipessiva
@@ -62,6 +70,7 @@ Who built 1.5.6:
 -   samin-batra
 -   sano2019
 -   skevprog
+-   susheelg1197
 -   taismassaro
 -   thamara
 -   tiagohermano

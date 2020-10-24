@@ -5,7 +5,9 @@
         "es": "Español",
         "it": "Italiano",
         "zh-TW": "繁體中文",
-        "de-DE": "Deutsch"
+        "de-DE": "Deutsch",
+        "hi": "हिंदी",
+        "mr": "मराठी"
     },
     "$Preferences": {
         "title": "Time to Leave - Einstellungen",
@@ -40,7 +42,8 @@
         "numberOfEntries": "Anzahl an Einträgen",
         "fixed": "Fixiert",
         "flexible": "Flexibel",
-        "language": "Sprache"
+        "language": "Sprache",
+        "hours-per-day": "HH:mm"
     },
     "$Menu": {
         "about": "Über Time-To-Leave",
@@ -249,5 +252,13 @@
         "october": "Oktober",
         "november": "November",
         "december": "Dezember"
+    },
+    "$UpdateManager": {
+        "dismissBtn": "Dismiss",
+        "downloadBtn": "Download latest version",
+        "remindBtn": "Remind me later",
+        "title": "TTL Check for updates",
+        "upto-date-msg": "Your TTL is up to date.",
+        "old-version-msg": "You are using an old version of TTL and is missing out on a lot of new cool things!"
     }
 }
