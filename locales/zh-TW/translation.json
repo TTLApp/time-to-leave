@@ -264,6 +264,6 @@
         "remindBtn": "Remind me later",
         "title": "TTL Check for updates",
         "upto-date-msg": "Your TTL is up to date.",
-        "old-version-msg": "You are using an old version of TTL and is missing out on a lot of new cool things!"
+        "old-version-msg": "You are using an old version of TTL and missing out on a lot of new cool things!"
     }
 }
