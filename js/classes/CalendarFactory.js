@@ -1,7 +1,7 @@
 'use strict';
 
 const { ipcRenderer } = require('electron');
-const { getDefaultWidthHeight} = require('../user-preferences.js');
+const { getDefaultWidthHeight } = require('../user-preferences.js');
 const { Calendar } = require('./Calendar.js');
 const { FixedDayCalendar } = require('./FixedDayCalendar.js');
 const { FlexibleMonthCalendar } = require('./FlexibleMonthCalendar.js');
@@ -14,89 +14,79 @@ class CalendarFactory
         const view = preferences['view'];
         const numberOfEntries = preferences['number-of-entries'];
         let widthHeight = getDefaultWidthHeight();
-        if (numberOfEntries === 'fixed')
-        {
-            if (view === 'day')
-            {
-                if (calendar === undefined || calendar.constructor.name !== 'FixedDayCalendar')
-                {
-                    if (calendar !== undefined && calendar.constructor.name !== 'FixedDayCalendar')
-                    {
-                        ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
-                    }
-                    return new FixedDayCalendar(preferences);
-                }
-                else
-                {
-                    calendar.updatePreferences(preferences);
-                    calendar.redraw();
-                    return calendar;
-                }
-            }
-            else if (view === 'month')
-            {
-                if (calendar === undefined || calendar.constructor.name !== 'Calendar')
-                {
-                    if (calendar !== undefined && calendar.constructor.name !== 'Calendar')
-                    {
-                        ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
-                    }
-                    return new Calendar(preferences);
-                }
-                else
-                {
-                    calendar.updatePreferences(preferences);
-                    calendar.redraw();
-                    return calendar;
-                }
-            }
-            throw new Error(`Could not instantiate ${view}`);
-        }
-        else if (numberOfEntries === 'flexible')
-        {
-            if (view === 'day')
-            {
-                if (calendar === undefined || calendar.constructor.name !== 'FlexibleDayCalendar')
-                {
-                    if (calendar !== undefined && calendar.constructor.name !== 'FlexibleDayCalendar')
-                    {
-                        ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
-                    }
-                    return new FlexibleDayCalendar(preferences);
-                }
-                else
-                {
-                    calendar.updatePreferences(preferences);
-                    calendar.redraw();
-                    return calendar;
-                }
-            }
-            else if (view === 'month')
-            {
-                if (calendar === undefined || calendar.constructor.name !== 'FlexibleMonthCalendar')
-                {
-                    if (calendar !== undefined && calendar.constructor.name !== 'FlexibleMonthCalendar')
-                    {
-                        ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
-                    }
-                    return new FlexibleMonthCalendar(preferences);
-                }
-                else
-                {
-                    calendar.updatePreferences(preferences);
-                    calendar.redraw();
-                    return calendar;
-                }
-            }
-            throw new Error(`Could not instantiate ${view}`);
-        }
-        else
-        {
+
+        if (!this.isValidAttribute('numberOfEntries', numberOfEntries))
             throw new Error(`Could not instantiate ${numberOfEntries}`);
+
+        if (!this.isValidAttribute('view', view))
+            throw new Error(`Could not instantiate ${view}`);
+
+        const calendarType = this.getCalendarType(numberOfEntries, view);
+
+        if (calendar === undefined)
+            return calendarType.instantiate(preferences);
+
+        if (calendar.constructor.name !== calendarType.constructorName)
+        {
+            ipcRenderer.send(
+                'RESIZE_MAIN_WINDOW',
+                widthHeight.width,
+                widthHeight.height
+            );
+            return calendarType.instantiate(preferences);
         }
+
+        calendar.updatePreferences(preferences);
+        calendar.redraw();
+        return calendar;
+    }
+
+    static getCalendarTypes()
+    {
+        return [
+            {
+                numberOfEntries: 'fixed',
+                view: 'day',
+                constructorName: 'FixedDayCalendar',
+                instantiate: (preferences) => new FixedDayCalendar(preferences),
+            },
+            {
+                numberOfEntries: 'fixed',
+                view: 'month',
+                constructorName: 'Calendar',
+                instantiate: (preferences) => new Calendar(preferences),
+            },
+            {
+                numberOfEntries: 'flexible',
+                view: 'day',
+                constructorName: 'FlexibleDayCalendar',
+                instantiate: (preferences) =>
+                    new FlexibleDayCalendar(preferences),
+            },
+            {
+                numberOfEntries: 'flexible',
+                view: 'month',
+                constructorName: 'FlexibleMonthCalendar',
+                instantiate: (preferences) =>
+                    new FlexibleMonthCalendar(preferences),
+            },
+        ];
+    }
+
+    static isValidAttribute(key, value)
+    {
+        const values = this.getCalendarTypes().map(calendarType => calendarType[key]);
+        return values.includes(value);
+    }
+
+    static getCalendarType(numberOfEntries, view)
+    {
+        return this.getCalendarTypes().find(
+            (el) => el.numberOfEntries === numberOfEntries && el.view === view
+        );
     }
 }
 
 module.exports = {
-    CalendarFactory
+    CalendarFactory,
 };
