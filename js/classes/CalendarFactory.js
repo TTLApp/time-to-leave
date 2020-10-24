@@ -15,13 +15,13 @@ class CalendarFactory
         const numberOfEntries = preferences['number-of-entries'];
         let widthHeight = getDefaultWidthHeight();
 
-        if (!this.isValidAttribute('numberOfEntries', numberOfEntries))
+        if (!CalendarFactory.isValidAttribute('numberOfEntries', numberOfEntries))
             throw new Error(`Could not instantiate ${numberOfEntries}`);
 
-        if (!this.isValidAttribute('view', view))
+        if (!CalendarFactory.isValidAttribute('view', view))
             throw new Error(`Could not instantiate ${view}`);
 
-        const calendarType = this.getCalendarType(numberOfEntries, view);
+        const calendarType = CalendarFactory.getCalendarType(numberOfEntries, view);
 
         if (calendar === undefined)
             return calendarType.instantiate(preferences);
@@ -75,13 +75,13 @@ class CalendarFactory
 
     static isValidAttribute(key, value)
     {
-        const values = this.getCalendarTypes().map(calendarType => calendarType[key]);
+        const values = CalendarFactory.getCalendarTypes().map(calendarType => calendarType[key]);
         return values.includes(value);
     }
 
     static getCalendarType(numberOfEntries, view)
     {
-        return this.getCalendarTypes().find(
+        return CalendarFactory.getCalendarTypes().find(
             (el) => el.numberOfEntries === numberOfEntries && el.view === view
         );
     }
