@@ -9,7 +9,7 @@ index f763e53..a39175b 100644
 -      webPreferences: {nodeIntegration: true}
 +      webPreferences: {
 +        nodeIntegration: true,
-+        enableRemoteModule: true
++        enableRemoteModule: false
 +      }
      });
  
