@@ -76,9 +76,9 @@
         "import-successful": "¡Sí! ¡Importación exitosa!",
         "import": "Importar",
         "menu": "Menú",
-        "migrate-calendar-to-flexible": "Migrate fixed calendar database to flexible",
-        "migrate-to-flexible-calendar": "Migrate to flexible calendar",
-        "migration-successful": "Sí! Migration successful!",
+        "migrate-calendar-to-flexible": "Migrar base de datos de calendario fijo a calendario flexible",
+        "migrate-to-flexible-calendar": "Migrar a calendario flexible",
+        "migration-successful": "Sí! ¡Migración exitosa!",
         "no-thanks": "No, gracias",
         "ok": "OK",
         "paste": "Pegar",
@@ -93,7 +93,7 @@
         "show-app": "Mostrar Aplicacion",
         "something-went-wrong": "Algo malo pasó :(",
         "toggle-dev-tools": "Alternar a herramientas de desarrollo",
-        "ttl-github": "TTL GitHub",
+        "ttl-github": "GitHub de TTL",
         "view": "Vista",
         "workday-waiver-manager": "Gerente de Exención de Jornada Laboral",
         "yes-please": "Sí, por favor"
@@ -105,7 +105,7 @@
         "time-to-leave": "Time to Leave",
         "current-day": "Ir a dia actual",
         "day-done-balance": "Todo listo por hoy. El balance del día:",
-        "leave-by": "You should leave by:",
+        "leave-by": "Deberías irte a las:",
         "month-balance-title": "Balance hasta hoy para este mes. Un balance positivo significa horas extras que no necesitas trabajar hoy (o el resto del mes).",
         "month-balance": "Balance del mes",
         "overall-balance-title": "Balance global hasta el final del mes o del día actual",
@@ -113,8 +113,8 @@
         "not-a-working-day": "No es un día de trabajo",
         "waived-day": "Día de descanso",
         "day-total": "Total del día",
-        "remove-entry": "Remove entry",
-        "entry-removal-confirmation": "Are you sure you want to remove the last entry row?",
+        "remove-entry": "Remover entrada",
+        "entry-removal-confirmation": "¿Estás seguro de querer remover la ultima fila?",
         "yes": "Sí",
         "no": "No",
         "entry": "Entrada"
@@ -132,7 +132,7 @@
         "last-day-balance": "Último día utilizado para el balance",
         "working-days-title": "Cuántos días laborables hay en el mes",
         "month-balance-title": "Balance hasta hoy para este mes. Un balance positivo significa horas extras que no necesitas trabajar hoy (o el resto del mes).",
-        "overall-balance-title": "Overall balance until end of the month or current day",
+        "overall-balance-title": "Balance general hasta el final del mes o de hoy",
         "on": "Prendido",
         "working-days": "Días de trabajo",
         "month-balance": "Balance del mes",
@@ -141,8 +141,8 @@
         "waived-day": "Día libre",
         "remove-entry": "Eliminar la entrada",
         "entry-removal-confirmation": "¿Estás seguro de que quieres eliminar las dos últimas entradas del día?",
-        "yes": "Yes",
-        "no": "Sí"
+        "yes": "Sí",
+        "no": "No"
     },
     "$Calendar": {
         "leave-by": "Basándose en la hora en que llegó hoy, debería irse por",
@@ -173,7 +173,7 @@
         "punch-time": "Hora del golpe"
     },
     "$Notification": {
-        "time-to-leave": "Hey there! I think it's time to leave.",
+        "time-to-leave": "¡Hola! Creo que es hora de irse",
         "punch-reminder": "Don't forget to punch in!"
     },
     "$FixedDayCalendar": {
@@ -260,11 +260,11 @@
         "december": "Diciembre"
     },
     "$UpdateManager": {
-        "dismissBtn": "Dismiss",
-        "downloadBtn": "Download latest version",
-        "remindBtn": "Remind me later",
-        "title": "TTL Check for updates",
-        "upto-date-msg": "Your TTL is up to date.",
-        "old-version-msg": "You are using an old version of TTL and missing out on a lot of new cool things!"
+        "dismissBtn": "Ahora no",
+        "downloadBtn": "Descargar última versión",
+        "remindBtn": "Recuerdamelo luego",
+        "title": "TTL Verificando actualizaciones",
+        "upto-date-msg": "Tu TTL está al dia.",
+        "old-version-msg": "Estás usando una version vieja de TTL y perdiendote un monton de nuevas cosas"
     }
 }

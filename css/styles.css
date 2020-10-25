@@ -36,6 +36,7 @@ html[data-theme="light"] {
   --calendar-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJXaW5kb3dUZXh0IiBkPSJNMjAgM2gtMVYxaC0ydjJIN1YxSDV2Mkg0Yy0xLjEgMC0yIC45LTIgMnYxNmMwIDEuMS45IDIgMiAyaDE2YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMThINFY4aDE2djEzeiIvPjxwYXRoIGZpbGw9Im5vbmUiIGQ9Ik0wIDBoMjR2MjRIMHoiLz48L3N2Zz4=) 1x);
   --day-calendar-select-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiPg0KICAgIDxwb2x5Z29uIHBvaW50cz0iNTAgODUsIDEwMCAwLCAwIDAiIGZpbGw9ImJsYWNrIj48L3BvbHlnb24+DQo8L3N2Zz4=) 1x);
   --outline: 2px dashed #7579e7;
+  --delete-icon: -webkit-image-set(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M11.452 2.597L7.964 6.086l3.488 3.488a1.33 1.33 0 0 1 0 1.879c-.26.26-.6.39-.94.39s-.68-.13-.94-.39L6.086 7.964l-3.488 3.488c-.26.26-.6.39-.94.39s-.68-.13-.94-.39a1.33 1.33 0 0 1 0-1.879l3.488-3.488L.72 2.597a1.33 1.33 0 0 1 0-1.878 1.33 1.33 0 0 1 1.878 0l3.488 3.488L9.574.72a1.33 1.33 0 0 1 1.878 0 1.33 1.33 0 0 1 0 1.878z'/%3E%3C/svg%3E") 1x);
 }
 
 html[data-theme="dark"] {
@@ -69,6 +70,7 @@ html[data-theme="dark"] {
   --calendar-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTIwIDNoLTFWMWgtMnYySDdWMUg1djJINGMtMS4xIDAtMiAuOS0yIDJ2MTZjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY1YzAtMS4xLS45LTItMi0yem0wIDE4SDRWOGgxNnYxM3oiLz48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PC9zdmc+) 1x);
   --day-calendar-select-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiPg0KICAgIDxwb2x5Z29uIHBvaW50cz0iNTAgODUsIDEwMCAwLCAwIDAiIGZpbGw9IndoaXRlIj48L3BvbHlnb24+DQo8L3N2Zz4=) 1x);
   --outline: 2px dashed white;
+  --delete-icon: -webkit-image-set(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M11.452 2.597L7.964 6.086l3.488 3.488a1.33 1.33 0 0 1 0 1.879c-.26.26-.6.39-.94.39s-.68-.13-.94-.39L6.086 7.964l-3.488 3.488c-.26.26-.6.39-.94.39s-.68-.13-.94-.39a1.33 1.33 0 0 1 0-1.879l3.488-3.488L.72 2.597a1.33 1.33 0 0 1 0-1.878 1.33 1.33 0 0 1 1.878 0l3.488 3.488L9.574.72a1.33 1.33 0 0 1 1.878 0 1.33 1.33 0 0 1 0 1.878z' fill='%23fff'/%3E%3C/svg%3E") 1x);
 }
 
 html[data-theme="cadent-star"] {
@@ -702,6 +704,12 @@ input:disabled + .slider {
 
 #workday-waiver-window a.nav-link:not(.active) {
   color: var(--page-color);
+}
+
+#workday-waiver-window input.delete-btn {
+  background-image: var(--delete-icon);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /** Day view related styles **/

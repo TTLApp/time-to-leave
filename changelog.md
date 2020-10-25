@@ -37,6 +37,7 @@ Who built 1.5.6:
 <!--- Begin users - Do not remove -->
 
 -   06b
+-   1-byte-man
 -   BamButz
 -   DevDaveFrame
 -   MichaelYogar
@@ -56,6 +57,7 @@ Who built 1.5.6:
 -   ccsCoder
 -   damirJa
 -   daretobedifferent18
+-   dofbi
 -   fikimaul
 -   giovannipessiva
 -   greyGroot

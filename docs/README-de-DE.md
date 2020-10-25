@@ -25,7 +25,6 @@ Logge die Zeit, zu der du heute mit der Arbeit begonnen hast und das Programm be
 
 ![time-to-leave-notification](https://user-images.githubusercontent.com/3754225/94519526-4dbc0280-0248-11eb-9738-ffae936cfa4a.jpg)
 
-
 Du kannst Einstellungen setzen indem du deine Arbeitstage angibst, wieviele Stunden pro Tag du arbeitest und ob du benachrichtigt werden möchtest oder nicht.
 
 ![time-to-leave-settings](https://user-images.githubusercontent.com/3754225/94519531-4eed2f80-0248-11eb-9303-78f9abe69201.jpg)
@@ -44,12 +43,11 @@ Wenn du helfen möchtest, lese unseren [Contribution-Leitfaden](../CONTRIBUTING.
 
 Du kannst auch den [Entwicklungsleitfaden](../DEVELOPMENT.md) für mehr Informationen verwenden.
 
-
 ## In Kontakt treten!
+
 Tritt unserem [Discord Server](https://discord.gg/P3KkEF5) bei, um über neue Funktion und mehr zu diskutieren.
 
 ## Credits
-
 
 Icons von [freepik](https://www.flaticon.com/authors/freepik) von [www.flaticoncom](https://www.flaticon.com).
 
