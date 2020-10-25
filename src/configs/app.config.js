@@ -2,6 +2,7 @@ const languages = {
     'de-DE': 'Deutsch',
     'en': 'English',
     'es': 'Español',
+    'fr-FR': 'Français - France',
     'hi': 'हिंदी',
     'id': 'Bahasa Indonesia',
     'ko': '한국어',
