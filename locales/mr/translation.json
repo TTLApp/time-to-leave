@@ -9,7 +9,8 @@
         "hi": "हिंदी",
         "mr": "मराठी",
         "id": "Bahasa Indonesia",
-        "pl": "Polski"
+        "pl": "Polski",
+        "nl": "Nederlands"
     },
     "$Preferences": {
         "title": "Time to Leave - प्राधान्ये",
@@ -66,6 +67,7 @@
         "database-was-exported": "ठीक आहे, डेटाबेस निर्यात झाला.",
         "edit": "सुधारणे",
         "exit": "बाहेर पडा",
+        "export": "Export",
         "export-database": "डेटाबेस निर्यात करा",
         "export-db-to-file": "फाईलमध्ये डेटाबेस निर्यात करा",
         "failed-entries": "नोंदी अयशस्वी",
