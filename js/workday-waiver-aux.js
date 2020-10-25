@@ -10,7 +10,8 @@ const { Menu } = require('electron').remote;
 function formatDayId(dayId)
 {
     const [year, month, day] = dayId.split('-').map((i) => { return parseInt(i); });
-    const date = new Date(year, month, day);
+    // Use UTC date to avoid problems with time zone
+    const date = new Date(Date.UTC(year, month, day, 0, 0, 0));
     return Number.isNaN(date.getTime()) ? NaN : date.toISOString().substr(0, 10);
 }
 

@@ -24,6 +24,7 @@
 -   Translation: Time to Leave is not available in Hindi (hi)!
 -   Translation: Time to Leave is not available in Italian (it)!
 -   Translation: Time to Leave is not available in Marathi (mr)!
+-   Translation: Time to Leave is not available in Polish (pl)!
 -   Translation: Time to Leave is not available in Spanish (es)!
 -   Translation: Time to Leave is now available in Brazilian Portuguese (pt-BR)!
 -   Translation: Time to Leave is now available in German (de-DE)!
@@ -36,10 +37,12 @@ Who built 1.5.6:
 <!--- Begin users - Do not remove -->
 
 -   06b
+-   1-byte-man
 -   BamButz
 -   DevDaveFrame
 -   MichaelYogar
 -   RuteshRathod
+-   SaviPrograms
 -   SolKuczala
 -   Squizzi3
 -   Tailine
@@ -47,12 +50,14 @@ Who built 1.5.6:
 -   alsvader
 -   amitchakraborti9
 -   anatdagan
+-   anujpatel224
 -   araujoarthur0
 -   bobsany16
 -   cbanupama
 -   ccsCoder
 -   damirJa
 -   daretobedifferent18
+-   dofbi
 -   fikimaul
 -   giovannipessiva
 -   greyGroot
@@ -63,6 +68,7 @@ Who built 1.5.6:
 -   kumaranshu72
 -   mfayaq
 -   michaelknowles
+-   nightgrey
 -   nilold
 -   parikhdhruv24791
 -   parnus01
