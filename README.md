@@ -9,7 +9,12 @@
   <p>Dieses Dokument ist auch verfügbar in <a href="docs/README-de-DE.md">Deutsch</a></p>
   <p>यह दस्तावेज़ <a href="docs/README-hi.md">Hindi</a> में भी उपलब्ध है </p>
   <p>此文檔亦適用於<a href="docs/README-zh-TW.md">繁體中文</a></p>
-  <p>Pezczytaj ten dokument w <a href="docs/README-pl.md">języku polskim</a></p>
+  <p>Przeczytaj ten dokument w <a href="docs/README-pl.md">języku polskim</a></p>
+  <p>이 문서는 <a href="docs/README-ko.md">한국어</a>로도 제공됩니다</p>
+  <p>Dokumentasi ini tersedia dalam <a href="docs/README-id-ID.md">Bahasa Indonesia</a>
+  <p>เอกสารฉบับนี้มีให้บริการในรูปแบบ<a href='docs/README-th-TH.md'>ภาษาไทย</a></p>
+=======
+
   <br/>
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">

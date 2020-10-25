@@ -1,15 +1,4 @@
 {
-    "$Language": {
-        "en": "English",
-        "pt-BR": "Português - Brasil",
-        "es": "Español",
-        "it": "Italiano",
-        "zh-TW": "繁體中文",
-        "de-DE": "Deutsch",
-        "hi": "हिंदी",
-        "mr": "मराठी",
-        "pl": "Polski"
-    },
     "$Preferences": {
         "title": "Time to Leave - Einstellungen",
         "userPreferences": "Benutzereinstellungen",
@@ -131,8 +120,8 @@
         "day-done-balance": "Alles erledigt für heute. Tagesbilanz:",
         "last-day-balance": "Letzten Tag genutzt für Bilanz",
         "working-days-title": "Anzahl der Arbeitstage in diesem Monat",
-        "balance-up-until-today-for-this-month": "Bilanz positiv bis heute für diesen Monat. Eine positive Bilanz bedeutet extra Stunden für die Sie heute nicht arbeiten müssen (oder den Rest des Monats).",
-        "overall-balance-month": "Gesamtbilanz bis zum Ende des Monats oder den heutigen Tag",
+        "month-balance-title": "Bilanz positiv bis heute für diesen Monat. Eine positive Bilanz bedeutet extra Stunden für die Sie heute nicht arbeiten müssen (oder den Rest des Monats).",
+        "overall-balance-title": "Gesamtbilanz bis zum Ende des Monats oder den heutigen Tag",
         "on": "An",
         "working-days": "Arbeitstage",
         "month-balance": "Monatsbilanz",
@@ -169,7 +158,12 @@
         "lunch-total": "Mittag Gesamt",
         "day-total": "Tag Gesamt",
         "day": "Tag",
-        "lunch-start": "Mittag Beginn"
+        "lunch-start": "Mittag Beginn",
+        "punch-time": "Punch Time"
+    },
+    "$Notification": {
+        "time-to-leave": "Hey there! I think it's time to leave.",
+        "punch-reminder": "Don't forget to punch in!"
     },
     "$FixedDayCalendar": {
         "leave-by": "Sie sollten gehen um:",

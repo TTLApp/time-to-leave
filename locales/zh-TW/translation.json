@@ -1,15 +1,4 @@
 {
-    "$Language": {
-        "en": "English",
-        "pt-BR": "Português - Brasil",
-        "es": "Español",
-        "it": "Italiano",
-        "zh-TW": "繁體中文",
-        "de-DE": "Deutsch",
-        "hi": "हिंदी",
-        "mr": "मराठी",
-        "pl": "Polski"
-    },
     "$Preferences": {
         "title": "Time to Leave - 喜好設定",
         "userPreferences": "用戶喜好設定",
@@ -265,6 +254,6 @@
         "remindBtn": "Remind me later",
         "title": "TTL Check for updates",
         "upto-date-msg": "Your TTL is up to date.",
-        "old-version-msg": "You are using an old version of TTL and is missing out on a lot of new cool things!"
+        "old-version-msg": "You are using an old version of TTL and missing out on a lot of new cool things!"
     }
 }

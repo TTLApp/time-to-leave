@@ -1,21 +1,10 @@
 {
-    "$Language": {
-        "en": "English",
-        "pt-BR": "Português - Brasil",
-        "es": "Español",
-        "it": "Italiano",
-        "zh-TW": "繁體中文",
-        "de-DE": "Deutsch",
-        "hi": "हिंदी",
-        "mr": "मराठी",
-        "pl": "Polski"
-    },
     "$Preferences": {
         "title": "Time to Leave - Preferencje",
         "userPreferences": "Prefernecje użytkownika",
         "workingDays": "Dni pracy",
         "sun": "Niedz",
-        "mon": "Pon", 
+        "mon": "Pon",
         "tue": "Wt",
         "wed": "Śr",
         "thu": "Czw",

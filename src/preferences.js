@@ -28,12 +28,12 @@ function populateLanguages(i18n)
 {
     let languageOpts = $('#language');
     languageOpts.empty();
-    $.each(config.languages, function()
+    $.each(config.getLanguagesCodes(), function()
     {
         languageOpts.append(
             $('<option />')
                 .val(this)
-                .text(i18n.t(`$Language.${this}`))
+                .text(config.getLanguageName(this))
         );
     });
     // Select current display language
