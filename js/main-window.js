@@ -45,13 +45,15 @@ function createMenu()
             submenu: getHelpMenuTemplate()
         }
     ]);
-    Menu.setApplicationMenu(menu);
+
     if (appConfig.macOS)
     {
+        Menu.setApplicationMenu(menu);
         // Use the macOS dock if we've got it
         let dockMenuTemplate = getDockMenuTemplate(mainWindow);
         app.dock.setMenu(Menu.buildFromTemplate(dockMenuTemplate));
         mainWindow.maximize();
+
     }
     else
     {
