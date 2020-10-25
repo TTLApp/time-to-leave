@@ -39,9 +39,9 @@ html[data-theme="light"] {
 }
 
 html[data-theme="dark"] {
-  --page-bground: rgb(39, 39, 39);
+  --page-bground: rgb(40, 45, 36);
   --page-color: white;
-  --table-bground: rgb(39, 39, 39);
+  --table-bground: rgb(40, 45, 36);
   --table-header-bground: var(--table-bground);
   --table-border: rgb(90, 90, 90);
   --input-bground: transparent;
