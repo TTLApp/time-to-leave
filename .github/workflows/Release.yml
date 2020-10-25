@@ -1,0 +1,157 @@
+name: 'Prepare Release'
+on:
+  push:
+    tags:
+      - latest/v*
+      - stable/v*
+
+jobs:
+
+  'MacOS':
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+    - name: ' Building...'
+      run: |
+        npm ci
+        npm run package:mac
+    - name: set env
+      run: echo "::set-env name=APP_VERSION::$(node -p "require('./package.json').version")"
+    - name: 'Packing DMG...'
+      if: success()
+      run: npx electron-installer-dmg 'release-builds/Time to Leave-darwin-x64/Time to Leave.app' time-to-leave --out 'packages/' --icon=assets/icon-mac.icns
+    - name: 'Release to GH'
+      if: success()
+      uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: true
+        artifacts: 'packages/**.dmg'
+        artifactContentType: application/x-apple-diskimage
+        draft: true
+        tag: ${{ env.APP_VERSION }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        # Only update body on Release Notes Action
+        omitBody: true
+        omitBodyDuringUpdate: true
+
+  'Linux':
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+    - name: ' Building...'
+      run: |
+        npm ci
+        npm run package:deb
+    - name: set env
+      run: echo "::set-env name=APP_VERSION::$(node -p "require('./package.json').version")"
+    - name: 'Packing DEB...'
+      if: success()
+      run: npx electron-installer-debian --src 'release-builds/time-to-leave-linux-x64/' --dest 'packages/' --arch amd64 --verbose
+    - name: 'Release to GH'
+      if: success()
+      uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: true
+        artifacts: 'packages/**.deb'
+        artifactContentType: application/vnd.debian.binary-package
+        draft: true
+        tag: ${{ env.APP_VERSION }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        # Only update body on Release Notes Action
+        omitBody: true
+        omitBodyDuringUpdate: true
+    - name: 'Packing RPM'
+      if: success()
+      run: |
+        sudo apt install -yqq rpm
+        npx electron-installer-redhat --src 'release-builds/time-to-leave-linux-x64/' --dest 'packages/' --arch amd64 --verbose
+    - name: 'Release to GH'
+      if: success()
+      uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: true
+        artifacts: 'packages/**.rpm'
+        artifactContentType: application/x-redhat-package-manager
+        draft: true
+        tag: ${{ env.APP_VERSION }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        # Only update body on Release Notes Action
+        omitBody: true
+        omitBodyDuringUpdate: true
+
+  'Windows':
+      runs-on: windows-latest
+      steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - name: 'Building...'
+        run: |
+          npm ci
+          npm run package:win
+      - name: set env
+        run: echo "::set-env name=APP_VERSION::$(node -p "require('./package.json').version")"
+      - name: 'Packing MSI, EXE, etc'
+        if: success()
+        run: npx electron-installer-windows --src 'release-builds\time-to-leave-win32-ia32\' --dest 'packages\' --verbose
+      - name: 'Release MSI to GH'
+        if: success()
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: 'packages/**.msi'
+          artifactContentType: application/x-msi
+          draft: true
+          tag: ${{ env.APP_VERSION }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Only update body on Release Notes Action
+          omitBody: true
+          omitBodyDuringUpdate: true
+      - name: 'Release EXE to GH'
+        if: success()
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: 'packages/**.exe'
+          artifactContentType: application/x-executable
+          draft: true
+          tag: ${{ env.APP_VERSION }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Only update body on Release Notes Action
+          omitBody: true
+          omitBodyDuringUpdate: true
+
+
+  'ReleaseNotes':
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+    - name: ' Building...'
+      run: |
+        npm ci
+    - name: set env
+      run: echo "::set-env name=APP_VERSION::$(node -p "require('./package.json').version")"
+    - name: Parse release information
+      run: |
+        sed '/^[[:space:]]*$/d' changelog.md > changelog.plain
+        csplit changelog.plain '/^[0-9]+*/' '{*}' -z -n 4 -f version
+        csplit version0000  '/^Who built*/' '{*}' -z -n 4 -f block
+        echo "::set-env name=UPDATES::$(tail -n +3 block0000)"
+        echo "::set-env name=PEOPLE::$(tail -n +2 block0001)"
+    - name: Create Release Notes file
+      uses: cuchi/jinja2-action@v.1.2.0
+      with:
+        template: release_template.md
+        output_file: release_notes.md
+    - name: 'Release to GH'
+      if: success()
+      uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: true
+        draft: true
+        tag: ${{ env.APP_VERSION }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        # Only update body on Release Notes Action
+        bodyFile: 'release_notes.md'

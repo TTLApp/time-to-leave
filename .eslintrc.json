@@ -1,0 +1,63 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true,
+        "jest": true,
+        "jquery": true
+    },
+    "extends": "eslint:recommended",
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018
+    },
+    "rules": {
+        "block-spacing": "error",
+        "eqeqeq": [
+            "error", "always"
+        ],
+        "brace-style": [
+            "error",
+            "allman",
+            {
+                "allowSingleLine": true
+            }
+        ],
+        "func-call-spacing": [
+            "error", "never"
+        ],
+        "indent": "error",
+        "keyword-spacing": "error",
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "no-extra-semi": "error",
+        "no-lonely-if": "error",
+        "no-var": "error",
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": "error",
+        "no-trailing-spaces": "error",
+        "semi-spacing": [
+            "error", {
+                "before": false,
+                "after": true
+          }
+      ],
+        "space-before-blocks": "error",
+        "space-before-function-paren": [
+            "error",
+            "never"
+        ]
+    }
+}

@@ -1,0 +1,21 @@
+name: 'Code Coverage'
+on:
+  push:
+    branches:
+      - main
+jobs:
+  'Checking':
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest]
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - name: 'Tests'
+        run: npm cit
+      - name: Coveralls GitHub Action ${{ matrix.os }}
+        if: success()
+        uses: coverallsapp/github-action@v1.1.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

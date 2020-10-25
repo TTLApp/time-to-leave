@@ -1,0 +1,29 @@
+on:
+  schedule:
+    - cron: '0 0 * * *'
+name: Update package dependencies
+jobs:
+  package-update:
+    if: github.repository == 'thamara/time-to-leave'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: tibdex/github-app-token@v1
+      id: generate-token
+      with:
+        app_id: ${{ secrets.APP_ID }}
+        private_key: ${{ secrets.APP_PRIVATE_KEY }}
+    - name: set remote url
+      run: |
+        git remote set-url --push origin https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+        npm ci
+    - name: package-update
+      uses: taichi/actions-package-update@master
+      env:
+        AUTHOR_EMAIL: tkcandrade@gmail.com
+        AUTHOR_NAME: Thamara Andrade
+        EXECUTE: "true"
+        GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+        LOG_LEVEL: debug
+      with:
+        args: -u --packageFile package.json --loglevel verbose

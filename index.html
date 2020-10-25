@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html data-theme="">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Time to Leave</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Scripts -->
+    <!-- First we need to declare jQuery and $ globals with jquery -->
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js" charset="utf-8"></script>
+    <script src="node_modules/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="js/calendar.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="calendar" class="container"></div>
+    <div class="footer">
+        <button class="punch-button" id="punch-button" disabled>
+            <img src="assets/fingerprint.svg" height="36" width="36"></img>
+            <label for="punch-button" id="punch-button-label">Punch time</label>
+        </button>
+    </div>
+</body>
+
+</html>

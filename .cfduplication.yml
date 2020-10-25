@@ -1,0 +1,7 @@
+# duplication threshold [10 - 100]
+MinLineCount: 10
+
+# files/patterns to exclude
+IgnorePatterns:
+  - node_modules/*
+  - __tests__/*
