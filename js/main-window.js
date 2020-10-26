@@ -53,7 +53,6 @@ function createMenu()
         let dockMenuTemplate = getDockMenuTemplate(mainWindow);
         app.dock.setMenu(Menu.buildFromTemplate(dockMenuTemplate));
         mainWindow.maximize();
-
     }
     else
     {
