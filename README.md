@@ -13,8 +13,6 @@
   <p>이 문서는 <a href="docs/README-ko.md">한국어</a>로도 제공됩니다</p>
   <p>Dokumentasi ini tersedia dalam <a href="docs/README-id-ID.md">Bahasa Indonesia</a>
   <p>เอกสารฉบับนี้มีให้บริการในรูปแบบ<a href='docs/README-th-TH.md'>ภาษาไทย</a></p>
-=======
-
   <br/>
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
