@@ -66,6 +66,7 @@
     "tape": "^5.0.1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
     "bootstrap": "^4.5.3",
     "date-holidays": "^1.8.1",
     "electron-store": "^6.0.1",
