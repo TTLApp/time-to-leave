@@ -464,6 +464,8 @@ body {
   display: inline-block;
   width: 30px;
   height: 15px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 /* Hide default HTML checkbox */
@@ -646,6 +648,17 @@ input:disabled + .slider {
   text-align: right;
   position: relative;
   left: 25px;
+}
+
+#preferences-window #hours-per-day{
+  text-align: right;
+}
+
+#preferences-window i {
+  margin-inline-start: 0em;
+  margin-inline-end: 0.3em;
+  width: 1.5ch;
+  text-align: center;
 }
 
 /* Waiver page styles */
@@ -1185,7 +1198,7 @@ html[data-view='flexible-day'] #calendar-table-body .row-entry-pair input {
 }
 
 html[data-view='flexible-day'] #calendar-table-body .interval,
-html[data-view='flexible-day'] .day-total-cell {
+html[data-view='flexible-F'] .day-total-cell {
   width: 80px;
   margin: auto;
 }

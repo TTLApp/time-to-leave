@@ -5,6 +5,7 @@
     <title data-i18n="$Preferences.title">Time to Leave - Preferences</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 
     <!-- First we need to declare jQuery and $ globals with jquery -->
     <script>
@@ -46,68 +47,78 @@
                 <p data-i18n="$Preferences.hoursPerDay">Hours per day</p>
                 <input data-i18n="[placeholder]$Preferences.hours-per-day" type="text" name="hours-per-day" id="hours-per-day" maxlength=5 pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" value="08:00" size=5 required oninput="this.reportValidity()" onblur="this.value = this.checkValidity() ? this.value : '08:00'">
             </div>
+            
+        </section>
+
+        <section>
+            <div class="section-title" data-i18n="$Preferences.notification">Notification</div>
+            <div class="flex-box">
+                <p><i class="far fa-bell"></i> <span data-i18n="$Preferences.notification">Notification</span></p>
+                <label class="switch"><input type="checkbox" id="notification" name="notification"><span class="slider round"></span></label>
+            </div>
+            <div class="flex-box">
+                <p><i class="fas fa-redo"></i> <span data-i18n="$Preferences.allowRecurringNotifications">Allow recurring notifications</span></p>
+                <label class="switch"><input type="checkbox" id="repetition" name="repetition"><span class="slider round"></span></label>
+            </div>
+            <div class="flex-box mb-2">
+                <p><i class="fas fa-stopwatch"></i><span data-i18n="$Preferences.minutesBetweenNotifications">Minutes between notifications</span></p>
+                <input type="number" name="notifications-interval" id="notifications-interval" min="1" max="30" value="5" required onblur="this.value = this.checkValidity() ? this.value : 5">
+            </div>
+            
         </section>
 
         <section>
             <div class="section-title" data-i18n="$Preferences.appBehavior">App Behavior</div>
             <div class="flex-box">
-                <p data-i18n="$Preferences.notification">Notification</p>
-                <label class="switch"><input type="checkbox" id="notification" name="notification"><span class="slider round"></span></label>
+                <p><i class="fas fa-globe"></i><span data-i18n="$Preferences.language">Language</span></p>
+                <select class="selects-right" id="language" name="language">
+                </select>
             </div>
             <div class="flex-box">
-                <p data-i18n="$Preferences.allowRecurringNotifications">Allow recurring notifications</p>
-                <label class="switch"><input type="checkbox" id="repetition" name="repetition"><span class="slider round"></span></label>
-            </div>
-            <div class="flex-box mb-2">
-                <p data-i18n="$Preferences.minutesBetweenNotifications">Minutes between notifications</p>
-                <input type="number" name="notifications-interval" id="notifications-interval" min="1" max="30" value="5" required onblur="this.value = this.checkValidity() ? this.value : 5">
-            </div>
-            <div class="flex-box">
-                <p data-i18n="$Preferences.startOnLogin">Start on Login</p>
+                <p><i class="far fa-play-circle"></i><span data-i18n="$Preferences.startOnLogin">Start on Login</span></p>
                 <label id='start-at-login' class="switch"><input type="checkbox" name="start-at-login"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
-                <p data-i18n="$Preferences.countTodayOnTotals">Count Today in Totals</p>
-                <label id='count-today' class="switch"><input type="checkbox" name="count-today"><span class="slider round"></span></label>
-            </div>
-            <div class="flex-box mb-2">
-                <p data-i18n="$Preferences.overallBalanceStart">Overall Balance Start Date</p>
-                <label id='overall-balance-start-date'><input type="date" class="date-right" name="overall-balance-start-date"></label>
-            </div>
-            <div class="flex-box">
-                <p data-i18n="$Preferences.minimizeToTray">Minimize button should minimize to tray</p>
+                <p></i><span data-i18n="$Preferences.minimizeToTray">Minimize button should minimize to tray</span></p>
                 <label id='minimize-to-tray' class="switch"><input type="checkbox" name="minimize-to-tray"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
-                <p data-i18n="$Preferences.closeMinimizeToTray">Close button should minimize to tray</p>
+                <p><span  data-i18n="$Preferences.closeMinimizeToTray">Close button should minimize to tray</span></p>
                 <label id='close-to-tray' class="switch"><input type="checkbox" name="close-to-tray"><span class="slider round"></span></label>
             </div>
+        </section>
+
+        <section>
+            <div class="section-title" data-i18n="$Preferences.view">View</div>
             <div class="flex-box">
-                <p data-i18n="$Preferences.themes">Themes</p>
-                <select class="selects-right" id="theme" name="theme">
-                    <option value="system-default" data-i18n="$Preferences.systemDefault" selected>System Default</option>
-                    <option value="light" data-i18n="$Preferences.light">Light</option>
-                    <option value="dark" data-i18n="$Preferences.dark">Dark</option>
-                    <option value="cadent-star" data-i18n="$Preferences.cadentStar">Cadent Star</option>
-                </select>
+                <p><i class="fas fa-calendar-day"></i><span data-i18n="$Preferences.countTodayOnTotals">Count Today in Totals</span></p>
+                <label id='count-today' class="switch"><input type="checkbox" name="count-today"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
-                <p data-i18n="$Preferences.view">View</p>
-                <select class="selects-right" id="view" name="view">
-                    <option value="month" data-i18n="$Preferences.month" selected>Month</option>
-                    <option value="day" data-i18n="$Preferences.day">Day</option>
-                </select>
+                <p><i class="fas fa-sign-in-alt"></i><span data-i18n="$Preferences.overallBalanceStart">Overall Balance Start Date</span></p>
+                <label id='overall-balance-start-date'><input type="date" class="date-right" name="overall-balance-start-date"></label>
             </div>
             <div class="flex-box">
-                <p data-i18n="$Preferences.numberOfEntries">Number of Entries</p>
+                <p><i class="fas fa-align-center"></i><span data-i18n="$Preferences.numberOfEntries">Number of Entries</span></p>
                 <select class="selects-right" id="number-of-entries" name="number-of-entries">
                     <option value="fixed" data-i18n="$Preferences.fixed" selected>Fixed</option>
                     <option value="flexible" data-i18n="$Preferences.flexible">Flexible</option>
                 </select>
             </div>
             <div class="flex-box">
-                <p data-i18n="$Preferences.language">Language</p>
-                <select class="selects-right" id="language" name="language">
+                <p><i class="fas fa-eye"></i><span data-i18n="$Preferences.view">View</span></p>
+                <select class="selects-right" id="view" name="view">
+                    <option value="month" data-i18n="$Preferences.month" selected>Month</option>
+                    <option value="day" data-i18n="$Preferences.day">Day</option>
+                </select>
+            </div>
+            <div class="flex-box">
+                <p><i class="fas fa-swatchbook"></i><span data-i18n="$Preferences.themes">Themes</span></p>
+                <select class="selects-right" id="theme" name="theme">
+                    <option value="system-default" data-i18n="$Preferences.systemDefault" selected>System Default</option>
+                    <option value="light" data-i18n="$Preferences.light">Light</option>
+                    <option value="dark" data-i18n="$Preferences.dark">Dark</option>
+                    <option value="cadent-star" data-i18n="$Preferences.cadentStar">Cadent Star</option>
                 </select>
             </div>
         </section>
