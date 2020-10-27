@@ -21,16 +21,16 @@
 -   Fix: [#377] Fixed the layout which was broken when width < 768px
 -   Fix: [#395] Fixing uncaught exception in main.js on day refresh
 -   Fix: [#510] Flexible calendar header mixing with table
--   Translation: Time to Leave is not available in Dutch (nl)!
--   Translation: Time to Leave is not available in French (fr-fr)!
--   Translation: Time to Leave is not available in Hindi (hi)!
--   Translation: Time to Leave is not available in Indonesian (id)!
--   Translation: Time to Leave is not available in Italian (it)!
--   Translation: Time to Leave is not available in Korean (ko)!
--   Translation: Time to Leave is not available in Marathi (mr)!
--   Translation: Time to Leave is not available in Polish (pl)!
--   Translation: Time to Leave is not available in Spanish (es)!
--   Translation: Time to Leave is not available in Thai (th-TH)!
+-   Translation: Time to Leave is now available in Dutch (nl)!
+-   Translation: Time to Leave is now available in French (fr-fr)!
+-   Translation: Time to Leave is now available in Hindi (hi)!
+-   Translation: Time to Leave is now available in Indonesian (id)!
+-   Translation: Time to Leave is now available in Italian (it)!
+-   Translation: Time to Leave is now available in Korean (ko)!
+-   Translation: Time to Leave is now available in Marathi (mr)!
+-   Translation: Time to Leave is now available in Polish (pl)!
+-   Translation: Time to Leave is now available in Spanish (es)!
+-   Translation: Time to Leave is now available in Thai (th-TH)!
 -   Translation: Time to Leave is now available in Brazilian Portuguese (pt-BR)!
 -   Translation: Time to Leave is now available in German (de-DE)!
 -   Translation: Time to Leave is now available in Traditional Chinese (zh-TW)!
