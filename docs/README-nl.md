@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>Houd je werktijden bij en krijg een melding wanneer het tijd is om het kantoor te verlaten en wat anders te gaan doen</p>
 
@@ -39,8 +39,8 @@ Time to Leave werkt op MacOS, Windows en Linux. Je kunt de laatste uitgave [hier
 
 ## Aan de ontwikkeling meehelpen
 
-Als je wilt meehelpen, lees dan onze [richtlijnen](CONTRIBUTING.md) voor het leveren van een bijdrage.
-Je kunt verder onze [ontwikkelingshandleiding](DEVELOPMENT.md) raadplegen voor meer informatie.
+Als je wilt meehelpen, lees dan onze [richtlijnen](../CONTRIBUTING.md) voor het leveren van een bijdrage.
+Je kunt verder onze [ontwikkelingshandleiding](../DEVELOPMENT.md) raadplegen voor meer informatie.
 
 ## Neem contact op!
 
