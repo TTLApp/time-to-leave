@@ -1,3 +1,4 @@
+// file deepcode ignore no-invalid-this: the this keyword is being used for testing purposes only in this file
 const Application = require('spectron').Application;
 const assert = require('assert');
 const electronPath = require('electron');
