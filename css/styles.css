@@ -650,7 +650,7 @@ input:disabled + .slider {
   left: 25px;
 }
 
-#preferences-window #hours-per-day{
+#preferences-window #hours-per-day {
   text-align: right;
 }
 
