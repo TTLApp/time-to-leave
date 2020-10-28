@@ -1198,7 +1198,7 @@ html[data-view='flexible-day'] #calendar-table-body .row-entry-pair input {
 }
 
 html[data-view='flexible-day'] #calendar-table-body .interval,
-html[data-view='flexible-F'] .day-total-cell {
+html[data-view='flexible-day'] .day-total-cell {
   width: 80px;
   margin: auto;
 }
