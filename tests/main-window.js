@@ -60,4 +60,62 @@ describe('Application launch', function()
         const today = new Date();
         return assert.equal(headerDateText, `${weekDay[today.getDay()]}, ${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`);
     });
+
+    it('Calendar change to previous Month', async function()
+    {
+        const { client } = this.app;
+        await client.waitUntilWindowLoaded();
+
+        const prevMonth = await client.$('#prev-month');
+        prevMonth.click();
+        const monthYear = await client.$('#month-year');
+        const monthYearText = await monthYear.getText();
+        const today = new Date();
+        const prevMonthDate = new Date(today.getFullYear(), today.getMonth(), -1);
+        return assert.equal(monthYearText, `${months[prevMonthDate.getMonth()]} ${prevMonthDate.getFullYear()}`);
+    });
+
+    it('Calendar change to next Month', async function()
+    {
+        const { client } = this.app;
+        await client.waitUntilWindowLoaded();
+
+        const nextMonth = await client.$('#next-month');
+        nextMonth.click();
+        const monthYear = await client.$('#month-year');
+        const monthYearText = await monthYear.getText();
+        const today = new Date();
+        const nextMonthDate = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+        return assert.equal(monthYearText, `${months[nextMonthDate.getMonth()]} ${nextMonthDate.getFullYear()}`);
+    });
+
+    it('Calendar change to pervious Day', async function()
+    {
+        const { client } = this.app;
+        await client.waitUntilWindowLoaded();
+        const switchViewBtn = await client.$('#switch-view');
+        await switchViewBtn.click();
+        const prevDay = await client.$('#prev-day');
+        prevDay.click();
+        const headerDate = await client.$('#header-date');
+        const headerDateText = await headerDate.getText();
+        const today = new Date();
+        const previousDayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1);
+        return assert.equal(headerDateText, `${weekDay[previousDayDate.getDay()]}, ${months[previousDayDate.getMonth()]} ${previousDayDate.getDate()}, ${previousDayDate.getFullYear()}`);
+    });
+
+    it('Calendar change to pervious Day', async function()
+    {
+        const { client } = this.app;
+        await client.waitUntilWindowLoaded();
+        const switchViewBtn = await client.$('#switch-view');
+        await switchViewBtn.click();
+        const nextDay = await client.$('#next-day');
+        nextDay.click();
+        const headerDate = await client.$('#header-date');
+        const headerDateText = await headerDate.getText();
+        const today = new Date();
+        const nextDayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+        return assert.equal(headerDateText, `${weekDay[nextDayDate.getDay()]}, ${months[nextDayDate.getMonth()]} ${nextDayDate.getDate()}, ${nextDayDate.getFullYear()}`);
+    });
 });
