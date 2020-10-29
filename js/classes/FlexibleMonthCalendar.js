@@ -243,6 +243,7 @@ class FlexibleMonthCalendar extends Calendar
 
     _addEntries(element)
     {
+        const calendar = this;
         const dateKey = $(element).attr('id');
         let moreThree =
             this.constructor._getRowCode(dateKey, true /*isInterval*/) +
@@ -252,7 +253,7 @@ class FlexibleMonthCalendar extends Calendar
         element.scrollLeft = element.scrollWidth - element.clientWidth;
         $(element).find('input[type=\'time\']').off('input propertychange').on('input propertychange', function()
         {
-            this._updateTimeDayCallback($(this).attr('data-date'));
+            calendar._updateTimeDayCallback($(this).attr('data-date'));
         });
     }
 
@@ -592,7 +593,7 @@ class FlexibleMonthCalendar extends Calendar
         return leaveBy;
     }
 
-        /*
+    /*
      * Will check if the inputs for today are all filled and then enable the button, if not.
      */
     _checkTodayPunchButton()
