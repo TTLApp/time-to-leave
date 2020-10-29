@@ -412,11 +412,12 @@ class FlexibleMonthCalendar extends Calendar
             const element = $(inputs[0]).parents('.time-cells')[0];
             this._addEntries(element);
             this._toggleArrowColor(element);
-            
+
             const input = $(inputsSelector)
                 .toArray()
-                .find(input => input.value === "");
-            if (input) {
+                .find(input => input.value === '');
+            if (input)
+            {
                 $(input).val(value);
                 this._updateTimeDayCallback(key);
             }
