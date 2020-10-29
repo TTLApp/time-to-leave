@@ -105,7 +105,7 @@ describe('Application launch', function()
         return assert.equal(headerDateText, `${weekDay[previousDayDate.getDay()]}, ${months[previousDayDate.getMonth()]} ${previousDayDate.getDate()}, ${previousDayDate.getFullYear()}`);
     });
 
-    it('Calendar change to pervious Day', async function()
+    it('Calendar change to next Day', async function()
     {
         const { client } = this.app;
         await client.waitUntilWindowLoaded();
