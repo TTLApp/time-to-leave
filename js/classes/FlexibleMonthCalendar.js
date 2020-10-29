@@ -241,6 +241,29 @@ class FlexibleMonthCalendar extends Calendar
         this._updateAllTimeBalance();
     }
 
+    _addEntries(element)
+    {
+        const dateKey = $(element).attr('id');
+        let moreThree =
+            this.constructor._getRowCode(dateKey, true /*isInterval*/) +
+            this.constructor._getRowCode(dateKey) +
+            this.constructor._getRowCode(dateKey);
+        $(element).append(moreThree);
+        element.scrollLeft = element.scrollWidth - element.clientWidth;
+        $(element).find('input[type=\'time\']').off('input propertychange').on('input propertychange', function()
+        {
+            this._updateTimeDayCallback($(this).attr('data-date'));
+        });
+    }
+
+    _toggleArrowColor(target)
+    {
+        const element = $(target);
+        const hasHorizontalScrollbar = target.scrollWidth > target.clientWidth;
+        element.parent().find('.arrow').toggleClass('disabled', !hasHorizontalScrollbar);
+        element.parent().find('.sign-cell.minus-sign').toggleClass('disabled', !hasHorizontalScrollbar);
+    }
+
     /*
      * Draws the arrows and +/- buttons for the flexible calendar.
      */
@@ -287,52 +310,25 @@ class FlexibleMonthCalendar extends Calendar
             window.clearInterval(slideTimer);
         });
 
-        function toggleArrowColor(target)
-        {
-            const element = $(target);
-            const hasHorizontalScrollbar = target.scrollWidth > target.clientWidth;
-            element.parent().find('.arrow').toggleClass('disabled', !hasHorizontalScrollbar);
-            element.parent().find('.sign-cell.minus-sign').toggleClass('disabled', !hasHorizontalScrollbar);
-        }
-
         const resizeObserver = new ResizeObserver(entries =>
         {
             for (const entry of entries)
             {
-                toggleArrowColor(entry.target);
+                calendar._toggleArrowColor(entry.target);
             }
         });
 
         $('.time-cells').each((index, element) =>
         {
             resizeObserver.observe(element);
-            toggleArrowColor(element);
+            calendar._toggleArrowColor(element);
         });
-
-        function addEntries(element)
-        {
-            const dateKey = $(element).attr('id');
-            let moreThree =
-                calendar.constructor._getRowCode(dateKey, true /*isInterval*/) +
-                calendar.constructor._getRowCode(dateKey) +
-                calendar.constructor._getRowCode(dateKey);
-            $(element).append(moreThree);
-            element.scrollLeft = element.scrollWidth - element.clientWidth;
-            $(element).find('input[type=\'time\']').off('input propertychange').on('input propertychange', function()
-            {
-                calendar._updateTimeDayCallback($(this).attr('data-date'));
-            });
-            setTimeout(() =>
-            {
-                calendar._checkTodayPunchButton();
-            }, 0);
-        }
 
         $('.plus-sign span').off('click').on('click', function()
         {
             const element = $(this).parent().parent().find('.time-cells')[0];
-            addEntries(element);
-            toggleArrowColor(element);
+            calendar._addEntries(element);
+            calendar._toggleArrowColor(element);
         });
 
         function removeEntries(element)
@@ -357,11 +353,7 @@ class FlexibleMonthCalendar extends Calendar
                     const sliceNum = row.length === 6 ? -1 : (row.length === 7 ? -2 : -3);
                     row.slice(sliceNum).remove();
                     calendar._updateTimeDay($(element).attr('id'));
-                    toggleArrowColor(element);
-                    setTimeout(() =>
-                    {
-                        calendar._checkTodayPunchButton();
-                    }, 0);
+                    calendar._toggleArrowColor(element);
                 });
             }
         }
@@ -401,14 +393,24 @@ class FlexibleMonthCalendar extends Calendar
         const value = hourMinToHourFormatted(hour, min);
         const key = generateKey(year, month, day);
         const inputs = $('#' + key + ' input[type="time"]');
+        let allFull = true;
         for (const element of inputs)
         {
             if ($(element).val().length === 0)
             {
+                allFull= false;
                 $(element).val(value);
                 this._updateTimeDayCallback(key);
                 break;
             }
+
+        }
+
+        if (allFull)
+        {
+            const element = $(inputs[0]).parents('.time-cells')[0];
+            this._addEntries(element);
+            this._toggleArrowColor(element);
         }
     }
 
@@ -539,8 +541,6 @@ class FlexibleMonthCalendar extends Calendar
         const leaveBy = this._calculateLeaveBy();
         $('#leave-by').val(leaveBy <= '23:59' ? leaveBy : '--:--');
 
-        this._checkTodayPunchButton();
-
         const dateKey = generateKey(this._getTodayYear(), this._getTodayMonth(), this._getTodayDate());
         const dayTotal = $('#' + dateKey).parent().find(' .day-total span').html();
         if (dayTotal !== undefined && dayTotal.length > 0)
@@ -592,7 +592,7 @@ class FlexibleMonthCalendar extends Calendar
         return leaveBy;
     }
 
-    /*
+        /*
      * Will check if the inputs for today are all filled and then enable the button, if not.
      */
     _checkTodayPunchButton()
