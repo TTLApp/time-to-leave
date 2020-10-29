@@ -275,7 +275,7 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
 
         if (!this._isCalendarOnDate(new Date()))
         {
-            $('#punch-button').prop('disabled', false);
+            $('#punch-button').prop('disabled', true);
             ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', false);
         }
     }

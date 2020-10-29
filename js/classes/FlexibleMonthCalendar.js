@@ -393,18 +393,18 @@ class FlexibleMonthCalendar extends Calendar
 
         const value = hourMinToHourFormatted(hour, min);
         const key = generateKey(year, month, day);
-        const inputs = $('#' + key + ' input[type="time"]');
+        const inputsSelector = '#' + key + ' input[type="time"]';
+        const inputs = $(inputsSelector);
         let allFull = true;
         for (const element of inputs)
         {
             if ($(element).val().length === 0)
             {
-                allFull= false;
+                allFull = false;
                 $(element).val(value);
                 this._updateTimeDayCallback(key);
                 break;
             }
-
         }
 
         if (allFull)
@@ -412,6 +412,14 @@ class FlexibleMonthCalendar extends Calendar
             const element = $(inputs[0]).parents('.time-cells')[0];
             this._addEntries(element);
             this._toggleArrowColor(element);
+            
+            const input = $(inputsSelector)
+                .toArray()
+                .find(input => input.value === "");
+            if (input) {
+                $(input).val(value);
+                this._updateTimeDayCallback(key);
+            }
         }
     }
 
