@@ -230,7 +230,7 @@ class FlexibleMonthCalendar extends Calendar
 
         $('.waiver-trigger').off('click').on('click', function()
         {
-            const dayId = $(this)[0].nextSibling.nextSibling.nextSibling.nextSibling.id;
+            const dayId = $(this).siblings().closest('.time-cells').attr('id');
             const waiverDay = formatDayId(dayId);
             sendWaiverDay(waiverDay);
             displayWaiverWindow();
