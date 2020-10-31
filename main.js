@@ -2,7 +2,7 @@
 'use strict';
 
 const { app, ipcMain } = require('electron');
-const { createWindow, createMenu, getMainWindow } = require('./js/main-window');
+const { createWindow, createMenu, getMainWindow, triggerStartupDialogs } = require('./js/main-window');
 const { notify } = require('./js/notification');
 const { getUserPreferences } = require('./js/user-preferences.js');
 const i18n = require('./src/configs/i18next.config');
@@ -11,6 +11,7 @@ i18n.on('loaded', () =>
 {
     const userPreferences = getUserPreferences();
     i18n.changeLanguage(userPreferences.language);
+    triggerStartupDialogs();
     i18n.off('loaded');
 });
 

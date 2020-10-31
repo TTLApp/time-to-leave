@@ -9,7 +9,6 @@ const { getDateStr } = require('./date-aux.js');
 const { getUserPreferences, showDay } = require('./user-preferences.js');
 
 // Global values for calendar
-const store = new Store();
 const flexibleStore = new Store({ name: 'flexible-store' });
 const waivedWorkdays = new Store({ name: 'waived-workdays' });
 
@@ -20,8 +19,7 @@ function getFirstInputInDb()
     let [startYear, startMonth, startDay] = startDateStr.split('-');
     const startDate = new Date(startYear, startMonth - 1, startDay);
 
-    const usedStore = _getNumberOfEntries() === 'fixed' ? store : flexibleStore;
-    for (let value of usedStore)
+    for (let value of flexibleStore)
     {
         let [year, month, day] = value[0].split('-');
         if (new Date(year, month, day) >= startDate)
@@ -69,12 +67,6 @@ function _getHoursPerDay()
 {
     const savedPreferences = getUserPreferences();
     return savedPreferences['hours-per-day'];
-}
-
-function _getNumberOfEntries()
-{
-    const savedPreferences = getUserPreferences();
-    return savedPreferences['number-of-entries'];
 }
 
 /**
@@ -148,29 +140,12 @@ function _getDayTotalsFromStores(firstDate, limitDate)
 
     }
 
-    if (_getNumberOfEntries() === 'fixed')
+    for (let value of flexibleStore)
     {
-        for (let value of store)
+        const [key, dateValue] = getDateStrAndDateValue(value, _getDateFromStoreDb(value[0]));
+        if (key && dateValue)
         {
-            if (value[0].endsWith('-day-total'))
-            {
-                const [key, dateValue] = getDateStrAndDateValue(value, _getDateFromStoreDb(value[0]));
-                if (key && dateValue)
-                {
-                    totals[key] = dateValue;
-                }
-            }
-        }
-    }
-    else
-    {
-        for (let value of flexibleStore)
-        {
-            const [key, dateValue] = getDateStrAndDateValue(value, _getDateFromStoreDb(value[0]));
-            if (key && dateValue)
-            {
-                totals[key] = _getFlexibleDayTotal(dateValue.values);
-            }
+            totals[key] = _getFlexibleDayTotal(dateValue.values);
         }
     }
 

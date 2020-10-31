@@ -1,6 +1,8 @@
 'use strict';
 
+const { app } = require('electron');
 const path = require('path');
+const os = require('os');
 
 const macOS = process.platform === 'darwin';
 const win32 = process.platform === 'win32';
@@ -17,6 +19,17 @@ const appConfig = {
     trayIcon: path.join(__dirname, win32 ? '../assets/timer-grey.ico' : '../assets/timer-16-Template.png')
 };
 
+function getDetails()
+{
+    const version = app.getVersion();
+    const electronVersion = process.versions.electron;
+    const chromeVersion = process.versions.chrome;
+    const nodeVersion = process.versions.node;
+    const OSInfo = `${os.type()} ${os.arch()} ${os.release()}`;
+    return `Version: ${version}\nElectron: ${electronVersion}\nChrome: ${chromeVersion}\nNode.js: ${nodeVersion}\nOS: ${OSInfo}`;
+}
+
 module.exports = {
-    appConfig
+    appConfig,
+    getDetails
 };

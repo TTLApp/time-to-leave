@@ -1,8 +1,6 @@
 'use strict';
 
-const Store = require('electron-store');
 const {
-    hourMinToHourFormatted,
     isNegative,
     multiplyTime,
     subtractTime,
@@ -17,14 +15,11 @@ const {
     displayWaiverWindow
 } = require('../workday-waiver-aux.js');
 const { showDialog } = require('../window-aux.js');
-const { Calendar } = require('./Calendar.js');
 const { getDayAbbr } = require('../date-to-string-util.js');
+const { BaseCalendar } = require('./BaseCalendar.js');
 const i18n = require('../../src/configs/i18next.config.js');
 
-// Global values for calendar
-const flexibleStore = new Store({name: 'flexible-store'});
-
-class FlexibleMonthCalendar extends Calendar
+class FlexibleMonthCalendar extends BaseCalendar
 {
     /**
     * @param {Object.<string, any>} preferences
@@ -32,6 +27,42 @@ class FlexibleMonthCalendar extends Calendar
     constructor(preferences)
     {
         super(preferences);
+    }
+
+    /**
+     * Initializes the calendar by generating the html code, binding JS events and then drawing according to DB.
+     */
+    _initCalendar()
+    {
+        this._generateTemplate();
+        $('#next-month').on('click', () => { this._nextMonth(); });
+        $('#prev-month').on('click', () => { this._prevMonth(); });
+        $('#current-month').on('click', () => { this._goToCurrentDate(); });
+        $('#switch-view').on('click', () => { this._switchView(); });
+
+        this._draw();
+    }
+
+    /**
+     * Returns a date object for which the all time balance will be calculated.
+     * If current month, returns the actual day. If not, first day of following month.
+     * @return {Date}
+     */
+    _getTargetDayForAllTimeBalance()
+    {
+        let targetYear = this._getCalendarYear(),
+            targetMonth = this._getCalendarMonth(),
+            // If we are not displaying the current month we need to compute the balance including the
+            // last day of the month. To do so we move to the first day of the following month
+            isCurrentMonth = targetYear === this._getTodayYear() && targetMonth === this._getTodayMonth(),
+            targetDate = isCurrentMonth ?
+                new Date(targetYear, targetMonth, this._getTodayDate()) :
+                new Date(targetYear, targetMonth + 1, 1);
+        if (isCurrentMonth && this._getCountToday())
+        {
+            targetDate.setDate(targetDate.getDate() + 1);
+        }
+        return targetDate;
     }
 
     /*
@@ -62,13 +93,13 @@ class FlexibleMonthCalendar extends Calendar
      */
     static _getPageHeader()
     {
-        let switchView = `<input id="switch-view" type="image" src="assets/switch.svg" alt="${i18n.t('$FlexibleMonthCalendar.switch-view')}" title="${i18n.t('$FlexibleMonthCalendar.switch-view')}" height="24" width="24"></input>`;
+        let switchView = `<input id="switch-view" type="image" src="assets/switch.svg" alt="${i18n.t('$BaseCalendar.switch-view')}" title="${i18n.t('$BaseCalendar.switch-view')}" height="24" width="24"></input>`;
         let todayBut = `<input id="current-month" type="image" src="assets/calendar.svg" alt="${i18n.t('$FlexibleMonthCalendar.current-month')}" title="${i18n.t('$FlexibleMonthCalendar.current-month')}" height="24" width="24"></input>`;
         let leftBut = `<input id="prev-month" type="image" src="assets/left-arrow.svg" alt="${i18n.t('$FlexibleMonthCalendar.previous-month')}" height="24" width="24"></input>`;
         let rightBut = `<input id="next-month" type="image" src="assets/right-arrow.svg" alt="${i18n.t('$FlexibleMonthCalendar.next-month')}" height="24" width="24"></input>`;
         return '<div class="title-header">'+
                     '<div class="title-header title-header-img"><img src="assets/timer.svg" height="64" width="64"></div>' +
-                    `<div class="title-header title-header-text">${i18n.t('$FlexibleMonthCalendar.time-to-leave')}</div>` +
+                    `<div class="title-header title-header-text">${i18n.t('$BaseCalendar.time-to-leave')}</div>` +
                     '<div class="title-header title-header-msg"></div>' +
                '</div>' +
                 '<table class="table-header"><tr>' +
@@ -104,7 +135,7 @@ class FlexibleMonthCalendar extends Calendar
                     '</div>' +
                 '</div>' +
                 '<div class="summary hidden" id="summary-finished-day">' +
-                    `<div class="leave-by-text" colspan="7">${i18n.t('$FlexibleMonthCalendar.day-done-balance')}</div>` +
+                    `<div class="leave-by-text" colspan="7">${i18n.t('$BaseCalendar.day-done-balance')}</div>` +
                     '<div class="leave-by-time">' +
                         '<div id="leave-day-balance"></div>' +
                     '</div>' +
@@ -121,10 +152,10 @@ class FlexibleMonthCalendar extends Calendar
                     `<div class="month-total-time" title="${i18n.t('$FlexibleMonthCalendar.last-day-balance')}"><span id="month-day-input"></span></div>` +
                     `<div class="month-total-text" title="${i18n.t('$FlexibleMonthCalendar.working-days-title')}">${i18n.t('$FlexibleMonthCalendar.working-days')}</div>` +
                     `<div class="month-total-time" title="${i18n.t('$FlexibleMonthCalendar.working-days-title')}"><span id="month-working-days"></span></div>` +
-                    `<div class="month-total-text" title="${i18n.t('$FlexibleMonthCalendar.month-balance-title')}">${i18n.t('$FlexibleMonthCalendar.month-balance')}</div>` +
-                    `<div class="month-total-time" title="${i18n.t('$FlexibleMonthCalendar.month-balance-title')}"><input type="text" id="month-balance"     size="8" disabled></div>` +
-                    `<div class="month-total-text" title="${i18n.t('$FlexibleMonthCalendar.overall-balance-title')}">${i18n.t('$FlexibleMonthCalendar.overall-balance')}</div>` +
-                    `<div class="month-total-time" title="${i18n.t('$FlexibleMonthCalendar.overall-balance-title')}"><input type="text" id="overall-balance" size="8" placeholder="..." disabled></div>` +
+                    `<div class="month-total-text" title="${i18n.t('$BaseCalendar.month-balance-title')}">${i18n.t('$BaseCalendar.month-balance')}</div>` +
+                    `<div class="month-total-time" title="${i18n.t('$BaseCalendar.month-balance-title')}"><input type="text" id="month-balance"     size="8" disabled></div>` +
+                    `<div class="month-total-text" title="${i18n.t('$BaseCalendar.overall-balance-title')}">${i18n.t('$BaseCalendar.overall-balance')}</div>` +
+                    `<div class="month-total-time" title="${i18n.t('$BaseCalendar.overall-balance-title')}"><input type="text" id="overall-balance" size="8" placeholder="..." disabled></div>` +
                 '</div>';
     }
 
@@ -207,26 +238,34 @@ class FlexibleMonthCalendar extends Calendar
         return htmlCode;
     }
 
+    /**
+     * Returns the code of the table body of the calendar.
+     * @return {string}
+     */
+    _generateTableBody()
+    {
+        let html = '';
+        const monthLength = getMonthLength(this._getCalendarYear(), this._getCalendarMonth());
+        const balanceRowPosition = this._getBalanceRowPosition();
+
+        for (let day = 1; day <= monthLength; ++day)
+        {
+            html += this._getInputsRowCode(this._getCalendarYear(), this._getCalendarMonth(), day);
+            if (day === balanceRowPosition)
+            {
+                html += this.constructor._getBalanceRowCode();
+            }
+        }
+        return html;
+    }
+
     /*
      * Draws elements of the Calendar that depend on data.
      */
     _draw()
     {
-        this._updateTableHeader();
-        this._updateTableBody();
-        this._updateBasedOnDB();
-
-        let waivedInfo = this._getWaiverStore(this._getTodayYear(), this._getTodayMonth(), this._getTodayDate());
-        let showCurrentDay = this._showDay(this._getTodayYear(), this._getTodayMonth(), this._getTodayDate());
-        this._togglePunchButton(showCurrentDay && waivedInfo === undefined);
-
-        this._updateLeaveBy();
-
-        const calendar = this;
-        $('input[type=\'time\']').off('input propertychange').on('input propertychange', function()
-        {
-            calendar._updateTimeDayCallback($(this).attr('data-date'));
-        });
+        super._draw();
+        this._drawArrowsAndButtons();
 
         $('.waiver-trigger').off('click').on('click', function()
         {
@@ -235,10 +274,6 @@ class FlexibleMonthCalendar extends Calendar
             sendWaiverDay(waiverDay);
             displayWaiverWindow();
         });
-
-        this._drawArrowsAndButtons();
-
-        this._updateAllTimeBalance();
     }
 
     /*
@@ -379,37 +414,43 @@ class FlexibleMonthCalendar extends Calendar
         });
     }
 
-    /*
-    * Adds the next missing entry on the actual day and updates calendar.
+    /**
+    * Every day change, if the calendar is showing the same month as that of the previous day,
+    * this function is called to redraw the calendar.
+    * @param {number} oldDayDate not used in MonthCalendar, just DayCalendar
+    * @param {number} oldMonthDate
+    * @param {number} oldYearDate
     */
-    punchDate()
+    refreshOnDayChange(oldDayDate, oldMonthDate, oldYearDate)
     {
-        const now = new Date(),
-            year = now.getFullYear(),
-            month = now.getMonth(),
-            day = now.getDate(),
-            hour = now.getHours(),
-            min = now.getMinutes();
-
-        if (this._getCalendarMonth() !== month ||
-            this._getCalendarYear() !== year ||
-            !this._showDay(year, month, day))
+        if (this._getCalendarMonth() === oldMonthDate && this._getCalendarYear() === oldYearDate)
         {
-            return;
+            this._goToCurrentDate();
         }
+    }
 
-        const value = hourMinToHourFormatted(hour, min);
-        const key = generateKey(year, month, day);
-        const inputs = $('#' + key + ' input[type="time"]');
-        for (const element of inputs)
-        {
-            if ($(element).val().length === 0)
-            {
-                $(element).val(value);
-                this._updateTimeDayCallback(key);
-                break;
-            }
-        }
+    /**
+     * Display next month.
+     */
+    _nextMonth()
+    {
+        // Set day as 1 to avoid problem when the current day on the _calendar_date
+        // is not a day in the next month day's range
+        this._calendarDate.setDate(1);
+        this._calendarDate.setMonth(this._getCalendarMonth() + 1);
+        this.redraw();
+    }
+
+    /**
+     * Display previous month.
+     */
+    _prevMonth()
+    {
+        // Set day as 1 to avoid problem when the current day on the _calendar_date
+        // is not a day in the prev month day's range
+        this._calendarDate.setDate(1);
+        this._calendarDate.setMonth(this._getCalendarMonth() - 1);
+        this.redraw();
     }
 
     /*
@@ -559,71 +600,6 @@ class FlexibleMonthCalendar extends Calendar
         }
     }
 
-    /**
-     * Calculate the time to leave for today for use in _updateLeaveBy().
-     */
-    _calculateLeaveBy()
-    {
-        let leaveBy = '--:--';
-        const dateKey = generateKey(this._getTodayYear(), this._getTodayMonth(), this._getTodayDate());
-        const values = this._getStore(dateKey);
-        const validatedTimes = this._validateTimes(values, true /*removeEndingInvalids*/);
-        if (validatedTimes.length > 0 && validatedTimes.every(time => time !== '--:--'))
-        {
-            const smallestMultipleOfTwo = Math.floor(validatedTimes.length/2)*2;
-            let dayTotal = '00:00';
-            let timesAreProgressing = true;
-            for (let i = 0; i < smallestMultipleOfTwo; i += 2)
-            {
-                const difference = subtractTime(validatedTimes[i], validatedTimes[i + 1]);
-                dayTotal = sumTime(dayTotal, difference);
-                if (validatedTimes[i] >= validatedTimes[i + 1])
-                {
-                    timesAreProgressing = false;
-                }
-            }
-            if (timesAreProgressing)
-            {
-                const lastTime = validatedTimes[validatedTimes.length-1];
-                const remainingTime = subtractTime(dayTotal, this._getHoursPerDay());
-                leaveBy = sumTime(lastTime, remainingTime);
-            }
-        }
-        return leaveBy;
-    }
-
-    /*
-     * Will check if the inputs for today are all filled and then enable the button, if not.
-     */
-    _checkTodayPunchButton()
-    {
-        const today = new Date();
-        const isCurrentMonth = (today.getMonth() === this._calendarDate.getMonth() && today.getFullYear() === this._calendarDate.getFullYear());
-        let enableButton = false;
-        if (isCurrentMonth)
-        {
-            const dateKey = generateKey(today.getFullYear(), today.getMonth(), today.getDate());
-            const inputs = $('#' + dateKey + ' input[type="time"]');
-            let allInputsFilled = true;
-            for (let input of inputs)
-            {
-                allInputsFilled &= $(input).val().length !== 0;
-            }
-            enableButton = !allInputsFilled;
-        }
-        this._togglePunchButton(enableButton);
-    }
-
-    /*
-     * Based on the key of the input, updates the values for total in DB and display it
-     */
-    _updateTimeDayCallback(key)
-    {
-        this._updateTimeDay(key);
-        this._updateLeaveBy();
-        this._updateBalance();
-    }
-
     _updateDayIntervals(key)
     {
         const inputs = $('#' + key + ' input[type="time"]');
@@ -654,72 +630,26 @@ class FlexibleMonthCalendar extends Calendar
         }
     }
 
-    _updateDayTotal(key)
-    {
-        const dayTotalSpan = $('#' + key).parent().find('.day-total-cell span');
-        dayTotalSpan.html('');
-
-        const inputs = $('#' + key + ' input[type="time"]');
-        const values = this._getStore(key);
-        const validatedTimes = this._validateTimes(values);
-
-        const storeHasExpectedSize = values.length === inputs.length;
-        const inputsHaveExpectedSize = values.length >= 4 && values.length % 2 === 0;
-        const validatedTimesOk = validatedTimes.length > 0 && validatedTimes.every(time => time !== '--:--');
-        const hasDayEnded = storeHasExpectedSize && inputsHaveExpectedSize && validatedTimesOk;
-
-        if (hasDayEnded)
-        {
-            let dayTotal = '00:00';
-            let timesAreProgressing = true;
-            if (validatedTimes.length >= 4 && validatedTimes.length % 2 === 0)
-            {
-                for (let i = 0; i < validatedTimes.length; i += 2)
-                {
-                    const difference = subtractTime(validatedTimes[i], validatedTimes[i + 1]);
-                    dayTotal = sumTime(dayTotal, difference);
-                    if (validatedTimes[i] >= validatedTimes[i + 1])
-                    {
-                        timesAreProgressing = false;
-                    }
-                }
-            }
-            if (timesAreProgressing)
-            {
-                dayTotalSpan.html(dayTotal);
-            }
-        }
-    }
-
-    _updateTimeDay(key)
+    /**
+     * Updates the DB with the information of computed total lunch time and day time.
+     * @param {string} dateKey
+     */
+    _updateTimeDay(dateKey)
     {
         // Cleaning intervals
-        $('#' + key + ' .interval span').html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+        $('#' + dateKey + ' .interval span').html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
 
-        const inputs = $('#' + key + ' .ti input[type=\'time\']');
+        const inputs = $('#' + dateKey + ' .ti input[type=\'time\']');
         let newValues = [];
         for (const element of inputs)
         {
             newValues.push(element.value);
         }
 
-        this._updateDayIntervals(key);
-        this._updateDbEntry(key, newValues);
-        this._updateDayTotal(key);
-        this._colorErrorLine(key);
-    }
-
-    _updateDbEntry(key, newValues)
-    {
-        let validatedTimes = this._validateTimes(newValues);
-        if (validatedTimes.length > 0)
-        {
-            this._setStore(key, validatedTimes);
-        }
-        else
-        {
-            this._removeStore(key);
-        }
+        this._updateDayIntervals(dateKey);
+        this._updateDbEntry(dateKey, newValues);
+        this._updateDayTotal(dateKey);
+        this._colorErrorLine(dateKey);
     }
 
     /*
@@ -785,84 +715,6 @@ class FlexibleMonthCalendar extends Calendar
 
         this._updateDayIntervals(key);
         this._updateDayTotal(key);
-    }
-
-    /*
-     * Gets value from internal store.
-     */
-    _getStore(key)
-    {
-        return this._internalStore[key] !== undefined ? this._internalStore[key].values : [];
-    }
-
-    /*
-     * Saves value on store and updates internal store.
-     */
-    _setStore(key, newValues)
-    {
-        this._internalStore[key] = { values: newValues };
-        flexibleStore.set(key, this._internalStore[key]);
-    }
-
-    /*
-     * Removes value from store and from internal store.
-     */
-    _removeStore(key)
-    {
-        this._internalStore[key] = undefined;
-        flexibleStore.delete(key);
-    }
-
-    /**
-     * Returns an array of only validated values.
-     * @param {Array} values
-     * @param {Boolean} removeEndingInvalids Removes invalid '--:--' values at end of sequence.
-     *     For example, for a sequence ['08:00', '--:--', '10:00', '--:--' , '--:--' , '--:--'], will return ['08:00', '--:--', '10:00']
-     * @return {Array}
-     */
-    _validateTimes(values, removeEndingInvalids = false)
-    {
-        let validatedTimes = [];
-        if (values.length > 0)
-        {
-            for (const time of values)
-            {
-                validatedTimes.push(validateTime(time) ? time : '--:--');
-            }
-        }
-
-        if (removeEndingInvalids)
-        {
-            for (let i = validatedTimes.length-1; i >= 0; i--)
-            {
-                if (validatedTimes[i] === '--:--')
-                {
-                    validatedTimes.splice(i, 1);
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
-
-        return validatedTimes;
-    }
-
-    /**
-     * Stores year data in memory to make operations faster
-     */
-    loadInternalStore()
-    {
-        this._internalStore = [];
-
-        for (const entry of flexibleStore)
-        {
-            const key = entry[0];
-            const value = entry[1];
-
-            this._internalStore[key] = value;
-        }
     }
 
     /*

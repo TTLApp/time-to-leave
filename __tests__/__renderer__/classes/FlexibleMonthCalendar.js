@@ -43,7 +43,6 @@ describe('FlexibleMonthCalendar class Tests', () =>
 
     const today = new Date();
     let testPreferences = defaultPreferences;
-    testPreferences['number-of-entries'] = 'flexible';
     let calendar = CalendarFactory.getInstance(testPreferences);
 
     test('FlexibleMonthCalendar starts with today\'s date', () =>
@@ -190,30 +189,14 @@ describe('FlexibleMonthCalendar class Tests', () =>
         });
     });
 
-    test('Calendar to FlexibleMonthCalendar', () =>
-    {
-        let testPreferences = defaultPreferences;
-        testPreferences['view'] = 'month';
-        testPreferences['number-of-entries'] = 'fixed';
-        let calendar = CalendarFactory.getInstance(testPreferences);
-        expect(calendar.constructor.name).toBe('Calendar');
-
-        testPreferences['view'] = 'month';
-        testPreferences['number-of-entries'] = 'flexible';
-        calendar = CalendarFactory.getInstance(testPreferences, calendar);
-        expect(calendar.constructor.name).toBe('FlexibleMonthCalendar');
-    });
-
-    test('FixedDayCalendar to FlexibleMonthCalendar', () =>
+    test('FlexibleDayCalendar to FlexibleMonthCalendar', () =>
     {
         let testPreferences = defaultPreferences;
         testPreferences['view'] = 'day';
-        testPreferences['number-of-entries'] = 'fixed';
         let calendar = CalendarFactory.getInstance(testPreferences);
-        expect(calendar.constructor.name).toBe('FixedDayCalendar');
+        expect(calendar.constructor.name).toBe('FlexibleDayCalendar');
 
         testPreferences['view'] = 'month';
-        testPreferences['number-of-entries'] = 'flexible';
         calendar = CalendarFactory.getInstance(testPreferences, calendar);
         expect(calendar.constructor.name).toBe('FlexibleMonthCalendar');
     });

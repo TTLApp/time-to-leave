@@ -114,12 +114,6 @@ function renderPreferencesWindow()
         $('#view').val(usersStyles['view']);
     }
 
-    /* istanbul ignore else */
-    if ('number-of-entries' in usersStyles)
-    {
-        $('#number-of-entries').val(usersStyles['number-of-entries']);
-    }
-
     $('input[type="checkbox"]').on('change', function()
     {
         changeValue(this.name, this.checked);
@@ -148,11 +142,6 @@ function renderPreferencesWindow()
     $('#view').on('change', function()
     {
         changeValue('view', this.value);
-    });
-
-    $('#number-of-entries').on('change', function()
-    {
-        changeValue('number-of-entries', this.value);
     });
 
     $('input').each(function()

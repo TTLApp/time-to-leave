@@ -16,6 +16,7 @@ describe('Import export', function()
 {
     process.env.NODE_ENV = 'test';
 
+    // TODO: Regular store entries are still here to test import of old dbs. Please remove on the next release.
     describe('validEntry(entry)', function()
     {
         const goodRegularEntry = {'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': '08:00'};
@@ -45,6 +46,7 @@ describe('Import export', function()
     const flexibleStore = new Store({name: 'flexible-store'});
     const waivedWorkdays = new Store({name: 'waived-workdays'});
 
+    // TODO: Regular store is still here to test migration of dbs. Please remove on the next release.
     store.clear();
     const regularEntries = {
         '2020-3-1-day-begin': '08:00',
@@ -93,7 +95,7 @@ describe('Import export', function()
           {"type": "not-a-type", "date": "not-a-date", "data": "day-end", "hours": "17:00"}
          ]`;
     const invalidEntriesFile = path.join(folder, 'invalid.ttldb');
-    fs.writeFileSync(invalidEntriesFile, invalidEntriesContent, 'utf-8');
+    fs.writeFileSync(invalidEntriesFile, invalidEntriesContent, 'utf8');
 
     describe('importDatabaseFromFile', function()
     {
@@ -123,6 +125,34 @@ describe('Import export', function()
             expect(flexibleStore.size).toBe(2);
             expect(flexibleStore.get('2020-3-1')).toStrictEqual(migratedFlexibleEntries['2020-3-1']);
             expect(flexibleStore.get('2020-3-2')).toStrictEqual(migratedFlexibleEntries['2020-3-2']);
+        });
+    });
+
+    // TODO: Mixed importing is still here due to compatibility with old dbs. Please remove on the next release.
+    const mixedEntriesContent =
+        `[{"type": "regular", "date": "2020-6-3", "data": "day-end", "hours": "10:00"},
+          {"type": "regular", "date": "2020-6-3", "data": "day-begin", "hours": "08:00"},
+          {"type": "flexible", "date": "2020-3-1", "values": ["08:00", "12:00", "13:00", "17:00"]}
+         ]`;
+    const mixedEntriesFile = path.join(folder, 'mixed.ttldb');
+    fs.writeFileSync(mixedEntriesFile, mixedEntriesContent, 'utf8');
+
+    // Expected values have month-1, due to how the db saves them starting from 0
+    const expectedMixedEntries = {
+        '2020-2-1': {'values': ['08:00', '12:00', '13:00', '17:00']},
+        '2020-5-3': {'values': ['08:00', '10:00']}
+    };
+
+    describe('importDatabaseFromFile (mixedContent)', function()
+    {
+        test('Check that import works', () =>
+        {
+            flexibleStore.clear();
+            expect(flexibleStore.size).toBe(0);
+            expect(importDatabaseFromFile([mixedEntriesFile])['result']).toBeTruthy();
+            expect(flexibleStore.size).toBe(2);
+            expect(flexibleStore.get('2020-2-1')).toStrictEqual(expectedMixedEntries['2020-2-1']);
+            expect(flexibleStore.get('2020-5-3')).toStrictEqual(expectedMixedEntries['2020-5-3']);
         });
     });
 

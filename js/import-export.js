@@ -7,36 +7,6 @@ const { validateTime } = require('./time-math.js');
 const { generateKey } = require('./date-db-formatter');
 
 /**
- * Returns the database (only regular entries) as an array of:
- *   . type: regular
- *   . date
- *   . data: (day-begin, day-end, day-total, lunch-begin, lunch-end, lunch-total)
- *   . hours
- */
-function _getRegularEntries()
-{
-    const store = new Store();
-    let output = [];
-    for (const entry of store)
-    {
-        const key = entry[0];
-        const value = entry[1];
-
-        if (key !== 'update-remind-me-after')
-        {
-            const [year, month, day, stage, step] = key.split('-');
-            //The main database uses a JS-based month index (0-11)
-            //So we need to adjust it to human month index (1-12)
-            const date = generateKey(year, (parseInt(month) + 1), day);
-            const data = stage + '-' + step;
-
-            output.push({'type': 'regular', 'date': date, 'data': data, 'hours': value});
-        }
-    }
-    return output;
-}
-
-/**
  * Returns the database (only flexible calendar entries) as an array of:
  *   . type: flexible
  *   . date
@@ -85,8 +55,7 @@ function _getWaivedEntries()
 
 function exportDatabaseToFile(filename)
 {
-    let information = _getRegularEntries();
-    information = information.concat(_getFlexibleEntries());
+    let information = _getFlexibleEntries();
     information = information.concat(_getWaivedEntries());
     try
     {
@@ -106,6 +75,7 @@ function _validateDate(dateStr)
 
 function validEntry(entry)
 {
+    // TODO: 'regular' is still here while we allow importing old DB data. Please remove on the next release.
     if (entry.hasOwnProperty('type') && ['regular', 'waived', 'flexible'].indexOf(entry.type) !== -1)
     {
         const validatedDate = entry.hasOwnProperty('date') && _validateDate(entry.date);
@@ -135,9 +105,22 @@ function validEntry(entry)
     return false;
 }
 
+function mergeOldStoreDataIntoFlexibleStore(flexibleEntry, oldStoreHours)
+{
+    let index = 0;
+    for (const hour of flexibleEntry.values)
+    {
+        if (oldStoreHours > hour)
+        {
+            index++;
+        }
+    }
+    flexibleEntry.values.splice(index, 0, oldStoreHours);
+    return flexibleEntry;
+}
+
 function importDatabaseFromFile(filename)
 {
-    const store = new Store();
     const flexibleStore = new Store({name: 'flexible-store'});
     const waivedWorkdays = new Store({name: 'waived-workdays'});
     try
@@ -167,10 +150,16 @@ function importDatabaseFromFile(filename)
                     const flexibleEntry = { values: entry.values };
                     flexibleStore.set(date, flexibleEntry);
                 }
-                else
+                else if (entry.type === 'regular')
                 {
-                    let key = date + '-' + entry.data;
-                    store.set(key, entry.hours);
+                    // TODO: 'regular' is still here while we allow importing old DB data. Please remove on the next release.
+                    const [/*event*/, key] = entry.data.split('-');
+                    if (['begin', 'end'].indexOf(key) !== -1)
+                    {
+                        const currentFlexibleEntry = flexibleStore.get(date, { values: [] });
+                        const flexibleEntry = mergeOldStoreDataIntoFlexibleStore(currentFlexibleEntry, entry.hours);
+                        flexibleStore.set(date, flexibleEntry);
+                    }
                 }
             }
         }
@@ -220,9 +209,9 @@ function migrateFixedDbToFlexible()
     catch (err)
     {
         console.log(err);
-        return false;
+        return {'result': false, 'err': err};
     }
-    return true;
+    return {'result': true, 'err': ''};
 }
 
 module.exports = {

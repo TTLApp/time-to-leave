@@ -1,59 +1,19 @@
 'use strict';
 
-const { app, BrowserWindow, clipboard, dialog, shell, Menu } = require('electron');
-const { appConfig } = require('./app-config');
+const { app, BrowserWindow, clipboard, dialog, shell } = require('electron');
+const { appConfig, getDetails } = require('./app-config.js');
 const { checkForUpdates } = require('./update-manager');
 const { getDateStr } = require('./date-aux.js');
 const {
     getSavedPreferences,
-    setAlreadyAskedForFlexibleDbMigration,
-    getAlreadyAskedForFlexibleDbMigration
 } = require('./saved-preferences.js');
-const { importDatabaseFromFile, exportDatabaseToFile, migrateFixedDbToFlexible } = require('./import-export.js');
+const { importDatabaseFromFile, exportDatabaseToFile } = require('./import-export.js');
 const { notify } = require('./notification');
-const os = require('os');
 const { savePreferences } = require('./user-preferences.js');
 const path = require('path');
 const Store = require('electron-store');
 const i18n = require('../src/configs/i18next.config');
 let { waiverWindow, prefWindow } = require('./windows');
-
-function migrateFixedDbToFlexibleRequest(mainWindow, options)
-{
-    let response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
-    if (response === 1)
-    {
-        const migrateResult = migrateFixedDbToFlexible();
-        mainWindow.webContents.executeJavaScript('calendar.reload()');
-        if (migrateResult)
-        {
-            Menu.getApplicationMenu().getMenuItemById('migrate-to-flexible-calendar').enabled = false;
-            dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
-                {
-                    title: 'Time to Leave',
-                    message: i18n.t('$Menu.database-migrated'),
-                    type: 'info',
-                    icon: appConfig.iconpath,
-                    detail: i18n.t('$Menu.migration-successful')
-                });
-        }
-        else
-        {
-            dialog.showMessageBoxSync({
-                type: 'warning',
-                title: i18n.t('$Menu.failed-migrating'),
-                message: i18n.t('$Menu.something-went-wrong')
-            });
-        }
-    }
-}
-
-function enableMigrationToFlexibleButton()
-{
-    const store = new Store();
-    const flexibleStore = new Store({name: 'flexible-store'});
-    return store.size !== 0 && flexibleStore.size === 0;
-}
 
 function getMainMenuTemplate(mainWindow)
 {
@@ -207,44 +167,7 @@ function getEditMenuTemplate(mainWindow)
                         savePreferences(savedPreferences);
                         mainWindow.webContents.send('PREFERENCE_SAVED', savedPreferences);
                     }
-
-                    const store = new Store();
-                    const flexibleStore = new Store({name: 'flexible-store'});
-
-                    if (!getAlreadyAskedForFlexibleDbMigration() &&
-                        savedPreferences && savedPreferences['number-of-entries'] === 'flexible' &&
-                        store.size !== 0 && flexibleStore.size === 0)
-                    {
-                        setAlreadyAskedForFlexibleDbMigration(true);
-                        const options = {
-                            type: 'question',
-                            buttons: [i18n.t('$Menu.cancel'), i18n.t('$Menu.yes-please'), i18n.t('$Menu.no-thanks')],
-                            defaultId: 2,
-                            title: i18n.t('$Menu.migrate-calendar-to-flexible'),
-                            message: i18n.t('$Menu.should-migrate-to-flexible'),
-                        };
-
-                        migrateFixedDbToFlexibleRequest(mainWindow, options);
-                    }
                 });
-            },
-        },
-        {type: 'separator'},
-        {
-            label: i18n.t('$Menu.migrate-to-flexible-calendar'),
-            id: 'migrate-to-flexible-calendar',
-            enabled: enableMigrationToFlexibleButton(),
-            click()
-            {
-                const options = {
-                    type: 'question',
-                    buttons: [i18n.t('$Menu.cancel'), i18n.t('$Menu.yes-please'), i18n.t('$Menu.no-thanks')],
-                    defaultId: 2,
-                    title: i18n.t('$Menu.migrate-calendar-to-flexible'),
-                    message: i18n.t('$Menu.confirm-migrate-to-flexible'),
-                };
-
-                migrateFixedDbToFlexibleRequest(mainWindow, options);
             },
         },
         {type: 'separator'},
@@ -435,12 +358,7 @@ function getHelpMenuTemplate()
             label: i18n.t('$Menu.about'),
             click()
             {
-                const version = app.getVersion();
-                const electronVersion = process.versions.electron;
-                const chromeVersion = process.versions.chrome;
-                const nodeVersion = process.versions.node;
-                const OSInfo = `${os.type()} ${os.arch()} ${os.release()}`;
-                const detail = `Version: ${version}\nElectron: ${electronVersion}\nChrome: ${chromeVersion}\nNode.js: ${nodeVersion}\nOS: ${OSInfo}`;
+                const detail = getDetails();
                 dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                     {
                         title: 'Time to Leave',

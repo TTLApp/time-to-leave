@@ -33,7 +33,6 @@ const defaultPreferences = {
     'working-days-saturday': false,
     'working-days-sunday': false,
     'view': 'month',
-    'number-of-entries': 'fixed',
     'language': 'en'
 };
 
@@ -160,7 +159,6 @@ function initPreferencesFileIfNotExistsOrInvalid()
 
         const inputEnum = {
             'theme': () => shouldSaveDerivedPrefs |= !isValidTheme,
-            'number-of-entries': () => shouldSaveDerivedPrefs |= !(value === 'fixed' || value === 'flexible'),
             'view': () => shouldSaveDerivedPrefs |= !(value === 'month' || value === 'day'),
             'language': () => shouldSaveDerivedPrefs |= isValidLocale
         };

@@ -1,6 +1,5 @@
 'use strict';
 
-const { ipcRenderer } = require('electron');
 const {
     isNegative,
     multiplyTime,
@@ -11,10 +10,10 @@ const {
 const { getDateStr, getMonthLength } = require('../date-aux.js');
 const { generateKey } = require('../date-db-formatter.js');
 const { showDialog } = require('../window-aux.js');
-const { FlexibleMonthCalendar } = require('./FlexibleMonthCalendar.js');
+const { BaseCalendar } = require('./BaseCalendar.js');
 const i18n = require('../../src/configs/i18next.config.js');
 
-class FlexibleDayCalendar extends FlexibleMonthCalendar
+class FlexibleDayCalendar extends BaseCalendar
 {
     /**
     * @param {Object.<string, any>} preferences
@@ -60,13 +59,13 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
      */
     static _getPageHeader()
     {
-        let switchView = `<input id="switch-view" type="image" src="assets/switch.svg" alt="${i18n.t('$FlexibleDayCalendar.switch-view')}" title="${i18n.t('$FlexibleDayCalendar.switch-view')}" height="24" width="24"></input>`;
+        let switchView = `<input id="switch-view" type="image" src="assets/switch.svg" alt="${i18n.t('$BaseCalendar.switch-view')}" title="${i18n.t('$BaseCalendar.switch-view')}" height="24" width="24"></input>`;
         let todayBut = `<input id="current-day" type="image" src="assets/calendar.svg" alt="${i18n.t('$FlexibleDayCalendar.current-day')}" title="${i18n.t('$FlexibleDayCalendar.current-day')}" height="24" width="24"></input>`;
         let leftBut = `<input id="prev-day" type="image" src="assets/left-arrow.svg" alt="${i18n.t('$FlexibleDayCalendar.previous-day')}" height="24" width="24"></input>`;
         let rightBut = `<input id="next-day" type="image" src="assets/right-arrow.svg" alt="${i18n.t('$FlexibleDayCalendar.next-day')}" height="24" width="24"></input>`;
         return '<div class="title-header">'+
                     '<div class="title-header-img"><img src="assets/timer.svg" height="64" width="64"></div>' +
-                    `<div class="title-header-text">${i18n.t('$FlexibleDayCalendar.time-to-leave')}</div>` +
+                    `<div class="title-header-text">${i18n.t('$BaseCalendar.time-to-leave')}</div>` +
                     '<div class="title-header-msg"></div>' +
                '</div>' +
                 '<table class="table-header"><tr>' +
@@ -104,7 +103,7 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
                      '<div class="leave-by-text">' + summaryStr + '</div>' +
                      '<div class="leave-by-time">' + leaveByCode + '</div>' +
                    '</div>';
-        let finishedSummaryStr = i18n.t('$FlexibleDayCalendar.day-done-balance');
+        let finishedSummaryStr = i18n.t('$BaseCalendar.day-done-balance');
         let dayBalance = '<input type="text" id="leave-day-balance" size="5" disabled>';
         code += '<div class="summary hidden" id="summary-finished-day">' +
                     '<div class="leave-by-text">' + finishedSummaryStr + '</div>' +
@@ -121,14 +120,14 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
         return '<div class="month-total-row">' +
                     '<div class="half-width">' +
                     '<div class="month-total-element">' +
-                        `<div class="month-total-text month-balance" title="${i18n.t('$FlexibleDayCalendar.month-balance-title')}">${i18n.t('$FlexibleDayCalendar.month-balance')}</div>` +
-                        `<div class="month-total-time month-balance-time" title="${i18n.t('$FlexibleDayCalendar.month-balance-title')}"><span type="text" id="month-balance"></div>` +
+                        `<div class="month-total-text month-balance" title="${i18n.t('$BaseCalendar.month-balance-title')}">${i18n.t('$BaseCalendar.month-balance')}</div>` +
+                        `<div class="month-total-time month-balance-time" title="${i18n.t('$BaseCalendar.month-balance-title')}"><span type="text" id="month-balance"></div>` +
                     '</div>' +
                     '</div>' +
                     '<div class="half-width">' +
                     '<div class="month-total-element">' +
-                        `<div class="month-total-text month-sum" title="${i18n.t('$FlexibleDayCalendar.overall-balance-title')}">${i18n.t('$FlexibleDayCalendar.overall-balance')}</div>` +
-                        `<div class="month-total-time month-sum-time" title="${i18n.t('$FlexibleDayCalendar.overall-balance-title')}"><span id="overall-balance"></div>` +
+                        `<div class="month-total-text month-sum" title="${i18n.t('$BaseCalendar.overall-balance-title')}">${i18n.t('$BaseCalendar.overall-balance')}</div>` +
+                        `<div class="month-total-time month-sum-time" title="${i18n.t('$BaseCalendar.overall-balance-title')}"><span id="overall-balance"></div>` +
                     '</div>' +
                     '</div>' +
                 '</div>';
@@ -272,18 +271,18 @@ class FlexibleDayCalendar extends FlexibleMonthCalendar
     _draw()
     {
         super._draw();
+        this._drawButtons();
 
         if (!this._isCalendarOnDate(new Date()))
         {
-            $('#punch-button').prop('disabled', true);
-            ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', false);
+            this._togglePunchButton(false /*enable*/);
         }
     }
 
     /**
-     * Draws +/- buttons for the flexible calendar. Arrows are not needed for day calendar.
+     * Draws +/- buttons for the flexible calendar.
      */
-    _drawArrowsAndButtons()
+    _drawButtons()
     {
         const calendar = this;
 

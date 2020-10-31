@@ -175,11 +175,6 @@ describe('Test Preferences Window', () =>
             changeItemValue('view', 'day');
             checkRenderedItem('view');
         });
-        test('Changing number-of-entries from fixed to flexible', () =>
-        {
-            changeItemValue('number-of-entries', 'flexible');
-            checkRenderedItem('number-of-entries');
-        });
     });
 });
 
