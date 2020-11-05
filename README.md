@@ -16,7 +16,7 @@
 <a href="docs/README-th-TH.md"><img src="https://img.shields.io/badge/th--TH-ภาษาไทย-purple" alt="เอกสารฉบับนี้มีให้บริการในรูปแบบภาษาไทย"></a>
 <a href="docs/README-fr-FR.md"><img src="https://img.shields.io/badge/fr--FR-Fran%C3%A7ais%20(France)-purple" alt="Ce document est également disponible en Français (France)"></a>
 <a href="docs/README-nl.md"><img src="https://img.shields.io/badge/nl-Nederlands-purple" alt="Dit document is ook beschikbaar in het Nederlands"></a>
-<a href="docs/README-nl.md"><img src="https://img.shields.io/badge/nl-Catal&agrave-purple" alt="Aquest Document també esta disponible en Català"></a>
+<a href="docs/README-ca-CA.md"><img src="https://img.shields.io/badge/ca--CA-Catal&agrave-purple" alt="Aquest Document també esta disponible en Català"></a>
 
   <br/>
 
