@@ -160,11 +160,13 @@ class BaseCalendar
         const calendar = this;
         $('input[type=\'time\']').off('input propertychange').on('input propertychange', function()
         {
+            //  deepcode ignore no-invalid-this: jQuery use
             calendar._updateTimeDayCallback($(this).attr('data-date'));
         });
 
         $('.waiver-trigger').off('click').on('click', function()
         {
+            //  deepcode ignore no-invalid-this: jQuery use
             const dayId = $(this).closest('tr').attr('id').substr(3);
             const waiverDay = formatDayId(dayId);
             sendWaiverDay(waiverDay);
