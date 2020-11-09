@@ -494,6 +494,7 @@ class BaseCalendar
 
     /**
      * Calculate the time to leave for today for use in _updateLeaveBy().
+     * @return {string} leave by value
      */
     _calculateLeaveBy()
     {
