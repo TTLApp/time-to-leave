@@ -123,6 +123,7 @@ html[data-theme="cadent-star"] {
 
 *:focus {
   outline: var(--outline);
+  z-index: 1;
 }
 
 html[data-theme="cadent-star"] ::-webkit-scrollbar-thumb {
@@ -488,6 +489,7 @@ body {
   background-color: var(--slider-background-color);
   -webkit-transition: 0.4s;
   transition: 0.4s;
+  transition: outline-color 0s;
 }
 
 .slider::before {
@@ -506,6 +508,7 @@ input:checked + .slider {
 
 input:focus + .slider {
   box-shadow: 0 0 1px var(--slider-checked-color);
+  outline: var(--outline);
 }
 
 input:checked + .slider::before {
@@ -590,6 +593,7 @@ input:disabled + .slider {
   font-variant-caps: all-petite-caps;
   border: none;
   height: inherit;
+  line-height: normal;
 }
 
 #preferences-window .weekdays-selector input {
