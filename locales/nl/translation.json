@@ -12,6 +12,8 @@
         "sat": "Za",
         "hideNonWorkingDay": "Niet-werkdagen verbergen (Maandoverzicht)",
         "hoursPerDay": "Aantal uur per dag",
+        "enablePrefillLunchTime": "Enable prefilling of lunch time",
+        "lunchTimeInterval": "Lunch Time Interval",
         "appBehavior": "App-gedrag",
         "notification": "Melding",
         "allowRecurringNotifications": "Terugkerende meldingen toestaan",
@@ -33,7 +35,8 @@
         "fixed": "Vast",
         "flexible": "Flexibel",
         "language": "Taal",
-        "hours-per-day": "HH:mm"
+        "hours-per-day": "HH:mm",
+        "lunch-time-interval": "HH:mm"
     },
     "$Menu": {
         "about": "Over",

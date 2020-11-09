@@ -12,6 +12,8 @@
         "fri": "शुक्र",
         "hideNonWorkingDay": "गैर-कार्य दिवस (माह दृश्य) छुपाएं",
         "hoursPerDay": "प्रति दिन घंटे",
+        "enablePrefillLunchTime": "Enable prefilling of lunch time",
+        "lunchTimeInterval": "Lunch Time Interval",
         "hours-per-day": "HH:mm",
         "language": "भाषा: हिन्दी",
         "light": "रोशनी",
@@ -33,7 +35,8 @@
         "userPreferences": "उपयोगकर्ता वरीयताएं",
         "view": "राय",
         "wed": "बुध",
-        "workingDays": "कार्य दिवस"
+        "workingDays": "कार्य दिवस",
+        "lunch-time-interval": "HH:mm"
     },
     "$Menu": {
         "about": "के बारे में",

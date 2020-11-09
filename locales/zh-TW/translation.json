@@ -12,6 +12,8 @@
         "sat": "六",
         "hideNonWorkingDay": "隱藏非工作日（月份視角）",
         "hoursPerDay": "小時每日",
+        "enablePrefillLunchTime": "Enable prefilling of lunch time",
+        "lunchTimeInterval": "Lunch Time Interval",
         "appBehavior": "程式特性",
         "notification": "通知",
         "allowRecurringNotifications": "允許定期通知",
@@ -33,7 +35,8 @@
         "fixed": "固定",
         "flexible": "自由",
         "language": "語言",
-        "hours-per-day": "HH:mm"
+        "hours-per-day": "HH:mm",
+        "lunch-time-interval": "HH:mm"
     },
     "$Menu": {
         "about": "關於",

@@ -125,7 +125,7 @@ function renderPreferencesWindow()
         changeValue(this.name, this.checked);
     });
 
-    $('#hours-per-day').on('change', function()
+    $('#hours-per-day, #lunch-time-interval').on('change', function()
     {
         /* istanbul ignore else */
         if (this.checkValidity() === true)

@@ -12,6 +12,8 @@
         "sat": "Sab",
         "hideNonWorkingDay": "Nascondi giorni festivi (visuale Mese)",
         "hoursPerDay": "Ore al giorno",
+        "enablePrefillLunchTime": "Enable prefilling of lunch time",
+        "lunchTimeInterval": "Lunch Time Interval",
         "appBehavior": "Comportamento App",
         "notification": "Notifiche",
         "allowRecurringNotifications": "Permetti notifiche ricorrenti",
@@ -33,7 +35,8 @@
         "fixed": "Fisso",
         "flexible": "Flessibile",
         "language": "Linguaggio",
-        "hours-per-day": "HH:mm"
+        "hours-per-day": "HH:mm",
+        "lunch-time-interval": "HH:mm"
     },
     "$Menu": {
         "about": "Informazioni",

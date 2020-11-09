@@ -12,6 +12,8 @@
         "sat": "Sab",
         "hideNonWorkingDay": "Sembunyikan hari Bukan-kerja (Tampilan Bulan)",
         "hoursPerDay": "Jam per-hari",
+        "enablePrefillLunchTime": "Enable prefilling of lunch time",
+        "lunchTimeInterval": "Lunch Time Interval",
         "appBehavior": "Perilaku Aplikasi",
         "notification": "Notifikasi",
         "allowRecurringNotifications": "Izinkan pemberitahuan berulang",
@@ -33,7 +35,8 @@
         "fixed": "Tetap",
         "flexible": "Fleksibel",
         "language": "Bahasa",
-        "hours-per-day": "HH:mm"
+        "hours-per-day": "HH:mm",
+        "lunch-time-interval": "HH:mm"
     },
     "$Menu": {
         "about": "Tentang",

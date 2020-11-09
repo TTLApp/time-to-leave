@@ -12,6 +12,8 @@
         "sat": "Sa",
         "hideNonWorkingDay": "Arbeitsfreie Tage ausblenden (Monatsansicht)",
         "hoursPerDay": "Stunden pro Tag",
+        "enablePrefillLunchTime": "Enable prefilling of lunch time",
+        "lunchTimeInterval": "Lunch Time Interval",
         "appBehavior": "App Verhalten",
         "notification": "Benachrichtigungen",
         "allowRecurringNotifications": "Wiederkehrende Benachrichtigungen erlauben",
@@ -33,7 +35,8 @@
         "fixed": "Fixiert",
         "flexible": "Flexibel",
         "language": "Sprache",
-        "hours-per-day": "HH:mm"
+        "hours-per-day": "HH:mm",
+        "lunch-time-interval": "HH:mm"
     },
     "$Menu": {
         "about": "Über Time-To-Leave",

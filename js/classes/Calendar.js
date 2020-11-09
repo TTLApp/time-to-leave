@@ -651,6 +651,16 @@ class Calendar
         return this._preferences['hide-non-working-days'];
     }
 
+    _getEnablePrefillLunchTime()
+    {
+        return this._preferences['enable-prefill-lunch-time'];
+    }
+
+    _getLunchTimeInterval()
+    {
+        return this._preferences['lunch-time-interval'];
+    }
+
     /**
      * Returns if "count today" was set in preferences.
      * @return {Boolean}
@@ -717,6 +727,16 @@ class Calendar
         return showDay(year, month, day, this._preferences);
     }
 
+    _calculateLunchEnd(lunchBegin)
+    {
+        let lunchInterval = this._getLunchTimeInterval();
+        let lunchEnd = sumTime(lunchBegin, lunchInterval);
+
+        let re = new RegExp('^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$');
+        lunchEnd = re.test(lunchEnd) ? lunchEnd : '23:59';
+        return lunchEnd;
+    }
+
     /**
      * Adds the next missing entry on the actual day and updates calendar.
      */
@@ -761,6 +781,14 @@ class Calendar
         let value = hourMinToHourFormatted(hour, min);
         $('#' + dayStr + entry).val(value);
         this._updateTimeDayCallback(dayStr + entry, value);
+
+        if (entry === 'lunch-begin' &&
+        this._getEnablePrefillLunchTime())
+        {
+            value = this._calculateLunchEnd(value);
+            $('#' + dayStr + 'lunch-end').val(value);
+            this._updateTimeDayCallback(dayStr + 'lunch-end', value);
+        }
     }
 
     /**

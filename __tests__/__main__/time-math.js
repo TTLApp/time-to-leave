@@ -162,8 +162,8 @@ describe('Time Math Functions', () =>
         expect(validateTime('00:11')).toBeTruthy();
         expect(validateTime('01:11')).toBeTruthy();
         expect(validateTime('11:11')).toBeTruthy();
-        expect(validateTime('24:00')).toBeTruthy();
         expect(validateTime('-04:00')).toBeTruthy();
+        expect(validateTime('24:00')).not.toBeTruthy();
         expect(validateTime('34:00')).not.toBeTruthy();
         expect(validateTime('4:00')).not.toBeTruthy();
         expect(validateTime('00:1')).not.toBeTruthy();

@@ -12,6 +12,8 @@
         "sat": "เสาร์",
         "hideNonWorkingDay": "ซ่อนวันหยุด (มุมมองรายเดือน)",
         "hoursPerDay": "จำนวนชั่วโมงทำงานต่อวัน",
+        "enablePrefillLunchTime": "Enable prefilling of lunch time",
+        "lunchTimeInterval": "Lunch Time Interval",
         "appBehavior": "พฤติกรรมแอปพลิเคชัน",
         "notification": "การแจ้งเตือน",
         "allowRecurringNotifications": "อนุญาตให้แจ้งเตือนซ้ำ",
@@ -33,7 +35,8 @@
         "fixed": "ล็อค",
         "flexible": "ยืดหยุ่น",
         "language": "ภาษา",
-        "hours-per-day": "ชช:นน"
+        "hours-per-day": "ชช:นน",
+        "lunch-time-interval": "HH:mm"
     },
     "$Menu": {
         "about": "เกี่ยวกับ",

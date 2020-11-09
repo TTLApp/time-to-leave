@@ -12,6 +12,8 @@
         "sat": "토",
         "hideNonWorkingDay": "휴일 숨기기 (월별 보기에 적용)",
         "hoursPerDay": "하루 작업 목표 시간",
+        "enablePrefillLunchTime": "Enable prefilling of lunch time",
+        "lunchTimeInterval": "Lunch Time Interval",
         "appBehavior": "프로그램 동작",
         "notification": "알림 표시",
         "allowRecurringNotifications": "반복 알림 허용",
@@ -33,7 +35,8 @@
         "fixed": "고정",
         "flexible": "가변",
         "language": "언어",
-        "hours-per-day": "HH:mm"
+        "hours-per-day": "HH:mm",
+        "lunch-time-interval": "HH:mm"
     },
     "$Menu": {
         "about": "자세히",

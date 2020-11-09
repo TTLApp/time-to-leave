@@ -12,6 +12,8 @@
         "sat": "Sob",
         "hideNonWorkingDay": "Ukryj dni wolne (Widok Miesiąca)",
         "hoursPerDay": "Ilość godzin pracy dzienie",
+        "enablePrefillLunchTime": "Enable prefilling of lunch time",
+        "lunchTimeInterval": "Lunch Time Interval",
         "appBehavior": "Zachowanie aplikacji",
         "notification": "Powiadomienia",
         "allowRecurringNotifications": "Przypominaj wielokrotnie",
@@ -33,7 +35,8 @@
         "fixed": "Stała",
         "flexible": "Dynamiczna",
         "language": "Język (Language)",
-        "hours-per-day": "HH:mm"
+        "hours-per-day": "HH:mm",
+        "lunch-time-interval": "HH:mm"
     },
     "$Menu": {
         "about": "Informacje o programie",

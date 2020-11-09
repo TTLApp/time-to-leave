@@ -12,6 +12,8 @@
         "sat": "शनि",
         "hideNonWorkingDay": "नॉन-कामकाजाचे दिवस लपवा (महिना दृश्य)",
         "hoursPerDay": "दिवसाचे तास",
+        "enablePrefillLunchTime": "Enable prefilling of lunch time",
+        "lunchTimeInterval": "Lunch Time Interval",
         "appBehavior": "अ‍ॅप वर्तन",
         "notification": "सूचना",
         "allowRecurringNotifications": "आवर्ती सूचनांना परवानगी द्या",
@@ -33,7 +35,8 @@
         "fixed": "निश्चित",
         "flexible": "परिवर्तनशील",
         "language": "भाषा",
-        "hours-per-day": "HH:mm"
+        "hours-per-day": "HH:mm",
+        "lunch-time-interval": "HH:mm"
     },
     "$Menu": {
         "about": "बद्दल",

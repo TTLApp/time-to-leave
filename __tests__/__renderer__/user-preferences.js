@@ -7,7 +7,7 @@ const {
     getUserPreferences,
     savePreferences,
     isNotBoolean,
-    isValidPreferenceTime,
+    isNotificationInterval,
 } = require('../../js/user-preferences');
 const fs = require('fs');
 
@@ -23,19 +23,31 @@ describe('Should return false if the value is not boolean type', () =>
     });
 });
 
-describe('Should return true if the value is a valid time', () =>
+describe('Should return true if the value is a valid notification interval', () =>
 {
-    test('Value as time format (hh:mm)', () =>
+    test('Value as number (val >= 1 || val <= 30)', () =>
     {
-        expect(isValidPreferenceTime('00:35')).toBe(true);
+        expect(isNotificationInterval(1)).toBe(true);
+        expect(isNotificationInterval(15)).toBe(true);
+        expect(isNotificationInterval(30)).toBe(true);
+        expect(isNotificationInterval(-5)).not.toBe(true);
+        expect(isNotificationInterval(0)).not.toBe(true);
+        expect(isNotificationInterval(31)).not.toBe(true);
+        expect(isNotificationInterval(60)).not.toBe(true);
     });
-    test('Value as number type (val < 1 || val > 30)', () =>
+    test('Value as string (val >= 1 || val <= 30)', () =>
     {
-        expect(isValidPreferenceTime(60)).toBe(true);
+        expect(isNotificationInterval('1')).toBe(true);
+        expect(isNotificationInterval('30')).toBe(true);
+        expect(isNotificationInterval('-5')).not.toBe(true);
+        expect(isNotificationInterval('31')).not.toBe(true);
+        expect(isNotificationInterval('A')).not.toBe(true);
+        expect(isNotificationInterval('abc')).not.toBe(true);
     });
     test('Value as boolean type', () =>
     {
-        expect(isValidPreferenceTime(true)).toBe(false);
+        expect(isNotificationInterval(true)).not.toBe(true);
+        expect(isNotificationInterval(false)).not.toBe(true);
     });
 });
 

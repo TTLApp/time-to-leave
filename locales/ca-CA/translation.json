@@ -12,6 +12,8 @@
         "sat": "Dis",
         "hideNonWorkingDay": "Ocultar els dies no laborables (Vista mensual)",
         "hoursPerDay": "Hores per dia",
+        "enablePrefillLunchTime": "Enable prefilling of lunch time",
+        "lunchTimeInterval": "Lunch Time Interval",
         "appBehavior": "Funcionament de l'aplicació",
         "notification": "Notificació",
         "allowRecurringNotifications": "Permetre notificacions recurrents",
@@ -33,7 +35,8 @@
         "fixed": "Fixe",
         "flexible": "Flexible",
         "language": "Llenguatge",
-        "hours-per-day": "HH:mm"
+        "hours-per-day": "HH:mm",
+        "lunch-time-interval": "HH:mm"
     },
     "$Menu": {
         "about": "Sobre",

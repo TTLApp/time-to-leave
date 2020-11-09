@@ -18,6 +18,8 @@ const defaultPreferences = {
     'minimize-to-tray': true,
     'hide-non-working-days': false,
     'hours-per-day': '08:00',
+    'enable-prefill-lunch-time': false,
+    'lunch-time-interval': '00:30',
     'notification': true,
     'repetition': true,
     'notifications-interval': '5',
@@ -43,6 +45,7 @@ const booleanInputs = [
     'close-to-tray',
     'minimize-to-tray',
     'hide-non-working-days',
+    'enable-prefill-lunch-time',
     'notification',
     'repetition',
     'start-at-login',
@@ -58,9 +61,13 @@ const booleanInputs = [
 const timeInputs = [
     'notifications-interval',
     'hours-per-day',
+    'lunch-time-interval',
 ];
 
 const isNotBoolean = (val) => typeof val !== 'boolean';
+const isNotificationInterval = (val) => !Number.isNaN(Number(val)) && isNotBoolean(val) && val >= 1 && val <= 30;
+
+//Don't use this. Use isNotificationInterval() and validateTime()
 const isValidPreferenceTime = (val) => validateTime(val) || Number.isNaN(Number(val)) || val < 1 || val > 30;
 
 /*
@@ -152,10 +159,14 @@ function initPreferencesFileIfNotExistsOrInvalid()
             shouldSaveDerivedPrefs = true;
         }
 
-        if (timeInputs.includes(key) && isValidPreferenceTime(value))
+        if (timeInputs.includes(key))
         {
-            derivedPrefs[key] = defaultPreferences[key];
-            shouldSaveDerivedPrefs = true;
+            // Set default preference value if notification or time interval is not valid
+            if ((key === 'notifications-interval' && !isNotificationInterval(value)) || !validateTime(value))
+            {
+                derivedPrefs[key] = defaultPreferences[key];
+                shouldSaveDerivedPrefs = true;
+            }
         }
 
         const inputEnum = {
@@ -292,6 +303,7 @@ module.exports = {
     showDay,
     switchCalendarView,
     isNotBoolean,
+    isNotificationInterval,
     isValidPreferenceTime,
     notificationIsEnabled,
     repetitionIsEnabled

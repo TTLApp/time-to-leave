@@ -90,7 +90,7 @@ function sumTime(t1, t2)
  */
 function validateTime(time)
 {
-    let re = new RegExp('[0-2][0-9]:[0-5][0-9]');
+    let re = new RegExp('^-?(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$');
     return re.test(time);
 }
 

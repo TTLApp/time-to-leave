@@ -12,6 +12,8 @@
         "sat": "Sam",
         "hideNonWorkingDay": "Masquer les jours non ouvrés (Vue Mois)",
         "hoursPerDay": "Heures par jour",
+        "enablePrefillLunchTime": "Enable prefilling of lunch time",
+        "lunchTimeInterval": "Lunch Time Interval",
         "appBehavior": "Comportement de l'application",
         "notification": "Notification",
         "allowRecurringNotifications": "Autoriser les notifications récurrentes",
@@ -33,7 +35,8 @@
         "fixed": "Fixée",
         "flexible": "Flexible",
         "language": "Langue",
-        "hours-per-day": "HH:mm"
+        "hours-per-day": "HH:mm",
+        "lunch-time-interval": "HH:mm"
     },
     "$Menu": {
         "about": "À propos",
