@@ -12,7 +12,8 @@ const {
     getUserLanguage,
     getNotificationsInterval,
     notificationIsEnabled,
-    repetitionIsEnabled
+    repetitionIsEnabled,
+    savePreferences
 } = require('./js/user-preferences.js');
 const { applyTheme } = require('./js/themes.js');
 const { CalendarFactory } = require('./js/classes/CalendarFactory.js');
@@ -60,7 +61,7 @@ ipcRenderer.on('WAIVER_SAVED', function()
 /*
  * Notify user if it's time to leave
  */
-function notifyTimeToLeave()
+async function notifyTimeToLeave()
 {
     if (!notificationIsEnabled() || $('#leave-by').length === 0)
     {
@@ -77,14 +78,24 @@ function notifyTimeToLeave()
         const notificationInterval = getNotificationsInterval();
         let now = new Date();
         let curTime = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+        let today = now.toISOString().slice(0,10).replace(/-/g,'');
+
+        let preferences = getUserPreferences();
+        const noRememberForToday = preferences['no-remember-for-today'] === today;
 
         // Let check if it's past the time to leave, and the minutes line up with the interval to check
         let minutesDiff = hourToMinutes(subtractTime(timeToLeave, curTime));
         let isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval === 0);
 
-        if (curTime === timeToLeave || (isRepeatingInterval && repetitionIsEnabled()))
+        if (!noRememberForToday && (curTime === timeToLeave || (isRepeatingInterval && repetitionIsEnabled())))
         {
-            notify(i18n.t('$Notification.time-to-leave'));
+            let tNoRemember = i18n.t('$Notification.no-remember-for-today');
+            const res = await notify(i18n.t('$Notification.time-to-leave'), [tNoRemember]);
+            if (res.toLowerCase() === tNoRemember.toLowerCase())
+            { // notify resolves action in lowercase
+                preferences['no-remember-for-today'] = today;
+                savePreferences(preferences);
+            }
         }
     }
 }

@@ -33,7 +33,8 @@ const defaultPreferences = {
     'working-days-saturday': false,
     'working-days-sunday': false,
     'view': 'month',
-    'language': 'en'
+    'language': 'en',
+    'no-remember-for-today': false,
 };
 
 // Handle Boolean Inputs
