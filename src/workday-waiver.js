@@ -45,10 +45,10 @@ function addRowToListTable(day, reason, hours)
 {
     let table = $('#waiver-list-table tbody')[0],
         row = table.insertRow(0),
-        dayCell = row.insertCell(0),
-        reasonCell = row.insertCell(1),
-        hoursCell = row.insertCell(2),
-        delButtonCell = row.insertCell(3);
+        delButtonCell = row.insertCell(0),
+        dayCell = row.insertCell(1),
+        reasonCell = row.insertCell(2),
+        hoursCell = row.insertCell(3);
 
     dayCell.innerHTML = day;
     reasonCell.innerHTML = reason;
