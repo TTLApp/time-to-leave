@@ -179,7 +179,6 @@
         "country": "국가:",
         "date": "날짜",
         "day": "날짜",
-        "delete": "삭제",
         "delete-waiver-message": "정말 해당 일자의 휴가를 삭제하시겠습니까:",
         "end-date": "종료일",
         "end-date-cannot-be-less": "종료일은 시작일보다 늦어야 합니다.",

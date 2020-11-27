@@ -179,7 +179,6 @@
         "country": "Land:",
         "date": "Datum",
         "day": "Tag",
-        "delete": "Löschen",
         "delete-waiver-message": "Sind Sie sich sicher, dass Sie den Auschluss für diesen Tag löschen möchten",
         "end-date": "Enddatum",
         "end-date-cannot-be-less": "Enddatum kann nicht vor dem Startdatum liegen",

@@ -179,7 +179,6 @@
         "country": "Country:",
         "date": "Date",
         "day": "Day",
-        "delete": "Delete",
         "delete-waiver-message": "Are you sure you want to delete waiver on day",
         "end-date": "End Date",
         "end-date-cannot-be-less": "End date cannot be less than start date.",

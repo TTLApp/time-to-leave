@@ -179,7 +179,6 @@
         "country": "País:",
         "date": "Fecha",
         "day": "Día",
-        "delete": "Borrar",
         "delete-waiver-message": "¿Estás seguro de que quieres eliminar el día libre?",
         "end-date": "Fecha de finalización",
         "end-date-cannot-be-less": "La fecha de finalización no puede ser inferior a la fecha de inicio.",

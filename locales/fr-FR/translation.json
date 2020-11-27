@@ -179,7 +179,6 @@
         "country": "Pays:",
         "date": "Date",
         "day": "Jour",
-        "delete": "Supprimer",
         "delete-waiver-message": "Voulez-vous vraiment supprimer la dispense le jour",
         "end-date": "Date de fin",
         "end-date-cannot-be-less": "La date de fin ne peut pas être inférieure à la date de début.",

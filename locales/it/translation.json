@@ -179,7 +179,6 @@
         "country": "Paese:",
         "date": "Data",
         "day": "Giorno",
-        "delete": "Elimina",
         "delete-waiver-message": "Sei sicuro di voler cancellare l'esclusione sul giorno",
         "end-date": "Fine giornata",
         "end-date-cannot-be-less": "La data di fine non può precedere la data di inizio.",

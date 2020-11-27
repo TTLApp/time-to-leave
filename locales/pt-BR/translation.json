@@ -179,7 +179,6 @@
         "country": "País:",
         "date": "Data",
         "day": "Dia",
-        "delete": "Excluir",
         "delete-waiver-message": "Tem certeza de que deseja excluir a entrada no dia",
         "end-date": "Data final",
         "end-date-cannot-be-less": "A data de término não pode ser inferior à data de início.",

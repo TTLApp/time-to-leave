@@ -179,7 +179,6 @@
         "country": "País:",
         "date": "Data",
         "day": "Dia",
-        "delete": "Esborrar",
         "delete-waiver-message": "Estàs segur de que vols eliminar el dia lliure?",
         "end-date": "Data de finalització",
         "end-date-cannot-be-less": "La data de finalització no pot ser inferior a la data d'inici.",
