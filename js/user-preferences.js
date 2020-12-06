@@ -34,7 +34,7 @@ const defaultPreferences = {
     'working-days-sunday': false,
     'view': 'month',
     'language': 'en',
-    'no-remember-for-today': false,
+    'dismiss-for-today': false,
 };
 
 // Handle Boolean Inputs
