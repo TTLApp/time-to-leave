@@ -81,17 +81,17 @@ async function notifyTimeToLeave()
         let today = now.toISOString().slice(0,10).replace(/-/g,'');
 
         let preferences = getUserPreferences();
-        const noRememberForToday = preferences['dismiss-for-today'] === today;
+        const dismissForToday = preferences['dismiss-for-today'] === today;
 
         // Let check if it's past the time to leave, and the minutes line up with the interval to check
         let minutesDiff = hourToMinutes(subtractTime(timeToLeave, curTime));
         let isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval === 0);
 
-        if (!noRememberForToday && (curTime === timeToLeave || (isRepeatingInterval && repetitionIsEnabled())))
+        if (!dismissForToday && (curTime === timeToLeave || (isRepeatingInterval && repetitionIsEnabled())))
         {
-            let tNoRemember = i18n.t('$Notification.dismiss-for-today');
-            const res = await notify(i18n.t('$Notification.time-to-leave'), [tNoRemember]);
-            if (res.toLowerCase() === tNoRemember.toLowerCase())
+            let tDismiss = i18n.t('$Notification.dismiss-for-today');
+            const res = await notify(i18n.t('$Notification.time-to-leave'), [tDismiss]);
+            if (res.toLowerCase() === tDismiss.toLowerCase())
             { // notify resolves action in lowercase
                 preferences['dismiss-for-today'] = today;
                 savePreferences(preferences);
