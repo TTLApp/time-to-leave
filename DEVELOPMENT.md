@@ -149,13 +149,13 @@ If a release is what you want, you can use the following commands:
 
 ```bash
 # macOS
-npm run package-mac
+npm run package:mac
 
 # Windows
-npm run package-win
+npm run package:win
 
 # Debian
-npm run package-deb
+npm run package:deb
 ```
 
 These will create the respective file under `release-builds/` directory.
