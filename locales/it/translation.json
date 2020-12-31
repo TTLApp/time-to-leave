@@ -48,13 +48,13 @@
         "previous-day": "Giorno precedente",
         "remove-entry": "Rimuovi record",
         "waived-day": "Giorno escluso",
-        "yes": "Si"
+        "yes": "Sì"
     },
     "$FlexibleMonthCalendar": {
         "add-waiver-day": "Escludi questo giorno",
         "current-month": "Vai al mese corrente",
         "day": "Giorno",
-        "entry-removal-confirmation": "Sei sicuro di voler rimuovere gli ultimi due record dal giorno",
+        "entry-removal-confirmation": "Sei sicuro di voler rimuovere gli ultimi due record dal giorno?",
         "last-day-balance": "Ultimo giorno considerato per il bilancio",
         "leave-by": "In base all'ora di arrivo di oggi, dovresti andartene per le",
         "next-month": "Prossimo mese",
@@ -140,8 +140,8 @@
         "hideNonWorkingDay": "Nascondi giorni festivi (visuale Mese)",
         "hours-per-day": "HH:mm",
         "hoursPerDay": "Ore al giorno",
-        "enablePrefillBreakTime": "Enable prefilling of break time",
-        "breakTimeInterval": "Break time interval",
+        "enablePrefillBreakTime": "Abilita precompilazione della pausa",
+        "breakTimeInterval": "Intervallo di pausa",
         "language": "Linguaggio",
         "light": "Chiaro",
         "minimizeToTray": "Il pulsante di riduzione a icona deve ridurre a icona nella tray",
@@ -205,9 +205,9 @@
         "to": "a",
         "waive": "Escludi",
         "waived-workday-list": "Lista giorni lavorativi esclusi",
-        "waiver-manager": "Gestore giorni lavorativi esclus",
+        "waiver-manager": "Gestore giorni lavorativi esclusi",
         "waiver-reason": "Motivo esclusione",
         "year": "Anno",
-        "yes": "Si"
+        "yes": "Sì"
     }
 }
