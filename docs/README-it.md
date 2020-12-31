@@ -1,12 +1,12 @@
 <div align="center">
   <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
 
-  <p>Registra le ore di lavoro e ricevi una notifica quanto è ora di lasciare l'ufficio e iniziare a vivere</p>
+  <p>Registra le ore di lavoro e ricevi una notifica quando è ora di lasciare l'ufficio e iniziare a vivere</p>
 
   <br/>
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Piattaforma">
-<img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Downloads in Total">
+<img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Downloads in Totale">
 <a href="https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Ultima Release"></a>
 <img src="https://img.shields.io/github/workflow/status/thamara/time-to-leave/Code%20Coverage" alt="Build">
 <a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="Ultima Release"></a>
@@ -21,7 +21,7 @@
 
 ---
 
-Registra il momento in cui hai cominciato a lavorare oggi, e il programma calcolerà a che dora dovresti lasciare l'ufficio, considerando il tempo speso per il pranzo. Quando sarà ora, il programma ti invierà una notifica.
+Registra il momento in cui hai cominciato a lavorare oggi, e il programma calcolerà a che ora dovresti lasciare l'ufficio, considerando il tempo speso per il pranzo. Quando sarà ora, il programma ti invierà una notifica.
 
 ![time-to-leave-notification](https://user-images.githubusercontent.com/3754225/94519526-4dbc0280-0248-11eb-9738-ffae936cfa4a.jpg)
 
@@ -29,7 +29,7 @@ Puoi controllare le impostazioni, indicare i tuoi giorni lavorativi, quante ore 
 
 ![time-to-leave-settings](https://user-images.githubusercontent.com/3754225/94519531-4eed2f80-0248-11eb-9303-78f9abe69201.jpg)
 
-Poi anche escludere i giorni in cui non hai lavorato.
+Puoi anche escludere i giorni in cui non hai lavorato.
 
 ![time-to-leave-waiver](https://user-images.githubusercontent.com/3754225/94762058-4e79a380-03c4-11eb-8f28-1c480dbf8b5c.png)
 
