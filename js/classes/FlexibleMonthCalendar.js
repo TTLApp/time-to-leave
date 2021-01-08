@@ -535,6 +535,7 @@ class FlexibleMonthCalendar extends BaseCalendar
             }
             else
             {
+                workingDays += 1;
                 this._setTableData(dateKey);
                 this._colorErrorLine(dateKey);
             }
@@ -549,8 +550,6 @@ class FlexibleMonthCalendar extends BaseCalendar
             {
                 monthTotal = sumTime(monthTotal, dayTotal);
             }
-
-            workingDays += 1;
         }
         let monthDayInput = $('#month-day-input');
         if (monthDayInput)
