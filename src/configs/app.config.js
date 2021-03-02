@@ -38,7 +38,7 @@ function getLanguageName(code)
 }
 
 module.exports = {
-    languages: ['en', 'pt-BR', 'es', 'it', 'zh-TW', 'de-DE', 'hi', 'mr', 'pl', 'nl', 'th-TH', 'dev','ta'],
+    languages: ['en', 'pt-BR', 'es', 'it', 'zh-TW', 'de-DE', 'hi', 'mr', 'pl', 'nl', 'th-TH', 'dev', 'ta'],
     fallbackLng: 'en',
     namespace: 'translation',
     getLanguagesCodes,
