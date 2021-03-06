@@ -8,6 +8,7 @@ const languages = {
     'id': 'Bahasa Indonesia',
     'ko': '한국어',
     'it': 'Italiano',
+    'ja': '日本語',
     'mr': 'मराठी',
     'nl': 'Nederlands',
     'pl': 'Polski',
