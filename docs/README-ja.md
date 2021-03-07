@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>勤務時間を記録しましょう。仕事を終え、生活を始める時間に通知が届きます。</p>
 
@@ -49,10 +49,10 @@ Time to Leave は MacOS、Windows、Linux で動作し、[最新リリース](ht
 
 ## 謝辞
 
-アイコン作成 [freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com)
+アイコン作成：[freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com)
 
-タイマーアイコンは[lucy-g](https://icon-icons.com/icon/timer/121243)を元に, カラーバリエーションやフォーマットを変更しています。
+タイマーアイコンは[lucy-g](https://icon-icons.com/icon/timer/121243)のものを元に, カラーバリエーションやフォーマットを変更しています。
 
-病欠アイコン [SVG Repo](https://www.svgrepo.com/svg/271898/sick)
+病欠アイコン作成：[SVG Repo](https://www.svgrepo.com/svg/271898/sick)
 
-表示切替アイコン作成 [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [www.flaticon.com](https://www.flaticon.com)
+表示切替アイコン作成：[Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [www.flaticon.com](https://www.flaticon.com)
