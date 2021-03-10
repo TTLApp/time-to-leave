@@ -1,19 +1,19 @@
 <div align="center">
-  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../assets/timetoleave.png" alt="டைம் டு லீவின் லோகோ">
 
   <p>வேலை நேரத்தை பதிவு செய்து,அலுவலகத்தை விட்டு வெளியேறி வாழத் தொடங்க உதவியான அறிவிப்புகளை பெறுங்கள்</p>
 
 <br/>
 
-<img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
-<img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Downloads in Total">
-<a href="https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Latest Release"></a>
-<img src="https://img.shields.io/github/workflow/status/thamara/time-to-leave/Code%20Coverage" alt="Build">
-<a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="Latest Release"></a>
+<img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="இயங்கு தளம்">
+<img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="மொத்த பதிவிறக்கங்கள்">
+<a href="https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="சமீபத்திய வெளியீடு"></a>
+<img src="https://img.shields.io/github/workflow/status/thamara/time-to-leave/Code%20Coverage" alt="கட்டமைப்பு">
+<a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="சமீபத்திய வெளியீடு"></a>
 
    <br/>
 
-  <img src="https://user-images.githubusercontent.com/3754225/94519528-4e549900-0248-11eb-8872-b6fb2d47f43c.jpg" alt="Time to Leave Screenshot">
+  <img src="https://user-images.githubusercontent.com/3754225/94519528-4e549900-0248-11eb-8872-b6fb2d47f43c.jpg" alt="டைம் டு லீவின் ஸ்கிரீன்ஷாட்">
 
   <br/>
 
@@ -35,7 +35,7 @@
 
 ## TTL ஐ எவ்வாறு இன்ஸ்டால் செய்வது
 
-Time to Leave MacOS, Windows மற்றும் Linux இல் இயங்குகிறது, மற்றும் நீங்கள் விரும்பிய பதிவை இந்த லிங்கின் மூலம் இன்ஸ்டால் செய்யலாம் [the latest release](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
+Time to Leave MacOS, Windows மற்றும் Linux இல் இயங்குகிறது, மற்றும் நீங்கள் விரும்பிய பதிவை இந்த லிங்கின் மூலம் இன்ஸ்டால் செய்யலாம் [சமீபத்திய வெளியீடு](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
 
 ## TTL ஐ எவ்வாறு உருவாக்குவது மற்றும் எப்படி பங்களிப்பது
 
@@ -48,10 +48,10 @@ Time to Leave MacOS, Windows மற்றும் Linux இல் இயங்�
 
 ## கிரேடிட்ஸ்
 
-ஐகான்ஸ் [www.flaticon.com](https://www.flaticon.com) மில் இருந்து,  [freepik](https://www.flaticon.com/authors/freepik) ஆல் செய்யப்பட்டது.
+ஐகான்ஸ் [www.flaticon.com](https://www.flaticon.com) மில் இருந்து,  [பிரீ பிக்](https://www.flaticon.com/authors/freepik) ஆல் செய்யப்பட்டது.
 
 அசல் டைமர் ஐகான் [லூசி-ஜி](https://icon-icons.com/icon/timer/121243) ஆல் செய்யப்பட்டது, வண்ண மாறுபாடுகள் மற்றும் வடிவங்கள் அதிலிருந்து மாற்றியமைக்கப்பட்டுள்ளன.
 
-நோய் ஐகான் [SVG Repo](https://www.svgrepo.com/svg/271898/sick) ஆல் செய்யப்பட்டது.
+நோய் ஐகான் [எஸ்.வி.ஜி ரெப்போ](https://www.svgrepo.com/svg/271898/sick) ஆல் செய்யப்பட்டது.
 
-காட்சி சொடுக்கி ஐகான் [www.flaticon.com](https://www.flaticon.com)  மில் இருந்து [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) ஆல் செய்யப்பட்டது.
+காட்சி சொடுக்கி ஐகான் [www.flaticon.com](https://www.flaticon.com)  மில் இருந்து [பிக்சல் பர்பெக்ட்](https://www.flaticon.com/authors/pixel-perfect) ஆல் செய்யப்பட்டது.

@@ -117,7 +117,7 @@
         "show-app": "ஆப்பை காட்டு",
         "something-went-wrong": "ஏதோ தவறு நடந்துவிட்டது :(",
         "toggle-dev-tools": "டேவலப்பர் டூல்ஸை டாகில் செய்க",
-        "ttl-github": "TTL GitHub",
+        "ttl-github": "TTL கிட் ஹப்",
         "view": "காட்சி",
         "workday-waiver-manager": "வேலை நாள் விலக்கு மேலாளர் ",
         "yes-please": "ஆமாம் தயவு செய்து"
@@ -140,8 +140,8 @@
         "hideNonWorkingDay": "வேலை செய்யாத நாட்களை மறைக்க (மாதக் காட்சி)",
         "hours-per-day": "HH:mm",
         "hoursPerDay": "ஒரு நாளைக்கு மணிநேரம்",
-        "enablePrefillBreakTime": "Enable prefilling of break time",
-        "breakTimeInterval": "Break time interval",
+        "enablePrefillBreakTime": "இடைவேளையின் நேரத்தை நிரப்புவதை இயக்கவும்",
+        "breakTimeInterval": "இடைவெளி நேர இடைவெளி",
         "language": "மொழி: தமிழ்",
         "light": "ஒளி",
         "minimizeToTray": "மினிமைஸ் பட்டன் ட்ரேவை சிறிதாக்க வேண்டும்",
@@ -158,19 +158,19 @@
         "themes": "தீம்கள்",
         "thu": "வியாழன்",
         "title": "Time to Leave - விருப்பத்தேர்வுகள்",
-        "tue": "Tue",
+        "tue": "செவ்வாய்",
         "userPreferences": "பயனர் விருப்பத்தேர்வுகள்",
         "view": "காட்சி",
         "wed": "புதன்",
         "workingDays": "வேலை நாட்கள்"
     },
     "$UpdateManager": {
-        "dismissBtn": "Dismiss",
-        "downloadBtn": "Download latest version",
-        "old-version-msg": "You are using an old version of TTL and missing out on a lot of new cool things!",
-        "remindBtn": "Remind me later",
-        "title": "TTL Check for updates",
-        "upto-date-msg": "Your TTL is up to date."
+        "dismissBtn": "நிராகரி",
+        "downloadBtn": "சமீபத்திய பதிப்பைப் பதிவிறக்குக",
+        "old-version-msg": "நீங்கள் TTL இன் பழைய பதிப்பைப் பயன்படுத்துகிறீர்கள், மேலும் பல புதிய விஷயங்களை இழக்கிறீர்கள்!",
+        "remindBtn": "பின்னர் நினைவூட்டு",
+        "title": "TTL புதுப்பிப்புகளை சரிபார்க்கவும்",
+        "upto-date-msg": "உங்கள் TTL புதுப்பித்த நிலையில் உள்ளது."
     },
     "$WorkdayWaiver": {
         "add-waiver": "விலக்கு சேர்க்கவும்",
