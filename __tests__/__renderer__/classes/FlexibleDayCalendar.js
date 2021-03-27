@@ -151,9 +151,11 @@ describe('FlexibleDayCalendar class Tests', () =>
         const expectedNextMonth = today.getMonth() + 1 === 12 ? 0 : (today.getMonth() + 1);
         const expectedPrevMonth = today.getMonth() === 0 ? 11 : (today.getMonth() - 1);
 
-        // The Distance to next month is the amount of days in the month minus the current day, plust 2
+        // The Distance to next month is the amount of days in the month minus the current day, plus 2
         // The plus 2 accounts for "finishing" today and moving to the next day (of the next month)
-        const distToNextMonth = (new Date(today.getFullYear(), today.getMonth(), 0)).getDate() - today.getDate() + 2;
+        // In JS, day 0 of a month is the last day of previous month. Because of this we need to
+        // add one to retrieve the number of days in a month.
+        const distToNextMonth = (new Date(today.getFullYear(), today.getMonth() + 1, 0)).getDate() - today.getDate() + 2;
         const distToPrevMonth = today.getDate() + 1;
 
         for (let i = 0; i < distToNextMonth; i++)
