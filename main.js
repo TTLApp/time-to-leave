@@ -15,7 +15,7 @@ if (appConfig.win32)
     if (handleSquirrelEvent(app))
     {
         // squirrel event handled and app will exit in 1000ms, so don't do anything else
-        return;
+        app.quit();
     }
 }
 
