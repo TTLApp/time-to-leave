@@ -291,7 +291,7 @@ class FlexibleDayCalendar extends BaseCalendar
         function removeEntries()
         {
             const existingEntryPairs = $('.row-entry-pair').length;
-            if (existingEntryPairs > 2)
+            if (existingEntryPairs > 1)
             {
                 const dateKey = $('.rows-time').attr('id');
                 const removeEntriesDialogOptions = {
@@ -310,7 +310,7 @@ class FlexibleDayCalendar extends BaseCalendar
                     $('.rows-time > div:last-of-type').remove();
                     $('.rows-time > div:last-of-type').remove();
 
-                    if (existingEntryPairs - 1 > 2)
+                    if (existingEntryPairs - 1 > 1)
                     {
                         const minusSignCode =
                             '<div class="sign-cell">' +
@@ -380,7 +380,7 @@ class FlexibleDayCalendar extends BaseCalendar
         if (values !== undefined)
         {
             const validatedTimes = this._validateTimes(values);
-            const inputsHaveExpectedSize = values.length >= 4 && values.length % 2 === 0;
+            const inputsHaveExpectedSize = values.length >= 2 && values.length % 2 === 0;
             const validatedTimesOk = validatedTimes.length > 0 && validatedTimes.every(time => time !== '--:--');
             const hasDayEnded = inputsHaveExpectedSize && validatedTimesOk;
 
@@ -389,7 +389,7 @@ class FlexibleDayCalendar extends BaseCalendar
             {
                 dayTotal = '00:00';
                 let timesAreProgressing = true;
-                if (validatedTimes.length >= 4 && validatedTimes.length % 2 === 0)
+                if (validatedTimes.length >= 2 && validatedTimes.length % 2 === 0)
                 {
                     for (let i = 0; i < validatedTimes.length; i += 2)
                     {
@@ -685,7 +685,7 @@ class FlexibleDayCalendar extends BaseCalendar
                         '<div class="sign-container"><span class="minus-sign">-</span></div>' +
                     '</div>' +
                 '</div>';
-            const shouldPrintMinusSign = numberOfPairs > 2 && isLastRow;
+            const shouldPrintMinusSign = numberOfPairs > 1 && isLastRow;
 
             return '<div class="row-entry-pair">' +
                 `<div class="th th-label first-group">${i18n.t('$FlexibleDayCalendar.entry')} #` + entryIndex + '</div>' +

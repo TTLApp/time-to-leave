@@ -325,7 +325,14 @@ class FlexibleMonthCalendar extends BaseCalendar
             const element = $(target);
             const hasHorizontalScrollbar = target.scrollWidth > target.clientWidth;
             element.parent().find('.arrow').toggleClass('disabled', !hasHorizontalScrollbar);
-            element.parent().find('.sign-cell.minus-sign').toggleClass('disabled', !hasHorizontalScrollbar);
+        }
+
+        function toggleMinusSign(target)
+        {
+            const element = $(target);
+            const numberEntries = $(element).find('.row-time').length;
+            const hasMoreThanTwoEntries = numberEntries > 2;
+            element.parent().find('.sign-cell.minus-sign').toggleClass('disabled', !hasMoreThanTwoEntries);
         }
 
         const resizeObserver = new ResizeObserver(entries =>
@@ -340,6 +347,7 @@ class FlexibleMonthCalendar extends BaseCalendar
         {
             resizeObserver.observe(element);
             toggleArrowColor(element);
+            toggleMinusSign(element);
         });
 
         function addEntries(element)
@@ -366,12 +374,13 @@ class FlexibleMonthCalendar extends BaseCalendar
             const element = $(this).parent().parent().find('.time-cells')[0];
             addEntries(element);
             toggleArrowColor(element);
+            toggleMinusSign(element);
         });
 
         function removeEntries(element)
         {
             const row = $(element).find('.row-time');
-            if (row.length > 5)
+            if (row.length > 3)
             {
                 const dateKey = $(element).attr('id');
                 const removeEntriesDialogOptions = {
@@ -391,6 +400,7 @@ class FlexibleMonthCalendar extends BaseCalendar
                     row.slice(sliceNum).remove();
                     calendar._updateTimeDay($(element).attr('id'));
                     toggleArrowColor(element);
+                    toggleMinusSign(element);
                     setTimeout(() =>
                     {
                         calendar._checkTodayPunchButton();
@@ -697,12 +707,12 @@ class FlexibleMonthCalendar extends BaseCalendar
             return index % 3 !== 2;
         }
 
-        function lessThanFourEntries(index)
+        function lessThanTwoEntries(index)
         {
-            return index < 5;
+            return index < 3;
         }
 
-        while (lessThanFourEntries(i) || inputGroupFullyPrinted(i))
+        while (lessThanTwoEntries(i) || inputGroupFullyPrinted(i))
         {
             ++i;
             if (indexIsInterval(i))

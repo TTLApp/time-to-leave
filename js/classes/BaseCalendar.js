@@ -521,7 +521,7 @@ class BaseCalendar
         const validatedTimes = this._validateTimes(values);
 
         const storeHasExpectedSize = values.length === inputs.length;
-        const inputsHaveExpectedSize = values.length >= 4 && values.length % 2 === 0;
+        const inputsHaveExpectedSize = values.length >= 2 && values.length % 2 === 0;
         const validatedTimesOk = validatedTimes.length > 0 && validatedTimes.every(time => time !== '--:--');
         const hasDayEnded = storeHasExpectedSize && inputsHaveExpectedSize && validatedTimesOk;
 
@@ -529,7 +529,7 @@ class BaseCalendar
         {
             let dayTotal = '00:00';
             let timesAreProgressing = true;
-            if (validatedTimes.length >= 4 && validatedTimes.length % 2 === 0)
+            if (validatedTimes.length >= 2 && validatedTimes.length % 2 === 0)
             {
                 for (let i = 0; i < validatedTimes.length; i += 2)
                 {
