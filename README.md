@@ -2,6 +2,8 @@
   <img src="assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>Log work hours and get notified when it's time to leave the office and start to live</p>
+   
+   [Homepage](https://timetoleave.app/)
 
 <a href="docs/README-pt-BR.md"><img src="https://img.shields.io/badge/pt--BR-Portugu%C3%AAs-purple" alt="Esse documento também está disponível em Português (Brasil)"></a>
 <a href="docs/README-es.md"><img src="https://img.shields.io/badge/es-Espa%C3%B1ol-purple" alt="Este documento también está disponíble en Español"></a>
@@ -35,7 +37,7 @@
   <br/>
 
 
-  ### Visit our [Homepage](https://timetoleave.app/)
+ 
 
   <br/>
 
