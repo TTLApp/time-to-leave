@@ -709,7 +709,7 @@ class FlexibleMonthCalendar extends BaseCalendar
 
         function lessThanTwoEntries(index)
         {
-            return index < 3;
+            return index < 2;
         }
 
         while (lessThanTwoEntries(i) || inputGroupFullyPrinted(i))

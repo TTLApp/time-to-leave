@@ -496,7 +496,7 @@ class BaseCalendar
      */
     _updateDbEntry(dateKey, newValues)
     {
-        let validatedTimes = this._validateTimes(newValues);
+        let validatedTimes = this._validateTimes(newValues, true /*removeEndingInvalids*/);
         if (validatedTimes.length > 0)
         {
             this._setStore(dateKey, validatedTimes);
