@@ -779,8 +779,6 @@ html[data-view='flexible'] .calendar-table-header .header-day-total {
 }
 
 html[data-view='flexible'] .row-time {
-  display: table-cell;
-  width: 50px;
   margin: auto;
 }
 
@@ -838,6 +836,7 @@ html[data-view='flexible'] .time-cells {
   width: 69%;
   overflow-x: scroll;
   height: 30px;
+  display: flex;
 }
 
 @media (min-width: 1200px) {
