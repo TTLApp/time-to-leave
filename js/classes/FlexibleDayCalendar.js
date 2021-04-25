@@ -673,8 +673,8 @@ class FlexibleDayCalendar extends BaseCalendar
      */
     _addNecessaryEntries(dateKey, entrySize)
     {
-        // 2 pairs is the default minimum size of the table
-        const numberOfPairs = Math.ceil(entrySize/2) >= 2 ? Math.ceil(entrySize/2) : 2;
+        // 2 pairs is the default minimum size of the table, when no entries are there
+        const numberOfPairs = Math.ceil(entrySize/2) >= 1 ? Math.ceil(entrySize/2) : 2;
 
         function entryPairHTMLCode(entryIndex, isLastRow)
         {
