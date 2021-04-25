@@ -15,7 +15,7 @@
     "debug:main": "electron --inspect=5858 .",
     "debug:render": "electron --remote-debugging-port=9222 .",
     "lint": "npm-run-all lint:*",
-    "lint:css": "stylelint **/*.css website/styles/*.css",
+    "lint:css": "stylelint css/*.css",
     "lint:eslint": "eslint . ",
     "lint:markdown": "prettier docs/*.md *.md -c",
     "lint:json": "prettier locales/*/*.json -c",
