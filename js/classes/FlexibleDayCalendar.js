@@ -678,28 +678,26 @@ class FlexibleDayCalendar extends BaseCalendar
 
         function entryPairHTMLCode(entryIndex, isLastRow)
         {
-
             const minusSignCode =
-                '<div class="third-group">' +
-                    '<div class="sign-cell">' +
-                        '<div class="sign-container"><span class="minus-sign">-</span></div>' +
-                    '</div>' +
+                '<div class="sign-cell">' +
+                    '<div class="sign-container"><span class="minus-sign">-</span></div>' +
                 '</div>';
             const shouldPrintMinusSign = numberOfPairs > 2 && isLastRow;
 
             return '<div class="row-entry-pair">' +
-                `<div class="th th-label first-group">${i18n.t('$FlexibleDayCalendar.entry')} #` + entryIndex + '</div>' +
-                '<div class="second-group">' +
-                    '<input type="time" data-date="' + dateKey + '">' +
-                    '<input type="time" data-date="' + dateKey + '">' +
-                '</div>' +
-                (shouldPrintMinusSign ? minusSignCode : '') +
+                    `<div class="th th-label first-group">${i18n.t('$FlexibleDayCalendar.entry')} #` + entryIndex + '</div>' +
+                    '<div class="second-group">' +
+                        '<input type="time" data-date="' + dateKey + '">' +
+                        '<input type="time" data-date="' + dateKey + '">' +
+                    '</div>' +
+                    '<div class="third-group">' +
+                        (shouldPrintMinusSign ? minusSignCode : '') +
+                    '</div>' +
                 '</div>';
         }
 
         function intervalHTMLCode(entryIndex)
         {
-
             if (entryIndex === 0)
             {
                 return '';
