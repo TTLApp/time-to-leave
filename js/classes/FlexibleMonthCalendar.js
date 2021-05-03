@@ -714,7 +714,7 @@ class FlexibleMonthCalendar extends BaseCalendar
         // One pair of entries is a special case in which no more entries are added
         const onlyOnePair = values.length == 2;
 
-        while (!onlyOnePair && (lessThanTwoEntries(i) || inputGroupFullyPrinted(i)))
+        while (!onlyOnePair && (lessThanThreeEntries(i) || inputGroupFullyPrinted(i)))
         {
             ++i;
             if (indexIsInterval(i))
