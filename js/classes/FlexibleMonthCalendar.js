@@ -706,7 +706,7 @@ class FlexibleMonthCalendar extends BaseCalendar
             return index % 3 !== 2;
         }
 
-        function lessThanTwoEntries(index)
+        function lessThanThreeEntries(index)
         {
             return index < 3;
         }
