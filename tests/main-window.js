@@ -35,7 +35,7 @@ describe('Application launch', function()
         const { client, browserWindow } = this.app;
         await client.waitUntilWindowLoaded();
         const title = await browserWindow.getTitle();
-        return assert.equal(title, 'Time to Leave');
+        assert.equal(title, 'Time to Leave');
     });
 
     it('Calendar opens on Current Month/Year', async function()
@@ -46,7 +46,7 @@ describe('Application launch', function()
         const monthYear = await client.$('#month-year');
         const monthYearText = await monthYear.getText();
         const today = new Date();
-        return assert.equal(monthYearText, `${months[today.getMonth()]} ${today.getFullYear()}`);
+        assert.equal(monthYearText, `${months[today.getMonth()]} ${today.getFullYear()}`);
     });
 
     it('Change to Day View', async function()
@@ -59,7 +59,7 @@ describe('Application launch', function()
         const headerDate = await client.$('#header-date');
         const headerDateText = await headerDate.getText();
         const today = new Date();
-        return assert.equal(headerDateText, `${weekDay[today.getDay()]}, ${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`);
+        assert.equal(headerDateText, `${weekDay[today.getDay()]}, ${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`);
     });
 
     it('Calendar change to previous Month', async function()
@@ -73,7 +73,7 @@ describe('Application launch', function()
         const monthYearText = await monthYear.getText();
         const today = new Date();
         const prevMonthDate = new Date(today.getFullYear(), today.getMonth(), -1);
-        return assert.equal(monthYearText, `${months[prevMonthDate.getMonth()]} ${prevMonthDate.getFullYear()}`);
+        assert.equal(monthYearText, `${months[prevMonthDate.getMonth()]} ${prevMonthDate.getFullYear()}`);
     });
 
     it('Calendar change to next Month', async function()
@@ -87,7 +87,7 @@ describe('Application launch', function()
         const monthYearText = await monthYear.getText();
         const today = new Date();
         const nextMonthDate = new Date(today.getFullYear(), today.getMonth() + 1, 1);
-        return assert.equal(monthYearText, `${months[nextMonthDate.getMonth()]} ${nextMonthDate.getFullYear()}`);
+        assert.equal(monthYearText, `${months[nextMonthDate.getMonth()]} ${nextMonthDate.getFullYear()}`);
     });
 
     it('Calendar change to pervious Day', async function()
@@ -102,7 +102,7 @@ describe('Application launch', function()
         const headerDateText = await headerDate.getText();
         const today = new Date();
         const previousDayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1);
-        return assert.equal(headerDateText, `${weekDay[previousDayDate.getDay()]}, ${months[previousDayDate.getMonth()]} ${previousDayDate.getDate()}, ${previousDayDate.getFullYear()}`);
+        assert.equal(headerDateText, `${weekDay[previousDayDate.getDay()]}, ${months[previousDayDate.getMonth()]} ${previousDayDate.getDate()}, ${previousDayDate.getFullYear()}`);
     });
 
     it('Calendar change to next Day', async function()
@@ -117,6 +117,6 @@ describe('Application launch', function()
         const headerDateText = await headerDate.getText();
         const today = new Date();
         const nextDayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
-        return assert.equal(headerDateText, `${weekDay[nextDayDate.getDay()]}, ${months[nextDayDate.getMonth()]} ${nextDayDate.getDate()}, ${nextDayDate.getFullYear()}`);
+        assert.equal(headerDateText, `${weekDay[nextDayDate.getDay()]}, ${months[nextDayDate.getMonth()]} ${nextDayDate.getDate()}, ${nextDayDate.getFullYear()}`);
     });
 });
