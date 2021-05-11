@@ -249,6 +249,11 @@ class FlexibleMonthCalendar extends BaseCalendar
 
         for (let day = 1; day <= monthLength; ++day)
         {
+            if (!this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day) && this._getHideNonWorkingDays())
+            {
+                continue;
+            }
+
             html += this._getInputsRowCode(this._getCalendarYear(), this._getCalendarMonth(), day);
             if (day === balanceRowPosition)
             {
