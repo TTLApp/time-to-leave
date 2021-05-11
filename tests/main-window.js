@@ -4,6 +4,8 @@ const assert = require('assert');
 const electronPath = require('electron');
 const path = require('path');
 
+process.env.NODE_ENV = 'test';
+
 // TODO: expose API from Calendar so this duplication is not needed
 const months = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
 const weekDay = [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ];
