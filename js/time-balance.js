@@ -76,7 +76,7 @@ function _getHoursPerDay()
 */
 function _getFlexibleDayTotal(values)
 {
-    const inputsHaveExpectedSize = values.length >= 4 && values.length % 2 === 0;
+    const inputsHaveExpectedSize = values.length >= 2 && values.length % 2 === 0;
     const timesOk = values.length > 0 && values.every(time => time !== '--:--');
     const hasDayEnded = inputsHaveExpectedSize && timesOk;
 
@@ -84,7 +84,7 @@ function _getFlexibleDayTotal(values)
     {
         let dayTotal = '00:00';
         let timesAreProgressing = true;
-        if (values.length >= 4 && values.length % 2 === 0)
+        if (values.length >= 2 && values.length % 2 === 0)
         {
             for (let i = 0; i < values.length; i += 2)
             {
