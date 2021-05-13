@@ -217,7 +217,7 @@ describe('Time Balance', () =>
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 8))).resolves.toBe('-02:45');
         // time balance until thu (excluding thu)
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 9))).resolves.toBe('-04:00');
-        // time balance until fru (excluding fri)
+        // time balance until fri (excluding fri)
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 10))).resolves.toBe('-08:00');
         // time balance until sat/sun/mon (excluding sat/sun/mon)
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 11))).resolves.toBe('-10:00');
