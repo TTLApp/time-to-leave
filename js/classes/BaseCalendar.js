@@ -443,10 +443,10 @@ class BaseCalendar
         {
             return;
         }
-        
+
         if (this._areAllInputsFilled(year, month, day))
         {
-            this._addTodayEntries();   
+            this._addTodayEntries();
         }
 
         const value = hourMinToHourFormatted(hour, min);

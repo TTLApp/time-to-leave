@@ -390,19 +390,32 @@ class FlexibleMonthCalendar extends BaseCalendar
                     type: 'info',
                     buttons: [i18n.t('$FlexibleMonthCalendar.yes'), i18n.t('$FlexibleMonthCalendar.no')]
                 };
-                showDialog(removeEntriesDialogOptions, (result) =>
+                const a = $(element).find('input');
+                // console.log(a.last().val());
+                if (a.last().val() !== '')
                 {
-                    const buttonId = result.response;
-                    if (buttonId === 1)
+                    showDialog(removeEntriesDialogOptions, (result) =>
                     {
-                        return;
-                    }
+                        const buttonId = result.response;
+                        if (buttonId === 1)
+                        {
+                            return;
+                        }
+                        const sliceNum = row.length === 6 ? -1 : (row.length === 7 ? -2 : -3);
+                        row.slice(sliceNum).remove();
+                        calendar._updateTimeDay($(element).attr('id'));
+                        toggleArrowColor(element);
+                        toggleMinusSign(element);
+                    });
+                }
+                else
+                {
                     const sliceNum = row.length === 6 ? -1 : (row.length === 7 ? -2 : -3);
                     row.slice(sliceNum).remove();
                     calendar._updateTimeDay($(element).attr('id'));
                     toggleArrowColor(element);
                     toggleMinusSign(element);
-                });
+                }
             }
         }
 
@@ -717,7 +730,7 @@ class FlexibleMonthCalendar extends BaseCalendar
         }
 
         // One pair of entries is a special case in which no more entries are added
-        const onlyOnePair = values.length == 2;
+        const onlyOnePair = values.length === 2;
 
         while (!onlyOnePair && (lessThanThreeEntries(i) || inputGroupFullyPrinted(i)))
         {

@@ -66,12 +66,12 @@ describe('Time Balance', () =>
         expect(getFirstInputInDb()).toBe('2020-6-6');
     });
 
-    test('computeAllTimeBalanceUntil: no input', async () =>
+    test('computeAllTimeBalanceUntil: no input', async() =>
     {
         await expect(computeAllTimeBalanceUntil(new Date())).resolves.toBe('00:00');
     });
 
-    test('computeAllTimeBalanceUntil: only regular days', async () =>
+    test('computeAllTimeBalanceUntil: only regular days', async() =>
     {
         const entryEx = {
             '2020-6-1': {'values': ['08:00', '12:00', '13:00', '17:00']} // wed (8h total)
@@ -91,7 +91,7 @@ describe('Time Balance', () =>
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 7))).resolves.toBe('-24:00');
     });
 
-    test('computeAllTimeBalanceUntil: only regular days (6 entries)', async () =>
+    test('computeAllTimeBalanceUntil: only regular days (6 entries)', async() =>
     {
         const entryEx = {
             '2020-6-1': {'values': ['08:00', '10:00', '10:30', '11:30', '13:00', '17:00']} // wed (7h total)
@@ -111,7 +111,7 @@ describe('Time Balance', () =>
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 7))).resolves.toBe('-25:00');
     });
 
-    test('computeAllTimeBalanceUntil: only regular days (with overtime)', async () =>
+    test('computeAllTimeBalanceUntil: only regular days (with overtime)', async() =>
     {
         const entryEx = {
             '2020-6-1': {'values': ['08:00', '12:00', '13:00', '18:30']} // wed (9h30 total)
@@ -125,7 +125,7 @@ describe('Time Balance', () =>
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 4))).resolves.toBe('-14:30');
     });
 
-    test('computeAllTimeBalanceUntil: only regular days (with overtime and 8 entries)', async () =>
+    test('computeAllTimeBalanceUntil: only regular days (with overtime and 8 entries)', async() =>
     {
         const entryEx = {
             '2020-6-1': {'values': ['06:00', '12:00', '13:00', '14:00', '14:30', '16:00', '17:00', '18:30']} // wed (10h total)
@@ -139,7 +139,7 @@ describe('Time Balance', () =>
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 4))).resolves.toBe('-14:00');
     });
 
-    test('computeAllTimeBalanceUntil: only regular days (with undertime)', async () =>
+    test('computeAllTimeBalanceUntil: only regular days (with undertime)', async() =>
     {
         const entryEx = {
             '2020-6-1': {'values': ['08:00', '12:00', '13:00', '15:15']} // wed (6h15 total)
@@ -153,7 +153,7 @@ describe('Time Balance', () =>
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 4))).resolves.toBe('-17:45');
     });
 
-    test('computeAllTimeBalanceUntil: only regular days (with mixed time)', async () =>
+    test('computeAllTimeBalanceUntil: only regular days (with mixed time)', async() =>
     {
         const entryEx = {
             '2020-6-1': {'values': ['08:00', '12:00', '13:00', '15:15']}, // wed (6h15 total)
@@ -169,7 +169,7 @@ describe('Time Balance', () =>
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 4))).resolves.toBe('-02:15');
     });
 
-    test('computeAllTimeBalanceUntil: irregular days (with mixed time)', async () =>
+    test('computeAllTimeBalanceUntil: irregular days (with mixed time)', async() =>
     {
         const entryEx = {
             '2020-6-6': {'values': ['08:00', '12:00']}, // mon (even #entries, but < 4 => 4h/-4h)[total tomorrow: -4h]
@@ -198,7 +198,7 @@ describe('Time Balance', () =>
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 14))).resolves.toBe('-10:00');
     });
 
-    test('computeAllTimeBalanceUntil: irregular (but even) days (with mixed time)', async () =>
+    test('computeAllTimeBalanceUntil: irregular (but even) days (with mixed time)', async() =>
     {
         const entryEx = {
             '2020-6-6': {'values': ['08:00', '12:00']}, // mon (even #entries, but < 4 => 4h/-4h)[total tomorrow: -4h]
@@ -227,7 +227,7 @@ describe('Time Balance', () =>
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 14))).resolves.toBe('00:00');
     });
 
-    test('computeAllTimeBalanceUntil: missing entries', async () =>
+    test('computeAllTimeBalanceUntil: missing entries', async() =>
     {
         const entryEx = {
             '2020-6-1': {'values': ['08:00', '12:00', '13:00', '17:00']}, // wed (8h total)
@@ -244,7 +244,7 @@ describe('Time Balance', () =>
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 5))).resolves.toBe('-08:00');
     });
 
-    test('computeAllTimeBalanceUntil: with waived days', async () =>
+    test('computeAllTimeBalanceUntil: with waived days', async() =>
     {
         const entryEx = {
             '2020-6-1': {'values': ['08:00', '12:00', '13:00', '17:00']}, // wed (8h total)
@@ -263,7 +263,7 @@ describe('Time Balance', () =>
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 4))).resolves.toBe('00:00');
     });
 
-    test('computeAllTimeBalanceUntil: with waived days 2', async () =>
+    test('computeAllTimeBalanceUntil: with waived days 2', async() =>
     {
         const entryEx = {
             '2020-6-8': {'values': ['08:00', '12:00', '13:00', '17:00']} // wed (8h total)
@@ -284,7 +284,7 @@ describe('Time Balance', () =>
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 11))).resolves.toBe('00:00');
     });
 
-    test('computeAllTimeBalanceUntil: with waived days (not full)', async () =>
+    test('computeAllTimeBalanceUntil: with waived days (not full)', async() =>
     {
         const entryEx = {
             '2020-6-1': {'values': ['08:00', '12:00', '13:00', '17:00']}, // wed (8h total)
@@ -303,7 +303,7 @@ describe('Time Balance', () =>
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 4))).resolves.toBe('-06:00');
     });
 
-    test('computeAllTimeBalanceUntil: target date in the past of entries', async () =>
+    test('computeAllTimeBalanceUntil: target date in the past of entries', async() =>
     {
         const entryEx = {
             '2020-6-1': {'values': ['08:00', '12:00', '13:00', '17:00']}, // wed (8h total)
