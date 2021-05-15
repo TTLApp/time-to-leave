@@ -390,9 +390,9 @@ class FlexibleMonthCalendar extends BaseCalendar
                     type: 'info',
                     buttons: [i18n.t('$FlexibleMonthCalendar.yes'), i18n.t('$FlexibleMonthCalendar.no')]
                 };
-                const a = $(element).find('input');
-                // console.log(a.last().val());
-                if (a.last().val() !== '')
+                const getInputs = $(element).find('input');
+                const len = getInputs.length;
+                if (getInputs.get(len-1).value !== '' || getInputs.get(len-2).value !== '')
                 {
                     showDialog(removeEntriesDialogOptions, (result) =>
                     {
