@@ -378,6 +378,16 @@ class FlexibleMonthCalendar extends BaseCalendar
             toggleMinusSign(element);
         });
 
+        function removeBadEntryNow(element)
+        {
+            const row = $(element).find('.row-time');
+            const sliceNum = row.length === 6 ? -1 : (row.length === 7 ? -2 : -3);
+            row.slice(sliceNum).remove();
+            calendar._updateTimeDay($(element).attr('id'));
+            toggleArrowColor(element);
+            toggleMinusSign(element);
+        }
+
         function removeEntries(element)
         {
             const row = $(element).find('.row-time');
@@ -401,20 +411,12 @@ class FlexibleMonthCalendar extends BaseCalendar
                         {
                             return;
                         }
-                        const sliceNum = row.length === 6 ? -1 : (row.length === 7 ? -2 : -3);
-                        row.slice(sliceNum).remove();
-                        calendar._updateTimeDay($(element).attr('id'));
-                        toggleArrowColor(element);
-                        toggleMinusSign(element);
+                        removeBadEntryNow(element);
                     });
                 }
                 else
                 {
-                    const sliceNum = row.length === 6 ? -1 : (row.length === 7 ? -2 : -3);
-                    row.slice(sliceNum).remove();
-                    calendar._updateTimeDay($(element).attr('id'));
-                    toggleArrowColor(element);
-                    toggleMinusSign(element);
+                    removeBadEntryNow(element);
                 }
             }
         }
