@@ -31,9 +31,6 @@ jobs:
         run: |
           npm ci
           npm run test:jest
-      - name: '        Tests - Mocha'
-        run: npm run test:mocha
-        shell: bash
       - name: '        Create COV_REPORT'
         run: |
           mkdir COV_REPORT
