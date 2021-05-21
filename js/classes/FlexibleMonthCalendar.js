@@ -378,7 +378,7 @@ class FlexibleMonthCalendar extends BaseCalendar
             toggleMinusSign(element);
         });
 
-        function removeBadEntryNow(element)
+        function removeLastEntryPair(element)
         {
             const row = $(element).find('.row-time');
             const sliceNum = row.length === 6 ? -1 : (row.length === 7 ? -2 : -3);
@@ -411,12 +411,12 @@ class FlexibleMonthCalendar extends BaseCalendar
                         {
                             return;
                         }
-                        removeBadEntryNow(element);
+                        removeLastEntryPair(element);
                     });
                 }
                 else
                 {
-                    removeBadEntryNow(element);
+                    removeLastEntryPair(element);
                 }
             }
         }
