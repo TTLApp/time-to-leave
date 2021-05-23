@@ -13,6 +13,7 @@ const path = require('path');
 const Store = require('electron-store');
 const i18n = require('../src/configs/i18next.config');
 let { openWaiverManagerWindow, prefWindow } = require('./windows');
+const { getCurrentDateTimeStr } = require('./date-aux');
 
 function getMainMenuTemplate(mainWindow)
 {
@@ -148,7 +149,7 @@ function getEditMenuTemplate(mainWindow)
             {
                 let options = {
                     title: i18n.t('$Menu.export-db-to-file'),
-                    defaultPath : 'time_to_leave',
+                    defaultPath : `time_to_leave_${getCurrentDateTimeStr()}`,
                     buttonLabel : i18n.t('$Menu.export'),
 
                     filters : [
