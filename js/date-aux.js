@@ -24,6 +24,24 @@ function getMonthLength(year, month)
     return d.getDate();
 }
 
+/*
+ * Returns the current datetime string in the format YYYY_MM_DD_HH_MM_SS.
+ */
+function getCurrentDateTimeStr()
+{
+    const date = new Date();
+    const reg = /[-:]/g;
+    const currentTimeStr = date.toLocaleTimeString([], {hour: '2-digit', hourCycle: 'h23', minute:'2-digit', second:'2-digit'}).substr(0, 8);
+    try
+    {
+        return `${getDateStr(date)}_${currentTimeStr}`.replace(reg,'_');
+    }
+    catch (err)
+    {
+        return new Error(err);
+    }
+}
+
 module.exports = {
-    getDateStr, getMonthLength
+    getDateStr, getMonthLength, getCurrentDateTimeStr
 };
