@@ -8,13 +8,17 @@ const { getUserPreferences, showDay } = require('../js/user-preferences.js');
 const { validateTime, diffDays } = require('../js/time-math.js');
 const { applyTheme } = require('../js/themes.js');
 const { getDateStr } = require('../js/date-aux.js');
-const { bindDevToolsShortcut, showAlert, showDialog } = require('../js/window-aux.js');
+const {
+    bindDevToolsShortcut,
+    showAlert,
+    showDialog
+} = require('../js/window-aux.js');
 const i18n = require('./configs/i18next.config.js');
 
 const $ = require('jquery');
 const jqueryI18next = require('jquery-i18next');
 
-const waiverStore = new Store({name: 'waived-workdays'});
+const waiverStore = new Store({ name: 'waived-workdays' });
 let hd = new Holidays();
 
 function setDates(day)
@@ -40,7 +44,11 @@ function toggleAddButton(buttonName, state)
         $(`#${buttonName}`).attr('disabled', 'disabled');
     }
 }
-
+function checkIfValidHours()
+{
+    let hourString = $('#hours').val();
+    return hourString.match(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/);
+}
 function addRowToListTable(day, reason, hours)
 {
     let table = $('#waiver-list-table tbody')[0],
@@ -54,9 +62,14 @@ function addRowToListTable(day, reason, hours)
     reasonCell.innerHTML = reason;
     hoursCell.innerHTML = hours;
     let id = 'delete-' + day;
-    delButtonCell.innerHTML = '<input class="delete-btn" data-day="' + day + '" id="' + id + '" type="button"></input>';
+    delButtonCell.innerHTML =
+        '<input class="delete-btn" data-day="' +
+        day +
+        '" id="' +
+        id +
+        '" type="button"></input>';
 
-    $('#'+ id).on('click', deleteEntryOnClick);
+    $('#' + id).on('click', deleteEntryOnClick);
 }
 
 function populateList()
@@ -78,15 +91,17 @@ function getDateFromISOStr(isoStr)
 
 function addWaiver()
 {
-    let [startYear, startMonth, startDay] = getDateFromISOStr($('#start-date').val());
+    let [startYear, startMonth, startDay] = getDateFromISOStr(
+        $('#start-date').val()
+    );
     let [endYear, endMonth, endDay] = getDateFromISOStr($('#end-date').val());
 
-    let startDate = new Date(startYear, startMonth-1, startDay),
-        endDate = new Date(endYear, endMonth-1, endDay),
+    let startDate = new Date(startYear, startMonth - 1, startDay),
+        endDate = new Date(endYear, endMonth - 1, endDay),
         reason = $('#reason').val(),
         hours = $('#hours').val();
 
-    if (!(validateTime(hours)))
+    if (!validateTime(hours))
     {
         // The error is shown in the page, no need to handle it here
         return false;
@@ -108,11 +123,15 @@ function addWaiver()
         let alreadyHaveWaiverStr = i18n.t('$WorkdayWaiver.already-have-waiver');
         let removeWaiverStr = i18n.t('$WorkdayWaiver.remove-waiver');
         let [tempYear, tempMonth, tempDay] = getDateFromISOStr(tempDateStr);
-        noWorkingDaysOnRange &= !showDay(tempYear, tempMonth-1, tempDay) && !waiverStore.has(tempDateStr);
+        noWorkingDaysOnRange &=
+            !showDay(tempYear, tempMonth - 1, tempDay) &&
+            !waiverStore.has(tempDateStr);
 
         if (waiverStore.has(tempDateStr))
         {
-            showAlert(`${alreadyHaveWaiverStr} ${tempDateStr}. ${removeWaiverStr}`);
+            showAlert(
+                `${alreadyHaveWaiverStr} ${tempDateStr}. ${removeWaiverStr}`
+            );
             return false;
         }
 
@@ -131,9 +150,12 @@ function addWaiver()
     {
         let tempDateStr = getDateStr(tempDate);
         let [tempYear, tempMonth, tempDay] = getDateFromISOStr(tempDateStr);
-        if (showDay(tempYear, tempMonth-1, tempDay) && !waiverStore.has(tempDateStr))
+        if (
+            showDay(tempYear, tempMonth - 1, tempDay) &&
+            !waiverStore.has(tempDateStr)
+        )
         {
-            waiverStore.set(tempDateStr, { 'reason' : reason, 'hours' : hours });
+            waiverStore.set(tempDateStr, { reason: reason, hours: hours });
             addRowToListTable(tempDateStr, reason, hours);
         }
 
@@ -158,7 +180,7 @@ function deleteEntryOnClick(event)
         type: 'info',
         buttons: [i18n.t('$WorkdayWaiver.yes'), i18n.t('$WorkdayWaiver.no')]
     };
-    showDialog(options, (result) =>
+    showDialog(options, result =>
     {
         const buttonId = result.response;
         if (buttonId === 1)
@@ -175,10 +197,18 @@ function deleteEntryOnClick(event)
 function populateCountry()
 {
     $('#country').empty();
-    $('#country').append($('<option></option>').val('--').html('--'));
+    $('#country').append(
+        $('<option></option>')
+            .val('--')
+            .html('--')
+    );
     $.each(hd.getCountries(), function(i, p)
     {
-        $('#country').append($('<option></option>').val(i).html(p));
+        $('#country').append(
+            $('<option></option>')
+                .val(i)
+                .html(p)
+        );
     });
 }
 
@@ -188,10 +218,18 @@ function populateState(country)
     if (states)
     {
         $('#state').empty();
-        $('#state').append($('<option></option>').val('--').html('--'));
+        $('#state').append(
+            $('<option></option>')
+                .val('--')
+                .html('--')
+        );
         $.each(states, function(i, p)
         {
-            $('#state').append($('<option></option>').val(i).html(p));
+            $('#state').append(
+                $('<option></option>')
+                    .val(i)
+                    .html(p)
+            );
         });
         $('#state').show();
         $('#holiday-state').show();
@@ -208,10 +246,18 @@ function populateCity(country, state)
     if (regions)
     {
         $('#city').empty();
-        $('#city').append($('<option></option>').val('--').html('--'));
+        $('#city').append(
+            $('<option></option>')
+                .val('--')
+                .html('--')
+        );
         $.each(regions, function(i, p)
         {
-            $('#city').append($('<option></option>').val(i).html(p));
+            $('#city').append(
+                $('<option></option>')
+                    .val(i)
+                    .html(p)
+            );
         });
         $('#city').show();
         $('#holiday-city').show();
@@ -234,16 +280,34 @@ function populateYear()
     $('#year').empty();
     $.each(obj, function(i, p)
     {
-        $('#year').append($('<option></option>').val(p).html(p));
+        $('#year').append(
+            $('<option></option>')
+                .val(p)
+                .html(p)
+        );
     });
 }
 
 function getHolidays()
 {
-    let year = $('#year').find(':selected').val(),
-        country = $('#country').find(':selected') ? $('#country').find(':selected').val() : undefined,
-        state = $('#state').find(':selected') ? $('#state').find(':selected').val() : undefined,
-        city = $('#city').find(':selected') ? $('#city').find(':selected').val() : undefined;
+    let year = $('#year')
+            .find(':selected')
+            .val(),
+        country = $('#country').find(':selected')
+            ? $('#country')
+                .find(':selected')
+                .val()
+            : undefined,
+        state = $('#state').find(':selected')
+            ? $('#state')
+                .find(':selected')
+                .val()
+            : undefined,
+        city = $('#city').find(':selected')
+            ? $('#city')
+                .find(':selected')
+                .val()
+            : undefined;
     if (country === undefined)
     {
         return [];
@@ -252,7 +316,7 @@ function getHolidays()
     {
         hd.init(country, state, city);
     }
-    else if (state !== undefined && state !== '--' )
+    else if (state !== undefined && state !== '--')
     {
         hd.init(country, state);
     }
@@ -297,12 +361,12 @@ function addHolidayToList(day, reason, workingDay, conflicts)
     dayCell.innerHTML = day;
     reasonCell.innerHTML = reason;
     workingDayCell.innerHTML = workingDay;
-    if (workingDay === 'No')
-        $(row.cells[2]).addClass('text-danger');
-    if (conflicts)
-        $(row.cells[3]).addClass('text-danger');
+    if (workingDay === 'No') $(row.cells[2]).addClass('text-danger');
+    if (conflicts) $(row.cells[3]).addClass('text-danger');
     conflictsCell.innerHTML = conflicts;
-    importCell.innerHTML = `<label class="switch"><input type="checkbox" checked="${conflicts || workingDay === 'No' ? '' : 'checked'}" name="import-${day}" id="import-${day}"><span class="slider round"></span></label>`;
+    importCell.innerHTML = `<label class="switch"><input type="checkbox" checked="${
+        conflicts || workingDay === 'No' ? '' : 'checked'
+    }" name="import-${day}" id="import-${day}"><span class="slider round"></span></label>`;
 }
 
 function clearHolidayTable()
@@ -340,9 +404,16 @@ function loadHolidaysTable()
     {
         let [tempYear, tempMonth, tempDay] = getDateFromISOStr(holidayDate);
         // Holiday returns month with 1-12 index, but showDay expects 0-11
-        let workingDay = showDay(tempYear, tempMonth - 1, tempDay) ? i18n.t('$WorkdayWaiver.yes') : i18n.t('$WorkdayWaiver.no');
+        let workingDay = showDay(tempYear, tempMonth - 1, tempDay)
+            ? i18n.t('$WorkdayWaiver.yes')
+            : i18n.t('$WorkdayWaiver.no');
         let conflicts = waiverStore.get(holidayDate);
-        addHolidayToList(holidayDate, holidayReason, workingDay, conflicts ? conflicts['reason'] : '');
+        addHolidayToList(
+            holidayDate,
+            holidayReason,
+            workingDay,
+            conflicts ? conflicts['reason'] : ''
+        );
     }
 
     iterateOnHolidays(addHoliday);
@@ -358,7 +429,10 @@ function addHolidaysAsWaiver()
         let importHoliday = $(`#import-${holidayDate}`)[0].checked;
         if (importHoliday)
         {
-            waiverStore.set(holidayDate, { 'reason' : holidayReason, 'hours' : '08:00' });
+            waiverStore.set(holidayDate, {
+                reason: holidayReason,
+                hours: '08:00'
+            });
             addRowToListTable(holidayDate, holidayReason, '08:00');
         }
     }
@@ -416,9 +490,17 @@ $(() =>
 
     populateList();
 
-    $('#reason').on('keyup', () =>
+    $('#hours').on('input', () =>
     {
-        toggleAddButton('waive-button', $('#reason').val());
+        if (checkIfValidHours())
+            toggleAddButton('waive-button', $('#reason').val());
+        else toggleAddButton('waive-button', false);
+    });
+
+    $('#reason').on('input', () =>
+    {
+        if (checkIfValidHours())
+            toggleAddButton('waive-button', $('#reason').val());
     });
 
     $('#waive-button').on('click', () =>
@@ -434,12 +516,23 @@ $(() =>
     initializeHolidayInfo();
     $('#country').on('change', function()
     {
-        populateState($(this).find(':selected').val());
+        populateState(
+            $(this)
+                .find(':selected')
+                .val()
+        );
         loadHolidaysTable();
     });
     $('#state').on('change', function()
     {
-        populateCity($('#country').find(':selected').val(), $(this).find(':selected').val());
+        populateCity(
+            $('#country')
+                .find(':selected')
+                .val(),
+            $(this)
+                .find(':selected')
+                .val()
+        );
         loadHolidaysTable();
     });
     $('#city').on('change', function()
@@ -468,5 +561,5 @@ module.exports = {
     populateYear,
     setDates,
     setHours,
-    toggleAddButton,
+    toggleAddButton
 };
