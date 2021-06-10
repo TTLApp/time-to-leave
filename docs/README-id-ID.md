@@ -7,7 +7,7 @@
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
 <img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Downloads gesamt">
-<a href="https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Neueste Version"></a>
+<a href="https://github.com/thamara/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Neueste Version"></a>
 <img src="https://img.shields.io/github/workflow/status/thamara/time-to-leave/Code%20Coverage" alt="Build">
 <a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="Neueste Version"></a>
 
@@ -35,7 +35,7 @@ Kamu juga dapat menambahkan pengabaian di hari ketika kamu tidak bekerja.
 
 ## Cara menginstal TTL
 
-Time to Leave dapat berkerja pada sistem operasi MacOS, Windows and Linux, dan kamu dapat mengunduh versi yang kamu inginkan dari [rilis terakhir](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
+Time to Leave dapat berkerja pada sistem operasi MacOS, Windows and Linux, dan kamu dapat mengunduh versi yang kamu inginkan dari [rilis terakhir](https://github.com/thamara/time-to-leave/releases/latest).
 
 ## Cara membuat dan berkontribusi untuk TTL
 

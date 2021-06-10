@@ -7,7 +7,7 @@
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="இயங்கு தளம்">
 <img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="மொத்த பதிவிறக்கங்கள்">
-<a href="https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="சமீபத்திய வெளியீடு"></a>
+<a href="https://github.com/thamara/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="சமீபத்திய வெளியீடு"></a>
 <img src="https://img.shields.io/github/workflow/status/thamara/time-to-leave/Code%20Coverage" alt="கட்டமைப்பு">
 <a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="சமீபத்திய வெளியீடு"></a>
 
@@ -33,7 +33,7 @@
 
 ## TTL ஐ எவ்வாறு இன்ஸ்டால் செய்வது
 
-Time to Leave MacOS, Windows மற்றும் Linux இல் இயங்குகிறது, மற்றும் நீங்கள் விரும்பிய பதிவை இந்த லிங்கின் மூலம் இன்ஸ்டால் செய்யலாம் [சமீபத்திய வெளியீடு](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
+Time to Leave MacOS, Windows மற்றும் Linux இல் இயங்குகிறது, மற்றும் நீங்கள் விரும்பிய பதிவை இந்த லிங்கின் மூலம் இன்ஸ்டால் செய்யலாம் [சமீபத்திய வெளியீடு](https://github.com/thamara/time-to-leave/releases/latest).
 
 ## TTL ஐ எவ்வாறு உருவாக்குவது மற்றும் எப்படி பங்களிப்பது
 

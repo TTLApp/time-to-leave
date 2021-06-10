@@ -7,7 +7,7 @@
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Piattaforma">
 <img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Downloads in Total">
-<a href="https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Ultima Release"></a>
+<a href="https://github.com/thamara/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Ultima Release"></a>
 <img src="https://img.shields.io/github/workflow/status/thamara/time-to-leave/Code%20Coverage" alt="Build">
 <a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="Ultima Release"></a>
 
@@ -34,7 +34,7 @@
 
 ## टीटीएल कसे स्थापित करावे
 
-सोडण्याची वेळ MacOS, Windows आणि Linux वर कार्य करते आणि आपण वरून इच्छित आवृत्ती डाउनलोड करू शकता[ultima release](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
+सोडण्याची वेळ MacOS, Windows आणि Linux वर कार्य करते आणि आपण वरून इच्छित आवृत्ती डाउनलोड करू शकता[ultima release](https://github.com/thamara/time-to-leave/releases/latest).
 
 ## संकलित कसे करावे आणि टीटीएलमध्ये सहयोग कसे करावे
 
