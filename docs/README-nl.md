@@ -4,7 +4,7 @@
   <p>Houd je werktijden bij en krijg een melding wanneer het tijd is om het kantoor te verlaten en wat anders te gaan doen</p>
 
 [Homepagina](https://timetoleave.app/)
-  
+
  <br/>
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platformen">
