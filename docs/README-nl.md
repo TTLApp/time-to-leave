@@ -35,7 +35,7 @@ Je kunt ook vrije dagen en feestdagen toevoegen aan je kalender.
 
 ![time-to-leave-waiver](https://user-images.githubusercontent.com/3754225/94762058-4e79a380-03c4-11eb-8f28-1c480dbf8b5c.png)
 
-## Time To Leave installeren
+## Time to Leave installeren
 
 Time to Leave werkt op MacOS, Windows en Linux. Je kunt de laatste uitgave [hier](https://github.com/thamara/time-to-leave/releases/latest) downloaden.
 
