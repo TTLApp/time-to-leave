@@ -76,7 +76,7 @@
     "popper.js": "^1.16.1"
   },
   "engines": {
-    "node": "^10.12.6",
+    "node": ">=14.15.5",
     "yarn": "YARN NO LONGER USED - use npm instead."
   }
 }
