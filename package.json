@@ -44,7 +44,7 @@
   "devDependencies": {
     "@jest-runner/electron": "^3.0.0",
     "electron": "^11.1.1",
-    "electron-mocha": "^10.0.0",
+    "electron-mocha": "^10.1.0",
     "electron-packager": "^15.2.0",
     "electron-reloader": "^1.2.1",
     "eslint": "^7.29.0",
