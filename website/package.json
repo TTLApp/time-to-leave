@@ -18,7 +18,7 @@
     "parcel-bundler": "^1.12.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.16",
+    "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.12.16",
     "parcel-bundler": "^1.12.4",
     "sass": "^1.35.1"
