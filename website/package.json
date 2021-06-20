@@ -12,7 +12,7 @@
     "build-prod": "parcel build src/index.html"
   },
   "dependencies": {
-    "gsap": "^3.6.0",
+    "gsap": "^3.7.0",
     "imagesloaded": "^4.1.4",
     "splitting": "^1.0.6",
     "parcel-bundler": "^1.12.4"
