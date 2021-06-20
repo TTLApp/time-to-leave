@@ -3,7 +3,7 @@
 
   <p>勤務時間を記録しましょう。仕事を終え、生活を始める時間に通知が届きます。</p>
 
-  [timetoleave.app](https://timetoleave.app/)
+[timetoleave.app](https://timetoleave.app/)
 
   <br/>
 

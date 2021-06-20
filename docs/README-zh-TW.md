@@ -3,7 +3,7 @@
 
   <p>讓它來幫助你紀錄工作時數，和提醒你是時候該走去開始享受真正的生活</p>
 
-  [timetoleave.app](https://timetoleave.app/)
+[timetoleave.app](https://timetoleave.app/)
 
   <br/>
 

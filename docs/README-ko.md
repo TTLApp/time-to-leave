@@ -3,7 +3,7 @@
 
   <p>업무 시간을 기록하고 사무실을 떠나 일상으로 돌아갈 시간을 알려 줍니다.</p>
 
-  [timetoleave.app](https://timetoleave.app/)
+[timetoleave.app](https://timetoleave.app/)
 
   <br/>
 

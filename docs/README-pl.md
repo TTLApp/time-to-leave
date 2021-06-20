@@ -3,7 +3,7 @@
 
   <p>Kontroluj czas pracy. <i>Time to Leave</i> przypomni Ci, aby zakończyć pracę, oraz przedstawi ci bilans czasu. </p>
 
-  [timetoleave.app](https://timetoleave.app/)
+[timetoleave.app](https://timetoleave.app/)
 
   <br>
 

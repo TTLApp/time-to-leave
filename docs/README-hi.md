@@ -3,8 +3,8 @@
 
   <p>काम के घंटे लॉग इन करें और सूचना प्राप्त करें जब कार्यालय छोड़ने और रहने के लिए समय हो</p>
 
-  [timetoleave.app](https://timetoleave.app/)
-  <br/>
+[timetoleave.app](https://timetoleave.app/)
+<br/>
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
 <img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Downloads in Total">

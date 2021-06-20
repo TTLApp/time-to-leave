@@ -3,7 +3,7 @@
 
   <p>வேலை நேரத்தை பதிவு செய்து,அலுவலகத்தை விட்டு வெளியேறி வாழத் தொடங்க உதவியான அறிவிப்புகளை பெறுங்கள்</p>
 
-  [timetoleave.app](https://timetoleave.app/)
+[timetoleave.app](https://timetoleave.app/)
 
 <br/>
 

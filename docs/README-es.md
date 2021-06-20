@@ -3,7 +3,7 @@
 
   <p>Registra tus horas de trabajo y recibe una notificación cuando sea el momento de dejar la oficina y empezar a vivir</p>
 
-  [timetoleave.app](https://timetoleave.app/)
+[timetoleave.app](https://timetoleave.app/)
 
   <br/>
 

@@ -3,7 +3,7 @@
 
   <p>Enregistrez vos heures de travail et soyez averti lorsqu'il est temps de quitter le bureau et de commencer à vivre</p>
 
-  [timetoleave.app](https://timetoleave.app/)
+[timetoleave.app](https://timetoleave.app/)
 
   <br/>
 

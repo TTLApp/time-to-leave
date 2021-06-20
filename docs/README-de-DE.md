@@ -3,8 +3,8 @@
 
   <p>Erfasse deine Arbeitszeit und werde benachrichtigt, wenn es Zeit ist, das Büro zu verlassen und dein Leben zu genießen</p>
 
-  [timetoleave.app](https://timetoleave.app/)
-  
+[timetoleave.app](https://timetoleave.app/)
+
   <br/>
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
