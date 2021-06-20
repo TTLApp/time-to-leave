@@ -54,7 +54,7 @@
     "nyc": "^15.1.0",
     "patch-package": "^6.4.7",
     "pre-commit": "^1.2.2",
-    "spectron": "^13.0.0",
+    "spectron": "^15.0.0",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
     "tap-spec": "^5.0.0",
