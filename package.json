@@ -46,7 +46,7 @@
     "electron": "^11.1.1",
     "electron-mocha": "^10.0.0",
     "electron-packager": "^15.2.0",
-    "electron-reloader": "^1.1.0",
+    "electron-reloader": "^1.2.1",
     "eslint": "^7.17.0",
     "jest": "^26.6.3",
     "mocha": "^8.2.1",
