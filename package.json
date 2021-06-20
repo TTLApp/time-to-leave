@@ -55,7 +55,7 @@
     "patch-package": "^6.4.7",
     "pre-commit": "^1.2.2",
     "spectron": "^13.0.0",
-    "stylelint": "^13.8.0",
+    "stylelint": "^13.13.1",
     "stylelint-config-standard": "^20.0.0",
     "tap-spec": "^5.0.0",
     "tape": "^5.2.2"
