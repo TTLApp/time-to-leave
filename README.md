@@ -45,7 +45,7 @@ Log the time you started working today, and the program will compute what time y
 
 ![time-to-leave-notification](https://user-images.githubusercontent.com/3754225/94519526-4dbc0280-0248-11eb-9738-ffae936cfa4a.jpg)
 
-You can control the preferences, stating your working days, how many hours you work a day and if you want notification or not.
+You can control the preferences, stating your working days, how many hours you work a day and if you want to receive a notification or not.
 
 ![time-to-leave-settings](https://user-images.githubusercontent.com/3754225/94519531-4eed2f80-0248-11eb-9303-78f9abe69201.jpg)
 
