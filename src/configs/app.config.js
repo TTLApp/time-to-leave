@@ -14,6 +14,7 @@ const languages = {
     'nl': 'Nederlands',
     'pl': 'Polski',
     'pt-BR': 'Português - Brasil',
+    'ru-RU': 'Русский',
     'dev' : 'Português - Minerês',
     'th-TH': 'ไทย',
     'zh-TW': '繁體中文',
