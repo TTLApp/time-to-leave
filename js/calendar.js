@@ -16,10 +16,12 @@ const {
 } = require('./js/user-preferences.js');
 const { applyTheme } = require('./js/themes.js');
 const { CalendarFactory } = require('./js/classes/CalendarFactory.js');
+const { getDateStr } = require('./js/date-aux.js');
 const i18n = require('./src/configs/i18next.config.js');
 
 // Global values for calendar
 let calendar = null;
+let dismissToday = null;
 
 const lang = getUserLanguage();
 // Need to force load of translations
@@ -60,7 +62,7 @@ ipcRenderer.on('WAIVER_SAVED', function()
 /*
  * Notify user if it's time to leave
  */
-function notifyTimeToLeave()
+async function notifyTimeToLeave()
 {
     if (!notificationIsEnabled() || $('#leave-by').length === 0)
     {
@@ -82,9 +84,29 @@ function notifyTimeToLeave()
         let minutesDiff = hourToMinutes(subtractTime(timeToLeave, curTime));
         let isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval === 0);
 
+        const dateToday = getDateStr(now);
+        const skipNotify = dismissToday === dateToday;
+        if (skipNotify)
+        {
+            return;
+        }
+
         if (curTime === timeToLeave || (isRepeatingInterval && repetitionIsEnabled()))
         {
-            notify(i18n.t('$Notification.time-to-leave'));
+            try
+            {
+                const dismissBtn = i18n.t('$Notification.dismiss-for-today');
+                const actionBtn = await notify(i18n.t('$Notification.time-to-leave'), [dismissBtn]);
+                if (dismissBtn.toLowerCase() !== actionBtn.toLowerCase())
+                {
+                    return;
+                }
+                dismissToday = dateToday;
+            }
+            catch (err)
+            {
+                console.error(err);
+            }
         }
     }
 }
