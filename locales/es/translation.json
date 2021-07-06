@@ -124,7 +124,8 @@
     },
     "$Notification": {
         "punch-reminder": "¡No olvides marcar tarjeta!",
-        "time-to-leave": "¡Hola! Creo que es hora de irse"
+        "time-to-leave": "¡Hola! Creo que es hora de irse",
+        "dismiss-for-today": "Dismiss for today"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Permitir notificaciones recurrentes",

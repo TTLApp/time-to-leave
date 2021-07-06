@@ -124,7 +124,8 @@
     },
     "$Notification": {
         "punch-reminder": "मध्ये मुक्काम विसरू नका!",
-        "time-to-leave": "अहो तिथे! मला वाटते आता निघण्याची वेळ आली आहे."
+        "time-to-leave": "अहो तिथे! मला वाटते आता निघण्याची वेळ आली आहे.",
+        "dismiss-for-today": "Dismiss for today"
     },
     "$Preferences": {
         "allowRecurringNotifications": "आवर्ती सूचनांना परवानगी द्या",

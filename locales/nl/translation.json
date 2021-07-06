@@ -124,7 +124,8 @@
     },
     "$Notification": {
         "punch-reminder": "Vergeet niet de begintijd in te voeren!",
-        "time-to-leave": "Hé daar! Ik denk dat het tijd is om te gaan."
+        "time-to-leave": "Hé daar! Ik denk dat het tijd is om te gaan.",
+        "dismiss-for-today": "Dismiss for today"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Terugkerende meldingen toestaan",

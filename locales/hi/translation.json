@@ -124,7 +124,8 @@
     },
     "$Notification": {
         "punch-reminder": "में पंच करने के लिए मत भूलना!",
-        "time-to-leave": "सुनो! मुझे लगता है कि यह छोड़ने का समय है।"
+        "time-to-leave": "सुनो! मुझे लगता है कि यह छोड़ने का समय है।",
+        "dismiss-for-today": "Dismiss for today"
     },
     "$Preferences": {
         "allowRecurringNotifications": "पुनरावर्ती सूचनाएँ दें",

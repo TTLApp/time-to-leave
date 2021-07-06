@@ -124,7 +124,8 @@
     },
     "$Notification": {
         "punch-reminder": "打刻をお忘れなく!",
-        "time-to-leave": "お疲れ様です！退勤時間になりました。"
+        "time-to-leave": "お疲れ様です！退勤時間になりました。",
+        "dismiss-for-today": "Dismiss for today"
     },
     "$Preferences": {
         "allowRecurringNotifications": "通知の繰り返しを許可",

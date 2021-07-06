@@ -124,7 +124,8 @@
     },
     "$Notification": {
         "punch-reminder": "Jangan lupa untuk rekam!",
-        "time-to-leave": "Hai. Saatnya kamu berangkat."
+        "time-to-leave": "Hai. Saatnya kamu berangkat.",
+        "dismiss-for-today": "Dismiss for today"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Izinkan pemberitahuan berulang",

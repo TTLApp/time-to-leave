@@ -124,7 +124,8 @@
     },
     "$Notification": {
         "punch-reminder": "Nicht vergessen Zeiten einzutragen",
-        "time-to-leave": "Sie da! Ich denke es ist Zeit zu gehen."
+        "time-to-leave": "Sie da! Ich denke es ist Zeit zu gehen.",
+        "dismiss-for-today": "Dismiss for today"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Wiederkehrende Benachrichtigungen erlauben",

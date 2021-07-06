@@ -124,7 +124,8 @@
     },
     "$Notification": {
         "punch-reminder": "別忘了打卡！",
-        "time-to-leave": "你還好嗎？我想現在是時候離開了。"
+        "time-to-leave": "你還好嗎？我想現在是時候離開了。",
+        "dismiss-for-today": "Dismiss for today"
     },
     "$Preferences": {
         "allowRecurringNotifications": "允許定期通知",

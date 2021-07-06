@@ -124,7 +124,8 @@
     },
     "$Notification": {
         "punch-reminder": "Nie zapomnij podbić czasu pracy!",
-        "time-to-leave": "Hej, to chyba już czas by skończyć pracę i się odprężyć!"
+        "time-to-leave": "Hej, to chyba już czas by skończyć pracę i się odprężyć!",
+        "dismiss-for-today": "Dismiss for today"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Przypominaj wielokrotnie",

@@ -124,7 +124,8 @@
     },
     "$Notification": {
         "punch-reminder": "Não esqueça de bater ponto!",
-        "time-to-leave": "Ei você! Acho que é hora de ir."
+        "time-to-leave": "Ei você! Acho que é hora de ir.",
+        "dismiss-for-today": "Dismiss for today"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Permitir notificações recorrentes",

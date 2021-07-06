@@ -124,7 +124,8 @@
     },
     "$Notification": {
         "punch-reminder": "Non dimenticarti di registrare l'inizio!",
-        "time-to-leave": "Ehilà! Penso sia ora di staccare."
+        "time-to-leave": "Ehilà! Penso sia ora di staccare.",
+        "dismiss-for-today": "Dismiss for today"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Permetti notifiche ricorrenti",

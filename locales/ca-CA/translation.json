@@ -124,7 +124,8 @@
     },
     "$Notification": {
         "punch-reminder": "No T'oblidis de fitxar!",
-        "time-to-leave": "¡Hola! Crec que es hora de marcha"
+        "time-to-leave": "¡Hola! Crec que es hora de marcha",
+        "dismiss-for-today": "Dismiss for today"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Permetre notificacions recurrents",

@@ -124,7 +124,8 @@
     },
     "$Notification": {
         "punch-reminder": "시간 기록하는 것 잊지 마세요!",
-        "time-to-leave": "저기요! 이제 퇴근할 시간인 것 같은데요."
+        "time-to-leave": "저기요! 이제 퇴근할 시간인 것 같은데요.",
+        "dismiss-for-today": "Dismiss for today"
     },
     "$Preferences": {
         "allowRecurringNotifications": "반복 알림 허용",

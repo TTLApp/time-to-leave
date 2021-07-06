@@ -124,7 +124,8 @@
     },
     "$Notification": {
         "punch-reminder": "Num isquece de bater ponto!",
-        "time-to-leave": "Oia só! Vaipácasa."
+        "time-to-leave": "Oia só! Vaipácasa.",
+        "dismiss-for-today": "Dismiss for today"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Pó incomodá traveiz",

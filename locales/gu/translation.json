@@ -124,7 +124,8 @@
     },
     "$Notification": {
         "punch-reminder": "પંચ કરવાનું ભૂલો નહિં!",
-        "time-to-leave": "અરે ત્યાં! મને લાગે છે કે હવે વિદાય લેવાનો સમય છે."
+        "time-to-leave": "અરે ત્યાં! મને લાગે છે કે હવે વિદાય લેવાનો સમય છે.",
+        "dismiss-for-today": "Dismiss for today"
     },
     "$Preferences": {
         "allowRecurringNotifications": "રિકરિંગ સૂચનાઓને મંજૂરી આપો",
