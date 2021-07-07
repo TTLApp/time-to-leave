@@ -19,7 +19,7 @@ function notify(msg, actions)
             icon: path.join(appPath, 'assets/timer.png'), // Absolute path (doesn't work on balloons)
             sound: true, // Only Notification Center or Windows Toasters
             wait: true,
-            actions,
+            actions: actions,
         }, (error, action) =>
         {
             if (error) reject(error);
