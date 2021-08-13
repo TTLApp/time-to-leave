@@ -187,7 +187,7 @@ class BaseCalendar
     {
         const dateKey = generateKey(year, month, day);
         const values = this._getStore(dateKey);
-        if (values !== undefined)
+        if (values !== undefined && values.length > 0)
         {
             const validatedTimes = this._validateTimes(values);
             const inputsHaveExpectedSize = values.length >= 2 && values.length % 2 === 0;

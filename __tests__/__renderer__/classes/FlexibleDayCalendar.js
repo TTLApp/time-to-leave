@@ -113,6 +113,55 @@ describe('FlexibleDayCalendar class Tests', () =>
         expect(calendar._getWaiverStore(2010, 11, 31)).toStrictEqual({ reason: 'New Year\'s eve', hours: '08:00' });
     });
 
+    describe('Testing getDayTotal', () =>
+    {
+        test('getDayTotal on workdays', () =>
+        {
+            // Original dates
+            expect(calendar._getDayTotal(2020, 3, 1)).toStrictEqual('08:00');
+            expect(calendar._getDayTotal(2020, 3, 2)).toStrictEqual('08:00');
+
+            // Day that doesn't have contents
+            expect(calendar._getDayTotal(2010, 3, 1)).toStrictEqual(undefined);
+
+            // Adding a different set
+            calendar._setStore('2010-3-1', ['05:00', '07:00', '09:00', '10:00']);
+            expect(calendar._getStore('2010-3-1')).toStrictEqual(['05:00', '07:00', '09:00', '10:00']);
+            expect(calendar._getDayTotal(2010, 3, 1)).toStrictEqual('03:00');
+
+            // Clearing entry - back to undefined value
+            calendar._removeStore('2010-3-1');
+            expect(calendar._getDayTotal(2010, 3, 1)).toStrictEqual(undefined);
+        });
+
+        test('getDayTotal on waived days', () =>
+        {
+            // Original dates
+            expect(calendar._getDayTotal(2019, 11, 31)).toStrictEqual('08:00');
+            expect(calendar._getDayTotal(2020, 0, 1)).toStrictEqual('08:00');
+            expect(calendar._getDayTotal(2020, 3, 10)).toStrictEqual('08:00');
+
+            // Day that doesn't have contents
+            expect(calendar._getDayTotal(2010, 2, 1)).toStrictEqual(undefined);
+
+            // Adding a different set
+            const newWaivedEntry = {
+                '2010-03-01': { reason: 'Test', hours: '06:00' }
+            };
+            waivedWorkdays.set(newWaivedEntry);
+
+            calendar.loadInternalWaiveStore();
+            expect(calendar._getWaiverStore(2010, 2, 1)).toStrictEqual({ reason: 'Test', hours: '06:00' });
+            expect(calendar._getDayTotal(2010, 2, 1)).toStrictEqual('06:00');
+
+            // Clearing entry - back to undefined value
+            waivedWorkdays.clear();
+            waivedWorkdays.set(waivedEntries);
+            calendar.loadInternalWaiveStore();
+            expect(calendar._getDayTotal(2010, 2, 1)).toStrictEqual(undefined);
+        });
+    });
+
     test('FlexibleDayCalendar Day Changes', () =>
     {
         expect(calendar._getCalendarDate()).toBe(today.getDate());
