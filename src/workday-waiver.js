@@ -41,6 +41,25 @@ function toggleAddButton(buttonName, state)
     }
 }
 
+// Sort function which sorts all dates according to Day in O(nlogn)
+function sortTable()
+{
+    var rows = $('#waiver-list-table tbody  tr').get();
+  
+    rows.sort(function(a, b) {
+        var A = $(a).children('td').eq(1).text();
+        var B = $(b).children('td').eq(1).text();
+        let d1 = new Date(A)
+        let d2 = new Date(B)
+        return (d1<d2)?1:-1;
+  
+    });
+    $('#waiver-list-table tbody  tr').remove()
+    $.each(rows, function(index, row) {
+      $('#waiver-list-table').children('tbody').append(row);
+    });
+}
+
 function addRowToListTable(day, reason, hours)
 {
     let table = $('#waiver-list-table tbody')[0],
@@ -57,6 +76,7 @@ function addRowToListTable(day, reason, hours)
     delButtonCell.innerHTML = '<input class="delete-btn" data-day="' + day + '" id="' + id + '" type="button"></input>';
 
     $('#'+ id).on('click', deleteEntryOnClick);
+    sortTable()
 }
 
 function populateList()
