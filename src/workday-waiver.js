@@ -52,7 +52,7 @@ function sortTable()
         let B = $(b).children('td').eq(1).text();
         let d1 = new Date(A);
         let d2 = new Date(B);
-        return (d1<d2)?1:-1;
+        return (d1<d2)?(d1==d2)?0:1:-1;
 
     });
     $('#waiver-list-table tbody  tr').remove();
