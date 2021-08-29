@@ -91,30 +91,33 @@ describe('Test Workday Waiver Window', function()
             addTestWaiver('2020-07-21', 'yet another reason');
             testWaiverCount(3);
         });
-        
-        test('Table is sorted based on Date',()=>{
+
+        test('Table is sorted based on Date',()=>
+        {
             //add some waivers
-            
+
             addTestWaiver('2021-07-20', 'some other reason');
             addTestWaiver('2021-07-16', 'some reason');
             addTestWaiver('2021-07-21', 'yet another reason');
 
-            let isSorted = true
-            var rows = $('#waiver-list-table tbody  tr').get();
-            for(let i = 1; i<rows.length;i++){
-                var A = $(rows[i-1]).children('td').eq(1).text();
-                var B = $(rows[i]).children('td').eq(1).text();
-                let d1 = new Date(A)
-                let d2 = new Date(B)
+            let isSorted = true;
+            let rows = $('#waiver-list-table tbody  tr').get();
+            for (let i = 1; i<rows.length; i++)
+            {
+                let A = $(rows[i-1]).children('td').eq(1).text();
+                let B = $(rows[i]).children('td').eq(1).text();
+                let d1 = new Date(A);
+                let d2 = new Date(B);
 
-                if(d1<d2){
+                if (d1<d2)
+                {
                     isSorted = false;
                     break;
                 }
             }
-            expect(isSorted).toBe(true)
+            expect(isSorted).toBe(true);
 
-        })
+        });
         test('Time is not valid', () =>
         {
             $('#hours').val('not a time');
