@@ -52,10 +52,9 @@ function sortTable()
         let B = $(b).children('td').eq(1).text();
         let d1 = new Date(A);
         let d2 = new Date(B);
-        return (d1<d2)?(d1==d2)?0:1:-1;
+        return (d1<=d2)?(d1===d2)?0:1:-1;
 
     });
-    $('#waiver-list-table tbody  tr').remove();
     $.each(rows, function(index, row)
     {
         $('#waiver-list-table').children('tbody').append(row);
@@ -78,7 +77,6 @@ function addRowToListTable(day, reason, hours)
     delButtonCell.innerHTML = '<input class="delete-btn" data-day="' + day + '" id="' + id + '" type="button"></input>';
 
     $('#'+ id).on('click', deleteEntryOnClick);
-    sortTable();
 }
 
 function populateList()
@@ -91,6 +89,8 @@ function populateList()
             hours = elem[1]['hours'];
         addRowToListTable(date, reason, hours);
     }
+    sortTable();
+
 }
 
 function getDateFromISOStr(isoStr)
@@ -156,12 +156,12 @@ function addWaiver()
         if (showDay(tempYear, tempMonth-1, tempDay) && !waiverStore.has(tempDateStr))
         {
             waiverStore.set(tempDateStr, { 'reason' : reason, 'hours' : hours });
-            addRowToListTable(tempDateStr, reason, hours);
+            addRowToListTable(tempDateStr, reason, hours);   
         }
-
         tempDate.setDate(tempDate.getDate() + 1);
     }
-
+    sortTable();
+    
     //Cleanup
     $('#reason').val('');
     toggleAddButton('waive-button', $('#reason').val());
@@ -382,6 +382,8 @@ function addHolidaysAsWaiver()
         {
             waiverStore.set(holidayDate, { 'reason' : holidayReason, 'hours' : '08:00' });
             addRowToListTable(holidayDate, holidayReason, '08:00');
+            sortTable();
+
         }
     }
     iterateOnHolidays(addHoliday);
