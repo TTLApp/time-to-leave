@@ -156,7 +156,7 @@ function addWaiver()
         if (showDay(tempYear, tempMonth-1, tempDay) && !waiverStore.has(tempDateStr))
         {
             waiverStore.set(tempDateStr, { 'reason' : reason, 'hours' : hours });
-            addRowToListTable(tempDateStr, reason, hours);   
+            addRowToListTable(tempDateStr, reason, hours);
         }
         tempDate.setDate(tempDate.getDate() + 1);
     }
