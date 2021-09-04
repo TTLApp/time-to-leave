@@ -90,7 +90,6 @@ function populateList()
         addRowToListTable(date, reason, hours);
     }
     sortTable();
-
 }
 
 function getDateFromISOStr(isoStr)
