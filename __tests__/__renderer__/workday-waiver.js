@@ -102,7 +102,7 @@ describe('Test Workday Waiver Window', function()
 
             let isSorted = true;
             let rows = $('#waiver-list-table tbody  tr').get();
-            for (let i = 1; i<rows.length; i++)
+            for (let i = 1; i < rows.length; i++)
             {
                 let A = $(rows[i-1]).children('td').eq(1).text();
                 let B = $(rows[i]).children('td').eq(1).text();
