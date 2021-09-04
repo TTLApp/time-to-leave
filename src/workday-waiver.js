@@ -46,14 +46,13 @@ function sortTable()
 {
     let rows = $('#waiver-list-table tbody  tr').get();
 
-    rows.sort(function(a, b)
+    rows.sort(function(rowA, rowB)
     {
-        let A = $(a).children('td').eq(1).text();
-        let B = $(b).children('td').eq(1).text();
-        let d1 = new Date(A);
-        let d2 = new Date(B);
-        return (d1<=d2)?(d1===d2)?0:1:-1;
-
+        let rowAStr = $(rowA).children('td').eq(1).text();
+        let rowBStr = $(rowB).children('td').eq(1).text();
+        let dateA = new Date(rowAStr);
+        let dateB = new Date(rowBStr);
+        return (dateA <= dateB) ? (dateA === dateB) ? 0 : 1 : -1;
     });
     $.each(rows, function(index, row)
     {
