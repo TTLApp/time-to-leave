@@ -381,7 +381,6 @@ function addHolidaysAsWaiver()
             waiverStore.set(holidayDate, { 'reason' : holidayReason, 'hours' : '08:00' });
             addRowToListTable(holidayDate, holidayReason, '08:00');
             sortTable();
-
         }
     }
     iterateOnHolidays(addHoliday);
