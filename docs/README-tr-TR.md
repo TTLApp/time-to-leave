@@ -2,8 +2,8 @@
     <img src="../assets/timetoleave.png" alt="Time to Leave Simgesi">
 
   <p>Çalışma saatlerinizi kaydedin ve ofisten ayrılma zamanınız geldiğinde bildirim alın. Yaşamaya kaldığınız yerden devam edin. </p>
-   
-   [Ana Sayfa](https://timetoleave.app/)
+
+[Ana Sayfa](https://timetoleave.app/)
 
   <br/>
 
@@ -14,7 +14,7 @@
 
    <br/>
 
-  <img src="https://user-images.githubusercontent.com/3754225/94519528-4e549900-0248-11eb-8872-b6fb2d47f43c.jpg" alt="Time to Leave Ekran Görüntüsü">
+  <img src="./images/screenshot.jpg" alt="Time to Leave Ekran Görüntüsü">
 
   <br/>
 
