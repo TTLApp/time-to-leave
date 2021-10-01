@@ -97,7 +97,7 @@ class FlexibleMonthCalendar extends BaseCalendar
         let leftBut = `<input id="prev-month" type="image" src="assets/left-arrow.svg" alt="${i18n.t('$FlexibleMonthCalendar.previous-month')}" height="24" width="24"></input>`;
         let rightBut = `<input id="next-month" type="image" src="assets/right-arrow.svg" alt="${i18n.t('$FlexibleMonthCalendar.next-month')}" height="24" width="24"></input>`;
         return '<div class="title-header">'+
-                    '<div class="title-header title-header-img"><img src="../../website/src/images/resources/timer.svg" height="64" width="64"></div>' +
+                    '<div class="title-header title-header-img"><img src="website/src/images/resources/timer.svg" height="64" width="64"></div>' +
                     `<div class="title-header title-header-text">${i18n.t('$BaseCalendar.time-to-leave')}</div>` +
                     '<div class="title-header title-header-msg"></div>' +
                '</div>' +
