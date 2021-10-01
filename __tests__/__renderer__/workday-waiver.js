@@ -109,7 +109,7 @@ describe('Test Workday Waiver Window', function()
                 let d1 = new Date(A);
                 let d2 = new Date(B);
 
-                if (d1<d2)
+                if (d1 < d2)
                 {
                     isSorted = false;
                     break;
