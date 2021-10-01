@@ -48,11 +48,11 @@ function sortTable()
 
     rows.sort(function(rowA, rowB)
     {
-        let rowAStr = $(rowA).children('td').eq(1).text();
-        let rowBStr = $(rowB).children('td').eq(1).text();
-        let dateA = new Date(rowAStr);
-        let dateB = new Date(rowBStr);
-        return (dateA <= dateB) ? (dateA === dateB) ? 0 : 1 : -1;
+        const rowAStr = $(rowA).children('td').eq(1).text();
+        const rowBStr = $(rowB).children('td').eq(1).text();
+        const dateA = new Date(rowAStr);
+        const dateB = new Date(rowBStr);
+        return (dateA <= dateB) ? dateA !== dateB : -1;
     });
     $.each(rows, function(index, row)
     {
