@@ -92,7 +92,7 @@ describe('Test Workday Waiver Window', function()
             testWaiverCount(3);
         });
 
-        test('Table is sorted by Date',()=>
+        test('Table is sorted by Date', ()=>
         {
             //add some waivers
 
