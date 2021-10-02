@@ -61,7 +61,7 @@
     "tape": "^5.2.2"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.3",
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "bootstrap": "^5.1.1",
     "date-holidays": "^3.9.1",
     "electron-squirrel-startup": "^1.0.0",
