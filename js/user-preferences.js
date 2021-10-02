@@ -287,6 +287,14 @@ function repetitionIsEnabled()
     return preferences['repetition'];
 }
 
+/*
+ * Resets the preferences to their default value.
+ */
+function resetPreferences()
+{
+    savePreferences(defaultPreferences);
+}
+
 module.exports = {
     defaultPreferences,
     getDefaultWidthHeight,
@@ -300,5 +308,6 @@ module.exports = {
     isNotBoolean,
     isNotificationInterval,
     notificationIsEnabled,
-    repetitionIsEnabled
+    repetitionIsEnabled,
+    resetPreferences
 };
