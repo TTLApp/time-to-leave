@@ -159,7 +159,7 @@ function addWaiver()
         tempDate.setDate(tempDate.getDate() + 1);
     }
     sortTable();
-    
+
     //Cleanup
     $('#reason').val('');
     toggleAddButton('waive-button', $('#reason').val());
