@@ -64,7 +64,7 @@ class FlexibleDayCalendar extends BaseCalendar
         let leftBut = `<input id="prev-day" type="image" src="assets/left-arrow.svg" alt="${i18n.t('$FlexibleDayCalendar.previous-day')}" height="24" width="24"></input>`;
         let rightBut = `<input id="next-day" type="image" src="assets/right-arrow.svg" alt="${i18n.t('$FlexibleDayCalendar.next-day')}" height="24" width="24"></input>`;
         return '<div class="title-header">'+
-                    '<div class="title-header-img"><img src="website/src/images/resources/timer.svg" height="64" width="64"></div>' +
+                    '<div class="title-header-img"><img src="assets/timer.svg" height="64" width="64"></div>' +
                     `<div class="title-header-text">${i18n.t('$BaseCalendar.time-to-leave')}</div>` +
                     '<div class="title-header-msg"></div>' +
                '</div>' +
