@@ -1,0 +1,36 @@
+name: Update missing translations
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  missing-translations:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - name: Write missing translation to file
+      run: |
+        python scripts/check-languages.py -output missing.md
+    - name: Get comment body
+      id: get-comment-body
+      run: |
+        body=$(cat missing.md)
+        body="${body//'%'/'%25'}"
+        body="${body//$'\n'/'%0A'}"
+        body="${body//$'\r'/'%0D'}" 
+        echo ::set-output name=body::$body 
+    - name: Update comment
+      uses: peter-evans/create-or-update-comment@v1
+      with:
+        # Update the comment in issue 475
+        # https://github.com/thamara/time-to-leave/issues/475#issuecomment-808787273
+        comment-id: 808787273
+        edit-mode: replace
+        body: ${{ steps.get-comment-body.outputs.body }}
+        reactions: hooray
