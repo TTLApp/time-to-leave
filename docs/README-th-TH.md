@@ -2,8 +2,8 @@
   <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>บันทึกเวลาการทำงานและแจ้งเตือนเมื่อถึงเวลาเลิกงาน</p>
-  
-  [timetoleave.app](https://timetoleave.app/)
+
+[timetoleave.app](https://timetoleave.app/)
 
   <br/>
 
@@ -14,7 +14,7 @@
 
    <br/>
 
-  <img src="https://user-images.githubusercontent.com/3754225/94519528-4e549900-0248-11eb-8872-b6fb2d47f43c.jpg" alt="Time to Leave Screenshot">
+  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -24,15 +24,15 @@
 
 บันทึกเวลาเข้างาน-ออกงาน และการพักกลาวันในแต่ละวัน เพื่อแจ้งเตือนเวลาที่ควรจะเลิกงาน.
 
-![time-to-leave-notification](https://user-images.githubusercontent.com/3754225/94519526-4dbc0280-0248-11eb-9738-ffae936cfa4a.jpg)
+<img src="./images/notification.jpg" alt="Time to Leave Notification">
 
 สามารถตั้งค่าได้ตามใจคุณ เช่น จำนวนวันที่ทำงาน จำนวนชั่วโมงที่ทำงานในแต่ละวัน หรือสามารถเลือกเปิด/ปิดการแจ้งเตือนได้
 
-![time-to-leave-settings](https://user-images.githubusercontent.com/3754225/94519531-4eed2f80-0248-11eb-9303-78f9abe69201.jpg)
+<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
 
 สามารถกำหนดวันลาป่วย ลาพักร้อน ลากิจ หรือวันหยุดราชการได้ตามต้องการ
 
-![time-to-leave-waiver](https://user-images.githubusercontent.com/3754225/94762058-4e79a380-03c4-11eb-8f28-1c480dbf8b5c.png)
+<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## การติดตั้ง
 

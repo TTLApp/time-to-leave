@@ -14,7 +14,7 @@
 
    <br/>
 
-  <img src="https://user-images.githubusercontent.com/3754225/94519528-4e549900-0248-11eb-8872-b6fb2d47f43c.jpg" alt="Time to Leave Screenshot">
+  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -24,15 +24,15 @@
 
 Enregistrez l'heure à laquelle vous avez commencé à travailler aujourd'hui et le programme calculera l'heure à laquelle vous devez quitter le bureau, tout en tenant compte du temps que vous avez passé au déjeuner. Quand il sera temps, le programme vous en informera.
 
-![time-to-leave-notification](https://user-images.githubusercontent.com/3754225/94519526-4dbc0280-0248-11eb-9738-ffae936cfa4a.jpg)
+<img src="./images/notification.jpg" alt="Time to Leave Notification">
 
 Vous pouvez contrôler vos préférences, en indiquant vos jours de travail, combien d'heures vous travaillez par jour et si vous souhaitez une notification ou pas.
 
-![time-to-leave-settings](https://user-images.githubusercontent.com/3754225/94519531-4eed2f80-0248-11eb-9303-78f9abe69201.jpg)
+<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
 
 Vous pouvez également ajouter des dispenses les jours où vous ne travailler pas.
 
-![time-to-leave-waiver](https://user-images.githubusercontent.com/3754225/94762058-4e79a380-03c4-11eb-8f28-1c480dbf8b5c.png)
+<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## Comment installer TTL
 

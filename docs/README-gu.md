@@ -13,7 +13,7 @@
 
    <br/>
 
-  <img src="https://user-images.githubusercontent.com/3754225/94519528-4e549900-0248-11eb-8872-b6fb2d47f43c.jpg" alt="Time to Leave Screenshot">
+  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -23,15 +23,15 @@
 
 તમે આજે કામ કરવાનું શરૂ કર્યુ છે તે સમયનો પ્રવેશ કરો કરો, અને પ્રોગ્રામ ગણતરી કરશે કે તમારે ઓફિસ માંથી ક્યા સમય નીકળવો જોઈએ, તામારા બપોરના સમયને ધ્યાનમાં લેતા. જ્યારે તે સમય આવે છે, ત્યારે પ્રોગ્રામ તમને સૂચિત કરશે.
 
-![time-to-leave-notification](https://user-images.githubusercontent.com/3754225/94519526-4dbc0280-0248-11eb-9738-ffae936cfa4a.jpg)
+<img src="./images/notification.jpg" alt="Time to Leave Notification">
 
 તમે તમારા કામકાજના દિવસો જણાવતા, તમે દિવસમાં કેટલા કલાકો કામ કરો છો અને જો તમને સૂચના જોઈએ છે કે નહીં તે પસંદગીઓ નિયંત્રિત કરી શકો છો.
 
-![time-to-leave-settings](https://user-images.githubusercontent.com/3754225/94519531-4eed2f80-0248-11eb-9303-78f9abe69201.jpg)
+<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
 
 તમે જે દિવસે કામ ન કર્યું તે દિવસે તમે માફી પણ ઉમેરી શકો છો.
 
-![time-to-leave-waiver](https://user-images.githubusercontent.com/3754225/94762058-4e79a380-03c4-11eb-8f28-1c480dbf8b5c.png)
+<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## TTL કેવી રીતે ઇન્સ્ટોલ કરવું
 

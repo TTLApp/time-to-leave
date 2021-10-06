@@ -14,7 +14,7 @@
 
    <br/>
 
-  <img src="https://user-images.githubusercontent.com/3754225/94519528-4e549900-0248-11eb-8872-b6fb2d47f43c.jpg" alt="Screenshot di Time to Leave">
+  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -24,14 +24,14 @@
 
 आज आपण काम सुरू केल्याच्या वेळेची नोंद घ्या आणि जेवणाच्या वेळी घालवलेल्या वेळेचा विचार करून आपण कार्यालयातून निघण्यासाठी कोणत्या वेळेचा कार्यक्रम केला जाईल हे प्रोग्रामद्वारे गणले जाईल. जेव्हा ही वेळ असेल तेव्हा प्रोग्राम आपल्याला एक सूचना पाठवेल.
 
-![time-to-leave-notification](https://user-images.githubusercontent.com/3754225/94519526-4dbc0280-0248-11eb-9738-ffae936cfa4a.jpg)
+<img src="./images/notification.jpg" alt="Time to Leave Notification">
 
 आपण आपली सेटिंग्ज तपासू शकता, आपले कार्य दिवस दर्शवू शकता, आपण दिवसात किती तास काम करता आणि आपण सूचना प्राप्त करू इच्छिता किंवा नाही.
 
-![time-to-leave-settings](https://user-images.githubusercontent.com/3754225/94519531-4eed2f80-0248-11eb-9303-78f9abe69201.jpg)
+<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
 
 नंतर आपण कार्य न केलेले दिवस वगळा.
-![time-to-leave-waiver](https://user-images.githubusercontent.com/3754225/94762058-4e79a380-03c4-11eb-8f28-1c480dbf8b5c.png)
+<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## टीटीएल कसे स्थापित करावे
 

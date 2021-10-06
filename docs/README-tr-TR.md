@@ -2,8 +2,8 @@
     <img src="../assets/timetoleave.png" alt="Time to Leave Simgesi">
 
   <p>Çalışma saatlerinizi kaydedin ve ofisten ayrılma zamanınız geldiğinde bildirim alın. Yaşamaya kaldığınız yerden devam edin. </p>
-   
-   [Ana Sayfa](https://timetoleave.app/)
+
+[Ana Sayfa](https://timetoleave.app/)
 
   <br/>
 
@@ -14,7 +14,7 @@
 
    <br/>
 
-  <img src="https://user-images.githubusercontent.com/3754225/94519528-4e549900-0248-11eb-8872-b6fb2d47f43c.jpg" alt="Time to Leave Ekran Görüntüsü">
+   <img src="./images/screenshot.jpg" alt="Time to Leave Ekran Görüntüsü">
 
   <br/>
 
@@ -25,14 +25,15 @@
 
 Bugün işe başladığınız saati kaydedin,program sizin için -öğle yemeği için harcadığınız zamanı da göz önünde bulundurarak- ofisten ne zaman ayrılmanız gerektiğini hesaplayacaktır.Zamanı geldiğinde ise sizi bilgilendirecektir.
 
-![time-to-leave-notification](https://user-images.githubusercontent.com/3754225/94519526-4dbc0280-0248-11eb-9738-ffae936cfa4a.jpg)
+<img src="./images/notification.jpg" alt="Time to Leave Notification">
 
 Tercihleriniz, çalışma günlerinizi, günde kaç saat çalıştığınızı ve bildirim isteyip istemediğinizi belirterek kontrol edebilirsiniz.
-![time-to-leave-settings](https://user-images.githubusercontent.com/3754225/94519531-4eed2f80-0248-11eb-9303-78f9abe69201.jpg)
+
+<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
 
 Aynı zamanda izinli olduğunuz günleri de çalışmadığınız günlere ekleyebilirsiniz.
 
-![time-to-leave-waiver](https://user-images.githubusercontent.com/3754225/94762058-4e79a380-03c4-11eb-8f28-1c480dbf8b5c.png)
+<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## TTL'i Nasıl Yüklerim
 
