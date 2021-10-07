@@ -16,7 +16,7 @@ const appConfig = {
     win32: win32,
     appPath,
     iconpath: path.join(__dirname, win32 ? '../assets/timer.ico' : '../assets/timer.png'),
-    trayIcon: path.join(__dirname, win32 ? '../assets/timer-grey.ico' : '../assets/timer-16-Template.png')
+    trayIcon: path.join(__dirname, win32 ? '../assets/timer-purple.ico' : '../assets/timer-purple.png')
 };
 
 function getDetails()
