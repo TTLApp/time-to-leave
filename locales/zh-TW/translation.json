@@ -125,7 +125,7 @@
     "$Notification": {
         "punch-reminder": "別忘了打卡！",
         "time-to-leave": "你還好嗎？我想現在是時候離開了。",
-        "dismiss-for-today": "Dismiss for today"
+        "dismiss-for-today": "今天關功能"
     },
     "$Preferences": {
         "allowRecurringNotifications": "允許定期通知",
@@ -141,8 +141,8 @@
         "hideNonWorkingDay": "隱藏非工作日（月份視角）",
         "hours-per-day": "HH:mm",
         "hoursPerDay": "小時每日",
-        "enablePrefillBreakTime": "Enable prefilling of break time",
-        "breakTimeInterval": "Break time interval",
+        "enablePrefillBreakTime": "啓用休息時間的預填",
+        "breakTimeInterval": "休息間隔",
         "language": "語言",
         "light": "淺色",
         "minimizeToTray": "當按下最小化按鈕時將程式最小化到任務欄",
