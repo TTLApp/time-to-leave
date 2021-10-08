@@ -106,7 +106,7 @@ function renderPreferencesWindow()
         .children('option:selected')
         .val();
     preferences[theme] = selectedThemeOption;
-    $('html').attr('data-theme', selectedThemeOption);
+    applyTheme(selectedThemeOption);
 
     /* istanbul ignore else */
     if ('view' in usersStyles)
