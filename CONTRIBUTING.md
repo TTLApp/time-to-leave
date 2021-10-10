@@ -13,4 +13,4 @@ For bugs, it's good to provide some step-by-step instructions to reproduce the i
 ### When you open a pull request
 
 All PRs are very welcome, and we'll do our best to review them as fast as possible.
-Check the [development](DEVELOPMENT.md) instructions to understand how to setup a developer's environment, build and test Time to Leave.
+Check the [development](DEVELOPMENT.md) instructions to understand how to setup a developer's environment, build and test Time to Leave. Please enable `Allow edits by maintainers` when raising the PR.
