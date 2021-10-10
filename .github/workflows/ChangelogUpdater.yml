@@ -1,7 +1,5 @@
 name: Changelog Updater
 on:
-  pull_request:
-    types: [opened]
   issue_comment:
     types: [created]
 
@@ -9,17 +7,25 @@ jobs:
   update-changelog:
     runs-on: macos-latest
     steps:
-      - uses: khan/pull-request-comment-trigger@master
+      - name: Check trigger
         id: check
+        uses: khan/pull-request-comment-trigger@master
         with:
           trigger: '\changelog-update'
           reaction: rocket
+          prefix_only: 'true'
         env:
-          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          GITHUB_TOKEN: '${{secrets.GITHUB_TOKEN}}'
       - name: Clone git repo
-        uses: actions/checkout@v2
         if: steps.check.outputs.triggered == 'true'
+        uses: actions/checkout@v2
+      - name: Checkout pull request
+        if: steps.check.outputs.triggered == 'true'
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        run: hub pr checkout ${{github.event.issue.number}}
       - name: Configure Git Agent
+        if: steps.check.outputs.triggered == 'true'
         run: |
           git config --global user.name 'Changelog Bot'
           git config --global user.email 'changelog-bot@users.noreply.github.com'
