@@ -91,15 +91,15 @@
         "export-db-to-file": "Export Datenbank in Datei",
         "failed-entries": "Fehlerhafte Einträge",
         "failed-migrating": "Migrierung fehlgeschlagen",
-        "fresh-start": "Fresh Start",
-        "fresh-start-confirm": "Are you sure you want a fresh start?",
+        "fresh-start": "Neuanfang",
+        "fresh-start-confirm": "Sind Sie sicher, dass Sie einen Neuanfang wollen?",
         "help": "Hilfe",
         "import": "Import",
         "import-database": "Datenbank Import",
         "import-db-from-file": "Datenbank Import aus Datei",
         "import-successful": "Yay! Import erfolgreich!",
         "menu": "Menü",
-        "migrate": "Migrate",
+        "migrate": "Migrieren",
         "migrate-calendar-to-flexible": "Migriere fixierte Kalender Datenbank zu flexibler",
         "migration-successful": "Yay! Migration erfolgreich!",
         "no-thanks": "Nein, danke",
@@ -113,7 +113,7 @@
         "report": "Melden",
         "select-all": "Alle selektieren",
         "send-feedback": "Feedback senden",
-        "should-migrate-to-flexible": "One of the new features of this Time to Leave release is a flexible number of entries for the calendar.\n\nThis new view uses a new database format.\nTo use it, you can either migrate your existing database to the new format or make a fresh start.",
+        "should-migrate-to-flexible": "Eine der neuen Funktionen dieser Version von Time to Leave ist eine flexible Anzahl von Einträgen für den Kalender.\n\nDiese neue Ansicht verwendet ein neues Datenbankformat.\nUm sie zu nutzen, können Sie entweder Ihre bestehende Datenbank auf das neue Format migrieren oder neu beginnen.",
         "show-app": "Zeige App",
         "something-went-wrong": "Etwas ist falsch gelaufen :(",
         "toggle-dev-tools": "Entwickler Werkzeuge umschalten",
@@ -125,7 +125,7 @@
     "$Notification": {
         "punch-reminder": "Nicht vergessen Zeiten einzutragen",
         "time-to-leave": "Sie da! Ich denke es ist Zeit zu gehen.",
-        "dismiss-for-today": "Dismiss for today"
+        "dismiss-for-today": "Für heute ablehnen"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Wiederkehrende Benachrichtigungen erlauben",
