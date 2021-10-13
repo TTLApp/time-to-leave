@@ -41,9 +41,9 @@ describe('FlexibleDayCalendar class Tests', () =>
     waivedWorkdays.set(waivedEntries);
 
     const today = new Date();
-    let testPreferences = defaultPreferences;
+    const testPreferences = defaultPreferences;
     testPreferences['view'] = 'day';
-    let calendar = CalendarFactory.getInstance(testPreferences);
+    const calendar = CalendarFactory.getInstance(testPreferences);
 
     test('FlexibleDayCalendar starts with today\'s date', () =>
     {
@@ -166,9 +166,9 @@ describe('FlexibleDayCalendar class Tests', () =>
     {
         expect(calendar._getCalendarDate()).toBe(today.getDate());
 
-        let expectedNextDay = new Date(today);
+        const expectedNextDay = new Date(today);
         expectedNextDay.setDate(expectedNextDay.getDate() + 1);
-        let expectedPrevDay = new Date(today);
+        const expectedPrevDay = new Date(today);
         expectedPrevDay.setDate(expectedPrevDay.getDate() - 1);
 
         calendar._nextDay();
@@ -267,7 +267,7 @@ describe('FlexibleDayCalendar class Tests', () =>
         {
             // Calendar is set as if someone was looking at previous day
             calendar._prevDay();
-            let prevDayDate = calendar._calendarDate;
+            const prevDayDate = calendar._calendarDate;
 
             // Refreshing with the date being looked at should push it to today
             calendar.refreshOnDayChange(prevDayDate.getDate(), prevDayDate.getMonth(), prevDayDate.getFullYear());
@@ -291,7 +291,7 @@ describe('FlexibleDayCalendar class Tests', () =>
 
     test('FlexibleMonthCalendar to FlexibleDayCalendar', () =>
     {
-        let testPreferences = defaultPreferences;
+        const testPreferences = defaultPreferences;
         testPreferences['view'] = 'month';
         let calendar = CalendarFactory.getInstance(testPreferences);
         expect(calendar.constructor.name).toBe('FlexibleMonthCalendar');

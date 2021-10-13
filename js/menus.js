@@ -45,7 +45,7 @@ function getContextMenuTemplate(mainWindow)
         {
             label: i18n.t('$Menu.punch-time'), click: function()
             {
-                let now = new Date();
+                const now = new Date();
 
                 mainWindow.webContents.executeJavaScript('calendar.punchDate()');
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
@@ -73,7 +73,7 @@ function getDockMenuTemplate(mainWindow)
         {
             label: i18n.t('$Menu.punch-time'), click: function()
             {
-                let now = new Date();
+                const now = new Date();
 
                 mainWindow.webContents.executeJavaScript('calendar.punchDate()');
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
@@ -134,7 +134,7 @@ function getEditMenuTemplate(mainWindow)
                 prefWindow.on('close', function()
                 {
                     prefWindow = null;
-                    let savedPreferences = getSavedPreferences();
+                    const savedPreferences = getSavedPreferences();
                     if (savedPreferences !== null)
                     {
                         savePreferences(savedPreferences);
@@ -148,7 +148,7 @@ function getEditMenuTemplate(mainWindow)
             label: i18n.t('$Menu.export-database'),
             click()
             {
-                let options = {
+                const options = {
                     title: i18n.t('$Menu.export-db-to-file'),
                     defaultPath : `time_to_leave_${getCurrentDateTimeStr()}`,
                     buttonLabel : i18n.t('$Menu.export'),
@@ -158,7 +158,7 @@ function getEditMenuTemplate(mainWindow)
                         { name: i18n.t('$Menu.all-files'), extensions: ['*'] }
                     ]
                 };
-                let response = dialog.showSaveDialogSync(options);
+                const response = dialog.showSaveDialogSync(options);
                 if (response)
                 {
                     exportDatabaseToFile(response);
@@ -177,7 +177,7 @@ function getEditMenuTemplate(mainWindow)
             label: i18n.t('$Menu.import-database'),
             click()
             {
-                let options = {
+                const options = {
                     title: i18n.t('$Menu.import-db-from-file'),
                     buttonLabel : i18n.t('$Menu.import'),
 
@@ -186,7 +186,7 @@ function getEditMenuTemplate(mainWindow)
                         {name: i18n.t('$Menu.all-files'), extensions: ['*']}
                     ]
                 };
-                let response = dialog.showOpenDialogSync(options);
+                const response = dialog.showOpenDialogSync(options);
                 if (response)
                 {
                     const options = {
@@ -197,7 +197,7 @@ function getEditMenuTemplate(mainWindow)
                         message: i18n.t('$Menu.confirm-import-db'),
                     };
 
-                    let confirmation = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
+                    const confirmation = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
                     if (confirmation === /*Yes*/0)
                     {
                         const importResult = importDatabaseFromFile(response);
@@ -252,7 +252,7 @@ function getEditMenuTemplate(mainWindow)
                     message: i18n.t('$Menu.confirm-clear-all-data'),
                 };
 
-                let response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
+                const response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
                 if (response === 1)
                 {
                     const store = new Store();

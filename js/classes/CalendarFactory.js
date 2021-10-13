@@ -10,7 +10,7 @@ class CalendarFactory
     static getInstance(preferences, calendar = undefined)
     {
         const view = preferences['view'];
-        let widthHeight = getDefaultWidthHeight();
+        const widthHeight = getDefaultWidthHeight();
         if (view === 'day')
         {
             if (calendar === undefined || calendar.constructor.name !== 'FlexibleDayCalendar')

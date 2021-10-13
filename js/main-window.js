@@ -52,7 +52,7 @@ function createMenu()
     {
         Menu.setApplicationMenu(menu);
         // Use the macOS dock if we've got it
-        let dockMenuTemplate = getDockMenuTemplate(mainWindow);
+        const dockMenuTemplate = getDockMenuTemplate(mainWindow);
         app.dock.setMenu(Menu.buildFromTemplate(dockMenuTemplate));
         mainWindow.maximize();
     }
@@ -90,7 +90,7 @@ function createWindow()
 
     ipcMain.on('TOGGLE_TRAY_PUNCH_TIME', function(_event, arg)
     {
-        let contextMenuTemplate = getContextMenuTemplate(mainWindow);
+        const contextMenuTemplate = getContextMenuTemplate(mainWindow);
         contextMenuTemplate[0].enabled = arg;
         contextMenu = Menu.buildFromTemplate(contextMenuTemplate);
         tray.setContextMenu(contextMenu);

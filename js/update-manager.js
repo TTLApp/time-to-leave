@@ -9,15 +9,15 @@ const i18n = require('../src/configs/i18next.config');
 function shouldCheckForUpdates()
 {
     const store = new Store();
-    let lastChecked = store.get('update-remind-me-after');
-    let today = new Date(),
+    const lastChecked = store.get('update-remind-me-after');
+    const today = new Date(),
         todayDate = getDateStr(today);
     return !lastChecked || todayDate > lastChecked;
 }
 
 async function checkForUpdates(showUpToDateDialog)
 {
-    let online = await isOnline();
+    const online = await isOnline();
     if (!online)
     {
         return;
@@ -28,12 +28,12 @@ async function checkForUpdates(showUpToDateDialog)
     {
         response.on('data', (chunk) =>
         {
-            let result = `${chunk}`;
-            let re = new RegExp('.*(tag_name).*', 'g');
-            let matches = result.matchAll(re);
+            const result = `${chunk}`;
+            const re = new RegExp('.*(tag_name).*', 'g');
+            const matches = result.matchAll(re);
             for (const match of matches)
             {
-                let res = match[0].replace(/.*v.(\d+\.\d+\.\d+).*/g, '$1');
+                const res = match[0].replace(/.*v.(\d+\.\d+\.\d+).*/g, '$1');
                 if (app.getVersion() < res)
                 {
                     const options = {
@@ -47,7 +47,7 @@ async function checkForUpdates(showUpToDateDialog)
                         title: i18n.t('$UpdateManager.title'),
                         message: i18n.t('$UpdateManager.old-version-msg'),
                     };
-                    let response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
+                    const response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
                     if (response === 1)
                     {
                         //Download latest version
@@ -57,7 +57,7 @@ async function checkForUpdates(showUpToDateDialog)
                     {
                         const store = new Store();
                         // Remind me later
-                        let today = new Date(),
+                        const today = new Date(),
                             todayDate = getDateStr(today);
                         store.set('update-remind-me-after', todayDate);
                     }

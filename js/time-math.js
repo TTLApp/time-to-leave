@@ -5,8 +5,8 @@
  */
 function hourMinToHourFormatted(hours, minutes)
 {
-    let paddingHour = hours < 10 ?  '0' : '';
-    let paddingMin = minutes < 10 ?  '0' : '';
+    const paddingHour = hours < 10 ?  '0' : '';
+    const paddingMin = minutes < 10 ?  '0' : '';
     return paddingHour + hours +
            ':' +
            paddingMin + minutes;
@@ -26,8 +26,8 @@ function isNegative(str)
  */
 function hourToMinutes(time)
 {
-    let st = time.split(':');
-    let isNeg = isNegative(time);
+    const st = time.split(':');
+    const isNeg = isNegative(time);
     st[0] = isNeg ? st[0].substr(1) : st[0];
 
     let min = Number(st[1]) + (Number(st[0]) * 60);
@@ -43,13 +43,13 @@ function hourToMinutes(time)
  */
 function minutesToHourFormatted(min)
 {
-    let signStr = min < 0 ? '-' : '';
+    const signStr = min < 0 ? '-' : '';
     if (min < 0)
     {
         min = Math.abs(min);
     }
-    let hours = Math.floor(min / 60);
-    let minutes = Math.floor(min - (hours * 60));
+    const hours = Math.floor(min / 60);
+    const minutes = Math.floor(min - (hours * 60));
     return signStr + hourMinToHourFormatted(hours, minutes);
 }
 
@@ -59,7 +59,7 @@ function minutesToHourFormatted(min)
  */
 function subtractTime(t1, t2)
 {
-    let diffMin = hourToMinutes(t2) - hourToMinutes(t1);
+    const diffMin = hourToMinutes(t2) - hourToMinutes(t1);
     return minutesToHourFormatted(diffMin);
 }
 
@@ -80,7 +80,7 @@ function multiplyTime(t, n)
  */
 function sumTime(t1, t2)
 {
-    let sumMin = hourToMinutes(t2) + hourToMinutes(t1);
+    const sumMin = hourToMinutes(t2) + hourToMinutes(t1);
     return minutesToHourFormatted(sumMin);
 }
 
@@ -90,7 +90,7 @@ function sumTime(t1, t2)
  */
 function validateTime(time)
 {
-    let re = new RegExp('^-?(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$');
+    const re = new RegExp('^-?(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$');
     return re.test(time);
 }
 

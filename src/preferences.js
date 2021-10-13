@@ -13,7 +13,7 @@ const jqueryI18next = require('jquery-i18next');
 
 // Global values for preferences page
 let usersStyles = getUserPreferences();
-let preferences = usersStyles;
+const preferences = usersStyles;
 
 function translatePage(language)
 {
@@ -26,7 +26,7 @@ function translatePage(language)
 
 function populateLanguages(i18n)
 {
-    let languageOpts = $('#language');
+    const languageOpts = $('#language');
     languageOpts.empty();
     $.each(config.getLanguagesCodes(), function()
     {
@@ -95,14 +95,14 @@ function changeValue(type, newVal)
 function renderPreferencesWindow()
 {
     // Theme-handling should be towards the top. Applies theme early so it's more natural.
-    let theme = 'theme';
+    const theme = 'theme';
 
     /* istanbul ignore else */
     if (theme in usersStyles)
     {
         $('#' + theme).val(usersStyles[theme]);
     }
-    let selectedThemeOption = $('#' + theme)
+    const selectedThemeOption = $('#' + theme)
         .children('option:selected')
         .val();
     preferences[theme] = selectedThemeOption;
@@ -146,8 +146,8 @@ function renderPreferencesWindow()
 
     $('input').each(function()
     {
-        let input = $(this);
-        let name = input.attr('name');
+        const input = $(this);
+        const name = input.attr('name');
         /* istanbul ignore else */
         if (input.attr('type') === 'checkbox')
         {

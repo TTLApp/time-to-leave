@@ -34,8 +34,8 @@ function prepareMockup()
 {
     const userPreferences = path.join(__dirname, '../../src/preferences.html');
     const content = fs.readFileSync(userPreferences);
-    let parser = new DOMParser();
-    let htmlDoc = parser.parseFromString(content, 'text/html');
+    const parser = new DOMParser();
+    const htmlDoc = parser.parseFromString(content, 'text/html');
     document.body.innerHTML = htmlDoc.body.innerHTML;
 }
 
@@ -77,7 +77,7 @@ function resetPreferenceFile()
     if (fs.existsSync(preferencesFilePath)) fs.unlinkSync(preferencesFilePath);
 }
 
-let testPreferences = Object.assign({}, defaultPreferences);
+const testPreferences = Object.assign({}, defaultPreferences);
 
 describe('Test Preferences Window', () =>
 {

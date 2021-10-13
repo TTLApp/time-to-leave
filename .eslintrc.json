@@ -42,6 +42,7 @@
         "no-extra-semi": "error",
         "no-lonely-if": "error",
         "no-var": "error",
+        "prefer-const": ["error", {"destructuring": "all"}],
         "quotes": [
             "error",
             "single"

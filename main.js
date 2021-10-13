@@ -91,12 +91,12 @@ function refreshOnDayChange()
         return;
     }
 
-    let today = new Date();
+    const today = new Date();
     if (today > launchDate)
     {
-        let oldDate = launchDate.getDate();
-        let oldMonth = launchDate.getMonth();
-        let oldYear = launchDate.getFullYear();
+        const oldDate = launchDate.getDate();
+        const oldMonth = launchDate.getMonth();
+        const oldYear = launchDate.getFullYear();
         launchDate = today;
         // Reload only the calendar itself to avoid a flash
         mainWindow.webContents.executeJavaScript(`calendar.refreshOnDayChange(${oldDate},${oldMonth},${oldYear})`);

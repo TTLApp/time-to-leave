@@ -26,7 +26,7 @@ describe('window-aux.js Testing', function()
 
         test('No bind: should not open anything', async() =>
         {
-            let testWindow = new BrowserWindow(browserWindowOptions);
+            const testWindow = new BrowserWindow(browserWindowOptions);
             testWindow.loadURL(mockHtmlPath);
             expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
 
@@ -45,7 +45,7 @@ describe('window-aux.js Testing', function()
 
         test('Bind: should open devTools', async() =>
         {
-            let testWindow = new BrowserWindow(browserWindowOptions);
+            const testWindow = new BrowserWindow(browserWindowOptions);
             testWindow.loadURL(mockHtmlPath);
             expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
 
@@ -66,7 +66,7 @@ describe('window-aux.js Testing', function()
 
         test('Bind: bad shortcut, should not open devTools', async() =>
         {
-            let testWindow = new BrowserWindow(browserWindowOptions);
+            const testWindow = new BrowserWindow(browserWindowOptions);
             testWindow.loadURL(mockHtmlPath);
             expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
 
@@ -91,7 +91,7 @@ describe('window-aux.js Testing', function()
 
         test('Does not crash', async() =>
         {
-            let testWindow = new BrowserWindow(browserWindowOptions);
+            const testWindow = new BrowserWindow(browserWindowOptions);
             testWindow.loadURL(mockHtmlPath);
 
             let spy;
@@ -100,7 +100,7 @@ describe('window-aux.js Testing', function()
                 const windowAux = require('../../js/window-aux.js');
                 spy = jest.spyOn(windowAux, 'showDialog');
 
-                let options = {
+                const options = {
                     title: 'Time to Leave',
                 };
                 windowAux.showDialog(options, () =>
@@ -126,7 +126,7 @@ describe('window-aux.js Testing', function()
 
         test('Does not crash', async() =>
         {
-            let testWindow = new BrowserWindow(browserWindowOptions);
+            const testWindow = new BrowserWindow(browserWindowOptions);
             testWindow.loadURL(mockHtmlPath);
 
             let spy;

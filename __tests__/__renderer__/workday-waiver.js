@@ -34,8 +34,8 @@ function prepareMockup()
     waivedWorkdays.clear();
     const workdayWaiverHtml = path.join(__dirname, '../../src/workday-waiver.html');
     const content = fs.readFileSync(workdayWaiverHtml);
-    let parser = new DOMParser();
-    let htmlDoc = parser.parseFromString(content, 'text/html');
+    const parser = new DOMParser();
+    const htmlDoc = parser.parseFromString(content, 'text/html');
     document.body.innerHTML = htmlDoc.body.innerHTML;
     populateList();
 }
@@ -101,13 +101,13 @@ describe('Test Workday Waiver Window', function()
             addTestWaiver('2021-07-21', 'yet another reason');
 
             let isSorted = true;
-            let rows = $('#waiver-list-table tbody  tr').get();
+            const rows = $('#waiver-list-table tbody  tr').get();
             for (let i = 1; i < rows.length; i++)
             {
-                let A = $(rows[i-1]).children('td').eq(1).text();
-                let B = $(rows[i]).children('td').eq(1).text();
-                let d1 = new Date(A);
-                let d2 = new Date(B);
+                const A = $(rows[i-1]).children('td').eq(1).text();
+                const B = $(rows[i]).children('td').eq(1).text();
+                const d1 = new Date(A);
+                const d2 = new Date(B);
 
                 if (d1 < d2)
                 {

@@ -69,7 +69,7 @@ async function notifyTimeToLeave()
         return;
     }
 
-    let timeToLeave = $('#leave-by').val();
+    const timeToLeave = $('#leave-by').val();
     if (validateTime(timeToLeave))
     {
         /**
@@ -77,12 +77,12 @@ async function notifyTimeToLeave()
          * @type {number} Minutes post the clockout time
          */
         const notificationInterval = getNotificationsInterval();
-        let now = new Date();
-        let curTime = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+        const now = new Date();
+        const curTime = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
 
         // Let check if it's past the time to leave, and the minutes line up with the interval to check
-        let minutesDiff = hourToMinutes(subtractTime(timeToLeave, curTime));
-        let isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval === 0);
+        const minutesDiff = hourToMinutes(subtractTime(timeToLeave, curTime));
+        const isRepeatingInterval = curTime > timeToLeave && (minutesDiff % notificationInterval === 0);
 
         const dateToday = getDateStr(now);
         const skipNotify = dismissToday === dateToday;
@@ -118,7 +118,7 @@ $(() =>
     i18n.changeLanguage(lang)
         .then(() =>
         {
-            let preferences = getUserPreferences();
+            const preferences = getUserPreferences();
             calendar = CalendarFactory.getInstance(preferences);
             setInterval(notifyTimeToLeave, 60000);
             applyTheme(preferences.theme);

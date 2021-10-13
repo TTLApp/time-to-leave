@@ -13,7 +13,7 @@ describe('Preferences Main', () =>
     if (fs.existsSync(preferencesFilePath))
         fs.unlinkSync(preferencesFilePath);
 
-    let days = getUserPreferences();
+    const days = getUserPreferences();
 
     test('showDay(year, month, day)', () =>
     {
@@ -39,7 +39,7 @@ describe('Preferences Main', () =>
 
         test('Day view', () =>
         {
-            let preferences = { defaultPreferences };
+            const preferences = { defaultPreferences };
 
             preferences['view'] = 'day';
             savePreferences(preferences);
@@ -59,7 +59,7 @@ describe('Preferences Main', () =>
             expect(getUserPreferences()['view']).toBe('month');
             switchCalendarView();
 
-            let preferences = getUserPreferences();
+            const preferences = getUserPreferences();
             expect(preferences['view']).toBe('day');
         });
 

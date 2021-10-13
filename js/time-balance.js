@@ -14,14 +14,14 @@ const waivedWorkdays = new Store({ name: 'waived-workdays' });
 
 function getFirstInputInDb()
 {
-    let inputs = [];
+    const inputs = [];
     const startDateStr = _getOverallBalanceStartDate();
-    let [startYear, startMonth, startDay] = startDateStr.split('-');
+    const [startYear, startMonth, startDay] = startDateStr.split('-');
     const startDate = new Date(startYear, startMonth - 1, startDay);
 
-    for (let value of flexibleStore)
+    for (const value of flexibleStore)
     {
-        let [year, month, day] = value[0].split('-');
+        const [year, month, day] = value[0].split('-');
         if (new Date(year, month, day) >= startDate)
         {
             inputs.push(value[0]);
@@ -29,8 +29,8 @@ function getFirstInputInDb()
     }
     inputs.sort(function(a, b)
     {
-        let [aYear, aMonth, aDay] = a.split('-');
-        let [bYear, bMonth, bDay] = b.split('-');
+        const [aYear, aMonth, aDay] = a.split('-');
+        const [bYear, bMonth, bDay] = b.split('-');
         return new Date(aYear, aMonth, aDay) - new Date(bYear, bMonth, bDay);
     });
     return inputs.length ? inputs[0] : '';
@@ -113,7 +113,7 @@ function _getFlexibleDayTotal(values)
 function _getDayTotalsFromStores(firstDate, limitDate)
 {
     const preferences = getUserPreferences();
-    let totals = {};
+    const totals = {};
 
     const getDateStrAndDateValue = (value, date) =>
     {
@@ -130,7 +130,7 @@ function _getDayTotalsFromStores(firstDate, limitDate)
         return [];
     };
 
-    for (let value of waivedWorkdays)
+    for (const value of waivedWorkdays)
     {
         const [key, dateValue] = getDateStrAndDateValue(value, _getDateFromWaivedWorkdayDb(value[0]));
         if (key && dateValue)
@@ -140,7 +140,7 @@ function _getDayTotalsFromStores(firstDate, limitDate)
 
     }
 
-    for (let value of flexibleStore)
+    for (const value of flexibleStore)
     {
         const [key, dateValue] = getDateStrAndDateValue(value, _getDateFromStoreDb(value[0]));
         if (key && dateValue)
@@ -163,15 +163,15 @@ async function computeAllTimeBalanceUntil(limitDate)
     {
         return '00:00';
     }
-    let [firstYear, firstMonth, firstDay] = firstInput.split('-');
-    let firstDate = new Date(firstYear, firstMonth, firstDay);
+    const [firstYear, firstMonth, firstDay] = firstInput.split('-');
+    const firstDate = new Date(firstYear, firstMonth, firstDay);
 
-    let totals = _getDayTotalsFromStores(firstDate, limitDate);
+    const totals = _getDayTotalsFromStores(firstDate, limitDate);
 
     const preferences = getUserPreferences();
     const hoursPerDay = _getHoursPerDay();
     let allTimeTotal = '00:00';
-    let date = new Date(firstDate);
+    const date = new Date(firstDate);
     const limitDateStr = getDateStr(limitDate);
     let dateStr = getDateStr(date);
     while (dateStr !== limitDateStr && limitDate > date)

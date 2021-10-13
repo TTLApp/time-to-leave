@@ -60,7 +60,7 @@ describe('User Preferences save/load', () =>
     if (fs.existsSync(preferencesFilePath))
         fs.unlinkSync(preferencesFilePath);
 
-    let testPreferences = defaultPreferences;
+    const testPreferences = defaultPreferences;
     testPreferences['working-days-sunday'] = true;
 
     const empty = {};

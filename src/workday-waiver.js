@@ -2,7 +2,7 @@
 
 const { remote } = require('electron');
 const Store = require('electron-store');
-let Holidays = require('date-holidays');
+const Holidays = require('date-holidays');
 
 const { getUserPreferences, showDay } = require('../js/user-preferences.js');
 const { validateTime, diffDays } = require('../js/time-math.js');
@@ -15,7 +15,7 @@ const $ = require('jquery');
 const jqueryI18next = require('jquery-i18next');
 
 const waiverStore = new Store({name: 'waived-workdays'});
-let hd = new Holidays();
+const hd = new Holidays();
 
 function setDates(day)
 {
@@ -25,7 +25,7 @@ function setDates(day)
 
 function setHours()
 {
-    let usersStyles = getUserPreferences();
+    const usersStyles = getUserPreferences();
     $('#hours').val(usersStyles['hours-per-day']);
 }
 
@@ -44,7 +44,7 @@ function toggleAddButton(buttonName, state)
 // Sort function which sorts all dates according to Day in O(nlogn)
 function sortTable()
 {
-    let rows = $('#waiver-list-table tbody  tr').get();
+    const rows = $('#waiver-list-table tbody  tr').get();
 
     rows.sort(function(rowA, rowB)
     {
@@ -62,7 +62,7 @@ function sortTable()
 
 function addRowToListTable(day, reason, hours)
 {
-    let table = $('#waiver-list-table tbody')[0],
+    const table = $('#waiver-list-table tbody')[0],
         row = table.insertRow(0),
         delButtonCell = row.insertCell(0),
         dayCell = row.insertCell(1),
@@ -72,7 +72,7 @@ function addRowToListTable(day, reason, hours)
     dayCell.innerHTML = day;
     reasonCell.innerHTML = reason;
     hoursCell.innerHTML = hours;
-    let id = 'delete-' + day;
+    const id = 'delete-' + day;
     delButtonCell.innerHTML = '<input class="delete-btn" data-day="' + day + '" id="' + id + '" type="button"></input>';
 
     $('#'+ id).on('click', deleteEntryOnClick);
@@ -83,7 +83,7 @@ function populateList()
     clearWaiverList();
     for (const elem of waiverStore)
     {
-        let date = elem[0],
+        const date = elem[0],
             reason = elem[1]['reason'],
             hours = elem[1]['hours'];
         addRowToListTable(date, reason, hours);
@@ -98,10 +98,10 @@ function getDateFromISOStr(isoStr)
 
 function addWaiver()
 {
-    let [startYear, startMonth, startDay] = getDateFromISOStr($('#start-date').val());
-    let [endYear, endMonth, endDay] = getDateFromISOStr($('#end-date').val());
+    const [startYear, startMonth, startDay] = getDateFromISOStr($('#start-date').val());
+    const [endYear, endMonth, endDay] = getDateFromISOStr($('#end-date').val());
 
-    let startDate = new Date(startYear, startMonth-1, startDay),
+    const startDate = new Date(startYear, startMonth-1, startDay),
         endDate = new Date(endYear, endMonth-1, endDay),
         reason = $('#reason').val(),
         hours = $('#hours').val();
@@ -112,7 +112,7 @@ function addWaiver()
         return false;
     }
 
-    let diff = diffDays(startDate, endDate);
+    const diff = diffDays(startDate, endDate);
 
     if (diff < 0)
     {
@@ -124,10 +124,10 @@ function addWaiver()
     let noWorkingDaysOnRange = true;
     for (let i = 0; i <= diff; i++)
     {
-        let tempDateStr = getDateStr(tempDate);
-        let alreadyHaveWaiverStr = i18n.t('$WorkdayWaiver.already-have-waiver');
-        let removeWaiverStr = i18n.t('$WorkdayWaiver.remove-waiver');
-        let [tempYear, tempMonth, tempDay] = getDateFromISOStr(tempDateStr);
+        const tempDateStr = getDateStr(tempDate);
+        const alreadyHaveWaiverStr = i18n.t('$WorkdayWaiver.already-have-waiver');
+        const removeWaiverStr = i18n.t('$WorkdayWaiver.remove-waiver');
+        const [tempYear, tempMonth, tempDay] = getDateFromISOStr(tempDateStr);
         noWorkingDaysOnRange &= !showDay(tempYear, tempMonth-1, tempDay) && !waiverStore.has(tempDateStr);
 
         if (waiverStore.has(tempDateStr))
@@ -149,8 +149,8 @@ function addWaiver()
 
     for (let i = 0; i <= diff; i++)
     {
-        let tempDateStr = getDateStr(tempDate);
-        let [tempYear, tempMonth, tempDay] = getDateFromISOStr(tempDateStr);
+        const tempDateStr = getDateStr(tempDate);
+        const [tempYear, tempMonth, tempDay] = getDateFromISOStr(tempDateStr);
         if (showDay(tempYear, tempMonth-1, tempDay) && !waiverStore.has(tempDateStr))
         {
             waiverStore.set(tempDateStr, { 'reason' : reason, 'hours' : hours });
@@ -167,12 +167,12 @@ function addWaiver()
 
 function deleteEntryOnClick(event)
 {
-    let deleteButton = $(event.target);
-    let day = deleteButton.data('day');
-    let timeToLeaveStr = i18n.t('$WorkdayWaiver.time-to-leave');
-    let deleteWaiverMessageStr = i18n.t('$WorkdayWaiver.delete-waiver-message');
+    const deleteButton = $(event.target);
+    const day = deleteButton.data('day');
+    const timeToLeaveStr = i18n.t('$WorkdayWaiver.time-to-leave');
+    const deleteWaiverMessageStr = i18n.t('$WorkdayWaiver.delete-waiver-message');
 
-    let options = {
+    const options = {
         title: timeToLeaveStr,
         message: `${deleteWaiverMessageStr} ${day} ?`,
         type: 'info',
@@ -187,7 +187,7 @@ function deleteEntryOnClick(event)
         }
         waiverStore.delete(day);
 
-        let row = deleteButton.closest('tr');
+        const row = deleteButton.closest('tr');
         row.remove();
     });
 }
@@ -204,7 +204,7 @@ function populateCountry()
 
 function populateState(country)
 {
-    let states = hd.getStates(country);
+    const states = hd.getStates(country);
     if (states)
     {
         $('#state').empty();
@@ -224,7 +224,7 @@ function populateState(country)
 }
 function populateCity(country, state)
 {
-    let regions = hd.getRegions(country, state);
+    const regions = hd.getRegions(country, state);
     if (regions)
     {
         $('#city').empty();
@@ -245,8 +245,8 @@ function populateCity(country, state)
 
 function populateYear()
 {
-    let year = new Date().getFullYear();
-    let obj = {};
+    const year = new Date().getFullYear();
+    const obj = {};
     for (let i = year; i < year + 10; i++)
     {
         obj[i] = i;
@@ -260,7 +260,7 @@ function populateYear()
 
 function getHolidays()
 {
-    let year = $('#year').find(':selected').val(),
+    const year = $('#year').find(':selected').val(),
         country = $('#country').find(':selected') ? $('#country').find(':selected').val() : undefined,
         state = $('#state').find(':selected') ? $('#state').find(':selected').val() : undefined,
         city = $('#city').find(':selected') ? $('#city').find(':selected').val() : undefined;
@@ -286,18 +286,18 @@ function getHolidays()
 
 function iterateOnHolidays(funct)
 {
-    let holidays = getHolidays();
+    const holidays = getHolidays();
 
-    for (let holiday of holidays)
+    for (const holiday of holidays)
     {
-        let startDate = new Date(holiday['start']),
+        const startDate = new Date(holiday['start']),
             endDate = new Date(holiday['end']),
             reason = holiday['name'];
-        let diff = diffDays(startDate, endDate) - 1;
-        let tempDate = new Date(startDate);
+        const diff = diffDays(startDate, endDate) - 1;
+        const tempDate = new Date(startDate);
         for (let i = 0; i <= diff; i++)
         {
-            let tempDateStr = getDateStr(tempDate);
+            const tempDateStr = getDateStr(tempDate);
             funct(tempDateStr, reason);
             tempDate.setDate(tempDate.getDate() + 1);
         }
@@ -306,7 +306,7 @@ function iterateOnHolidays(funct)
 
 function addHolidayToList(day, reason, workingDay, conflicts)
 {
-    let table = $('#holiday-list-table tbody')[0],
+    const table = $('#holiday-list-table tbody')[0],
         row = table.insertRow(table.rows.length),
         dayCell = row.insertCell(0),
         reasonCell = row.insertCell(1),
@@ -337,7 +337,7 @@ function clearWaiverList()
 
 function clearTable(id)
 {
-    let table = $(`#${id} tbody`)[0];
+    const table = $(`#${id} tbody`)[0];
     // Clear all rows before adding new ones
     while (table.rows.length >= 1)
     {
@@ -347,7 +347,7 @@ function clearTable(id)
 
 function loadHolidaysTable()
 {
-    let holidays = getHolidays();
+    const holidays = getHolidays();
     if (holidays.length === 0)
     {
         return;
@@ -358,10 +358,10 @@ function loadHolidaysTable()
 
     function addHoliday(holidayDate, holidayReason)
     {
-        let [tempYear, tempMonth, tempDay] = getDateFromISOStr(holidayDate);
+        const [tempYear, tempMonth, tempDay] = getDateFromISOStr(holidayDate);
         // Holiday returns month with 1-12 index, but showDay expects 0-11
-        let workingDay = showDay(tempYear, tempMonth - 1, tempDay) ? i18n.t('$WorkdayWaiver.yes') : i18n.t('$WorkdayWaiver.no');
-        let conflicts = waiverStore.get(holidayDate);
+        const workingDay = showDay(tempYear, tempMonth - 1, tempDay) ? i18n.t('$WorkdayWaiver.yes') : i18n.t('$WorkdayWaiver.no');
+        const conflicts = waiverStore.get(holidayDate);
         addHolidayToList(holidayDate, holidayReason, workingDay, conflicts ? conflicts['reason'] : '');
     }
 
@@ -375,7 +375,7 @@ function addHolidaysAsWaiver()
 {
     function addHoliday(holidayDate, holidayReason)
     {
-        let importHoliday = $(`#import-${holidayDate}`)[0].checked;
+        const importHoliday = $(`#import-${holidayDate}`)[0].checked;
         if (importHoliday)
         {
             waiverStore.set(holidayDate, { 'reason' : holidayReason, 'hours' : '08:00' });
@@ -428,7 +428,7 @@ i18n.on('loaded', () =>
 
 $(() =>
 {
-    let preferences = getUserPreferences();
+    const preferences = getUserPreferences();
     applyTheme(preferences.theme);
 
     setDates(remote.getGlobal('waiverDay'));

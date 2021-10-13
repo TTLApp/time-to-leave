@@ -71,7 +71,7 @@ const isNotificationInterval = (val) => !Number.isNaN(Number(val)) && isNotBoole
  */
 function getPreferencesFilePath()
 {
-    let userDataPath = (electron.app || electron.remote.app).getPath('userData');
+    const userDataPath = (electron.app || electron.remote.app).getPath('userData');
     return path.join(userDataPath, 'preferences.json');
 }
 
@@ -111,7 +111,7 @@ function readPreferences()
 
 function getDerivedPrefsFromLoadedPrefs(loadedPreferences)
 {
-    let derivedPreferences = {};
+    const derivedPreferences = {};
     Object.keys(defaultPreferences).forEach(function(key)
     {
         derivedPreferences[key] = (typeof loadedPreferences[key] !== 'undefined') ? loadedPreferences[key] : defaultPreferences[key];
@@ -132,11 +132,11 @@ function initPreferencesFileIfNotExistsOrInvalid()
         return;
     }
 
-    let shouldSaveDerivedPrefs = false,
-        loadedPrefs = readPreferences(),
-        derivedPrefs = getDerivedPrefsFromLoadedPrefs(loadedPrefs),
-        loadedPref = Object.keys(loadedPrefs).sort(),
-        derivedPrefsKeys = Object.keys(derivedPrefs).sort();
+    let shouldSaveDerivedPrefs = false;
+    const loadedPrefs = readPreferences();
+    const derivedPrefs = getDerivedPrefsFromLoadedPrefs(loadedPrefs);
+    const loadedPref = Object.keys(loadedPrefs).sort();
+    const derivedPrefsKeys = Object.keys(derivedPrefs).sort();
 
     // Validate keys
     if (JSON.stringify(loadedPref) !== JSON.stringify(derivedPrefsKeys))
@@ -147,7 +147,7 @@ function initPreferencesFileIfNotExistsOrInvalid()
     // Validate the values
     for (const key of derivedPrefsKeys)
     {
-        let value = derivedPrefs[key];
+        const value = derivedPrefs[key];
 
         if (isNotBoolean(value) && booleanInputs.includes(key))
         {
@@ -195,7 +195,7 @@ function getLoadedOrDerivedUserPreferences()
  */
 function notificationIsEnabled()
 {
-    let preferences = getLoadedOrDerivedUserPreferences();
+    const preferences = getLoadedOrDerivedUserPreferences();
     return preferences['notification'];
 }
 
@@ -226,13 +226,13 @@ function showWeekDay(weekDay, preferences = undefined)
  */
 function showDay(year, month, day, preferences = undefined)
 {
-    let currentDay = new Date(year, month, day), weekDay = currentDay.getDay();
+    const currentDay = new Date(year, month, day), weekDay = currentDay.getDay();
     return showWeekDay(weekDay, preferences);
 }
 
 function switchCalendarView()
 {
-    let preferences = getLoadedOrDerivedUserPreferences();
+    const preferences = getLoadedOrDerivedUserPreferences();
     if (preferences['view'] === 'month')
     {
         preferences['view'] = 'day';
@@ -248,7 +248,7 @@ function switchCalendarView()
 
 function getDefaultWidthHeight()
 {
-    let preferences = getLoadedOrDerivedUserPreferences();
+    const preferences = getLoadedOrDerivedUserPreferences();
     if (preferences['view'] === 'month')
     {
         return { width: 1010, height: 800 };
@@ -265,7 +265,7 @@ function getDefaultWidthHeight()
  */
 function getUserLanguage()
 {
-    let preferences = getLoadedOrDerivedUserPreferences();
+    const preferences = getLoadedOrDerivedUserPreferences();
     return preferences['language'];
 }
 
@@ -274,7 +274,7 @@ function getUserLanguage()
  */
 function getNotificationsInterval()
 {
-    let preferences = getLoadedOrDerivedUserPreferences();
+    const preferences = getLoadedOrDerivedUserPreferences();
     return preferences['notifications-interval'];
 }
 
@@ -283,7 +283,7 @@ function getNotificationsInterval()
  */
 function repetitionIsEnabled()
 {
-    let preferences = getLoadedOrDerivedUserPreferences();
+    const preferences = getLoadedOrDerivedUserPreferences();
     return preferences['repetition'];
 }
 

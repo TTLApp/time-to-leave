@@ -66,7 +66,7 @@ class BaseCalendar
         computeAllTimeBalanceUntilAsync(targetDate)
             .then(balance =>
             {
-                let balanceElement = $('#overall-balance');
+                const balanceElement = $('#overall-balance');
                 if (balanceElement)
                 {
                     balanceElement.val(balance).removeClass('text-success text-danger')
@@ -88,7 +88,7 @@ class BaseCalendar
      */
     _getWaiverStore(year, month, day)
     {
-        let dayKey = getDateStr(new Date(year, month, day));
+        const dayKey = getDateStr(new Date(year, month, day));
         return this._internalWaiverStore[dayKey];
     }
 
@@ -455,7 +455,7 @@ class BaseCalendar
         const dateKey = generateKey(year, month, day);
         const inputs = $('#' + dateKey + ' input[type="time"]');
         let allInputsFilled = true;
-        for (let input of inputs)
+        for (const input of inputs)
         {
             allInputsFilled &= $(input).val().length !== 0;
         }
@@ -469,7 +469,7 @@ class BaseCalendar
      */
     _calculateBreakEnd(breakBegin)
     {
-        let breakInterval = this._getBreakTimeInterval();
+        const breakInterval = this._getBreakTimeInterval();
         let breakEnd = sumTime(breakBegin, breakInterval);
 
         breakEnd = validateTime(breakEnd) ? breakEnd : '23:59';
@@ -558,7 +558,7 @@ class BaseCalendar
      */
     _updateDbEntry(dateKey, newValues)
     {
-        let validatedTimes = this._validateTimes(newValues, true /*removeEndingInvalids*/);
+        const validatedTimes = this._validateTimes(newValues, true /*removeEndingInvalids*/);
         if (validatedTimes.length > 0)
         {
             this._setStore(dateKey, validatedTimes);
@@ -653,7 +653,7 @@ class BaseCalendar
      */
     _validateTimes(values, removeEndingInvalids = false)
     {
-        let validatedTimes = [];
+        const validatedTimes = [];
         if (values.length > 0)
         {
             for (const time of values)
