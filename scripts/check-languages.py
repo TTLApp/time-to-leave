@@ -56,38 +56,37 @@ LANG_SCOPE_KEY_TO_IGNORE = {'de-DE': {'$Preferences' : ['themes', 'hours-per-day
                                      '$FlexibleMonthCalendar' : ['total']}}
 
 # Source: https://stackoverflow.com/a/25580545/3821823
-def add_url_params(url, params):
-    """ Add GET params to provided URL being aware of existing.
-    :param url: string of target URL
+def add_url_params(url : str , params : dict) -> str:
+    """ Add GET params to provided url being aware of existing params.
+    :param url: string of target url
     :param params: dict containing requested params to be added
-    :return: string with updated URL
+    :return: string with updated url
     >> url = 'http://stackoverflow.com/test?answers=true'
     >> new_params = {'answers': False, 'data': ['some','values']}
     >> add_url_params(url, new_params)
     'http://stackoverflow.com/test?data=some&data=values&answers=false'
     """
-    # Unquoting URL first so we don't loose existing args
+    # Unquoting url first so we don't loose existing args
     url = unquote(url)
     # Extracting url info
     parsed_url = urlparse(url)
-    # Extracting URL arguments from parsed URL
+    # Extracting url arguments from parsed url
     get_args = parsed_url.query
-    # Converting URL arguments to dict
+    # Converting url arguments to dict
     parsed_get_args = dict(parse_qsl(get_args))
-    # Merging URL arguments dict with new params
+    # Merging url arguments dict with new params
     parsed_get_args.update(params)
 
     # Bool and Dict values should be converted to json-friendly values
-    # you may throw this part away if you don't like it :)
     parsed_get_args.update(
         {k: json.dumps(v) for k, v in parsed_get_args.items()
             if isinstance(v, (bool, dict))}
     )
 
-    # Converting URL argument to proper query string
+    # Converting url argument to proper query string
     encoded_get_args = urlencode(parsed_get_args, doseq=True)
     # Creating new parsed result object based on provided with new
-    # URL arguments. Same thing happens inside of urlparse.
+    # url arguments. Same thing happens inside of urlparse.
     new_url = ParseResult(
         parsed_url.scheme, parsed_url.netloc, parsed_url.path,
         parsed_url.params, encoded_get_args, parsed_url.fragment
@@ -205,7 +204,7 @@ def get_report_from_error(total_strings_for_translation : int, errors : dict) ->
 
     return result
 
-def get_count_total_string_with_link(locale : str, missing_translations, link_to_missing : bool) -> str:
+def get_count_total_string_with_link(locale : str, missing_translations : dict, link_to_missing : bool) -> str:
     if not missing_translations or not link_to_missing:
         return f'{count_total_string(missing_translations)}'
     missing_translations_count = count_total_string(missing_translations)
