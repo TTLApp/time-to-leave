@@ -6,7 +6,7 @@
         "overall-balance": "समग्र संतुलन",
         "overall-balance-title": "महीने के अंत या वर्तमान दिन तक कुल मिलाकर शेष",
         "switch-view": "दृश्य स्विच करें",
-        "time-to-leave": "Time To Leave"
+        "time-to-leave": "विदा लेने का समय"
     },
     "$DateUtil": {
         "april": "अप्रैल",
@@ -91,15 +91,15 @@
         "export-db-to-file": "फाइल करने के लिए डेटाबेस निर्यात करें",
         "failed-entries": "प्रविष्टियां विफल",
         "failed-migrating": "पलायन करने में विफल",
-        "fresh-start": "Fresh Start",
-        "fresh-start-confirm": "Are you sure you want a fresh start?",
+        "fresh-start": "नयी शुरुआत",
+        "fresh-start-confirm": "क्या आप वाकई एक नई शुरुआत चाहते हैं?",
         "help": "मदद",
         "import": "आयात",
         "import-database": "डेटाबेस आयात करें",
         "import-db-from-file": "डेटाबेस फ़ाइल से आयात करें",
         "import-successful": "वाह! आयात सफल!",
         "menu": "मेन्यू",
-        "migrate": "Migrate",
+        "migrate": "प्रवास",
         "migrate-calendar-to-flexible": "तय कैलेंडर डेटाबेस को लचीले में माइग्रेट करें",
         "migration-successful": "वाह! प्रवासन सफल!",
         "no-thanks": "जी नहीं, धन्यवाद",
@@ -110,10 +110,10 @@
         "punched-time": "छिद्रित समय",
         "quit": "छोड़ना",
         "reload": "पुनः लोड करें",
-        "report": "Report",
+        "report": "रिपोर्ट",
         "select-all": "सभी का चयन करे",
         "send-feedback": "प्रतिक्रिया भेजें",
-        "should-migrate-to-flexible": "One of the new features of this Time to Leave release is a flexible number of entries for the calendar.\n\nThis new view uses a new database format.\nTo use it, you can either migrate your existing database to the new format or make a fresh start.",
+        "should-migrate-to-flexible": "इस टाइम टू लीव रिलीज़ की नई सुविधाओं में से एक कैलेंडर के लिए प्रविष्टियों की एक लचीली संख्या है।\n\nयह नया दृश्य एक नए डेटाबेस प्रारूप का उपयोग करता है।\nइसका उपयोग करने के लिए, आप या तो अपने मौजूदा डेटाबेस को नए प्रारूप में माइग्रेट कर सकते हैं या एक नई शुरुआत करें।",
         "show-app": "ऐप दिखाएं",
         "something-went-wrong": "कुछ ग़लत हुआ :(",
         "toggle-dev-tools": "डेवलपर टूल टॉगल करें",
@@ -125,7 +125,7 @@
     "$Notification": {
         "punch-reminder": "में पंच करने के लिए मत भूलना!",
         "time-to-leave": "सुनो! मुझे लगता है कि यह छोड़ने का समय है।",
-        "dismiss-for-today": "Dismiss for today"
+        "dismiss-for-today": "आज के लिए खारिज करें"
     },
     "$Preferences": {
         "allowRecurringNotifications": "पुनरावर्ती सूचनाएँ दें",
@@ -141,8 +141,8 @@
         "hideNonWorkingDay": "गैर-कार्य दिवस (माह दृश्य) छुपाएं",
         "hours-per-day": "HH:mm",
         "hoursPerDay": "प्रति दिन घंटे",
-        "enablePrefillBreakTime": "Enable prefilling of break time",
-        "breakTimeInterval": "Break time interval",
+        "enablePrefillBreakTime": "ब्रेक टाइम की पूर्व-भरण सक्षम करें",
+        "breakTimeInterval": "ब्रेक टाइम अंतराल",
         "language": "भाषा: हिन्दी",
         "light": "रोशनी",
         "minimizeToTray": "बटन को कम से कम ट्रे में रखना चाहिए",
@@ -166,12 +166,12 @@
         "workingDays": "कार्य दिवस"
     },
     "$UpdateManager": {
-        "dismissBtn": "Dismiss",
-        "downloadBtn": "Download latest version",
-        "old-version-msg": "You are using an old version of TTL and is missing out on a lot of new cool things!",
-        "remindBtn": "Remind me later",
-        "title": "TTL Check for updates",
-        "upto-date-msg": "Your TTL is up to date."
+        "dismissBtn": "खारिज करें",
+        "downloadBtn": "नवीनतम वर्शन डाउनलोड करें",
+        "old-version-msg": "आप टीटीएल के पुराने वर्शन का उपयोग कर रहे हैं और बहुत सी नई अच्छी चीजों को याद कर रहे हैं!",
+        "remindBtn": "मुझे बाद में याद दिलाएं",
+        "title": "टीटीएल अपडेट के लिए जाँच करें",
+        "upto-date-msg": "आपका टीटीएल अप टू डेट है।"
     },
     "$WorkdayWaiver": {
         "add-waiver": "छूट जोड़ें",
@@ -201,7 +201,7 @@
         "source-selected-holidays": "स्रोत चयनित छुट्टियां",
         "start-date": "आरंभ करने की तिथि",
         "state": "राज्य:",
-        "time-to-leave": "Time to Leave",
+        "time-to-leave": "विदा लेने का समय",
         "title": "छुट्टी का समय - कार्य दिवस छूट प्रबंधक",
         "to": "सेवा",
         "waive": "माफ",
