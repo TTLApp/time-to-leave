@@ -124,7 +124,7 @@
     "$Notification": {
         "punch-reminder": "பன்ச் செய்ய மறவாதீர்கள்",
         "time-to-leave": "இது நீங்கள் வெளியேற வேண்டிய நேரம் என்று நினைக்கிறேன்.",
-        "dismiss-for-today": "Dismiss for today"
+        "dismiss-for-today": "இன்றைக்கு தள்ளுபடி"
     },
     "$Preferences": {
         "allowRecurringNotifications": "தொடர்ச்சியான அறிவிப்புகளை அனுமதிக்கவும்",
