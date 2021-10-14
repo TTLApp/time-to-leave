@@ -125,7 +125,7 @@
     "$Notification": {
         "punch-reminder": "Damga atmayı unutmayınız!",
         "time-to-leave": "Selam! bence ayrılma zamanınız geldi.",
-        "dismiss-for-today": "Dismiss for today"
+        "dismiss-for-today": "Bugün için kapat"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Yinelenen bildirimlere izin ver ",
