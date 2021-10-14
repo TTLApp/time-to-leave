@@ -3,10 +3,6 @@
         "day-done-balance": "کار امروز تمام شد. اختلاف ساعت کاری در امروز:",
         "month-balance": "اختلاف ساعت کاری در ماه",
         "month-balance-title": "اختلاف ساعت کاری تا امروز در این ماه. یک ساعت مثبت به معنی ساعات اضافه کاری است و شما نیاز ندارید امروز یا بقیه ماه را کار کنید.",
-        "overall-balance": "اختلاف ساعت کاری کلی",
-        "overall-balance-title": "مجموع اختلاف ساعت کاری تا آخر این ماه یا امروز.",
-        "switch-view": "تغییر شیوه نمایش",
-        "time-to-leave": "Time to Leave"
     },
     "$DateUtil": {
         "april": "آوریل",
@@ -198,10 +194,6 @@
         "on-working-day": "در روز کاری",
         "reason": "دلیل",
         "remove-waiver": "قبل از اضافه کردن مورد جدید این را حذف کنید.",
-        "source-selected-holidays": "قراردادن تعطیلات انتخاب شده به عنوان منبع",
-        "start-date": "تاریخ شروع",
-        "state": "استان:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - مدیریت معافیت روزهای کاری",
         "to": "تا",
         "waive": "ثبت معافیت",
