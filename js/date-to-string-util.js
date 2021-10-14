@@ -13,6 +13,7 @@ function getDayAbbr(dayIndex)
     return i18n.t(`$DateUtil.${dayAbbrs[dayIndex]}`);
 }
 
+
 /**
  * @param dayIndex Week day index, considering a week starting on sunday
  * @return The name for the day
