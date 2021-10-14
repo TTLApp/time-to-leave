@@ -6,7 +6,7 @@
         "overall-balance": "全体累計",
         "overall-balance-title": "月末または当日までの全体累計",
         "switch-view": "表示切替",
-        "time-to-leave": "Time to Leave"
+        "time-to-leave": "行く時間だ"
     },
     "$DateUtil": {
         "april": "4月",
@@ -125,7 +125,7 @@
     "$Notification": {
         "punch-reminder": "打刻をお忘れなく!",
         "time-to-leave": "お疲れ様です！退勤時間になりました。",
-        "dismiss-for-today": "Dismiss for today"
+        "dismiss-for-today": "今日は却下"
     },
     "$Preferences": {
         "allowRecurringNotifications": "通知の繰り返しを許可",
@@ -201,8 +201,8 @@
         "source-selected-holidays": "選択した祝日を勤務免除日にする",
         "start-date": "開始日",
         "state": "州:",
-        "time-to-leave": "Time to Leave",
-        "title": "Time to Leave - 勤務免除日の管理",
+        "time-to-leave": "行く時間だ",
+        "title": "行く時間だ - 勤務免除日の管理",
         "to": "終了",
         "waive": "勤務免除",
         "waived-workday-list": "勤務免除日リスト",
