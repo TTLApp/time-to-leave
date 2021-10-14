@@ -5,8 +5,7 @@
         "month-balance-title": "Balance hasta hoy para este mes. Un balance positivo significa horas extras que no necesitas trabajar hoy (o el resto del mes).",
         "overall-balance": "Balance general",
         "overall-balance-title": "Balance global hasta el final del mes o del día actual",
-        "switch-view": "Cambiar la vista",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "Cambiar la vista"
     },
     "$DateUtil": {
         "april": "Abril",
@@ -201,7 +200,6 @@
         "source-selected-holidays": "Fuente: vacaciones seleccionadas",
         "start-date": "Fecha de inicio",
         "state": "Estado:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - Administrador de Día libre",
         "to": "a",
         "waive": "Renuncia",

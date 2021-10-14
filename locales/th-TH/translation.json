@@ -5,8 +5,7 @@
         "month-balance-title": "จำนวนชั่วโมงส่วนเกินในเดือนนี้ ถ้าค่าเป็นบวกแสดงว่าทำเกินมา ถ้าค่าติดลบแสดงว่าทำขาดไป",
         "overall-balance": "จำนวนชั่วโมงส่วนเกินทั้งหมด",
         "overall-balance-title": "จำนวนชั่วโมงส่วนเกินทั้งหมด นับถึงวันปัจจุบันหรือสิ้นเดือนนี้",
-        "switch-view": "เปลี่ยนมุมมอง",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "เปลี่ยนมุมมอง"
     },
     "$DateUtil": {
         "april": "เมษายน",
@@ -201,7 +200,6 @@
         "source-selected-holidays": "นำเข้าวันหยุดราชการ",
         "start-date": "วันที่เริ่มต้น",
         "state": "รัฐ:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - จัดการวันหยุด",
         "to": "ถึง",
         "waive": "บันทึกวันหยุด",

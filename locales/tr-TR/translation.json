@@ -5,8 +5,7 @@
         "month-balance-title": "Bu ay için bugüne kadarki bilanço.Pozitif bilanço, bugün(veya ayın geri kalanında da) çalışmanızı gerektirmeyen ekstra saatler anlamına gelir.",
         "overall-balance": "Genel Bilanço",
         "overall-balance-title": "Ay sonu ya da geçerli güne kadarki genel bilanço",
-        "switch-view": "Görünümü Değiştir",
-        "time-to-leave": "Ayrılma Zamanı"
+        "switch-view": "Görünümü Değiştir"
     },
     "$DateUtil": {
         "april": "Nisan",
@@ -201,7 +200,6 @@
         "source-selected-holidays": "Kaynak seçilen tatiller",
         "start-date": "Başlangıç Tarihi",
         "state": "Durum:",
-        "time-to-leave": "Ayrılma Zamanı",
         "title": "Time to Leave - İş Günü İzin Yöneticisi",
         "to": "için",
         "waive": "İzin",

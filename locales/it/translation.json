@@ -5,8 +5,7 @@
         "month-balance-title": "Bilancio del mese fino a oggi. Un bilancio positivo significa ore extra che non devi lavorare oggi (o nel resto del mese).",
         "overall-balance": "Bilancio complessivo",
         "overall-balance-title": "Bilancio complessivo fino alla fine del mese o del giorno corrente",
-        "switch-view": "Cambia visuale",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "Cambia visuale"
     },
     "$DateUtil": {
         "april": "Aprile",
@@ -201,7 +200,6 @@
         "source-selected-holidays": "Origine vacanze selezionate",
         "start-date": "Data inizio",
         "state": "Stato:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - Gestore giorni lavorativi esclusi",
         "to": "a",
         "waive": "Escludi",

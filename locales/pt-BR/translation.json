@@ -5,8 +5,7 @@
         "month-balance-title": "Saldo até hoje para este mês. Um saldo positivo significa horas extras em que você não precisa trabalhar hoje (ou no restante do mês).",
         "overall-balance": "Saldo Total",
         "overall-balance-title": "Saldo total até o fim do mês ou dia atual",
-        "switch-view": "Trocar Visualização",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "Trocar Visualização"
     },
     "$DateUtil": {
         "april": "Abril",
@@ -201,7 +200,6 @@
         "source-selected-holidays": "Carregar feriados selecionados",
         "start-date": "Data de início",
         "state": "Estado:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - Gerenciador de folgas",
         "to": "até",
         "waive": "Carregar",

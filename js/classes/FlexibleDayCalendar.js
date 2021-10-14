@@ -63,9 +63,10 @@ class FlexibleDayCalendar extends BaseCalendar
         const todayBut = `<input id="current-day" type="image" src="assets/calendar.svg" alt="${i18n.t('$FlexibleDayCalendar.current-day')}" title="${i18n.t('$FlexibleDayCalendar.current-day')}" height="24" width="24"></input>`;
         const leftBut = `<input id="prev-day" type="image" src="assets/left-arrow.svg" alt="${i18n.t('$FlexibleDayCalendar.previous-day')}" height="24" width="24"></input>`;
         const rightBut = `<input id="next-day" type="image" src="assets/right-arrow.svg" alt="${i18n.t('$FlexibleDayCalendar.next-day')}" height="24" width="24"></input>`;
+        const title = 'Time to Leave';
         return '<div class="title-header">'+
                     '<div class="title-header-img"><img src="assets/timer.svg" height="64" width="64"></div>' +
-                    `<div class="title-header-text">${i18n.t('$BaseCalendar.time-to-leave')}</div>` +
+                    `<div class="title-header-text">${title}</div>` +
                     '<div class="title-header-msg"></div>' +
                '</div>' +
                 '<table class="table-header"><tr>' +

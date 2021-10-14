@@ -5,8 +5,7 @@
         "month-balance-title": "Balanç fins avui per a aquest mes. Un Balanç positiu significa hores extres que no necessites treballar avui (o la resta del mes).",
         "overall-balance": "Balanç general",
         "overall-balance-title": "Balanç global fins al final del mes o del dia actual",
-        "switch-view": "Canviar la vista",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "Canviar la vista"
     },
     "$DateUtil": {
         "april": "Abril",
@@ -201,7 +200,6 @@
         "source-selected-holidays": "Font: vacances seleccionades",
         "start-date": "Data d'inici",
         "state": "Estat:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - Administrador de Dia lliure",
         "to": "a",
         "waive": "Renúncia",

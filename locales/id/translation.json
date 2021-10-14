@@ -5,8 +5,7 @@
         "month-balance-title": "Keseimbangan sampai hari ini untuk bulan ini. Keseimbangan positif berarti jam tambahan yang tidak Perlu Anda kerjakan hari ini (atau sisa bulan).",
         "overall-balance": "Keseimbangan keseluruhan",
         "overall-balance-title": "Keseimbangan keseluruhan sampai akhir bulan atau hari ini",
-        "switch-view": "Ubah Tampilan",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "Ubah Tampilan"
     },
     "$DateUtil": {
         "april": "April",
@@ -201,7 +200,6 @@
         "source-selected-holidays": "Sumber memilih hari libur",
         "start-date": "Tanggal mulai",
         "state": "Negara:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - Atur hari pengecualian",
         "to": "Sampai",
         "waive": "Pengecualian",

@@ -28,7 +28,9 @@ Who built 2.0.2:
 -   LauraToddCodes
 -   MohitSinghChauhan
 -   Pizzo15
+-   PrateekBing
 -   QuentinPhilipp
+-   Sahana-YS
 -   Semvrij
 -   SubhamChoudhury
 -   aakashpothepalli
@@ -41,6 +43,7 @@ Who built 2.0.2:
 -   haeramkeem
 -   hy38
 -   id-konstantin-stepanov
+-   jdkramhoft
 -   manisai216
 -   mayankmohak
 -   nikkhil31

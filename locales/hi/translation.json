@@ -5,8 +5,7 @@
         "month-balance-title": "इस महीने के लिए आज तक शेष राशि। एक सकारात्मक संतुलन का मतलब है अतिरिक्त घंटे जो आपको आज (या महीने के बाकी) काम करने की आवश्यकता नहीं है।",
         "overall-balance": "समग्र संतुलन",
         "overall-balance-title": "महीने के अंत या वर्तमान दिन तक कुल मिलाकर शेष",
-        "switch-view": "दृश्य स्विच करें",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "दृश्य स्विच करें"
     },
     "$DateUtil": {
         "april": "अप्रैल",
@@ -201,7 +200,6 @@
         "source-selected-holidays": "स्रोत चयनित छुट्टियां",
         "start-date": "आरंभ करने की तिथि",
         "state": "राज्य:",
-        "time-to-leave": "Time to Leave",
         "title": "छुट्टी का समय - कार्य दिवस छूट प्रबंधक",
         "to": "सेवा",
         "waive": "माफ",

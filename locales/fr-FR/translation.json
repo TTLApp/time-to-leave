@@ -5,8 +5,7 @@
         "month-balance-title": "Solde jusqu'à aujourd'hui pour ce mois. Un solde positif signifie des heures supplémentaires dont vous n'avez pas besoin de travailler pour aujourd'hui (ou le reste du mois).",
         "overall-balance": "Solde global",
         "overall-balance-title": "Solde global jusqu'à la fin du mois ou le jour en cours",
-        "switch-view": "Changer de vue",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "Changer de vue"
     },
     "$DateUtil": {
         "april": "Avril",
@@ -201,7 +200,6 @@
         "source-selected-holidays": "Source vacances sélectionnées",
         "start-date": "Date de début",
         "state": "Etat:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - Gestionnaire de dispense",
         "to": "au",
         "waive": "Dispense",

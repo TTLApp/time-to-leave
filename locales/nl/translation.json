@@ -5,8 +5,7 @@
         "month-balance-title": "Overzicht tot vandaag voor deze maand. Een positief overzicht betekent dat je vandaag (of de rest van de maand) geen extra uren hoeft te werken.",
         "overall-balance": "Algemeen overzicht",
         "overall-balance-title": "Algemeen overzicht tot het einde van de maand of de huidige dag",
-        "switch-view": "Weergave veranderen",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "Weergave veranderen"
     },
     "$DateUtil": {
         "april": "April",
@@ -201,7 +200,6 @@
         "source-selected-holidays": "Geselecteerde feestdagen toevoegen",
         "start-date": "Startdatum",
         "state": "Staat:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - Vrije dagen beheren",
         "to": "tot",
         "waive": "Vrije dag toevoegen",
