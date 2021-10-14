@@ -5,8 +5,7 @@
         "month-balance-title": "本月結餘會計算到今天為止，正結餘代表你今天（或今個月餘下的日子裡）有額外的小時數不用工作。",
         "overall-balance": "總體結餘",
         "overall-balance-title": "總體結餘直到月尾或當前日子",
-        "switch-view": "切換視角",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "切換視角"
     },
     "$DateUtil": {
         "april": "四月",
@@ -201,7 +200,6 @@
         "source-selected-holidays": "導入已選擇假日",
         "start-date": "開始日期",
         "state": "狀態：",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - 工作日豁免管理員",
         "to": "至",
         "waive": "豁免",

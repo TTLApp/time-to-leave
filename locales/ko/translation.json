@@ -5,8 +5,7 @@
         "month-balance-title": "현재까지의 이번 달 작업 달성 현황입니다. 양수 값은 목표 작업 시간보다 초과 근무하여 오늘(혹은 이번 달) 더 이상 일할 필요가 없다는 것을 나타냅니다.",
         "overall-balance": "전체 작업 달성도",
         "overall-balance-title": "월말 혹은 현재까지의 총 작업 달성 현황",
-        "switch-view": "보기 모드 전환",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "보기 모드 전환"
     },
     "$DateUtil": {
         "april": "4월",
@@ -201,7 +200,6 @@
         "source-selected-holidays": "선택된 공휴일 추가",
         "start-date": "시작일",
         "state": "주:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - 휴가 관리자",
         "to": "이 날까지",
         "waive": "휴가 추가",

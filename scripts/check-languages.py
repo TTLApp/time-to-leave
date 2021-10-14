@@ -6,9 +6,7 @@ from urllib.parse import urlencode, unquote, urlparse, parse_qsl, ParseResult
 
 LOCALES_PATH = 'locales/'
 BASELINE_LANGUAGE = 'en'
-SCOPE_KEY_TO_IGNORE = {'$Menu' : ['ttl-github'],
-                       '$BaseCalendar' : ['time-to-leave'],
-                       '$WorkdayWaiver' : ['time-to-leave']}
+SCOPE_KEY_TO_IGNORE = {'$Menu' : ['ttl-github']}
 
 LANG_SCOPE_KEY_TO_IGNORE = {'de-DE': {'$Preferences' : ['themes', 'hours-per-day'],
                                       '$Menu' : ['export', 'import', 'ok'],

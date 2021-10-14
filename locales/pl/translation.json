@@ -5,8 +5,7 @@
         "month-balance-title": "Bilans czasu pracy od początku miesiąca do dzisiaj. Dodatni wynik oznacza nadgodziny nie musisz już więcej dzisiaj pracować (ani do końca miesiąca).",
         "overall-balance": "Bilans całkowity",
         "overall-balance-title": "Bilans czasu pracy do tej pory",
-        "switch-view": "Zmień widok",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "Zmień widok"
     },
     "$DateUtil": {
         "april": "Kwiecień",
@@ -201,7 +200,6 @@
         "source-selected-holidays": "Dodaj zwolnienia świąteczne",
         "start-date": "Data rozpoczęcia",
         "state": "Stan:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - Menadżer zwolnień",
         "to": "do",
         "waive": "Dodaj zwolnienie",

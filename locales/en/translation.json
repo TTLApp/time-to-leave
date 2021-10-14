@@ -5,8 +5,7 @@
         "month-balance-title": "Balance up until today for this month. A positive balance means extra hours you don't need to work today (or the rest of the month).",
         "overall-balance": "Overall Balance",
         "overall-balance-title": "Overall balance until end of the month or current day",
-        "switch-view": "Switch View",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "Switch View"
     },
     "$DateUtil": {
         "april": "April",
@@ -201,7 +200,6 @@
         "source-selected-holidays": "Source selected holidays",
         "start-date": "Start Date",
         "state": "State:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - Workday Waiver Manager",
         "to": "to",
         "waive": "Waive",

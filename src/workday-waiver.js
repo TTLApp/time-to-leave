@@ -169,11 +169,10 @@ function deleteEntryOnClick(event)
 {
     const deleteButton = $(event.target);
     const day = deleteButton.data('day');
-    const timeToLeaveStr = i18n.t('$WorkdayWaiver.time-to-leave');
     const deleteWaiverMessageStr = i18n.t('$WorkdayWaiver.delete-waiver-message');
 
     const options = {
-        title: timeToLeaveStr,
+        title: 'Time to Leave',
         message: `${deleteWaiverMessageStr} ${day} ?`,
         type: 'info',
         buttons: [i18n.t('$WorkdayWaiver.yes'), i18n.t('$WorkdayWaiver.no')]

@@ -5,8 +5,7 @@
         "month-balance-title": "Bilanz positiv bis heute für diesen Monat. Eine positive Bilanz bedeutet extra Stunden für die Sie heute nicht arbeiten müssen (oder den Rest des Monats).",
         "overall-balance": "Gesamtbilanz",
         "overall-balance-title": "Gesamtbilanz bis zum Ende des Monats oder den heutigen Tag",
-        "switch-view": "Ansicht ändern",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "Ansicht ändern"
     },
     "$DateUtil": {
         "april": "April",
@@ -201,7 +200,6 @@
         "source-selected-holidays": "Ausgewählte Feiertage importieren",
         "start-date": "Startdatum",
         "state": "Bundesland:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - Arbeitstag Ausschluss Manager",
         "to": "Bis",
         "waive": "Ausschließen",

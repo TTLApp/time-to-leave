@@ -5,8 +5,7 @@
         "month-balance-title": "Баланс рабочего времени с начала месяца до сегодняшнего дня. Положительный результат означает сверхурочную работу. Вам больше не нужно работать сегодня (или до конца месяца).",
         "overall-balance": "Общий баланс",
         "overall-balance-title": "Общий баланс до конца месяца или текущего дня",
-        "switch-view": "Изменить вид",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "Изменить вид"
     },
     "$DateUtil": {
         "april": "Апрель",
@@ -201,7 +200,6 @@
         "source-selected-holidays": "Добавить праздники",
         "start-date": "Дата начала",
         "state": "Состояние:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - Менеджер отгулов",
         "to": "по",
         "waive": "Отгул",
