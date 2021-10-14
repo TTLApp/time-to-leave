@@ -124,7 +124,7 @@
     "$Notification": {
         "punch-reminder": "¡No olvides marcar tarjeta!",
         "time-to-leave": "¡Hola! Creo que es hora de irse",
-        "dismiss-for-today": "Dismiss for today"
+        "dismiss-for-today": "Descartar por hoy"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Permitir notificaciones recurrentes",
@@ -140,8 +140,8 @@
         "hideNonWorkingDay": "Ocultar los días no laborables (Vista por mes)",
         "hours-per-day": "HH:mm",
         "hoursPerDay": "Horas por día",
-        "enablePrefillBreakTime": "Enable prefilling of break time",
-        "breakTimeInterval": "Break time interval",
+        "enablePrefillBreakTime": "Habilitar el llenado previo del tiempo de descanso",
+        "breakTimeInterval": "Intervalo de tiempo de descanso",
         "language": "Languaje",
         "light": "Claro",
         "minimizeToTray": "El botón de minimizar debería minimizar a la bandeja",
