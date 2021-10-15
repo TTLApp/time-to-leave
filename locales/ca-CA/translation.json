@@ -102,7 +102,7 @@
         "punched-time": "Temps fitxat",
         "quit": "Sortir",
         "reload": "Recarregar",
-        "report": "Report",
+        "report": "Informe",
         "select-all": "Seleccionar tot",
         "send-feedback": "Envieu els vostres comentaris",
         "should-migrate-to-flexible": "Una de les novetats d’aquest llançament de Time to Leave és un nombre flexible d’entrades per al calendari.\n\nAquesta nova vista utilitza un nou format de base de dades.\nPer utilitzar-lo, podeu migrar la base de dades existent al nou format o començar de nou.",
