@@ -24,6 +24,7 @@
 <a href="docs/README-ta.md"><img src="https://img.shields.io/badge/ta-Tamil-purple" alt="Tamil மொழியிலும் இந்த ஆவணம் கிடைக்கும்"></a>
 <a href="docs/README-tr-TR.md"><img src="https://img.shields.io/badge/tr-T%C3%BCrk%C3%A7e-purple" alt="Bu belge Türkçe olarak da mevcuttur"></a>
 <a href="docs/README-ru-RU.md"><img src="https://img.shields.io/badge/ru-%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9-purple" alt="Документация приложения на русском языке"></a>
+<a href="docs/README-fa-IR.md"><img src="https://img.shields.io/badge/fa--IR-Persian-purple" alt="مستندات برنامه به زبان فارسی"></a>
 <br/>
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
