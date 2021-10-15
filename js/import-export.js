@@ -166,15 +166,8 @@ function importDatabaseFromFile(filename)
             }
         }
 
-        if (Object.keys(flexibleEntries).length > 0)
-        {
-            flexibleStore.set(flexibleEntries);
-        }
-
-        if (Object.keys(waiverEntries).length > 0)
-        {
-            waivedWorkdays.set(waiverEntries);
-        }
+        addEntriesToStore(flexibleEntries, flexibleStore);
+        addEntriesToStore(waiverEntries, waivedWorkdays);
 
         if (failedEntries !== 0)
         {
@@ -186,6 +179,14 @@ function importDatabaseFromFile(filename)
         return {'result': false, 'total': 0, 'failed': 0};
     }
     return {'result': true};
+}
+
+function addEntriesToStore(entries, store)
+{
+    if (Object.keys(entries).length > 0)
+    {
+        store.set(entries);
+    }
 }
 
 function migrateFixedDbToFlexible()
