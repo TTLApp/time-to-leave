@@ -1,7 +1,5 @@
 'use strict';
 
-const { ipcRenderer } = require('electron');
-
 const { getUserPreferences } = require('../js/user-preferences.js');
 const { applyTheme } = require('../js/themes.js');
 const { bindDevToolsShortcut } = require('../js/window-aux.js');
@@ -10,6 +8,17 @@ const config = require('../src/configs/app.config');
 
 const $ = require('jquery');
 const jqueryI18next = require('jquery-i18next');
+
+// Lazy loaded modules
+let ipcRenderer = null;
+function getIpcRenderer()
+{
+    if (ipcRenderer === null)
+    {
+        ipcRenderer = require('electron').ipcRenderer;
+    }
+    return ipcRenderer;
+}
 
 // Global values for preferences page
 let usersStyles = getUserPreferences();
@@ -47,7 +56,7 @@ function populateLanguages(i18n)
         preferences['language'] = this.value;
         i18n.changeLanguage(this.value);
         translatePage(this.value);
-        ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
+        getIpcRenderer().send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
     });
 }
 
@@ -60,7 +69,7 @@ function listenerLanguage()
         i18n.changeLanguage(this.value);
         translatePage(this.value);
         populateLanguages(i18n);
-        ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
+        getIpcRenderer().send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
     });
 }
 
@@ -83,7 +92,7 @@ function refreshContent()
 
 function updateUserPreferences()
 {
-    ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
+    getIpcRenderer().send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
 }
 
 function changeValue(type, newVal)

@@ -1,14 +1,22 @@
 'use strict';
 
-const electron = require('electron');
-const path = require('path');
-const fs = require('fs');
 const { validateTime } = require('./time-math.js');
 const { isValidTheme } = require('./themes.js');
-const i18n = require('../src/configs/i18next.config');
+
+// Lazy loaded modules
+let fs = null;
+function getFs()
+{
+    if (fs === null)
+    {
+        fs = require('fs');
+    }
+    return fs;
+}
 
 function isValidLocale(locale)
 {
+    const i18n = require('../src/configs/i18next.config');
     return i18n.languages.includes(locale);
 }
 
@@ -71,6 +79,8 @@ const isNotificationInterval = (val) => !Number.isNaN(Number(val)) && isNotBoole
  */
 function getPreferencesFilePath()
 {
+    const path = require('path');
+    const electron = require('electron');
     const userDataPath = (electron.app || electron.remote.app).getPath('userData');
     return path.join(userDataPath, 'preferences.json');
 }
@@ -82,7 +92,7 @@ function savePreferences(preferencesOptions)
 {
     try
     {
-        fs.writeFileSync(getPreferencesFilePath(), JSON.stringify(preferencesOptions));
+        getFs().writeFileSync(getPreferencesFilePath(), JSON.stringify(preferencesOptions));
     }
     catch (err)
     {
@@ -100,7 +110,7 @@ function readPreferences()
     let preferences;
     try
     {
-        preferences = JSON.parse(fs.readFileSync(getPreferencesFilePath()));
+        preferences = JSON.parse(getFs().readFileSync(getPreferencesFilePath()));
     }
     catch (err)
     {
@@ -126,7 +136,7 @@ function getDerivedPrefsFromLoadedPrefs(loadedPreferences)
  */
 function initPreferencesFileIfNotExistsOrInvalid()
 {
-    if (!fs.existsSync(getPreferencesFilePath()))
+    if (!getFs().existsSync(getPreferencesFilePath()))
     {
         savePreferences(defaultPreferences);
         return;
