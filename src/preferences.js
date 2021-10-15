@@ -78,7 +78,7 @@ i18n.on('loaded', () =>
     i18n.changeLanguage(usersStyles['language']);
     populateLanguages(i18n);
     listenerLanguage();
-    i18n.off('loadded');
+    i18n.off('loaded');
     i18n.off('languageChanged');
 
     jqueryI18next.init(i18n, $);
