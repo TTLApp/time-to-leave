@@ -6,12 +6,20 @@ const path = require('path');
 const {
     defaultPreferences,
     getPreferencesFilePath,
+    getUserPreferences,
     savePreferences
 } = require('../../js/user-preferences');
+const { preferencesApi } = require('../../renderer/preload-scripts/preferences-api.js');
 const i18n = require('../../src/configs/i18next.config');
 
 /* eslint-disable-next-line no-global-assign */
 window.$ = require('jquery');
+
+// APIs from the preload script of the preferences window
+window.mainApi = preferencesApi;
+// Mocking with the actual access that main would have
+window.mainApi.getUserPreferencesPromise = () => { return new Promise((resolve) => resolve(getUserPreferences()));}
+
 const {
     refreshContent,
     populateLanguages,
@@ -86,17 +94,18 @@ describe('Test Preferences Window', () =>
 
     describe('Changing values of items in window', () =>
     {
-        beforeEach(() =>
+        beforeEach((async (done) =>
         {
             prepareMockup();
+            await refreshContent();
             renderPreferencesWindow();
             populateLanguages(i18n);
             listenerLanguage();
-        });
+            done();
+        }));
         afterEach(() =>
         {
             savePreferences(testPreferences);
-            refreshContent();
         });
         test('Change count-today to true', () =>
         {

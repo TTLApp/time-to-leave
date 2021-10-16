@@ -1,15 +1,14 @@
 /* eslint-disable no-undef */
 'use strict';
 
-const {
+import {
     applyTheme,
     isValidTheme
-} = require('../../js/themes');
+} from '../../renderer/themes.js';
 window.$ = window.jQuery = require('jquery');
 
 describe('Theme Functions', function()
 {
-
     describe('isValidTheme()', function()
     {
         test('should validate', () =>
