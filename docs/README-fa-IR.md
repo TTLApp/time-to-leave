@@ -3,7 +3,7 @@
 
   <p dir="rtl">ساعات کاری را ثبت کنید و در زمان پایان کار برنامه به شما اطلاع میدهد که اداره را ترک کنید و به زندگیتان برسید.</p>
 
-[آدرس سایت](https://timetoleave.app/)
+[timetoleave.app](https://timetoleave.app/)
 
 <br/>
 
