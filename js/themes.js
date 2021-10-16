@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: this is duplicated in renderer/themes.js and in preferences.html.
+// Please concentrate it in a single place, probably a JSON.
 const themeOptions = ['system-default', 'light', 'dark', 'cadent-star'];
 
 /**
@@ -12,29 +14,6 @@ function isValidTheme(testTheme)
     return themeOptions.indexOf(testTheme) >= 0;
 }
 
-/**
- * Takes the provided theme key, and loads into a data-attribute on the DOM
- * @param {string} theme
- * @return {boolean} If the theme application was successful
- * */
-function applyTheme(theme)
-{
-    if (isValidTheme(theme) === false)
-    {
-        return false;
-    }
-
-    if (theme === 'system-default')
-    {
-        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-
-    // Applies to the Primary view
-    $('html').attr('data-theme', theme);
-    return true;
-}
-
 module.exports = {
-    isValidTheme,
-    applyTheme
+    isValidTheme
 };

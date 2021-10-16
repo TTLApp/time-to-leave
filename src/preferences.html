@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="../css/styles.css">
 
     <!-- First we need to declare jQuery and $ globals with jquery -->
+    <script src="../node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script>
-        window.$ = window.jQuery = require('jquery');
+        window.$ = window.jQuery;
     </script>
+
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js" charset="utf-8"></script>
-    <script src="preferences.js"></script>
+    <script type="module" src="preferences.js"></script>
 </head>
 
 <body id="preferences-window" class="common-window">

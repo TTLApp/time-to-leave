@@ -1,48 +1,23 @@
 'use strict';
 
-const { getUserPreferences } = require('../js/user-preferences.js');
-const { applyTheme } = require('../js/themes.js');
-const { bindDevToolsShortcut } = require('../js/window-aux.js');
-const i18n = require('../src/configs/i18next.config');
-const config = require('../src/configs/app.config');
-
-const $ = require('jquery');
-const jqueryI18next = require('jquery-i18next');
-
-// Lazy loaded modules
-let ipcRenderer = null;
-function getIpcRenderer()
-{
-    if (ipcRenderer === null)
-    {
-        ipcRenderer = require('electron').ipcRenderer;
-    }
-    return ipcRenderer;
-}
+import { applyTheme } from '../renderer/themes.js';
+import { translatePage } from '../renderer/i18n-translator.js';
+import userPreferences from '../js/user-preferences.js';
 
 // Global values for preferences page
-let usersStyles = getUserPreferences();
-const preferences = usersStyles;
+let usersStyles;
+let preferences;
 
-function translatePage(language)
-{
-    $('html').attr('lang', language);
-    $('body').localize();
-    $('title').localize();
-    $('label').localize();
-    $('div').localize();
-}
-
-function populateLanguages(i18n)
+function populateLanguages()
 {
     const languageOpts = $('#language');
     languageOpts.empty();
-    $.each(config.getLanguagesCodes(), function()
+    $.each(window.mainApi.getLanguageMap(), (key, value) =>
     {
         languageOpts.append(
             $('<option />')
-                .val(this)
-                .text(config.getLanguageName(this))
+                .val(key)
+                .text(value)
         );
     });
     // Select current display language
@@ -51,54 +26,51 @@ function populateLanguages(i18n)
     {
         $('#language').val(usersStyles['language']);
     }
-    $('#language').on('change', function()
-    {
-        preferences['language'] = this.value;
-        i18n.changeLanguage(this.value);
-        translatePage(this.value);
-        getIpcRenderer().send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
-    });
 }
 
 function listenerLanguage()
 {
     $('#language').on('change', function()
     {
-        console.log('PREFERENCE_SAVE_DATA_NEEDED');
         preferences['language'] = this.value;
-        i18n.changeLanguage(this.value);
-        translatePage(this.value);
-        populateLanguages(i18n);
-        getIpcRenderer().send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
+        window.mainApi.changeLanguage(this.value).then(() =>
+        {
+            translatePage(this.value);
+            window.mainApi.notifyNewPreferences(preferences);
+        });
     });
 }
 
-i18n.on('loaded', () =>
+function handlei18nLoadPromise()
 {
-    i18n.changeLanguage(usersStyles['language']);
-    populateLanguages(i18n);
-    listenerLanguage();
-    i18n.off('loaded');
-    i18n.off('languageChanged');
-
-    jqueryI18next.init(i18n, $);
-    translatePage(i18n.language);
-});
+    window.mainApi.i18nLoadedPromise.then(() =>
+    {
+        window.mainApi.changeLanguage(usersStyles['language']).then(() =>
+        {
+            populateLanguages();
+            listenerLanguage();
+            translatePage(usersStyles['language']);
+        });
+    });
+}
 
 function refreshContent()
 {
-    usersStyles = getUserPreferences();
-}
-
-function updateUserPreferences()
-{
-    getIpcRenderer().send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
+    return new Promise((resolve) =>
+    {
+        window.mainApi.getUserPreferencesPromise().then(userPreferences =>
+        {
+            usersStyles = userPreferences;
+            preferences = usersStyles;
+            resolve();
+        });
+    });
 }
 
 function changeValue(type, newVal)
 {
     preferences[type] = newVal;
-    updateUserPreferences();
+    window.mainApi.notifyNewPreferences(preferences);
 }
 
 function renderPreferencesWindow()
@@ -214,16 +186,20 @@ function renderPreferencesWindow()
     {
         notificationsInterval.prop('disabled', !repetition.is(':checked'));
     });
-
-    bindDevToolsShortcut(window);
 }
 /* istanbul ignore next */
 $(() =>
 {
-    renderPreferencesWindow();
+    window.mainApi.getUserPreferencesPromise().then((userPreferences) =>
+    {
+        usersStyles = userPreferences;
+        preferences = usersStyles;
+        renderPreferencesWindow();
+        handlei18nLoadPromise();
+    });
 });
 
-module.exports = {
+export {
     refreshContent,
     populateLanguages,
     listenerLanguage,

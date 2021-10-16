@@ -58,6 +58,14 @@ ipcMain.on('SET_WAIVER_DAY', (event, waiverDay) =>
     openWaiverManagerWindow(mainWindow);
 });
 
+ipcMain.handle('USER_DATA_PATH', () =>
+{
+    return new Promise((resolve) =>
+    {
+        resolve(app.getPath('userData'));
+    });
+});
+
 let launchDate = new Date();
 
 // Logic for recommending user to punch in when they've been idle for too long

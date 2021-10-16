@@ -1,5 +1,7 @@
 'use strict';
 
+import { applyTheme } from '../renderer/themes.js';
+
 const { ipcRenderer } = require('electron');
 const {
     subtractTime,
@@ -14,7 +16,6 @@ const {
     notificationIsEnabled,
     repetitionIsEnabled
 } = require('./js/user-preferences.js');
-const { applyTheme } = require('./js/themes.js');
 const { CalendarFactory } = require('./js/classes/CalendarFactory.js');
 const { getDateStr } = require('./js/date-aux.js');
 const i18n = require('./src/configs/i18next.config.js');

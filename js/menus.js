@@ -125,8 +125,9 @@ function getEditMenuTemplate(mainWindow)
                     resizable: true,
                     icon: appConfig.iconpath,
                     webPreferences: {
-                        enableRemoteModule: true,
-                        nodeIntegration: true
+                        nodeIntegration: true,
+                        preload: path.join(__dirname, '../renderer/preload-scripts/preferences-bridge.js'),
+                        contextIsolation: true
                     } });
                 prefWindow.setMenu(null);
                 prefWindow.loadURL(htmlPath);
@@ -139,6 +140,13 @@ function getEditMenuTemplate(mainWindow)
                     {
                         savePreferences(savedPreferences);
                         mainWindow.webContents.send('PREFERENCE_SAVED', savedPreferences);
+                    }
+                });
+                prefWindow.webContents.on('before-input-event', (event, input) =>
+                {
+                    if (input.control && input.shift && input.key.toLowerCase() === 'i')
+                    {
+                        BrowserWindow.getFocusedWindow().webContents.toggleDevTools();
                     }
                 });
             },

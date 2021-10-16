@@ -1,12 +1,13 @@
 'use strict';
 
+import { applyTheme } from '../renderer/themes.js';
+
 const { remote } = require('electron');
 const Store = require('electron-store');
 const Holidays = require('date-holidays');
 
 const { getUserPreferences, showDay } = require('../js/user-preferences.js');
 const { validateTime, diffDays } = require('../js/time-math.js');
-const { applyTheme } = require('../js/themes.js');
 const { getDateStr } = require('../js/date-aux.js');
 const { bindDevToolsShortcut, showAlert, showDialog } = require('../js/window-aux.js');
 const i18n = require('./configs/i18next.config.js');

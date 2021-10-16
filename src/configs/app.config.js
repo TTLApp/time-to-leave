@@ -23,6 +23,15 @@ const languages = {
 };
 
 /**
+* Get supported language map
+* @return {Map<String,String>}
+*/
+function getLanguageMap()
+{
+    return languages;
+}
+
+/**
 * Get supported language codes
 * @return {Array}
 */
@@ -44,6 +53,7 @@ function getLanguageName(code)
 module.exports = {
     fallbackLng: 'en',
     namespace: 'translation',
+    getLanguageMap,
     getLanguagesCodes,
     getLanguageName
 };

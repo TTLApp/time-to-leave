@@ -2,6 +2,7 @@
 
 const { validateTime } = require('./time-math.js');
 const { isValidTheme } = require('./themes.js');
+const { ipcRenderer } = require('electron');
 
 // Lazy loaded modules
 let fs = null;
@@ -85,14 +86,26 @@ function getPreferencesFilePath()
     return path.join(userDataPath, 'preferences.json');
 }
 
+function getPreferencesFilePathPromise()
+{
+    return new Promise((resolve) =>
+    {
+        ipcRenderer.invoke('USER_DATA_PATH').then(userDataPath =>
+        {
+            const path = require('path');
+            resolve(path.join(userDataPath, 'preferences.json'));
+        });
+    });
+}
+
 /*
  * Saves preferences to file, returns an error on failure.
  */
-function savePreferences(preferencesOptions)
+function savePreferences(preferencesOptions, filePath = getPreferencesFilePath())
 {
     try
     {
-        getFs().writeFileSync(getPreferencesFilePath(), JSON.stringify(preferencesOptions));
+        getFs().writeFileSync(filePath, JSON.stringify(preferencesOptions));
     }
     catch (err)
     {
@@ -105,12 +118,12 @@ function savePreferences(preferencesOptions)
  * Loads preference from file.
  * @return {Object}
  */
-function readPreferences()
+function readPreferences(filePath = getPreferencesFilePath())
 {
     let preferences;
     try
     {
-        preferences = JSON.parse(getFs().readFileSync(getPreferencesFilePath()));
+        preferences = JSON.parse(getFs().readFileSync(filePath));
     }
     catch (err)
     {
@@ -134,16 +147,16 @@ function getDerivedPrefsFromLoadedPrefs(loadedPreferences)
  * initializes users preferences if it is not already exists
  * or any keys of existing preferences is invalid
  */
-function initPreferencesFileIfNotExistsOrInvalid()
+function initPreferencesFileIfNotExistsOrInvalid(filePath = getPreferencesFilePath())
 {
-    if (!getFs().existsSync(getPreferencesFilePath()))
+    if (!getFs().existsSync(filePath))
     {
         savePreferences(defaultPreferences);
         return;
     }
 
     let shouldSaveDerivedPrefs = false;
-    const loadedPrefs = readPreferences();
+    const loadedPrefs = readPreferences(filePath);
     const derivedPrefs = getDerivedPrefsFromLoadedPrefs(loadedPrefs);
     const loadedPref = Object.keys(loadedPrefs).sort();
     const derivedPrefsKeys = Object.keys(derivedPrefs).sort();
@@ -185,7 +198,7 @@ function initPreferencesFileIfNotExistsOrInvalid()
 
     if (shouldSaveDerivedPrefs)
     {
-        savePreferences(derivedPrefs);
+        savePreferences(derivedPrefs, filePath);
     }
 
 }
@@ -198,6 +211,18 @@ function getLoadedOrDerivedUserPreferences()
 {
     initPreferencesFileIfNotExistsOrInvalid();
     return readPreferences();
+}
+
+function getUserPreferencesPromise()
+{
+    return new Promise((resolve) =>
+    {
+        getPreferencesFilePathPromise().then((filePath) =>
+        {
+            initPreferencesFileIfNotExistsOrInvalid(filePath);
+            resolve(readPreferences(filePath));
+        });
+    });
 }
 
 /*
@@ -309,6 +334,7 @@ module.exports = {
     defaultPreferences,
     getDefaultWidthHeight,
     getUserPreferences: getLoadedOrDerivedUserPreferences,
+    getUserPreferencesPromise,
     getUserLanguage,
     getNotificationsInterval,
     getPreferencesFilePath,
