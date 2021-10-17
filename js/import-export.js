@@ -166,8 +166,8 @@ function importDatabaseFromFile(filename)
             }
         }
 
-        addEntriesToStore(flexibleEntries, flexibleStore);
-        addEntriesToStore(waiverEntries, waivedWorkdays);
+        flexibleStore.set(flexibleEntries);
+        waivedWorkdays.set(waiverEntries);
 
         if (failedEntries !== 0)
         {
@@ -179,14 +179,6 @@ function importDatabaseFromFile(filename)
         return {'result': false, 'total': 0, 'failed': 0};
     }
     return {'result': true};
-}
-
-function addEntriesToStore(entries, store)
-{
-    if (Object.keys(entries).length > 0)
-    {
-        store.set(entries);
-    }
 }
 
 function migrateFixedDbToFlexible()
