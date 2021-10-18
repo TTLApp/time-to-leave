@@ -23,8 +23,9 @@ describe("Date Functions", () => {
   });
 
   describe("getCurrentDateTimeStr()", () => {
-    test("Returns DateTime string in YYYY_MM_DD_HH_MM_SS format", () => {
-      expect(getCurrentDateTimeStr().toBe());
+    const regexCurrentDateTime = /(\d{4}_(0[1-9]|1[0-2])_(0[1-9]|[12]\d|3[01])_(0\d|1\d|2[0-3])_([0-5]\d)_([0-5]\d))/g;
+    test("Should return Current Date Time string in YYYY_MM_DD_HH_MM_SS format with no spaces or unexpected characters", () => {
+      expect(regexCurrentDateTime.test(getCurrentDateTimeStr())).toBe(true);
     });
   });
 });
