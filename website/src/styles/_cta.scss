@@ -9,12 +9,12 @@
         background-color: $lightblue;
         opacity: 0.3;
         display: block;
-        content: '';
+        content: "";
         z-index: -1;
     }
 }
 
-.cta__desc{
+.cta__desc {
     @include fluid-type($min_width, $max_width, $min_font, $max_font);
     margin-bottom: 50px;
     line-height: 1.5;
@@ -28,7 +28,7 @@
     }
 }
 
-.cta__free{
+.cta__free {
     max-width: 40%;
     margin: 0 auto;
     text-align: center;
@@ -38,30 +38,30 @@
     }
 }
 
-.cta__free__desc, .cta__free__money{
+.cta__free__desc,
+.cta__free__money {
     color: $middleblue;
 }
 
-
-.cta__free__money{
+.cta__free__money {
     @include fluid-type($min_width, $max_width, $min-title, $max-title);
     font-weight: 500;
     margin-bottom: 10px;
 }
 
-.cta__free__desc{
+.cta__free__desc {
     @include fluid-type($min_width, $max_width, $min_font, $max_font);
 }
 
-.cta__free__punchline{
-    color: #5D6970;
+.cta__free__punchline {
+    color: #5d6970;
     @include fluid-type($min_width, $max_width, $min_sfont, $max_sfont);
     margin: 50px 0 20px;
 }
 
 .button--primary {
     @include for-phone-only {
-        height: 4em;
-        width: 20em;
+        height: 2.5rem;
+        width: 13rem;
     }
 }

@@ -18,34 +18,29 @@
 }
 
 .intro__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
     text-align: center;
+    margin: 0 auto;
 
-    .button--primary{
-            margin-right: 10px;
-
-            @include for-phone-only {
-                margin-bottom: 1em;
-                margin-right: 0px;
-                height: 4em;
-                width: 20em;
-            }
-        }
-
-    .dropdown {
+    .dropdown,
+    .button--primary {
         margin-left: 10px;
-
-        @include for-phone-only {
-            margin-left: 0px;
-            height: 4em;
-            width: 20em;
-        }
+        margin-right: 10px;
+        margin-bottom: 10px;
     }
 
-    @include for-phone-only {
-        display: flex;
-        vertical-align: center;
-        flex-direction: column;
-        align-items: center;
+    .button--primary {
+        width: 13rem;
+        height: 2.5rem;
+    }
+
+    @include for-tablet-landscape-up {
+        flex-direction: row;
+        align-items: flex-start;
     }
 }
 

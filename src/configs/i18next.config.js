@@ -18,7 +18,7 @@ const i18nextOptions = {
     },
     saveMissing: true,
     fallbackLng: config.fallbackLng,
-    whitelist: config.getLanguagesCodes(),
+    supportedLngs: config.getLanguagesCodes(),
     locales: config.getLanguagesCodes(),
     react: {
         wait: false

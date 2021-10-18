@@ -12,6 +12,7 @@
 -   Fix [#660]: Hours field on waiver manager is not validated
 -   Fix [#702]: Fixed day view not counting the waived value when looking at a waived day. Balance is now correct too.
 -   Fix [#724]: Correctly applying theme in Preferences window when the setting is "system default"
+-   Fix [#728]: Alignment and positioning of buttons on smaller screens for timetoleave.app
 -   Translation: Time to Leave is now available in Gujarati (gu)!
 -   Translation: Time to Leave is now available in Persian (fa-IR)
 -   Translation: Time to Leave is now available in Russian (ru-RU)!
@@ -23,6 +24,7 @@ Who built 2.0.2:
 
 <!--- Begin users - Do not remove -->
 
+-   AayushSaini101
 -   Dudu-CNU
 -   JulienZD
 -   L8Y
@@ -48,12 +50,14 @@ Who built 2.0.2:
 -   id-konstantin-stepanov
 -   jdkramhoft
 -   kimvcp
+-   kishorliv
 -   manisai216
 -   mayankmohak
 -   nikkhil31
 -   omerisildak
 -   panicswtch
 -   sgronlund
+-   stark255
 -   thamara
 -   thefyrewire
 -   tupaschoal

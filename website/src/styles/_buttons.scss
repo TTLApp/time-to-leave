@@ -1,5 +1,5 @@
-button, a.button--primary{
-    padding: 10px 50px;
+button,
+a.button--primary {
     @include fluid-type($min_width, $max_width, $min_font, $max_font);
     border-radius: 4px;
     border: 0px;
@@ -9,22 +9,23 @@ button, a.button--primary{
     text-decoration: none;
 }
 
-
-.button--primary{
+.button--primary {
     background-color: $blue;
-    color: #fff!important;
+    color: #fff !important;
     border: 2px solid $blue;
     display: inline-block;
+    padding: 10px 20px;
 }
 
-.button--dropdown{
+.button--dropdown {
     background: transparent;
     border: 2px solid $blue;
     position: relative;
     outline: none;
-    padding: 6px 50px;
-    &:after{
-        content: '';
+    width: 13rem;
+    height: 2.5rem;
+    &:after {
+        content: "";
         display: block;
         position: absolute;
         width: 0;
@@ -37,44 +38,49 @@ button, a.button--primary{
     }
 }
 
-.dropdown{
+.dropdown {
     display: inline-block;
     position: relative;
-    
-    ul{
+
+    ul {
         opacity: 0;
         border-bottom-left-radius: 2px;
         border-bottom-right-radius: 2px;
         border: 2px solid $blue;
         border-top: 0px solid transparent;
-        
+
         display: block;
         width: 100%;
-        padding-top: 3px; 
-        
+        padding-top: 3px;
+
         transform: translateY(-10px);
-	    transition: opacity .2s ease-in, transform .3s ease-in;
+        transition: opacity 0.2s ease-in, transform 0.3s ease-in;
 
         pointer-events: none;
 
-        &.opened{
+        &.opened {
             opacity: 0.7;
             transform: translateY(-3px);
             pointer-events: initial;
         }
-        li{
+        li {
             display: block;
 
-            a{
-                @include fluid-type($min_width, $max_width, $min_sfont, $max_sfont);
-                font-weight: 600; 
+            a {
+                @include fluid-type(
+                    $min_width,
+                    $max_width,
+                    $min_sfont,
+                    $max_sfont
+                );
+                font-weight: 600;
                 text-decoration: none;
                 width: 100%;
                 padding: 10px 0;
                 display: block;
                 color: darken($lightblue, 40%);
                 transition: all 0.1s ease-in;
-                &:hover{
+                &:hover {
                     background: $lightblue;
                 }
             }
