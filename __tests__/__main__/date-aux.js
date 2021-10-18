@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
-const { getDateStr, getCurrentDateTimeStr } = require('../../js/date-aux');
+const { getDateStr, getCurrentDateTimeStr, getMonthLength } = require('../../js/date-aux');
 
 describe('Date Functions', () =>
 {
@@ -20,6 +20,17 @@ describe('Date Functions', () =>
         test('Given an insane object, should return an error', () =>
         {
             expect(getDateStr(badDate)).not.toBe(expectedDate);
+        });
+    });
+
+    describe('getMonthLength(Year, Month)', () =>
+    {
+        const testYear = 2024;
+        const testMonth = 1;
+        const expectedLength = 29;
+        test('Given a JS Year and Month, should return number of days in month', () =>
+        {
+            expect(getMonthLength(testYear, testMonth)).toBe(expectedLength);
         });
     });
 
