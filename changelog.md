@@ -3,6 +3,7 @@
 <!--- Begin changes - Do not remove -->
 
 -   Enhancement [#645]: No confirmation popup when removing entry pair
+-   Enhancement [#649]: Improve time taken to import a database into TTL
 -   Enhancement [#661]: Add missing translations to Dutch
 -   Enhancement [#665]: Update export datebase name format to include a timestamp
 -   Enhancement [#690]: Provide helpful tip on hours fields with validation
@@ -25,6 +26,7 @@ Who built 2.0.2:
 <!--- Begin users - Do not remove -->
 
 -   AayushSaini101
+-   BamButz
 -   Dudu-CNU
 -   JulienZD
 -   L8Y
@@ -43,6 +45,7 @@ Who built 2.0.2:
 -   anujjoshi63
 -   araujoarthur0
 -   chopinballadeno4
+-   fcoiuri
 -   fikimaul
 -   giovannipessiva
 -   haeramkeem

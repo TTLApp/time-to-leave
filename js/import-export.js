@@ -127,6 +127,8 @@ function importDatabaseFromFile(filename)
     {
         const information = JSON.parse(fs.readFileSync(filename[0], 'utf-8'));
         let failedEntries = 0;
+        const flexibleEntries = {};
+        const waiverEntries = {};
         for (let i = 0; i < information.length; ++i)
         {
             const entry = information[i];
@@ -137,7 +139,7 @@ function importDatabaseFromFile(filename)
             }
             if (entry.type === 'waived')
             {
-                waivedWorkdays.set(entry.date, { 'reason' : entry.data, 'hours' : entry.hours });
+                waiverEntries[entry.date] = { 'reason' : entry.data, 'hours' : entry.hours };
             }
             else
             {
@@ -147,8 +149,7 @@ function importDatabaseFromFile(filename)
                 const date = generateKey(year, (parseInt(month) - 1), day);
                 if (entry.type === 'flexible')
                 {
-                    const flexibleEntry = { values: entry.values };
-                    flexibleStore.set(date, flexibleEntry);
+                    flexibleEntries[date] = {values: entry.values};
                 }
                 else if (entry.type === 'regular')
                 {
@@ -156,13 +157,17 @@ function importDatabaseFromFile(filename)
                     const [/*event*/, key] = entry.data.split('-');
                     if (['begin', 'end'].indexOf(key) !== -1)
                     {
-                        const currentFlexibleEntry = flexibleStore.get(date, { values: [] });
-                        const flexibleEntry = mergeOldStoreDataIntoFlexibleStore(currentFlexibleEntry, entry.hours);
-                        flexibleStore.set(date, flexibleEntry);
+                        let currentFlexibleEntry = flexibleEntries[date];
+                        if (currentFlexibleEntry === undefined)
+                            currentFlexibleEntry = { values: [] };
+                        flexibleEntries[date] = mergeOldStoreDataIntoFlexibleStore(currentFlexibleEntry, entry.hours);
                     }
                 }
             }
         }
+
+        flexibleStore.set(flexibleEntries);
+        waivedWorkdays.set(waiverEntries);
 
         if (failedEntries !== 0)
         {
