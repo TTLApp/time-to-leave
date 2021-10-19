@@ -27,6 +27,7 @@ describe('Date Functions', () =>
         const testYear = 2024;
         test('Given for the Year(2024) and Months, should return number of days in month', () =>
         {
+            expect(getMonthLength(testYear, 0)).toBe(31);
             expect(getMonthLength(testYear, 1)).toBe(29);
             expect(getMonthLength(testYear, 2)).toBe(31);
             expect(getMonthLength(testYear, 3)).toBe(30);
@@ -38,7 +39,6 @@ describe('Date Functions', () =>
             expect(getMonthLength(testYear, 9)).toBe(31);
             expect(getMonthLength(testYear, 10)).toBe(30);
             expect(getMonthLength(testYear, 11)).toBe(31);
-            expect(getMonthLength(testYear, 12)).toBe(31);
         });
     });
 
