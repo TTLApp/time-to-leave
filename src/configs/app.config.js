@@ -19,7 +19,8 @@ const languages = {
     'th-TH': 'ไทย',
     'zh-TW': '繁體中文',
     'ta': 'தமிழ்',
-    'tr-TR':'Türkçe'
+    'tr-TR':'Türkçe',
+    'bn':'বাংলা'
 };
 
 /**
