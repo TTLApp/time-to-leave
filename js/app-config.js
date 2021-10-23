@@ -15,7 +15,7 @@ const appConfig = {
     macOS: macOS,
     win32: win32,
     appPath,
-    iconpath: path.join(__dirname, win32 ? '../assets/timer.ico' : '../assets/timer.png'),
+    iconpath: path.join(__dirname, win32 ? '../assets/timer-purple.ico' : '../assets/timer-purple.png'),
     trayIcon: path.join(__dirname, win32 ? '../assets/timer-purple.ico' : '../assets/timer-purple.png')
 };
 
