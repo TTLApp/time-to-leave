@@ -2,7 +2,6 @@
 
 import { applyTheme } from '../renderer/themes.js';
 import { translatePage } from '../renderer/i18n-translator.js';
-import userPreferences from '../js/user-preferences.js';
 
 // Global values for preferences page
 let usersStyles;
