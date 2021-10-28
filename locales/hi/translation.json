@@ -5,7 +5,7 @@
         "month-balance-title": "इस महीने के लिए आज तक शेष राशि। एक सकारात्मक संतुलन का मतलब है अतिरिक्त घंटे जो आपको आज (या महीने के बाकी) काम करने की आवश्यकता नहीं है।",
         "overall-balance": "समग्र संतुलन",
         "overall-balance-title": "महीने के अंत या वर्तमान दिन तक कुल मिलाकर शेष",
-        "switch-view": "दृश्य स्विच करें"
+        "switch-view": "दृश्य बदले"
     },
     "$DateUtil": {
         "april": "अप्रैल",
@@ -18,10 +18,10 @@
         "june": "जून",
         "march": "मार्च",
         "may": "मई",
-        "mon": "मेरे",
+        "mon": "सोम",
         "november": "नवंबर",
         "october": "अक्टूबर",
-        "sat": "बैठ गया",
+        "sat": "शनि",
         "september": "सितंबर",
         "sun": "रवि",
         "thu": "गुरु",
@@ -29,7 +29,7 @@
         "wed": "बुध"
     },
     "$FlexibleDayCalendar": {
-        "current-day": "करंट डे पर जाएं",
+        "current-day": "वर्तमान दिन पर जाएं",
         "day-total": "दिन का कुल",
         "entry": "प्रवेश",
         "entry-removal-confirmation": "क्या आप वाकई अंतिम प्रविष्टि पंक्ति को हटाना चाहते हैं?",
@@ -110,7 +110,7 @@
         "something-went-wrong": "कुछ ग़लत हुआ :(",
         "toggle-dev-tools": "डेवलपर टूल टॉगल करें",
         "ttl-github": "टीटीएल गिटहब",
-        "view": "राय",
+        "view": "देखे",
         "workday-waiver-manager": "कार्यदिवस छूट प्रबंधक",
         "yes-please": "जी कहिये"
     },
@@ -139,12 +139,12 @@
         "light": "रोशनी",
         "minimizeToTray": "बटन को कम से कम ट्रे में रखना चाहिए",
         "minutesBetweenNotifications": "सूचनाओं के बीच मिनट",
-        "mon": "मेरे",
+        "mon": "सोम",
         "month": "महीना",
         "notification": "अधिसूचना",
         "numberOfEntries": "प्रविष्टियोंकी संख्या",
         "overallBalanceStart": "ओवरऑल बैलेंस स्टार्ट डेट",
-        "sat": "बैठ गया",
+        "sat": "शनि",
         "startOnLogin": "लॉगिन पर शुरू करें",
         "sun": "रवि",
         "systemDefault": "सिस्टम डिफ़ॉल्ट",
@@ -153,7 +153,7 @@
         "title": "छुट्टी का समय - वरीयताएँ",
         "tue": "आपका अपना",
         "userPreferences": "उपयोगकर्ता वरीयताएं",
-        "view": "राय",
+        "view": "देखे",
         "wed": "बुध",
         "workingDays": "कार्य दिवस"
     },
@@ -194,7 +194,7 @@
         "start-date": "आरंभ करने की तिथि",
         "state": "राज्य:",
         "title": "छुट्टी का समय - कार्य दिवस छूट प्रबंधक",
-        "to": "सेवा",
+        "to": "तक",
         "waive": "माफ",
         "waived-workday-list": "कार्यवार सूची दी गई",
         "waiver-manager": "कार्यदिवस छूट प्रबंधक",
