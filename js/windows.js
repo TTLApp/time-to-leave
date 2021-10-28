@@ -1,9 +1,9 @@
 'use strict';
 
 const { BrowserWindow } = require('electron');
-const { appConfig } = require('./app-config.js');
+import { appConfig } from './app-config.js';
 const path = require('path');
-const { getDateStr } = require('./date-aux.js');
+import { getDateStr } from './date-aux.js';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.

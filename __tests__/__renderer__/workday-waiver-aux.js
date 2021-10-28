@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
-const { formatDayId, displayWaiverWindow } = require('../../js/workday-waiver-aux');
+import { formatDayId, displayWaiverWindow } from '../../js/workday-waiver-aux.js';
 
 describe('Workday Waiver Aux', function()
 {

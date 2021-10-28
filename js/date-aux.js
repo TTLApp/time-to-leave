@@ -42,6 +42,6 @@ function getCurrentDateTimeStr()
     }
 }
 
-module.exports = {
+export {
     getDateStr, getMonthLength, getCurrentDateTimeStr
 };

@@ -12,6 +12,6 @@ function generateKey(year, month, day)
     return year + '-' + month + '-' + day;
 }
 
-module.exports = {
+export {
     generateKey,
 };

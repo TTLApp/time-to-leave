@@ -7,7 +7,7 @@ const { notify, notifyTimeToLeave } = require('./js/notification');
 const { openWaiverManagerWindow } = require('./js/windows.js');
 const { setupI18n, getCurrentTranslation, setLanguageChangedCallback } = require('./src/configs/i18next.config.js');
 const { handleSquirrelEvent } = require('./js/squirrel.js');
-const { appConfig } = require('./js/app-config');
+import { appConfig } from './js/app-config.js';
 
 if (appConfig.win32)
 {

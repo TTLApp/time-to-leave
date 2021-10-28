@@ -49,7 +49,7 @@ function showAlert(message)
     dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
 }
 
-module.exports = {
+export {
     bindDevToolsShortcut,
     showAlert,
     showDialog

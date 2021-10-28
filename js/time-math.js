@@ -105,7 +105,7 @@ function diffDays(date1, date2)
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 }
 
-module.exports = {
+export {
     hourMinToHourFormatted,
     isNegative,
     multiplyTime,

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
-const { getDateStr, getCurrentDateTimeStr, getMonthLength } = require('../../js/date-aux');
+import { getDateStr, getCurrentDateTimeStr, getMonthLength } from '../../js/date-aux.js';
 
 describe('Date Functions', () =>
 {

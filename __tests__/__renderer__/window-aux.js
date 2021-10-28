@@ -4,6 +4,7 @@
 const path = require('path');
 const { remote } = require('electron');
 const { BrowserWindow } = remote;
+import * as windowAux from '../../js/window-aux.js';
 
 describe('window-aux.js Testing', function()
 {
@@ -51,8 +52,7 @@ describe('window-aux.js Testing', function()
 
             testWindow.webContents.on('dom-ready', () =>
             {
-                const { bindDevToolsShortcut } = require('../../js/window-aux.js');
-                bindDevToolsShortcut(window);
+                windowAux.bindDevToolsShortcut(window);
                 window.dispatchEvent(devToolsShortcut);
             });
             testWindow.webContents.on('did-fail-load', (event, code, desc, url, isMainFrame) =>
@@ -72,8 +72,7 @@ describe('window-aux.js Testing', function()
 
             testWindow.webContents.on('dom-ready', () =>
             {
-                const { bindDevToolsShortcut } = require('../../js/window-aux.js');
-                bindDevToolsShortcut(window);
+                windowAux.bindDevToolsShortcut(window);
                 window.dispatchEvent(badDevToolsShortcut);
             });
             testWindow.webContents.on('did-fail-load', (event, code, desc, url, isMainFrame) =>
@@ -97,7 +96,6 @@ describe('window-aux.js Testing', function()
             let spy;
             testWindow.webContents.on('dom-ready', () =>
             {
-                const windowAux = require('../../js/window-aux.js');
                 spy = jest.spyOn(windowAux, 'showDialog');
 
                 const options = {
@@ -132,7 +130,6 @@ describe('window-aux.js Testing', function()
             let spy;
             testWindow.webContents.on('dom-ready', () =>
             {
-                const windowAux = require('../../js/window-aux.js');
                 const { dialog } = require('electron').remote;
 
                 spy = jest.spyOn(dialog, 'showMessageBoxSync').mockImplementation(() => {});

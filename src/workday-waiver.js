@@ -6,10 +6,10 @@ const { ipcRenderer, remote } = require('electron');
 const Store = require('electron-store');
 const Holidays = require('date-holidays');
 
-const { getUserPreferences, showDay } = require('../js/user-preferences.js');
-const { validateTime, diffDays } = require('../js/time-math.js');
-const { getDateStr } = require('../js/date-aux.js');
-const { bindDevToolsShortcut, showAlert, showDialog } = require('../js/window-aux.js');
+import { getUserPreferences, showDay } from '../js/user-preferences.js';
+import { validateTime, diffDays } from '../js/time-math.js';
+import { getDateStr } from '../js/date-aux.js';
+import { bindDevToolsShortcut, showAlert, showDialog } from '../js/window-aux.js';
 import { getTranslationInLanguageData, translatePage } from '../renderer/i18n-translator.js';
 
 const $ = require('jquery');

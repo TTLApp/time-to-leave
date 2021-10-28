@@ -1,9 +1,10 @@
 'use strict';
 
-const { validateTime } = require('./time-math.js');
-const { isValidTheme } = require('./themes.js');
 const { ipcRenderer } = require('electron');
-const { getLanguageCodes } = require('../src/configs/app.config');
+
+import { validateTime } from './time-math.js';
+import { isValidTheme } from '../renderer/themes.js';
+import { getLanguagesCodes } from '../src/configs/app.config.js';
 
 // Lazy loaded modules
 let fs = null;
@@ -18,7 +19,7 @@ function getFs()
 
 function isValidLocale(locale)
 {
-    return getLanguageCodes().indexOf(locale) !== -1;
+    return getLanguagesCodes().indexOf(locale) !== -1;
 }
 
 const defaultPreferences = {
@@ -330,10 +331,10 @@ function resetPreferences()
     savePreferences(defaultPreferences);
 }
 
-module.exports = {
+export {
     defaultPreferences,
     getDefaultWidthHeight,
-    getUserPreferences: getLoadedOrDerivedUserPreferences,
+    getLoadedOrDerivedUserPreferences as getUserPreferences,
     getUserPreferencesPromise,
     getUserLanguage,
     getNotificationsInterval,
