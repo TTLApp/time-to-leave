@@ -24,6 +24,11 @@ function getTranslation(code)
     return getTranslationInLanguageData(languageData.data, code);
 }
 
+function refreshDataForTest(data)
+{
+    languageData = data;
+}
+
 function setDates(day)
 {
     $('#start-date').val(day);
@@ -482,4 +487,5 @@ module.exports = {
     setDates,
     setHours,
     toggleAddButton,
+    refreshDataForTest
 };

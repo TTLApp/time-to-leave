@@ -25,8 +25,16 @@ const {
     clearHolidayTable,
     clearWaiverList,
     loadHolidaysTable,
-    initializeHolidayInfo
+    initializeHolidayInfo,
+    refreshDataForTest
 } = require('../../src/workday-waiver');
+
+jest.mock('../../renderer/i18n-translator.js', () => ({
+    translatePage: jest.fn().mockReturnThis(),
+    getTranslationInLanguageData: jest.fn().mockReturnThis()
+}));
+
+const languageData = {'language': 'en', 'data': {'bla': 'ble'}};
 
 function prepareMockup()
 {
@@ -38,6 +46,7 @@ function prepareMockup()
     const htmlDoc = parser.parseFromString(content, 'text/html');
     document.body.innerHTML = htmlDoc.body.innerHTML;
     populateList();
+    refreshDataForTest(languageData);
 }
 
 function addTestWaiver(day, reason)

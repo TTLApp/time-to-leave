@@ -19,6 +19,13 @@ window.$.fn.extend({
     }
 });
 
+jest.mock('../../../renderer/i18n-translator-node-copy.js', () => ({
+    translatePage: jest.fn().mockReturnThis(),
+    getTranslationInLanguageData: jest.fn().mockReturnThis()
+}));
+
+const languageData = {'language': 'en', 'data': {'bla': 'ble'}};
+
 describe('FlexibleMonthCalendar class Tests', () =>
 {
     process.env.NODE_ENV = 'test';
@@ -43,7 +50,8 @@ describe('FlexibleMonthCalendar class Tests', () =>
 
     const today = new Date();
     const testPreferences = defaultPreferences;
-    const calendar = CalendarFactory.getInstance(testPreferences);
+
+    const calendar = CalendarFactory.getInstance(testPreferences, languageData);
 
     test('FlexibleMonthCalendar starts with today\'s date', () =>
     {
@@ -193,11 +201,11 @@ describe('FlexibleMonthCalendar class Tests', () =>
     {
         const testPreferences = defaultPreferences;
         testPreferences['view'] = 'day';
-        let calendar = CalendarFactory.getInstance(testPreferences);
+        let calendar = CalendarFactory.getInstance(testPreferences, languageData);
         expect(calendar.constructor.name).toBe('FlexibleDayCalendar');
 
         testPreferences['view'] = 'month';
-        calendar = CalendarFactory.getInstance(testPreferences, calendar);
+        calendar = CalendarFactory.getInstance(testPreferences, languageData, calendar);
         expect(calendar.constructor.name).toBe('FlexibleMonthCalendar');
     });
 });
