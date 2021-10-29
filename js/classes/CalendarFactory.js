@@ -7,7 +7,7 @@ const { FlexibleDayCalendar } = require('./FlexibleDayCalendar.js');
 
 class CalendarFactory
 {
-    static getInstance(preferences, calendar = undefined)
+    static getInstance(preferences, languageData, calendar = undefined)
     {
         const view = preferences['view'];
         const widthHeight = getDefaultWidthHeight();
@@ -19,10 +19,11 @@ class CalendarFactory
                 {
                     ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
                 }
-                return new FlexibleDayCalendar(preferences);
+                return new FlexibleDayCalendar(preferences, languageData);
             }
             else
             {
+                calendar.updateLanguageData(languageData);
                 calendar.updatePreferences(preferences);
                 calendar.redraw();
                 return calendar;
@@ -36,10 +37,11 @@ class CalendarFactory
                 {
                     ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
                 }
-                return new FlexibleMonthCalendar(preferences);
+                return new FlexibleMonthCalendar(preferences, languageData);
             }
             else
             {
+                calendar.updateLanguageData(languageData);
                 calendar.updatePreferences(preferences);
                 calendar.redraw();
                 return calendar;

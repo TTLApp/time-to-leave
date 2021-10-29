@@ -1,5 +1,5 @@
 'use strict';
-const i18n = require('../src/configs/i18next.config');
+const { changeLanguage } = require('../src/configs/i18next.config');
 
 const { app, ipcMain } = require('electron');
 
@@ -16,7 +16,7 @@ ipcMain.on('PREFERENCE_SAVE_DATA_NEEDED', (event, preferences) =>
     app.setLoginItemSettings({
         openAtLogin: preferences['start-at-login']
     });
-    i18n.changeLanguage(preferences.language, (err) =>
+    changeLanguage(preferences.language).catch((err) =>
     {
         if (err) return console.log('something went wrong loading', err);
     });

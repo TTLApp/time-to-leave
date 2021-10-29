@@ -18,7 +18,7 @@ const { getDateStr, getMonthLength } = require('../date-aux.js');
 const { getMonthName } = require('../date-to-string-util.js');
 const { computeAllTimeBalanceUntilAsync } = require('../time-balance.js');
 const { generateKey } = require('../date-db-formatter.js');
-const i18n = require('../../src/configs/i18next.config.js');
+const { getTranslationInLanguageData } = require('../../renderer/i18n-translator-node-copy.js');
 
 // Global values for calendar
 const flexibleStore = new Store({name: 'flexible-store'});
@@ -30,9 +30,10 @@ class BaseCalendar
     /**
      * @param {Object.<string, any>} preferences
      */
-    constructor(preferences)
+    constructor(preferences, languageData)
     {
         this._calendarDate = new Date();
+        this.updateLanguageData(languageData);
         this.loadInternalStore();
         this.loadInternalWaiveStore();
         this.updatePreferences(preferences);
@@ -56,6 +57,15 @@ class BaseCalendar
     _getTargetDayForAllTimeBalance()
     {
         throw Error('Please implement this.');
+    }
+
+    /**
+     * Searches for an i18n code inside the last loaded language data
+     * @return {String}
+     */
+    _getTranslation(code)
+    {
+        return getTranslationInLanguageData(this._languageData.data, code);
     }
 
     /**
@@ -122,7 +132,7 @@ class BaseCalendar
      */
     _updateTableHeader()
     {
-        $('#month-year').html(`${getMonthName(this._getCalendarMonth())} ${this._getCalendarYear()}`);
+        $('#month-year').html(`${getMonthName(this._languageData.data, this._getCalendarMonth())} ${this._getCalendarYear()}`);
     }
 
     /**
@@ -141,7 +151,7 @@ class BaseCalendar
     {
         return '<button class="punch-button" id="punch-button" disabled>' +
                    '<img src="assets/fingerprint.svg" height="36" width="36"></img>' +
-                   `<label for="punch-button" id="punch-button-label">${i18n.t('$Menu.punch-time')}</label>` +
+                   `<label for="punch-button" id="punch-button-label">${this._getTranslation('$Menu.punch-time')}</label>` +
                '</button>\n';
     }
 
@@ -392,6 +402,15 @@ class BaseCalendar
     updatePreferences(preferences)
     {
         this._preferences = preferences;
+    }
+
+    /**
+     * Updates calendar language data from a given array.
+     * @param {Object.<string, string>} languageData
+     */
+    updateLanguageData(languageData)
+    {
+        this._languageData = languageData;
     }
 
     /**

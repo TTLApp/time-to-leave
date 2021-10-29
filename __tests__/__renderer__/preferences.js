@@ -10,7 +10,6 @@ const {
     savePreferences
 } = require('../../js/user-preferences');
 const { preferencesApi } = require('../../renderer/preload-scripts/preferences-api.js');
-const i18n = require('../../src/configs/i18next.config');
 
 /* eslint-disable-next-line no-global-assign */
 window.$ = require('jquery');
@@ -99,7 +98,7 @@ describe('Test Preferences Window', () =>
             prepareMockup();
             await refreshContent();
             renderPreferencesWindow();
-            populateLanguages(i18n);
+            populateLanguages();
             listenerLanguage();
             done();
         }));

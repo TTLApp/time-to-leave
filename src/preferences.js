@@ -32,24 +32,21 @@ function listenerLanguage()
     $('#language').on('change', function()
     {
         preferences['language'] = this.value;
-        window.mainApi.changeLanguage(this.value).then(() =>
+        window.mainApi.changeLanguagePromise(this.value).then((languageData) =>
         {
-            translatePage(this.value);
+            translatePage(this.value, languageData);
             window.mainApi.notifyNewPreferences(preferences);
         });
     });
 }
 
-function handlei18nLoadPromise()
+function setupLanguages()
 {
-    window.mainApi.i18nLoadedPromise.then(() =>
+    populateLanguages();
+    listenerLanguage();
+    window.mainApi.getLanguageDataPromise().then(languageData =>
     {
-        window.mainApi.changeLanguage(usersStyles['language']).then(() =>
-        {
-            populateLanguages();
-            listenerLanguage();
-            translatePage(usersStyles['language']);
-        });
+        translatePage(usersStyles['language'], languageData.data);
     });
 }
 
@@ -194,7 +191,7 @@ $(() =>
         usersStyles = userPreferences;
         preferences = usersStyles;
         renderPreferencesWindow();
-        handlei18nLoadPromise();
+        setupLanguages();
     });
 });
 

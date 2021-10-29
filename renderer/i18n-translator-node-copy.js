@@ -1,3 +1,4 @@
+// Temporary copy of i18n-translator for node requires
 'use strict';
 
 function getDataRecursive(array, keyList)
@@ -48,7 +49,7 @@ function translatePage(language, languageData)
     $('button').each(callback);
 }
 
-export {
+module.exports = {
     getTranslationInLanguageData,
     translatePage
 };

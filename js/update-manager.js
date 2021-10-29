@@ -4,7 +4,7 @@ const { app, net, shell, dialog, BrowserWindow } = require('electron');
 const { getDateStr } = require('./date-aux.js');
 const isOnline = require('is-online');
 const Store = require('electron-store');
-const i18n = require('../src/configs/i18next.config');
+const { getCurrentTranslation } = require('../src/configs/i18next.config');
 
 function shouldCheckForUpdates()
 {
@@ -39,13 +39,13 @@ async function checkForUpdates(showUpToDateDialog)
                     const options = {
                         type: 'question',
                         buttons: [
-                            i18n.t('$UpdateManager.dismissBtn'),
-                            i18n.t('$UpdateManager.downloadBtn'),
-                            i18n.t('$UpdateManager.remindBtn')
+                            getCurrentTranslation('$UpdateManager.dismissBtn'),
+                            getCurrentTranslation('$UpdateManager.downloadBtn'),
+                            getCurrentTranslation('$UpdateManager.remindBtn')
                         ],
                         defaultId: 1,
-                        title: i18n.t('$UpdateManager.title'),
-                        message: i18n.t('$UpdateManager.old-version-msg'),
+                        title: getCurrentTranslation('$UpdateManager.title'),
+                        message: getCurrentTranslation('$UpdateManager.old-version-msg'),
                     };
                     const response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
                     if (response === 1)
@@ -66,9 +66,9 @@ async function checkForUpdates(showUpToDateDialog)
                 {
                     const options = {
                         type: 'info',
-                        buttons: [i18n.t('$Menu.ok')],
-                        title: i18n.t('$UpdateManager.title'),
-                        message: i18n.t('$UpdateManager.upto-date-msg')
+                        buttons: [getCurrentTranslation('$Menu.ok')],
+                        title: getCurrentTranslation('$UpdateManager.title'),
+                        message: getCurrentTranslation('$UpdateManager.upto-date-msg')
                     };
                     dialog.showMessageBox(null, options);
                 }

@@ -1,7 +1,9 @@
 const i18n = require('i18next');
 const i18nextBackend = require('i18next-node-fs-backend');
-const config = require('../configs/app.config');
 const path = require('path');
+const { ipcMain } = require('electron');
+
+const config = require('../configs/app.config');
 const { appConfig } = require('../../js/app-config');
 
 const i18nextOptions = {
@@ -25,12 +27,75 @@ const i18nextOptions = {
     }
 };
 
-i18n.use(i18nextBackend);
-
-// initialize if not already initialized
-if (!i18n.isInitialized)
+function setupI18n()
 {
-    i18n.init(i18nextOptions);
+    const { getUserLanguage } = require('../../js/user-preferences.js');
+    const userLanguage = getUserLanguage();
+
+    return new Promise((resolve) =>
+    {
+        i18n.use(i18nextBackend);
+
+        // initialize if not already initialized
+        if (!i18n.isInitialized)
+        {
+            i18n.init(i18nextOptions, () =>
+            {
+                i18n.changeLanguage(userLanguage).then(() =>
+                {
+                    resolve();
+                });
+            });
+        }
+    });
 }
 
-module.exports = i18n;
+function setLanguageChangedCallback(languageChangedCallback)
+{
+    i18n.on('languageChanged', () =>
+    {
+        languageChangedCallback();
+    });
+}
+
+function changeLanguage(language)
+{
+    return i18n.changeLanguage(language);
+}
+
+ipcMain.handle('CHANGE_LANGUAGE', (event, language) =>
+{
+    return new Promise((resolve) =>
+    {
+        changeLanguage(language).then(() =>
+        {
+            resolve(getCurrentLanguageData());
+        });
+    });
+});
+
+function getCurrentLanguageData()
+{
+    return i18n.getDataByLanguage(i18n.language);
+}
+
+ipcMain.handle('GET_LANGUAGE_DATA', () =>
+{
+    return {
+        'language': i18n.language,
+        'data': getCurrentLanguageData()
+    };
+});
+
+function getCurrentTranslation(code)
+{
+    return i18n.t(code);
+}
+
+module.exports =
+{
+    changeLanguage,
+    getCurrentTranslation,
+    setLanguageChangedCallback,
+    setupI18n
+};

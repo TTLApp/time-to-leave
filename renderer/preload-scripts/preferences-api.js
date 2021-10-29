@@ -3,42 +3,28 @@
 const { ipcRenderer } = require('electron');
 const config = require('../../src/configs/app.config');
 const { getUserPreferencesPromise } = require('../../js/user-preferences.js');
-const i18n = require('../../src/configs/i18next.config');
 
 function notifyNewPreferences(preferences)
 {
     ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
 }
 
-let isI18nLoaded = false;
-i18n.on('loaded', () =>
+function changeLanguagePromise(language)
 {
-    isI18nLoaded = true;
-    i18n.off('loaded');
-    i18n.off('languageChanged');
-});
+    return ipcRenderer.invoke('CHANGE_LANGUAGE', language);
+}
 
-const i18nLoadedPromise = new Promise(
-    (resolve) =>
-    {
-        setTimeout(
-            function()
-            {
-                if (isI18nLoaded)
-                {
-                    resolve();
-                }
-            }, 300);
-    }
-);
+function getLanguageDataPromise()
+{
+    return ipcRenderer.invoke('GET_LANGUAGE_DATA');
+}
 
 const preferencesApi = {
     notifyNewPreferences: (preferences) => notifyNewPreferences(preferences),
     getLanguageMap: () => config.getLanguageMap(),
     getUserPreferencesPromise: () => getUserPreferencesPromise(),
-    changeLanguage: (code) => { return i18n.changeLanguage(code); },
-    i18nLoadedPromise: i18nLoadedPromise,
-    getDataByLanguage: (code) => i18n.getDataByLanguage(code)
+    changeLanguagePromise: (language) => changeLanguagePromise(language),
+    getLanguageDataPromise: () => getLanguageDataPromise()
 };
 
 module.exports = {

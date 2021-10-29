@@ -3,10 +3,9 @@
 
 const { app, ipcMain } = require('electron');
 const { createWindow, createMenu, getMainWindow, triggerStartupDialogs } = require('./js/main-window');
-const { notify } = require('./js/notification');
+const { notify, notifyTimeToLeave } = require('./js/notification');
 const { openWaiverManagerWindow } = require('./js/windows.js');
-const { getUserPreferences } = require('./js/user-preferences.js');
-const i18n = require('./src/configs/i18next.config');
+const { setupI18n, getCurrentTranslation, setLanguageChangedCallback } = require('./src/configs/i18next.config.js');
 const { handleSquirrelEvent } = require('./js/squirrel.js');
 const { appConfig } = require('./js/app-config');
 
@@ -18,38 +17,6 @@ if (appConfig.win32)
         app.quit();
     }
 }
-
-i18n.on('loaded', () =>
-{
-    const userPreferences = getUserPreferences();
-    i18n.changeLanguage(userPreferences.language);
-    triggerStartupDialogs();
-    i18n.off('loaded');
-});
-
-i18n.on('languageChanged', lng =>
-{
-    createMenu();
-    const mainWindow = getMainWindow();
-    mainWindow.webContents.send('LANGUAGE_CHANGED', {
-        language: lng,
-        namespace: 'translation',
-        resource: i18n.getResourceBundle(lng, 'translation')
-    });
-});
-
-ipcMain.on('GET_INITIAL_TRANSLATIONS', (event, language) =>
-{
-    i18n.loadLanguages(language, () =>
-    {
-        const initial = {
-            arg: {
-                translation: i18n.getResourceBundle(language, 'translation')
-            }
-        };
-        event.returnValue = initial;
-    });
-});
 
 ipcMain.on('SET_WAIVER_DAY', (event, waiverDay) =>
 {
@@ -87,7 +54,7 @@ function checkIdleAndNotify()
     if (recommendPunchIn)
     {
         recommendPunchIn = false;
-        notify(i18n.t('$Notification.punch-reminder'));
+        notify(getCurrentTranslation('$Notification.punch-reminder'));
     }
 }
 
@@ -106,8 +73,9 @@ function refreshOnDayChange()
         const oldMonth = launchDate.getMonth();
         const oldYear = launchDate.getFullYear();
         launchDate = today;
+
         // Reload only the calendar itself to avoid a flash
-        mainWindow.webContents.executeJavaScript(`calendar.refreshOnDayChange(${oldDate},${oldMonth},${oldYear})`);
+        mainWindow.webContents.send('REFRESH_ON_DAY_CHANGE', oldDate, oldMonth, oldYear);
     }
 }
 
@@ -139,11 +107,18 @@ else
 
 app.on('ready', () =>
 {
-    createWindow();
-    setInterval(refreshOnDayChange, 60 * 60 * 1000);
-    const { powerMonitor } = require('electron');
-    powerMonitor.on('unlock-screen', () => { checkIdleAndNotify(); });
-    powerMonitor.on('resume', () => { checkIdleAndNotify(); });
+    setupI18n(createMenu).then(() =>
+    {
+        createWindow();
+        createMenu();
+        setLanguageChangedCallback(createMenu);
+        triggerStartupDialogs();
+        setInterval(refreshOnDayChange, 60 * 60 * 1000);
+        setInterval(notifyTimeToLeave, 60 * 1000);
+        const { powerMonitor } = require('electron');
+        powerMonitor.on('unlock-screen', () => { checkIdleAndNotify(); });
+        powerMonitor.on('resume', () => { checkIdleAndNotify(); });
+    });
 });
 
 // Emitted before the application starts closing its windows.

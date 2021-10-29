@@ -11,7 +11,7 @@ const { notify } = require('./notification');
 const { savePreferences } = require('./user-preferences.js');
 const path = require('path');
 const Store = require('electron-store');
-const i18n = require('../src/configs/i18next.config');
+const { getCurrentTranslation } = require('../src/configs/i18next.config');
 let { openWaiverManagerWindow, prefWindow } = require('./windows');
 
 const { getCurrentDateTimeStr } = require('./date-aux');
@@ -20,7 +20,7 @@ function getMainMenuTemplate(mainWindow)
 {
     return [
         {
-            label: i18n.t('$Menu.workday-waiver-manager'),
+            label: getCurrentTranslation('$Menu.workday-waiver-manager'),
             id: 'workday-waiver-manager',
             click(item, window, event)
             {
@@ -29,7 +29,7 @@ function getMainMenuTemplate(mainWindow)
         },
         {type: 'separator'},
         {
-            label:i18n.t('$Menu.exit'),
+            label:getCurrentTranslation('$Menu.exit'),
             accelerator: appConfig.macOS ? 'CommandOrControl+Q' : 'Control+Q',
             click()
             {
@@ -43,23 +43,23 @@ function getContextMenuTemplate(mainWindow)
 {
     return [
         {
-            label: i18n.t('$Menu.punch-time'), click: function()
+            label: getCurrentTranslation('$Menu.punch-time'), click: function()
             {
                 const now = new Date();
 
                 mainWindow.webContents.executeJavaScript('calendar.punchDate()');
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
-                notify(`${i18n.t('$Menu.punched-time')} ${now.toTimeString().slice(0,5)}`);
+                notify(`${getCurrentTranslation('$Menu.punched-time')} ${now.toTimeString().slice(0,5)}`);
             }
         },
         {
-            label: i18n.t('$Menu.show-app'), click: function()
+            label: getCurrentTranslation('$Menu.show-app'), click: function()
             {
                 mainWindow.show();
             }
         },
         {
-            label: i18n.t('$Menu.quit'), click: function()
+            label: getCurrentTranslation('$Menu.quit'), click: function()
             {
                 app.quit();
             }
@@ -71,13 +71,13 @@ function getDockMenuTemplate(mainWindow)
 {
     return [
         {
-            label: i18n.t('$Menu.punch-time'), click: function()
+            label: getCurrentTranslation('$Menu.punch-time'), click: function()
             {
                 const now = new Date();
 
                 mainWindow.webContents.executeJavaScript('calendar.punchDate()');
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
-                notify(`${i18n.t('$Menu.punched-time')} ${now.toTimeString().slice(0,5)}`);
+                notify(`${getCurrentTranslation('$Menu.punched-time')} ${now.toTimeString().slice(0,5)}`);
             }
         }
     ];
@@ -87,28 +87,28 @@ function getEditMenuTemplate(mainWindow)
 {
     return [
         {
-            label: i18n.t('$Menu.cut'),
+            label: getCurrentTranslation('$Menu.cut'),
             accelerator: 'Command+X',
             selector: 'cut:'
         },
         {
-            label: i18n.t('$Menu.copy'),
+            label: getCurrentTranslation('$Menu.copy'),
             accelerator: 'Command+C',
             selector: 'copy:'
         },
         {
-            label: i18n.t('$Menu.paste'),
+            label: getCurrentTranslation('$Menu.paste'),
             accelerator: 'Command+V',
             selector: 'paste:'
         },
         {
-            label: i18n.t('$Menu.select-all'),
+            label: getCurrentTranslation('$Menu.select-all'),
             accelerator: 'Command+A',
             selector: 'selectAll:'
         },
         {type: 'separator'},
         {
-            label: i18n.t('$Menu.preferences'),
+            label: getCurrentTranslation('$Menu.preferences'),
             accelerator: appConfig.macOS ? 'Command+,' : 'Control+,',
             click()
             {
@@ -153,17 +153,17 @@ function getEditMenuTemplate(mainWindow)
         },
         {type: 'separator'},
         {
-            label: i18n.t('$Menu.export-database'),
+            label: getCurrentTranslation('$Menu.export-database'),
             click()
             {
                 const options = {
-                    title: i18n.t('$Menu.export-db-to-file'),
+                    title: getCurrentTranslation('$Menu.export-db-to-file'),
                     defaultPath : `time_to_leave_${getCurrentDateTimeStr()}`,
-                    buttonLabel : i18n.t('$Menu.export'),
+                    buttonLabel : getCurrentTranslation('$Menu.export'),
 
                     filters : [
                         { name: '.ttldb', extensions: ['ttldb',] },
-                        { name: i18n.t('$Menu.all-files'), extensions: ['*'] }
+                        { name: getCurrentTranslation('$Menu.all-files'), extensions: ['*'] }
                     ]
                 };
                 const response = dialog.showSaveDialogSync(options);
@@ -173,25 +173,25 @@ function getEditMenuTemplate(mainWindow)
                     dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                         {
                             title: 'Time to Leave',
-                            message: i18n.t('$Menu.database-export'),
+                            message: getCurrentTranslation('$Menu.database-export'),
                             type: 'info',
                             icon: appConfig.iconpath,
-                            detail: i18n.t('$Menu.database-was-exported')
+                            detail: getCurrentTranslation('$Menu.database-was-exported')
                         });
                 }
             },
         },
         {
-            label: i18n.t('$Menu.import-database'),
+            label: getCurrentTranslation('$Menu.import-database'),
             click()
             {
                 const options = {
-                    title: i18n.t('$Menu.import-db-from-file'),
-                    buttonLabel : i18n.t('$Menu.import'),
+                    title: getCurrentTranslation('$Menu.import-db-from-file'),
+                    buttonLabel : getCurrentTranslation('$Menu.import'),
 
                     filters : [
                         {name: '.ttldb', extensions: ['ttldb',]},
-                        {name: i18n.t('$Menu.all-files'), extensions: ['*']}
+                        {name: getCurrentTranslation('$Menu.all-files'), extensions: ['*']}
                     ]
                 };
                 const response = dialog.showOpenDialogSync(options);
@@ -199,10 +199,10 @@ function getEditMenuTemplate(mainWindow)
                 {
                     const options = {
                         type: 'question',
-                        buttons: [i18n.t('$Menu.yes-please'), i18n.t('$Menu.no-thanks')],
+                        buttons: [getCurrentTranslation('$Menu.yes-please'), getCurrentTranslation('$Menu.no-thanks')],
                         defaultId: 2,
-                        title: i18n.t('$Menu.import-database'),
-                        message: i18n.t('$Menu.confirm-import-db'),
+                        title: getCurrentTranslation('$Menu.import-database'),
+                        message: getCurrentTranslation('$Menu.confirm-import-db'),
                     };
 
                     const confirmation = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
@@ -216,21 +216,21 @@ function getEditMenuTemplate(mainWindow)
                             dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                                 {
                                     title: 'Time to Leave',
-                                    message: i18n.t('$Menu.database-imported'),
+                                    message: getCurrentTranslation('$Menu.database-imported'),
                                     type: 'info',
                                     icon: appConfig.iconpath,
-                                    detail: i18n.t('$Menu.import-successful')
+                                    detail: getCurrentTranslation('$Menu.import-successful')
                                 });
                         }
                         else if (importResult['failed'] !== 0)
                         {
                             if (importResult['failed'] !== 0)
                             {
-                                const message = `${importResult['failed']}/${importResult['total']} ${i18n.t('$Menu.could-not-be-loaded')}`;
+                                const message = `${importResult['failed']}/${importResult['total']} ${getCurrentTranslation('$Menu.could-not-be-loaded')}`;
                                 dialog.showMessageBoxSync({
                                     icon: appConfig.iconpath,
                                     type: 'warning',
-                                    title: i18n.t('$Menu.failed-entries'),
+                                    title: getCurrentTranslation('$Menu.failed-entries'),
                                     message: message
                                 });
                             }
@@ -240,8 +240,8 @@ function getEditMenuTemplate(mainWindow)
                             dialog.showMessageBoxSync({
                                 icon: appConfig.iconpath,
                                 type: 'warning',
-                                title: i18n.t('$Menu.failed-entries'),
-                                message: i18n.t('$Menu.something-went-wrong')
+                                title: getCurrentTranslation('$Menu.failed-entries'),
+                                message: getCurrentTranslation('$Menu.something-went-wrong')
                             });
                         }
                     }
@@ -249,15 +249,15 @@ function getEditMenuTemplate(mainWindow)
             },
         },
         {
-            label: i18n.t('$Menu.clear-database'),
+            label: getCurrentTranslation('$Menu.clear-database'),
             click()
             {
                 const options = {
                     type: 'question',
-                    buttons: [i18n.t('$Menu.cancel'), i18n.t('$Menu.yes-please'), i18n.t('$Menu.no-thanks')],
+                    buttons: [getCurrentTranslation('$Menu.cancel'), getCurrentTranslation('$Menu.yes-please'), getCurrentTranslation('$Menu.no-thanks')],
                     defaultId: 2,
-                    title: i18n.t('$Menu.clear-database'),
-                    message: i18n.t('$Menu.confirm-clear-all-data'),
+                    title: getCurrentTranslation('$Menu.clear-database'),
+                    message: getCurrentTranslation('$Menu.confirm-clear-all-data'),
                 };
 
                 const response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
@@ -275,10 +275,10 @@ function getEditMenuTemplate(mainWindow)
                     dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                         {
                             title: 'Time to Leave',
-                            message: i18n.t('$Menu.clear-database'),
+                            message: getCurrentTranslation('$Menu.clear-database'),
                             type: 'info',
                             icon: appConfig.iconpath,
-                            detail: `\n${i18n.t('$Menu.all-clear')}`
+                            detail: `\n${getCurrentTranslation('$Menu.all-clear')}`
                         });
                 }
             }
@@ -290,7 +290,7 @@ function getViewMenuTemplate()
 {
     return [
         {
-            label: i18n.t('$Menu.reload'),
+            label: getCurrentTranslation('$Menu.reload'),
             accelerator: 'CommandOrControl+R',
             click()
             {
@@ -298,7 +298,7 @@ function getViewMenuTemplate()
             }
         },
         {
-            label: i18n.t('$Menu.toggle-dev-tools'),
+            label: getCurrentTranslation('$Menu.toggle-dev-tools'),
             accelerator: appConfig.macOS ? 'Command+Alt+I' : 'Control+Shift+I',
             click()
             {
@@ -312,21 +312,21 @@ function getHelpMenuTemplate()
 {
     return [
         {
-            label: i18n.t('$Menu.ttl-github'),
+            label: getCurrentTranslation('$Menu.ttl-github'),
             click()
             {
                 shell.openExternal('https://github.com/thamara/time-to-leave');
             }
         },
         {
-            label: i18n.t('$Menu.check-for-updates'),
+            label: getCurrentTranslation('$Menu.check-for-updates'),
             click()
             {
                 checkForUpdates(/*showUpToDateDialog=*/true);
             }
         },
         {
-            label: i18n.t('$Menu.send-feedback'),
+            label: getCurrentTranslation('$Menu.send-feedback'),
             click()
             {
                 shell.openExternal('https://github.com/thamara/time-to-leave/issues/new');
@@ -336,7 +336,7 @@ function getHelpMenuTemplate()
             type: 'separator'
         },
         {
-            label: i18n.t('$Menu.about'),
+            label: getCurrentTranslation('$Menu.about'),
             click()
             {
                 const detail = getDetails();
@@ -347,7 +347,7 @@ function getHelpMenuTemplate()
                         type: 'info',
                         icon: appConfig.iconpath,
                         detail: `\n${detail}`,
-                        buttons: [i18n.t('$Menu.copy'), i18n.t('$Menu.ok')],
+                        buttons: [getCurrentTranslation('$Menu.copy'), getCurrentTranslation('$Menu.ok')],
                         noLink: true
                     }
                 ).then((result) =>

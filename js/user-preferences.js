@@ -3,6 +3,7 @@
 const { validateTime } = require('./time-math.js');
 const { isValidTheme } = require('./themes.js');
 const { ipcRenderer } = require('electron');
+const { getLanguageCodes } = require('../src/configs/app.config');
 
 // Lazy loaded modules
 let fs = null;
@@ -17,8 +18,7 @@ function getFs()
 
 function isValidLocale(locale)
 {
-    const i18n = require('../src/configs/i18next.config');
-    return i18n.languages.includes(locale);
+    return getLanguageCodes().indexOf(locale) !== -1;
 }
 
 const defaultPreferences = {
