@@ -34,7 +34,7 @@ jest.mock('../../renderer/i18n-translator.js', () => ({
     getTranslationInLanguageData: jest.fn().mockReturnThis()
 }));
 
-const languageData = {'language': 'en', 'data': {'bla': 'ble'}};
+const languageData = {'language': 'en', 'data': {'dummy_string': 'dummy_string_translated'}};
 
 function prepareMockup()
 {

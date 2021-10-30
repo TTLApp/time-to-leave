@@ -23,7 +23,7 @@ jest.mock('../../../renderer/i18n-translator-node-copy.js', () => ({
     getTranslationInLanguageData: jest.fn().mockReturnThis()
 }));
 
-const languageData = {'language': 'en', 'data': {'bla': 'ble'}};
+const languageData = {'language': 'en', 'data': {'dummy_string': 'dummy_string_translated'}};
 
 describe('FlexibleDayCalendar class Tests', () =>
 {
