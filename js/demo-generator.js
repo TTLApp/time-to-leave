@@ -9,6 +9,7 @@ const Store = require('electron-store');
  * @returns Random number between min and max
  */
 function randomIntFromInterval(min, max)
+{
     round5 = (x) => Math.ceil(x / 5) * 5;
     return round5(Math.floor(Math.random() * (max - min + 1) + min));
 }
@@ -38,8 +39,8 @@ function randomTime(min, max)
  */
 function generateDemoInformation(dateFromStr, dateToStr, workingDays, usualTimes = ['9:00', '12:00', '13:00', '18:00'])
 {
-    const dateFrom = Date.parse(dateFromStr);
-    const dateTo = Date.parse(dateToStr);
+    const dateFrom = new Date(Date.parse(dateFromStr));
+    const dateTo = new Date(Date.parse(dateToStr));
 
     console.log(`Generating random entried from: ${dateFrom} to ${dateTo}`);
 
