@@ -239,7 +239,7 @@ class FlexibleMonthCalendar extends BaseCalendar
     }
 
     /**
-     * Issue #622
+     * Updates TableHeader(header-day, header-day-total) when language setting changed.
      */
     _updateTableHeader()
     {
