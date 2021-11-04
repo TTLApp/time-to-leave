@@ -10,7 +10,7 @@ const Store = require('electron-store');
  */
 function randomIntFromInterval(min, max)
 {
-    round5 = (x) => Math.ceil(x / 5) * 5;
+    const round5 = (x) => Math.ceil(x / 5) * 5;
     return round5(Math.floor(Math.random() * (max - min + 1) + min));
 }
 
