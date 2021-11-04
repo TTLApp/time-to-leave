@@ -239,6 +239,15 @@ class FlexibleMonthCalendar extends BaseCalendar
     }
 
     /**
+     * Issue #622
+     */
+    _updateTableHeader()
+    {
+        $('.header-day').text(this._getTranslation('$FlexibleMonthCalendar.day'));
+        $('.header-day-total').text(this._getTranslation('$FlexibleMonthCalendar.total'));
+    }
+
+    /**
      * Returns the code of the table body of the calendar.
      * @return {string}
      */
