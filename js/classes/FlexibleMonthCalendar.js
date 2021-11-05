@@ -243,8 +243,12 @@ class FlexibleMonthCalendar extends BaseCalendar
      */
     _updateTableHeader()
     {
-        $('.header-day').text(this._getTranslation('$FlexibleMonthCalendar.day'));
-        $('.header-day-total').text(this._getTranslation('$FlexibleMonthCalendar.total'));
+        const header_day = $('.header-day');
+        const header_day_total = $('.header-day-total');
+
+        header_day.text(this._getTranslation('$FlexibleMonthCalendar.day'));
+        // prettier-ignore
+        header_day_total.text(this._getTranslation('$FlexibleMonthCalendar.total'));
     }
 
     /**
