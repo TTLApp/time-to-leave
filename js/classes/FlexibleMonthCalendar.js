@@ -5,13 +5,13 @@ const {
     multiplyTime,
     subtractTime,
     sumTime,
-    validateTime,
+    validateTime
 } = require("../time-math.js");
 const { getMonthLength } = require("../date-aux.js");
 const { generateKey } = require("../date-db-formatter.js");
 const {
     formatDayId,
-    displayWaiverWindow,
+    displayWaiverWindow
 } = require("../workday-waiver-aux.js");
 const { showDialog } = require("../window-aux.js");
 const { getDayAbbr } = require("../date-to-string-util.js");
@@ -328,12 +328,12 @@ class FlexibleMonthCalendar extends BaseCalendar {
      * Updates TableHeader(header-day, header-day-total) when language setting changed.
      */
     _updateTableHeader() {
-        const header_day = $(".header-day");
-        const header_day_total = $(".header-day-total");
-
-        header_day.text(this._getTranslation("$FlexibleMonthCalendar.day"));
-        // prettier-ignore
-        header_day_total.text(this._getTranslation("$FlexibleMonthCalendar.total"));
+        $(".header-day").text(
+            this._getTranslation("$FlexibleMonthCalendar.day")
+        );
+        $(".header-day-total").text(
+            this._getTranslation("$FlexibleMonthCalendar.total")
+        );
     }
 
     /**
@@ -381,7 +381,7 @@ class FlexibleMonthCalendar extends BaseCalendar {
 
         $(".waiver-trigger")
             .off("click")
-            .on("click", function () {
+            .on("click", function() {
                 const dayId = $(this)
                     .siblings()
                     .closest(".time-cells")
@@ -398,7 +398,7 @@ class FlexibleMonthCalendar extends BaseCalendar {
         const calendar = this;
         let slideTimer;
         function sideScroll(element, direction, speed, step) {
-            slideTimer = setInterval(function () {
+            slideTimer = setInterval(function() {
                 if (direction === "left") {
                     element.scrollLeft -= step;
                 } else {
@@ -415,9 +415,11 @@ class FlexibleMonthCalendar extends BaseCalendar {
 
         $(".arrow.left")
             .off("mousedown")
-            .on("mousedown", function () {
+            .on("mousedown", function() {
                 sideScroll(
-                    $(this).parent().find(".time-cells")[0],
+                    $(this)
+                        .parent()
+                        .find(".time-cells")[0],
                     "left",
                     0,
                     1
@@ -426,9 +428,11 @@ class FlexibleMonthCalendar extends BaseCalendar {
 
         $(".arrow.right")
             .off("mousedown")
-            .on("mousedown", function () {
+            .on("mousedown", function() {
                 sideScroll(
-                    $(this).parent().find(".time-cells")[0],
+                    $(this)
+                        .parent()
+                        .find(".time-cells")[0],
                     "right",
                     0,
                     1
@@ -437,13 +441,13 @@ class FlexibleMonthCalendar extends BaseCalendar {
 
         $(".arrow.left")
             .off("mouseup")
-            .on("mouseup", function () {
+            .on("mouseup", function() {
                 window.clearInterval(slideTimer);
             });
 
         $(".arrow.right")
             .off("mouseup")
-            .on("mouseup", function () {
+            .on("mouseup", function() {
                 window.clearInterval(slideTimer);
             });
 
@@ -467,7 +471,7 @@ class FlexibleMonthCalendar extends BaseCalendar {
                 .toggleClass("disabled", !hasMoreThanTwoEntries);
         }
 
-        const resizeObserver = new ResizeObserver((entries) => {
+        const resizeObserver = new ResizeObserver(entries => {
             for (const entry of entries) {
                 toggleArrowColor(entry.target);
             }
@@ -490,14 +494,14 @@ class FlexibleMonthCalendar extends BaseCalendar {
             $(element)
                 .find("input[type='time']")
                 .off("input propertychange")
-                .on("input propertychange", function () {
+                .on("input propertychange", function() {
                     calendar._updateTimeDayCallback($(this).attr("data-date"));
                 });
         }
 
         $(".plus-sign span")
             .off("click")
-            .on("click", function () {
+            .on("click", function() {
                 const element = $(this)
                     .parent()
                     .parent()
@@ -530,8 +534,8 @@ class FlexibleMonthCalendar extends BaseCalendar {
                     type: "info",
                     buttons: [
                         this._getTranslation("$FlexibleMonthCalendar.yes"),
-                        this._getTranslation("$FlexibleMonthCalendar.no"),
-                    ],
+                        this._getTranslation("$FlexibleMonthCalendar.no")
+                    ]
                 };
                 const getInputs = $(element).find("input");
                 const len = getInputs.length;
@@ -539,7 +543,7 @@ class FlexibleMonthCalendar extends BaseCalendar {
                     getInputs.get(len - 1).value !== "" ||
                     getInputs.get(len - 2).value !== ""
                 ) {
-                    showDialog(removeEntriesDialogOptions, (result) => {
+                    showDialog(removeEntriesDialogOptions, result => {
                         const buttonId = result.response;
                         if (buttonId === 1) {
                             return;
@@ -554,7 +558,7 @@ class FlexibleMonthCalendar extends BaseCalendar {
 
         $(".minus-sign span")
             .off("click")
-            .on("click", function () {
+            .on("click", function() {
                 const element = $(this)
                     .parent()
                     .parent()
@@ -562,7 +566,7 @@ class FlexibleMonthCalendar extends BaseCalendar {
                 removeEntries(element);
             });
 
-        $(".time-cells").mousewheel(function (e, delta) {
+        $(".time-cells").mousewheel(function(e, delta) {
             this.scrollLeft -= delta * 30;
             e.preventDefault();
         });
@@ -577,7 +581,10 @@ class FlexibleMonthCalendar extends BaseCalendar {
             this._getTodayMonth(),
             this._getTodayDate()
         );
-        $(`#${dateKey}`).parent().find(".plus-sign span").trigger("click");
+        $(`#${dateKey}`)
+            .parent()
+            .find(".plus-sign span")
+            .trigger("click");
     }
 
     /**
@@ -949,7 +956,7 @@ class FlexibleMonthCalendar extends BaseCalendar {
             newValues,
             true /*removeEndingInvalids*/
         );
-        if (validatedTimes.some((time) => time === "--:--")) {
+        if (validatedTimes.some(time => time === "--:--")) {
             return true;
         }
         for (let index = 0; index < validatedTimes.length; index++) {
@@ -965,5 +972,5 @@ class FlexibleMonthCalendar extends BaseCalendar {
 }
 
 module.exports = {
-    FlexibleMonthCalendar,
+    FlexibleMonthCalendar
 };
