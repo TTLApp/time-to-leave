@@ -67,7 +67,7 @@ You can also refer to our [development guide](DEVELOPMENT.md) for more informati
 
 ## Get in touch!
 
-Join our [discord channel](https://discord.gg/P3KkEF5) to discuss upcoming features and more.
+Join our [Discord server](https://discord.gg/P3KkEF5) to discuss upcoming features and more.
 
 ## Credits
 
