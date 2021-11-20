@@ -1,0 +1,46 @@
+name: Localization report
+on:
+  pull_request:
+jobs:
+  'Checking':
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Write localization target (with PR changes)
+        run: |
+          python scripts/check_languages.py -raw_report target.json -report_key_mismatch -report_missing_translations
+      - name: Checkout main
+        run:
+          git checkout main
+      - name: Write localization baseline (without PR changes)
+        run: |
+          python scripts/check_languages.py -raw_report baseline.json -report_key_mismatch -report_missing_translations
+      - name: Compare reports
+        id: report
+        run: |
+          python scripts/compare_language_reports.py -output comparison.md -baseline baseline.json -target target.json
+          body=$(cat comparison.md)
+          body="${body//'%'/'%25'}"
+          body="${body//$'\n'/'%0A'}"
+          body="${body//$'\r'/'%0D'}" 
+          echo ::set-output name=log::$body
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Localization report
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ${{ steps.report.outputs.log }}
+          edit-mode: replace

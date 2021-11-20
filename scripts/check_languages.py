@@ -183,9 +183,9 @@ def get_missing_keys(baseline_language : dict, language : dict) -> dict:
             keys = language[scope].keys()
             missing_keys_in_scope = baseline_keys - keys
             if missing_keys_in_scope:
-                missing_keys[scope] = missing_keys_in_scope
+                missing_keys[scope] = list(missing_keys_in_scope)
         else:
-            missing_keys[scope] = {}
+            missing_keys[scope] = []
     return missing_keys
 
 def get_arguments():
@@ -196,6 +196,7 @@ def get_arguments():
     parser.add_argument("-report_key_mismatch", help="Include missing/extra keys", action='store_true')
     parser.add_argument("-report_missing_translations", help="Prints missing string translations", action='store_true')
     parser.add_argument("-link_to_missing", help="Includes a link to the missing translations", action='store_true')
+    parser.add_argument("-raw_report", help="File path for the raw report")
     return parser.parse_args()
 
 def percentage_not_translated(total_strings_for_translation : int, missing_keys : dict) -> float:
@@ -256,7 +257,7 @@ def get_summary_report(total_strings_for_translation : int, link_to_missing : bo
                         get_new_issue_url(k, v)) for k, v in missing_translations.items())
     return output + '\n\n'
 
-class Report:
+class Config:
     def __init__(self, report_summary: bool, link_to_missing: bool, report_key_mismatch: bool, report_missing_translations: bool, output: str):
         self.report_summary = report_summary
         self.link_to_missing = link_to_missing
@@ -264,43 +265,58 @@ class Report:
         self.report_missing_translations = report_missing_translations
         self.output = output
 
+class Report:
+    def __init__(self, config : Config, errors_missing_keys : dict, errors_extra_keys : dict, missing_translations : dict):
+        self.config = config
+        self.errors_missing_keys = errors_missing_keys
+        self.errors_extra_keys = errors_extra_keys
+        self.missing_translations = missing_translations
+    
+    def toJson(self):
+        return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+    
+    def fromJSON(json_data):
+        dictionary = json.loads(json_data)
+        return Report(**dictionary)
+
     # Report in stdout and on the output file (if passed) the errors found
-    def print(self, errors_missing_keys : dict, errors_extra_keys : dict, missing_translations : dict):
+    def generate(self):
         total_strings_for_translation = get_total_strings_for_translation(BASELINE_LANGUAGE)
+        config = self.config
         
-        if self.report_summary:
+        if config.report_summary:
             # +1 for the baseline language (en)
-            print(f'Summary - {len(missing_translations) + 1} languages supported ({total_strings_for_translation} strings)')
+            print(f'Summary - {len(self.missing_translations) + 1} languages supported ({total_strings_for_translation} strings)')
             print("\n".join("- {}: {:.2f}".format(k,
                 percentage_translated(total_strings_for_translation, v)) 
-                    for k, v in missing_translations.items()))
+                    for k, v in self.missing_translations.items()))
 
-        if self.report_key_mismatch and errors_missing_keys:
+        if config.report_key_mismatch and self.errors_missing_keys:
             print('Missing Keys/Scopes:')
-            print(errors_missing_keys)
+            print(self.errors_missing_keys)
 
-        if self.report_key_mismatch and errors_extra_keys:
+        if config.report_key_mismatch and self.errors_extra_keys:
             print('Extra Keys/Scopes:')
-            print(errors_extra_keys)
+            print(self.errors_extra_keys)
 
-        languages_with_missing_keys = dict((k, v) for k, v in missing_translations.items() if v)
-        if self.report_missing_translations and languages_with_missing_keys:
+        languages_with_missing_keys = dict((k, v) for k, v in self.missing_translations.items() if v)
+        if config.report_missing_translations and languages_with_missing_keys:
             print('Missing Translations')
             print(json.dumps(languages_with_missing_keys, indent=2))
 
-        if self.output:
-            with open(self.output, 'w') as f:
-                if self.report_summary:
+        if config.output:
+            with open(config.output, 'w') as f:
+                if config.report_summary:
                     # +1 for the baseline language (en)
-                    f.write(f'# Summary - {len(missing_translations) + 1} languages supported ({total_strings_for_translation} strings)\n')
-                    f.write(get_summary_report(total_strings_for_translation, self.link_to_missing, missing_translations))
-                if self.report_key_mismatch and errors_missing_keys:
+                    f.write(f'# Summary - {len(self.missing_translations) + 1} languages supported ({total_strings_for_translation} strings)\n')
+                    f.write(get_summary_report(total_strings_for_translation, config.link_to_missing, self.missing_translations))
+                if config.report_key_mismatch and self.errors_missing_keys:
                     f.write('# Missing Keys/Scopes:\n')
-                    f.write(get_report_from_error(total_strings_for_translation, errors_missing_keys))
-                if self.report_key_mismatch and errors_extra_keys:
+                    f.write(get_report_from_error(total_strings_for_translation, self.errors_missing_keys))
+                if config.report_key_mismatch and self.errors_extra_keys:
                     f.write('# Extra Keys/Scopes:\n')
-                    f.write(get_report_from_error(total_strings_for_translation, errors_extra_keys))
-                if self.report_missing_translations and languages_with_missing_keys:
+                    f.write(get_report_from_error(total_strings_for_translation, self.errors_extra_keys))
+                if config.report_missing_translations and languages_with_missing_keys:
                     f.write('# Missing Translations:\n')
                     f.write(get_report_from_error(total_strings_for_translation, languages_with_missing_keys))
 
@@ -328,8 +344,13 @@ def main():
         language_error = compare_language(locale, baseline_language, language)
         missing_translations[locale] = language_error
 
-    report = Report(args.report_summary, args.link_to_missing, args.report_key_mismatch, args.report_missing_translations, output)
-    report.print(errors_missing_keys, errors_extra_keys, missing_translations)
+    config = Config(args.report_summary, args.link_to_missing, args.report_key_mismatch, args.report_missing_translations, output)
+    report = Report(config, errors_missing_keys, errors_extra_keys, missing_translations)
+    report.generate()
+    
+    if args.raw_report:
+        with open(args.raw_report, 'w') as f:
+            f.write(report.toJson())
 
 if __name__ == "__main__":
     main()
