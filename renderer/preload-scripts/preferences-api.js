@@ -1,8 +1,8 @@
 'use strict';
 
 const { ipcRenderer } = require('electron');
-const config = require('../../src/configs/app.config');
-const { getUserPreferencesPromise } = require('../../js/user-preferences.js');
+import * as config from '../../src/configs/app.config.js';
+import { getUserPreferencesPromise } from '../../js/user-preferences.js';
 
 function notifyNewPreferences(preferences)
 {

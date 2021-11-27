@@ -1,6 +1,6 @@
 'use strict';
 
-const { getTranslationInLanguageData } = require('../renderer/i18n-translator-node-copy.js');
+import { getTranslationInLanguageData } from '../renderer/i18n-translator.js';
 
 const dayAbbrs = [ 'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat' ];
 const monthNames = [ 'january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december' ];
@@ -26,7 +26,7 @@ function getMonthName(languageData, monthIndex)
     return getTranslationInLanguageData(languageData, `$DateUtil.${monthNames[monthIndex]}`);
 }
 
-module.exports = {
+export {
     getDayAbbr,
     getMonthName
 };

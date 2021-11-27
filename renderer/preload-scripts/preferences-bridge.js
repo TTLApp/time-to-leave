@@ -1,8 +1,9 @@
+/*eslint-disable no-global-assign*/
 'use strict';
 
-const { contextBridge } = require('electron');
-const { preferencesApi } = require('./preferences-api.js');
+// Using esm module to be able to mix node 'require' and ES6 'import' statements
+// while we don't move to a newer electron+node system that has this by default
+// See https://github.com/electron/electron/issues/21457.
 
-contextBridge.exposeInMainWorld(
-    'mainApi', preferencesApi
-);
+require = require('esm')(module);
+module.exports = require('./esm-preferences-bridge.js');

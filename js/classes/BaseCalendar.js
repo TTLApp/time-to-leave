@@ -2,23 +2,24 @@
 
 const Store = require('electron-store');
 const { ipcRenderer } = require('electron');
-const {
+
+import {
     hourMinToHourFormatted,
     isNegative,
     subtractTime,
     sumTime,
     validateTime
-} = require('../time-math.js');
-const {
+} from '../time-math.js';
+import {
     formatDayId,
     displayWaiverWindow
-} = require('../workday-waiver-aux.js');
-const { showDay, switchCalendarView } = require('../user-preferences.js');
-const { getDateStr, getMonthLength } = require('../date-aux.js');
-const { getMonthName } = require('../date-to-string-util.js');
-const { computeAllTimeBalanceUntilAsync } = require('../time-balance.js');
-const { generateKey } = require('../date-db-formatter.js');
-const { getTranslationInLanguageData } = require('../../renderer/i18n-translator-node-copy.js');
+} from '../workday-waiver-aux.js';
+import { showDay, switchCalendarView } from '../user-preferences.js';
+import { getDateStr, getMonthLength } from '../date-aux.js';
+import { getMonthName } from '../date-to-string-util.js';
+import { computeAllTimeBalanceUntilAsync } from '../time-balance.js';
+import { generateKey } from '../date-db-formatter.js';
+import { getTranslationInLanguageData } from '../../renderer/i18n-translator.js';
 
 // Global values for calendar
 const flexibleStore = new Store({name: 'flexible-store'});
@@ -743,6 +744,6 @@ class BaseCalendar
     }
 }
 
-module.exports = {
+export {
     BaseCalendar
 };

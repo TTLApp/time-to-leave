@@ -1,9 +1,10 @@
 'use strict';
 
 const { ipcRenderer } = require('electron');
-const { getDefaultWidthHeight} = require('../user-preferences.js');
-const { FlexibleMonthCalendar } = require('./FlexibleMonthCalendar.js');
-const { FlexibleDayCalendar } = require('./FlexibleDayCalendar.js');
+
+import { getDefaultWidthHeight} from '../user-preferences.js';
+import { FlexibleMonthCalendar } from './FlexibleMonthCalendar.js';
+import { FlexibleDayCalendar } from './FlexibleDayCalendar.js';
 
 class CalendarFactory
 {
@@ -54,6 +55,6 @@ class CalendarFactory
     }
 }
 
-module.exports = {
+export {
     CalendarFactory
 };

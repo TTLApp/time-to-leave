@@ -24,7 +24,7 @@ function displayWaiverWindow(waiverDay)
     ipcRenderer.send('SET_WAIVER_DAY', waiverDay);
 }
 
-module.exports = {
+export {
     formatDayId,
     displayWaiverWindow
 };

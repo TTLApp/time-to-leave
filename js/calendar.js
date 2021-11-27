@@ -1,12 +1,10 @@
 'use strict';
 
-import { applyTheme } from '../renderer/themes.js';
-
 const { ipcRenderer } = require('electron');
-const {
-    getUserPreferences
-} = require('./js/user-preferences.js');
-const { CalendarFactory } = require('./js/classes/CalendarFactory.js');
+
+import { getUserPreferences } from './user-preferences.js';
+import { CalendarFactory } from './classes/CalendarFactory.js';
+import { applyTheme } from '../renderer/themes.js';
 
 // Global values for calendar
 let calendar = undefined;

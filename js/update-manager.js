@@ -1,10 +1,11 @@
 'use strict';
 
 const { app, net, shell, dialog, BrowserWindow } = require('electron');
-const { getDateStr } = require('./date-aux.js');
+
 const isOnline = require('is-online');
 const Store = require('electron-store');
 const { getCurrentTranslation } = require('../src/configs/i18next.config');
+import { getDateStr } from './date-aux.js';
 
 function shouldCheckForUpdates()
 {

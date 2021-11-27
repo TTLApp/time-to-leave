@@ -1,16 +1,16 @@
 'use strict';
 
-const {
+import {
     isNegative,
     multiplyTime,
     subtractTime,
     sumTime,
     validateTime
-} = require('../time-math.js');
-const { getDateStr, getMonthLength } = require('../date-aux.js');
-const { generateKey } = require('../date-db-formatter.js');
-const { showDialog } = require('../window-aux.js');
-const { BaseCalendar } = require('./BaseCalendar.js');
+} from '../time-math.js';
+import { getDateStr, getMonthLength } from '../date-aux.js';
+import { generateKey } from '../date-db-formatter.js';
+import { showDialog } from '../window-aux.js';
+import { BaseCalendar } from './BaseCalendar.js';
 
 class FlexibleDayCalendar extends BaseCalendar
 {
@@ -711,6 +711,6 @@ class FlexibleDayCalendar extends BaseCalendar
     }
 }
 
-module.exports = {
+export {
     FlexibleDayCalendar
 };

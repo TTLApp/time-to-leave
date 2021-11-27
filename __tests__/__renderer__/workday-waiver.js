@@ -28,6 +28,7 @@ const {
     initializeHolidayInfo,
     refreshDataForTest
 } = require('../../src/workday-waiver');
+import { showDialog } from '../../js/window-aux.js';
 
 jest.mock('../../renderer/i18n-translator.js', () => ({
     translatePage: jest.fn().mockReturnThis(),
@@ -199,7 +200,6 @@ describe('Test Workday Waiver Window', function()
         test('Waiver was deleted', () =>
         {
             prepareMockup();
-            const { showDialog } = require('../../js/window-aux');
             addTestWaiver('2020-07-16', 'some reason');
             const deleteBtn = document.querySelectorAll('#waiver-list-table .delete-btn')[0];
             showDialog.mockImplementation((options, cb) =>

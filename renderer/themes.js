@@ -1,6 +1,6 @@
 'use strict';
 
-// TODO: this is duplicated in js/themes.js and in preferences.html.
+// TODO: this is duplicated in preferences.html.
 // Please concentrate it in a single place, probably a JSON.
 const themeOptions = ['system-default', 'light', 'dark', 'cadent-star'];
 

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
-const {
+import {
     isNegative,
     multiplyTime,
     minutesToHourFormatted,
@@ -10,7 +10,7 @@ const {
     validateTime,
     hourToMinutes,
     diffDays
-} = require('../../js/time-math');
+} from '../../js/time-math.js';
 
 const date1 = new Date(-349891200000);
 const date2 = new Date(1581121289763);

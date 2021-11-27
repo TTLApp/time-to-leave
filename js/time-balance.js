@@ -1,12 +1,13 @@
 'use strict';
 
 const Store = require('electron-store');
-const {
+
+import {
     subtractTime,
     sumTime
-} = require('./time-math.js');
-const { getDateStr } = require('./date-aux.js');
-const { getUserPreferences, showDay } = require('./user-preferences.js');
+} from './time-math.js';
+import { getDateStr } from './date-aux.js';
+import { getUserPreferences, showDay } from './user-preferences.js';
 
 // Global values for calendar
 const flexibleStore = new Store({ name: 'flexible-store' });
@@ -202,8 +203,7 @@ async function computeAllTimeBalanceUntilAsync(limitDate)
         }, 1);
     });
 }
-
-module.exports = {
+export {
     computeAllTimeBalanceUntilAsync,
     computeAllTimeBalanceUntil,
     getFirstInputInDb

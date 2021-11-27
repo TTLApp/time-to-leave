@@ -1,21 +1,21 @@
 'use strict';
 
-const {
+import {
     isNegative,
     multiplyTime,
     subtractTime,
     sumTime,
     validateTime
-} = require('../time-math.js');
-const { getMonthLength } = require('../date-aux.js');
-const { generateKey } = require('../date-db-formatter.js');
-const {
+} from '../time-math.js';
+import { getMonthLength } from '../date-aux.js';
+import { generateKey } from '../date-db-formatter.js';
+import {
     formatDayId,
     displayWaiverWindow
-} = require('../workday-waiver-aux.js');
-const { showDialog } = require('../window-aux.js');
-const { getDayAbbr } = require('../date-to-string-util.js');
-const { BaseCalendar } = require('./BaseCalendar.js');
+} from '../workday-waiver-aux.js';
+import { showDialog } from '../window-aux.js';
+import { getDayAbbr } from '../date-to-string-util.js';
+import { BaseCalendar } from './BaseCalendar.js';
 
 class FlexibleMonthCalendar extends BaseCalendar
 {
@@ -797,6 +797,6 @@ class FlexibleMonthCalendar extends BaseCalendar
     }
 }
 
-module.exports = {
+export {
     FlexibleMonthCalendar
 };

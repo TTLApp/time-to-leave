@@ -3,8 +3,9 @@
 
 const Store = require('electron-store');
 const fs = require('fs');
-const { validateTime } = require('./time-math.js');
-const { generateKey } = require('./date-db-formatter');
+
+import { validateTime } from './time-math.js';
+import { generateKey } from './date-db-formatter.js';
 
 /**
  * Returns the database (only flexible calendar entries) as an array of:

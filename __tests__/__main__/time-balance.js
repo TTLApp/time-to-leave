@@ -2,11 +2,11 @@
 'use strict';
 
 const Store = require('electron-store');
-const {
+import {
     computeAllTimeBalanceUntil,
     getFirstInputInDb
-} = require('../../js/time-balance');
-const { resetPreferences } = require('../../js/user-preferences');
+} from '../../js/time-balance.js';
+import { resetPreferences } from '../../js/user-preferences.js';
 
 const flexibleStore = new Store({name: 'flexible-store'});
 const waivedWorkdays = new Store({name: 'waived-workdays'});

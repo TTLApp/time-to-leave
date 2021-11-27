@@ -11,19 +11,27 @@ jobs:
           python-version: '3.9'
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          path: pr
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          path: main
+          ref: main
       - name: Write localization target (with PR changes)
         run: |
-          python scripts/check_languages.py -raw_report target.json -report_key_mismatch -report_missing_translations
-      - name: Checkout main
-        run:
-          git checkout main
+          cd pr
+          python scripts/check_languages.py -raw_report ../target.json -report_key_mismatch -report_missing_translations
+          cd -
       - name: Write localization baseline (without PR changes)
         run: |
-          python scripts/check_languages.py -raw_report baseline.json -report_key_mismatch -report_missing_translations
-      - name: Compare reports
+          cd main
+          python scripts/check_languages.py -raw_report ../baseline.json -report_key_mismatch -report_missing_translations
+          cd -
+      - name: Compare reports using main
         id: report
         run: |
-          python scripts/compare_language_reports.py -output comparison.md -baseline baseline.json -target target.json
+          python main/scripts/compare_language_reports.py -output comparison.md -baseline baseline.json -target target.json
           body=$(cat comparison.md)
           body="${body//'%'/'%25'}"
           body="${body//$'\n'/'%0A'}"

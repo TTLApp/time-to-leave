@@ -1,20 +1,19 @@
 'use strict';
 
 const { app, BrowserWindow, clipboard, dialog, shell } = require('electron');
-const { appConfig, getDetails } = require('./app-config.js');
-const { checkForUpdates } = require('./update-manager');
-const {
-    getSavedPreferences,
-} = require('./saved-preferences.js');
-const { importDatabaseFromFile, exportDatabaseToFile } = require('./import-export.js');
-const { notify } = require('./notification');
-const { savePreferences } = require('./user-preferences.js');
 const path = require('path');
 const Store = require('electron-store');
+
+const { checkForUpdates } = require('./update-manager');
+const { getSavedPreferences } = require('./saved-preferences.js');
+const { importDatabaseFromFile, exportDatabaseToFile } = require('./import-export.js');
+const { notify } = require('./notification');
 const { getCurrentTranslation } = require('../src/configs/i18next.config');
 let { openWaiverManagerWindow, prefWindow } = require('./windows');
 
-const { getCurrentDateTimeStr } = require('./date-aux');
+import { appConfig, getDetails } from './app-config.js';
+import { savePreferences } from './user-preferences.js';
+import { getCurrentDateTimeStr } from './date-aux.js';
 
 function getMainMenuTemplate(mainWindow)
 {

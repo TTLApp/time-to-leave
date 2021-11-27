@@ -1,11 +1,11 @@
 'use strict';
 
 const { app, BrowserWindow, dialog, ipcMain, Menu, shell, Tray } = require('electron');
-const { migrateFixedDbToFlexible } = require('./import-export.js');
-const { getDefaultWidthHeight, getUserPreferences } = require('./user-preferences.js');
 const path = require('path');
+const Store = require('electron-store');
+
 const { checkForUpdates, shouldCheckForUpdates } = require('./update-manager');
-const { appConfig, getDetails } = require('./app-config');
+const { migrateFixedDbToFlexible } = require('./import-export.js');
 const {
     getContextMenuTemplate,
     getDockMenuTemplate,
@@ -16,7 +16,9 @@ const {
 } = require('./menus');
 const { getCurrentTranslation } = require('../src/configs/i18next.config');
 let { contextMenu, tray } = require('./windows.js');
-const Store = require('electron-store');
+
+import { getDefaultWidthHeight, getUserPreferences } from './user-preferences.js';
+import { appConfig, getDetails } from './app-config.js';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.

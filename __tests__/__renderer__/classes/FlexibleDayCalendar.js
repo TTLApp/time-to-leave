@@ -18,7 +18,7 @@ window.$.fn.extend({
     }
 });
 
-jest.mock('../../../renderer/i18n-translator-node-copy.js', () => ({
+jest.mock('../../../renderer/i18n-translator.js', () => ({
     translatePage: jest.fn().mockReturnThis(),
     getTranslationInLanguageData: jest.fn().mockReturnThis()
 }));

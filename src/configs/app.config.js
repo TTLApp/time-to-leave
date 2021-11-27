@@ -51,9 +51,12 @@ function getLanguageName(code)
     return languages[code];
 }
 
-module.exports = {
-    fallbackLng: 'en',
-    namespace: 'translation',
+const fallbackLng = 'es';
+const namespace = 'translation';
+
+export {
+    fallbackLng,
+    namespace,
     getLanguageMap,
     getLanguagesCodes,
     getLanguageName
