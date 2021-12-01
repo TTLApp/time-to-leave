@@ -186,7 +186,7 @@
         "loaded-waivers-holidays": "공휴일 정보를 등록했습니다.",
         "nav-holiday": "공휴일",
         "no": "아니오",
-        "no-working-days-on-range": "휴가를 추가할 수 없습니다. 휴가 내에 어떤 근무일도 포함되지 않습니다.",
+        "no-working-days-on-range": "휴가를 추가할 수 없습니다. 휴가 내에 근무일을 포함할 수 없습니다.",
         "on-working-day": "근무일 설정 여부",
         "reason": "사유",
         "remove-waiver": "일정을 변경하려면 먼저 기존 휴가 정보를 제거해 주세요.",
