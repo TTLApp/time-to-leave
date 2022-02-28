@@ -73,8 +73,7 @@
     "is-online": "^9.0.1",
     "jquery": "^3.6.0",
     "jquery-mousewheel": "^3.1.13",
-    "node-notifier": "^10.0.0",
-    "popper.js": "^1.16.1"
+    "node-notifier": "^10.0.0"
   },
   "engines": {
     "node": ">=14.15.5",
