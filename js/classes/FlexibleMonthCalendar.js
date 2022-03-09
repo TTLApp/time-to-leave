@@ -257,7 +257,8 @@ class FlexibleMonthCalendar extends BaseCalendar
         const monthLength = getMonthLength(this._getCalendarYear(), this._getCalendarMonth());
         const balanceRowPosition = this._getBalanceRowPosition();
 
-        for (let day = 1; day <= monthLength; ++day)
+        let day;
+        for (day = 1; day <= monthLength; ++day)
         {
             if (!this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day) && this._getHideNonWorkingDays())
             {
@@ -265,11 +266,13 @@ class FlexibleMonthCalendar extends BaseCalendar
             }
 
             html += this._getInputsRowCode(this._getCalendarYear(), this._getCalendarMonth(), day);
-            if (day === balanceRowPosition)
-            {
-                html += this._getBalanceRowCode();
-            }
         }
+
+        if (day >= balanceRowPosition)
+        {
+            html += this._getBalanceRowCode();
+        }
+
         return html;
     }
 
