@@ -17,10 +17,7 @@ function getFs()
     return fs;
 }
 
-function isValidLocale(locale)
-{
-    return getLanguagesCodes().indexOf(locale) !== -1;
-}
+const isValidLocale = (locale) => getLanguagesCodes().indexOf(locale) !== -1
 
 const defaultPreferences = {
     'count-today': false,
@@ -326,10 +323,7 @@ function repetitionIsEnabled()
 /*
  * Resets the preferences to their default value.
  */
-function resetPreferences()
-{
-    savePreferences(defaultPreferences);
-}
+const resetPreferences = () => savePreferences(defaultPreferences)
 
 export {
     defaultPreferences,
