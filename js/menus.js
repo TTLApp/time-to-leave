@@ -15,9 +15,7 @@ import { appConfig, getDetails } from './app-config.js';
 import { savePreferences } from './user-preferences.js';
 import { getCurrentDateTimeStr } from './date-aux.js';
 
-function getMainMenuTemplate(mainWindow)
-{
-    return [
+export const getMainMenuTemplate = (mainWindow) => [
         {
             label: getCurrentTranslation('$Menu.workday-waiver-manager'),
             id: 'workday-waiver-manager',
@@ -35,12 +33,9 @@ function getMainMenuTemplate(mainWindow)
                 app.quit();
             }
         }
-    ];
-}
+    ]
 
-function getContextMenuTemplate(mainWindow)
-{
-    return [
+export const getContextMenuTemplate = (mainWindow) => [
         {
             label: getCurrentTranslation('$Menu.punch-time'), click: function()
             {
@@ -63,12 +58,10 @@ function getContextMenuTemplate(mainWindow)
                 app.quit();
             }
         }
-    ];
-}
+    ]
 
-function getDockMenuTemplate(mainWindow)
-{
-    return [
+export const getDockMenuTemplate = (mainWindow) => 
+[
         {
             label: getCurrentTranslation('$Menu.punch-time'), click: function()
             {
@@ -79,12 +72,10 @@ function getDockMenuTemplate(mainWindow)
                 notify(`${getCurrentTranslation('$Menu.punched-time')} ${now.toTimeString().slice(0,5)}`);
             }
         }
-    ];
-}
+    ]
 
-function getEditMenuTemplate(mainWindow)
-{
-    return [
+export const getEditMenuTemplate = (mainWindow) => 
+[
         {
             label: getCurrentTranslation('$Menu.cut'),
             accelerator: 'Command+X',
@@ -282,12 +273,10 @@ function getEditMenuTemplate(mainWindow)
                 }
             }
         },
-    ];
-}
+    ]
 
-function getViewMenuTemplate()
-{
-    return [
+export const getViewMenuTemplate = () => 
+[
         {
             label: getCurrentTranslation('$Menu.reload'),
             accelerator: 'CommandOrControl+R',
@@ -304,12 +293,10 @@ function getViewMenuTemplate()
                 BrowserWindow.getFocusedWindow().toggleDevTools();
             }
         }
-    ];
-}
+    ]
 
-function getHelpMenuTemplate()
-{
-    return [
+export const getHelpMenuTemplate = () =>
+[
         {
             label: getCurrentTranslation('$Menu.ttl-github'),
             click()
@@ -362,14 +349,4 @@ function getHelpMenuTemplate()
                 });
             }
         }
-    ];
-}
-
-module.exports = {
-    getContextMenuTemplate,
-    getDockMenuTemplate,
-    getEditMenuTemplate,
-    getHelpMenuTemplate,
-    getMainMenuTemplate,
-    getViewMenuTemplate
-};
+    ]
