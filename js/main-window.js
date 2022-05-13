@@ -24,10 +24,7 @@ import { appConfig, getDetails } from './app-config.js';
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow = null;
 
-function getMainWindow()
-{
-    return mainWindow;
-}
+const getMainWindow = () => mainWindow
 
 function createMenu()
 {
