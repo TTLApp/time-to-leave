@@ -15,10 +15,7 @@ function hourMinToHourFormatted(hours, minutes)
 /**
  * Determines if a time string holds a negative value
  */
-function isNegative(str)
-{
-    return str[0] === '-';
-}
+const isNegative = (str) => str[0] === '-'
 
 /**
  * Converts hour to min.
