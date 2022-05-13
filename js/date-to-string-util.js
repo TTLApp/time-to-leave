@@ -10,10 +10,7 @@ const monthNames = [ 'january', 'february', 'march', 'april', 'may', 'june', 'ju
  * @param dayIndex Week day index, considering a week starting on sunday
  * @return The abbreviation (3-letters) for the week day
  */
-function getDayAbbr(languageData, dayIndex)
-{
-    return getTranslationInLanguageData(languageData, `$DateUtil.${dayAbbrs[dayIndex]}`);
-}
+export const getDayAbbr = (languageData, dayIndex) => getTranslationInLanguageData(languageData, `$DateUtil.${dayAbbrs[dayIndex]}`)
 
 
 /**
@@ -21,12 +18,4 @@ function getDayAbbr(languageData, dayIndex)
  * @param monthIndex Month index, considering 0 as January
  * @return The month name for the passed index
  */
-function getMonthName(languageData, monthIndex)
-{
-    return getTranslationInLanguageData(languageData, `$DateUtil.${monthNames[monthIndex]}`);
-}
-
-export {
-    getDayAbbr,
-    getMonthName
-};
+export const getMonthName(languageData, monthIndex) => getTranslationInLanguageData(languageData, `$DateUtil.${monthNames[monthIndex]}`)
