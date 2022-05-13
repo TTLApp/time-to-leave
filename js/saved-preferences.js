@@ -5,10 +5,7 @@ const { app, ipcMain } = require('electron');
 
 let savedPreferences = null;
 
-function getSavedPreferences()
-{
-    return savedPreferences;
-}
+export const getSavedPreferences = () => savedPreferences
 
 ipcMain.on('PREFERENCE_SAVE_DATA_NEEDED', (event, preferences) =>
 {
@@ -21,7 +18,3 @@ ipcMain.on('PREFERENCE_SAVE_DATA_NEEDED', (event, preferences) =>
         if (err) return console.log('something went wrong loading', err);
     });
 });
-
-module.exports = {
-    getSavedPreferences
-};
