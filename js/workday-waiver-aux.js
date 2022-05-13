@@ -6,7 +6,7 @@ const { ipcRenderer } = require('electron');
  * @param {string} dayId - day in '<year>-<month - 1>-<day>' format
  * @returns {string} - day in 'YYYY-MM-DD' format
  */
-function formatDayId(dayId)
+const formatDayId = (dayId) => 
 {
     const [year, month, day] = dayId.split('-').map((i) => { return parseInt(i); });
     // Use UTC date to avoid problems with time zone
@@ -19,10 +19,7 @@ function formatDayId(dayId)
  *
  * @param {string} waiverDay - day in 'YYYY-MM-DD' format
  */
-function displayWaiverWindow(waiverDay)
-{
-    ipcRenderer.send('SET_WAIVER_DAY', waiverDay);
-}
+const displayWaiverWindow = (waiverDay) => ipcRenderer.send('SET_WAIVER_DAY', waiverDay)
 
 export {
     formatDayId,
