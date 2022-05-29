@@ -34,6 +34,7 @@ function notify(msg, actions)
             sound: true, // Only Notification Center or Windows Toasters
             wait: true,
             actions: actions,
+            appID: 'Time To Leave'
         }, (error, action) =>
         {
             if (error) reject(error);
