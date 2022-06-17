@@ -44,7 +44,7 @@
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.15.4",
     "@jest-runner/electron": "^3.0.0",
-    "electron": "^11.5.0",
+    "electron": "^15.5.5",
     "electron-mocha": "^10.1.0",
     "electron-packager": "^15.4.0",
     "electron-reloader": "^1.2.1",
