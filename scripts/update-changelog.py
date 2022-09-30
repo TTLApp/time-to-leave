@@ -1,6 +1,7 @@
 import argparse
 import sys
 import re
+from pathlib import Path
 
 # Parses a comment that must follow the strict rule of being:
 # <trigger expression>
@@ -76,8 +77,7 @@ def update_changelog(changelog_filename: str, new_change: any, new_user: any):
         lines = file_handler.readlines()
         new_file_content = get_updated_file_content(lines, new_change, new_user)
 
-    with open(changelog_filename, "w") as file_handler:
-        file_handler.write('\n'.join(new_file_content))
+    Path(changelog_filename).write_text('\n'.join(new_file_content))
 
 def get_arguments():
     parser = argparse.ArgumentParser()

@@ -3,6 +3,7 @@ import json
 import os
 import re
 from math import floor
+from pathlib import Path
 from urllib.parse import urlencode, unquote, urlparse, parse_qsl, ParseResult
 
 LOCALES_PATH = 'locales/'
@@ -163,7 +164,7 @@ def get_keys_to_ignore(locale : str, scope : str) -> list:
 # Compare two languages, passing over all scopes, returning the erros for the language
 def compare_language(locale : str, baseline_language : dict, language : dict) -> dict:
     scopes = [x for x in baseline_language]
-    errors = dict()
+    errors = {}
     for scope in scopes:
         if scope in language:
             keys_to_ignore = get_keys_to_ignore(locale, scope)
@@ -176,7 +177,7 @@ def compare_language(locale : str, baseline_language : dict, language : dict) ->
 # Check if there's any missing key or scope in language, returning the erros
 def get_missing_keys(baseline_language : dict, language : dict) -> dict:
     scopes = [x for x in baseline_language]
-    missing_keys = dict()
+    missing_keys = {}
     for scope in scopes:
         baseline_keys = baseline_language[scope].keys()
         if scope in language:
@@ -327,8 +328,8 @@ def main():
 
     baseline_language = get_language(BASELINE_LANGUAGE)
 
-    errors_missing_keys = dict()
-    errors_extra_keys = dict()
+    errors_missing_keys = {}
+    errors_extra_keys = {}
 
     for locale in locales:
         mising_keys = get_missing_keys(baseline_language, get_language(locale))
@@ -338,7 +339,7 @@ def main():
         if extra_keys:
             errors_extra_keys[locale] = extra_keys
 
-    missing_translations = dict()
+    missing_translations = {}
     for locale in locales:
         language = get_language(locale)
         language_error = compare_language(locale, baseline_language, language)
@@ -349,8 +350,7 @@ def main():
     report.generate()
     
     if args.raw_report:
-        with open(args.raw_report, 'w') as f:
-            f.write(report.toJson())
+        Path(args.raw_report).write_text(report.toJson())
 
 if __name__ == "__main__":
     main()

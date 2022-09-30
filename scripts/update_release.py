@@ -66,7 +66,7 @@ class ChangeLogParser:
     users = []
 
     def __init__(self, changelog_file: str, version: str = None):
-        self._file_path = str(changelog_file)
+        self._file_path = changelog_file
         self.version = version
 
     def parse(self):

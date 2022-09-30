@@ -27,8 +27,8 @@ class ComparisonReport:
         return set(filter(lambda x: x, out))
 
     def process(baseline_info : dict, target_info : dict):
-        fixed_report = dict()
-        introduced_report = dict()
+        fixed_report = {}
+        introduced_report = {}
         for locale in set(baseline_info | target_info):
             baseline = ComparisonReport.flattenize_keys(baseline_info.get(locale, {}))
             target = ComparisonReport.flattenize_keys(target_info.get(locale, {}))
