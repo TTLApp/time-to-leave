@@ -115,9 +115,9 @@
         "yes-please": "כן, בבקשה"
     },
     "$Notification": {
-        "punch-reminder": "Don't forget to punch in!",
-        "time-to-leave": "Hey there! I think it's time to leave.",
-        "dismiss-for-today": "Dismiss for today"
+        "punch-reminder": "אל תשכח לנקוב בזמן!",
+        "time-to-leave": "היי! אני חושב שזה זמן לצאת.",
+        "dismiss-for-today": "דחה להיום"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Allow recurring notifications",
