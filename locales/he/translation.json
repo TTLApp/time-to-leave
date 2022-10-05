@@ -29,18 +29,18 @@
         "wed": "יום רביעי"
     },
     "$FlexibleDayCalendar": {
-        "current-day": "Go to Current Day",
-        "day-total": "Day Total",
-        "entry": "Entry",
-        "entry-removal-confirmation": "Are you sure you want to remove the last entry row?",
-        "leave-by": "You should leave by:",
-        "next-day": "Next Day",
-        "no": "No",
-        "not-a-working-day": "Not a working day",
-        "previous-day": "Previous Day",
-        "remove-entry": "Remove entry",
-        "waived-day": "Waived day",
-        "yes": "Yes"
+        "current-day": "מעבר ליום הנוכחי",
+        "day-total": "מאזן יומי",
+        "entry": "רשומה",
+        "entry-removal-confirmation": "האם את/ה בטוח/ה שאת/ה רוצה להסיר את הרשומה האחרונה?",
+        "leave-by": "אתה צריך לעזוב ב:",
+        "next-day": "יום הבא",
+        "no": "לא",
+        "not-a-working-day": "לא יום עבודה",
+        "previous-day": "יום קודם",
+        "remove-entry": "הסרת רשומה",
+        "waived-day": "יום שוויתרת עליו",
+        "yes": "כן"
     },
     "$FlexibleMonthCalendar": {
         "add-waiver-day": "Add a waiver for this day",
