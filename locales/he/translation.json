@@ -158,12 +158,12 @@
         "workingDays": "ימי עבודה"
     },
     "$UpdateManager": {
-        "dismissBtn": "Dismiss",
-        "downloadBtn": "Download latest version",
-        "old-version-msg": "You are using an old version of TTL and missing out on a lot of new cool things!",
-        "remindBtn": "Remind me later",
-        "title": "TTL Check for updates",
-        "upto-date-msg": "Your TTL is up to date."
+        "dismissBtn": "לפטור",
+        "downloadBtn": "הורד את הגרסה העדכנית ביותר",
+        "old-version-msg": "אתה משתמש בגרסה ישנה של TTL ואתה מפסיד הרבה דברים מגניבים!",
+        "remindBtn": "תזכיר לי מאוחר יותר",
+        "title": "TTL בדוק עדכונים",
+        "upto-date-msg": "גרסת TTL מעודכנת."
     },
     "$WorkdayWaiver": {
         "add-waiver": "Add Waiver",
