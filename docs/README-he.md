@@ -1,4 +1,4 @@
-<div align="center">
+<div align="center" dir="rtl">
   <img src="assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>עקוב אחרי שעות עבודה וקבל התראות כאשר הגיע הזמן לעזוב את המשרד ולהתחיל לחיות</p>
@@ -25,6 +25,7 @@
 <a href="docs/README-ru-RU.md"><img src="https://img.shields.io/badge/ru-%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9-purple" alt="Документация приложения на русском языке"></a>
 <a href="docs/README-fa-IR.md"><img src="https://img.shields.io/badge/fa--IR-Persian-purple" alt="مستندات برنامه به زبان فارسی"></a>
 <a href="docs/README-bn.md"><img src="https://img.shields.io/badge/bn-বাংলা-purple" alt="এই নথিও পাওয়া যায় বাংলায়"></a>
+<a href="docs/README-he.md"><img src="https://img.shields.io/badge/he-Hebrew-purple" alt="מסמך זה כתוב גם בעברית"></a>
 <br/>
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
@@ -43,37 +44,39 @@
 
 ---
 
-Log the time you started working today, and the program will compute what time you should leave the office, considering the time you spent on lunch. When it's time, the program will notify you.
+<div dir="rtl">
+רשום את הזמן שהתחלת לעבוד היום, והתוכנה תחשב מתי אתה צריך לעזוב את המשרד, בהתחשב בזמן שאתה מבלה בו לארוחת צהריים. כשיגיע הזמן, התוכנה תתן לך התראה.
 
 <img src="./docs/images/notification.jpg" alt="Time to Leave Notification">
 
-You can control the preferences, stating your working days, how many hours you work a day and if you want to receive a notification or not.
+אפשר לשלוט בהעדפות, לבחור את ימי העבודה שלך, כמה שעות אתה עובד ביום ואם אתה רוצה לקבל התראות או לא.
 
 <img src="./docs/images/preferences.jpg" alt="Time to Leave Preferences">
 
-You can also add waivers on the days you did not work.
+אתה גם יכול להוסיף ויתורים על ימים שבהם אתה לא עבדת.
 
 <img src="./docs/images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
-## How to install TTL
+## איך להתקין את TTL
 
-Time to Leave works on MacOS, Windows and Linux, and you can download the desired version from [the latest release](https://github.com/thamara/time-to-leave/releases/latest).
+Time to Leave רץ על MacOS, Windows ו-Linux, וגם אפשר להוריד גרסה מבוקשת מ-[גרסה האחרונה](https://github.com/thamara/time-to-leave/releases/latest).
 
-## How to build and contribute to TTL
+## איך לבנות ולתרום ל-TTL
 
-If you want to help, read our [contributing](CONTRIBUTING.md) guidelines.
-You can also refer to our [development guide](DEVELOPMENT.md) for more information.
+אם אתם רוצים לעזור, תקראו את מדריך [התרומה](CONTRIBUTING.md).
+אפשר גם להסתכל על [מדריך הפיתוח](DEVELOPMENT.md) שלנו בשביל עוד מידע.
 
-## Get in touch!
+## צור איתנו קשר!
 
-Join our [Discord server](https://discord.gg/P3KkEF5) to discuss upcoming features and more.
+ הצטרפו (https://discord.gg/P3KkEF5)[לשרת הדיסקורד] שלנו כדי לדבר על העדכונים הבאים ועוד.
 
-## Credits
+## נקודות זכות
 
-Icons made by [freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com).
+הצלמיות נעשו בשימוש [freepik](https://www.flaticon.com/authors/freepik) מ-[www.flaticon.com](https://www.flaticon.com).
 
-Original Timer icon by [lucy-g](https://icon-icons.com/icon/timer/121243), colored variations and formats modified from it.
+הצלמית המקורית של שעות העצר נעשה על-ידי [lucy.g](https://icon-icons.com/icon/timer/121243), גווני הצבעים ופורמטים שונים שונו ממנו.
 
-Sick icon by [SVG Repo](https://www.svgrepo.com/svg/271898/sick).
+צלמית יום מחלה נוצרה על-ידי [SVG Repo](https://www.svgrepo.com/svg/271898/sick).
 
-View Switch icon made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [www.flaticon.com](https://www.flaticon.com).
+צלמית של החלפת תצוגה נוצרה על-ידי [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) מ-[www.flaticon.com](https://www.flaticon.com).
+</div>
