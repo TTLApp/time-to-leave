@@ -2,6 +2,7 @@
   <img src="assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>עקוב אחרי שעות עבודה וקבל התראות כאשר הגיע הזמן לעזוב את המשרד ולהתחיל לחיות</p>
+
 [Homepage](https://timetoleave.app/)
 
 <a href="docs/README-pt-BR.md"><img src="https://img.shields.io/badge/pt--BR-Portugu%C3%AAs-purple" alt="Esse documento também está disponível em Português (Brasil)"></a>
