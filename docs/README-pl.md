@@ -46,7 +46,7 @@ Jeśli chcesz pomóc, przeczytaj naszą [instrukcję wspierania](../CONTRIBUTING
 
 Dołącz do naszego [serwera discord](https://discord.gg/P3KkEF5) aby porozmawiać m.in. o nadchodzących nowościach i nie tylko.
 
-## Credits
+## Lista wykorzystanych zasobów
 
 Ikony stworzone przez [freepik](https://www.flaticon.com/authors/freepik) z [www.flaticon.com](https://www.flaticon.com).
 
