@@ -12,7 +12,7 @@
         "august": "Augusti",
         "december": "December",
         "february": "Februari",
-        "fri": "Fri",
+        "fri": "Fre",
         "january": "Januari",
         "july": "Juli",
         "june": "Juni",
@@ -129,7 +129,7 @@
         "day": "Dag",
         "fixed": "Fix",
         "flexible": "Flexibel",
-        "fri": "Fri",
+        "fri": "Fre",
         "hideNonWorkingDay": "Göm arbetsfria dagar (Månadsvy)",
         "hours-per-day": "HH:mm",
         "hoursPerDay": "Timmar per dag",
@@ -166,8 +166,8 @@
         "upto-date-msg": "Din TTL är uppdaterad till den senaste versionen."
     },
     "$WorkdayWaiver": {
-        "add-waiver": "Lägg till avvikelser",
-        "already-have-waiver": "Du har redan en avvikelse på",
+        "add-waiver": "Lägg till ledighet",
+        "already-have-waiver": "Du har redan registrerad ledighet",
         "attention": "Notera: Att ta in helgdagar som sammanfaller med dagar med registrerad ledighet kommer innebära att dessa ledigheter skrivs över.",
         "city": "Stad",
         "conflicts": "Konflikter",
