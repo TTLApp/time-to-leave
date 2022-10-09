@@ -1,7 +1,7 @@
 <div align="center">
-  <img src="assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
 
-  <p>Log work hours and get notified when it's time to leave the office and start to live</p>
+  <p>Registrera arbretstid och bli notifierad när det är dags att lämna jobbet och leva livet</p>
 
 [Homepage](https://timetoleave.app/)
 
@@ -26,7 +26,6 @@
 <a href="docs/README-ru-RU.md"><img src="https://img.shields.io/badge/ru-%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9-purple" alt="Документация приложения на русском языке"></a>
 <a href="docs/README-fa-IR.md"><img src="https://img.shields.io/badge/fa--IR-Persian-purple" alt="مستندات برنامه به زبان فارسی"></a>
 <a href="docs/README-bn.md"><img src="https://img.shields.io/badge/bn-বাংলা-purple" alt="এই নথিও পাওয়া যায় বাংলায়"></a>
-<a href="docs/README-he.md"><img src="https://img.shields.io/badge/he-עברית-purple" alt="מסמך זה כתוב גם בעברית"></a>
 <a href="docs/README-sv-SE.md"><img src="https://img.shields.io/badge/sv-SE-svenska-purple" alt="Detta dokument finns tillgängligt på svenska"></a>
 <br/>
 
@@ -37,7 +36,7 @@
 
    <br/>
 
-  <img src="./docs/images/screenshot.jpg" alt="Time to Leave Screenshot">
+  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -46,37 +45,38 @@
 
 ---
 
-Log the time you started working today, and the program will compute what time you should leave the office, considering the time you spent on lunch. When it's time, the program will notify you.
+Registrera tiden du började arbeta idag, och programmet kommer att räkna fram vilken du bör lämna kontoret, efter att ha tagit hänsyn till din tid för lunch. När det är dags, programmet kommer att notifiera dig.
 
-<img src="./docs/images/notification.jpg" alt="Time to Leave Notification">
+<img src="./images/notification.jpg" alt="Time to Leave Notification">
 
-You can control the preferences, stating your working days, how many hours you work a day and if you want to receive a notification or not.
+Du kan styra dina preferenser, konfigurera dina arbetsdagar, hur många timmar du arbetar per dag och om du vill ha en notifiering eller inte.
 
-<img src="./docs/images/preferences.jpg" alt="Time to Leave Preferences">
 
-You can also add waivers on the days you did not work.
+<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
 
-<img src="./docs/images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+Du kan också lägga till dagar du är ledig, dagar du inte arbetar.
 
-## How to install TTL
+<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
-Time to Leave works on MacOS, Windows and Linux, and you can download the desired version from [the latest release](https://github.com/thamara/time-to-leave/releases/latest).
+## Hur man installerar TTL
 
-## How to build and contribute to TTL
+Time to Leave fungerar på MacOS, Windows och Linux, och du kan ladda ned den version du önskar från [den senaste releasen](https://github.com/thamara/time-to-leave/releases/latest).
 
-If you want to help, read our [contributing](CONTRIBUTING.md) guidelines.
-You can also refer to our [development guide](DEVELOPMENT.md) for more information.
+## Hur man bygger och bidrar till TTL
 
-## Get in touch!
+Om du vill hjälpa till, läs vår [att bidra](CONTRIBUTING.md) guidelines.
+Du kan också läsa vår [utvecklarguide](DEVELOPMENT.md) för mer information.
 
-Join our [Discord server](https://discord.gg/P3KkEF5) to discuss upcoming features and more.
+## Ta kontakt!
 
-## Credits
+Gå med vår  [Discord server](https://discord.gg/P3KkEF5) för att diskutera kommande funktioner och mer.
 
-Icons made by [freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com).
+## Eftertexter
 
-Original Timer icon by [lucy-g](https://icon-icons.com/icon/timer/121243), colored variations and formats modified from it.
+Ikoner är gjorda av [freepik](https://www.flaticon.com/authors/freepik) från [www.flaticon.com](https://www.flaticon.com).
 
-Sick icon by [SVG Repo](https://www.svgrepo.com/svg/271898/sick).
+Original Timer ikon av [lucy-g](https://icon-icons.com/icon/timer/121243), färglagda varianter och format modifierade från detsamma.
 
-View Switch icon made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [www.flaticon.com](https://www.flaticon.com).
+Sick ikon av [SVG Repo](https://www.svgrepo.com/svg/271898/sick).
+
+Vyväxlare ikon gjord av [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) från [www.flaticon.com](https://www.flaticon.com).

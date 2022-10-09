@@ -21,7 +21,8 @@ const languages = {
     'ta': 'தமிழ்',
     'tr-TR':'Türkçe',
     'bn':'বাংলা',
-    'he':'עברית'
+    'he':'עברית',
+    'sv-SE': 'Svenska'
 };
 
 /**
