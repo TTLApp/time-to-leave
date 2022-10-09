@@ -1,7 +1,7 @@
 <div align="center">
   <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
 
-  <p>Kontroluj czas pracy. <i>Time to Leave</i> przypomni Ci, aby zakończyć pracę, oraz przedstawi ci bilans czasu. </p>
+  <p>Kontroluj czas pracy. <i>Time to Leave</i> przypomni Ci, kiedy zakończyć pracę i zacząć żyć.</p>
 
 [timetoleave.app](https://timetoleave.app/)
 
@@ -22,11 +22,11 @@
 
 ---
 
-Zapisz czas rozpoczęcia pracy, a aplikacja obliczy o ktorej powinineś ją zakończyć, biorąc pod uwagę czas lunchu. Kiedy ta pora nadejdzie, to program przypomni Ci, że to już czas zakończyć pracę.
+Wpisz czas rozpoczęcia pracy, a aplikacja obliczy kiedy powinineś ją zakończyć, uwzględniając przerwę na śniadanie. Kiedy ta pora nadejdzie, program przypomni Ci, że już czas zakończyć pracę.
 
 <img src="./images/notification.jpg" alt="Time to Leave Notification">
 
-Zmieniając preferencje możesz ustalić dni pracy, godzinną normę czasu, oraz czy chcesz powiadomienia.
+Możesz kontrolować preferencje, między innymi: dni pracujące, ilość godzin w dniu pracy, oraz czy chcesz być powiadamiany.
 
 <img src="./images/preferences.jpg" alt="Time to Leave Preferences">
 
@@ -36,16 +36,15 @@ Możesz dodać zwolnienia do dni, w których nie ma cię w pracy.
 
 ## Jak zainstalować _Time to Leave_
 
-_Time to Leave_ działa na systemach Windows, MacOS i Linux. Odpowiednią wersję możesz pobrać z [ostatniego wydania na githubie](https://github.com/thamara/time-to-leave/releases/latest).
+_Time to Leave_ działa na systemach Windows, MacOS i Linux. Pożądaną wersję możesz pobrać z [ostatniego wydania na githubie](https://github.com/thamara/time-to-leave/releases/latest).
 
 ## Jak wesprzeć _Time to Leave_
 
-W [instrukcji wspierania](../CONTRIBUTING.md) dowiesz się jak przyczynić się do rozwoju aplikacji.
-Możesz również zobaczyć [wskazówki rozwoju](../DEVELOPMENT.md) by zdobyć więcej informacji.
+Jeśli chcesz pomóc, przeczytaj naszą [instrukcję wspierania](../CONTRIBUTING.md) aby dowiedzieć się jak możesz się przyczynić do rozwoju aplikacji. Aby zasięgnąć dodatkowych informacji, zajrzyj do [wskazówek rozwoju](../DEVELOPMENT.md)
 
 ## Porozmawiaj z nami!
 
-Dołącz do naszego [serwera discord](https://discord.gg/P3KkEF5) by porozmawiać m.in. o nadchodzących nowościach.
+Dołącz do naszego [serwera discord](https://discord.gg/P3KkEF5) aby porozmawiać m.in. o nadchodzących nowościach i nie tylko.
 
 ## Credits
 
