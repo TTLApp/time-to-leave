@@ -23,8 +23,6 @@ Working on your first Pull Request? You can learn how from this _free_ series [H
     -   [Releasing](#releasing)
 -   [Opening a Pull Request (PR)](#opening-a-pull-request-pr)
 
-*   [Opening a Pull Request (PR)](#Opening-a-Pull-Request-PR)
-
 <!-- tocstop -->
 
 ## Environment
