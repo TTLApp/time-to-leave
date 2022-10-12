@@ -296,10 +296,10 @@ class FlexibleDayCalendar extends BaseCalendar
             {
                 const dateKey = $('.rows-time').attr('id');
                 const removeEntriesDialogOptions = {
-                    title: this._getTranslation('$FlexibleDayCalendar.remove-entry'),
-                    message: this._getTranslation('$FlexibleDayCalendar.entry-removal-confirmation'),
+                    title: calendar._getTranslation('$FlexibleDayCalendar.remove-entry'),
+                    message: calendar._getTranslation('$FlexibleDayCalendar.entry-removal-confirmation'),
                     type: 'info',
-                    buttons: [this._getTranslation('$FlexibleDayCalendar.yes'), this._getTranslation('$FlexibleDayCalendar.no')]
+                    buttons: [calendar._getTranslation('$FlexibleDayCalendar.yes'), calendar._getTranslation('$FlexibleDayCalendar.no')]
                 };
                 showDialog(removeEntriesDialogOptions, (result) =>
                 {
