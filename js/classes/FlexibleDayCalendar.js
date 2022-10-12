@@ -289,6 +289,22 @@ class FlexibleDayCalendar extends BaseCalendar
     {
         const calendar = this;
 
+        function removeLastEntryPair(existingEntryPairs)
+        {
+            $('.rows-time > div:last-of-type').remove();
+            $('.rows-time > div:last-of-type').remove();
+
+            if (existingEntryPairs - 1 > 1)
+            {
+                const minusSignCode =
+                    '<div class="sign-cell">' +
+                        '<div class="sign-container"><span class="minus-sign">-</span></div>' +
+                    '</div>';
+                $(minusSignCode).appendTo('.rows-time > div:last-of-type > .third-group');
+                $('.sign-cell:has(span.minus-sign)').off('click').on('click', removeEntries);
+            }
+        }
+
         function removeEntries()
         {
             const existingEntryPairs = $('.row-entry-pair').length;
@@ -301,28 +317,25 @@ class FlexibleDayCalendar extends BaseCalendar
                     type: 'info',
                     buttons: [calendar._getTranslation('$FlexibleDayCalendar.yes'), calendar._getTranslation('$FlexibleDayCalendar.no')]
                 };
-                showDialog(removeEntriesDialogOptions, (result) =>
+                const getInputs = $('.row-entry-pair').find('input');
+                const len = getInputs.length;
+                if (getInputs.get(len-1).value !== '' || getInputs.get(len-2).value !== '')
                 {
-                    const buttonId = result.response;
-                    if (buttonId === 1)
+                    showDialog(removeEntriesDialogOptions, (result) =>
                     {
-                        return;
-                    }
-                    $('.rows-time > div:last-of-type').remove();
-                    $('.rows-time > div:last-of-type').remove();
-
-                    if (existingEntryPairs - 1 > 1)
-                    {
-                        const minusSignCode =
-                            '<div class="sign-cell">' +
-                                '<div class="sign-container"><span class="minus-sign">-</span></div>' +
-                            '</div>';
-                        $(minusSignCode).appendTo('.rows-time > div:last-of-type > .third-group');
-                        $('.sign-cell:has(span.minus-sign)').off('click').on('click', removeEntries);
-                    }
-
-                    calendar._updateTimeDay(dateKey);
-                });
+                        const buttonId = result.response;
+                        if (buttonId === 1)
+                        {
+                            return;
+                        }
+                        removeLastEntryPair(existingEntryPairs);
+                        calendar._updateTimeDay(dateKey);
+                    });
+                }
+                else
+                {
+                    removeLastEntryPair(existingEntryPairs);
+                }
             }
         }
 
