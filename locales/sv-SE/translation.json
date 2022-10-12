@@ -3,8 +3,8 @@
         "day-done-balance": "Allt klart för idag. Dagens saldo: ",
         "month-balance": "Månadens Saldo",
         "month-balance-title": "Saldo fram till idag för denna månad. Ett positivt saldo betyder extra timmar som du inte behöver arbeta idag (eller för resten av månaden)",
-        "overall-balance": "Overall Balance",
-        "overall-balance-title": "Overall balance until end of the month or current day",
+        "overall-balance": "Total Saldo",
+        "overall-balance-title": "Total saldo till slutet av månaden eller aktuell dag",
         "switch-view": "Växla Vy"
     },
     "$DateUtil": {
@@ -122,7 +122,7 @@
     "$Preferences": {
         "allowRecurringNotifications": "Tillåt återkommande notifieringar",
         "appBehavior": "App beteende",
-        "cadentStar": "Cadent Star // ",
+        "cadentStar": "Kadentstjärna",
         "closeMinimizeToTray": "Stängknappen borde minimera till brickan",
         "countTodayOnTotals": "Räkna in dagens timmar i totalen",
         "dark": "Mörkt",
