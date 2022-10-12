@@ -408,10 +408,10 @@ class FlexibleMonthCalendar extends BaseCalendar
             {
                 const dateKey = $(element).attr('id');
                 const removeEntriesDialogOptions = {
-                    title: `${this._getTranslation('$FlexibleMonthCalendar.remove-entry')}`,
-                    message: `${this._getTranslation('$FlexibleMonthCalendar.entry-removal-confirmation')} ${dateKey}?`,
+                    title: `${calendar._getTranslation('$FlexibleMonthCalendar.remove-entry')}`,
+                    message: `${calendar._getTranslation('$FlexibleMonthCalendar.entry-removal-confirmation')} ${dateKey}?`,
                     type: 'info',
-                    buttons: [this._getTranslation('$FlexibleMonthCalendar.yes'), this._getTranslation('$FlexibleMonthCalendar.no')]
+                    buttons: [calendar._getTranslation('$FlexibleMonthCalendar.yes'), calendar._getTranslation('$FlexibleMonthCalendar.no')]
                 };
                 const getInputs = $(element).find('input');
                 const len = getInputs.length;
