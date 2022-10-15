@@ -14,7 +14,7 @@ import {
     displayWaiverWindow
 } from '../workday-waiver-aux.js';
 import { showDialog } from '../window-aux.js';
-import { getDayAbbr } from '../date-to-string-util.js';
+import { getMonthName, getDayAbbr } from '../date-to-string-util.js';
 import { BaseCalendar } from './BaseCalendar.js';
 
 class FlexibleMonthCalendar extends BaseCalendar
@@ -243,6 +243,7 @@ class FlexibleMonthCalendar extends BaseCalendar
      */
     _updateTableHeader()
     {
+        $('#month-year').html(`${getMonthName(this._languageData.data, this._getCalendarMonth())} ${this._getCalendarYear()}`);
         $('.header-day').text(this._getTranslation('$FlexibleMonthCalendar.day'));
         $('.header-day-total').text(this._getTranslation('$FlexibleMonthCalendar.total'));
     }
