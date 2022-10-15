@@ -77,5 +77,40 @@ describe('Preferences Main', () =>
             expect(preferences['view']).toBe('month');
         });
     });
+
+    describe('Notification interval', () =>
+    {
+        function saveNewInterval(val)
+        {
+            const preferences = getUserPreferences();
+            preferences['notifications-interval'] = val;
+            savePreferences(preferences);
+        }
+
+        beforeEach(() => {
+            expect(defaultPreferences['notifications-interval']).toBe('5');
+            savePreferences(defaultPreferences);
+
+            expect(getUserPreferences()['notifications-interval']).toBe('5');
+        });
+
+        test('Saving valid number', () =>
+        {
+            saveNewInterval('6');
+            expect(getUserPreferences()['notifications-interval']).toBe('6');
+        });
+
+        test('Saving invalid number', () =>
+        {
+            saveNewInterval('0');
+            expect(getUserPreferences()['notifications-interval']).toBe('5');
+        });
+
+        test('Saving invalid text', () =>
+        {
+            saveNewInterval('ab');
+            expect(getUserPreferences()['notifications-interval']).toBe('5');
+        });
+    });
 });
 

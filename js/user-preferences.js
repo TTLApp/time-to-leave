@@ -2,7 +2,6 @@
 
 const { ipcRenderer } = require('electron');
 
-import { validateTime } from './time-math.js';
 import { isValidTheme } from '../renderer/themes.js';
 import { getLanguagesCodes } from '../src/configs/app.config.js';
 
@@ -182,7 +181,7 @@ function initPreferencesFileIfNotExistsOrInvalid(filePath = getPreferencesFilePa
         if (timeInputs.includes(key))
         {
             // Set default preference value if notification or time interval is not valid
-            if ((key === 'notifications-interval' && !isNotificationInterval(value)) || !validateTime(value))
+            if (key === 'notifications-interval' && !isNotificationInterval(value))
             {
                 derivedPrefs[key] = defaultPreferences[key];
                 shouldSaveDerivedPrefs = true;
