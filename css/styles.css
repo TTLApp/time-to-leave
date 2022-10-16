@@ -418,6 +418,10 @@ body {
   margin: auto;
 }
 
+.punch-button:disabled #punch-button-label {
+  cursor: default;
+}
+
 .waiver-img {
   display: none;
 }

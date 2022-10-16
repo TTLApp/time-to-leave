@@ -16,7 +16,6 @@ import {
 } from '../workday-waiver-aux.js';
 import { showDay, switchCalendarView } from '../user-preferences.js';
 import { getDateStr, getMonthLength } from '../date-aux.js';
-import { getMonthName } from '../date-to-string-util.js';
 import { computeAllTimeBalanceUntilAsync } from '../time-balance.js';
 import { generateKey } from '../date-db-formatter.js';
 import { getTranslationInLanguageData } from '../../renderer/i18n-translator.js';
@@ -126,14 +125,6 @@ class BaseCalendar
         }
 
         return balanceRowPosition;
-    }
-
-    /**
-     * Updates the code of the table header of the calendar, to be called on demand.
-     */
-    _updateTableHeader()
-    {
-        $('#month-year').html(`${getMonthName(this._languageData.data, this._getCalendarMonth())} ${this._getCalendarYear()}`);
     }
 
     /**

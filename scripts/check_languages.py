@@ -52,6 +52,13 @@ LANG_SCOPE_KEY_TO_IGNORE = {'de-DE': {'$Preferences' : ['themes', 'hours-per-day
                                        '$WorkdayWaiver' : ['no']},
                              'ja': {'$Menu' : ['ok']},
                              'ta': {'$Preferences' : ['hours-per-day']},
+                             'bn': {'$Preferences' : ['hours-per-day']},
+                             'fa-IR': {'$Preferences' : ['hours-per-day']},
+                             'he': {'$Preferences' : ['hours-per-day']},
+                             'sv-SE': {'$Preferences' : ['hours-per-day'],
+                                       '$DateUtil' : ['april', 'september', 'november', 'december'],
+                                       '$FlexibleMonthCalendar' : ['total', 'no'],
+                                       '$Menu' : ['ok']},
                              'dev': {'$Preferences' : ['hours-per-day'],
                                      '$Menu' : ['menu', 'ok'],
                                      '$FlexibleMonthCalendar' : ['total']}}
