@@ -7,22 +7,25 @@
 -   Enhancement [#661]: Add missing translations to Dutch
 -   Enhancement [#665]: Update export datebase name format to include a timestamp
 -   Enhancement [#690]: Provide helpful tip on hours fields with validation
--   Enhancement [#691]: Adding a dismiss button on the notification, so you won't be bothered again on a current day
--   Enhancement [#698]: Sorting waivers by date
+-   Enhancement [#691]: Add a dismiss button on the notification, so you won't be bothered again on a current day
+-   Enhancement [#698]: Sort waivers by date
 -   Enhancement [#718]: Use purple clock icon on tray and menus to enhance contrast on light/dark themes
--   Fix #828: Show balance even though month ends on non-working day
+-   Enhancement [#856]: Don't bother user asking if empty entries can be removed
 -   Fix [#650]: Month balance is incorrect
 -   Fix [#660]: Hours field on waiver manager is not validated
--   Fix [#702]: Fixed day view not counting the waived value when looking at a waived day. Balance is now correct too.
--   Fix [#724]: Correctly applying theme in Preferences window when the setting is "system default"
+-   Fix [#702]: Day view and balance not counting the waived value when looking at a waived day
+-   Fix [#724]: Theme not applied in Preferences window when the setting is "system default"
 -   Fix [#728]: Alignment and positioning of buttons on smaller screens for timetoleave.app
 -   Fix [#792]: Broken holiday tab on Workday Waiver Window
--   Fix [#793]: Punch button now gets correctly translated when changing languages
+-   Fix [#793]: Punch button not translated when changing languages
+-   Fix [#828]: Balance not shown when month ends on non-working day
+-   Fix [#854]: Entry removal button not removing anything
 -   Translation: Time to Leave is now available in Bengali (bn)!
 -   Translation: Time to Leave is now available in Gujarati (gu)!
--   Translation: Time to Leave is now available in Persian (fa-IR)
+-   Translation: Time to Leave is now available in Hebrew (he)!
+-   Translation: Time to Leave is now available in Persian (fa-IR)!
 -   Translation: Time to Leave is now available in Russian (ru-RU)!
--   Translation: Time to Leave is now available in Turkish (tr-TR)
+-   Translation: Time to Leave is now available in Turkish (tr-TR)!
 
 <!--- End changes - Do not remove -->
 
@@ -33,10 +36,12 @@ Who built 2.0.2:
 -   AayushSaini101
 -   BamButz
 -   BhumikaSaini
+-   DanMargera
 -   Dudu-CNU
 -   JulienZD
 -   L8Y
 -   LauraToddCodes
+-   LouisHLAV
 -   Minozzzi
 -   MohitSinghChauhan
 -   Pizzo15
@@ -47,6 +52,7 @@ Who built 2.0.2:
 -   Sahana-YS
 -   Semvrij
 -   SubhamChoudhury
+-   TomerPacific
 -   aakashpothepalli
 -   adarivamsi
 -   adarshnanwani
@@ -54,6 +60,7 @@ Who built 2.0.2:
 -   araujoarthur0
 -   chopinballadeno4
 -   dark-coder155
+-   domstrozynski
 -   fcoiuri
 -   fikimaul
 -   giovannipessiva
