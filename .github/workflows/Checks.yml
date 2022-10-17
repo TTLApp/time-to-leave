@@ -24,6 +24,9 @@ jobs:
           sudo chmod +x /tmp/chromedriver/chromedriver
           /tmp/chromedriver/chromedriver &
           sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
+      - name: '        Create COV_REPORT'
+        run: |
+          mkdir COV_REPORT
       - name: '        Tests'
         shell: bash
         env:
@@ -31,16 +34,21 @@ jobs:
         run: |
           npm ci
           npm run test:jest
-      - name: '        Create COV_REPORT'
-        run: |
-          mkdir COV_REPORT
       - name: '        Copy jest results'
         run: |
           cp coverage_jest/coverage-final.json COV_REPORT/coverage-final-jest.json
+      - name: '        Tests - Mocha'
+        run: npm run test:mocha
+        shell: bash
+        if: matrix.os == 'ubuntu-latest'
+      - name: '        Copy mocha results'
+        run: |
+          cp coverage_jest/coverage-final.json COV_REPORT/coverage-final-mocha.json
+        if: matrix.os == 'ubuntu-latest'
       - name: '        CodeCov'
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: COV_REPORT/coverage-final-jest.json
+          files: COV_REPORT/coverage-final-*.json
           name: codecov-${{ matrix.os }}
           verbose: true
