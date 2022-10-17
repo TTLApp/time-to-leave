@@ -4,7 +4,7 @@
 
 We are so glad you are interested in building Time to Leave! In this file you'll find all the information to be able to build and change the source code, from setting up the environment, up to creating a package.
 
-Working on your first Pull Request? You can learn how from this _free_ series [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github), or you can contact us on our [Discord server](https://discord.gg/P3KkEF5) and we will be excited to help you in this journey!
+Working on your first Pull Request? You can learn how from this _free_ series [How to Contribute to an Open Source Project on GitHub](https://app.egghead.io/playlists/how-to-contribute-to-an-open-source-project-on-github)), or you can contact us on our [Discord server](https://discord.gg/P3KkEF5) and we will be excited to help you in this journey!
 
 <!-- toc -->
 
