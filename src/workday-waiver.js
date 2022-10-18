@@ -43,14 +43,7 @@ function setHours()
 
 function toggleAddButton(buttonName, state)
 {
-    if (state)
-    {
-        $(`#${buttonName}`).removeAttr('disabled');
-    }
-    else
-    {
-        $(`#${buttonName}`).attr('disabled', 'disabled');
-    }
+   state ? $(`#${buttonName}`).removeAttr('disabled') : $(`#${buttonName}`).attr('disabled', 'disabled');
 }
 
 // Sort function which sorts all dates according to Day in O(nlogn)
