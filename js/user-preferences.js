@@ -21,6 +21,51 @@ function isValidLocale(locale)
     return getLanguagesCodes().indexOf(locale) !== -1;
 }
 
+function isValidView(view)
+{
+    return view === 'month' || view === 'day';
+}
+
+function isValidHoursPerDay(hoursPerDay)
+{
+    try
+    {
+        const [hours, minutes] = hoursPerDay.split(':').map(parseFloat);
+        return hours >= 0 && hours <= 24 && minutes >= 0 && minutes < 60;
+    }
+    catch (error)
+    {
+        return false;
+    }
+}
+
+function isValidBreakTimeInterval(interval)
+{
+    try
+    {
+        const [hours, minutes] = interval.split(':').map(parseFloat);
+        return hours >= 0 && hours <= 24 && minutes >= 0 && minutes < 60;
+    }
+    catch (error)
+    {
+        return false;
+    }
+}
+
+function isValidDate(date)
+{
+    try
+    {
+        const [, month, day] = date.split('-').map(parseFloat);
+        return month >= 0 && month <= 11 && day >= 0 && day <= 31;
+    }
+    catch (error)
+    {
+        console.error(date, error);
+        return false;
+    }
+}
+
 const defaultPreferences = {
     'count-today': false,
     'close-to-tray': true,
@@ -180,8 +225,12 @@ function initPreferencesFileIfNotExistsOrInvalid(filePath = getPreferencesFilePa
 
         if (timeInputs.includes(key))
         {
-            // Set default preference value if notification or time interval is not valid
-            if (key === 'notifications-interval' && !isNotificationInterval(value))
+            const timeValidationEnum = {
+                'notifications-interval' : () => isNotificationInterval(value),
+                'hours-per-day' : () =>  isValidHoursPerDay(value),
+                'break-time-interval' : () =>  isValidBreakTimeInterval(value),
+            };
+            if (!timeValidationEnum[key]())
             {
                 derivedPrefs[key] = defaultPreferences[key];
                 shouldSaveDerivedPrefs = true;
@@ -189,11 +238,20 @@ function initPreferencesFileIfNotExistsOrInvalid(filePath = getPreferencesFilePa
         }
 
         const inputEnum = {
-            'theme': () => shouldSaveDerivedPrefs |= !isValidTheme,
-            'view': () => shouldSaveDerivedPrefs |= !(value === 'month' || value === 'day'),
-            'language': () => shouldSaveDerivedPrefs |= isValidLocale
+            'theme': () => isValidTheme(value),
+            'view': () => isValidView(value),
+            'language': () => isValidLocale(value),
+            'overall-balance-start-date': () => isValidDate(value),
+            'update-remind-me-after': () => isValidDate(value),
         };
-        if (key in inputEnum) inputEnum[key]();
+        if (key in inputEnum)
+        {
+            if (!inputEnum[key]())
+            {
+                derivedPrefs[key] = defaultPreferences[key];
+                shouldSaveDerivedPrefs = true;
+            }
+        }
     }
 
     if (shouldSaveDerivedPrefs)
