@@ -61,7 +61,6 @@ function isValidDate(date)
     }
     catch (error)
     {
-        console.error(date, error);
         return false;
     }
 }

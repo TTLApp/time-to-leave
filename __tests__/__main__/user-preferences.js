@@ -11,6 +11,21 @@ function setNewPreference(preference, value)
     savePreferences(preferences);
 }
 
+// Mocking electron needs to be defined here and not in __mocks__
+// because it's not directly required from this file as it is *fs*.
+jest.mock('electron', () =>
+{
+    const originalModule = jest.requireActual('electron');
+    return {
+        __esModule: true,
+        ...originalModule,
+        ipcRenderer: {
+            ...originalModule.ipcRenderer,
+            invoke: jest.fn().mockResolvedValueOnce('./').mockResolvedValue('./dummy_file.txt'),
+        }
+    };
+});
+
 describe('Preferences Main', () =>
 {
     process.env.NODE_ENV = 'test';
@@ -31,6 +46,7 @@ describe('Preferences Main', () =>
         expect(showDay(2020, 1, 5)).toBe(days['working-days-wednesday']);
         expect(showDay(2020, 1, 6)).toBe(days['working-days-thursday']);
         expect(showDay(2020, 1, 7)).toBe(days['working-days-friday']);
+        expect(showDay(2020, 1, 7, defaultPreferences)).toBe(days['working-days-friday']);
     });
 
     describe('getDefaultWidthHeight()', () =>
@@ -366,15 +382,6 @@ describe('Preferences Main', () =>
             expect(getUserPreferences()[key]).toBe('2022-10-02');
         });
     });
-    describe('getUserPreferencesPromise()', () =>
-    {
-        test('Should resolve promise', async() =>
-        {
-            expect(getUserPreferencesPromise()).toBeInstanceOf(Promise);
-            const prefs = await getUserPreferencesPromise();
-            expect(prefs).resolves.toStrictEqual(defaultPreferences);
-        });
-    });
     describe('savePreferences()', () =>
     {
         test('Save to wrong path', () =>
@@ -414,6 +421,29 @@ describe('Preferences Main', () =>
                 });
             }
         }
+    });
+    describe('getUserPreferencesPromise()', () =>
+    {
+        beforeAll(() =>
+        {
+            fs.writeFileSync('./dummy_file.txt', 'This should be tried to be parsed and fail');
+        });
+        test('Should return a promise', () =>
+        {
+            expect(getUserPreferencesPromise()).toBeInstanceOf(Promise);
+        });
+        test('Should resolve promise', async() =>
+        {
+            await expect(getUserPreferencesPromise()).resolves.toStrictEqual({});
+        });
+        afterAll(() =>
+        {
+            fs.unlinkSync('./dummy_file.txt', () => {});
+        });
+    });
+    afterAll(() =>
+    {
+        jest.resetAllMocks();
     });
 });
 
