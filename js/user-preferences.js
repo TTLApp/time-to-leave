@@ -57,7 +57,7 @@ function isValidDate(date)
     try
     {
         const [, month, day] = date.split('-').map(parseFloat);
-        return month >= 0 && month <= 11 && day >= 0 && day <= 31;
+        return month >= 0 && month <= 11 && day >= 1 && day <= 31;
     }
     catch (error)
     {
