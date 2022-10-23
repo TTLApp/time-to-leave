@@ -1,6 +1,6 @@
 {
   "dest": "release-builds/",
-  "icon": "assets/timer.png",
+  "icon": "assets/ttl.png",
   "categories": [
     "Utility"
   ],

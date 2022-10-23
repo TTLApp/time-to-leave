@@ -30,7 +30,7 @@ function notify(msg, actions)
         notifier.notify({
             title: title,
             message: msg,
-            icon: path.join(appPath, 'assets/timer.png'), // Absolute path (doesn't work on balloons)
+            icon: path.join(appPath, 'assets/ttl.png'), // Absolute path (doesn't work on balloons)
             sound: true, // Only Notification Center or Windows Toasters
             wait: true,
             actions: actions,

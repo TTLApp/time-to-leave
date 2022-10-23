@@ -51,6 +51,4 @@ Unisciti al nostro [canale Discord](https://discord.gg/P3KkEF5) per discutere de
 
 Icone create da [freepik](https://www.flaticon.com/authors/freepik) su [www.flaticon.com](https://www.flaticon.com).
 
-Icona originale Timer di [lucy-g](https://icon-icons.com/icon/timer/121243), variazioni di colori e formato create a partire da questa.
-
 Icona View Switch di [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) su [www.flaticon.com](https://www.flaticon.com).

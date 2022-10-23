@@ -52,6 +52,4 @@ Tritt unserem [Discord Server](https://discord.gg/P3KkEF5) bei, um über anstehe
 
 Icons von [freepik](https://www.flaticon.com/authors/freepik) von [www.flaticoncom](https://www.flaticon.com).
 
-Originales Timer Icon von [lucy-g](https://icon-icons.com/icon/timer/121243), farbvarianten und davon modifizierte versionen.
-
 "View Switch" Icon von [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) von [www.flaticon.com](https://www.flaticon.com).

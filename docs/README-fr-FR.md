@@ -51,6 +51,4 @@ Rejoignez notre [chaîne Discord](https://discord.gg/P3KkEF5) pour discuter des 
 
 Icônes créées par [freepik](https://www.flaticon.com/authors/freepik) sur [www.flaticon.com](https://www.flaticon.com).
 
-Icône de minuterie originale par [lucy-g](https://icon-icons.com/icon/timer/121243), variations de couleurs et formats modifiés à partir de celle-ci.
-
 Afficher l'icône de commutateur créée par [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) sur [www.flaticon.com](https://www.flaticon.com).

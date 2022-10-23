@@ -51,6 +51,4 @@ Time to Leave 運行在 MacOS，Windows 和 Linux。你可以在[最新發布](h
 
 Icons 由[freepik](https://www.flaticon.com/authors/freepik)製作，來源自[www.flaticon.com](https://www.flaticon.com)。
 
-Original Timer Icon 由[lucy-g](https://icon-icons.com/icon/timer/121243)，從它改變了配色及格式。
-
 View Switch Icon 由[Pixel perfect](https://www.flaticon.com/authors/pixel-perfect)製作，來源自[www.flaticon.com](https://www.flaticon.com)。

@@ -73,6 +73,4 @@
 
 আইকন তৈরি করা হয়েছে [freepik](https://www.flaticon.com/authors/freepik) , [www.flaticon.com](https://www.flaticon.com).
 
-মূল টাইমার আইকন [lucy-g](https://icon-icons.com/icon/timer/121243), এটি থেকে পরিবর্তিত রঙের বৈচিত্র এবং বিন্যাস।
-
 View Switch আইকন তৈরি করা হয়েছে [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [www.flaticon.com](https://www.flaticon.com).

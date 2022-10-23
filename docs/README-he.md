@@ -52,7 +52,5 @@ Time to Leave רץ על MacOS, Windows ו-Linux, וגם אפשר להוריד ג
 
 הצלמיות נעשו בשימוש [freepik](https://www.flaticon.com/authors/freepik) מ-[www.flaticon.com](https://www.flaticon.com).
 
-הצלמית המקורית של שעות העצר נעשה על-ידי [lucy.g](https://icon-icons.com/icon/timer/121243), גווני הצבעים ופורמטים שונים שונו ממנו.
-
 צלמית של החלפת תצוגה נוצרה על-ידי [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) מ-[www.flaticon.com](https://www.flaticon.com).
 </div>

@@ -51,6 +51,4 @@ Time to Leave は MacOS、Windows、Linux で動作し、[最新リリース](ht
 
 アイコン作成：[freepik](https://www.flaticon.com/authors/freepik) （[www.flaticon.com](https://www.flaticon.com)より）
 
-タイマーアイコンは[lucy-g](https://icon-icons.com/icon/timer/121243)のものを元に, カラーバリエーションやフォーマットを変更しています。
-
 表示切替アイコン作成：[Pixel perfect](https://www.flaticon.com/authors/pixel-perfect)（[www.flaticon.com](https://www.flaticon.com)より）

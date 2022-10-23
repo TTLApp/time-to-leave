@@ -51,6 +51,4 @@ Sluit je aan bij ons [Discord-kanaal](https://discord.gg/P3KkEF5) om nieuwe func
 
 Pictogrammen gemaakt door [freepik](https://www.flaticon.com/authors/freepik) van [www.flaticon.com](https://www.flaticon.com).
 
-Origineel timerpictogram gemaakt door [lucy-g](https://icon-icons.com/icon/timer/121243), aangepast met gekleurde variaties en andere formaten.
-
 Weergave veranderen-pictogram gemaakt door [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) van [www.flaticon.com](https://www.flaticon.com).

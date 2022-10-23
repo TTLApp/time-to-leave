@@ -50,6 +50,4 @@ Dołącz do naszego [serwera discord](https://discord.gg/P3KkEF5) aby porozmawia
 
 Ikony stworzone przez [freepik](https://www.flaticon.com/authors/freepik) z [www.flaticon.com](https://www.flaticon.com).
 
-Orginalna ikona zegarka stworzona przez [lucy-g](https://icon-icons.com/icon/timer/121243), kolorowe wersje i inne formaty to modifikacje oryginału.
-
 Ikona zmiany widoku stworzona przez [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) z [www.flaticon.com](https://www.flaticon.com).
