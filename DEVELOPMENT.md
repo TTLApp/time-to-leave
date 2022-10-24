@@ -173,3 +173,5 @@ Tip: Before pushing the PR, make sure the [tests](#Tests) are passing, and that 
 # Feeling kind of lost?
 
 Check out the [architecture diagram on CodeSee](https://app.codesee.io/maps/public/798d8e40-19c3-11ec-b873-35f335ec68d2).
+
+General coding [help](https://www.w3schools.com/js/default.asp).
