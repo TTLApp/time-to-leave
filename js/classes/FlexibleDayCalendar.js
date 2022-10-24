@@ -65,7 +65,7 @@ class FlexibleDayCalendar extends BaseCalendar
         const rightBut = `<input id="next-day" type="image" src="assets/right-arrow.svg" alt="${this._getTranslation('$FlexibleDayCalendar.next-day')}" height="24" width="24"></input>`;
         const title = 'Time to Leave';
         return '<div class="title-header">'+
-                    '<div class="title-header-img"><img src="assets/timer.svg" height="64" width="64"></div>' +
+                    '<div class="title-header-img"><img src="assets/ttl.svg" height="64" width="64"></div>' +
                     `<div class="title-header-text">${title}</div>` +
                     '<div class="title-header-msg"></div>' +
                '</div>' +

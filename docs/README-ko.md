@@ -51,6 +51,4 @@ Time to Leave는 MacOS, Windows 그리고 Linux 환경에서 동작합니다. [�
 
 본 프로그램에는 [www.flaticon.com](https://www.flaticon.com)의 [freepik](https://www.flaticon.com/authors/freepik)에서 제작된 아이콘들이 사용되었습니다.
 
-[lucy-g](https://icon-icons.com/icon/timer/121243)의 Original Timer Icon 수정본이 사용되었습니다.
-
 [www.flaticon.com](https://www.flaticon.com)의 [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect)에서 제작된 View Switch Icon이 사용되었습니다.

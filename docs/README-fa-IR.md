@@ -52,6 +52,4 @@
 
 <p dir="rtl">آیکن ها توسط <a href="https://www.flaticon.com/authors/freepik">freepik</a> از <a href="https://www.flaticon.com">www.flaticon.com</a> ساخته شده اند.</p>
 
-<p dir="rtl">آیکن اصلی تایمر از <a href="https://icon-icons.com/icon/timer/121243">lucy-g</a> هست که ما رنگ آن را تغییر دادیم و قالب آن تغییر یافته است.</p>
-
 <p dir="rtl">آیکن تغییر نما توسط <a href="https://www.flaticon.com/authors/pixel-perfect">Pixel perfect</a> از <a href="https://www.flaticon.com">www.flaticon.com</a> ساخته شده است.</p>

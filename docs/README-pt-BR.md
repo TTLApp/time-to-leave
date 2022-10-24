@@ -51,6 +51,4 @@ Junte-se ao nosso [canal do discord](https://discord.gg/P3KkEF5) para discutir n
 
 Ícones feitos por [freepik](https://www.flaticon.com/authors/freepik) de [www.flaticon.com](https://www.flaticon.com).
 
-Ícone do relógio feito por [lucy-g](https://icon-icons.com/icon/timer/121243), variações coloridas e formatos modificados a partir dele.
-
 Ícone do troca de visualização feito por [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) de [www.flaticon.com](https://www.flaticon.com).

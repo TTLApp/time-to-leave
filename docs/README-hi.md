@@ -50,6 +50,4 @@
 
 [Www.flaticon.com](https://www.flaticon.com) से [freepik](https://www.flaticon.com/authors/freepik) के प्रतीक।
 
-[लुसी-जी](https://icon-icons.com/icon/timer/121243) द्वारा मूल टाइमर आइकन, रंगीन रूपांतर और उससे संशोधित प्रारूप।
-
 [Www.flaticon.com](https://www.flaticon.com) से [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) द्वारा बनाया गया आइकन देखें।

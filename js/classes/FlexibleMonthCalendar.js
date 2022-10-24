@@ -98,7 +98,7 @@ class FlexibleMonthCalendar extends BaseCalendar
         const rightBut = `<input id="next-month" type="image" src="assets/right-arrow.svg" alt="${this._getTranslation('$FlexibleMonthCalendar.next-month')}" height="24" width="24"></input>`;
         const title = 'Time to Leave';
         return '<div class="title-header">'+
-                    '<div class="title-header title-header-img"><img src="assets/timer.svg" height="64" width="64"></div>' +
+                    '<div class="title-header title-header-img"><img src="assets/ttl.svg" height="64" width="64"></div>' +
                     `<div class="title-header title-header-text">${title}</div>` +
                     '<div class="title-header title-header-msg"></div>' +
                '</div>' +

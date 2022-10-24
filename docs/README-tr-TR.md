@@ -52,6 +52,4 @@ Yeni gelecek özellikleri tartışmak ve daha fazlası için [discord kanalımı
 
 Simgeler [freepik](https://www.flaticon.com/authors/freepik) tarafından [www.flaticon.com](https://www.flaticon.com)'da yapıldı.
 
-Orjinal Süre Ölçer simgesinin renkli varyasyonları ve formatları [lucy-g](https://icon-icons.com/icon/timer/121243)'dan modifiye edildi.
-
 'View Switch' simgesi [www.flaticon.com](https://www.flaticon.com)'da [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) tarafından yapıldı.

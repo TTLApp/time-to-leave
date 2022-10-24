@@ -50,6 +50,5 @@ Gå med vår [Discord server](https://discord.gg/P3KkEF5) för att diskutera kom
 
 Ikoner är gjorda av [freepik](https://www.flaticon.com/authors/freepik) från [www.flaticon.com](https://www.flaticon.com).
 
-Original Timer ikon av [lucy-g](https://icon-icons.com/icon/timer/121243), färglagda varianter och format modifierade från detsamma.
 
 Vyväxlare ikon gjord av [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) från [www.flaticon.com](https://www.flaticon.com).

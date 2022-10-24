@@ -50,6 +50,4 @@
 
 ચિહ્નો [freepik](https://www.flaticon.com/authors/freepik) દ્વારા [www.flaticon.com](https://www.flaticon.com) બનાવવામાં આવેલ છે.
 
-[lucy-g](https://icon-icons.com/icon/timer/121243) મૂળ ટાઈમર આયકન, રંગીનતા ભિન્નતા અને ફોર્મેટ્સમાંથી સંશોધિત.
-
 [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) માંથી [www.flaticon.com](https://www.flaticon.com) દ્વારા બનાવેલ આયકન જુઓ.

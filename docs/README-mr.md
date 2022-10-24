@@ -50,6 +50,4 @@ Unisciti al nostro [चॅनेल डिसकॉर्ड करा](https://
 
 द्वारे तयार केलेले चिन्हे [फ्रीपिक](https://www.flaticon.com/authors/freepik) su [www.flaticon.com](https://www.flaticon.com).
 
-मूळ टाइमर चिन्ह [ल्युसी-जी](https://icon-icons.com/icon/timer/121243), यातून तयार केलेले रंग आणि स्वरुपात बदल.
-
 स्विच चिन्ह पहा[Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) su [www.flaticon.com](https://www.flaticon.com).

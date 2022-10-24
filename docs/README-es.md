@@ -51,6 +51,4 @@ También puede usar la [guía de desarrollo](../DEVELOPMENT.md) para obtener má
 
 Iconos hechos por [freepik](https://www.flaticon.com/authors/freepik) de [www.flaticon.com](https://www.flaticon.com).
 
-Icono del reloj hecho por [lucy-g](https://icon-icons.com/icon/timer/121243), variaciones de color y formatos modificados a partir de ella.
-
 Icono del intercambio de visualización realizado por [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) de [www.flaticon.com](https://www.flaticon.com).

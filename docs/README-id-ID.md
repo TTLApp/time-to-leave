@@ -51,6 +51,4 @@ Bergabunglah ke [saluran discord](https://discord.gg/P3KkEF5) kami untuk berdisk
 
 Ikon dibuat dengan [freepik](https://www.flaticon.com/authors/freepik) dari [www.flaticon.com](https://www.flaticon.com).
 
-Ikon Original Timer dibuat dengan [lucy-g](https://icon-icons.com/icon/timer/121243), dengan modifikasi warna dan format.
-
 Ikon View Switch dibuat dengan [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) dari [www.flaticon.com](https://www.flaticon.com).

@@ -51,6 +51,4 @@ Time to Leave รองรับบนระบบปฏิบัติการ
 
 Icons โดย [freepik](https://www.flaticon.com/authors/freepik) จาก [www.flaticon.com](https://www.flaticon.com).
 
-Original Timer icon โดย [lucy-g](https://icon-icons.com/icon/timer/121243), (มีการตกแต่งเพิ่มเติม).
-
 View Switch icon โดย [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) จาก [www.flaticon.com](https://www.flaticon.com).

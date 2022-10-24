@@ -51,6 +51,4 @@ _Time to Leave_ работает on MacOS, Windows и Linux. Вы можете �
 
 Иконки созданы [freepik](https://www.flaticon.com/authors/freepik) на [www.flaticon.com](https://www.flaticon.com).
 
-Иконка таймера сделана [lucy-g](https://icon-icons.com/icon/timer/121243), цветные версии и другие форматы являются модификацией оригинала.
-
 Иконка изменения вида создана [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) на [www.flaticon.com](https://www.flaticon.com).
