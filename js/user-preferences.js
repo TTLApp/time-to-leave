@@ -4,6 +4,7 @@ const { ipcRenderer } = require('electron');
 
 import { isValidTheme } from '../renderer/themes.js';
 import { getLanguagesCodes } from '../src/configs/app.config.js';
+import { validateDate, validateTime } from './time-math.js';
 
 // Lazy loaded modules
 let fs = null;
@@ -24,45 +25,6 @@ function isValidLocale(locale)
 function isValidView(view)
 {
     return view === 'month' || view === 'day';
-}
-
-function isValidHoursPerDay(hoursPerDay)
-{
-    try
-    {
-        const [hours, minutes] = hoursPerDay.split(':').map(parseFloat);
-        return hours >= 0 && hours <= 24 && minutes >= 0 && minutes < 60;
-    }
-    catch (error)
-    {
-        return false;
-    }
-}
-
-function isValidBreakTimeInterval(interval)
-{
-    try
-    {
-        const [hours, minutes] = interval.split(':').map(parseFloat);
-        return hours >= 0 && hours <= 24 && minutes >= 0 && minutes < 60;
-    }
-    catch (error)
-    {
-        return false;
-    }
-}
-
-function isValidDate(date)
-{
-    try
-    {
-        const [, month, day] = date.split('-').map(parseFloat);
-        return month >= 0 && month <= 11 && day >= 1 && day <= 31;
-    }
-    catch (error)
-    {
-        return false;
-    }
 }
 
 const defaultPreferences = {
@@ -226,8 +188,8 @@ function initPreferencesFileIfNotExistsOrInvalid(filePath = getPreferencesFilePa
         {
             const timeValidationEnum = {
                 'notifications-interval' : () => isNotificationInterval(value),
-                'hours-per-day' : () =>  isValidHoursPerDay(value),
-                'break-time-interval' : () =>  isValidBreakTimeInterval(value),
+                'hours-per-day' : () =>  validateTime(value),
+                'break-time-interval' : () =>  validateTime(value),
             };
             if (!timeValidationEnum[key]())
             {
@@ -240,8 +202,8 @@ function initPreferencesFileIfNotExistsOrInvalid(filePath = getPreferencesFilePa
             'theme': () => isValidTheme(value),
             'view': () => isValidView(value),
             'language': () => isValidLocale(value),
-            'overall-balance-start-date': () => isValidDate(value),
-            'update-remind-me-after': () => isValidDate(value),
+            'overall-balance-start-date': () => validateDate(value),
+            'update-remind-me-after': () => validateDate(value),
         };
         if (key in inputEnum)
         {

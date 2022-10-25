@@ -105,6 +105,54 @@ function diffDays(date1, date2)
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 }
 
+/**
+ * Check if the day is valid on its month
+ * @param {number} dayOfMonth Date of the month from 0 to 31
+ * @param {number} month Month from 0 to 11
+ * @returns {boolean}
+ */
+function isValidDayOfMonth(dayOfMonth, month)
+{
+    const validDates = {
+        0: (day)=>  day >= 1 && day <= 31,
+        1: (day)=>  day >= 1 && day <= 29,
+        2: (day)=>  day >= 1 && day <= 31,
+        3: (day)=>  day >= 1 && day <= 30,
+        4: (day)=>  day >= 1 && day <= 31,
+        5: (day)=>  day >= 1 && day <= 30,
+        6: (day)=>  day >= 1 && day <= 31,
+        7: (day)=>  day >= 1 && day <= 31,
+        8: (day)=>  day >= 1 && day <= 30,
+        9: (day)=>  day >= 1 && day <= 31,
+        10: (day)=>  day >= 1 && day <= 30,
+        11: (day)=>  day >= 1 && day <= 31
+    };
+    return validDates[month](dayOfMonth);
+}
+
+/**
+ * Check if a date has a valid YYYY-MM-DD format
+ * @param {string} date String date to validate
+ * @returns {boolean}
+ */
+function validateDate(date)
+{
+    try
+    {
+        const re = new RegExp('(1|2)[0-9]{3}-(0[1-9]{1}|1[0-1]{1})-(0[0-9]{1}|1[0-9]{1}|2[0-9]{1}|3[0-1]{1})$');
+        if (re.test(date))
+        {
+            const [, month, day] = date.split('-').map(parseFloat);
+            return month >= 0 && month <= 11 && isValidDayOfMonth(month, day);
+        }
+    }
+    catch (error)
+    {
+        return false;
+    }
+    return false;
+}
+
 export {
     hourMinToHourFormatted,
     isNegative,
@@ -114,5 +162,6 @@ export {
     sumTime,
     validateTime,
     hourToMinutes,
-    diffDays
+    diffDays,
+    validateDate
 };
