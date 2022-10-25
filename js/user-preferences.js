@@ -350,6 +350,7 @@ function resetPreferences()
 }
 
 export {
+    booleanInputs,
     defaultPreferences,
     getDefaultWidthHeight,
     getLoadedOrDerivedUserPreferences as getUserPreferences,

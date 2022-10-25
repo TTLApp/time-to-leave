@@ -1,8 +1,9 @@
 /* eslint-disable no-undef */
 'use strict';
 
-const { defaultPreferences, getDefaultWidthHeight, getPreferencesFilePath, getUserPreferences, savePreferences, showDay, switchCalendarView, notificationIsEnabled, getUserLanguage, getNotificationsInterval, repetitionIsEnabled, getUserPreferencesPromise, resetPreferences } = require('../../js/user-preferences');
+const { booleanInputs, defaultPreferences, getDefaultWidthHeight, getPreferencesFilePath, getUserPreferences, savePreferences, showDay, switchCalendarView, notificationIsEnabled, getUserLanguage, getNotificationsInterval, repetitionIsEnabled, getUserPreferencesPromise, resetPreferences } = require('../../js/user-preferences');
 const fs = require('fs');
+const { themeOptions } = require('../../renderer/themes');
 
 function setNewPreference(preference, value)
 {
@@ -112,21 +113,21 @@ describe('Preferences Main', () =>
             expect(getNotificationsInterval()).toBe('5');
         });
 
-        test('Saving valid number', () =>
+        test('Saving valid number as notifications-interval', () =>
         {
             setNewPreference('notifications-interval', '6');
             expect(getUserPreferences()['notifications-interval']).toBe('6');
             expect(getNotificationsInterval()).toBe('6');
         });
 
-        test('Saving invalid number', () =>
+        test('Saving invalid number as notifications-interval', () =>
         {
             setNewPreference('notifications-interval', '0');
             expect(getUserPreferences()['notifications-interval']).toBe('5');
             expect(getNotificationsInterval()).toBe('5');
         });
 
-        test('Saving invalid text', () =>
+        test('Saving invalid text as notifications-interval', () =>
         {
             setNewPreference('notifications-interval', 'ab');
             expect(getUserPreferences()['notifications-interval']).toBe('5');
@@ -150,7 +151,7 @@ describe('Preferences Main', () =>
             expect(getUserLanguage()).toBe('en');
         });
 
-        test('Saving invalid language', () =>
+        test('Saving invalid string language', () =>
         {
             setNewPreference('language', 'es-AR');
             expect(getUserPreferences()['language']).toBe('en');
@@ -175,7 +176,7 @@ describe('Preferences Main', () =>
             expect(notificationIsEnabled()).toBe(true);
         });
 
-        test('Saving valid notification preference', () =>
+        test('Saving valid boolean as notification preference', () =>
         {
             setNewPreference('notification', false);
             expect(getUserPreferences()['notification']).toBe(false);
@@ -199,7 +200,7 @@ describe('Preferences Main', () =>
             expect(repetitionIsEnabled()).toBe(true);
         });
 
-        test('Saving valid repetition preference', () =>
+        test('Saving valid boolean as repetition preference', () =>
         {
             setNewPreference('repetition', false);
             expect(getUserPreferences()['repetition']).toBe(false);
@@ -213,25 +214,8 @@ describe('Preferences Main', () =>
         {
             savePreferences(defaultPreferences);
         });
-        const booleanPreferences = [
-            'count-today',
-            'close-to-tray',
-            'minimize-to-tray',
-            'hide-non-working-days',
-            'enable-prefill-break-time',
-            'notification',
-            'repetition',
-            'start-at-login',
-            'working-days-monday',
-            'working-days-tuesday',
-            'working-days-wednesday',
-            'working-days-thursday',
-            'working-days-friday',
-            'working-days-saturday',
-            'working-days-sunday',
-        ];
 
-        for (const pref of booleanPreferences)
+        for (const pref of booleanInputs)
         {
             test(`Saving invalid string as ${pref} preference`, () =>
             {
@@ -245,13 +229,13 @@ describe('Preferences Main', () =>
                 expect(getUserPreferences()[pref]).toBe(defaultPreferences[pref]);
             });
 
-            test(`Saving valid ${pref} preference`, () =>
+            test(`Saving valid boolean as ${pref} preference`, () =>
             {
                 setNewPreference(pref, false);
                 expect(getUserPreferences()[pref]).toBe(false);
             });
 
-            test(`Saving valid ${pref} preference`, () =>
+            test(`Saving valid boolean as ${pref} preference`, () =>
             {
                 setNewPreference(pref, true);
                 expect(getUserPreferences()[pref]).toBe(true);
@@ -261,8 +245,7 @@ describe('Preferences Main', () =>
 
     describe('Theme preference', () =>
     {
-        const validThemes = ['system-default', 'light', 'dark', 'cadent-star'];
-        for (const theme of validThemes)
+        for (const theme of themeOptions)
         {
             test(`Saving valid theme ${theme}`, () =>
             {
@@ -361,7 +344,7 @@ describe('Preferences Main', () =>
     });
     describe('Overall balance start date', () =>
     {
-        const key ='overall-balance-start-date';
+        const key = 'overall-balance-start-date';
 
         test('Saving invalid month in overall-balance-start-date', () =>
         {
@@ -383,7 +366,7 @@ describe('Preferences Main', () =>
     });
     describe('Update remind me after', () =>
     {
-        const key ='update-remind-me-after';
+        const key = 'update-remind-me-after';
 
         test('Saving invalid numner as update-remind-me-after', () =>
         {
