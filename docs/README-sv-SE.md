@@ -5,6 +5,7 @@
 
 [Homepage](https://timetoleave.app/)
 
+
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
 <img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Downloads in Total">
 <a href="https://github.com/thamara/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Latest Release"></a>
@@ -29,6 +30,7 @@ Du kan styra dina preferenser, konfigurera dina arbetsdagar, hur många timmar d
 
 <img src="./images/preferences.jpg" alt="Time to Leave Preferences">
 
+
 Du kan också lägga till dagar du är ledig, dagar du inte arbetar.
 
 <img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
@@ -44,7 +46,7 @@ Du kan också läsa vår [utvecklarguide](DEVELOPMENT.md) för mer information.
 
 ## Ta kontakt!
 
-Gå med vår [Discord server](https://discord.gg/P3KkEF5) för att diskutera kommande funktioner och mer.
+Gå med vår  [Discord server](https://discord.gg/P3KkEF5) för att diskutera kommande funktioner och mer.
 
 ## Eftertexter
 
