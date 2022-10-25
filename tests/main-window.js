@@ -48,7 +48,7 @@ describe('Application launch', function()
     {
         log('Running test ' + this.test.title);
         const { client, browserWindow } = this.app;
-        await client.waitUntilWindowLoaded(10000);
+        await client.waitUntilWindowLoaded();
         const title = await browserWindow.getTitle();
         assert.equal(title, 'Time to Leave');
         log('Running test - Done');
@@ -58,7 +58,7 @@ describe('Application launch', function()
     {
         log('Running test ' + this.test.title);
         const { client } = this.app;
-        await client.waitUntilWindowLoaded(10000);
+        await client.waitUntilWindowLoaded();
 
         const monthYear = await client.$('#month-year');
         const monthYearText = await monthYear.getText();
@@ -71,7 +71,7 @@ describe('Application launch', function()
     {
         log('Running test ' + this.test.title);
         const { client } = this.app;
-        await client.waitUntilWindowLoaded(10000);
+        await client.waitUntilWindowLoaded();
 
         const prevMonth = await client.$('#prev-month');
         prevMonth.click();
@@ -87,7 +87,7 @@ describe('Application launch', function()
     {
         log('Running test ' + this.test.title);
         const { client } = this.app;
-        await client.waitUntilWindowLoaded(10000);
+        await client.waitUntilWindowLoaded();
 
         const nextMonth = await client.$('#next-month');
         nextMonth.click();
@@ -103,7 +103,7 @@ describe('Application launch', function()
     {
         log('Running test ' + this.test.title);
         const { client } = this.app;
-        await client.waitUntilWindowLoaded(10000);
+        await client.waitUntilWindowLoaded();
 
         // Switch to Day View
         const switchViewBtn = await client.$('#switch-view');
