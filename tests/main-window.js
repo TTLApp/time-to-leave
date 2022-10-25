@@ -17,7 +17,7 @@ function log(msg)
 
 describe('Application launch', function()
 {
-    this.timeout(30000);
+    this.timeout(60000);
     this.beforeEach(async function()
     {
         this.app = new Application({
