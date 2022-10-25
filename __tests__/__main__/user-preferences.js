@@ -114,21 +114,21 @@ describe('Preferences Main', () =>
 
         test('Saving valid number', () =>
         {
-            setNewPreference('notifications-interval','6');
+            setNewPreference('notifications-interval', '6');
             expect(getUserPreferences()['notifications-interval']).toBe('6');
             expect(getNotificationsInterval()).toBe('6');
         });
 
         test('Saving invalid number', () =>
         {
-            setNewPreference('notifications-interval','0');
+            setNewPreference('notifications-interval', '0');
             expect(getUserPreferences()['notifications-interval']).toBe('5');
             expect(getNotificationsInterval()).toBe('5');
         });
 
         test('Saving invalid text', () =>
         {
-            setNewPreference('notifications-interval','ab');
+            setNewPreference('notifications-interval', 'ab');
             expect(getUserPreferences()['notifications-interval']).toBe('5');
             expect(getNotificationsInterval()).toBe('5');
         });
@@ -143,7 +143,7 @@ describe('Preferences Main', () =>
             expect(getUserLanguage()).toBe('es');
         });
 
-        test('Saving invalid language', () =>
+        test('Saving invalid number as language', () =>
         {
             setNewPreference('language', 5);
             expect(getUserPreferences()['language']).toBe('en');
@@ -161,18 +161,20 @@ describe('Preferences Main', () =>
 
     describe('notificationIsEnabled()', () =>
     {
-        test('Saving invalid notification preference', () =>
+        test('Saving invalid string as notification preference', () =>
         {
             setNewPreference('notification', 'true');
             expect(getUserPreferences()['notification']).toBe(true);
             expect(notificationIsEnabled()).toBe(true);
         });
-        test('Saving invalid notification preference', () =>
+
+        test('Saving invalid number as notification preference', () =>
         {
             setNewPreference('notification', 8);
             expect(getUserPreferences()['notification']).toBe(true);
             expect(notificationIsEnabled()).toBe(true);
         });
+
         test('Saving valid notification preference', () =>
         {
             setNewPreference('notification', false);
@@ -180,20 +182,23 @@ describe('Preferences Main', () =>
             expect(notificationIsEnabled()).toBe(false);
         });
     });
+
     describe('repetitionIsEnabled()', () =>
     {
-        test('Saving invalid repetition preference', () =>
+        test('Saving invalid string as repetition preference', () =>
         {
             setNewPreference('repetition', 'true');
             expect(getUserPreferences()['repetition']).toBe(true);
             expect(repetitionIsEnabled()).toBe(true);
         });
-        test('Saving invalid repetition preference', () =>
+
+        test('Saving invalid number as repetition preference', () =>
         {
             setNewPreference('repetition', 15);
             expect(getUserPreferences()['repetition']).toBe(true);
             expect(repetitionIsEnabled()).toBe(true);
         });
+
         test('Saving valid repetition preference', () =>
         {
             setNewPreference('repetition', false);
@@ -228,21 +233,24 @@ describe('Preferences Main', () =>
 
         for (const pref of booleanPreferences)
         {
-            test(`Saving invalid ${pref} preference`, () =>
+            test(`Saving invalid string as ${pref} preference`, () =>
             {
                 setNewPreference(pref, 'true');
                 expect(getUserPreferences()[pref]).toBe(defaultPreferences[pref]);
             });
-            test(`Saving invalid ${pref} preference`, () =>
+
+            test(`Saving invalid number as ${pref} preference`, () =>
             {
                 setNewPreference(pref, 20);
                 expect(getUserPreferences()[pref]).toBe(defaultPreferences[pref]);
             });
+
             test(`Saving valid ${pref} preference`, () =>
             {
                 setNewPreference(pref, false);
                 expect(getUserPreferences()[pref]).toBe(false);
             });
+
             test(`Saving valid ${pref} preference`, () =>
             {
                 setNewPreference(pref, true);
@@ -250,6 +258,7 @@ describe('Preferences Main', () =>
             });
         }
     });
+
     describe('Theme preference', () =>
     {
         const validThemes = ['system-default', 'light', 'dark', 'cadent-star'];
@@ -262,12 +271,13 @@ describe('Preferences Main', () =>
             });
         }
 
-        test('Saving invalid theme', () =>
+        test('Saving invalid string as theme', () =>
         {
             setNewPreference('theme', 'DARKKKK');
             expect(getUserPreferences()['theme']).toBe(defaultPreferences.theme);
         });
-        test('Saving invalid theme', () =>
+
+        test('Saving invalid number as theme', () =>
         {
             setNewPreference('theme', 5);
             expect(getUserPreferences()['theme']).toBe(defaultPreferences.theme);
@@ -275,32 +285,37 @@ describe('Preferences Main', () =>
     });
     describe('Hours Per Day', () =>
     {
-        test('Saving invalid hours per day', () =>
+        test('Saving invalid number as hours per day', () =>
         {
             setNewPreference('hours-per-day', 1223);
             expect(getUserPreferences()['hours-per-day']).toBe(defaultPreferences['hours-per-day']);
         });
-        test('Saving invalid hours per day', () =>
+
+        test('Saving invalid amount of hours per day', () =>
         {
             setNewPreference('hours-per-day', '30:00');
             expect(getUserPreferences()['hours-per-day']).toBe(defaultPreferences['hours-per-day']);
         });
-        test('Saving invalid hours per day', () =>
+
+        test('Saving invalid minutes in hours per day', () =>
         {
             setNewPreference('hours-per-day', '20:99');
             expect(getUserPreferences()['hours-per-day']).toBe(defaultPreferences['hours-per-day']);
         });
-        test('Saving invalid hours per day', () =>
+
+        test('Saving invalid boolean as hours per day', () =>
         {
             setNewPreference('hours-per-day', true);
             expect(getUserPreferences()['hours-per-day']).toBe(defaultPreferences['hours-per-day']);
         });
-        test('Saving invalid hours per day', () =>
+
+        test('Saving valid hours per day', () =>
         {
             setNewPreference('hours-per-day', '06:00');
             expect(getUserPreferences()['hours-per-day']).toBe('06:00');
         });
-        test('Saving invalid hours per day', () =>
+
+        test('Saving valid hours per day', () =>
         {
             setNewPreference('hours-per-day', '01:30');
             expect(getUserPreferences()['hours-per-day']).toBe('01:30');
@@ -308,32 +323,37 @@ describe('Preferences Main', () =>
     });
     describe('Break Time Interval', () =>
     {
-        test('Saving invalid break-time-interval', () =>
+        test('Saving invalid number as break-time-interval', () =>
         {
             setNewPreference('break-time-interval', 1223);
             expect(getUserPreferences()['break-time-interval']).toBe(defaultPreferences['break-time-interval']);
         });
-        test('Saving invalid break-time-interval', () =>
+
+        test('Saving invalid hours in break-time-interval', () =>
         {
             setNewPreference('break-time-interval', '30:00');
             expect(getUserPreferences()['break-time-interval']).toBe(defaultPreferences['break-time-interval']);
         });
-        test('Saving invalid break-time-interval', () =>
+
+        test('Saving invalid mintes in break-time-interval', () =>
         {
             setNewPreference('break-time-interval', '20:99');
             expect(getUserPreferences()['break-time-interval']).toBe(defaultPreferences['break-time-interval']);
         });
-        test('Saving invalid break-time-interval', () =>
+
+        test('Saving invalid boolean as break-time-interval', () =>
         {
             setNewPreference('break-time-interval', true);
             expect(getUserPreferences()['break-time-interval']).toBe(defaultPreferences['break-time-interval']);
         });
-        test('Saving invalid break-time-interval', () =>
+
+        test('Saving valid break-time-interval', () =>
         {
             setNewPreference('break-time-interval', '00:30');
             expect(getUserPreferences()['break-time-interval']).toBe('00:30');
         });
-        test('Saving invalid break-time-interval', () =>
+
+        test('Saving valid break-time-interval', () =>
         {
             setNewPreference('break-time-interval', '00:15');
             expect(getUserPreferences()['break-time-interval']).toBe('00:15');
@@ -342,16 +362,19 @@ describe('Preferences Main', () =>
     describe('Overall balance start date', () =>
     {
         const key ='overall-balance-start-date';
-        test('Saving invalid date', () =>
+
+        test('Saving invalid month in overall-balance-start-date', () =>
         {
             setNewPreference( key, '2022-13-01');
             expect(getUserPreferences()[key]).toBe(defaultPreferences[key]);
         });
-        test('Saving invalid date', () =>
+
+        test('Saving invalid day in overall-balance-start-date', () =>
         {
             setNewPreference( key, '2022-10-32');
             expect(getUserPreferences()[key]).toBe(defaultPreferences[key]);
         });
+
         test('Saving valid date', () =>
         {
             setNewPreference( key, '2022-10-02');
@@ -361,21 +384,25 @@ describe('Preferences Main', () =>
     describe('Update remind me after', () =>
     {
         const key ='update-remind-me-after';
-        test('Saving invalid date', () =>
+
+        test('Saving invalid numner as update-remind-me-after', () =>
         {
             setNewPreference( key, new Date('2022-13-01').getTime());
             expect(getUserPreferences()[key]).toBe(defaultPreferences[key]);
         });
-        test('Saving invalid date', () =>
+
+        test('Saving invalid month in update-remind-me-after', () =>
         {
             setNewPreference( key, '2022-13-01');
             expect(getUserPreferences()[key]).toBe(defaultPreferences[key]);
         });
-        test('Saving invalid date', () =>
+
+        test('Saving invalid date in update-remind-me-after', () =>
         {
             setNewPreference( key, '2022-10-32');
             expect(getUserPreferences()[key]).toBe(defaultPreferences[key]);
         });
+
         test('Saving valid date', () =>
         {
             setNewPreference( key, '2022-10-02');
@@ -386,8 +413,9 @@ describe('Preferences Main', () =>
     {
         test('Save to wrong path', () =>
         {
-            expect(savePreferences(defaultPreferences, './not/exisiting/folder')).toBeInstanceOf(Error);
+            expect(savePreferences(defaultPreferences, './not/existing/folder')).toBeInstanceOf(Error);
         });
+
         test('Save to default path', () =>
         {
             expect(savePreferences(defaultPreferences)).toBe(true);
@@ -428,10 +456,12 @@ describe('Preferences Main', () =>
         {
             fs.writeFileSync('./dummy_file.txt', 'This should be tried to be parsed and fail');
         });
+
         test('Should return a promise', () =>
         {
             expect(getUserPreferencesPromise()).toBeInstanceOf(Promise);
         });
+
         test('Should resolve promise', async() =>
         {
             await expect(getUserPreferencesPromise()).resolves.toStrictEqual({});
