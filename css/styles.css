@@ -1011,7 +1011,7 @@ html[data-view='flexible-day'] #calendar input[type="date" i]::-webkit-calendar-
   background-image: var(--day-calendar-select-icon);
   height: 10px;
   margin-left: 2px;
-  margin-right: -5px;
+  margin-right: -3px;
   width: 10px;
 }
 
