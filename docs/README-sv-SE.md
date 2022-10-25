@@ -28,8 +28,8 @@ Registrera tiden du började arbeta idag, och programmet kommer att räkna fram 
 
 Du kan styra dina preferenser, konfigurera dina arbetsdagar, hur många timmar du arbetar per dag och om du vill ha en notifiering eller inte.
 
-<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
 
+<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
 
 Du kan också lägga till dagar du är ledig, dagar du inte arbetar.
 
