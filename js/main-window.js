@@ -89,8 +89,8 @@ function createWindow()
     // Prevents flickering from maximize
     mainWindow.show();
 
-    // and load the index.html of the app.
-    mainWindow.loadFile(path.join(__dirname, '../index.html'));
+    // and load the main html of the app as the default window
+    mainWindow.loadFile(path.join(__dirname, '../src/calendar.html'));
 
     ipcMain.on('TOGGLE_TRAY_PUNCH_TIME', (_event, arg) =>
     {

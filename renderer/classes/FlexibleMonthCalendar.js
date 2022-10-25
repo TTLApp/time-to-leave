@@ -6,14 +6,14 @@ import {
     subtractTime,
     sumTime,
     validateTime
-} from '../time-math.js';
-import { getMonthLength } from '../date-aux.js';
-import { generateKey } from '../date-db-formatter.js';
+} from '../../js/time-math.js';
+import { getMonthLength } from '../../js/date-aux.js';
+import { generateKey } from '../../js/date-db-formatter.js';
 import {
     formatDayId,
     displayWaiverWindow
-} from '../../renderer/workday-waiver-aux.js';
-import { getMonthName, getDayAbbr } from '../date-to-string-util.js';
+} from '../workday-waiver-aux.js';
+import { getMonthName, getDayAbbr } from '../../js/date-to-string-util.js';
 import { BaseCalendar } from './BaseCalendar.js';
 
 /// Compatiblity block - to be removed in the migration of calendar to non-remote electron
@@ -112,13 +112,13 @@ class FlexibleMonthCalendar extends BaseCalendar
      */
     _getPageHeader()
     {
-        const switchView = `<input id="switch-view" type="image" src="assets/switch.svg" alt="${this._getTranslation('$BaseCalendar.switch-view')}" title="${this._getTranslation('$BaseCalendar.switch-view')}" height="24" width="24"></input>`;
-        const todayBut = `<input id="current-month" type="image" src="assets/calendar.svg" alt="${this._getTranslation('$FlexibleMonthCalendar.current-month')}" title="${this._getTranslation('$FlexibleMonthCalendar.current-month')}" height="24" width="24"></input>`;
-        const leftBut = `<input id="prev-month" type="image" src="assets/left-arrow.svg" alt="${this._getTranslation('$FlexibleMonthCalendar.previous-month')}" height="24" width="24"></input>`;
-        const rightBut = `<input id="next-month" type="image" src="assets/right-arrow.svg" alt="${this._getTranslation('$FlexibleMonthCalendar.next-month')}" height="24" width="24"></input>`;
+        const switchView = `<input id="switch-view" type="image" src="../assets/switch.svg" alt="${this._getTranslation('$BaseCalendar.switch-view')}" title="${this._getTranslation('$BaseCalendar.switch-view')}" height="24" width="24"></input>`;
+        const todayBut = `<input id="current-month" type="image" src="../assets/calendar.svg" alt="${this._getTranslation('$FlexibleMonthCalendar.current-month')}" title="${this._getTranslation('$FlexibleMonthCalendar.current-month')}" height="24" width="24"></input>`;
+        const leftBut = `<input id="prev-month" type="image" src="../assets/left-arrow.svg" alt="${this._getTranslation('$FlexibleMonthCalendar.previous-month')}" height="24" width="24"></input>`;
+        const rightBut = `<input id="next-month" type="image" src="../assets/right-arrow.svg" alt="${this._getTranslation('$FlexibleMonthCalendar.next-month')}" height="24" width="24"></input>`;
         const title = 'Time to Leave';
         return '<div class="title-header">'+
-                    '<div class="title-header title-header-img"><img src="assets/ttl.svg" height="64" width="64"></div>' +
+                    '<div class="title-header title-header-img"><img src="../assets/ttl.svg" height="64" width="64"></div>' +
                     `<div class="title-header title-header-text">${title}</div>` +
                     '<div class="title-header title-header-msg"></div>' +
                '</div>' +
@@ -233,7 +233,7 @@ class FlexibleMonthCalendar extends BaseCalendar
                 `<div class="weekday waiver-trigger" title="${this._getTranslation('$FlexibleMonthCalendar.add-waiver-day')}">` + getDayAbbr(this._languageData.data, weekDay) + '</div>' +
                 '<div class="day">' +
                     '<span class="day-number"> ' + day + ' </span>' +
-                    '<img src="assets/waiver.svg" height="16" class="waiver-img">' +
+                    '<img src="../assets/waiver.svg" height="16" class="waiver-img">' +
                 '</div>' +
                 '<div class="sign-cell minus-sign">' +
                     '<span>-</span>' +

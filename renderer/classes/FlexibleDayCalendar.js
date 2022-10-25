@@ -6,9 +6,9 @@ import {
     subtractTime,
     sumTime,
     validateTime
-} from '../time-math.js';
-import { getDateStr, getMonthLength } from '../date-aux.js';
-import { generateKey } from '../date-db-formatter.js';
+} from '../../js/time-math.js';
+import { getDateStr, getMonthLength } from '../../js/date-aux.js';
+import { generateKey } from '../../js/date-db-formatter.js';
 import { BaseCalendar } from './BaseCalendar.js';
 
 /// Compatiblity block - to be removed in the migration of calendar to non-remote electron
@@ -79,13 +79,13 @@ class FlexibleDayCalendar extends BaseCalendar
      */
     _getPageHeader()
     {
-        const switchView = `<input id="switch-view" type="image" src="assets/switch.svg" alt="${this._getTranslation('$BaseCalendar.switch-view')}" title="${this._getTranslation('$BaseCalendar.switch-view')}" height="24" width="24"></input>`;
-        const todayBut = `<input id="current-day" type="image" src="assets/calendar.svg" alt="${this._getTranslation('$FlexibleDayCalendar.current-day')}" title="${this._getTranslation('$FlexibleDayCalendar.current-day')}" height="24" width="24"></input>`;
-        const leftBut = `<input id="prev-day" type="image" src="assets/left-arrow.svg" alt="${this._getTranslation('$FlexibleDayCalendar.previous-day')}" height="24" width="24"></input>`;
-        const rightBut = `<input id="next-day" type="image" src="assets/right-arrow.svg" alt="${this._getTranslation('$FlexibleDayCalendar.next-day')}" height="24" width="24"></input>`;
+        const switchView = `<input id="switch-view" type="image" src="../assets/switch.svg" alt="${this._getTranslation('$BaseCalendar.switch-view')}" title="${this._getTranslation('$BaseCalendar.switch-view')}" height="24" width="24"></input>`;
+        const todayBut = `<input id="current-day" type="image" src="../assets/calendar.svg" alt="${this._getTranslation('$FlexibleDayCalendar.current-day')}" title="${this._getTranslation('$FlexibleDayCalendar.current-day')}" height="24" width="24"></input>`;
+        const leftBut = `<input id="prev-day" type="image" src="../assets/left-arrow.svg" alt="${this._getTranslation('$FlexibleDayCalendar.previous-day')}" height="24" width="24"></input>`;
+        const rightBut = `<input id="next-day" type="image" src="../assets/right-arrow.svg" alt="${this._getTranslation('$FlexibleDayCalendar.next-day')}" height="24" width="24"></input>`;
         const title = 'Time to Leave';
         return '<div class="title-header">'+
-                    '<div class="title-header-img"><img src="assets/ttl.svg" height="64" width="64"></div>' +
+                    '<div class="title-header-img"><img src="../assets/ttl.svg" height="64" width="64"></div>' +
                     `<div class="title-header-text">${title}</div>` +
                     '<div class="title-header-msg"></div>' +
                '</div>' +

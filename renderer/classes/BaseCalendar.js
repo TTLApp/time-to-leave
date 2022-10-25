@@ -9,16 +9,16 @@ import {
     subtractTime,
     sumTime,
     validateTime
-} from '../time-math.js';
+} from '../../js/time-math.js';
 import {
     formatDayId,
     displayWaiverWindow
-} from '../../renderer/workday-waiver-aux.js';
-import { showDay, switchCalendarView } from '../user-preferences.js';
-import { getDateStr, getMonthLength } from '../date-aux.js';
-import { computeAllTimeBalanceUntilAsync } from '../time-balance.js';
-import { generateKey } from '../date-db-formatter.js';
-import { getTranslationInLanguageData } from '../../renderer/i18n-translator.js';
+} from '../workday-waiver-aux.js';
+import { showDay, switchCalendarView } from '../../js/user-preferences.js';
+import { getDateStr, getMonthLength } from '../../js/date-aux.js';
+import { computeAllTimeBalanceUntilAsync } from '../../js/time-balance.js';
+import { generateKey } from '../../js/date-db-formatter.js';
+import { getTranslationInLanguageData } from '../i18n-translator.js';
 
 // Global values for calendar
 const flexibleStore = new Store({name: 'flexible-store'});
@@ -142,7 +142,7 @@ class BaseCalendar
     _generateTableFooter()
     {
         return '<button class="punch-button" id="punch-button" disabled>' +
-                   '<img src="assets/fingerprint.svg" height="36" width="36"></img>' +
+                   '<img src="../assets/fingerprint.svg" height="36" width="36"></img>' +
                    `<label for="punch-button" id="punch-button-label">${this._getTranslation('$Menu.punch-time')}</label>` +
                '</button>\n';
     }

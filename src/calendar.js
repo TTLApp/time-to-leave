@@ -2,8 +2,8 @@
 
 const { ipcRenderer } = require('electron');
 
-import { getUserPreferences } from './user-preferences.js';
-import { CalendarFactory } from './classes/CalendarFactory.js';
+import { getUserPreferences } from '../js/user-preferences.js';
+import { CalendarFactory } from '../renderer/classes/CalendarFactory.js';
 import { applyTheme } from '../renderer/themes.js';
 
 // Global values for calendar

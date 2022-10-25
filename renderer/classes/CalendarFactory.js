@@ -2,7 +2,7 @@
 
 const { ipcRenderer } = require('electron');
 
-import { getDefaultWidthHeight} from '../user-preferences.js';
+import { getDefaultWidthHeight} from '../../js/user-preferences.js';
 import { FlexibleMonthCalendar } from './FlexibleMonthCalendar.js';
 import { FlexibleDayCalendar } from './FlexibleDayCalendar.js';
 
