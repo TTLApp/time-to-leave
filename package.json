@@ -33,7 +33,7 @@
     "start": "electron .",
     "test": "npm-run-all test:*",
     "test:jest": "jest --runInBand --detectOpenHandles --verbose --colors",
-    "test:mocha": "nyc --reporter=lcov --reporter=json mocha tests/* --bail"
+    "test:mocha": "nyc --reporter=lcov --reporter=json mocha tests/* --bail -p"
   },
   "pre-commit": [
     "clean",
