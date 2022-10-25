@@ -29,38 +29,59 @@ const {
     refreshDataForTest
 } = require('../../src/workday-waiver');
 import { showDialog } from '../../js/window-aux.js';
+const { workdayWaiverApi } = require('../../renderer/preload-scripts/workday-waiver-api.js');
 
 jest.mock('../../renderer/i18n-translator.js', () => ({
     translatePage: jest.fn().mockReturnThis(),
     getTranslationInLanguageData: jest.fn().mockReturnThis()
 }));
 
+const waiverStore = new Store({name: 'waived-workdays'});
+
+// APIs from the preload script of the workday waiver window
+window.mainApi = workdayWaiverApi;
+
+// Mocking with the actual access to store that main would have
+window.mainApi.getWaiverStoreContents = () => { return new Promise((resolve) => resolve(waiverStore.store)); };
+window.mainApi.setWaiver = (key, contents) => {
+    return new Promise((resolve) => {
+        waiverStore.set(key, contents);
+        resolve(true);
+    });
+};
+window.mainApi.hasWaiver = (key) => { return new Promise((resolve) => resolve(waiverStore.has(key))); };
+window.mainApi.deleteWaiver = (key) =>{
+    return new Promise((resolve) => {
+        waiverStore.delete(key);
+        resolve(true);
+    });
+};
+
 const languageData = {'language': 'en', 'data': {'dummy_string': 'dummy_string_translated'}};
 
-function prepareMockup()
+async function prepareMockup()
 {
-    const waivedWorkdays = new Store({ name: 'waived-workdays' });
-    waivedWorkdays.clear();
+    waiverStore.clear();
     const workdayWaiverHtml = path.join(__dirname, '../../src/workday-waiver.html');
     const content = fs.readFileSync(workdayWaiverHtml);
     const parser = new DOMParser();
     const htmlDoc = parser.parseFromString(content, 'text/html');
     document.body.innerHTML = htmlDoc.body.innerHTML;
-    populateList();
+    await populateList();
     refreshDataForTest(languageData);
 }
 
-function addTestWaiver(day, reason)
+async function addTestWaiver(day, reason)
 {
     $('#reason').val(reason);
     setDates(day);
-    setHours();
+    setHours('08:00');
     return addWaiver();
 }
 
-function testWaiverCount(expected)
+async function testWaiverCount(expected)
 {
-    const waivedWorkdays = new Store({ name: 'waived-workdays' });
+    const waivedWorkdays = await window.mainApi.getWaiverStoreContents();
     expect(waivedWorkdays.size).toBe(expected);
     expect($('#waiver-list-table tbody')[0].rows.length).toBe(expected);
 }
@@ -73,10 +94,9 @@ describe('Test Workday Waiver Window', function()
 
     describe('Adding new waivers update the db and the page', function()
     {
-
-        beforeEach(() =>
+        beforeEach(async () =>
         {
-            prepareMockup();
+            await prepareMockup();
         });
 
         test('One Waiver', () =>
@@ -85,7 +105,6 @@ describe('Test Workday Waiver Window', function()
             addTestWaiver('2020-07-16', 'some reason');
             testWaiverCount(1);
         });
-
 
         test('One + two Waivers', () =>
         {
@@ -128,32 +147,32 @@ describe('Test Workday Waiver Window', function()
             expect(isSorted).toBe(true);
 
         });
-        test('Time is not valid', () =>
+        test('Time is not valid', async () =>
         {
             $('#hours').val('not a time');
-            const waiver = addWaiver();
+            const waiver = await addWaiver();
             expect(waiver).toBeFalsy();
         });
 
-        test('End date less than start date', () =>
+        test('End date less than start date', async () =>
         {
-            setHours();
+            setHours('08:00');
             $('#start-date').val('2020-07-20');
             $('#end-date').val('2020-07-19');
-            const waiver = addWaiver();
+            const waiver = await addWaiver();
             expect(waiver).toBeFalsy();
         });
 
-        test('Add waiver with the same date', () =>
+        test('Add waiver with the same date', async () =>
         {
             addTestWaiver('2020-07-16', 'some reason');
-            const waiver = addTestWaiver('2020-07-16', 'some reason');
+            const waiver = await addTestWaiver('2020-07-16', 'some reason');
             expect(waiver).toBeFalsy();
         });
 
-        test('Range does not contain any working day', () =>
+        test('Range does not contain any working day', async () =>
         {
-            const waiver = addTestWaiver('2020-13-01', 'some reason');
+            const waiver = await addTestWaiver('2020-13-01', 'some reason');
             expect(waiver).toBeFalsy();
         });
     });
@@ -197,9 +216,9 @@ describe('Test Workday Waiver Window', function()
 
     describe('Delete waiver', () =>
     {
-        test('Waiver was deleted', () =>
+        test('Waiver was deleted', async () =>
         {
-            prepareMockup();
+            await prepareMockup();
             addTestWaiver('2020-07-16', 'some reason');
             const deleteBtn = document.querySelectorAll('#waiver-list-table .delete-btn')[0];
             showDialog.mockImplementation((options, cb) =>
@@ -216,9 +235,9 @@ describe('Test Workday Waiver Window', function()
     {
         const hd = new Holidays();
 
-        beforeEach(() =>
+        beforeEach(async () =>
         {
-            prepareMockup();
+            await prepareMockup();
         });
 
         test('Country was populated', () =>
@@ -288,9 +307,9 @@ describe('Test Workday Waiver Window', function()
         const state = 'CA';
         const city = 'LA';
 
-        beforeEach(() =>
+        beforeEach(async () =>
         {
-            prepareMockup();
+            await prepareMockup();
         });
 
         test('Get holidays with no country', () =>
@@ -337,9 +356,9 @@ describe('Test Workday Waiver Window', function()
         const country = 'US';
         const state = 'CA';
 
-        beforeEach(() =>
+        beforeEach(async () =>
         {
-            prepareMockup();
+            await prepareMockup();
         });
 
         test('Iterate on holidays', () =>
@@ -353,12 +372,12 @@ describe('Test Workday Waiver Window', function()
             expect(mockCallback).toBeCalledTimes(holidaysLength);
         });
 
-        test('Load holidays table', () =>
+        test('Load holidays table', async () =>
         {
             $('#year').append($('<option selected></option>').val(year).html(year));
             $('#country').append($('<option selected></option>').val(country).html(country));
             $('#state').append($('<option selected></option>').val(state).html(state));
-            loadHolidaysTable();
+            await loadHolidaysTable();
             const holidaysLength = getHolidays().length;
             const rowLength = $('#holiday-list-table tbody tr').length;
             expect($('#holiday-list-table').css('display')).toBe('table');
@@ -381,9 +400,9 @@ describe('Test Workday Waiver Window', function()
 
     describe('Add holiday to list', () =>
     {
-        beforeEach(() =>
+        beforeEach(async () =>
         {
-            prepareMockup();
+            await prepareMockup();
         });
 
         test('Holiday added working day, no conflicts', () =>
@@ -410,9 +429,9 @@ describe('Test Workday Waiver Window', function()
 
     describe('Clearing the table', () =>
     {
-        beforeEach(() =>
+        beforeEach(async () =>
         {
-            prepareMockup();
+            await prepareMockup();
             addTestWaiver('2020-07-20', 'some other reason');
             addTestWaiver('2020-07-21', 'yet another reason');
             addHolidayToList('test day', 'no reason');

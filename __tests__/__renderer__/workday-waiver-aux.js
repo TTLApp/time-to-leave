@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
-import { formatDayId, displayWaiverWindow } from '../../js/workday-waiver-aux.js';
+import { formatDayId, displayWaiverWindow } from '../../renderer/workday-waiver-aux.js';
 
 describe('Workday Waiver Aux', function()
 {
