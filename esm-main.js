@@ -7,7 +7,10 @@ const { createNotification } = require('./js/notification');
 const { openWaiverManagerWindow } = require('./js/windows.js');
 const { setupI18n, getCurrentTranslation, setLanguageChangedCallback } = require('./src/configs/i18next.config.js');
 const { handleSquirrelEvent } = require('./js/squirrel.js');
+const { showAlert, showDialogSync } = require('./js/window-aux.js');
+
 import { appConfig } from './js/app-config.js';
+import { setupWorkdayWaiverStore } from './main/workday-waiver-aux.js';
 
 if (appConfig.win32)
 {
@@ -25,12 +28,27 @@ ipcMain.on('SET_WAIVER_DAY', (event, waiverDay) =>
     openWaiverManagerWindow(mainWindow);
 });
 
+ipcMain.handle('GET_WAIVER_DAY', () =>
+{
+    return global.waiverDay;
+});
+
 ipcMain.handle('USER_DATA_PATH', () =>
 {
     return new Promise((resolve) =>
     {
         resolve(app.getPath('userData'));
     });
+});
+
+ipcMain.on('SHOW_ALERT', (event, alertMessage) =>
+{
+    showAlert(alertMessage);
+});
+
+ipcMain.handle('SHOW_DIALOG', (event, dialogOptions) =>
+{
+    return showDialogSync(dialogOptions);
 });
 
 let launchDate = new Date();
@@ -117,6 +135,7 @@ app.on('ready', () =>
         }
         createWindow();
         createMenu();
+        setupWorkdayWaiverStore();
         setLanguageChangedCallback(createMenu);
         triggerStartupDialogs();
         setInterval(refreshOnDayChange, 60 * 60 * 1000);

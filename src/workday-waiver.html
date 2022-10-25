@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="../css/styles.css">
 
     <!-- First we need to declare jQuery and $ globals with jquery -->
-    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script src="../node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
+    <script>
+        window.$ = window.jQuery;
+    </script>
+
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js" charset="utf-8"></script>
     <script type="module" src="workday-waiver.js"></script>
 </head>

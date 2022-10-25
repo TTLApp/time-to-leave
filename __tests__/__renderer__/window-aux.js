@@ -12,8 +12,8 @@ describe('window-aux.js Testing', function()
 
     const mockHtmlPath = path.join('file://', __dirname, '../../__mocks__/mock.html');
 
-    const devToolsShortcut = new KeyboardEvent('keyup', {keyCode: 73, ctrlKey: true, shiftKey: true});
-    const badDevToolsShortcut = new KeyboardEvent('keyup', {keyCode: 74, ctrlKey: true, shiftKey: true});
+    // const devToolsShortcut = new KeyboardEvent('keyup', {keyCode: 73, ctrlKey: true, shiftKey: true});
+    // const badDevToolsShortcut = new KeyboardEvent('keyup', {keyCode: 74, ctrlKey: true, shiftKey: true});
     const browserWindowOptions = {
         webPreferences: {
             enableRemoteModule: true,
@@ -22,68 +22,72 @@ describe('window-aux.js Testing', function()
     };
     const timeoutValue = 1500;
 
-    describe('bindDevToolsShortcut(window)', function()
-    {
+    // Testcase no longer being used since the move to electron without remote
+    // but we should make use of it for a mocha testcase to still be sure the proferences window
+    // and workday waiver have the shortcut working
 
-        test('No bind: should not open anything', async() =>
-        {
-            const testWindow = new BrowserWindow(browserWindowOptions);
-            testWindow.loadURL(mockHtmlPath);
-            expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
+    // describe('bindDevToolsShortcut(window)', function()
+    // {
 
-            testWindow.webContents.on('dom-ready', () =>
-            {
-                window.dispatchEvent(devToolsShortcut);
-            });
-            testWindow.on('did-fail-load', (event, code, desc, url, isMainFrame) =>
-            {
-                console.log('did-fail-load: ', event,  code, desc, url, isMainFrame);
-            });
+    //     test('No bind: should not open anything', async() =>
+    //     {
+    //         const testWindow = new BrowserWindow(browserWindowOptions);
+    //         testWindow.loadURL(mockHtmlPath);
+    //         expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
 
-            await new Promise(r => setTimeout(r, timeoutValue));
-            expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
-        });
+    //         testWindow.webContents.on('dom-ready', () =>
+    //         {
+    //             window.dispatchEvent(devToolsShortcut);
+    //         });
+    //         testWindow.on('did-fail-load', (event, code, desc, url, isMainFrame) =>
+    //         {
+    //             console.log('did-fail-load: ', event,  code, desc, url, isMainFrame);
+    //         });
 
-        test('Bind: should open devTools', async() =>
-        {
-            const testWindow = new BrowserWindow(browserWindowOptions);
-            testWindow.loadURL(mockHtmlPath);
-            expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
+    //         await new Promise(r => setTimeout(r, timeoutValue));
+    //         expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
+    //     });
 
-            testWindow.webContents.on('dom-ready', () =>
-            {
-                windowAux.bindDevToolsShortcut(window);
-                window.dispatchEvent(devToolsShortcut);
-            });
-            testWindow.webContents.on('did-fail-load', (event, code, desc, url, isMainFrame) =>
-            {
-                console.log('did-fail-load: ', event,  code, desc, url, isMainFrame);
-            });
+    //     test('Bind: should open devTools', async() =>
+    //     {
+    //         const testWindow = new BrowserWindow(browserWindowOptions);
+    //         testWindow.loadURL(mockHtmlPath);
+    //         expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
 
-            await new Promise(r => setTimeout(r, timeoutValue));
-            expect(testWindow.webContents.isDevToolsOpened()).toBeTruthy();
-        });
+    //         testWindow.webContents.on('dom-ready', () =>
+    //         {
+    //             bindDevToolsShortcut(window);
+    //             window.dispatchEvent(devToolsShortcut);
+    //         });
+    //         testWindow.webContents.on('did-fail-load', (event, code, desc, url, isMainFrame) =>
+    //         {
+    //             console.log('did-fail-load: ', event,  code, desc, url, isMainFrame);
+    //         });
 
-        test('Bind: bad shortcut, should not open devTools', async() =>
-        {
-            const testWindow = new BrowserWindow(browserWindowOptions);
-            testWindow.loadURL(mockHtmlPath);
-            expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
+    //         await new Promise(r => setTimeout(r, timeoutValue));
+    //         expect(testWindow.webContents.isDevToolsOpened()).toBeTruthy();
+    //     });
 
-            testWindow.webContents.on('dom-ready', () =>
-            {
-                windowAux.bindDevToolsShortcut(window);
-                window.dispatchEvent(badDevToolsShortcut);
-            });
-            testWindow.webContents.on('did-fail-load', (event, code, desc, url, isMainFrame) =>
-            {
-                console.log('did-fail-load: ', event,  code, desc, url, isMainFrame);
-            });
+    //     test('Bind: bad shortcut, should not open devTools', async() =>
+    //     {
+    //         const testWindow = new BrowserWindow(browserWindowOptions);
+    //         testWindow.loadURL(mockHtmlPath);
+    //         expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
 
-            await new Promise(r => setTimeout(r, timeoutValue));
-            expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
-        });
-    });
+    //         testWindow.webContents.on('dom-ready', () =>
+    //         {
+    //             bindDevToolsShortcut(window);
+    //             window.dispatchEvent(badDevToolsShortcut);
+    //         });
+    //         testWindow.webContents.on('did-fail-load', (event, code, desc, url, isMainFrame) =>
+    //         {
+    //             console.log('did-fail-load: ', event,  code, desc, url, isMainFrame);
+    //         });
+
+    //         await new Promise(r => setTimeout(r, timeoutValue));
+    //         expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
+    //     });
+    // });
 
     describe('showDialog(options, successCallback)', function()
     {

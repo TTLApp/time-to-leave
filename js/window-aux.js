@@ -1,24 +1,8 @@
 'use strict';
 
-const { remote } = require('electron');
-const { BrowserWindow, dialog } = remote;
-
-/**
- * Binds to the JS "window" the shortcut CTRL+SHIFT+I to toggle Chrome Dev Tools.
- * @param {Window} window
- */
-function bindDevToolsShortcut(window)
-{
-    window.addEventListener('keyup', (event) =>
-    {
-        if (event.ctrlKey && event.shiftKey && (event.keyCode === 73 || event.keyCode === 105))
-        { // 'i' or 'I'
-            BrowserWindow.getFocusedWindow().webContents.toggleDevTools();
-            event.preventDefault();
-            return false;
-        }
-    }, true);
-}
+const electron = require('electron');
+const BrowserWindow = (electron || electron.remote).BrowserWindow;
+const dialog = (electron || electron.remote).dialog;
 
 /**
  * Opens an electron dialog, based on the options, and performs the successCallback after promise is resolved.
@@ -37,6 +21,18 @@ function showDialog(options, successCallback)
 }
 
 /**
+ * Opens an electron dialog, based on the options, and returns the promise.
+ * @param {Object.<string, any>} options
+ * @return {Promise}
+ */
+function showDialogSync(options)
+{
+    options['title'] = options['title'] || 'Time to Leave';
+    return dialog.showMessageBox(BrowserWindow.getFocusedWindow(), options)
+}
+
+
+/**
  * Opens an electron dialog just like a JS alert().
  * @param {string} message
  */
@@ -50,7 +46,7 @@ function showAlert(message)
 }
 
 export {
-    bindDevToolsShortcut,
     showAlert,
-    showDialog
+    showDialog,
+    showDialogSync
 };

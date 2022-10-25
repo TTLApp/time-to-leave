@@ -35,8 +35,9 @@ function openWaiverManagerWindow(mainWindow, event)
         resizable: true,
         icon: appConfig.iconpath,
         webPreferences: {
-            enableRemoteModule: true,
-            nodeIntegration: true
+            nodeIntegration: true,
+            preload: path.join(__dirname, '../renderer/preload-scripts/workday-waiver-bridge.js'),
+            contextIsolation: true
         } });
     waiverWindow.setMenu(null);
     waiverWindow.loadURL(htmlPath);
@@ -45,6 +46,13 @@ function openWaiverManagerWindow(mainWindow, event)
     {
         waiverWindow = null;
         mainWindow.webContents.send('WAIVER_SAVED');
+    });
+    waiverWindow.webContents.on('before-input-event', (event, input) =>
+    {
+        if (input.control && input.shift && input.key.toLowerCase() === 'i')
+        {
+            BrowserWindow.getFocusedWindow().webContents.toggleDevTools();
+        }
     });
 }
 
