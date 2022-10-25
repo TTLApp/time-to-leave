@@ -20,6 +20,7 @@ describe('Application launch', function()
     this.timeout(60000);
     this.beforeEach(async function()
     {
+        this.timeout(60000);
         this.app = new Application({
             path: electronPath,
             args: [path.join(__dirname, '..')],
@@ -33,7 +34,7 @@ describe('Application launch', function()
 
     this.afterEach(async function()
     {
-        this.timeout(30000);
+        this.timeout(60000);
         log(`App is running: ${this.app && this.app.isRunning()}`)
         if (this.app && this.app.isRunning())
         {
