@@ -29,6 +29,8 @@ describe('Application launch', function()
         });
         log('Start app...')
         await this.app.start();
+        const { client } = this.app;
+        await client.waitUntilWindowLoaded();
         log('App started.')
     });
 
