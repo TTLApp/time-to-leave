@@ -13,7 +13,7 @@ import {
 import {
     formatDayId,
     displayWaiverWindow
-} from '../workday-waiver-aux.js';
+} from '../../renderer/workday-waiver-aux.js';
 import { showDay, switchCalendarView } from '../user-preferences.js';
 import { getDateStr, getMonthLength } from '../date-aux.js';
 import { computeAllTimeBalanceUntilAsync } from '../time-balance.js';

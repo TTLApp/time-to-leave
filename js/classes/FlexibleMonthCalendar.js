@@ -12,7 +12,7 @@ import { generateKey } from '../date-db-formatter.js';
 import {
     formatDayId,
     displayWaiverWindow
-} from '../workday-waiver-aux.js';
+} from '../../renderer/workday-waiver-aux.js';
 import { showDialog } from '../window-aux.js';
 import { getMonthName, getDayAbbr } from '../date-to-string-util.js';
 import { BaseCalendar } from './BaseCalendar.js';
