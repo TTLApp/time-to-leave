@@ -114,18 +114,18 @@ function diffDays(date1, date2)
 function isValidDayOfMonth(dayOfMonth, month)
 {
     const validDates = {
-        0: (day)=>  day >= 1 && day <= 31,
-        1: (day)=>  day >= 1 && day <= 29,
-        2: (day)=>  day >= 1 && day <= 31,
-        3: (day)=>  day >= 1 && day <= 30,
-        4: (day)=>  day >= 1 && day <= 31,
-        5: (day)=>  day >= 1 && day <= 30,
-        6: (day)=>  day >= 1 && day <= 31,
-        7: (day)=>  day >= 1 && day <= 31,
-        8: (day)=>  day >= 1 && day <= 30,
-        9: (day)=>  day >= 1 && day <= 31,
-        10: (day)=>  day >= 1 && day <= 30,
-        11: (day)=>  day >= 1 && day <= 31
+        0: (day) =>  day >= 1 && day <= 31,
+        1: (day) =>  day >= 1 && day <= 29,
+        2: (day) =>  day >= 1 && day <= 31,
+        3: (day) =>  day >= 1 && day <= 30,
+        4: (day) =>  day >= 1 && day <= 31,
+        5: (day) =>  day >= 1 && day <= 30,
+        6: (day) =>  day >= 1 && day <= 31,
+        7: (day) =>  day >= 1 && day <= 31,
+        8: (day) =>  day >= 1 && day <= 30,
+        9: (day) =>  day >= 1 && day <= 31,
+        10: (day) =>  day >= 1 && day <= 30,
+        11: (day) =>  day >= 1 && day <= 31
     };
     return validDates[month](dayOfMonth);
 }
@@ -137,18 +137,11 @@ function isValidDayOfMonth(dayOfMonth, month)
  */
 function validateDate(date)
 {
-    try
+    const re = new RegExp('(1|2)[0-9]{3}-(0[1-9]{1}|1[0-1]{1})-(0[0-9]{1}|1[0-9]{1}|2[0-9]{1}|3[0-1]{1})$');
+    if (re.test(date))
     {
-        const re = new RegExp('(1|2)[0-9]{3}-(0[1-9]{1}|1[0-1]{1})-(0[0-9]{1}|1[0-9]{1}|2[0-9]{1}|3[0-1]{1})$');
-        if (re.test(date))
-        {
-            const [, month, day] = date.split('-').map(parseFloat);
-            return month >= 0 && month <= 11 && isValidDayOfMonth(month, day);
-        }
-    }
-    catch (error)
-    {
-        return false;
+        const [, month, day] = date.split('-').map(parseFloat);
+        return isValidDayOfMonth(day, month);
     }
     return false;
 }

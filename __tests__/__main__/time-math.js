@@ -9,7 +9,8 @@ import {
     sumTime,
     validateTime,
     hourToMinutes,
-    diffDays
+    diffDays,
+    validateDate
 } from '../../js/time-math.js';
 
 const date1 = new Date(-349891200000);
@@ -170,5 +171,19 @@ describe('Time Math Functions', () =>
         expect(validateTime('00:1')).not.toBeTruthy();
         expect(validateTime('--:--')).not.toBeTruthy();
         expect(validateTime('')).not.toBeTruthy();
+    });
+
+    test('validateDate(date)', () =>
+    {
+        expect(validateDate('0001-00-00')).toBeFalsy();
+        expect(validateDate('1-00-00')).toBeFalsy();
+        expect(validateDate('1996-13-00')).toBeFalsy();
+        expect(validateDate('1996-1-00')).toBeFalsy();
+        expect(validateDate('1996-01-1')).toBeFalsy();
+        expect(validateDate('1996-01-40')).toBeFalsy();
+        expect(validateDate('1996-01-31')).toBeFalsy();
+        expect(validateDate('I\'m a date!')).toBeFalsy();
+        expect(validateDate('1996-01-29')).toBeTruthy();
+        expect(validateDate('1996-01-30')).toBeFalsy();
     });
 });
