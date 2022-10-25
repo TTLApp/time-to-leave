@@ -344,52 +344,48 @@ describe('Preferences Main', () =>
     });
     describe('Overall balance start date', () =>
     {
-        const key = 'overall-balance-start-date';
-
         test('Saving invalid month in overall-balance-start-date', () =>
         {
-            setNewPreference( key, '2022-13-01');
-            expect(getUserPreferences()[key]).toBe(defaultPreferences[key]);
+            setNewPreference( 'overall-balance-start-date', '2022-13-01');
+            expect(getUserPreferences()['overall-balance-start-date']).toBe(defaultPreferences['overall-balance-start-date']);
         });
 
         test('Saving invalid day in overall-balance-start-date', () =>
         {
-            setNewPreference( key, '2022-10-32');
-            expect(getUserPreferences()[key]).toBe(defaultPreferences[key]);
+            setNewPreference( 'overall-balance-start-date', '2022-10-32');
+            expect(getUserPreferences()['overall-balance-start-date']).toBe(defaultPreferences['overall-balance-start-date']);
         });
 
         test('Saving valid date', () =>
         {
-            setNewPreference( key, '2022-10-02');
-            expect(getUserPreferences()[key]).toBe('2022-10-02');
+            setNewPreference( 'overall-balance-start-date', '2022-10-02');
+            expect(getUserPreferences()['overall-balance-start-date']).toBe('2022-10-02');
         });
     });
     describe('Update remind me after', () =>
     {
-        const key = 'update-remind-me-after';
-
         test('Saving invalid numner as update-remind-me-after', () =>
         {
-            setNewPreference( key, new Date('2022-13-01').getTime());
-            expect(getUserPreferences()[key]).toBe(defaultPreferences[key]);
+            setNewPreference( 'update-remind-me-after', new Date('2022-13-01').getTime());
+            expect(getUserPreferences()['update-remind-me-after']).toBe(defaultPreferences['update-remind-me-after']);
         });
 
         test('Saving invalid month in update-remind-me-after', () =>
         {
-            setNewPreference( key, '2022-13-01');
-            expect(getUserPreferences()[key]).toBe(defaultPreferences[key]);
+            setNewPreference( 'update-remind-me-after', '2022-13-01');
+            expect(getUserPreferences()['update-remind-me-after']).toBe(defaultPreferences['update-remind-me-after']);
         });
 
         test('Saving invalid date in update-remind-me-after', () =>
         {
-            setNewPreference( key, '2022-10-32');
-            expect(getUserPreferences()[key]).toBe(defaultPreferences[key]);
+            setNewPreference( 'update-remind-me-after', '2022-10-32');
+            expect(getUserPreferences()['update-remind-me-after']).toBe(defaultPreferences['update-remind-me-after']);
         });
 
         test('Saving valid date', () =>
         {
-            setNewPreference( key, '2022-10-02');
-            expect(getUserPreferences()[key]).toBe('2022-10-02');
+            setNewPreference( 'update-remind-me-after', '2022-10-02');
+            expect(getUserPreferences()['update-remind-me-after']).toBe('2022-10-02');
         });
     });
     describe('savePreferences()', () =>
