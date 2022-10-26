@@ -165,21 +165,18 @@ describe('Preferences Main', () =>
         test('Saving invalid string as notification preference', () =>
         {
             setNewPreference('notification', 'true');
-            expect(getUserPreferences()['notification']).toBe(true);
             expect(notificationIsEnabled()).toBe(true);
         });
 
         test('Saving invalid number as notification preference', () =>
         {
             setNewPreference('notification', 8);
-            expect(getUserPreferences()['notification']).toBe(true);
             expect(notificationIsEnabled()).toBe(true);
         });
 
         test('Saving valid boolean as notification preference', () =>
         {
             setNewPreference('notification', false);
-            expect(getUserPreferences()['notification']).toBe(false);
             expect(notificationIsEnabled()).toBe(false);
         });
     });
@@ -189,21 +186,18 @@ describe('Preferences Main', () =>
         test('Saving invalid string as repetition preference', () =>
         {
             setNewPreference('repetition', 'true');
-            expect(getUserPreferences()['repetition']).toBe(true);
             expect(repetitionIsEnabled()).toBe(true);
         });
 
         test('Saving invalid number as repetition preference', () =>
         {
             setNewPreference('repetition', 15);
-            expect(getUserPreferences()['repetition']).toBe(true);
             expect(repetitionIsEnabled()).toBe(true);
         });
 
         test('Saving valid boolean as repetition preference', () =>
         {
             setNewPreference('repetition', false);
-            expect(getUserPreferences()['repetition']).toBe(false);
             expect(repetitionIsEnabled()).toBe(false);
         });
     });
