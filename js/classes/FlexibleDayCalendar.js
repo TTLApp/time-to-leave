@@ -330,6 +330,7 @@ class FlexibleDayCalendar extends BaseCalendar
                         }
                         removeLastEntryPair(existingEntryPairs);
                         calendar._updateTimeDay(dateKey);
+                        calendar._updateLeaveBy();
                     });
                 }
                 else

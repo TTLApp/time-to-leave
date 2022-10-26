@@ -398,6 +398,7 @@ class FlexibleMonthCalendar extends BaseCalendar
             const sliceNum = row.length === 6 ? -1 : (row.length === 7 ? -2 : -3);
             row.slice(sliceNum).remove();
             calendar._updateTimeDay($(element).attr('id'));
+            calendar._updateLeaveBy();
             toggleArrowColor(element);
             toggleMinusSign(element);
         }
