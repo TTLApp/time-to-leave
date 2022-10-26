@@ -1,27 +1,33 @@
 'use strict';
 
-const { ipcRenderer } = require('electron');
-
-import { getUserPreferences } from '../js/user-preferences.js';
 import { CalendarFactory } from '../renderer/classes/CalendarFactory.js';
 import { applyTheme } from '../renderer/themes.js';
+import { searchLeaveByElement } from '../renderer/notification-channel.js';
 
 // Global values for calendar
 let calendar = undefined;
 
 function setupCalendar(preferences)
 {
-    ipcRenderer.invoke('GET_LANGUAGE_DATA').then(languageData =>
+    window.mainApi.getLanguageDataPromise().then(async languageData =>
     {
-        calendar = CalendarFactory.getInstance(preferences, languageData, calendar);
+        calendar = await CalendarFactory.getInstance(preferences, languageData, calendar);
         applyTheme(preferences.theme);
     });
 }
 
 /*
+ * Reload the calendar upon request from main
+ */
+window.mainApi.handleCalendarReload(async() =>
+{
+    await calendar.reload();
+});
+
+/*
  * Update the calendar after a day has passed
  */
-ipcRenderer.on('REFRESH_ON_DAY_CHANGE', (event, oldDate, oldMonth, oldYear) =>
+window.mainApi.handleRefreshOnDayChange((event, oldDate, oldMonth, oldYear) =>
 {
     calendar.refreshOnDayChange(oldDate, oldMonth, oldYear);
 });
@@ -29,7 +35,7 @@ ipcRenderer.on('REFRESH_ON_DAY_CHANGE', (event, oldDate, oldMonth, oldYear) =>
 /*
  * Get notified when preferences has been updated.
  */
-ipcRenderer.on('PREFERENCE_SAVED', function(event, prefs)
+window.mainApi.handlePreferencesSaved((event, prefs) =>
 {
     setupCalendar(prefs);
 });
@@ -37,16 +43,16 @@ ipcRenderer.on('PREFERENCE_SAVED', function(event, prefs)
 /*
  * Get notified when waivers get updated.
  */
-ipcRenderer.on('WAIVER_SAVED', function()
+window.mainApi.handleWaiverSaved(async() =>
 {
-    calendar.loadInternalWaiveStore();
+    await calendar.loadInternalWaiveStore();
     calendar.redraw();
 });
 
 /*
  * Punch the date and time as requested by user.
  */
-ipcRenderer.on('PUNCH_DATE', function()
+window.mainApi.handlePunchDate(() =>
 {
     calendar.punchDate();
 });
@@ -54,14 +60,19 @@ ipcRenderer.on('PUNCH_DATE', function()
 /*
  * Reload calendar, used after database altering actions.
  */
-ipcRenderer.on('RELOAD_CALENDAR', function()
+window.mainApi.handleReloadCalendar(() =>
 {
     calendar.reload();
 });
 
+/*
+ * Returns value of "leave by" for notifications.
+ */
+window.mainApi.handleLeaveBy(searchLeaveByElement);
+
 // On page load, create the calendar and setup notification
-$(() =>
+$(async() =>
 {
-    const preferences = getUserPreferences();
+    const preferences = await window.mainApi.getUserPreferencesPromise();
     setupCalendar(preferences);
 });

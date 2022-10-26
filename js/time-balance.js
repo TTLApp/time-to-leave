@@ -203,6 +203,7 @@ async function computeAllTimeBalanceUntilAsync(limitDate)
         }, 1);
     });
 }
+
 export {
     computeAllTimeBalanceUntilAsync,
     computeAllTimeBalanceUntil,

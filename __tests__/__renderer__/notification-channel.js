@@ -1,4 +1,4 @@
-const notificationChannel = require('../../js/notification-channel.js');
+const notificationChannel = require('../../renderer/notification-channel.js');
 
 describe('Notifications channel',  () =>
 {

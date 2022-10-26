@@ -17,7 +17,7 @@ const {
 const { getCurrentTranslation } = require('../src/configs/i18next.config');
 let { contextMenu, tray } = require('./windows.js');
 
-import { getDefaultWidthHeight, getUserPreferences } from './user-preferences.js';
+import { getDefaultWidthHeight, getUserPreferences, switchCalendarView } from './user-preferences.js';
 import { appConfig, getDetails } from './app-config.js';
 import { createLeaveNotification } from './notification.js';
 
@@ -80,7 +80,8 @@ function createWindow()
         show: false,
         webPreferences: {
             nodeIntegration: true,
-            enableRemoteModule: true
+            preload: path.join(__dirname, '../renderer/preload-scripts/calendar-bridge.js'),
+            contextIsolation: true
         }
     });
 
@@ -100,14 +101,16 @@ function createWindow()
         tray.setContextMenu(contextMenu);
     });
 
-    ipcMain.on('RESIZE_MAIN_WINDOW', (event, width, height) =>
+    ipcMain.on('RESIZE_MAIN_WINDOW', () =>
     {
-        mainWindow.setSize(width, height);
+        const widthHeight = getDefaultWidthHeight();
+        mainWindow.setSize(widthHeight.width, widthHeight.height);
     });
 
-    ipcMain.on('VIEW_CHANGED', (event, savedPreferences) =>
+    ipcMain.on('SWITCH_VIEW', () =>
     {
-        mainWindow.webContents.send('PREFERENCE_SAVED', savedPreferences);
+        const preferences = switchCalendarView();
+        mainWindow.webContents.send('PREFERENCES_SAVED', preferences);
     });
 
     ipcMain.on('RECEIVE_LEAVE_BY', (event, element) =>
@@ -186,7 +189,7 @@ function proposeFlexibleDbMigration()
     if (response === 0 /*migrate*/)
     {
         const migrateResult = migrateFixedDbToFlexible();
-        getMainWindow().webContents.send('RELOAD_CALENDAR');
+        mainWindow.webContents.send('RELOAD_CALENDAR');
         if (migrateResult['result'] === true)
         {
             dialog.showMessageBox(BrowserWindow.getFocusedWindow(),

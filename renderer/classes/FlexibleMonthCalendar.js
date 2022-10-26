@@ -16,27 +16,6 @@ import {
 import { getMonthName, getDayAbbr } from '../../js/date-to-string-util.js';
 import { BaseCalendar } from './BaseCalendar.js';
 
-/// Compatiblity block - to be removed in the migration of calendar to non-remote electron
-const { remote } = require('electron');
-const { BrowserWindow, dialog } = remote;
-
-/**
- * Opens an electron dialog, based on the options, and performs the successCallback after promise is resolved.
- * @param {Object.<string, any>} options
- * @param {function} successCallback
- */
-function showDialog(options, successCallback)
-{
-    options['title'] = options['title'] || 'Time to Leave';
-    dialog.showMessageBox(BrowserWindow.getFocusedWindow(), options)
-        .then(successCallback)
-        .catch(err =>
-        {
-            console.log(err);
-        });
-}
-////
-
 class FlexibleMonthCalendar extends BaseCalendar
 {
     /**
@@ -58,8 +37,6 @@ class FlexibleMonthCalendar extends BaseCalendar
         $('#prev-month').on('click', () => { this._prevMonth(); });
         $('#current-month').on('click', () => { this._goToCurrentDate(); });
         $('#switch-view').on('click', () => { this._switchView(); });
-
-        this._draw();
     }
 
     /**
@@ -441,7 +418,7 @@ class FlexibleMonthCalendar extends BaseCalendar
                 const len = getInputs.length;
                 if (getInputs.get(len-1).value !== '' || getInputs.get(len-2).value !== '')
                 {
-                    showDialog(removeEntriesDialogOptions, (result) =>
+                    window.mainApi.showDialogSync(removeEntriesDialogOptions).then((result) =>
                     {
                         const buttonId = result.response;
                         if (buttonId === 1)

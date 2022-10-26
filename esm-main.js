@@ -10,6 +10,7 @@ const { handleSquirrelEvent } = require('./js/squirrel.js');
 const { showAlert, showDialogSync } = require('./js/window-aux.js');
 
 import { appConfig } from './js/app-config.js';
+import { setupCalendarStore } from './main/calendar-aux.js';
 
 if (appConfig.win32)
 {
@@ -134,6 +135,7 @@ app.on('ready', () =>
         }
         createWindow();
         createMenu();
+        setupCalendarStore();
         setLanguageChangedCallback(createMenu);
         triggerStartupDialogs();
         setInterval(refreshOnDayChange, 60 * 60 * 1000);

@@ -11,27 +11,6 @@ import { getDateStr, getMonthLength } from '../../js/date-aux.js';
 import { generateKey } from '../../js/date-db-formatter.js';
 import { BaseCalendar } from './BaseCalendar.js';
 
-/// Compatiblity block - to be removed in the migration of calendar to non-remote electron
-const { remote } = require('electron');
-const { BrowserWindow, dialog } = remote;
-
-/**
- * Opens an electron dialog, based on the options, and performs the successCallback after promise is resolved.
- * @param {Object.<string, any>} options
- * @param {function} successCallback
- */
-function showDialog(options, successCallback)
-{
-    options['title'] = options['title'] || 'Time to Leave';
-    dialog.showMessageBox(BrowserWindow.getFocusedWindow(), options)
-        .then(successCallback)
-        .catch(err =>
-        {
-            console.log(err);
-        });
-}
-////
-
 class FlexibleDayCalendar extends BaseCalendar
 {
     /**
@@ -59,8 +38,6 @@ class FlexibleDayCalendar extends BaseCalendar
             const [year, month, day] = $(event.target).val().split('-');
             this._goToDate(new Date(year, month-1, day));
         });
-
-        this._draw();
     }
 
     /**
@@ -341,7 +318,7 @@ class FlexibleDayCalendar extends BaseCalendar
                 const len = getInputs.length;
                 if (getInputs.get(len-1).value !== '' || getInputs.get(len-2).value !== '')
                 {
-                    showDialog(removeEntriesDialogOptions, (result) =>
+                    window.mainApi.showDialogSync(removeEntriesDialogOptions).then((result) =>
                     {
                         const buttonId = result.response;
                         if (buttonId === 1)

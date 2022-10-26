@@ -1,7 +1,5 @@
 'use strict';
 
-const { ipcRenderer } = require('electron');
-
 /**
  * @param {string} dayId - day in '<year>-<month - 1>-<day>' format
  * @returns {string} - day in 'YYYY-MM-DD' format
@@ -15,13 +13,13 @@ function formatDayId(dayId)
 }
 
 /**
- * Sends waiverDay value through SET_WAIVER_DAY event, which triggers open window event on main process.
+ * Sends waiverDay value to the main process, which triggers the waiver manager window.
  *
  * @param {string} waiverDay - day in 'YYYY-MM-DD' format
  */
 function displayWaiverWindow(waiverDay)
 {
-    ipcRenderer.send('SET_WAIVER_DAY', waiverDay);
+    window.mainApi.displayWaiverWindow(waiverDay);
 }
 
 export {

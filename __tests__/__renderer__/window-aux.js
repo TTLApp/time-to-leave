@@ -89,7 +89,7 @@ describe('window-aux.js Testing', function()
     //     });
     // });
 
-    describe('showDialogSync(options, successCallback)', function()
+    describe('showDialogSync(options)', function()
     {
         test('Does not crash', async() =>
         {
@@ -104,7 +104,7 @@ describe('window-aux.js Testing', function()
                 const options = {
                     title: 'Time to Leave',
                 };
-                windowAux.showDialogSync(options, () =>
+                windowAux.showDialogSync(options).then(() =>
                 {
                     return;
                 });

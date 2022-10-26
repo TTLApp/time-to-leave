@@ -1,6 +1,6 @@
 'use strict';
 
-const { app, BrowserWindow, clipboard, dialog, shell } = require('electron');
+const { app, BrowserWindow, clipboard, dialog, shell, ipcMain } = require('electron');
 const path = require('path');
 const Store = require('electron-store');
 
@@ -145,7 +145,7 @@ function getEditMenuTemplate(mainWindow)
                     if (savedPreferences !== null)
                     {
                         savePreferences(savedPreferences);
-                        mainWindow.webContents.send('PREFERENCE_SAVED', savedPreferences);
+                        mainWindow.webContents.send('PREFERENCES_SAVED', savedPreferences);
                     }
                 });
                 prefWindow.webContents.on('before-input-event', (event, input) =>
