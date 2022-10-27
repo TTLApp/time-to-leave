@@ -3,6 +3,12 @@
 
 import { formatDayId, displayWaiverWindow } from '../../renderer/workday-waiver-aux.js';
 
+// Mocking call
+// TODO: find a better way to mock this or even really test it
+window.mainApi = {
+    displayWaiverWindow: () => {}
+};
+
 describe('Workday Waiver Aux', function()
 {
     process.env.NODE_ENV = 'test';

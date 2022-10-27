@@ -3,7 +3,8 @@
 
 const Store = require('electron-store');
 import { defaultPreferences } from '../../../js/user-preferences.js';
-import { CalendarFactory } from '../../../js/classes/CalendarFactory.js';
+import { CalendarFactory } from '../../../renderer/classes/CalendarFactory.js';
+import { calendarApi } from '../../../renderer/preload-scripts/calendar-api.js';
 
 window.$ = window.jQuery = require('jquery');
 
@@ -19,6 +20,9 @@ window.$.fn.extend({
     }
 });
 
+// APIs from the preload script of the calendar window
+window.mainApi = calendarApi;
+
 jest.mock('../../../renderer/i18n-translator.js', () => ({
     translatePage: jest.fn().mockReturnThis(),
     getTranslationInLanguageData: jest.fn().mockReturnThis()
@@ -26,12 +30,31 @@ jest.mock('../../../renderer/i18n-translator.js', () => ({
 
 const languageData = {'language': 'en', 'data': {'dummy_string': 'dummy_string_translated'}};
 
+const flexibleStore = new Store({name: 'flexible-store'});
+const waivedWorkdays = new Store({name: 'waived-workdays'});
+
+window.mainApi.getFlexibleStoreContents = () => { return new Promise((resolve) => { resolve(flexibleStore.store); }); };
+window.mainApi.getWaiverStoreContents = () => { return new Promise((resolve) => resolve(waivedWorkdays.store)); };
+window.mainApi.setFlexibleStoreData = (key, contents) =>
+{
+    return new Promise((resolve) =>
+    {
+        flexibleStore.set(key, contents);
+        resolve(true);
+    });
+};
+window.mainApi.deleteFlexibleStoreData = (key) =>
+{
+    return new Promise((resolve) =>
+    {
+        flexibleStore.delete(key);
+        resolve(true);
+    });
+};
+
 describe('FlexibleMonthCalendar class Tests', () =>
 {
     process.env.NODE_ENV = 'test';
-
-    const flexibleStore = new Store({name: 'flexible-store'});
-    const waivedWorkdays = new Store({name: 'waived-workdays'});
 
     flexibleStore.clear();
     const regularEntries = {
@@ -51,7 +74,11 @@ describe('FlexibleMonthCalendar class Tests', () =>
     const today = new Date();
     const testPreferences = defaultPreferences;
 
-    const calendar = CalendarFactory.getInstance(testPreferences, languageData);
+    let calendar;
+    beforeAll(async() =>
+    {
+        calendar = await CalendarFactory.getInstance(testPreferences, languageData);
+    });
 
     test('FlexibleMonthCalendar starts with today\'s date', () =>
     {
@@ -94,7 +121,7 @@ describe('FlexibleMonthCalendar class Tests', () =>
         expect(flexibleStore.size).toStrictEqual(2);
     });
 
-    test('FlexibleMonthCalendar internal waiver storage correct loading', () =>
+    test('FlexibleMonthCalendar internal waiver storage correct loading', async() =>
     {
         // Waiver Store internally saves the human month index, but the calendar methods use JS month index
         expect(calendar._internalWaiverStore['2019-12-31']).toStrictEqual({ reason: 'New Year\'s eve', hours: '08:00' });
@@ -113,7 +140,7 @@ describe('FlexibleMonthCalendar class Tests', () =>
         expect(calendar._internalWaiverStore['2010-12-31']).toStrictEqual(undefined);
         expect(calendar._getWaiverStore(2010, 11, 31)).toStrictEqual(undefined);
 
-        calendar.loadInternalWaiveStore();
+        await calendar.loadInternalWaiveStore();
 
         expect(Object.keys(calendar._internalWaiverStore).length).toStrictEqual(4);
 
@@ -197,15 +224,15 @@ describe('FlexibleMonthCalendar class Tests', () =>
         });
     });
 
-    test('FlexibleDayCalendar to FlexibleMonthCalendar', () =>
+    test('FlexibleDayCalendar to FlexibleMonthCalendar', async() =>
     {
         const testPreferences = defaultPreferences;
         testPreferences['view'] = 'day';
-        let calendar = CalendarFactory.getInstance(testPreferences, languageData);
+        let calendar = await CalendarFactory.getInstance(testPreferences, languageData);
         expect(calendar.constructor.name).toBe('FlexibleDayCalendar');
 
         testPreferences['view'] = 'month';
-        calendar = CalendarFactory.getInstance(testPreferences, languageData, calendar);
+        calendar = await CalendarFactory.getInstance(testPreferences, languageData, calendar);
         expect(calendar.constructor.name).toBe('FlexibleMonthCalendar');
     });
 });

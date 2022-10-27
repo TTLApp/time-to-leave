@@ -1,9 +1,10 @@
 import ElectronStore from 'electron-store';
-import { BaseCalendar } from '../../../js/classes/BaseCalendar.js';
+import { BaseCalendar } from '../../../renderer/classes/BaseCalendar.js';
 import { generateKey } from '../../../js/date-db-formatter.js';
-import { getUserPreferences, resetPreferences, savePreferences } from '../../../js/user-preferences.js';
+import { getUserPreferences, resetPreferences, savePreferences, switchCalendarView } from '../../../js/user-preferences.js';
 const Store = require('electron-store');
 const timeBalance = require('../../../js/time-balance');
+import { calendarApi } from '../../../renderer/preload-scripts/calendar-api.js';
 
 jest.mock('../../../js/time-math', () =>
 {
@@ -16,6 +17,19 @@ jest.mock('../../../js/time-math', () =>
 });
 const timeMath = require('../../../js/time-math');
 window.$ = require('jquery');
+
+// Mocked APIs from the preload script of the calendar window
+window.mainApi = calendarApi;
+
+window.mainApi.computeAllTimeBalanceUntilPromise = (targetDate) =>
+{
+    return timeBalance.computeAllTimeBalanceUntilAsync(targetDate);
+};
+
+window.mainApi.switchView = () =>
+{
+    switchCalendarView();
+};
 
 describe('BaseCalendar.js', () =>
 {
@@ -39,6 +53,15 @@ describe('BaseCalendar.js', () =>
         waivedWorkdays.clear();
         ExtendedClass.prototype._initCalendar = () => {};
         ExtendedClass.prototype._getTargetDayForAllTimeBalance = () => {};
+
+        window.mainApi.getFlexibleStoreContents = () =>
+        {
+            return flexibleStore.store;
+        };
+        window.mainApi.getWaiverStoreContents = () =>
+        {
+            return waivedWorkdays.store;
+        };
     });
 
     describe('constructor', () =>
@@ -60,7 +83,7 @@ describe('BaseCalendar.js', () =>
             expect(() => new ExtendedClass(preferences, languageData)._getTargetDayForAllTimeBalance()).toThrow('Please implement this.');
         });
 
-        test('Should build with default values', (done) =>
+        test('Should build with default values', async(done) =>
         {
             ExtendedClass.prototype._initCalendar = () => { done(); };
             const preferences = {view: 'day'};
@@ -68,12 +91,19 @@ describe('BaseCalendar.js', () =>
             const calendar = new ExtendedClass(preferences, languageData);
             expect(calendar._calendarDate).toBeInstanceOf(Date);
             expect(calendar._languageData).toEqual(languageData);
+            expect(calendar._preferences).toEqual(preferences);
+
+            // These no longer get set in the constructor
+            expect(calendar._internalStore).toEqual(undefined);
+            expect(calendar._internalWaiverStore).toEqual(undefined);
+
+            // But are set after awaiting for initialization
+            await calendar.initializeStores();
             expect(calendar._internalStore).toEqual({});
             expect(calendar._internalWaiverStore).toEqual({});
-            expect(calendar._preferences).toEqual(preferences);
         });
 
-        test('Should build with default internal store values', (done) =>
+        test('Should build with default internal store values', async(done) =>
         {
             ExtendedClass.prototype._initCalendar = () => { done(); };
             const flexibleStore = new ElectronStore({name: 'flexible-store'});
@@ -90,6 +120,14 @@ describe('BaseCalendar.js', () =>
             const calendar = new ExtendedClass(preferences, languageData);
             expect(calendar._calendarDate).toBeInstanceOf(Date);
             expect(calendar._languageData).toEqual(languageData);
+            expect(calendar._preferences).toEqual(preferences);
+
+            // These no longer get set in the constructor
+            expect(calendar._internalStore).toEqual(undefined);
+            expect(calendar._internalWaiverStore).toEqual(undefined);
+
+            // But are set after awaiting for initialization
+            await calendar.initializeStores();
             expect(calendar._internalStore).toEqual({
                 flexible: 'store'
             });
@@ -99,7 +137,6 @@ describe('BaseCalendar.js', () =>
                     hours: '10:00'
                 }
             });
-            expect(calendar._preferences).toEqual(preferences);
         });
     });
 
@@ -116,7 +153,7 @@ describe('BaseCalendar.js', () =>
             expect(mocks.compute).toHaveBeenCalledTimes(0);
         });
 
-        test('Should not update value because of rejection', () =>
+        test('Should not update value because of rejection', async() =>
         {
             mocks.compute = jest.spyOn(timeBalance, 'computeAllTimeBalanceUntilAsync').mockImplementation(() => Promise.reject());
             const preferences = {view: 'day'};
@@ -388,20 +425,21 @@ describe('BaseCalendar.js', () =>
 
     describe('_updateDayTotal()', () =>
     {
-        test('Should not update when day has not ended', () =>
+        test('Should not update when day has not ended', async() =>
         {
             const newDate = new Date();
             const key = generateKey(newDate.getFullYear(), newDate.getMonth(), newDate.getDate());
             $('body').append(`<div id="${key}" ></div>`);
             $(`#${key}`).append('<input type="time" value="--:--" />');
             const calendar = new ExtendedClass(getUserPreferences(), {});
+            await calendar.initializeStores();
             calendar._updateDayTotal(key);
             const dayTotalSpan = $('#' + key).parent().find('.day-total-cell span');
             $(`#${key}`).remove();
             expect(dayTotalSpan.text()).toBe('');
         });
 
-        test('Should update when day has ended', () =>
+        test('Should update when day has ended', async() =>
         {
             const flexibleStore = new Store({name: 'flexible-store'});
             const newDate = new Date();
@@ -413,6 +451,7 @@ describe('BaseCalendar.js', () =>
             $(`#${key}`).append('<input type="time" value="08:00" />');
             $(`#${key}`).append('<input type="time" value="16:00" />');
             const calendar = new ExtendedClass(getUserPreferences(), {});
+            await calendar.initializeStores();
             calendar._setStore(key, ['08:00', '16:30']);
             calendar._updateDayTotal(key);
             const dayTotalSpan = $('#' + key).parent().find('.day-total-cell span');

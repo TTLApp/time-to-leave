@@ -10,7 +10,7 @@ class CalendarFactory
         const view = preferences['view'];
         if (view !== 'day' && view !== 'month')
         {
-            throw new Error(`Could not instantiate ${view}`);
+            return Promise.reject(`Could not instantiate ${view}`);
         }
 
         const constructorName = view === 'day' ? 'FlexibleDayCalendar': 'FlexibleMonthCalendar';

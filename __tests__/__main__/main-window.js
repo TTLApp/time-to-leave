@@ -51,7 +51,7 @@ describe('main-window.js', () =>
             expect(mainWindow).toBeInstanceOf(BrowserWindow);
             expect(ipcMain.listenerCount('TOGGLE_TRAY_PUNCH_TIME')).toBe(1);
             expect(ipcMain.listenerCount('RESIZE_MAIN_WINDOW')).toBe(1);
-            expect(ipcMain.listenerCount('VIEW_CHANGED')).toBe(1);
+            expect(ipcMain.listenerCount('SWITCH_VIEW')).toBe(1);
             expect(ipcMain.listenerCount('RECEIVE_LEAVE_BY')).toBe(1);
             expect(mainWindow.listenerCount('minimize')).toBe(2);
             expect(mainWindow.listenerCount('close')).toBe(1);
@@ -73,13 +73,17 @@ describe('main-window.js', () =>
             const mainWindow = getMainWindow();
             mainWindow.on('ready-to-show', () =>
             {
-                ipcMain.emit('RESIZE_MAIN_WINDOW', {}, 500, 600);
-                expect(mainWindow.getSize()).toEqual([500, 600]);
+                ipcMain.emit('RESIZE_MAIN_WINDOW');
+                expect(mainWindow.getSize()).toEqual([1010, 800]);
                 done();
             });
         });
         test('It should not resize window if values are smaller than minimum', (done) =>
         {
+            savePreferences({
+                ...defaultPreferences,
+                ['view']: 'day'
+            });
             createWindow();
             /**
              * @type {BrowserWindow}
@@ -87,16 +91,16 @@ describe('main-window.js', () =>
             const mainWindow = getMainWindow();
             mainWindow.on('ready-to-show', () =>
             {
-                ipcMain.emit('RESIZE_MAIN_WINDOW', {}, 100, 100);
-                expect(mainWindow.getSize()).toEqual([450, 450]);
+                ipcMain.emit('RESIZE_MAIN_WINDOW');
+                expect(mainWindow.getSize()).toEqual([500, 500]);
                 done();
             });
         });
     });
 
-    describe('emit VIEW_CHANGED', () =>
+    describe('emit SWITCH_VIEW', () =>
     {
-        test('It should send new event to ipcRendered', (done) =>
+        test('It should send new event to ipcRenderer', (done) =>
         {
             createWindow();
             /**
@@ -117,10 +121,10 @@ describe('main-window.js', () =>
                 ipcMain.on('FINISH_TEST', (event, savedPreferences) =>
                 {
                     expect(windowSpy).toBeCalledTimes(1);
-                    expect(savedPreferences).toEqual({ new: 'prefrences' });
+                    expect(savedPreferences['view']).toEqual('day');
                     done();
                 });
-                ipcMain.emit('VIEW_CHANGED', {}, { new: 'prefrences' });
+                ipcMain.emit('SWITCH_VIEW');
                 windowSpy.mockRestore();
             });
         });

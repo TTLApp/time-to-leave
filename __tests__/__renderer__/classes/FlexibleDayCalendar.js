@@ -2,7 +2,8 @@
 
 const Store = require('electron-store');
 import { defaultPreferences } from '../../../js/user-preferences.js';
-import { CalendarFactory } from '../../../js/classes/CalendarFactory.js';
+import { CalendarFactory } from '../../../renderer/classes/CalendarFactory.js';
+import { calendarApi } from '../../../renderer/preload-scripts/calendar-api.js';
 
 window.$ = window.jQuery = require('jquery');
 
@@ -18,6 +19,9 @@ window.$.fn.extend({
     }
 });
 
+// APIs from the preload script of the calendar window
+window.mainApi = calendarApi;
+
 jest.mock('../../../renderer/i18n-translator.js', () => ({
     translatePage: jest.fn().mockReturnThis(),
     getTranslationInLanguageData: jest.fn().mockReturnThis()
@@ -25,12 +29,31 @@ jest.mock('../../../renderer/i18n-translator.js', () => ({
 
 const languageData = {'language': 'en', 'data': {'dummy_string': 'dummy_string_translated'}};
 
+const flexibleStore = new Store({name: 'flexible-store'});
+const waivedWorkdays = new Store({name: 'waived-workdays'});
+
+window.mainApi.getFlexibleStoreContents = () => { return new Promise((resolve) => { resolve(flexibleStore.store); }); };
+window.mainApi.getWaiverStoreContents = () => { return new Promise((resolve) => resolve(waivedWorkdays.store)); };
+window.mainApi.setFlexibleStoreData = (key, contents) =>
+{
+    return new Promise((resolve) =>
+    {
+        flexibleStore.set(key, contents);
+        resolve(true);
+    });
+};
+window.mainApi.deleteFlexibleStoreData = (key) =>
+{
+    return new Promise((resolve) =>
+    {
+        flexibleStore.delete(key);
+        resolve(true);
+    });
+};
+
 describe('FlexibleDayCalendar class Tests', () =>
 {
     process.env.NODE_ENV = 'test';
-
-    const flexibleStore = new Store({name: 'flexible-store'});
-    const waivedWorkdays = new Store({name: 'waived-workdays'});
 
     flexibleStore.clear();
     const regularEntries = {
@@ -51,7 +74,11 @@ describe('FlexibleDayCalendar class Tests', () =>
     const testPreferences = defaultPreferences;
     testPreferences['view'] = 'day';
 
-    const calendar = CalendarFactory.getInstance(testPreferences, languageData);
+    let calendar;
+    beforeAll(() =>
+    {
+        CalendarFactory.getInstance(testPreferences, languageData).then((_c) => { calendar = _c; });
+    });
 
     test('FlexibleDayCalendar starts with today\'s date', () =>
     {
@@ -94,7 +121,7 @@ describe('FlexibleDayCalendar class Tests', () =>
         expect(flexibleStore.size).toStrictEqual(2);
     });
 
-    test('FlexibleDayCalendar internal waiver storage correct loading', () =>
+    test('FlexibleDayCalendar internal waiver storage correct loading', async() =>
     {
         // Waiver Store internally saves the human month index, but the calendar methods use JS month index
         expect(calendar._internalWaiverStore['2019-12-31']).toStrictEqual({ reason: 'New Year\'s eve', hours: '08:00' });
@@ -113,7 +140,7 @@ describe('FlexibleDayCalendar class Tests', () =>
         expect(calendar._internalWaiverStore['2010-12-31']).toStrictEqual(undefined);
         expect(calendar._getWaiverStore(2010, 11, 31)).toStrictEqual(undefined);
 
-        calendar.loadInternalWaiveStore();
+        await calendar.loadInternalWaiveStore();
 
         expect(Object.keys(calendar._internalWaiverStore).length).toStrictEqual(4);
 
@@ -142,7 +169,7 @@ describe('FlexibleDayCalendar class Tests', () =>
             expect(calendar._getDayTotal(2010, 3, 1)).toStrictEqual(undefined);
         });
 
-        test('getDayTotal on waived days', () =>
+        test('getDayTotal on waived days', async() =>
         {
             // Original dates
             expect(calendar._getDayTotal(2019, 11, 31)).toStrictEqual('08:00');
@@ -158,14 +185,14 @@ describe('FlexibleDayCalendar class Tests', () =>
             };
             waivedWorkdays.set(newWaivedEntry);
 
-            calendar.loadInternalWaiveStore();
+            await calendar.loadInternalWaiveStore();
             expect(calendar._getWaiverStore(2010, 2, 1)).toStrictEqual({ reason: 'Test', hours: '06:00' });
             expect(calendar._getDayTotal(2010, 2, 1)).toStrictEqual('06:00');
 
             // Clearing entry - back to undefined value
             waivedWorkdays.clear();
             waivedWorkdays.set(waivedEntries);
-            calendar.loadInternalWaiveStore();
+            await calendar.loadInternalWaiveStore();
             expect(calendar._getDayTotal(2010, 2, 1)).toStrictEqual(undefined);
         });
     });
@@ -297,15 +324,15 @@ describe('FlexibleDayCalendar class Tests', () =>
         });
     });
 
-    test('FlexibleMonthCalendar to FlexibleDayCalendar', () =>
+    test('FlexibleMonthCalendar to FlexibleDayCalendar', async() =>
     {
         const testPreferences = defaultPreferences;
         testPreferences['view'] = 'month';
-        let calendar = CalendarFactory.getInstance(testPreferences, languageData);
+        let calendar = await CalendarFactory.getInstance(testPreferences, languageData);
         expect(calendar.constructor.name).toBe('FlexibleMonthCalendar');
 
         testPreferences['view'] = 'day';
-        calendar = CalendarFactory.getInstance(testPreferences, languageData, calendar);
+        calendar = await CalendarFactory.getInstance(testPreferences, languageData, calendar);
         expect(calendar.constructor.name).toBe('FlexibleDayCalendar');
     });
 

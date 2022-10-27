@@ -34,6 +34,15 @@ class BaseCalendar
     }
 
     /**
+     * Loads internal stores. Required to start and used by the factory.
+     */
+    async initializeStores()
+    {
+        await this.loadInternalStore();
+        await this.loadInternalWaiveStore();
+    }
+
+    /**
      * Returns a date object for which the all time balance will be calculated.
      * If current month, returns the actual day. If not, first day of following month.
      * //  deepcode ignore valid-jsdoc: <not yet implemented>
@@ -145,8 +154,7 @@ class BaseCalendar
      */
     async reload()
     {
-        await this.loadInternalStore();
-        await this.loadInternalWaiveStore();
+        await this.initializeStores();
         this.redraw();
     }
 
