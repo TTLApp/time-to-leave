@@ -89,9 +89,8 @@ describe('window-aux.js Testing', function()
     //     });
     // });
 
-    describe('showDialog(options, successCallback)', function()
+    describe('showDialogSync(options, successCallback)', function()
     {
-
         test('Does not crash', async() =>
         {
             const testWindow = new BrowserWindow(browserWindowOptions);
@@ -100,12 +99,12 @@ describe('window-aux.js Testing', function()
             let spy;
             testWindow.webContents.on('dom-ready', () =>
             {
-                spy = jest.spyOn(windowAux, 'showDialog');
+                spy = jest.spyOn(windowAux, 'showDialogSync');
 
                 const options = {
                     title: 'Time to Leave',
                 };
-                windowAux.showDialog(options, () =>
+                windowAux.showDialogSync(options, () =>
                 {
                     return;
                 });
@@ -125,7 +124,6 @@ describe('window-aux.js Testing', function()
 
     describe('showAlert(message)', function()
     {
-
         test('Does not crash', async() =>
         {
             const testWindow = new BrowserWindow(browserWindowOptions);
@@ -134,10 +132,7 @@ describe('window-aux.js Testing', function()
             let spy;
             testWindow.webContents.on('dom-ready', () =>
             {
-                const { dialog } = require('electron').remote;
-
-                spy = jest.spyOn(dialog, 'showMessageBoxSync').mockImplementation(() => {});
-
+                spy = jest.spyOn(windowAux, 'showAlert');
                 windowAux.showAlert('Test showAlert');
             });
             testWindow.webContents.on('did-fail-load', (event, code, desc, url, isMainFrame) =>

@@ -13,9 +13,29 @@ import {
     formatDayId,
     displayWaiverWindow
 } from '../../renderer/workday-waiver-aux.js';
-import { showDialog } from '../window-aux.js';
 import { getMonthName, getDayAbbr } from '../date-to-string-util.js';
 import { BaseCalendar } from './BaseCalendar.js';
+
+/// Compatiblity block - to be removed in the migration of calendar to non-remote electron
+const { remote } = require('electron');
+const { BrowserWindow, dialog } = remote;
+
+/**
+ * Opens an electron dialog, based on the options, and performs the successCallback after promise is resolved.
+ * @param {Object.<string, any>} options
+ * @param {function} successCallback
+ */
+ function showDialog(options, successCallback)
+ {
+     options['title'] = options['title'] || 'Time to Leave';
+     dialog.showMessageBox(BrowserWindow.getFocusedWindow(), options)
+         .then(successCallback)
+         .catch(err =>
+         {
+             console.log(err);
+         });
+ }
+////
 
 class FlexibleMonthCalendar extends BaseCalendar
 {
