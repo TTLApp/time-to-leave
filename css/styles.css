@@ -314,6 +314,7 @@ body {
 
 .waiver-img {
   filter: invert(var(--svg-invert));
+  display: none;
 }
 
 #calendar input[type="time"]::-webkit-clear-button {
@@ -426,9 +427,9 @@ body {
   cursor: default;
 }
 
-.waiver-img {
+/* .waiver-img {
   display: none;
-}
+} */
 
 .waiver-trigger:hover {
   cursor: pointer;

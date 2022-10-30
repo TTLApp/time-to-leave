@@ -87,7 +87,8 @@ describe('Preferences Main', () =>
             savePreferences(preferences);
         }
 
-        beforeEach(() => {
+        beforeEach(() =>
+        {
             expect(defaultPreferences['notifications-interval']).toBe('5');
             savePreferences(defaultPreferences);
 

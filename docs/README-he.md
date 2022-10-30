@@ -5,7 +5,6 @@
 
 [Homepage](https://timetoleave.app/)
 
-
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
 <img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Downloads in Total">
 <a href="https://github.com/thamara/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Latest Release"></a>
@@ -46,11 +45,12 @@ Time to Leave רץ על MacOS, Windows ו-Linux, וגם אפשר להוריד ג
 
 ## צרו איתנו קשר!
 
- הצטרפו [לשרת הדיסקורד](https://discord.gg/P3KkEF5) שלנו כדי לדבר על העדכונים הבאים ועוד.
+הצטרפו [לשרת הדיסקורד](https://discord.gg/P3KkEF5) שלנו כדי לדבר על העדכונים הבאים ועוד.
 
 ## נקודות זכות
 
 הצלמיות נעשו בשימוש [freepik](https://www.flaticon.com/authors/freepik) מ-[www.flaticon.com](https://www.flaticon.com).
 
 צלמית של החלפת תצוגה נוצרה על-ידי [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) מ-[www.flaticon.com](https://www.flaticon.com).
+
 </div>
