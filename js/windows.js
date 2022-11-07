@@ -28,6 +28,8 @@ function openWaiverManagerWindow(mainWindow, event)
     const htmlPath = path.join('file://', __dirname, '../src/workday-waiver.html');
     waiverWindow = new BrowserWindow({ width: 600,
         height: 500,
+        x: mainWindow.getBounds().x + 30,
+        y: mainWindow.getBounds().y + 30,
         parent: mainWindow,
         resizable: true,
         icon: appConfig.iconpath,

@@ -120,6 +120,8 @@ function getEditMenuTemplate(mainWindow)
                 const htmlPath = path.join('file://', __dirname, '../src/preferences.html');
                 prefWindow = new BrowserWindow({ width: 500,
                     height: 620,
+                    x: mainWindow.getBounds().x + 30,
+                    y: mainWindow.getBounds().y + 30,
                     parent: mainWindow,
                     resizable: true,
                     icon: appConfig.iconpath,
