@@ -14,6 +14,7 @@ let { openWaiverManagerWindow, prefWindow } = require('./windows');
 import { appConfig, getDetails } from './app-config.js';
 import { savePreferences } from './user-preferences.js';
 import { getCurrentDateTimeStr } from './date-aux.js';
+import { getDialogCoordinates } from './windows.js';
 
 function getMainMenuTemplate(mainWindow)
 {
@@ -118,10 +119,11 @@ function getEditMenuTemplate(mainWindow)
                 }
 
                 const htmlPath = path.join('file://', __dirname, '../src/preferences.html');
+                const dialogCoordinates = getDialogCoordinates(500, 620, mainWindow);
                 prefWindow = new BrowserWindow({ width: 500,
                     height: 620,
-                    x: Math.round(mainWindow.getBounds().x + mainWindow.getBounds().width/2 - 500/2),
-                    y: Math.round(mainWindow.getBounds().y + mainWindow.getBounds().height/2 - 620/2) - 30,
+                    x: dialogCoordinates.x,
+                    y: dialogCoordinates.y,
                     parent: mainWindow,
                     resizable: true,
                     icon: appConfig.iconpath,
