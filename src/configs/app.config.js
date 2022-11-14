@@ -22,7 +22,8 @@ const languages = {
     'ta': 'தமிழ்',
     'th-TH': 'ไทย',
     'tr-TR':'Türkçe',
-    'zh-TW': '繁體中文'
+    'zh-TW': '繁體中文',
+    'mn': 'Монгол'
 };
 
 /**
