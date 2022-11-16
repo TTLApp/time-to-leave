@@ -64,15 +64,11 @@ function getDialogCoordinates(dialogWidth, dialogHeight, mainWindow)
     };
 }
 
-export {
-    getDialogCoordinates
-};
-
-
 module.exports = {
     waiverWindow,
     prefWindow,
     tray,
     contextMenu,
-    openWaiverManagerWindow
+    openWaiverManagerWindow,
+    getDialogCoordinates
 };
