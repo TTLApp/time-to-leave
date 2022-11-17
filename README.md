@@ -6,6 +6,7 @@
 [Homepage](https://timetoleave.app/)
 
 <a href="docs/README-pt-BR.md"><img src="https://img.shields.io/badge/pt--BR-Portugu%C3%AAs-purple" alt="Esse documento também está disponível em Português (Brasil)"></a>
+<a href="docs/README-pt-PT.md"><img src="https://img.shields.io/badge/pt--PT-Portugu%C3%AAs-purple" alt="Este documento também está disponível em Português (Portugal)"></a>
 <a href="docs/README-es.md"><img src="https://img.shields.io/badge/es-Espa%C3%B1ol-purple" alt="Este documento también está disponíble en Español"></a>
 <a href="docs/README-it.md"><img src="https://img.shields.io/badge/it-Italiano-purple" alt="Questo documento è disponibile anche in Italiano"></a>
 <a href="docs/README-mr.md"><img src="https://img.shields.io/badge/mr-मराठी-purple" alt="हे कागदजत्र देखील उपलब्ध आहे मराठी तसेच उपलब्ध आहे"></a>
