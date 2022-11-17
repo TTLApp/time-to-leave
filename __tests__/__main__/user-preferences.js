@@ -495,6 +495,7 @@ describe('Preferences Main', () =>
             expect(getLanguageName('pl')).toBe('Polski');
             expect(getLanguageName('pt-BR')).toBe('Português - Brasil');
             expect(getLanguageName('pt-MI')).toBe('Português - Minerês');
+            expect(getLanguageName('pt-PT')).toBe('Português - Portugal');
             expect(getLanguageName('ru-RU')).toBe('Русский');
             expect(getLanguageName('sv-SE')).toBe('Svenska');
             expect(getLanguageName('ta')).toBe('தமிழ்');
