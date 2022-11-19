@@ -22,7 +22,7 @@
 
 ---
 
-Erfasse die Zeit wann du deinen heutigen Arbeitstag angefangen hast und Time to Leave wird dir unter Berücksichtigung der Zeit die du beim Essen berbracht hast ausrechnen, wann du das Büro verlassen solltest. Wenn es Zeit ist zu gehen, wird dich Time to Leave benachrichtigen.
+Erfasse die Zeit wann du deinen heutigen Arbeitstag angefangen hast und Time to Leave wird dir unter Berücksichtigung der Zeit die du beim Essen verbracht hast ausrechnen, wann du das Büro verlassen solltest. Wenn es Zeit ist zu gehen, wird dich Time to Leave benachrichtigen.
 
 <img src="./images/notification.jpg" alt="Time to Leave Notification">
 
