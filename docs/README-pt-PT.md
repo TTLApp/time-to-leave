@@ -1,7 +1,7 @@
 <div align="center">
   <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
 
-  <p>Regista as tuas horas de trabalho e recebes uma notificação quando for horas de sair do escritório e começar a viver</p>
+  <p>Regista as tuas horas de trabalho e recebes uma notificação quando forem horas de sair do escritório e começar a viver</p>
 
 [timetoleave.app](https://timetoleave.app/)
 
@@ -22,7 +22,7 @@
 
 ---
 
-Regista a hora a que começas a trabalhar hoje, e o programa irá calcular a que horas deverás sair do escritório, considerando o tempo em que estiveste a almoçar. Quando for horas, o program irá notificar.
+Regista a hora a que começas a trabalhar hoje, e o programa irá calcular a que horas deverás sair do escritório, considerando o tempo em que estiveste a almoçar. Quando forem horas, o programa irá notificar.
 
 <img src="./images/notification.jpg" alt="Time to Leave Notification">
 
@@ -41,13 +41,13 @@ Time to Leave funciona no MacOS, Windows e Linux, e podes transferir a versão q
 ## Como compilar e contribuir para o TTL
 
 Se tu queres ajudar, lê o nosso guia de [contribuição](../CONTRIBUTING.md).
-Também podes recorrer ao [guia de desnvolvimento](../DEVELOPMENT.md) para mais informações.
+Também podes recorrer ao [guia de desenvolvimento](../DEVELOPMENT.md) para mais informações.
 
 ## Entra em contacto!
 
 Junta-te ao nosso [servidor no Discord](https://discord.gg/P3KkEF5) para discutir novas funcionalidades e mais.
 
-## Creditos
+## Créditos
 
 Ícones feitos por [freepik](https://www.flaticon.com/authors/freepik) de [www.flaticon.com](https://www.flaticon.com).
 
