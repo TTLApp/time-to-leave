@@ -100,7 +100,7 @@ jobs:
         echo "APP_VERSION=$(node -p "require('./package.json').version")" >> $env:GITHUB_ENV
     - name: 'Packing MSI, EXE, etc'
       if: success()
-      run: npx electron-installer-windows --src 'release-builds\time-to-leave-win32-ia32\' --dest 'packages\' --verbose
+      run: npm run setup:win
     - name: 'Release MSI to GH'
       if: success()
       uses: ncipollo/release-action@v1
