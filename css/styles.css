@@ -20,6 +20,7 @@ html[data-theme="light"] {
   --table-header-label-bground: var(--table-bground);
   --table-header-label-shadow: var(--table-border);
   --error: red;
+  --reset-color: rgb(242, 93, 77);
   --punch-bground: var(--table-total-border);
   --punch-color: black;
   --punch-disable-bground: rgb(134, 134, 134);
@@ -57,6 +58,7 @@ html[data-theme="dark"] {
   --table-header-label-bground: var(--table-bground);
   --table-header-label-shadow: var(--table-border);
   --error: red;
+  --reset-color: rgb(242, 93, 77);
   --punch-bground: rgb(164, 158, 207);
   --punch-color: white;
   --punch-disable-bground: rgb(134, 134, 134);
@@ -94,6 +96,7 @@ html[data-theme="cadent-star"] {
   --table-header-label-bground: rgba(255, 238, 227, 0.9);
   --table-header-label-shadow: var(--table-border);
   --error: red;
+  --reset-color: rgb(242, 93, 77);
   --punch-bground: var(--table-total-border);
   --punch-color: rgb(228, 228, 228);
   --punch-disable-bground: rgb(134, 134, 134);
@@ -314,7 +317,6 @@ body {
 
 .waiver-img {
   filter: invert(var(--svg-invert));
-  display: none;
 }
 
 #calendar input[type="time"]::-webkit-clear-button {
@@ -727,6 +729,15 @@ input:disabled + .slider {
   border: none;
   color: var(--punch-color);
   background-color: var(--punch-bground);
+}
+
+#preferences-window .reset-button {
+  opacity: 0.9;
+  width: 25%;
+  height: 24px;
+  border: none;
+  color: var(--punch-color);
+  background-color: var(--reset-color);
 }
 
 #workday-waiver-window .waive-button:disabled {

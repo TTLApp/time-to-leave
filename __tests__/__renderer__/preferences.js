@@ -84,6 +84,17 @@ function resetPreferenceFile()
     if (fs.existsSync(preferencesFilePath)) fs.unlinkSync(preferencesFilePath);
 }
 
+function clickItem(item)
+{
+    $(`#${item}`)
+        .trigger('click')
+}
+
+function checkItemText(item, text)
+{
+    expect($(`#${item}`).text().replace(/\s/g, "")).toBe(text);
+}
+
 const testPreferences = Object.assign({}, defaultPreferences);
 
 describe('Test Preferences Window', () =>
@@ -102,85 +113,71 @@ describe('Test Preferences Window', () =>
             listenerLanguage();
             done();
         }));
-
         afterEach(() =>
         {
             savePreferences(testPreferences);
         });
-
         test('Change count-today to true', () =>
         {
             changeItemValue('count-today', true);
             checkRenderedItem('count-today');
         });
-
         test('Change close-to-tray to false', () =>
         {
             changeItemValue('close-to-tray', false);
             checkRenderedItem('close-to-tray');
         });
-
         test('Change minimize-to-tray to false', () =>
         {
             changeItemValue('minimize-to-tray', false);
             checkRenderedItem('minimize-to-tray');
         });
-
         test('Change hide-non-working-days to true', () =>
         {
             changeItemInputValue('hide-non-working-days', true);
             checkRenderedItem('hide-non-working-days', isCheckBox);
         });
-
         test('Change hours-per-day from 08:00 to 05:00', () =>
         {
             changeItemValue('hours-per-day', '05:00');
             checkRenderedItem('hours-per-day');
         });
-
         test('Change repetition to false', () =>
         {
             changeItemInputValue('repetition', false);
             checkRenderedItem('repetition', isCheckBox);
         });
-
         test('Change notification to false', () =>
         {
             changeItemInputValue('notification', false);
             checkRenderedItem('notification', isCheckBox);
         });
-
         test('Re-change notification to true and expect repetition to stay false - changed above', () =>
         {
             changeItemInputValue('notification', true);
             checkRenderedItem('notification', isCheckBox);
             checkRenderedItem('repetition', isCheckBox);
         });
-
         test('Change notifications-interval to 10', () =>
         {
             changeItemValue('notifications-interval', '10');
             checkRenderedItem('notifications-interval');
         });
-
         test('Change start-at-login to true', () =>
         {
             changeItemInputValue('start-at-login', true);
             checkRenderedItem('start-at-login', isCheckBox);
         });
-
         test('Changing theme from system-default to light', () =>
         {
             changeItemValue('theme', 'light');
             checkRenderedItem('theme');
         });
-
         test('Change overall-balance-start-date to 2020-01-01', () =>
         {
             changeItemValue('overall-balance-start-date', '2020-01-01');
             checkRenderedItem('overall-balance-start-date');
         });
-
         test('Negates all default working-days values', () =>
         {
             weekdays.forEach(value =>
@@ -192,27 +189,34 @@ describe('Test Preferences Window', () =>
                 checkRenderedItem(`working-days-${value}`, isCheckBox);
             });
         });
-
         test('Changing view option from month to day', () =>
         {
             changeItemValue('view', 'day');
             checkRenderedItem('view');
         });
-
-        test('Languages are rendered in alphabetical order', () =>
-        {
-            let lastValue = '';
-            $('#language option').map(function()
-            {
-                if (lastValue === '') lastValue = this.value;
-                else
-                {
-                    expect(lastValue.localeCompare(this.value)).toBeLessThan(0);
-                    lastValue = this.value;
-                }
-            });
-            expect(lastValue).not.toBe('');
-        });
     });
 });
 
+describe('Test Preferences Window Reset', () =>
+{
+    process.env.NODE_ENV = 'test';
+
+    describe('Checking if reset button is responsive', () =>
+    {
+        beforeEach((async(done) =>
+        {
+            prepareMockup();
+            await refreshContent();
+            renderPreferencesWindow();
+            populateLanguages();
+            listenerLanguage();
+            done();
+        }));
+        test('Click reset and check button text change', () =>
+        {
+            checkItemText('reset-button', 'Reset')
+            clickItem('reset-button');
+            checkItemText('reset-button', 'Resetted!')
+        });
+    });
+});
