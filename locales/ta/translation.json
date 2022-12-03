@@ -119,6 +119,7 @@
         "appBehavior": "ஆப்பின் நடத்தை",
         "cadentStar": "கேடென்ட் ஸ்டார்",
         "closeMinimizeToTray": "க்லொஸ் பட்டன் ட்ரேவை சிறிதாக்க வேண்டும்",
+        "confirm-reset-preferences": "Are you sure you want to reset all preferences?",
         "countTodayOnTotals": "இன்றைய எண்ணிக்கை மொத்தம்",
         "dark": "இருள்",
         "day": "நாள் ",
@@ -136,8 +137,12 @@
         "mon": "திங்கள்",
         "month": "மாதம்",
         "notification": "அறிவிப்பு",
+        "no-thanks": "இல்லை, நன்றி",
         "numberOfEntries": "உள்ளீடுகளின் எண்ணிக்கை",
         "overallBalanceStart": "ஒட்டுமொத்த இருப்பு தொடக்க தேதி",
+        "reset": "Reset",
+        "resetted": "Reset!",
+        "reset-preferences": "Reset to default preferences",
         "sat": "சனி",
         "startOnLogin": "உள்நுழைவில் தொடங்கவும்",
         "sun": "ஞாயிறு",
@@ -149,7 +154,8 @@
         "userPreferences": "பயனர் விருப்பத்தேர்வுகள்",
         "view": "காட்சி",
         "wed": "புதன்",
-        "workingDays": "வேலை நாட்கள்"
+        "workingDays": "வேலை நாட்கள்",
+        "yes-please": "ஆமாம் தயவு செய்து"
     },
     "$UpdateManager": {
         "dismissBtn": "நிராகரி",

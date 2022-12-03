@@ -119,6 +119,7 @@
         "appBehavior": "程式特性",
         "cadentStar": "彩虹渐变色",
         "closeMinimizeToTray": "当按下关闭按钮时将程式最小化到任务栏",
+        "confirm-reset-preferences": "Are you sure you want to reset all preferences?",
         "countTodayOnTotals": "把今天计算在总数内",
         "dark": "深色",
         "day": "日",
@@ -136,8 +137,12 @@
         "mon": "一",
         "month": "月",
         "notification": "通知",
+        "no-thanks": "不用了，谢谢",
         "numberOfEntries": "纪录数量",
         "overallBalanceStart": "总体结余开始日期",
+        "reset": "Reset",
+        "resetted": "Reset!",
+        "reset-preferences": "Reset to default preferences",
         "sat": "六",
         "startOnLogin": "登入系统后自动启动程序",
         "sun": "日",
@@ -149,7 +154,8 @@
         "userPreferences": "用户喜好设定",
         "view": "查看",
         "wed": "三",
-        "workingDays": "工作日"
+        "workingDays": "工作日",
+        "yes-please": "好的，谢谢"
     },
     "$UpdateManager": {
         "dismissBtn": "撤销",

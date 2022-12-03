@@ -119,6 +119,7 @@
         "appBehavior": "App Verhalten",
         "cadentStar": "Regenbogenfarben",
         "closeMinimizeToTray": "Schließen Button minimiert Fenster in den Tray",
+        "confirm-reset-preferences": "Are you sure you want to reset all preferences?",
         "countTodayOnTotals": "Zähle heute in Summe",
         "dark": "Dunkel",
         "day": "Tag",
@@ -136,8 +137,12 @@
         "mon": "Mo",
         "month": "Monat",
         "notification": "Benachrichtigungen",
+        "no-thanks": "Nein, danke",
         "numberOfEntries": "Anzahl an Einträgen",
         "overallBalanceStart": "Gesamtbilanz Startdatum",
+        "reset": "Reset",
+        "resetted": "Reset!",
+        "reset-preferences": "Reset to default preferences",
         "sat": "Sa",
         "startOnLogin": "Starten beim Login",
         "sun": "So",
@@ -149,7 +154,8 @@
         "userPreferences": "Benutzereinstellungen",
         "view": "Ansicht",
         "wed": "Mi",
-        "workingDays": "Arbeitstage"
+        "workingDays": "Arbeitstage",
+        "yes-please": "Ja, bitte"
     },
     "$UpdateManager": {
         "dismissBtn": "Ablehnen",

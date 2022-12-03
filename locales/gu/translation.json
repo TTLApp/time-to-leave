@@ -119,6 +119,7 @@
         "appBehavior": "એપ્લિકેશન વર્તણૂક",
         "cadentStar": "કેડેન્ટ સ્ટાર",
         "closeMinimizeToTray": "ટ્રેમાં બટન બંધ કરવું જોઈએ",
+        "confirm-reset-preferences": "Are you sure you want to reset all preferences?",
         "countTodayOnTotals": "ટોટલ્સમાં આજે ગણતરી કરો",
         "dark": "શ્યામ",
         "day": "દિવસ",
@@ -136,8 +137,12 @@
         "mon": "સોમ",
         "month": "માસ",
         "notification": "સૂચના",
+        "no-thanks": "ના, આભાર",
         "numberOfEntries": "પ્રવેશોની સંખ્યા",
         "overallBalanceStart": "એકંદરે બેલેન્સ પ્રારંભ તારીખ",
+        "reset": "Reset",
+        "resetted": "Reset!",
+        "reset-preferences": "Reset to default preferences",
         "sat": "શનિ",
         "startOnLogin": "લોગિન પર પ્રારંભ કરો",
         "sun": "રવિવાર",
@@ -149,7 +154,8 @@
         "userPreferences": "વપરાશકર્તા પસંદગીઓ",
         "view": "જુઓ",
         "wed": "બુધ",
-        "workingDays": "કાર્યકારી દિવસો"
+        "workingDays": "કાર્યકારી દિવસો",
+        "yes-please": "હા, કૃપા કરીને"
     },
     "$UpdateManager": {
         "dismissBtn": "કાઢી નાખવું",

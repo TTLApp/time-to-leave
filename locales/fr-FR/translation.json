@@ -119,6 +119,7 @@
         "appBehavior": "Comportement de l'application",
         "cadentStar": "Étoile filante",
         "closeMinimizeToTray": "Le bouton Fermer doit réduire l'application dans la barre d'état",
+        "confirm-reset-preferences": "Are you sure you want to reset all preferences?",
         "countTodayOnTotals": "Compter aujourd'hui dans le total",
         "dark": "Sombre",
         "day": "Jour",
@@ -136,8 +137,12 @@
         "mon": "Lun",
         "month": "Mois",
         "notification": "Notification",
+        "no-thanks": "Non merci",
         "numberOfEntries": "Nombre d'entrées",
         "overallBalanceStart": "Date de début du solde global",
+        "reset": "Reset",
+        "resetted": "Reset!",
+        "reset-preferences": "Reset to default preferences",
         "sat": "Sam",
         "startOnLogin": "Lancer au démarrage",
         "sun": "Dim",
@@ -149,7 +154,8 @@
         "userPreferences": "Préférences de l'utilisateur",
         "view": "Vue",
         "wed": "Mer",
-        "workingDays": "Jours de travail"
+        "workingDays": "Jours de travail",
+        "yes-please": "Oui s'il vous plaît"
     },
     "$UpdateManager": {
         "dismissBtn": "Rejeter",

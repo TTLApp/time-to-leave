@@ -91,6 +91,7 @@ describe('Test Preferences Window', () =>
         // Stub methods
         window.mainApi.notifyNewPreferences = () => {};
         window.mainApi.getLanguageDatePromise = () => {};
+        window.mainApi.showDialogSync = () => { return new Promise((resolve) => resolve({ response: 0 })); };
 
         resetPreferenceFile();
     });
@@ -278,6 +279,45 @@ describe('Test Preferences Window', () =>
         it('should convert HH:MM format to HH:MM format', () =>
         {
             assert.strictEqual(convertTimeFormat('12:30'), '12:30');
+        });
+    });
+
+    describe('Checking if reset button is responsive', () =>
+    {
+        beforeEach(async function()
+        {
+            // For some reason this test takes longer when running the whole testsuite. My suspicion is that
+            // import is taking longer after many tests write to the file.
+            // Thus, increasing the timeout.
+            this.timeout(15000);
+
+            // Using dynamic imports because when the file is imported a $() callback is triggered and
+            // methods must be mocked before-hand
+            const {
+                listenerLanguage,
+                populateLanguages,
+                resetContent
+            } = await import('../../src/preferences.js');
+
+            await prepareMockup();
+            resetContent();
+            populateLanguages();
+            listenerLanguage();
+        });
+
+        it('Click reset and check button text change', () =>
+        {
+            const resetText = $('#reset-button').text();
+            $('#reset-button').trigger('click');
+            const resetTextAfterClick = $('#reset-button').text();
+            assert.notStrictEqual(resetText, resetTextAfterClick);
+        });
+        it('Click reset and check that setting was restored', () =>
+        {
+            changeItemValue('count-today', true);
+            checkRenderedItem('count-today');
+            $('#reset-button').trigger('click');
+            assert.strictEqual($('#count-today').val(), false);
         });
     });
 });

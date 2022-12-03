@@ -1,11 +1,12 @@
 'use strict';
 
 import { applyTheme } from '../renderer/themes.js';
-import { translatePage } from '../renderer/i18n-translator.js';
+import { getTranslationInLanguageData, translatePage } from '../renderer/i18n-translator.js';
 
 // Global values for preferences page
 let usersStyles;
 let preferences;
+let listenersCreated = false;
 
 function populateLanguages()
 {
@@ -61,6 +62,15 @@ function refreshContent()
             resolve();
         });
     });
+}
+
+function resetContent()
+{
+    const defaultPreferences = window.mainApi.getDefaultPreferences();
+    usersStyles = defaultPreferences;
+    preferences = usersStyles;
+    renderPreferencesWindow();
+    window.mainApi.notifyNewPreferences(preferences);
 }
 
 function changeValue(type, newVal)
@@ -131,38 +141,6 @@ function renderPreferencesWindow()
         $('#view').val(usersStyles['view']);
     }
 
-    $('input[type="checkbox"]').on('change', function()
-    {
-        changeValue(this.name, this.checked);
-    });
-
-    $('#hours-per-day, #break-time-interval').on('change', function()
-    {
-        /* istanbul ignore else */
-        if (this.checkValidity() === true)
-        {
-            const entry = convertTimeFormat(this.value);
-            this.value = entry;
-            changeValue(this.name, entry);
-        }
-    });
-
-    $('input[type="number"], input[type="date"]').on('change', function()
-    {
-        changeValue(this.name, this.value);
-    });
-
-    $('#theme').on('change', function()
-    {
-        changeValue('theme', this.value);
-        applyTheme(this.value);
-    });
-
-    $('#view').on('change', function()
-    {
-        changeValue('view', this.value);
-    });
-
     $('input').each(function()
     {
         const input = $(this);
@@ -194,10 +172,6 @@ function renderPreferencesWindow()
     const breakInterval = $('#break-time-interval');
 
     breakInterval.prop('disabled', !prefillBreak.is(':checked'));
-    prefillBreak.on('change', function()
-    {
-        breakInterval.prop('disabled', !prefillBreak.is(':checked'));
-    });
 
     const notification = $('#notification');
     const repetition = $('#repetition');
@@ -210,20 +184,88 @@ function renderPreferencesWindow()
     );
     notificationsInterval.prop('disabled', !repetition.is(':checked'));
 
-    notification.on('change', function()
+    if (!listenersCreated)
     {
-        repetition.prop('disabled', !notification.is(':checked'));
-        repetition.prop(
-            'checked',
-            notification.is(':checked') && usersStyles['repetition']
-        );
-        notificationsInterval.prop('disabled', !repetition.is(':checked'));
-    });
+        $('input[type="checkbox"]').on('change', function()
+        {
+            changeValue(this.name, this.checked);
+        });
 
-    repetition.on('change', function()
-    {
-        notificationsInterval.prop('disabled', !repetition.is(':checked'));
-    });
+        $('#hours-per-day, #break-time-interval').on('change', function()
+        {
+            /* istanbul ignore else */
+            if (this.checkValidity() === true)
+            {
+                const entry = convertTimeFormat(this.value);
+                this.value = entry;
+                changeValue(this.name, entry);
+            }
+        });
+
+        $('input[type="number"], input[type="date"]').on('change', function()
+        {
+            changeValue(this.name, this.value);
+        });
+
+        $('#theme').on('change', function()
+        {
+            changeValue('theme', this.value);
+            applyTheme(this.value);
+        });
+
+        $('#view').on('change', function()
+        {
+            changeValue('view', this.value);
+        });
+
+        $('#reset-button').on('click', function()
+        {
+            window.mainApi.getLanguageDataPromise().then(languageData =>
+            {
+                const options = {
+                    type: 'question',
+                    buttons: [getTranslationInLanguageData(languageData.data, '$Preferences.yes-please'), getTranslationInLanguageData(languageData.data, '$Preferences.no-thanks')],
+                    defaultId: 1,
+                    cancelId: 1,
+                    title: getTranslationInLanguageData(languageData.data, '$Preferences.reset-preferences'),
+                    message: getTranslationInLanguageData(languageData.data, '$Preferences.confirm-reset-preferences'),
+                };
+                window.mainApi.showDialogSync(options).then((result) =>
+                {
+                    if (result.response === 0 /*Yes*/)
+                    {
+                        $('.reset-button').text(getTranslationInLanguageData(languageData.data, '$Preferences.resetted'));
+                        setTimeout(() =>
+                        {
+                            $('.reset-button').text(getTranslationInLanguageData(languageData.data, '$Preferences.reset'));
+                        }, 3000);
+                        resetContent();
+                    }
+                });
+            });
+        });
+
+        prefillBreak.on('change', function()
+        {
+            breakInterval.prop('disabled', !prefillBreak.is(':checked'));
+        });
+
+        notification.on('change', function()
+        {
+            repetition.prop('disabled', !notification.is(':checked'));
+            repetition.prop(
+                'checked',
+                notification.is(':checked') && usersStyles['repetition']
+            );
+            notificationsInterval.prop('disabled', !repetition.is(':checked'));
+        });
+
+        repetition.on('change', function()
+        {
+            notificationsInterval.prop('disabled', !repetition.is(':checked'));
+        });
+    }
+    listenersCreated = true;
 }
 /* istanbul ignore next */
 $(() =>
@@ -240,6 +282,7 @@ $(() =>
 export {
     convertTimeFormat,
     refreshContent,
+    resetContent,
     populateLanguages,
     listenerLanguage,
     renderPreferencesWindow,

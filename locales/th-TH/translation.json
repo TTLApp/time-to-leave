@@ -119,6 +119,7 @@
         "appBehavior": "พฤติกรรมแอปพลิเคชัน",
         "cadentStar": "ฝนดาวตก",
         "closeMinimizeToTray": "ปุ่มปิดจะทำการย่อไปยังถาด",
+        "confirm-reset-preferences": "Are you sure you want to reset all preferences?",
         "countTodayOnTotals": "นับวันนี้ในทั้งหมด",
         "dark": "มืด",
         "day": "รายวัน",
@@ -136,8 +137,12 @@
         "mon": "จันทร์",
         "month": "รายเดือน",
         "notification": "การแจ้งเตือน",
+        "no-thanks": "ไม่",
         "numberOfEntries": "จำนวนรายการ",
         "overallBalanceStart": "ภาพรวมชั่วโมงที่เหลือในวันเริ่ม",
+        "reset": "Reset",
+        "resetted": "Reset!",
+        "reset-preferences": "Reset to default preferences",
         "sat": "เสาร์",
         "startOnLogin": "เริ่มเมื่อเข้าสู่ระบบ",
         "sun": "อาทิตย์",
@@ -149,7 +154,8 @@
         "userPreferences": "การตั้งค่าผู้ใช้งาน",
         "view": "มุมมอง",
         "wed": "พุธ",
-        "workingDays": "วันทำงาน"
+        "workingDays": "วันทำงาน",
+        "yes-please": "ใช่"
     },
     "$UpdateManager": {
         "dismissBtn": "ยกเลิก",

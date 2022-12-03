@@ -119,6 +119,7 @@
         "appBehavior": "Perilaku Aplikasi",
         "cadentStar": "Cadent Star",
         "closeMinimizeToTray": "Tombol Tutup harus diminimalkan ke tray",
+        "confirm-reset-preferences": "Are you sure you want to reset all preferences?",
         "countTodayOnTotals": "Total Hitungan hari",
         "dark": "Gelap",
         "day": "Hari",
@@ -136,8 +137,12 @@
         "mon": "Sen",
         "month": "Bulan",
         "notification": "Notifikasi",
+        "no-thanks": "Tidak, Terima Kasih",
         "numberOfEntries": "Jumlah Entri",
         "overallBalanceStart": "Rata Rata Keseluruhan Tanggal Mulai ",
+        "reset": "Reset",
+        "resetted": "Reset!",
+        "reset-preferences": "Reset to default preferences",
         "sat": "Sab",
         "startOnLogin": "Mulai saat Login",
         "sun": "Min",
@@ -149,7 +154,8 @@
         "userPreferences": "Pengaturan Akun",
         "view": "Tampilan",
         "wed": "Rab",
-        "workingDays": "Hari Kerja"
+        "workingDays": "Hari Kerja",
+        "yes-please": "Ya"
     },
     "$UpdateManager": {
         "dismissBtn": "Hilangkan",

@@ -119,6 +119,7 @@
         "appBehavior": "アプリ動作設定",
         "cadentStar": "流れ星",
         "closeMinimizeToTray": "閉じるボタンを最小化",
+        "confirm-reset-preferences": "Are you sure you want to reset all preferences?",
         "countTodayOnTotals": "合計に今日をカウント",
         "dark": "ダーク",
         "day": "日",
@@ -136,8 +137,12 @@
         "mon": "月",
         "month": "月",
         "notification": "通知",
+        "no-thanks": "いいえ、結構です",
         "numberOfEntries": "記録の数",
         "overallBalanceStart": "累計計算の開始日",
+        "reset": "Reset",
+        "resetted": "Reset!",
+        "reset-preferences": "Reset to default preferences",
         "sat": "土",
         "startOnLogin": "ログイン時に起動",
         "sun": "日",
@@ -149,7 +154,8 @@
         "userPreferences": "ユーザー環境設定",
         "view": "表示",
         "wed": "水",
-        "workingDays": "勤務日"
+        "workingDays": "勤務日",
+        "yes-please": "はい、お願いします"
     },
     "$UpdateManager": {
         "dismissBtn": "無視",

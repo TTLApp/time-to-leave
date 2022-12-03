@@ -119,6 +119,7 @@
         "appBehavior": "Comportamiento de la aplicación",
         "cadentStar": "Estrella Fugaz",
         "closeMinimizeToTray": "El botón de cierre debería minimizar a la bandeja",
+        "confirm-reset-preferences": "Are you sure you want to reset all preferences?",
         "countTodayOnTotals": "Contar hoy en los totales",
         "dark": "Oscuro",
         "day": "Día",
@@ -136,8 +137,12 @@
         "mon": "Lun",
         "month": "Mes",
         "notification": "Notificación",
+        "no-thanks": "No, gracias",
         "numberOfEntries": "Número de entradas",
         "overallBalanceStart": "Balance general Fecha de inicio",
+        "reset": "Reset",
+        "resetted": "Reset!",
+        "reset-preferences": "Reset to default preferences",
         "sat": "Sáb",
         "startOnLogin": "Comienza en Login",
         "sun": "Dom",
@@ -149,7 +154,8 @@
         "userPreferences": "Preferencias de usuario",
         "view": "Vista",
         "wed": "Mié",
-        "workingDays": "Días de trabajo"
+        "workingDays": "Días de trabajo",
+        "yes-please": "Sí, por favor"
     },
     "$UpdateManager": {
         "dismissBtn": "Ahora no",

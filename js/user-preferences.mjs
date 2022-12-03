@@ -252,6 +252,14 @@ function getUserPreferencesPromise(preferencesFilePathPromise = getPreferencesFi
     });
 }
 
+/**
+ * Returns the default user preferences.
+ */
+function getDefaultPreferences()
+{
+    return defaultPreferences;
+}
+
 /*
  * Returns true if the notification is enabled in preferences.
  */
@@ -366,6 +374,7 @@ export {
     getPreferencesFilePath,
     getUserLanguage,
     getUserPreferencesPromise,
+    getDefaultPreferences,
     isNotBoolean,
     isNotificationInterval,
     notificationIsEnabled,

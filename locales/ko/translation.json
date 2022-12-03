@@ -119,6 +119,7 @@
         "appBehavior": "프로그램 동작",
         "cadentStar": "쏟아지는 별",
         "closeMinimizeToTray": "종료 시 시스템 트레이로 이동",
+        "confirm-reset-preferences": "Are you sure you want to reset all preferences?",
         "countTodayOnTotals": "통계 계산에 오늘도 포함",
         "dark": "어두움",
         "day": "일별",
@@ -136,8 +137,12 @@
         "mon": "월",
         "month": "월별",
         "notification": "알림 표시",
+        "no-thanks": "아뇨, 괜찮아요",
         "numberOfEntries": "하루 작업 단위 개수",
         "overallBalanceStart": "총 작업 달성도 집계 시작일",
+        "reset": "Reset",
+        "resetted": "Reset!",
+        "reset-preferences": "Reset to default preferences",
         "sat": "토",
         "startOnLogin": "시스템 시작 시 자동 실행",
         "sun": "일",
@@ -149,7 +154,8 @@
         "userPreferences": "사용자 설정",
         "view": "보기 모드",
         "wed": "수",
-        "workingDays": "작업 요일 지정"
+        "workingDays": "작업 요일 지정",
+        "yes-please": "네, 그래 주세요"
     },
     "$UpdateManager": {
         "dismissBtn": "닫기",

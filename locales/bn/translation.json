@@ -120,6 +120,7 @@
         "appBehavior": "অ্যাপ বিহেভিয়ার",
         "cadentStar": "ক্যাডেন্ট স্টার",
         "closeMinimizeToTray": "বন্ধ বোতামটি ট্রেতে ছোট করা উচিত",
+        "confirm-reset-preferences": "Are you sure you want to reset all preferences?",
         "countTodayOnTotals": "কাউন্ট টুডে টোটাল",
         "dark": "অন্ধকার",
         "day": "দিন",
@@ -137,8 +138,12 @@
         "mon": "সোম",
         "month": "মাস",
         "notification": "বিজ্ঞপ্তি",
+        "no-thanks": "না, ধন্যবাদ",
         "numberOfEntries": "এন্ট্রির সংখ্যা",
         "overallBalanceStart": "সামগ্রিক ব্যালেন্স শুরুর তারিখ",
+        "reset": "Reset",
+        "resetted": "Reset!",
+        "reset-preferences": "Reset to default preferences",
         "sat": "শনি",
         "startOnLogin": "লগইন শুরু করুন",
         "sun": "রবিবার",
@@ -150,7 +155,8 @@
         "userPreferences": "ব্যবহারকারীর পছন্দ",
         "view": "দেখুন",
         "wed": "বুধ",
-        "workingDays": "কাজের দিন"
+        "workingDays": "কাজের দিন",
+        "yes-please": "হ্যাঁ, দয়া করে"
     },
     "$UpdateManager": {
         "dismissBtn": "খারিজ",

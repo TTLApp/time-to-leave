@@ -119,6 +119,7 @@
         "appBehavior": "Zachowanie programu",
         "cadentStar": "Gwiazda Kadentu",
         "closeMinimizeToTray": "Przycisk zamykania minimalizuje do zasobnika systemowego",
+        "confirm-reset-preferences": "Are you sure you want to reset all preferences?",
         "countTodayOnTotals": "Uwzględnij aktualny dzień w statystyce",
         "dark": "Ciemny",
         "day": "Dzień",
@@ -136,8 +137,12 @@
         "mon": "Pon",
         "month": "Miesiąc",
         "notification": "Powiadomienia",
+        "no-thanks": "Nie, dziękuję",
         "numberOfEntries": "Liczba wpisów",
         "overallBalanceStart": "Data rozpoczęcia ogólnej statystyki",
+        "reset": "Reset",
+        "resetted": "Reset!",
+        "reset-preferences": "Reset to default preferences",
         "sat": "Sob",
         "startOnLogin": "Uruchom przy starcie systemu",
         "sun": "Niedz",
@@ -149,7 +154,8 @@
         "userPreferences": "Prefernecje użytkownika",
         "view": "Widok",
         "wed": "Śr",
-        "workingDays": "Dni pracy"
+        "workingDays": "Dni pracy",
+        "yes-please": "Tak, proszę"
     },
     "$UpdateManager": {
         "dismissBtn": "Odrzuć",
