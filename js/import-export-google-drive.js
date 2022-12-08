@@ -5,7 +5,7 @@ const {authenticate} = require('@google-cloud/local-auth');
 const {google} = require('googleapis');
 
 // If modifying these scopes, delete token.json.
-const SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
+const SCOPES = ['https://www.googleapis.com/auth/drive'];
 // The file token.json stores the user's access and refresh tokens, and is
 // created automatically when the authorization flow completes for the first
 // time.
@@ -77,25 +77,31 @@ async function authorize()
  * Lists the names and IDs of up to 10 files.
  * @param {OAuth2Client} authClient An authorized OAuth2 client.
  */
-async function listFiles(authClient)
+async function uploadWithConversion(authClient)
 {
-    const drive = google.drive({version: 'v3', auth: authClient});
-    const res = await drive.files.list({
-        pageSize: 10,
-        fields: 'nextPageToken, files(id, name)',
-    });
-    const files = res.data.files;
-    if (files.length === 0)
-    {
-        console.log('No files found.');
-        return;
+    const fs = require('fs');
+    const service = google.drive({version: 'v3', auth: authClient});
+    const fileMetadata = {
+      name: 'My Report',
+      mimeType: 'application/vnd.google-apps.spreadsheet',
+    };
+    const media = {
+      mimeType: 'text/csv',
+      body: fs.createReadStream('report.csv'),
+    };
+  
+    try {
+      const file = await service.files.create({
+        resource: fileMetadata,
+        media: media,
+        fields: 'id',
+      });
+      console.log('File Id:', file.data.id);
+      return file.data.id;
+    } catch (err) {
+      // TODO(developer) - Handle error
+      throw err;
     }
-
-    console.log('Files:');
-    files.map((file) =>
-    {
-        console.log(`${file.name} (${file.id})`);
-    });
 }
 
 
@@ -104,5 +110,5 @@ module.exports = {
     loadSavedCredentialsIfExist,
     saveCredentials,
     authorize,
-    listFiles
+    uploadWithConversion
 };
