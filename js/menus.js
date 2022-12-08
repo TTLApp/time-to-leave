@@ -9,6 +9,7 @@ const { getSavedPreferences } = require('./saved-preferences.js');
 const { importDatabaseFromFile, exportDatabaseToFile } = require('./import-export.js');
 const { notify } = require('./notification');
 const { getCurrentTranslation } = require('../src/configs/i18next.config');
+const {loadSavedCredentialsIfExist,saveCredentials, authorize, listFiles} = require('./import-export-google-drive.js');
 let { openWaiverManagerWindow, prefWindow, getDialogCoordinates } = require('./windows');
 
 import { appConfig, getDetails } from './app-config.js';
@@ -292,6 +293,7 @@ function getEditMenuTemplate(mainWindow)
             click()
             {
                 // TODO: Export, here we need the connection to google drive
+                authorize().then(listFiles).catch(console.error);
             },
         },
         {
