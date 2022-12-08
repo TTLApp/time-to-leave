@@ -285,6 +285,22 @@ function getEditMenuTemplate(mainWindow)
                 }
             }
         },
+        {type: 'separator'},
+        // TODO: add Translation
+        {
+            label: 'Export Data to Google Drive',
+            click()
+            {
+                // TODO: Export, here we need the connection to google drive
+            },
+        },
+        {
+            label: 'Import Data from Google Drive',
+            click()
+            {
+                // TODO: Import, here we need the connection to google drive
+            },
+        },
     ];
 }
 
