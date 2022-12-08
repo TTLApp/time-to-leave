@@ -34,7 +34,7 @@
     "test": "npm-run-all test:*",
     "test:jest": "jest --runInBand --detectOpenHandles --verbose --colors",
     "test:mocha": "nyc --reporter=lcov --reporter=json mocha tests/*",
-    "setup:win" : "npx electron-installer-windows --src ./release-builds/\"Time to Leave-win32-ia32\"/ --dest 'packages/' --verbose --exe \"Time to Leave.exe\""
+    "setup:win": "npx electron-installer-windows --src ./release-builds/\"Time to Leave-win32-ia32\"/ --dest 'packages/' --verbose --exe \"Time to Leave.exe\""
   },
   "pre-commit": [
     "clean",
@@ -64,11 +64,13 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
+    "@google-cloud/local-auth": "^2.1.0",
     "bootstrap": "^5.1.1",
     "date-holidays": "^3.9.1",
     "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^6.0.1",
     "esm": "^3.2.25",
+    "googleapis": "^105.0.0",
     "i18next": "^21.2.3",
     "i18next-node-fs-backend": "^2.1.3",
     "is-online": "^9.0.1",
