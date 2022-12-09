@@ -9,7 +9,7 @@ const { getSavedPreferences } = require('./saved-preferences.js');
 const { importDatabaseFromFile, exportDatabaseToFile } = require('./import-export.js');
 const { notify } = require('./notification');
 const { getCurrentTranslation } = require('../src/configs/i18next.config');
-const { authorize, uploadWithConversion } = require('./import-export-google-drive.js');
+const { authorize, uploadWithConversion, searchFile, downloadFile } = require('./import-export-google-drive.js');
 let { openWaiverManagerWindow, prefWindow, getDialogCoordinates } = require('./windows');
 
 import { appConfig, getDetails } from './app-config.js';
@@ -292,6 +292,7 @@ function getEditMenuTemplate(mainWindow)
             label: 'Export Data to Google Drive',
             click()
             {
+                // TODO: Show message box if upload was successfull
                 const path = `time_to_leave_${getCurrentDateTimeStr()}`;
                 authorize().then(client => uploadWithConversion(client, path)).catch(console.error);
             },
@@ -300,7 +301,10 @@ function getEditMenuTemplate(mainWindow)
             label: 'Import Data from Google Drive',
             click()
             {
-                // TODO: Import, here we need the connection to google drive
+                // TODO: get filename from user input
+                authorize().then(client => searchFile(client, 'time_to_leave_2022_12_09_09_22_22').then(fileId => downloadFile(client, fileId)));
+
+
             },
         },
     ];
