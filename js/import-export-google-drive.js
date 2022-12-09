@@ -3,6 +3,8 @@ const path = require('path');
 const process = require('process');
 const {authenticate} = require('@google-cloud/local-auth');
 const {google} = require('googleapis');
+const { getDbAsJSON} = require('./import-export.js');
+
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/drive'];
@@ -74,34 +76,41 @@ async function authorize()
 }
 
 /**
- * Lists the names and IDs of up to 10 files.
+ * Upload Db content as JSON to Google Drive
  * @param {OAuth2Client} authClient An authorized OAuth2 client.
+ * @param {String} path Path and name of the uploaded file
  */
-async function uploadWithConversion(authClient)
+async function uploadWithConversion(authClient, path)
 {
     const fs = require('fs');
     const service = google.drive({version: 'v3', auth: authClient});
+    fs.writeFileSync('tmp', getDbAsJSON());
     const fileMetadata = {
-      name: 'My Report',
-      mimeType: 'application/vnd.google-apps.spreadsheet',
+        name: path,
+        mimeType: 'application/json',
     };
     const media = {
-      mimeType: 'text/csv',
-      body: fs.createReadStream('report.csv'),
+        mimeType: 'application/json',
+        body: fs.createReadStream('tmp'),
     };
-  
-    try {
-      const file = await service.files.create({
-        resource: fileMetadata,
-        media: media,
-        fields: 'id',
-      });
-      console.log('File Id:', file.data.id);
-      return file.data.id;
-    } catch (err) {
-      // TODO(developer) - Handle error
-      throw err;
+    try
+    {
+        const file = await service.files.create({
+            resource: fileMetadata,
+            media: media,
+            fields: 'id',
+        });
+        fs.unlinkSync('tmp');
+        console.log('File Id:', file.data.id);
+        return file.data.id;
     }
+    catch (err)
+    {
+        // TODO(developer) - Handle error
+        console.log('This should handle error');
+        throw err;
+    }
+
 }
 
 

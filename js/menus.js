@@ -292,8 +292,8 @@ function getEditMenuTemplate(mainWindow)
             label: 'Export Data to Google Drive',
             click()
             {
-                // TODO: Export, here we need the connection to google drive
-                authorize().then(uploadWithConversion).catch(console.error);
+                const path = `time_to_leave_${getCurrentDateTimeStr()}`;
+                authorize().then(client => uploadWithConversion(client, path)).catch(console.error);
             },
         },
         {
