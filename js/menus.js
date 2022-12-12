@@ -9,7 +9,7 @@ const { getSavedPreferences } = require('./saved-preferences.js');
 const { importDatabaseFromFile, exportDatabaseToFile } = require('./import-export.js');
 const { notify } = require('./notification');
 const { getCurrentTranslation } = require('../src/configs/i18next.config');
-const { authorize, uploadWithConversion, importDatabaseFromGoogleDrive } = require('./import-export-google-drive.js');
+const { exportDatabaseToGoogleDrive, importDatabaseFromGoogleDrive } = require('./import-export-google-drive.js');
 let { openWaiverManagerWindow, prefWindow, getDialogCoordinates } = require('./windows');
 
 import { appConfig, getDetails } from './app-config.js';
@@ -294,9 +294,31 @@ function getEditMenuTemplate(mainWindow)
             label: 'Export Data to Google Drive',
             click()
             {
-                // TODO: Show message box if upload was successfull
-                const path = `time_to_leave_${getCurrentDateTimeStr()}`;
-                authorize().then(client => uploadWithConversion(client, path).catch(console.error)).catch(console.error);
+
+                const options = {
+                    type: 'question',
+                    buttons: [getCurrentTranslation('$Menu.yes-please'), getCurrentTranslation('$Menu.no-thanks')],
+                    defaultId: 2,
+                    title: 'Export database to Google Drive',
+                    message: 'Do you want to export your database to Google Drive?',
+                };
+
+                const confirmation = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
+                if (confirmation === /*Yes*/0)
+                {
+                    const path = `time_to_leave_${getCurrentDateTimeStr()}`;
+                    exportDatabaseToGoogleDrive(path).then(function()
+                    {
+                        dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
+                            {
+                                title: 'Time to Leave',
+                                message: getCurrentTranslation('$Menu.database-export'),
+                                type: 'info',
+                                icon: appConfig.iconpath,
+                                detail: getCurrentTranslation('$Menu.database-was-exported')
+                            });
+                    }).catch(console.error);
+                }
             },
         },
         {

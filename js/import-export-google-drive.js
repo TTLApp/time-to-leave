@@ -103,8 +103,23 @@ async function uploadWithConversion(authClient, path)
         console.log('This should handle error');
         throw err;
     }
-
 }
+
+async function exportDatabaseToGoogleDrive(path)
+{
+    try
+    {
+        const client = await authorize();
+        await uploadWithConversion(client, path);
+    }
+    catch (err)
+    {
+        // TODO(developer) - Handle error
+        console.log('This should handle error');
+        throw err;
+    }
+}
+
 
 /**
  * Search file in drive location
@@ -160,7 +175,6 @@ async function downloadFile(authClient, fileId)
     }
 }
 
-
 async function importDatabaseFromGoogleDrive()
 {
     // TODO: check if the donloaded file has TTL data and the right format
@@ -186,7 +200,7 @@ module.exports = {
     loadSavedCredentialsIfExist,
     saveCredentials,
     authorize,
-    uploadWithConversion,
+    exportDatabaseToGoogleDrive,
     searchFile,
     downloadFile,
     importDatabaseFromGoogleDrive
