@@ -9,7 +9,7 @@ const { getSavedPreferences } = require('./saved-preferences.js');
 const { importDatabaseFromFile, exportDatabaseToFile } = require('./import-export.js');
 const { notify } = require('./notification');
 const { getCurrentTranslation } = require('../src/configs/i18next.config');
-const { authorize, uploadWithConversion, searchFile, downloadFile } = require('./import-export-google-drive.js');
+const { authorize, uploadWithConversion, importDatabaseFromGoogleDrive } = require('./import-export-google-drive.js');
 let { openWaiverManagerWindow, prefWindow, getDialogCoordinates } = require('./windows');
 
 import { appConfig, getDetails } from './app-config.js';
@@ -27,9 +27,9 @@ function getMainMenuTemplate(mainWindow)
                 openWaiverManagerWindow(mainWindow, event);
             },
         },
-        {type: 'separator'},
+        { type: 'separator' },
         {
-            label:getCurrentTranslation('$Menu.exit'),
+            label: getCurrentTranslation('$Menu.exit'),
             accelerator: appConfig.macOS ? 'CommandOrControl+Q' : 'Control+Q',
             click()
             {
@@ -49,7 +49,7 @@ function getContextMenuTemplate(mainWindow)
 
                 mainWindow.webContents.executeJavaScript('calendar.punchDate()');
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
-                notify(`${getCurrentTranslation('$Menu.punched-time')} ${now.toTimeString().slice(0,5)}`);
+                notify(`${getCurrentTranslation('$Menu.punched-time')} ${now.toTimeString().slice(0, 5)}`);
             }
         },
         {
@@ -77,7 +77,7 @@ function getDockMenuTemplate(mainWindow)
 
                 mainWindow.webContents.executeJavaScript('calendar.punchDate()');
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
-                notify(`${getCurrentTranslation('$Menu.punched-time')} ${now.toTimeString().slice(0,5)}`);
+                notify(`${getCurrentTranslation('$Menu.punched-time')} ${now.toTimeString().slice(0, 5)}`);
             }
         }
     ];
@@ -106,7 +106,7 @@ function getEditMenuTemplate(mainWindow)
             accelerator: 'Command+A',
             selector: 'selectAll:'
         },
-        {type: 'separator'},
+        { type: 'separator' },
         {
             label: getCurrentTranslation('$Menu.preferences'),
             accelerator: appConfig.macOS ? 'Command+,' : 'Control+,',
@@ -120,7 +120,8 @@ function getEditMenuTemplate(mainWindow)
 
                 const htmlPath = path.join('file://', __dirname, '../src/preferences.html');
                 const dialogCoordinates = getDialogCoordinates(500, 620, mainWindow);
-                prefWindow = new BrowserWindow({ width: 500,
+                prefWindow = new BrowserWindow({
+                    width: 500,
                     height: 620,
                     x: dialogCoordinates.x,
                     y: dialogCoordinates.y,
@@ -131,7 +132,8 @@ function getEditMenuTemplate(mainWindow)
                         nodeIntegration: true,
                         preload: path.join(__dirname, '../renderer/preload-scripts/preferences-bridge.js'),
                         contextIsolation: true
-                    } });
+                    }
+                });
                 prefWindow.setMenu(null);
                 prefWindow.loadURL(htmlPath);
                 prefWindow.show();
@@ -154,17 +156,17 @@ function getEditMenuTemplate(mainWindow)
                 });
             },
         },
-        {type: 'separator'},
+        { type: 'separator' },
         {
             label: getCurrentTranslation('$Menu.export-database'),
             click()
             {
                 const options = {
                     title: getCurrentTranslation('$Menu.export-db-to-file'),
-                    defaultPath : `time_to_leave_${getCurrentDateTimeStr()}`,
-                    buttonLabel : getCurrentTranslation('$Menu.export'),
+                    defaultPath: `time_to_leave_${getCurrentDateTimeStr()}`,
+                    buttonLabel: getCurrentTranslation('$Menu.export'),
 
-                    filters : [
+                    filters: [
                         { name: '.ttldb', extensions: ['ttldb',] },
                         { name: getCurrentTranslation('$Menu.all-files'), extensions: ['*'] }
                     ]
@@ -190,11 +192,11 @@ function getEditMenuTemplate(mainWindow)
             {
                 const options = {
                     title: getCurrentTranslation('$Menu.import-db-from-file'),
-                    buttonLabel : getCurrentTranslation('$Menu.import'),
+                    buttonLabel: getCurrentTranslation('$Menu.import'),
 
-                    filters : [
-                        {name: '.ttldb', extensions: ['ttldb',]},
-                        {name: getCurrentTranslation('$Menu.all-files'), extensions: ['*']}
+                    filters: [
+                        { name: '.ttldb', extensions: ['ttldb',] },
+                        { name: getCurrentTranslation('$Menu.all-files'), extensions: ['*'] }
                     ]
                 };
                 const response = dialog.showOpenDialogSync(options);
@@ -267,8 +269,8 @@ function getEditMenuTemplate(mainWindow)
                 if (response === 1)
                 {
                     const store = new Store();
-                    const waivedWorkdays = new Store({name: 'waived-workdays'});
-                    const flexibleStore = new Store({name: 'flexible-store'});
+                    const waivedWorkdays = new Store({ name: 'waived-workdays' });
+                    const flexibleStore = new Store({ name: 'flexible-store' });
 
                     store.clear();
                     waivedWorkdays.clear();
@@ -286,7 +288,7 @@ function getEditMenuTemplate(mainWindow)
                 }
             }
         },
-        {type: 'separator'},
+        { type: 'separator' },
         // TODO: add Translation
         {
             label: 'Export Data to Google Drive',
@@ -294,16 +296,51 @@ function getEditMenuTemplate(mainWindow)
             {
                 // TODO: Show message box if upload was successfull
                 const path = `time_to_leave_${getCurrentDateTimeStr()}`;
-                authorize().then(client => uploadWithConversion(client, path)).catch(console.error);
+                authorize().then(client => uploadWithConversion(client, path).catch(console.error)).catch(console.error);
             },
         },
         {
             label: 'Import Data from Google Drive',
             click()
             {
+                // TODO: reload calender
                 // TODO: get filename from user input
-                authorize().then(client => searchFile(client, 'time_to_leave_2022_12_09_09_22_22').then(fileId => downloadFile(client, fileId)));
-
+                importDatabaseFromGoogleDrive().then(importResult =>
+                {
+                    if (importResult['result'])
+                    {
+                        dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
+                            {
+                                title: 'Time to Leave',
+                                message: getCurrentTranslation('$Menu.database-imported'),
+                                type: 'info',
+                                icon: appConfig.iconpath,
+                                detail: getCurrentTranslation('$Menu.import-successful')
+                            });
+                    }
+                    else if (importResult['failed'] !== 0)
+                    {
+                        if (importResult['failed'] !== 0)
+                        {
+                            const message = `${importResult['failed']}/${importResult['total']} ${getCurrentTranslation('$Menu.could-not-be-loaded')}`;
+                            dialog.showMessageBoxSync({
+                                icon: appConfig.iconpath,
+                                type: 'warning',
+                                title: getCurrentTranslation('$Menu.failed-entries'),
+                                message: message
+                            });
+                        }
+                    }
+                    else
+                    {
+                        dialog.showMessageBoxSync({
+                            icon: appConfig.iconpath,
+                            type: 'warning',
+                            title: getCurrentTranslation('$Menu.failed-entries'),
+                            message: getCurrentTranslation('$Menu.something-went-wrong')
+                        });
+                    }
+                });
 
             },
         },

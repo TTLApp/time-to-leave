@@ -3,14 +3,8 @@ const path = require('path');
 const process = require('process');
 const { authenticate } = require('@google-cloud/local-auth');
 const { google } = require('googleapis');
-const { getDbAsJSON } = require('./import-export.js');
-
-
-// If modifying these scopes, delete token.json.
+const { getDbAsJSON, importDatabaseFromBuffer } = require('./import-export.js');
 const SCOPES = ['https://www.googleapis.com/auth/drive'];
-// The file token.json stores the user's access and refresh tokens, and is
-// created automatically when the authorization flow completes for the first
-// time.
 const TOKEN_PATH = path.join(process.cwd(), 'token.json');
 const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
 
@@ -19,13 +13,16 @@ const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
  *
  * @return {Promise<OAuth2Client|null>}
  */
-async function loadSavedCredentialsIfExist() {
-    try {
+async function loadSavedCredentialsIfExist()
+{
+    try
+    {
         const content = await fs.readFile(TOKEN_PATH);
         const credentials = JSON.parse(content);
         return google.auth.fromJSON(credentials);
     }
-    catch (err) {
+    catch (err)
+    {
         return null;
     }
 }
@@ -36,7 +33,8 @@ async function loadSavedCredentialsIfExist() {
  * @param {OAuth2Client} client
  * @return {Promise<void>}
  */
-async function saveCredentials(client) {
+async function saveCredentials(client)
+{
     const content = await fs.readFile(CREDENTIALS_PATH);
     const keys = JSON.parse(content);
     const key = keys.installed || keys.web;
@@ -53,16 +51,19 @@ async function saveCredentials(client) {
  * Load or request or authorization to call APIs.
  *
  */
-async function authorize() {
+async function authorize()
+{
     let client = await loadSavedCredentialsIfExist();
-    if (client) {
+    if (client)
+    {
         return client;
     }
     client = await authenticate({
         scopes: SCOPES,
         keyfilePath: CREDENTIALS_PATH,
     });
-    if (client.credentials) {
+    if (client.credentials)
+    {
         await saveCredentials(client);
     }
     return client;
@@ -73,7 +74,8 @@ async function authorize() {
  * @param {OAuth2Client} authClient An authorized OAuth2 client.
  * @param {String} path Path and name of the uploaded file
  */
-async function uploadWithConversion(authClient, path) {
+async function uploadWithConversion(authClient, path)
+{
     const fs = require('fs');
     const service = google.drive({ version: 'v3', auth: authClient });
     fs.writeFileSync('tmp', getDbAsJSON());
@@ -85,17 +87,18 @@ async function uploadWithConversion(authClient, path) {
         mimeType: 'application/json',
         body: fs.createReadStream('tmp'),
     };
-    try {
+    try
+    {
         const file = await service.files.create({
             resource: fileMetadata,
             media: media,
             fields: 'id',
         });
         fs.unlinkSync('tmp');
-        console.log('File Id:', file.data.id);
         return file.data.id;
     }
-    catch (err) {
+    catch (err)
+    {
         // TODO(developer) - Handle error
         console.log('This should handle error');
         throw err;
@@ -105,64 +108,78 @@ async function uploadWithConversion(authClient, path) {
 
 /**
  * Search file in drive location
- * @return{obj} data file
+ * @return {String} fileId
  * */
-async function searchFile(authClient, fileName) {
+async function searchFile(authClient, fileName)
+{
     const service = google.drive({ version: 'v3', auth: authClient });
-    const fs = require('fs');
     const files = [];
-    try {
+    try
+    {
         const res = await service.files.list({
             q: 'name=\'' + fileName + '\'',
             fields: 'nextPageToken, files(id, name)',
             spaces: 'drive',
         });
+        // TODO: if there are several files with the same name, this would take the first
+        // what should happen in the case where several fiels have the same name?
         Array.prototype.push.apply(files, res.files);
         const fileId = res.data.files[0].id;
-        res.data.files.forEach(function (file) {
-            console.log('Found file:', file.name, file.id);
-
-        });
         return fileId;
     }
-    catch (err) {
+    catch (err)
+    {
         // TODO(developer) - Handle error
+        console.log('This should handle error');
         throw err;
     }
 }
 
-async function downloadFile(authClient, realFileId) {
-    // Get credentials and build service
-    // TODO (developer) - Use appropriate auth mechanism for your app
-    console.log('DOWNLOAD ID', realFileId);
+/**
+ * Download TTL-data file from google drive
+ * @param {OAuth2Client} authClient An authorized OAuth2 client.
+ * @param {String} fileId ID of the file that should be downloaded.
+ */
+async function downloadFile(authClient, fileId)
+{
     const service = google.drive({ version: 'v3', auth: authClient });
-    const fs = require('fs');
-    var dest = fs.createWriteStream("tmp");
-    fileId = realFileId;
-    try {
-        const file = await service.files.get(
-            {fileId: realFileId, alt: 'media',},
-            {responseType: "stream"},
-            (err, {data}) => {
-                if (err) {
-                  console.log(err);
-                  return;
-                }
-                data
-                  .on("end", () => console.log("Done."))
-                  .on("error", (err) => {
-                    console.log(err);
-                    return process.exit();
-                  })
-                  .pipe(dest);
-              }
-            );
-    } catch (err) {
+    try
+    {
+        const file = await service.files.get({
+            fileId: fileId,
+            alt: 'media',
+        });
+        const json_data = JSON.stringify(file.data, null,'\t');
+        return json_data;
+    }
+    catch (err)
+    {
         // TODO(developer) - Handle error
+        console.log('This should handle error');
         throw err;
     }
 }
 
+
+async function importDatabaseFromGoogleDrive()
+{
+    // TODO: check if the donloaded file has TTL data and the right format
+    // TODO: file name hardcoded at the moment, add user input
+    try
+    {
+        const client = await authorize();
+        const fileId = await searchFile(client, 'time_to_leave_2022_12_09_09_22_22');
+        const json_data = await downloadFile(client, fileId);
+        const importResult = importDatabaseFromBuffer(json_data);
+        return importResult;
+    }
+    catch (err)
+    {
+        // TODO(developer) - Handle error
+        console.log('This should handle error');
+        throw err;
+    }
+}
 
 
 module.exports = {
@@ -171,5 +188,6 @@ module.exports = {
     authorize,
     uploadWithConversion,
     searchFile,
-    downloadFile
+    downloadFile,
+    importDatabaseFromGoogleDrive
 };

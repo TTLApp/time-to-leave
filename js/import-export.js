@@ -182,6 +182,68 @@ function importDatabaseFromFile(filename)
     return {'result': true};
 }
 
+function importDatabaseFromBuffer(buffer)
+{
+    const flexibleStore = new Store({name: 'flexible-store'});
+    const waivedWorkdays = new Store({name: 'waived-workdays'});
+    try
+    {
+        const information = JSON.parse(buffer);
+        let failedEntries = 0;
+        const flexibleEntries = {};
+        const waiverEntries = {};
+        for (let i = 0; i < information.length; ++i)
+        {
+            const entry = information[i];
+            if (!validEntry(entry))
+            {
+                failedEntries += 1;
+                continue;
+            }
+            if (entry.type === 'waived')
+            {
+                waiverEntries[entry.date] = { 'reason' : entry.data, 'hours' : entry.hours };
+            }
+            else
+            {
+                const [year, month, day] = entry.date.split('-');
+                //The main database uses a JS-based month index (0-11)
+                //So we need to adjust it from human month index (1-12)
+                const date = generateKey(year, (parseInt(month) - 1), day);
+                if (entry.type === 'flexible')
+                {
+                    flexibleEntries[date] = {values: entry.values};
+                }
+                else if (entry.type === 'regular')
+                {
+                    // TODO: 'regular' is still here while we allow importing old DB data. Please remove on the next release.
+                    const [/*event*/, key] = entry.data.split('-');
+                    if (['begin', 'end'].indexOf(key) !== -1)
+                    {
+                        let currentFlexibleEntry = flexibleEntries[date];
+                        if (currentFlexibleEntry === undefined)
+                            currentFlexibleEntry = { values: [] };
+                        flexibleEntries[date] = mergeOldStoreDataIntoFlexibleStore(currentFlexibleEntry, entry.hours);
+                    }
+                }
+            }
+        }
+
+        flexibleStore.set(flexibleEntries);
+        waivedWorkdays.set(waiverEntries);
+
+        if (failedEntries !== 0)
+        {
+            return {'result': false, 'total': information.length, 'failed': failedEntries};
+        }
+    }
+    catch (err)
+    {
+        return {'result': false, 'total': 0, 'failed': 0};
+    }
+    return {'result': true};
+}
+
 function migrateFixedDbToFlexible()
 {
     const store = new Store();
@@ -229,6 +291,7 @@ function getDbAsJSON()
 
 module.exports = {
     importDatabaseFromFile,
+    importDatabaseFromBuffer,
     exportDatabaseToFile,
     migrateFixedDbToFlexible,
     validEntry,
