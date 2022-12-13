@@ -50,6 +50,7 @@ ipcRenderer.on('PUNCH_DATE', function()
 {
     calendar.punchDate();
 });
+
 /*
  * Reload calendar, used after database altering actions.
  */
