@@ -46,7 +46,7 @@ function getContextMenuTemplate(mainWindow)
             {
                 const now = new Date();
 
-                mainWindow.webContents.executeJavaScript('calendar.punchDate()');
+                mainWindow.webContents.send('PUNCH_DATE');
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
                 notify(`${getCurrentTranslation('$Menu.punched-time')} ${now.toTimeString().slice(0,5)}`);
             }
@@ -74,7 +74,7 @@ function getDockMenuTemplate(mainWindow)
             {
                 const now = new Date();
 
-                mainWindow.webContents.executeJavaScript('calendar.punchDate()');
+                mainWindow.webContents.send('PUNCH_DATE');
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
                 notify(`${getCurrentTranslation('$Menu.punched-time')} ${now.toTimeString().slice(0,5)}`);
             }
@@ -212,7 +212,7 @@ function getEditMenuTemplate(mainWindow)
                     {
                         const importResult = importDatabaseFromFile(response);
                         // Reload only the calendar itself to avoid a flash
-                        mainWindow.webContents.executeJavaScript('calendar.reload()');
+                        mainWindow.webContents.send('RELOAD_CALENDAR');
                         if (importResult['result'])
                         {
                             dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
@@ -273,7 +273,7 @@ function getEditMenuTemplate(mainWindow)
                     waivedWorkdays.clear();
                     flexibleStore.clear();
                     // Reload only the calendar itself to avoid a flash
-                    mainWindow.webContents.executeJavaScript('calendar.reload()');
+                    mainWindow.webContents.send('RELOAD_CALENDAR');
                     dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                         {
                             title: 'Time to Leave',
