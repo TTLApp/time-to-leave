@@ -60,7 +60,8 @@
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
     "tap-spec": "^5.0.0",
-    "tape": "^5.3.1"
+    "tape": "^5.3.1",
+    "webpack-config-utils": "^2.3.1"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
