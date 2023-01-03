@@ -339,9 +339,6 @@ function getEditMenuTemplate(mainWindow)
                 const confirmation = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
                 if (confirmation === /*Yes*/0)
                 {
-
-                    
-
                     importDatabaseFromGoogleDrive().then(importResult =>
                     {
                         //mainWindow.webContents.on("dom-ready", () => {
@@ -350,7 +347,7 @@ function getEditMenuTemplate(mainWindow)
                         
                         if (importResult['result'])
                         {
-                            
+                            mainWindow.webContents.send('RELOAD_CALENDAR');
                             dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                                 {
                                     title: 'Time to Leave',
