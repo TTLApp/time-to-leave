@@ -43,6 +43,22 @@ ipcRenderer.on('WAIVER_SAVED', function()
     calendar.redraw();
 });
 
+/*
+ * Punch the date and time as requested by user.
+ */
+ipcRenderer.on('PUNCH_DATE', function()
+{
+    calendar.punchDate();
+});
+
+/*
+ * Reload calendar, used after database altering actions.
+ */
+ipcRenderer.on('RELOAD_CALENDAR', function()
+{
+    calendar.reload();
+});
+
 // On page load, create the calendar and setup notification
 $(() =>
 {

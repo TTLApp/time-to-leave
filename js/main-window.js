@@ -169,7 +169,7 @@ function proposeFlexibleDbMigration()
     if (response === 0 /*migrate*/)
     {
         const migrateResult = migrateFixedDbToFlexible();
-        getMainWindow().webContents.executeJavaScript('calendar.reload()');
+        getMainWindow().webContents.send('RELOAD_CALENDAR')
         if (migrateResult['result'] === true)
         {
             dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
