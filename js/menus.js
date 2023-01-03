@@ -16,12 +16,14 @@ import { appConfig, getDetails } from './app-config.js';
 import { savePreferences } from './user-preferences.js';
 import { getCurrentDateTimeStr } from './date-aux.js';
 
-function getMainMenuTemplate(mainWindow) {
+function getMainMenuTemplate(mainWindow)
+{
     return [
         {
             label: getCurrentTranslation('$Menu.workday-waiver-manager'),
             id: 'workday-waiver-manager',
-            click(item, window, event) {
+            click(item, window, event)
+            {
                 openWaiverManagerWindow(mainWindow, event);
             },
         },
@@ -29,17 +31,20 @@ function getMainMenuTemplate(mainWindow) {
         {
             label: getCurrentTranslation('$Menu.exit'),
             accelerator: appConfig.macOS ? 'CommandOrControl+Q' : 'Control+Q',
-            click() {
+            click()
+            {
                 app.quit();
             }
         }
     ];
 }
 
-function getContextMenuTemplate(mainWindow) {
+function getContextMenuTemplate(mainWindow)
+{
     return [
         {
-            label: getCurrentTranslation('$Menu.punch-time'), click: function () {
+            label: getCurrentTranslation('$Menu.punch-time'), click: function()
+            {
                 const now = new Date();
 
                 mainWindow.webContents.executeJavaScript('calendar.punchDate()');
@@ -48,22 +53,26 @@ function getContextMenuTemplate(mainWindow) {
             }
         },
         {
-            label: getCurrentTranslation('$Menu.show-app'), click: function () {
+            label: getCurrentTranslation('$Menu.show-app'), click: function()
+            {
                 mainWindow.show();
             }
         },
         {
-            label: getCurrentTranslation('$Menu.quit'), click: function () {
+            label: getCurrentTranslation('$Menu.quit'), click: function()
+            {
                 app.quit();
             }
         }
     ];
 }
 
-function getDockMenuTemplate(mainWindow) {
+function getDockMenuTemplate(mainWindow)
+{
     return [
         {
-            label: getCurrentTranslation('$Menu.punch-time'), click: function () {
+            label: getCurrentTranslation('$Menu.punch-time'), click: function()
+            {
                 const now = new Date();
 
                 mainWindow.webContents.executeJavaScript('calendar.punchDate()');
@@ -74,7 +83,8 @@ function getDockMenuTemplate(mainWindow) {
     ];
 }
 
-function getEditMenuTemplate(mainWindow) {
+function getEditMenuTemplate(mainWindow)
+{
     return [
         {
             label: getCurrentTranslation('$Menu.cut'),
@@ -100,8 +110,10 @@ function getEditMenuTemplate(mainWindow) {
         {
             label: getCurrentTranslation('$Menu.preferences'),
             accelerator: appConfig.macOS ? 'Command+,' : 'Control+,',
-            click() {
-                if (prefWindow !== null) {
+            click()
+            {
+                if (prefWindow !== null)
+                {
                     prefWindow.show();
                     return;
                 }
@@ -125,16 +137,20 @@ function getEditMenuTemplate(mainWindow) {
                 prefWindow.setMenu(null);
                 prefWindow.loadURL(htmlPath);
                 prefWindow.show();
-                prefWindow.on('close', function () {
+                prefWindow.on('close', function()
+                {
                     prefWindow = null;
                     const savedPreferences = getSavedPreferences();
-                    if (savedPreferences !== null) {
+                    if (savedPreferences !== null)
+                    {
                         savePreferences(savedPreferences);
                         mainWindow.webContents.send('PREFERENCE_SAVED', savedPreferences);
                     }
                 });
-                prefWindow.webContents.on('before-input-event', (event, input) => {
-                    if (input.control && input.shift && input.key.toLowerCase() === 'i') {
+                prefWindow.webContents.on('before-input-event', (event, input) =>
+                {
+                    if (input.control && input.shift && input.key.toLowerCase() === 'i')
+                    {
                         BrowserWindow.getFocusedWindow().webContents.toggleDevTools();
                     }
                 });
@@ -143,7 +159,8 @@ function getEditMenuTemplate(mainWindow) {
         { type: 'separator' },
         {
             label: getCurrentTranslation('$Menu.export-database'),
-            click() {
+            click()
+            {
                 const options = {
                     title: getCurrentTranslation('$Menu.export-db-to-file'),
                     defaultPath: `time_to_leave_${getCurrentDateTimeStr()}`,
@@ -155,7 +172,8 @@ function getEditMenuTemplate(mainWindow) {
                     ]
                 };
                 const response = dialog.showSaveDialogSync(options);
-                if (response) {
+                if (response)
+                {
                     exportDatabaseToFile(response);
                     dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                         {
@@ -170,7 +188,8 @@ function getEditMenuTemplate(mainWindow) {
         },
         {
             label: getCurrentTranslation('$Menu.import-database'),
-            click() {
+            click()
+            {
                 const options = {
                     title: getCurrentTranslation('$Menu.import-db-from-file'),
                     buttonLabel: getCurrentTranslation('$Menu.import'),
@@ -181,7 +200,8 @@ function getEditMenuTemplate(mainWindow) {
                     ]
                 };
                 const response = dialog.showOpenDialogSync(options);
-                if (response) {
+                if (response)
+                {
                     const options = {
                         type: 'question',
                         buttons: [getCurrentTranslation('$Menu.yes-please'), getCurrentTranslation('$Menu.no-thanks')],
@@ -191,11 +211,13 @@ function getEditMenuTemplate(mainWindow) {
                     };
 
                     const confirmation = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
-                    if (confirmation === /*Yes*/0) {
+                    if (confirmation === /*Yes*/0)
+                    {
                         const importResult = importDatabaseFromFile(response);
                         // Reload only the calendar itself to avoid a flash
                         mainWindow.webContents.executeJavaScript('calendar.reload()');
-                        if (importResult['result']) {
+                        if (importResult['result'])
+                        {
                             dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                                 {
                                     title: 'Time to Leave',
@@ -205,8 +227,10 @@ function getEditMenuTemplate(mainWindow) {
                                     detail: getCurrentTranslation('$Menu.import-successful')
                                 });
                         }
-                        else if (importResult['failed'] !== 0) {
-                            if (importResult['failed'] !== 0) {
+                        else if (importResult['failed'] !== 0)
+                        {
+                            if (importResult['failed'] !== 0)
+                            {
                                 const message = `${importResult['failed']}/${importResult['total']} ${getCurrentTranslation('$Menu.could-not-be-loaded')}`;
                                 dialog.showMessageBoxSync({
                                     icon: appConfig.iconpath,
@@ -216,7 +240,8 @@ function getEditMenuTemplate(mainWindow) {
                                 });
                             }
                         }
-                        else {
+                        else
+                        {
                             dialog.showMessageBoxSync({
                                 icon: appConfig.iconpath,
                                 type: 'warning',
@@ -230,7 +255,8 @@ function getEditMenuTemplate(mainWindow) {
         },
         {
             label: getCurrentTranslation('$Menu.clear-database'),
-            click() {
+            click()
+            {
                 const options = {
                     type: 'question',
                     buttons: [getCurrentTranslation('$Menu.cancel'), getCurrentTranslation('$Menu.yes-please'), getCurrentTranslation('$Menu.no-thanks')],
@@ -240,7 +266,8 @@ function getEditMenuTemplate(mainWindow) {
                 };
 
                 const response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
-                if (response === 1) {
+                if (response === 1)
+                {
                     const store = new Store();
                     const waivedWorkdays = new Store({ name: 'waived-workdays' });
                     const flexibleStore = new Store({ name: 'flexible-store' });
@@ -265,7 +292,8 @@ function getEditMenuTemplate(mainWindow) {
         // TODO: add Translation
         {
             label: 'Export Data to Google Drive',
-            click() {
+            click()
+            {
                 const options = {
                     type: 'question',
                     buttons: [getCurrentTranslation('$Menu.yes-please'), getCurrentTranslation('$Menu.no-thanks')],
@@ -275,9 +303,12 @@ function getEditMenuTemplate(mainWindow) {
                 };
 
                 const confirmation = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
-                if (confirmation === /*Yes*/0) {
-                    const path = `time_to_leave_${getCurrentDateTimeStr()}`;
-                    exportDatabaseToGoogleDrive(path).then(function () {
+                if (confirmation === /*Yes*/0)
+                {
+                    //const path = `time_to_leave_${getCurrentDateTimeStr()}`;
+                    const path = `time_to_leave_export`;
+                    exportDatabaseToGoogleDrive(path).then(function()
+                    {
                         dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                             {
                                 title: 'Time to Leave',
@@ -292,7 +323,9 @@ function getEditMenuTemplate(mainWindow) {
         },
         {
             label: 'Import Data from Google Drive',
-            click() {
+            click()
+            {
+                
                 // TODO: reload calender
                 // TODO: get filename from user input
                 const options = {
@@ -304,9 +337,20 @@ function getEditMenuTemplate(mainWindow) {
                 };
 
                 const confirmation = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
-                if (confirmation === /*Yes*/0) {
-                    importDatabaseFromGoogleDrive().then(importResult => {
-                        if (importResult['result']) {
+                if (confirmation === /*Yes*/0)
+                {
+
+                    
+
+                    importDatabaseFromGoogleDrive().then(importResult =>
+                    {
+                        //mainWindow.webContents.on("dom-ready", () => {
+                         //   mainWindow.webContents.executeJavaScript('calendar.reload()');
+                        //});
+                        
+                        if (importResult['result'])
+                        {
+                            
                             dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                                 {
                                     title: 'Time to Leave',
@@ -315,9 +359,12 @@ function getEditMenuTemplate(mainWindow) {
                                     icon: appConfig.iconpath,
                                     detail: getCurrentTranslation('$Menu.import-successful')
                                 });
+                                
                         }
-                        else if (importResult['failed'] !== 0) {
-                            if (importResult['failed'] !== 0) {
+                        else if (importResult['failed'] !== 0)
+                        {
+                            if (importResult['failed'] !== 0)
+                            {
                                 const message = `${importResult['failed']}/${importResult['total']} ${getCurrentTranslation('$Menu.could-not-be-loaded')}`;
                                 dialog.showMessageBoxSync({
                                     icon: appConfig.iconpath,
@@ -327,7 +374,8 @@ function getEditMenuTemplate(mainWindow) {
                                 });
                             }
                         }
-                        else {
+                        else
+                        {
                             dialog.showMessageBoxSync({
                                 icon: appConfig.iconpath,
                                 type: 'warning',
@@ -344,42 +392,49 @@ function getEditMenuTemplate(mainWindow) {
     ];
 }
 
-function getViewMenuTemplate() {
+function getViewMenuTemplate()
+{
     return [
         {
             label: getCurrentTranslation('$Menu.reload'),
             accelerator: 'CommandOrControl+R',
-            click() {
+            click()
+            {
                 BrowserWindow.getFocusedWindow().reload();
             }
         },
         {
             label: getCurrentTranslation('$Menu.toggle-dev-tools'),
             accelerator: appConfig.macOS ? 'Command+Alt+I' : 'Control+Shift+I',
-            click() {
+            click()
+            {
                 BrowserWindow.getFocusedWindow().toggleDevTools();
             }
         }
     ];
 }
 
-function getHelpMenuTemplate() {
+function getHelpMenuTemplate()
+{
     return [
         {
             label: getCurrentTranslation('$Menu.ttl-github'),
-            click() {
+            click()
+            {
                 shell.openExternal('https://github.com/thamara/time-to-leave');
             }
         },
         {
             label: getCurrentTranslation('$Menu.check-for-updates'),
-            click() {
+            click()
+            {
                 checkForUpdates(/*showUpToDateDialog=*/true);
             }
         },
         {
             label: getCurrentTranslation('$Menu.send-feedback'),
-            click() {
+            click()
+            {
                 shell.openExternal('https://github.com/thamara/time-to-leave/issues/new');
             }
         },
@@ -388,7 +443,8 @@ function getHelpMenuTemplate() {
         },
         {
             label: getCurrentTranslation('$Menu.about'),
-            click() {
+            click()
+            {
                 const detail = getDetails();
                 dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                     {
@@ -400,12 +456,15 @@ function getHelpMenuTemplate() {
                         buttons: [getCurrentTranslation('$Menu.copy'), getCurrentTranslation('$Menu.ok')],
                         noLink: true
                     }
-                ).then((result) => {
+                ).then((result) =>
+                {
                     const buttonId = result.response;
-                    if (buttonId === 0) {
+                    if (buttonId === 0)
+                    {
                         clipboard.writeText(detail);
                     }
-                }).catch(err => {
+                }).catch(err =>
+                {
                     console.log(err);
                 });
             }
