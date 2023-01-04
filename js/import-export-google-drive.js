@@ -74,8 +74,9 @@ async function authorize()
  * @param {OAuth2Client} authClient An authorized OAuth2 client.
  * @param {String} path Path and name of the uploaded file
  */
-async function uploadWithConversion(authClient, path)
+async function uploadData(authClient, path)
 {
+    // TODO: can/ should this be done without creating a tmp file?
     const fs = require('fs');
     const service = google.drive({ version: 'v3', auth: authClient });
     fs.writeFileSync('tmp', getDbAsJSON());
@@ -95,13 +96,10 @@ async function uploadWithConversion(authClient, path)
             fields: 'id',
         });
         fs.unlinkSync('tmp');
-        return file.data.id;
     }
     catch (err)
     {
-        // TODO(developer) - Handle error
-        console.log('This should handle error');
-        throw err;
+        throw new Error("Failed to upload data.");
     }
 }
 
@@ -110,12 +108,10 @@ async function exportDatabaseToGoogleDrive(path)
     try
     {
         const client = await authorize();
-        await uploadWithConversion(client, path);
+        await uploadData(client, path);
     }
     catch (err)
     {
-        // TODO(developer) - Handle error
-        console.log('This should handle error');
         throw err;
     }
 }
