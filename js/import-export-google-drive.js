@@ -69,9 +69,9 @@ async function authorize()
 }
 
 /**
- * Upload database content as JSON to Google Drive
+ * Upload database content as JSON to Google Drive.
  * @param {OAuth2Client} authClient An authorized OAuth2 client.
- * @param {String} path Path and name of the uploaded file
+ * @param {String} path Path and name of the uploaded file.
  */
 async function uploadData(authClient, path)
 {
@@ -99,8 +99,8 @@ async function uploadData(authClient, path)
 }
 
 /**
- * Authorize and upload database content as JSON to Google Drive
- * @param {String} path Path and name of the uploaded file
+ * Authorize and upload database content as JSON to Google Drive.
+ * @param {String} path Path and name of the uploaded file.
  */
 async function exportDatabaseToGoogleDrive(path)
 {
@@ -108,9 +108,8 @@ async function exportDatabaseToGoogleDrive(path)
     await uploadData(client, path);
 }
 
-
 /**
- * Search file in drive location
+ * Search file in drive location.
  * @return {String} fileId
  * */
 async function searchFile(authClient, fileName)
@@ -124,8 +123,7 @@ async function searchFile(authClient, fileName)
             fields: 'nextPageToken, files(id, name)',
             spaces: 'drive',
         });
-        // TODO: if there are several files with the same name, this would take the first
-        // what should happen in the case where several files have the same name?
+        // use first file that matches the given file name
         Array.prototype.push.apply(files, res.files);
         const fileId = res.data.files[0].id;
         return fileId;
@@ -137,7 +135,7 @@ async function searchFile(authClient, fileName)
 }
 
 /**
- * Download TTL-data file from google drive
+ * Download TTL-data file from google drive.
  * @param {OAuth2Client} authClient An authorized OAuth2 client.
  * @param {String} fileId ID of the file that should be downloaded.
  */
@@ -161,7 +159,6 @@ async function downloadFile(authClient, fileId)
 
 async function importDatabaseFromGoogleDrive()
 {
-    // TODO: check if the downloaded file has TTL data and the right format
     // TODO: file name hardcoded at the moment, add user input
     const client = await authorize();
     const fileId = await searchFile(client, 'time_to_leave_export');
