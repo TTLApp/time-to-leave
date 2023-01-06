@@ -3,7 +3,7 @@ const path = require('path');
 const process = require('process');
 const { authenticate } = require('@google-cloud/local-auth');
 const { google } = require('googleapis');
-const { getDbAsJSON, importDatabaseFromBuffer } = require('./import-export.js');
+const { getDatabaseAsJSON, importDatabaseFromBuffer } = require('./import-export.js');
 const SCOPES = ['https://www.googleapis.com/auth/drive'];
 const TOKEN_PATH = path.join(process.cwd(), 'token.json');
 const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
@@ -76,7 +76,7 @@ async function authorize()
 async function uploadData(authClient, path)
 {
     const service = google.drive({ version: 'v3', auth: authClient });
-    const jsonData = getDbAsJSON();
+    const jsonData = getDatabaseAsJSON();
     const fileMetadata = {
         name: path,
         mimeType: 'application/json',

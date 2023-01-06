@@ -282,7 +282,7 @@ function migrateFixedDbToFlexible()
     return {'result': true, 'err': ''};
 }
 
-function getDbAsJSON()
+function getDatabaseAsJSON()
 {
     let information = _getFlexibleEntries();
     information = information.concat(_getWaivedEntries());
@@ -295,5 +295,5 @@ module.exports = {
     exportDatabaseToFile,
     migrateFixedDbToFlexible,
     validEntry,
-    getDbAsJSON
+    getDatabaseAsJSON
 };
