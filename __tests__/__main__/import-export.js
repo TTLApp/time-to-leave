@@ -6,18 +6,21 @@ const {
     importDatabaseFromFile,
     importDatabaseFromBuffer,
     migrateFixedDbToFlexible,
-    validEntry
+    validEntry,
+    getDatabaseAsJSON
 } = require('../../js/import-export');
 
 const fs = require('fs');
 const Store = require('electron-store');
 const path = require('path');
 
-describe('Import export', function () {
+describe('Import export', function()
+{
     process.env.NODE_ENV = 'test';
 
     // TODO: Regular store entries are still here to test import of old dbs. Please remove on the next release.
-    describe('validEntry(entry)', function () {
+    describe('validEntry(entry)', function()
+    {
         const goodRegularEntry = { 'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': '08:00' };
         const goodFlexibleEntry = { 'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00'] };
         const goodWaivedEntry = { 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08:00' };
@@ -25,13 +28,15 @@ describe('Import export', function () {
         const badFlexibleEntry = { 'type': 'flexible', 'date': '2020-06-03', 'values': ['not-an-hour'] };
         const badFlexibleEntry2 = { 'type': 'flexible', 'date': '2020-06-03', 'values': 'not-an-array' };
         const badWaivedEntry = { 'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': 'not-an-hour' };
-        test('should be valid', () => {
+        test('should be valid', () =>
+        {
             expect(validEntry(goodRegularEntry)).toBeTruthy();
             expect(validEntry(goodWaivedEntry)).toBeTruthy();
             expect(validEntry(goodFlexibleEntry)).toBeTruthy();
         });
 
-        test('should not be valid', () => {
+        test('should not be valid', () =>
+        {
             expect(validEntry(badRegularEntry)).not.toBeTruthy();
             expect(validEntry(badWaivedEntry)).not.toBeTruthy();
             expect(validEntry(badFlexibleEntry)).not.toBeTruthy();
@@ -75,8 +80,10 @@ describe('Import export', function () {
 
     const folder = fs.mkdtempSync('import-export');
 
-    describe('exportDatabaseToFile', function () {
-        test('Check that export works', () => {
+    describe('exportDatabaseToFile', function()
+    {
+        test('Check that export works', () =>
+        {
             expect(exportDatabaseToFile(path.join(folder, 'exported_file.ttldb'))).toBeTruthy();
             expect(exportDatabaseToFile('/not/a/valid/path')).not.toBeTruthy();
         });
@@ -92,8 +99,10 @@ describe('Import export', function () {
     const invalidEntriesFile = path.join(folder, 'invalid.ttldb');
     fs.writeFileSync(invalidEntriesFile, invalidEntriesContent, 'utf8');
 
-    describe('importDatabaseFromFile', function () {
-        test('Check that import works', () => {
+    describe('importDatabaseFromFile', function()
+    {
+        test('Check that import works', () =>
+        {
             expect(importDatabaseFromFile([path.join(folder, 'exported_file.ttldb')])['result']).toBeTruthy();
             expect(importDatabaseFromFile(['/not/a/valid/path'])['result']).not.toBeTruthy();
             expect(importDatabaseFromFile(['/not/a/valid/path'])['failed']).toBe(0);
@@ -107,8 +116,10 @@ describe('Import export', function () {
         '2020-3-2': { 'values': ['10:00', '18:00'] }
     };
 
-    describe('migrateFixedDbToFlexible', function () {
-        test('Check that migration works', () => {
+    describe('migrateFixedDbToFlexible', function()
+    {
+        test('Check that migration works', () =>
+        {
             expect(flexibleStore.size).toBe(2);
             flexibleStore.clear();
             expect(flexibleStore.size).toBe(0);
@@ -134,8 +145,10 @@ describe('Import export', function () {
         '2020-5-3': { 'values': ['08:00', '10:00'] }
     };
 
-    describe('importDatabaseFromFile (mixedContent)', function () {
-        test('Check that import works', () => {
+    describe('importDatabaseFromFile (mixedContent)', function()
+    {
+        test('Check that import works', () =>
+        {
             flexibleStore.clear();
             expect(flexibleStore.size).toBe(0);
             expect(importDatabaseFromFile([mixedEntriesFile])['result']).toBeTruthy();
@@ -145,20 +158,21 @@ describe('Import export', function () {
         });
     });
 
-    const validEntriesContent =
-        `[{"type": "flexible","date": "2022-11-6","values": ["08:44","08:45"]},
-          {"type": "flexible","date": "2022-12-9","values": ["08:59","09:00"]},
-          {"type": "flexible","date": "2022-12-11","values": ["08:18","08:19","09:57","09:58"]},
-          {"type": "flexible","date": "2022-12-12","values": ["09:15","09:17"]},
-          {"type": "flexible","date": "2023-1-3","values": ["14:46","14:47"]}
-        ]`;
+    const regularEntriesJSON =
+        `[{"type": "flexible","date": "2020-4-1","values": ["08:00","12:00","13:00","17:00"]},
+          {"type": "flexible","date": "2020-4-2","values": ["07:00","11:00","14:00","18:00"]},
+          {"type": "waived","date": "2019-12-31","data": "New Year's eve","hours": "08:00"},
+          {"type": "waived","date": "2020-01-01","data": "New Year's Day","hours": "08:00"},
+          {"type": "waived","date": "2020-04-10","data": "Good Friday","hours": "08:00"}]`;
 
     const notValidJSON =
-        `[{"type": "flexible","date": "2022-11-6","values": "08:44","08:45"]}]`;
+        '[{"type": "flexible","date": "2022-11-6","values": "08:44","08:45"]}]';
 
-    describe('importDatabaseFromBuffer', function () {
-        test('Check that import fom buffer works', () => {
-            expect(importDatabaseFromBuffer(validEntriesContent)['result']).toBeTruthy();
+    describe('importDatabaseFromBuffer', function()
+    {
+        test('Check that import fom buffer works', () =>
+        {
+            expect(importDatabaseFromBuffer(regularEntriesJSON)['result']).toBeTruthy();
             expect(importDatabaseFromBuffer(notValidJSON)['result']).not.toBeTruthy();
             expect(importDatabaseFromBuffer(notValidJSON)['failed']).toBe(0);
             expect(importDatabaseFromBuffer(invalidEntriesContent)['result']).not.toBeTruthy();
@@ -166,7 +180,21 @@ describe('Import export', function () {
         });
     });
 
-    afterAll(() => {
+    store.clear();
+    store.set(regularEntries);
+
+    describe('getDatabaseAsJSON', function()
+    {
+        const databaseJSONObject = JSON.parse(getDatabaseAsJSON());
+        const regularEntriesJSONObject = JSON.parse(regularEntriesJSON);
+        test('Check that returning database as JSON works', () =>
+        {
+            expect(databaseJSONObject).toMatchObject(regularEntriesJSONObject);
+        });
+    });
+
+    afterAll(() =>
+    {
         fs.rmdirSync(folder, { recursive: true });
     });
 });
