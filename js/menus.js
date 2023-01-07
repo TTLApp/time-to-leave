@@ -9,7 +9,7 @@ const { getSavedPreferences } = require('./saved-preferences.js');
 const { importDatabaseFromFile, exportDatabaseToFile } = require('./import-export.js');
 const { notify } = require('./notification');
 const { getCurrentTranslation } = require('../src/configs/i18next.config');
-const { exportDatabaseToGoogleDrive, importDatabaseFromGoogleDrive } = require('./import-export-google-drive.js');
+const { exportDatabaseToGoogleDrive, importDatabaseFromGoogleDrive } = require('./import-export-online.js');
 let { openWaiverManagerWindow, prefWindow, getDialogCoordinates } = require('./windows');
 
 import { appConfig, getDetails } from './app-config.js';
