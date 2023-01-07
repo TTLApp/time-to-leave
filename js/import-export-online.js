@@ -13,13 +13,13 @@ async function exportDatabaseToGoogleDrive(path)
 
 /**
  * Import the database from google drive by downloading a json file contains TTL data.
- * 
+ *
  * @return {Promise<object>} result of the import in form {'result': false, 'total': 0, 'failed': 0} if failed
  * and {'result': true} if imported succeeded.
  */
 async function importDatabaseFromGoogleDrive()
 {
-    console.log('importDatabaseFromGoogleDrive')
+    console.log('importDatabaseFromGoogleDrive');
     // TODO: file name hardcoded at the moment, add user input
     const client = await authorize();
     const fileId = await searchFile(client, 'time_to_leave_export');
@@ -31,4 +31,4 @@ async function importDatabaseFromGoogleDrive()
 module.exports = {
     importDatabaseFromGoogleDrive,
     exportDatabaseToGoogleDrive
-}
+};

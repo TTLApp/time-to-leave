@@ -102,7 +102,7 @@ async function uploadData(authClient, path)
  * Search file in drive location by filename.
  * @param {OAuth2Client} authClient An authorized OAuth2 client.
  * @param {String} fileName Path and name of the searched file.
- * 
+ *
  * @return {String} fileId
  * */
 async function searchFile(authClient, fileName)
@@ -152,7 +152,7 @@ async function downloadFile(authClient, fileId)
 
 
 module.exports = {
-   loadSavedCredentialsIfExist,
+    loadSavedCredentialsIfExist,
     saveCredentials,
     authorize,
     searchFile,
