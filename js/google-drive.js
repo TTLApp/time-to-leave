@@ -101,7 +101,7 @@ async function uploadData(authClient, path)
 /**
  * Search file in drive location by filename.
  * @param {OAuth2Client} authClient An authorized OAuth2 client.
- * @param {String} fileName Path and name of the searched file.
+ * @param {String} fileName Name of the searched file.
  *
  * @return {String} fileId
  * */
@@ -128,7 +128,7 @@ async function searchFile(authClient, fileName)
 }
 
 /**
- * Download TTL-data file from google drive.
+ * Download TTL-data file from Google Drive.
  * @param {OAuth2Client} authClient An authorized OAuth2 client.
  * @param {String} fileId ID of the file that should be downloaded.
  */

@@ -333,8 +333,6 @@ function getEditMenuTemplate(mainWindow)
             label: 'Import Data from Google Drive',
             click()
             {
-
-                // TODO: reload calender
                 // TODO: get filename from user input
                 const options = {
                     type: 'question',

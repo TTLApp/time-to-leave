@@ -12,10 +12,10 @@ async function exportDatabaseToGoogleDrive(path)
 }
 
 /**
- * Import the database from google drive by downloading a json file contains TTL data.
+ * Import the database from Google Drive by downloading a JSON file that contains TTL data.
  *
  * @return {Promise<object>} result of the import in form {'result': false, 'total': 0, 'failed': 0} if failed
- * and {'result': true} if imported succeeded.
+ * and {'result': true} if import succeeded.
  */
 async function importDatabaseFromGoogleDrive()
 {

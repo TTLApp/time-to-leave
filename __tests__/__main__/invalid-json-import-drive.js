@@ -12,7 +12,7 @@ jest.mock('../../js/google-drive', () => ({
     downloadFile: jest.fn().mockResolvedValue(notValidJSON),
 }));
 
-describe('Faulty import from google drive', function()
+describe('Invalid import from google drive', function()
 {
     process.env.NODE_ENV = 'test';
     const store = new Store();
