@@ -51,7 +51,7 @@ function openWaiverManagerWindow(mainWindow, event)
 }
 
 /**
- * Return the x and y coordinate for a dialog window,
+ * Return the x and y coordinate for a dialog window, 
  * so the dialog window is centered on the TTL window.
  * Round values, as coordinates have to be integers.
  * @param {number} dialogWidth
@@ -60,7 +60,7 @@ function openWaiverManagerWindow(mainWindow, event)
  */
 function getDialogCoordinates(dialogWidth, dialogHeight, mainWindow)
 {
-    return {
+    return{
         x : Math.round(mainWindow.getBounds().x + mainWindow.getBounds().width/2 - dialogWidth/2),
         y : Math.round(mainWindow.getBounds().y + mainWindow.getBounds().height/2 - dialogHeight/2),
     };
