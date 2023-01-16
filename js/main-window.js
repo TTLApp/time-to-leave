@@ -19,11 +19,12 @@ let { contextMenu, tray } = require('./windows.js');
 
 import { getDefaultWidthHeight, getUserPreferences } from './user-preferences.js';
 import { appConfig, getDetails } from './app-config.js';
+import { createLeaveNotification } from './notification.js';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow = null;
-
+let leaveByInterval = null;
 function getMainWindow()
 {
     return mainWindow;
@@ -72,6 +73,7 @@ function createWindow()
         width: widthHeight.width,
         height: widthHeight.height,
         minWidth: 450,
+        minHeight: 450,
         useContentSize: false,
         zoomToPageWidth: true, //MacOS only
         icon: appConfig.iconpath,
@@ -107,6 +109,17 @@ function createWindow()
     {
         mainWindow.webContents.send('PREFERENCE_SAVED', savedPreferences);
     });
+
+    ipcMain.on('RECEIVE_LEAVE_BY', (event, element) =>
+    {
+        const notification = createLeaveNotification(element);
+        if (notification) notification.show();
+    });
+
+    leaveByInterval = setInterval(() =>
+    {
+        mainWindow.webContents.send('GET_LEAVE_BY');
+    }, 60 * 1000);
 
     tray = new Tray(appConfig.trayIcon);
     tray.on('click', () =>
@@ -248,9 +261,32 @@ function shouldProposeFlexibleDbMigration()
     return store.size !== 0 && flexibleStore.size === 0;
 }
 
+function resetMainWindow()
+{
+    ipcMain.removeAllListeners();
+    if (mainWindow && !mainWindow.isDestroyed())
+    {
+        mainWindow.close();
+        mainWindow.removeAllListeners();
+        mainWindow = null;
+    }
+    if (tray)
+    {
+        tray.removeAllListeners();
+    }
+    clearInterval(leaveByInterval);
+    leaveByInterval = null;
+    tray = null;
+}
+
 module.exports = {
     createWindow,
     createMenu,
     getMainWindow,
-    triggerStartupDialogs
+    triggerStartupDialogs,
+    shouldProposeFlexibleDbMigration,
+    proposeFlexibleDbMigration,
+    resetMainWindow,
+    getLeaveByInterval: () => leaveByInterval,
+    getWindowTray: () => tray
 };

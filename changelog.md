@@ -15,7 +15,8 @@
 -   Enhancement [#863]: Sort languages on preference drop-down by their ISO key
 -   Enhancement [#868]: Improve User Preferences tests
 -   Enhancement [#871]: Change waiver icon to be more consistent with app UI
--   Enhancement [#881]: Time to Leave has a new look! TTL icon was changed.
+-   Enhancement [#881]: Time to Leave has a new look! TTL icon was changed
+-   Enhancement [#883]: Click on the notification should open TTL
 -   Fix [#650]: Month balance is incorrect
 -   Fix [#660]: Hours field on waiver manager is not validated
 -   Fix [#702]: Day view and balance not counting the waived value when looking at a waived day
@@ -27,6 +28,7 @@
 -   Fix [#854]: Entry removal button not removing anything
 -   Fix [#860]: Avoid cursor pointer in disabled punch button
 -   Fix [#861]: App title should not be translated as it was on Hindi and Gujarati
+-   Fix [#865]: Unhandled promise rejection in terminal
 -   Fix [#869]: Preserving modified 'minutes between notifications' setting
 -   Fix [#872]: Long Hindi translation of Tue on preference window
 -   Fix [#877]: Dialogs open in wrong monitor in multi-monitor configuration

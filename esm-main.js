@@ -3,7 +3,7 @@
 
 const { app, ipcMain } = require('electron');
 const { createWindow, createMenu, getMainWindow, triggerStartupDialogs } = require('./js/main-window');
-const { notify, notifyTimeToLeave } = require('./js/notification');
+const { createNotification } = require('./js/notification');
 const { openWaiverManagerWindow } = require('./js/windows.js');
 const { setupI18n, getCurrentTranslation, setLanguageChangedCallback } = require('./src/configs/i18next.config.js');
 const { handleSquirrelEvent } = require('./js/squirrel.js');
@@ -54,7 +54,7 @@ function checkIdleAndNotify()
     if (recommendPunchIn)
     {
         recommendPunchIn = false;
-        notify(getCurrentTranslation('$Notification.punch-reminder'));
+        createNotification(getCurrentTranslation('$Notification.punch-reminder')).show();
     }
 }
 
@@ -109,12 +109,17 @@ app.on('ready', () =>
 {
     setupI18n(createMenu).then(() =>
     {
+        // On other platforms the header is automatically set, but on windows
+        // we need to force the name so it doesn't appear as `electron.app.Electron`
+        if (process.platform === 'win32')
+        {
+            app.setAppUserModelId('Time to Leave');
+        }
         createWindow();
         createMenu();
         setLanguageChangedCallback(createMenu);
         triggerStartupDialogs();
         setInterval(refreshOnDayChange, 60 * 60 * 1000);
-        setInterval(notifyTimeToLeave, 60 * 1000);
         const { powerMonitor } = require('electron');
         powerMonitor.on('unlock-screen', () => { checkIdleAndNotify(); });
         powerMonitor.on('resume', () => { checkIdleAndNotify(); });

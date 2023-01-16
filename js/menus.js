@@ -7,7 +7,7 @@ const Store = require('electron-store');
 const { checkForUpdates } = require('./update-manager');
 const { getSavedPreferences } = require('./saved-preferences.js');
 const { importDatabaseFromFile, exportDatabaseToFile } = require('./import-export.js');
-const { notify } = require('./notification');
+const { createNotification } = require('./notification');
 const { getCurrentTranslation } = require('../src/configs/i18next.config');
 let { openWaiverManagerWindow, prefWindow, getDialogCoordinates } = require('./windows');
 
@@ -42,23 +42,26 @@ function getContextMenuTemplate(mainWindow)
 {
     return [
         {
-            label: getCurrentTranslation('$Menu.punch-time'), click: function()
+            label: getCurrentTranslation('$Menu.punch-time'),
+            click: function()
             {
                 const now = new Date();
 
                 mainWindow.webContents.send('PUNCH_DATE');
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
-                notify(`${getCurrentTranslation('$Menu.punched-time')} ${now.toTimeString().slice(0,5)}`);
+                createNotification(`${getCurrentTranslation('$Menu.punched-time')} ${now.toTimeString().slice(0,5)}`).show();
             }
         },
         {
-            label: getCurrentTranslation('$Menu.show-app'), click: function()
+            label: getCurrentTranslation('$Menu.show-app'),
+            click: function()
             {
                 mainWindow.show();
             }
         },
         {
-            label: getCurrentTranslation('$Menu.quit'), click: function()
+            label: getCurrentTranslation('$Menu.quit'),
+            click: function()
             {
                 app.quit();
             }
@@ -76,7 +79,7 @@ function getDockMenuTemplate(mainWindow)
 
                 mainWindow.webContents.send('PUNCH_DATE');
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
-                notify(`${getCurrentTranslation('$Menu.punched-time')} ${now.toTimeString().slice(0,5)}`);
+                createNotification(`${getCurrentTranslation('$Menu.punched-time')} ${now.toTimeString().slice(0,5)}`).show();
             }
         }
     ];
