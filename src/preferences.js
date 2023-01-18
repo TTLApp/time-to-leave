@@ -35,6 +35,8 @@ function listenerLanguage()
         window.mainApi.changeLanguagePromise(this.value).then((languageData) =>
         {
             translatePage(this.value, languageData);
+            const translatedTitle = languageData.translation.$Preferences.title;
+            $(document).attr('title', `Time to Leave - ${translatedTitle}`);
             window.mainApi.notifyNewPreferences(preferences);
         });
     });
@@ -190,6 +192,13 @@ $(() =>
     {
         usersStyles = userPreferences;
         preferences = usersStyles;
+
+        window.mainApi.getLanguageDataPromise().then(languageData =>
+        {
+            const translatedTitle = languageData.data.translation.$Preferences.title;
+            $(document).attr('title', `Time to Leave - ${translatedTitle}`);
+        });
+
         renderPreferencesWindow();
         setupLanguages();
     });

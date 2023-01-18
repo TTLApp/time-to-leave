@@ -136,7 +136,6 @@ function getEditMenuTemplate(mainWindow)
                     } });
                 prefWindow.setMenu(null);
                 prefWindow.loadURL(htmlPath);
-                prefWindow.setTitle(`Time to leave - ${getCurrentTranslation('$Preferences.title')}`);
                 prefWindow.show();
                 prefWindow.on('close', function()
                 {

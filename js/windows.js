@@ -4,7 +4,6 @@ const { BrowserWindow } = require('electron');
 import { appConfig } from './app-config.js';
 const path = require('path');
 import { getDateStr } from './date-aux.js';
-const { getCurrentTranslation } = require('../src/configs/i18next.config');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -41,7 +40,6 @@ function openWaiverManagerWindow(mainWindow, event)
         } });
     waiverWindow.setMenu(null);
     waiverWindow.loadURL(htmlPath);
-    waiverWindow.setTitle(`Time to leave - ${getCurrentTranslation('$WorkdayWaiver.title')}`);
     waiverWindow.show();
     waiverWindow.on('close', function()
     {

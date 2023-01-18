@@ -426,6 +426,9 @@ $(() =>
     {
         languageData = data;
 
+        const translatedTitle = languageData.data.translation.$WorkdayWaiver.title;
+        $(document).attr('title', `Time to Leave - ${translatedTitle}`);
+
         setDates(remote.getGlobal('waiverDay'));
         setHours();
         toggleAddButton('waive-button', $('#reason').val());
