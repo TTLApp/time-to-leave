@@ -47,7 +47,7 @@ function translatePage(language, languageData, windowName)
     $('a').each(callback);
     $('button').each(callback);
 
-    const titleAttr = `$${windowName}.title`
+    const titleAttr = `$${windowName}.title`;
     $(document).attr('title', `Time to Leave - ${getTranslationInLanguageData(languageData, titleAttr)}`);
 }
 
