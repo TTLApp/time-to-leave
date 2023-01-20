@@ -22,7 +22,7 @@ function getTranslationInLanguageData(languageData, key)
     return getDataRecursive(languageData['translation'], keyList);
 }
 
-function translatePage(language, languageData)
+function translatePage(language, languageData, windowName)
 {
     $('html').attr('lang', language);
 
@@ -46,6 +46,9 @@ function translatePage(language, languageData)
     $('th').each(callback);
     $('a').each(callback);
     $('button').each(callback);
+
+    const titleAttr = `$${windowName}.title`
+    $(document).attr('title', `Time to Leave - ${getTranslationInLanguageData(languageData, titleAttr)}`);
 }
 
 export {
