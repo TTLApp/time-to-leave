@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 const Store = require('electron-store');
-const {importDatabaseFromGoogleDrive} = require('../../js/import-export-online');
+const { importDatabaseFromGoogleDrive } = require('../../js/import-export-online');
 
 const notValidJSON =
 '[{"type": "flexible","date": "2022-11-6","values": "08:44","08:45"]}]';

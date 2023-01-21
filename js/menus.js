@@ -291,7 +291,7 @@ function getEditMenuTemplate(mainWindow)
         { type: 'separator' },
         // TODO: add Translation
         {
-            label: 'Export Data to Google Drive',
+            label: 'Export data to Google Drive',
             click()
             {
                 const options = {
@@ -330,7 +330,7 @@ function getEditMenuTemplate(mainWindow)
             },
         },
         {
-            label: 'Import Data from Google Drive',
+            label: 'Import data from Google Drive',
             click()
             {
                 // TODO: get filename from user input

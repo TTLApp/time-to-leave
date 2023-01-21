@@ -286,7 +286,7 @@ function getDatabaseAsJSON()
 {
     let information = _getFlexibleEntries();
     information = information.concat(_getWaivedEntries());
-    return JSON.stringify(information, null,'\t');
+    return JSON.stringify(information, null, '\t');
 }
 
 module.exports = {

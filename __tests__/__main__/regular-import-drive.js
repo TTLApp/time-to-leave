@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
-const {importDatabaseFromGoogleDrive} = require('../../js/import-export-online');
+const { importDatabaseFromGoogleDrive } = require('../../js/import-export-online');
 const Store = require('electron-store');
 
 const regularEntriesJSON =
