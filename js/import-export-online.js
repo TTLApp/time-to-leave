@@ -1,4 +1,4 @@
-const { authorize, searchFile, downloadFile, uploadData} = require('./google-drive.js');
+const { authorize, searchFile, downloadFile, uploadData } = require('./google-drive.js');
 const { importDatabaseFromBuffer } = require('./import-export.js');
 
 /**
@@ -23,8 +23,8 @@ async function importDatabaseFromGoogleDrive()
     // TODO: file name hardcoded at the moment, add user input
     const client = await authorize();
     const fileId = await searchFile(client, 'time_to_leave_export');
-    const json_data = await downloadFile(client, fileId);
-    const importResult = importDatabaseFromBuffer(json_data);
+    const jsonData = await downloadFile(client, fileId);
+    const importResult = importDatabaseFromBuffer(jsonData);
     return importResult;
 }
 

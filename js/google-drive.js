@@ -1,9 +1,10 @@
 const fs = require('fs').promises;
 const path = require('path');
 const process = require('process');
+
 const { authenticate } = require('@google-cloud/local-auth');
 const { google } = require('googleapis');
-const { getDatabaseAsJSON} = require('./import-export.js');
+const { getDatabaseAsJSON } = require('./import-export.js');
 const SCOPES = ['https://www.googleapis.com/auth/drive'];
 const TOKEN_PATH = path.join(process.cwd(), 'token.json');
 const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
@@ -28,7 +29,7 @@ async function loadSavedCredentialsIfExist()
 }
 
 /**
- * Serializes credentials to a file compatible with GoogleAUth.fromJSON.
+ * Serializes credentials to a file compatible with GoogleAuth.fromJSON.
  *
  * @param {OAuth2Client} client
  * @return {Promise<void>}
@@ -48,7 +49,7 @@ async function saveCredentials(client)
 }
 
 /**
- * Load or request or authorization to call APIs.
+ * Load or request authorization to call APIs.
  */
 async function authorize()
 {
@@ -112,7 +113,7 @@ async function searchFile(authClient, fileName)
     try
     {
         const res = await service.files.list({
-            q: 'name=\'' + fileName + '\'',
+            q: `name='${fileName}'` ,
             fields: 'nextPageToken, files(id, name)',
             spaces: 'drive',
         });
@@ -123,14 +124,14 @@ async function searchFile(authClient, fileName)
     }
     catch (err)
     {
-        throw new Error('Failed to find file ' + fileName + ' in Drive.');
+        throw new Error(`Failed to find file ${fileName} in Drive.`);
     }
 }
 
 /**
  * Download TTL-data file from Google Drive.
  * @param {OAuth2Client} authClient An authorized OAuth2 client.
- * @param {String} fileId ID of the file that should be downloaded.
+ * @param {String} fileId of the file that should be downloaded.
  */
 async function downloadFile(authClient, fileId)
 {
@@ -150,7 +151,6 @@ async function downloadFile(authClient, fileId)
     }
 }
 
-
 module.exports = {
     loadSavedCredentialsIfExist,
     saveCredentials,
@@ -159,6 +159,3 @@ module.exports = {
     downloadFile,
     uploadData
 };
-
-
-
