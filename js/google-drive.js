@@ -95,6 +95,7 @@ async function uploadData(authClient, path)
     }
     catch (err)
     {
+        console.log(err);
         throw new Error('Failed to upload data.');
     }
 }
@@ -124,6 +125,7 @@ async function searchFile(authClient, fileName)
     }
     catch (err)
     {
+        console.log(err);
         throw new Error(`Failed to find file ${fileName} in Drive.`);
     }
 }
@@ -147,6 +149,7 @@ async function downloadFile(authClient, fileId)
     }
     catch (err)
     {
+        console.log(err);
         throw new Error('Failed to download file.');
     }
 }
