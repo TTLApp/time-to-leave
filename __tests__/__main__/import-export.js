@@ -21,13 +21,13 @@ describe('Import export', function()
     // TODO: Regular store entries are still here to test import of old dbs. Please remove on the next release.
     describe('validEntry(entry)', function()
     {
-        const goodRegularEntry = { 'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': '08:00' };
-        const goodFlexibleEntry = { 'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00'] };
-        const goodWaivedEntry = { 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08:00' };
-        const badRegularEntry = { 'type': 'regular', 'date': 'not-a-date', 'data': 'day-begin', 'hours': '08:00' };
-        const badFlexibleEntry = { 'type': 'flexible', 'date': '2020-06-03', 'values': ['not-an-hour'] };
-        const badFlexibleEntry2 = { 'type': 'flexible', 'date': '2020-06-03', 'values': 'not-an-array' };
-        const badWaivedEntry = { 'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': 'not-an-hour' };
+        const goodRegularEntry = {'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': '08:00'};
+        const goodFlexibleEntry = {'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00']};
+        const goodWaivedEntry = {'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08:00'};
+        const badRegularEntry = {'type': 'regular', 'date': 'not-a-date', 'data': 'day-begin', 'hours': '08:00'};
+        const badFlexibleEntry = {'type': 'flexible', 'date': '2020-06-03', 'values': ['not-an-hour']};
+        const badFlexibleEntry2 = {'type': 'flexible', 'date': '2020-06-03', 'values': 'not-an-array'};
+        const badWaivedEntry = {'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': 'not-an-hour'};
         test('should be valid', () =>
         {
             expect(validEntry(goodRegularEntry)).toBeTruthy();
@@ -45,8 +45,8 @@ describe('Import export', function()
     });
 
     const store = new Store();
-    const flexibleStore = new Store({ name: 'flexible-store' });
-    const waivedWorkdays = new Store({ name: 'waived-workdays' });
+    const flexibleStore = new Store({name: 'flexible-store'});
+    const waivedWorkdays = new Store({name: 'waived-workdays'});
 
     // TODO: Regular store is still here to test migration of dbs. Please remove on the next release.
     store.clear();
@@ -65,16 +65,16 @@ describe('Import export', function()
 
     flexibleStore.clear();
     const flexibleEntries = {
-        '2020-3-1': { 'values': ['08:00', '12:00', '13:00', '17:00'] },
-        '2020-3-2': { 'values': ['07:00', '11:00', '14:00', '18:00'] }
+        '2020-3-1': {'values': ['08:00', '12:00', '13:00', '17:00']},
+        '2020-3-2': {'values': ['07:00', '11:00', '14:00', '18:00']}
     };
     flexibleStore.set(flexibleEntries);
 
     waivedWorkdays.clear();
     const waivedEntries = {
-        '2019-12-31': { reason: 'New Year\'s eve', hours: '08:00' },
-        '2020-01-01': { reason: 'New Year\'s Day', hours: '08:00' },
-        '2020-04-10': { reason: 'Good Friday', hours: '08:00' }
+        '2019-12-31': {reason: 'New Year\'s eve', hours: '08:00'},
+        '2020-01-01': {reason: 'New Year\'s Day', hours: '08:00'},
+        '2020-04-10': {reason: 'Good Friday', hours: '08:00'}
     };
     waivedWorkdays.set(waivedEntries);
 
@@ -112,8 +112,8 @@ describe('Import export', function()
     });
 
     const migratedFlexibleEntries = {
-        '2020-3-1': { 'values': ['08:00', '12:00', '13:00', '17:00'] },
-        '2020-3-2': { 'values': ['10:00', '18:00'] }
+        '2020-3-1': {'values': ['08:00', '12:00', '13:00', '17:00']},
+        '2020-3-2': {'values': ['10:00', '18:00']}
     };
 
     describe('migrateFixedDbToFlexible', function()
@@ -141,8 +141,8 @@ describe('Import export', function()
 
     // Expected values have month-1, due to how the db saves them starting from 0
     const expectedMixedEntries = {
-        '2020-2-1': { 'values': ['08:00', '12:00', '13:00', '17:00'] },
-        '2020-5-3': { 'values': ['08:00', '10:00'] }
+        '2020-2-1': {'values': ['08:00', '12:00', '13:00', '17:00']},
+        '2020-5-3': {'values': ['08:00', '10:00']}
     };
 
     describe('importDatabaseFromFile (mixedContent)', function()
@@ -195,6 +195,6 @@ describe('Import export', function()
 
     afterAll(() =>
     {
-        fs.rmdirSync(folder, { recursive: true });
+        fs.rmdirSync(folder, {recursive: true});
     });
 });

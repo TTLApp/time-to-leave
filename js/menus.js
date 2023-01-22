@@ -27,7 +27,7 @@ function getMainMenuTemplate(mainWindow)
                 openWaiverManagerWindow(mainWindow, event);
             },
         },
-        { type: 'separator' },
+        {type: 'separator'},
         {
             label: getCurrentTranslation('$Menu.exit'),
             accelerator: appConfig.macOS ? 'CommandOrControl+Q' : 'Control+Q',

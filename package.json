@@ -34,7 +34,7 @@
     "test": "npm-run-all test:*",
     "test:jest": "jest --runInBand --detectOpenHandles --verbose --colors",
     "test:mocha": "nyc --reporter=lcov --reporter=json mocha tests/*",
-    "setup:win": "npx electron-installer-windows --src ./release-builds/\"Time to Leave-win32-ia32\"/ --dest 'packages/' --verbose --exe \"Time to Leave.exe\""
+    "setup:win" : "npx electron-installer-windows --src ./release-builds/\"Time to Leave-win32-ia32\"/ --dest 'packages/' --verbose --exe \"Time to Leave.exe\""
   },
   "pre-commit": [
     "clean",
