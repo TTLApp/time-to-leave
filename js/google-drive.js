@@ -1,20 +1,21 @@
 const fs = require('fs').promises;
 const path = require('path');
 const process = require('process');
-
 const { authenticate } = require('@google-cloud/local-auth');
 const { google } = require('googleapis');
 const { getDatabaseAsJSON } = require('./import-export.js');
+
 const SCOPES = ['https://www.googleapis.com/auth/drive'];
 const TOKEN_PATH = path.join(process.cwd(), 'token.json');
 const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
+const VERSION = 'v3';
 
 /**
  * Reads previously authorized credentials from the save file.
  *
  * @return {Promise<OAuth2Client|null>}
  */
-async function loadSavedCredentialsIfExist()
+async function maybeLoadSavedCredentials()
 {
     try
     {
@@ -53,7 +54,7 @@ async function saveCredentials(client)
  */
 async function authorize()
 {
-    let client = await loadSavedCredentialsIfExist();
+    let client = await maybeLoadSavedCredentials();
     if (client)
     {
         return client;
@@ -76,7 +77,7 @@ async function authorize()
  */
 async function uploadData(authClient, path)
 {
-    const service = google.drive({ version: 'v3', auth: authClient });
+    const service = google.drive({ version: VERSION, auth: authClient });
     const jsonData = getDatabaseAsJSON();
     const fileMetadata = {
         name: path,
@@ -109,7 +110,7 @@ async function uploadData(authClient, path)
  * */
 async function searchFile(authClient, fileName)
 {
-    const service = google.drive({ version: 'v3', auth: authClient });
+    const service = google.drive({ version: VERSION, auth: authClient });
     const files = [];
     try
     {
@@ -137,7 +138,7 @@ async function searchFile(authClient, fileName)
  */
 async function downloadFile(authClient, fileId)
 {
-    const service = google.drive({ version: 'v3', auth: authClient });
+    const service = google.drive({ version: VERSION, auth: authClient });
     try
     {
         const file = await service.files.get({
@@ -155,7 +156,7 @@ async function downloadFile(authClient, fileId)
 }
 
 module.exports = {
-    loadSavedCredentialsIfExist,
+    maybeLoadSavedCredentials,
     saveCredentials,
     authorize,
     searchFile,

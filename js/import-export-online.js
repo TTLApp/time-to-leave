@@ -19,7 +19,6 @@ async function exportDatabaseToGoogleDrive(path)
  */
 async function importDatabaseFromGoogleDrive()
 {
-    console.log('importDatabaseFromGoogleDrive');
     // TODO: file name hardcoded at the moment, add user input
     const client = await authorize();
     const fileId = await searchFile(client, 'time_to_leave_export');
