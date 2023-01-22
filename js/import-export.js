@@ -210,22 +210,7 @@ function importDatabaseFromBuffer(buffer)
                 //The main database uses a JS-based month index (0-11)
                 //So we need to adjust it from human month index (1-12)
                 const date = generateKey(year, (parseInt(month) - 1), day);
-                if (entry.type === 'flexible')
-                {
-                    flexibleEntries[date] = {values: entry.values};
-                }
-                else if (entry.type === 'regular')
-                {
-                    // TODO: 'regular' is still here while we allow importing old DB data. Please remove on the next release.
-                    const [/*event*/, key] = entry.data.split('-');
-                    if (['begin', 'end'].indexOf(key) !== -1)
-                    {
-                        let currentFlexibleEntry = flexibleEntries[date];
-                        if (currentFlexibleEntry === undefined)
-                            currentFlexibleEntry = { values: [] };
-                        flexibleEntries[date] = mergeOldStoreDataIntoFlexibleStore(currentFlexibleEntry, entry.hours);
-                    }
-                }
+                flexibleEntries[date] = {values: entry.values};
             }
         }
 

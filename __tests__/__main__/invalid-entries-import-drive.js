@@ -4,9 +4,9 @@ const { importDatabaseFromGoogleDrive } = require('../../js/import-export-online
 
 // first five entries are invalid, second five are valid
 const invalidEntriesContent =
-`[{"type": "regular", "date": "not-a-date", "data": "day-begin", "hours": "08:00"},
+`[{"type": "flexible", "date": "not-a-date", "data": "day-begin", "hours": "08:00"},
   {"type": "waived", "date": "2020-01-01", "data": "example waiver 2", "hours": "not-an-hour"},
-  {"type": "regular", "date": "not-a-date", "data": "day-end", "hours": "17:00"},
+  {"type": "flexible", "date": "not-a-date", "data": "day-end", "hours": "17:00"},
   {"type": "flexible", "date": "not-a-date", "values": "not-an-array"},
   {"type": "not-a-type", "date": "not-a-date", "data": "day-end", "hours": "17:00"},
   {"type": "flexible","date": "2020-4-1","values": ["08:00","12:00","13:00","17:00"]},
