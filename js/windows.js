@@ -49,7 +49,7 @@ function openWaiverManagerWindow(mainWindow, event)
 }
 
 /**
- * Return the x and y coordinate for a dialog window, 
+ * Return the x and y coordinate for a dialog window,
  * so the dialog window is centered on the TTL window.
  * Round values, as coordinates have to be integers.
  * @param {number} dialogWidth
