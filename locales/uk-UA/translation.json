@@ -29,18 +29,18 @@
         "wed": "Ср"
     },
     "$FlexibleDayCalendar": {
-        "current-day": "Go to Current Day",
-        "day-total": "Day Total",
-        "entry": "Entry",
-        "entry-removal-confirmation": "Are you sure you want to remove the last entry row?",
-        "leave-by": "You should leave by:",
-        "next-day": "Next Day",
-        "no": "No",
-        "not-a-working-day": "Not a working day",
-        "previous-day": "Previous Day",
-        "remove-entry": "Remove entry",
-        "waived-day": "Waived day",
-        "yes": "Yes"
+        "current-day": "Перейти до поточного дня",
+        "day-total": "Всього за день",
+        "entry": "Запис",
+        "entry-removal-confirmation": "Ви впевнені, що хочете видалити останній рядок запису?",
+        "leave-by": "Ви повинні закінчити до:",
+        "next-day": "Наступний день",
+        "no": "Ні",
+        "not-a-working-day": "Не робочий день",
+        "previous-day": "Попередній день",
+        "remove-entry": "Видалити запис",
+        "waived-day": "Відгул",
+        "yes": "Так"
     },
     "$FlexibleMonthCalendar": {
         "add-waiver-day": "Add a waiver for this day",
