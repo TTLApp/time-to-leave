@@ -1,11 +1,11 @@
 {
     "$BaseCalendar": {
-        "day-done-balance": "All done for today. Balance of the day:",
-        "month-balance": "Month Balance",
-        "month-balance-title": "Balance up until today for this month. A positive balance means extra hours you don't need to work today (or the rest of the month).",
-        "overall-balance": "Overall Balance",
-        "overall-balance-title": "Overall balance until end of the month or current day",
-        "switch-view": "Switch View"
+        "day-done-balance": "На сьогодні все зроблено. Баланс дня:",
+        "month-balance": "Місячний баланс",
+        "month-balance-title": "Баланс до сьогоднішнього дня за цей місяць. Позитивний баланс означає, що вам не потрібно працювати сьогодні (або решту місяця).",
+        "overall-balance": "Загальний баланс",
+        "overall-balance-title": "Загальний баланс до кінця місяця або поточного дня",
+        "switch-view": "Змінити вид"
     },
     "$DateUtil": {
         "april": "April",
