@@ -115,9 +115,9 @@
         "yes-please": "Так, будь ласка"
     },
     "$Notification": {
-        "punch-reminder": "Не забудьте записати час!",
+        "punch-reminder": "Не забудь записати час!",
         "time-to-leave": "Агов! Час йти.",
-        "dismiss-for-today": "Відхилити сьогодні"
+        "dismiss-for-today": "Відхилити на сьогодні"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Allow recurring notifications",
