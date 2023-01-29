@@ -203,6 +203,6 @@
         "yes": "Так"
     },
     "$Generic": {
-        "hours-on-invalid": "this.setCustomValidity(\"Please enter the time in valid 24-hour format from 00:00 to 23:59\")"
+        "hours-on-invalid": "this.setCustomValidity(\"Будь ласка, введіть час у дійсному 24-годинному форматі з 00:00 до 23:59\")"
     }
 }
