@@ -22,7 +22,8 @@ const schemaWaivedEntry = {
         ,
         'date': {
             'type': 'string',
-            'format': 'dateFormat'
+            'format': 'dateFormat',
+            'pattern': /(1|2)[0-9]{3}-(0[1-9]{1}|1[0-2]{1})-(0[0-9]{1}|1[0-9]{1}|2[0-9]{1}|3[0-1]{1})/
         },
         'data': {
             'type': 'string'
@@ -49,7 +50,8 @@ const schemaFlexibleEntry = {
         ,
         'date': {
             'type': 'string',
-            'format': 'dateFormat'
+            'format': 'dateFormat',
+            'pattern': /(1|2)[0-9]{3}-(0[1-9]{1}|1[0-2]{1})-(0[0-9]{1}|1[0-9]{1}|2[0-9]{1}|3[0-1]{1})/
         },
         'values': {
             'type': 'array',

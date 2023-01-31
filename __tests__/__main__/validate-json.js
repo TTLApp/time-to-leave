@@ -110,5 +110,76 @@ describe('Validate json', function()
                 expect(validateJSON(invalidPointsInTime)).not.toBeTruthy();
             });
         });
+
+        describe('validate every day', function()
+        {
+            const notADay = [{ 'type': 'flexible', 'date': '2020-12-00', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+            const notADay2 = [{ 'type': 'flexible', 'date': '2020-12-32', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+
+            test('should be valid JSON', () =>
+            {
+                for (let i=1; i<=9; i++)
+                {
+                    const firstNineDays = [{ 'type': 'flexible', 'date': '2020-12-0'+ i, 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+                    expect(validateJSON(firstNineDays)).toBeTruthy();
+                }
+                for (let i=10; i<=31; i++)
+                {
+                    const restDays = [{ 'type': 'flexible', 'date': '2020-12-'+ i, 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+                    expect(validateJSON(restDays)).toBeTruthy();
+                }
+
+            });
+            test('should not be valid JSON', () =>
+            {
+                expect(validateJSON(notADay)).not.toBeTruthy();
+                expect(validateJSON(notADay2)).not.toBeTruthy();
+
+            });
+        });
+
+        describe('validate every month2', function()
+        {
+            const notAMonth = [{ 'type': 'flexible', 'date': '2020-00-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+            const notAMonth2 = [{ 'type': 'flexible', 'date': '2020-13-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+
+            test('should be valid JSON', () =>
+            {
+                for (let i=1; i<=9; i++)
+                {
+                    const firstNineMonths = [{ 'type': 'flexible', 'date': '2020-0'+ i +'-12', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+                    expect(validateJSON(firstNineMonths)).toBeTruthy();
+                }
+                for (let i=10; i<=12; i++)
+                {
+                    const restMonths = [{ 'type': 'flexible', 'date': '2020-'+ i +'-12', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+                    expect(validateJSON(restMonths)).toBeTruthy();
+                }
+
+            });
+            test('should not be valid JSON', () =>
+            {
+                expect(validateJSON(notAMonth)).not.toBeTruthy();
+                expect(validateJSON(notAMonth2)).not.toBeTruthy();
+
+            });
+        });
+
+        describe('validate leap year', function()
+        {
+            const validLeapYear = [{ 'type': 'flexible', 'date': '2020-02-29', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+            const notValidLeapYear = [{ 'type': 'flexible', 'date': '2021-02-29', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+
+            test('should be valid JSON', () =>
+            {
+                expect(validateJSON(validLeapYear)).toBeTruthy();
+
+            });
+            test('should not be valid JSON', () =>
+            {
+                expect(validateJSON(notValidLeapYear)).not.toBeTruthy();
+            });
+        });
+
     });
 });
