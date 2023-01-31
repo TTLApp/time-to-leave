@@ -22,7 +22,6 @@ const schemaWaivedEntry = {
         ,
         'date': {
             'type': 'string',
-            'pattern': /(1|2)[0-9]{3}-(0[1-9]{1}|1[0-1]{1})-(0[0-9]{1}|1[0-9]{1}|2[0-9]{1}|3[0-1]{1})$/,
             'format': 'dateFormat'
         },
         'data': {
@@ -50,11 +49,11 @@ const schemaFlexibleEntry = {
         ,
         'date': {
             'type': 'string',
-            'pattern': /(1|2)[0-9]{3}-(0[1-9]{1}|1[0-1]{1})-(0[0-9]{1}|1[0-9]{1}|2[0-9]{1}|3[0-1]{1})$/,
             'format': 'dateFormat'
         },
         'values': {
             'type': 'array',
+            'format': 'timePointFormat',
             'items': {
                 'type': 'string',
                 'pattern': /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/
@@ -81,7 +80,7 @@ function daysInMonth(m, y)
     }
 }
 
-function isValid(y, m, d)
+function isValidDate(y, m, d)
 {
     return m >= 0 && m < 12 && d > 0 && d <= daysInMonth(m, y);
 }
@@ -94,8 +93,29 @@ Validator.prototype.customFormats.dateFormat = function(dateStr)
     }
     const dateArray = dateStr.split('-');
     const date = new Date(dateArray[0],dateArray[1], dateArray[2]);
-    const validDate = (date instanceof(Date) && isFinite(date.getTime()) && isValid(dateArray[0],dateArray[1]-1, dateArray[2]));
+    const validDate = (date instanceof(Date) && isFinite(date.getTime()) && isValidDate(dateArray[0],dateArray[1]-1, dateArray[2]));
     return validDate;
+};
+
+Validator.prototype.customFormats.timePointFormat = function(timePointArray)
+{
+    if (!Array.isArray(timePointArray))
+    {
+        return false;
+    }
+
+    let isValidTimePointArray = true;
+    let timePointBefore = 0;
+    timePointArray.forEach(function(timePoint)
+    {
+        if (timePointBefore > parseInt(timePoint))
+        {
+            isValidTimePointArray = false;
+        }
+        timePointBefore = parseInt(timePoint);
+    });
+
+    return isValidTimePointArray;
 };
 
 function validateJSON(instance)
@@ -103,6 +123,7 @@ function validateJSON(instance)
     const v = new Validator();
     v.addSchema(schemaFlexibleEntry, '/flexibleEntry');
     v.addSchema(schemaWaivedEntry, '/waivedEntry');
+
     return v.validate(instance, schema).valid;
 
 }
