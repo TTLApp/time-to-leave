@@ -10,35 +10,37 @@ describe('Validate json', function()
     process.env.NODE_ENV = 'test';
     describe('validateJSON(instance)', function()
     {
-
         describe('validate type', function()
         {
-            const goodFlexibleEntry = [{ 'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
-            const goodWaivedEntry = [{ 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08:00' }];
-            const invalidType = [{ 'type': 'not valid type', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+            const validFlexibleType = [{ 'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+            const validWaivedType = [{ 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08:00' }];
+            const invalidTypeValue = [{ 'type': 'not valid type', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+            const invalidTypeType = [{ 'type': ['not valid type'], 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+
             test('should be valid JSON', () =>
             {
-                expect(validateJSON(goodWaivedEntry)).toBeTruthy();
-                expect(validateJSON(goodFlexibleEntry)).toBeTruthy();
+                expect(validateJSON(validWaivedType)).toBeTruthy();
+                expect(validateJSON(validFlexibleType)).toBeTruthy();
             });
             test('should not be valid JSON', () =>
             {
-                expect(validateJSON(invalidType)).not.toBeTruthy();
+                expect(validateJSON(invalidTypeValue)).not.toBeTruthy();
+                expect(validateJSON(invalidTypeType)).not.toBeTruthy();
             });
         });
 
         describe('validate date', function()
         {
-            const goodFlexibleEntry = [{ 'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
-            const goodWaivedEntry = [{ 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08:00' }];
+            const validFlexibleDate = [{ 'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+            const validWaivedDate = [{ 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08:00' }];
             const invalidDateFormat = [{ 'type': 'flexible', 'date': '03-06-2020', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
             const invalidDateType = [{ 'type': 'flexible', 'date': ['2020-06-13'], 'values': ['08:00', '12:00', '13:00', '14:00'] }];
             const invalidDateValue = [{ 'type': 'flexible', 'date': '2020-26-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
             const invalidDayInMonth = [{ 'type': 'flexible', 'date': '2020-04-31', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
             test('should be valid JSON', () =>
             {
-                expect(validateJSON(goodWaivedEntry)).toBeTruthy();
-                expect(validateJSON(goodFlexibleEntry)).toBeTruthy();
+                expect(validateJSON(validWaivedDate)).toBeTruthy();
+                expect(validateJSON(validFlexibleDate)).toBeTruthy();
             });
             test('should not be valid JSON', () =>
             {
@@ -51,11 +53,11 @@ describe('Validate json', function()
 
         describe('validate data', function()
         {
-            const goodWaivedEntry = [{ 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08:00' }];
+            const validData = [{ 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08:00' }];
             const invalidDataType = [{ 'type': 'waived', 'date': '2020-06-03', 'data': ['waived'], 'hours': '08:00' }];
             test('should be valid JSON', () =>
             {
-                expect(validateJSON(goodWaivedEntry)).toBeTruthy();
+                expect(validateJSON(validData)).toBeTruthy();
             });
             test('should not be valid JSON', () =>
             {
@@ -65,16 +67,16 @@ describe('Validate json', function()
 
         describe('validate hours', function()
         {
-            const goodWaivedEntry = [{ 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08:00' }];
-            const goodWaivedEntry2 = [{ 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '--:--' }];
+            const validHours = [{ 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08:00' }];
+            const validHours2 = [{ 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '--:--' }];
             const invalidHoursFormat = [{ 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08-00' }];
             const invalidHoursType = [{ 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': 8 }];
             const invalidHoursValue = [{ 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '30:00' }];
             const invalidHoursValueNegative = [{ 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '-01:00' }];
             test('should be valid JSON', () =>
             {
-                expect(validateJSON(goodWaivedEntry)).toBeTruthy();
-                expect(validateJSON(goodWaivedEntry2)).toBeTruthy();
+                expect(validateJSON(validHours)).toBeTruthy();
+                expect(validateJSON(validHours2)).toBeTruthy();
             });
             test('should not be valid JSON', () =>
             {
@@ -87,7 +89,7 @@ describe('Validate json', function()
 
         describe('validate values', function()
         {
-            const goodFlexibleEntry = [{ 'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+            const validValues = [{ 'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
             const invalidValuesFormat1 = [{ 'type': 'flexible', 'date': '03-06-2020', 'values': ['0800', '12:00', '13:00', '14:00'] }];
             const invalidValuesFormat2 = [{ 'type': 'flexible', 'date': '03-06-2020', 'values': ['08', '12:00', '13:00', '14:00'] }];
             const invalidValuesFormat3 = [{ 'type': 'flexible', 'date': '03-06-2020', 'values': [8, '12:00', '13:00', '14:00'] }];
@@ -97,7 +99,7 @@ describe('Validate json', function()
             const invalidPointsInTime = [{ 'type': 'flexible', 'date': '2020-02-01', 'values': ['08:00', '07:00', '13:00', '14:00'] }];
             test('should be valid JSON', () =>
             {
-                expect(validateJSON(goodFlexibleEntry)).toBeTruthy();
+                expect(validateJSON(validValues)).toBeTruthy();
             });
             test('should not be valid JSON', () =>
             {
@@ -113,62 +115,58 @@ describe('Validate json', function()
 
         describe('validate every day', function()
         {
-            const notADay = [{ 'type': 'flexible', 'date': '2020-12-00', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
-            const notADay2 = [{ 'type': 'flexible', 'date': '2020-12-32', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+            const invalidDay = [{ 'type': 'flexible', 'date': '2020-12-00', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+            const invalidDay2 = [{ 'type': 'flexible', 'date': '2020-12-32', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
 
             test('should be valid JSON', () =>
             {
-                for (let i=1; i<=9; i++)
+                for (let i = 1; i <= 9; i++)
                 {
-                    const firstNineDays = [{ 'type': 'flexible', 'date': '2020-12-0'+ i, 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+                    const firstNineDays = [{ 'type': 'flexible', 'date': `2020-12-0${i}`, 'values': ['08:00', '12:00', '13:00', '14:00'] }];
                     expect(validateJSON(firstNineDays)).toBeTruthy();
                 }
-                for (let i=10; i<=31; i++)
+                for (let i = 10; i <= 31; i++)
                 {
-                    const restDays = [{ 'type': 'flexible', 'date': '2020-12-'+ i, 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+                    const restDays = [{ 'type': 'flexible', 'date': `2020-12-${i}`, 'values': ['08:00', '12:00', '13:00', '14:00'] }];
                     expect(validateJSON(restDays)).toBeTruthy();
                 }
-
             });
             test('should not be valid JSON', () =>
             {
-                expect(validateJSON(notADay)).not.toBeTruthy();
-                expect(validateJSON(notADay2)).not.toBeTruthy();
-
+                expect(validateJSON(invalidDay)).not.toBeTruthy();
+                expect(validateJSON(invalidDay2)).not.toBeTruthy();
             });
         });
 
-        describe('validate every month2', function()
+        describe('validate every month', function()
         {
-            const notAMonth = [{ 'type': 'flexible', 'date': '2020-00-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
-            const notAMonth2 = [{ 'type': 'flexible', 'date': '2020-13-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+            const invalidMonth = [{ 'type': 'flexible', 'date': '2020-00-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+            const invalidMonth2 = [{ 'type': 'flexible', 'date': '2020-13-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
 
             test('should be valid JSON', () =>
             {
-                for (let i=1; i<=9; i++)
+                for (let i = 1; i <= 9; i++)
                 {
-                    const firstNineMonths = [{ 'type': 'flexible', 'date': '2020-0'+ i +'-12', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+                    const firstNineMonths = [{ 'type': 'flexible', 'date': `2020-0${i}-13`, 'values': ['08:00', '12:00', '13:00', '14:00'] }];
                     expect(validateJSON(firstNineMonths)).toBeTruthy();
                 }
-                for (let i=10; i<=12; i++)
+                for (let i = 10; i <= 12; i++)
                 {
-                    const restMonths = [{ 'type': 'flexible', 'date': '2020-'+ i +'-12', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+                    const restMonths = [{ 'type': 'flexible', 'date': `2020-${i}-13`, 'values': ['08:00', '12:00', '13:00', '14:00'] }];
                     expect(validateJSON(restMonths)).toBeTruthy();
                 }
-
             });
             test('should not be valid JSON', () =>
             {
-                expect(validateJSON(notAMonth)).not.toBeTruthy();
-                expect(validateJSON(notAMonth2)).not.toBeTruthy();
-
+                expect(validateJSON(invalidMonth)).not.toBeTruthy();
+                expect(validateJSON(invalidMonth2)).not.toBeTruthy();
             });
         });
 
         describe('validate leap year', function()
         {
             const validLeapYear = [{ 'type': 'flexible', 'date': '2020-02-29', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
-            const notValidLeapYear = [{ 'type': 'flexible', 'date': '2021-02-29', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+            const invalidLeapYear = [{ 'type': 'flexible', 'date': '2021-02-29', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
 
             test('should be valid JSON', () =>
             {
@@ -177,9 +175,8 @@ describe('Validate json', function()
             });
             test('should not be valid JSON', () =>
             {
-                expect(validateJSON(notValidLeapYear)).not.toBeTruthy();
+                expect(validateJSON(invalidLeapYear)).not.toBeTruthy();
             });
         });
-
     });
 });

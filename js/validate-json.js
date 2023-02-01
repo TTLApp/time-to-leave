@@ -1,5 +1,4 @@
 'use strict';
-
 const Validator = require('jsonschema').Validator;
 
 const schema = {
@@ -69,12 +68,20 @@ const schemaFlexibleEntry = {
     ]
 };
 
-function daysInMonth(m, y)
+/**
+ * Returns the number of days in the month of a specific year.
+ *
+ * @param {number} month
+ * @param {number} year
+ *
+ * @return {number} number of days in month.
+ */
+function daysInMonth(month, year)
 {
-    switch (m)
+    switch (month)
     {
     case 1 :
-        return (y % 4 === 0 && y % 100) || y % 400 === 0 ? 29 : 28;
+        return (year % 4 === 0 && year % 100) || year % 400 === 0 ? 29 : 28;
     case 8 : case 3 : case 5 : case 10 :
         return 30;
     default :
@@ -82,11 +89,28 @@ function daysInMonth(m, y)
     }
 }
 
-function isValidDate(y, m, d)
+/**
+ * Checks if date is valid.
+ * Months are counted from 0.
+ *
+ * @param {number} year
+ * @param {number} month
+ * @param {number} day
+ *
+ * @return {boolean} true or false depending on if date is valid.
+ */
+function isValidDate(year, month, day)
 {
-    return m >= 0 && m < 12 && d > 0 && d <= daysInMonth(m, y);
+    return month >= 0 && month < 12 && day > 0 && day <= daysInMonth(month, year);
 }
 
+/**
+ * Adds custom format to validator that checks if date is valid.
+ *
+ * @param {String} dateStr
+ *
+ * @return {boolean} true or false depending on if date is valid.
+ */
 Validator.prototype.customFormats.dateFormat = function(dateStr)
 {
     if (!typeof(dateStr) === 'String' || !dateStr.includes('-'))
@@ -94,18 +118,27 @@ Validator.prototype.customFormats.dateFormat = function(dateStr)
         return false;
     }
     const dateArray = dateStr.split('-');
-    const date = new Date(dateArray[0],dateArray[1], dateArray[2]);
-    const validDate = (date instanceof(Date) && isFinite(date.getTime()) && isValidDate(dateArray[0],dateArray[1]-1, dateArray[2]));
-    return validDate;
+    const year = dateArray[0];
+    const month = dateArray[1]-1; // isValidDate(..) counts months from 0
+    const day = dateArray[2];
+
+    return isValidDate(year, month, day);
 };
 
+/**
+ * Adds custom format to validator that checks if values in flexible entry are valid.
+ * Items in timePointArray have to be in an ascending order.
+ *
+ * @param {Array} timePointArray
+ *
+ * @return {boolean} true or false depending on if timePointArray is valid.
+ */
 Validator.prototype.customFormats.timePointFormat = function(timePointArray)
 {
     if (!Array.isArray(timePointArray))
     {
         return false;
     }
-
     let isValidTimePointArray = true;
     let timePointBefore = 0;
     timePointArray.forEach(function(timePoint)
@@ -116,10 +149,16 @@ Validator.prototype.customFormats.timePointFormat = function(timePointArray)
         }
         timePointBefore = parseInt(timePoint);
     });
-
     return isValidTimePointArray;
 };
 
+/**
+ * Validate JSON to find out if it's in the correct format for TTl.
+ *
+ * @param {object} instance JSON instance that should be validated.
+ *
+ * @return {boolean} true or false depending on if JSON is valid TTL JSON.
+ */
 function validateJSON(instance)
 {
     const v = new Validator();
@@ -127,7 +166,6 @@ function validateJSON(instance)
     v.addSchema(schemaWaivedEntry, '/waivedEntry');
 
     return v.validate(instance, schema).valid;
-
 }
 
 export {
