@@ -7,7 +7,7 @@ async function compressEncryptFile(filePathOriginal, filePathCompressed, passPhr
     try
     {
         await compressing.tgz.compressFile(filePathOriginal, filePathCompressed);
-        const instance = new Cryptify(filePathCompressed, passPhrase);
+        const instance = new Cryptify(filePathCompressed, passPhrase, 'aes-256-cbc', 'utf8', true);
         await instance.encrypt();
         return true;
     }
@@ -22,7 +22,7 @@ async function decryptDecompressFile(filePathCompressed, filePathDecompressed, p
 {
     try
     {
-        const instance = new Cryptify(filePathCompressed, passPhrase);
+        const instance = new Cryptify(filePathCompressed, passPhrase, 'aes-256-cbc', 'utf8', true);
         await instance.decrypt();
         await compressing.tgz.uncompress(filePathCompressed, filePathDecompressed);
         return true;
