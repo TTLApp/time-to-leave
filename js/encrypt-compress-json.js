@@ -1,36 +1,40 @@
 'use strict';
-
+import Cryptify from 'cryptify';
 const compressing = require('compressing');
 
-async function compressFile(filePathOriginal, filePathCompressed)
+async function compressEncryptFile(filePathOriginal, filePathCompressed, passPhrase)
 {
     try
     {
         await compressing.tgz.compressFile(filePathOriginal, filePathCompressed);
+        const instance = new Cryptify(filePathCompressed, passPhrase);
+        await instance.encrypt();
         return true;
     }
     catch (e)
     {
-        console.log(`compression failed: ${e}`);
+        console.log(`compression and encryption failed: ${e}`);
         return false;
     }
 }
 
-async function decompressFile(filePathCompressed, filePathDecompressed)
+async function decryptDecompressFile(filePathCompressed, filePathDecompressed, passPhrase)
 {
     try
     {
+        const instance = new Cryptify(filePathCompressed, passPhrase);
+        await instance.decrypt();
         await compressing.tgz.uncompress(filePathCompressed, filePathDecompressed);
         return true;
     }
     catch (e)
     {
-        console.log(`compression failed: ${e}`);
+        console.log(`decryption and decompression failed: ${e}`);
         return false;
     }
 }
 
 module.exports = {
-    compressFile,
-    decompressFile
+    compressEncryptFile,
+    decryptDecompressFile
 };

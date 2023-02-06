@@ -1,8 +1,8 @@
 'use strict';
 
 const {
-    compressFile,
-    decompressFile
+    compressEncryptFile,
+    decryptDecompressFile
 } = require('../../js/encrypt-compress-json');
 
 const path = require('path');
@@ -31,12 +31,12 @@ describe('Encrypt compress JSON', function()
     {
         test('should compress successfully', async() =>
         {
-            const compressSuccess = await compressFile(filePath, filePathCompressed);
+            const compressSuccess = await compressEncryptFile(filePath, filePathCompressed, '123ervebA#');
             expect(compressSuccess).toBeTruthy();
         });
         test('should decompress successfully', async() =>
         {
-            const decompressSuccess = await decompressFile(filePathCompressed, filePathDecompressed);
+            const decompressSuccess = await decryptDecompressFile(filePathCompressed, filePathDecompressed, '123ervebA#');
             expect(decompressSuccess).toBeTruthy();
         });
         test('decompressed file should equal file before', async() =>
