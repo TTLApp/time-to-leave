@@ -480,6 +480,7 @@ describe('Preferences Main', () =>
             expect(getLanguageName('bn')).toBe('বাংলা');
             expect(getLanguageName('ca-CA')).toBe('Catalàn');
             expect(getLanguageName('de-DE')).toBe('Deutsch');
+            expect(getLanguageName('el')).toBe('Ελληνικά');
             expect(getLanguageName('en')).toBe('English');
             expect(getLanguageName('es')).toBe('Español');
             expect(getLanguageName('fr-FR')).toBe('Français - France');
