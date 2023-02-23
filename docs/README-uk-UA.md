@@ -59,20 +59,20 @@
 
 <img src="./docs/images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
-## How to install TTL
+## Як встановити TTL
 
 Time to Leave працює на MacOS, Windows та Linux, і ви можете завантажити потрібну версію з [останнього релізу](https://github.com/thamara/time-to-leave/releases/latest).
 
-## How to build and contribute to TTL
+## Як зробити свій внесок у розробку TTL
 
 Якщо ви хочете допомогти, ознайомтесь [як зробити внесок](CONTRIBUTING.md).
 Також ви можете звернутись до нашого [керівництва по розробці](DEVELOPMENT.md) для отримання додаткової інформації.
 
-## Get in touch!
+## Залишайся на звʼязку!
 
 Приєднуйтесь до нашого [Discord серверу](https://discord.gg/P3KkEF5), щоб обговорювати майбутні можливості та інше.
 
-## Credits
+## Вдячність
 
 Іконки створив [freepik](https://www.flaticon.com/authors/freepik) з [www.flaticon.com](https://www.flaticon.com).
 
