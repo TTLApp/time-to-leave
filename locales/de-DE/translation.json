@@ -32,8 +32,8 @@
         "current-day": "Zum heutigen Tag springen",
         "day-total": "Tag gesamt",
         "entry": "Eintrag",
-        "entry-removal-confirmation": "Sind Sie sicher, dass Sie den letzten Eintrag löschen wollen?",
-        "leave-by": "Sie sollten gehen um:",
+        "entry-removal-confirmation": "Bist du sicher, dass du den letzten Eintrag löschen möchtest?",
+        "leave-by": "Du solltest gehen um:",
         "next-day": "Nächster Tag",
         "no": "Nein",
         "not-a-working-day": "Kein Arbeitstag",
@@ -116,7 +116,7 @@
     },
     "$Notification": {
         "punch-reminder": "Nicht vergessen Zeiten einzutragen",
-        "time-to-leave": "Sie da! Ich denke es ist Zeit zu gehen.",
+        "time-to-leave": "Du da! Ich denke es ist Zeit zu gehen.",
         "dismiss-for-today": "Für heute ablehnen"
     },
     "$Preferences": {
