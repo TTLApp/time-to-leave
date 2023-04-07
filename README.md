@@ -13,7 +13,7 @@
 <a href="docs/README-de-DE.md"><img src="https://img.shields.io/badge/de--DE-Deutsch-purple" alt="Dieses Dokument ist auch verfügbar in Deutsch"></a>
 <a href="docs/README-el.md"><img src="https://img.shields.io/badge/el-Ελληνικά-purple" alt="Αυτό το έγγραφο είναι επίσης διαθέσιμο στα Ελληνικά."></a>
 <a href="docs/README-hi.md"><img src="https://img.shields.io/badge/hi-Hindi-purple" alt="यह दस्तावेज़ Hindi में भी उपलब्ध है"></a>
-<a href="docs/README-gu.md"><img src="https://img.shields.io/badge/hi-gujarati-purple" alt="આ દસ્તાવેજ ગુજરાતીમાં પણ ઉપલબ્ધ છે"></a>
+<a href="docs/README-gu.md"><img src="https://img.shields.io/badge/gu-gujarati-purple" alt="આ દસ્તાવેજ ગુજરાતીમાં પણ ઉપલબ્ધ છે"></a>
 <a href="docs/README-zh-TW.md"><img src="https://img.shields.io/badge/zh--TW-繁體中文-purple" alt="此文檔亦適用於繁體中文"></a>
 <a href="docs/README-pl.md"><img src="https://img.shields.io/badge/pl-Polski-purple" alt="Przeczytaj ten dokument w języku polskim"></a>
 <a href="docs/README-ja.md"><img src="https://img.shields.io/badge/ja-日本語-purple" alt="このドキュメントは日本語でもご覧になれます。"></a>
