@@ -44,7 +44,7 @@ Wenn du TTL weiterentwickeln möchtest, lese unseren [Contribution-Leitfaden](..
 
 Für mehr Information, kannst du dich auf unseren [Entwicklungsleitfaden](../DEVELOPMENT.md) beziehen.
 
-## Discord
+## Kontakt
 
 Tritt unserem [Discord Server](https://discord.gg/P3KkEF5) bei, um über anstehende neue Funktion und mehr zu diskutieren.
 
