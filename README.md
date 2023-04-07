@@ -29,7 +29,7 @@
 <a href="docs/README-fa-IR.md"><img src="https://img.shields.io/badge/fa--IR-Persian-purple" alt="مستندات برنامه به زبان فارسی"></a>
 <a href="docs/README-bn.md"><img src="https://img.shields.io/badge/bn-বাংলা-purple" alt="এই নথিও পাওয়া যায় বাংলায়"></a>
 <a href="docs/README-he.md"><img src="https://img.shields.io/badge/he-עברית-purple" alt="מסמך זה כתוב גם בעברית"></a>
-<a href="docs/README-sv-SE.md"><img src="https://img.shields.io/badge/sv-SE--svenska-purple" alt="Detta dokument finns tillgängligt på svenska"></a>
+<a href="docs/README-sv-SE.md"><img src="https://img.shields.io/badge/sv--SE-Svenska-purple" alt="Detta dokument finns tillgängligt på svenska"></a>
 <a href="docs/README-uk-UA.md"><img src="https://img.shields.io/badge/uk--UA-Українська-purple" alt="Документація додатку українською"></a>
 <br/>
 
