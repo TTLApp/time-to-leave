@@ -45,7 +45,7 @@ LANG_SCOPE_KEY_TO_IGNORE = {'de-DE': {'$Preferences' : ['themes', 'hours-per-day
                                        '$FlexibleMonthCalendar' : ['total'],
                                        '$WorkdayWaiver' : ['date']},
                              'ko': {'$Preferences' : ['hours-per-day']},
-                             'ca-CA': {'$Preferences' : ['flexible', 'hours-per-day'],
+                             'ca': {'$Preferences' : ['flexible', 'hours-per-day'],
                                        '$Menu' : ['menu', 'ok'],
                                        '$FlexibleDayCalendar' : ['no'],
                                        '$FlexibleMonthCalendar' : ['total', 'no'],
