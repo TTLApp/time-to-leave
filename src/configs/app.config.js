@@ -1,6 +1,6 @@
 const languages = {
     'bn':'বাংলা',
-    'ca-CA': 'Catalàn',
+    'ca': 'Catalàn',
     'de-DE': 'Deutsch',
     'el': 'Ελληνικά',
     'en': 'English',
