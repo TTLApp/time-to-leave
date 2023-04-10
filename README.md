@@ -22,7 +22,7 @@
 <a href="docs/README-th-TH.md"><img src="https://img.shields.io/badge/th--TH-ภาษาไทย-purple" alt="เอกสารฉบับนี้มีให้บริการในรูปแบบภาษาไทย"></a>
 <a href="docs/README-fr-FR.md"><img src="https://img.shields.io/badge/fr--FR-Fran%C3%A7ais%20(France)-purple" alt="Ce document est également disponible en Français (France)"></a>
 <a href="docs/README-nl.md"><img src="https://img.shields.io/badge/nl-Nederlands-purple" alt="Dit document is ook beschikbaar in het Nederlands"></a>
-<a href="docs/README-ca-CA.md"><img src="https://img.shields.io/badge/ca--CA-Catal&agrave-purple" alt="Aquest Document també esta disponible en Català"></a>
+<a href="docs/README-ca.md"><img src="https://img.shields.io/badge/ca-Catal&agrave-purple" alt="Aquest Document també esta disponible en Català"></a>
 <a href="docs/README-ta.md"><img src="https://img.shields.io/badge/ta-Tamil-purple" alt="Tamil மொழியிலும் இந்த ஆவணம் கிடைக்கும்"></a>
 <a href="docs/README-tr-TR.md"><img src="https://img.shields.io/badge/tr-T%C3%BCrk%C3%A7e-purple" alt="Bu belge Türkçe olarak da mevcuttur"></a>
 <a href="docs/README-ru-RU.md"><img src="https://img.shields.io/badge/ru-%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9-purple" alt="Документация приложения на русском языке"></a>
