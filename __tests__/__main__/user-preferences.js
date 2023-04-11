@@ -478,7 +478,7 @@ describe('Preferences Main', () =>
         test('getLanguageName() should return correct language', () =>
         {
             expect(getLanguageName('bn')).toBe('বাংলা');
-            expect(getLanguageName('ca-CA')).toBe('Catalàn');
+            expect(getLanguageName('ca')).toBe('Catalàn');
             expect(getLanguageName('de-DE')).toBe('Deutsch');
             expect(getLanguageName('el')).toBe('Ελληνικά');
             expect(getLanguageName('en')).toBe('English');
