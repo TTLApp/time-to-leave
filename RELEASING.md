@@ -1,4 +1,4 @@
-Guide on how to release Time To Leave:
+Guide on how to release Time to Leave:
 
 1. Update `package.json` to the release version (no -dev)
 2. `git commit -am "Release vX.Y.Z"`
