@@ -11,7 +11,7 @@ assignees: ''
 A clear and concise description of what the limitation is.
 
 **Describe the proposed feature or enhancement**
-A clear and concise description of what you expect Time To Leave to do.
+A clear and concise description of what you expect Time to Leave to do.
 
 **Additional context**
 Add any other context about the problem here.
