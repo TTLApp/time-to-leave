@@ -312,7 +312,10 @@ class FlexibleMonthCalendar extends BaseCalendar
                 {
                     element.scrollLeft += step;
                 }
-                if (element.scrollLeft + element.clientWidth === element.scrollWidth)
+                if (
+                    element.scrollLeft + element.clientWidth === element.scrollWidth ||
+                    element.scrollLeft === 0
+                )
                 {
                     window.clearInterval(slideTimer);
                 }
@@ -339,12 +342,6 @@ class FlexibleMonthCalendar extends BaseCalendar
             window.clearInterval(slideTimer);
         });
 
-        function toggleArrowColor(target)
-        {
-            const element = $(target);
-            const hasHorizontalScrollbar = target.scrollWidth > target.clientWidth;
-            element.parent().find('.arrow').toggleClass('disabled', !hasHorizontalScrollbar);
-        }
 
         function toggleMinusSign(target)
         {
@@ -354,18 +351,8 @@ class FlexibleMonthCalendar extends BaseCalendar
             element.parent().find('.sign-cell.minus-sign').toggleClass('disabled', !hasMoreThanTwoEntries);
         }
 
-        const resizeObserver = new ResizeObserver(entries =>
-        {
-            for (const entry of entries)
-            {
-                toggleArrowColor(entry.target);
-            }
-        });
-
         $('.time-cells').each((index, element) =>
         {
-            resizeObserver.observe(element);
-            toggleArrowColor(element);
             toggleMinusSign(element);
         });
 
@@ -373,11 +360,10 @@ class FlexibleMonthCalendar extends BaseCalendar
         {
             const dateKey = $(element).attr('id');
             const moreThree =
-                calendar.constructor._getRowCode(dateKey, true /*isInterval*/) +
-                calendar.constructor._getRowCode(dateKey) +
-                calendar.constructor._getRowCode(dateKey);
+            calendar.constructor._getRowCode(dateKey, true /*isInterval*/) +
+            calendar.constructor._getRowCode(dateKey) +
+            calendar.constructor._getRowCode(dateKey);
             $(element).append(moreThree);
-            element.scrollLeft = element.scrollWidth - element.clientWidth;
             $(element).find('input[type=\'time\']').off('input propertychange').on('input propertychange', function()
             {
                 calendar._updateTimeDayCallback($(this).attr('data-date'));
@@ -388,7 +374,6 @@ class FlexibleMonthCalendar extends BaseCalendar
         {
             const element = $(this).parent().parent().find('.time-cells')[0];
             addEntries(element);
-            toggleArrowColor(element);
             toggleMinusSign(element);
         });
 
@@ -399,7 +384,6 @@ class FlexibleMonthCalendar extends BaseCalendar
             row.slice(sliceNum).remove();
             calendar._updateTimeDay($(element).attr('id'));
             calendar._updateLeaveBy();
-            toggleArrowColor(element);
             toggleMinusSign(element);
         }
 
@@ -444,12 +428,24 @@ class FlexibleMonthCalendar extends BaseCalendar
             removeEntries(element);
         });
 
-        $('.time-cells').mousewheel(function(e, delta)
+        $('#calendar').on('mousewheel', '.time-cells', function(e, delta)
         {
-            this.scrollLeft -= (delta * 30);
+            const scrollLeftMax = this.scrollWidth - this.clientWidth;
+            const shouldScrollVertically = (delta < 0 && this.scrollLeft === scrollLeftMax) || (delta > 0 && this.scrollLeft === 0);
+
+            if (shouldScrollVertically)
+            {
+                return;
+            }
+
             e.preventDefault();
+            //scrolling speed for horizontal, I thought 30 was too fast so I changed to 5
+            this.scrollLeft -= (delta * 5);
         });
+
+
     }
+
 
     /**
      * Responsible for adding new entries to the calendar view.
