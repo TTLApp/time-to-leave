@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/timetoleave.png" alt="Λογότυπο Time to Leave">
+  <img src="../assets/timetoleave.png" alt="Λογότυπο Time to Leave">
 
   <p>Καταγράφετε τις ώρες εργασίας σας και λαμβάνετε ειδοποίηση όταν είναι ώρα να φύγετε από το γραφείο και να ζήσετε</p>
 
@@ -13,7 +13,7 @@
 
    <br/>
 
-  <img src="./docs/images/screenshot.jpg" alt="Στιγμιότυπο του Time to Leave">
+  <img src="./images/screenshot.jpg" alt="Στιγμιότυπο του Time to Leave">
 
   <br/>
 
