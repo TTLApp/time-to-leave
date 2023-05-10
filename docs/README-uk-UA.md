@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>Записуйте робочий час і отримуйте повідомлення, коли час покинути офіс та розпочати жити.</p>
 
@@ -12,7 +12,7 @@
 
    <br/>
 
-  <img src="./docs/images/screenshot.jpg" alt="Скріншот інтерфейсу Time to Leave">
+  <img src="./images/screenshot.jpg" alt="Скріншот інтерфейсу Time to Leave">
 
   <br/>
 
