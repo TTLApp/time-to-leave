@@ -126,10 +126,6 @@ html[data-theme="cadent-star"] {
   background-color: var(--punch-bground);
 }
 
-::-webkit-scrollbar-track {
-  background-color: var(--page-bground);
-}
-
 *:focus {
   outline: var(--outline);
   z-index: 1;
@@ -158,6 +154,7 @@ html[data-theme="cadent-star"] body {
 body {
   background-color: var(--page-bground);
   color: var(--page-color);
+  overflow-y: overlay;
 }
 
 .container {
@@ -405,8 +402,8 @@ body {
 }
 
 .punch-button {
-  opacity: 0.9;
-  width: calc(100vw - 60px);
+  width: 100vw;
+  padding: 0px;
   height: 100%;
   border: none;
   color: var(--punch-color);
