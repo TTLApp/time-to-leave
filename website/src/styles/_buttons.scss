@@ -15,6 +15,10 @@ a.button--primary {
     border: 2px solid $blue;
     display: inline-block;
     padding: 10px 20px;
+    &:hover {
+        background-color: darken(#111B47, 10%);
+    }
+
 }
 
 .button--dropdown {
@@ -35,6 +39,9 @@ a.button--primary {
         border-color: $blue transparent transparent transparent;
         right: 20px;
         top: calc(50% - 2px);
+    }
+    &:hover {
+        background-color: darken($lightblue, 10%);
     }
 }
 
