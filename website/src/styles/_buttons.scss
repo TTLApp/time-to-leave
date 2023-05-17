@@ -41,7 +41,7 @@ a.button--primary {
         top: calc(50% - 2px);
     }
     &:hover {
-        background-color: darken($lightblue, 10%);
+        background-color: darken(#fff, 10%);
     }
 }
 
