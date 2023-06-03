@@ -668,6 +668,11 @@ input:disabled + .slider {
 }
 
 /* Styles for Right Alignment of input type date */
+#preferences-window input[type="text"].date-right {
+  text-align: right;
+  position: relative;
+}
+
 #preferences-window input[type="date"].date-right::-webkit-datetime-edit {
   text-align: right;
   position: relative;

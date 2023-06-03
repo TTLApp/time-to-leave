@@ -2,6 +2,8 @@
 
 import { applyTheme } from '../renderer/themes.js';
 import { translatePage } from '../renderer/i18n-translator.js';
+import { getMonthNames, getDay } from '../js/date-to-string-util.js';
+
 
 // Global values for preferences page
 let usersStyles;
@@ -35,6 +37,7 @@ function listenerLanguage()
         window.mainApi.changeLanguagePromise(this.value).then((languageData) =>
         {
             translatePage(this.value, languageData, 'Preferences');
+            refreshDate(this.value,languageData);
             window.mainApi.notifyNewPreferences(preferences);
         });
     });
@@ -47,7 +50,21 @@ function setupLanguages()
     window.mainApi.getLanguageDataPromise().then(languageData =>
     {
         translatePage(usersStyles['language'], languageData.data, 'Preferences');
+        refreshDate(usersStyles['language'],languageData.data);
     });
+}
+
+function refreshDate(language, languageData)
+{
+    $.datepicker.regional[`${language}`] = {
+        monthNames: getMonthNames(languageData),
+        monthNamesShort: getMonthNames(languageData),
+        weekHeader: 'Sm',
+        dayNames: getDay(languageData),
+        dayNamesShort: getDay(languageData),
+        dayNamesMin: getDay(languageData),
+        firstDay: 0};
+    $.datepicker.setDefaults($.datepicker.regional[`${language}`]);
 }
 
 function refreshContent()
@@ -91,6 +108,15 @@ function renderPreferencesWindow()
         $('#view').val(usersStyles['view']);
     }
 
+    $( function()
+    {
+        $( '#datepicker' ).datepicker({
+            dateFormat: 'yy-mm-dd',
+            changeYear: true,
+            changeMonth: true
+        });
+    });
+
     $('input[type="checkbox"]').on('change', function()
     {
         changeValue(this.name, this.checked);
@@ -105,7 +131,7 @@ function renderPreferencesWindow()
         }
     });
 
-    $('input[type="number"], input[type="date"]').on('change', function()
+    $('input[type="number"], input[type="date"], input[type="text"]').on('change', function()
     {
         changeValue(this.name, this.value);
     });

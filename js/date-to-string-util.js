@@ -26,7 +26,20 @@ function getMonthName(languageData, monthIndex)
     return getTranslationInLanguageData(languageData, `$DateUtil.${monthNames[monthIndex]}`);
 }
 
+
+function getMonthNames(languageData)
+{
+    return monthNames.map(val => getTranslationInLanguageData(languageData, `$DateUtil.${val}`));
+}
+
+function getDay(languageData)
+{
+    return dayAbbrs.map(val => getTranslationInLanguageData(languageData, `$DateUtil.${val}`));
+}
+
 export {
     getDayAbbr,
-    getMonthName
+    getMonthName,
+    getMonthNames,
+    getDay
 };

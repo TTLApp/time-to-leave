@@ -154,6 +154,14 @@ function getEditMenuTemplate(mainWindow)
                         BrowserWindow.getFocusedWindow().webContents.toggleDevTools();
                     }
                 });
+                prefWindow.webContents.on('before-input-event', (event, input) =>
+                {
+                    if (input.control && input.shift && input.key.toLowerCase() === 'r')
+                    {
+                        BrowserWindow.getFocusedWindow().reload();
+                    }
+                });
+
             },
         },
         {type: 'separator'},
