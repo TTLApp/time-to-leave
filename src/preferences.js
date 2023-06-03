@@ -2,7 +2,7 @@
 
 import { applyTheme } from '../renderer/themes.js';
 import { translatePage } from '../renderer/i18n-translator.js';
-import { getMonthNames, getDay } from '../js/date-to-string-util.js';
+import { getMonthNames, getDayAbbrvs } from '../js/date-to-string-util.js';
 
 
 // Global values for preferences page
@@ -56,13 +56,15 @@ function setupLanguages()
 
 function refreshDate(language, languageData)
 {
+    var monthAbbrs = getMonthNames(languageData);
+    var dayAbbrs = getDayAbbrvs(languageData);
     $.datepicker.regional[`${language}`] = {
-        monthNames: getMonthNames(languageData),
-        monthNamesShort: getMonthNames(languageData),
+        monthNames: monthAbbrs,
+        monthNamesShort: monthAbbrs,
         weekHeader: 'Sm',
-        dayNames: getDay(languageData),
-        dayNamesShort: getDay(languageData),
-        dayNamesMin: getDay(languageData),
+        dayNames: dayAbbrs,
+        dayNamesShort: dayAbbrs,
+        dayNamesMin: dayAbbrs,
         firstDay: 0};
     $.datepicker.setDefaults($.datepicker.regional[`${language}`]);
 }
