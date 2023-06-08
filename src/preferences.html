@@ -5,7 +5,8 @@
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="../node_modules/jquery-ui-css/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="../node_modules/jquery-ui-css/jquery-ui.structure.min.css">
 
     <!-- First we need to declare jQuery and $ globals with jquery -->
     <script src="../node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
@@ -14,7 +15,7 @@
     </script>
 
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js" charset="utf-8"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="../node_modules/jquery-ui/dist/jquery-ui.min.js"></script>
     <script type="module" src="preferences.js"></script>
 </head>
 
@@ -107,7 +108,7 @@
             </div>
             <div class="flex-box">
                 <p><i class="fas fa-sign-in-alt"></i><span data-i18n="$Preferences.overallBalanceStart">Overall Balance Start Date</span></p>
-                <label id='overall-balance-start-date'><input id="datepicker" type="text" class="date-right" name="overall-balance-start-date">
+                <label id="overall-balance-start-date"><input id="datepicker" type="text" class="date-right" name="overall-balance-start-date">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
                 </label>
             </div>

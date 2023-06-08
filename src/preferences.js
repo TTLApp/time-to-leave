@@ -37,7 +37,7 @@ function listenerLanguage()
         window.mainApi.changeLanguagePromise(this.value).then((languageData) =>
         {
             translatePage(this.value, languageData, 'Preferences');
-            refreshDate(this.value,languageData);
+            refreshDate(this.value, languageData);
             window.mainApi.notifyNewPreferences(preferences);
         });
     });
@@ -50,14 +50,14 @@ function setupLanguages()
     window.mainApi.getLanguageDataPromise().then(languageData =>
     {
         translatePage(usersStyles['language'], languageData.data, 'Preferences');
-        refreshDate(usersStyles['language'],languageData.data);
+        refreshDate(usersStyles['language'], languageData.data);
     });
 }
 
 function refreshDate(language, languageData)
 {
-    var monthAbbrs = getMonthNames(languageData);
-    var dayAbbrs = getDayAbbrvs(languageData);
+    const monthAbbrs = getMonthNames(languageData);
+    const dayAbbrs = getDayAbbrvs(languageData);
     $.datepicker.regional[`${language}`] = {
         monthNames: monthAbbrs,
         monthNamesShort: monthAbbrs,
@@ -110,7 +110,7 @@ function renderPreferencesWindow()
         $('#view').val(usersStyles['view']);
     }
 
-    $( function()
+    $(()=>
     {
         $( '#datepicker' ).datepicker({
             dateFormat: 'yy-mm-dd',
