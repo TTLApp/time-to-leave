@@ -47,7 +47,6 @@ cd time-to-leave
 ### Install dependencies
 
 ```bash
-npm ci
 npm install
 ```
 
@@ -143,6 +142,12 @@ npm run test:jest themes.js
 More information on jest settings available for use can be seen [on jest's docs](https://jestjs.io/docs/en/cli#running-from-the-command-line).
 
 Note: Although possible to run just a few tests, it's highly suggested that you run all tests when changing the code.
+
+## Adding new dependencies
+
+We are trying to keep exact versions in the package.json file so that every user that runs `npm install` gets similar results.
+`npm install --save` adds packages by default with a `^` notation, that indicates freedom to install versions above the specified.
+Thus, if you are adding a new dependency, you must use `npm install --save --save-exact` to add a specific version to the list of dependencies.
 
 ## Releasing
 
