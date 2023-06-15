@@ -3,7 +3,7 @@
 
   <p>কাজের সময় লগ ইন করুন এবং অফিস থেকে বেরিয়ে আসার সময় এবং বিজ্ঞাপন পান</p>
 
-  [timetoleave.app](https://timetoleave.app/)
+[timetoleave.app](https://timetoleave.app/)
 
   <br/>
 
