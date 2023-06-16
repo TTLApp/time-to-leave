@@ -64,8 +64,11 @@ describe('Notifications', function()
                 notification.close();
                 done();
             });
-            if (process.env.CI && process.platform === 'linux')
+            if (process.env.CI && (process.platform === 'linux' || process.platform === 'darwin'))
             {
+                // Linux/macos window notifications are not shown on CI
+                // so this is a way to emit the same event that actually happens.
+                // Timeout error is visible here https://github.com/thamara/time-to-leave/actions/runs/3488950409/jobs/5838419982
                 notification.emit('show', {
                     sender: {
                         title: 'Time to Leave'
