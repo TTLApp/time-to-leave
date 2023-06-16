@@ -124,6 +124,7 @@ function getEditMenuTemplate(mainWindow)
                 const dialogCoordinates = getDialogCoordinates(500, 620, mainWindow);
                 prefWindow = new BrowserWindow({ width: 500,
                     height: 620,
+                    minWidth: 480,
                     x: dialogCoordinates.x,
                     y: dialogCoordinates.y,
                     parent: mainWindow,
