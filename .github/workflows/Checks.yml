@@ -9,7 +9,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [macos-latest, ubuntu-20.04, windows-latest]
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -17,7 +17,7 @@ jobs:
           node-version: 14
       - name: '        Startup ChromeDriver and Display in Ubuntu'
         shell: bash
-        if: matrix.os == 'ubuntu-latest'
+        if: matrix.os == 'ubuntu-20.04'
         run: |
           export DISPLAY=:99
           # TODO: need to download driver according to electron's version
