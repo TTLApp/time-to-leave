@@ -9,6 +9,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        # Ubuntu is not ubuntu-latest as that is causing hangs in the CI
         os: [macos-latest, ubuntu-20.04, windows-latest]
     steps:
       - uses: actions/checkout@v1
