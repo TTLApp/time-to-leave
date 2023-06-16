@@ -32,7 +32,7 @@
     "pretest": "npm run clean",
     "start": "electron .",
     "test": "npm-run-all test:*",
-    "test:jest": "jest --runInBand --detectOpenHandles --verbose --colors",
+    "test:jest": "jest --runInBand --detectOpenHandles --verbose --colors --transformIgnorePatterns 'node_modules/(?!astronomia)/' -- ",
     "test:mocha": "nyc --reporter=lcov --reporter=json mocha tests/*",
     "setup:win": "npx electron-installer-windows --src ./release-builds/\"Time to Leave-win32-ia32\"/ --dest 'packages/' --verbose --exe \"Time to Leave.exe\""
   },
@@ -78,14 +78,5 @@
   "engines": {
     "node": ">=14.15.5",
     "yarn": "YARN NO LONGER USED - use npm instead."
-  },
-  "babel": {
-    "env": {
-      "test": {
-        "plugins": [
-          "@babel/plugin-transform-modules-commonjs"
-        ]
-      }
-    }
   }
 }
