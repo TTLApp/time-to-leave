@@ -12,10 +12,11 @@ jobs:
         # Ubuntu is not ubuntu-latest as that is causing hangs in the CI
         os: [macos-latest, ubuntu-20.04, windows-latest]
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 18
+          cache: 'npm'
       - name: '        Startup ChromeDriver and Display in Ubuntu'
         shell: bash
         if: matrix.os == 'ubuntu-20.04'
@@ -27,12 +28,15 @@ jobs:
           sudo chmod +x /tmp/chromedriver/chromedriver
           /tmp/chromedriver/chromedriver &
           sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
+      - name: '        Install Dependencies'
+        shell: bash
+        run: |
+          npm ci
       - name: '        Tests'
         shell: bash
         env:
           DISPLAY: ':99'
         run: |
-          npm ci
           npm run test:jest
       - name: '        Create COV_REPORT'
         run: |
@@ -41,7 +45,7 @@ jobs:
         run: |
           cp coverage_jest/coverage-final.json COV_REPORT/coverage-final-jest.json
       - name: '        CodeCov'
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: COV_REPORT/coverage-final-jest.json
