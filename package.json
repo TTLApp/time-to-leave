@@ -25,7 +25,7 @@
     "lint-fix:json": "npm run lint:json -- --write",
     "lint-fix:markdown": "npm run lint:markdown -- --write",
     "package:deb": "electron-packager . time-to-leave --overwrite --asar --platform=linux --arch=x64 --icon=assets/ttl.png --prune=true --out=release-builds --ignore=__tests__ --ignore=tests --ignore=scripts --ignore=Resources --ignore=website --ignore=release-builds --ignore=packages --ignore=coverage_jest --ignore=.nyc_output --ignore=__mocks__ --ignore=docs",
-    "package:mac": "electron-packager . 'Time to Leave' --overwrite --platform=darwin --arch=x64 --icon=assets/icon-mac.icns --prune=true --out=release-builds --ignore=__tests__ --ignore=tests --ignore=scripts --ignore=Resources --ignore=website --ignore=release-builds --ignore=packages --ignore=coverage_jest --ignore=.nyc_output --ignore=__mocks__ --ignore=docs",
+    "package:mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icon-mac.icns --prune=true --out=release-builds --ignore=__tests__ --ignore=tests --ignore=scripts --ignore=Resources --ignore=website --ignore=release-builds --ignore=packages --ignore=coverage_jest --ignore=.nyc_output --ignore=__mocks__ --ignore=docs",
     "package:win": "electron-packager . \"Time to Leave\" --overwrite --platform=win32 --arch=ia32 --icon=assets/ttl.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Time to Leave\" --ignore=__tests__ --ignore=tests --ignore=scripts --ignore=Resources --ignore=website --ignore=release-builds --ignore=packages --ignore=coverage_jest --ignore=.nyc_output --ignore=__mocks__ --ignore=docs",
     "preinstall": "npx npm-force-resolutions",
     "prepare": "husky install",
@@ -43,7 +43,7 @@
     "@jest-runner/electron": "3.0.0",
     "electron": "^11.5.0",
     "electron-mocha": "^10.1.0",
-    "electron-packager": "^15.4.0",
+    "electron-packager": "15.5.1",
     "electron-reloader": "^1.2.1",
     "eslint": "^7.32.0",
     "husky": "^8.0.3",
@@ -69,7 +69,8 @@
     "i18next-node-fs-backend": "^2.1.3",
     "is-online": "^9.0.1",
     "jquery": "^3.6.0",
-    "jquery-mousewheel": "^3.1.13"
+    "jquery-mousewheel": "^3.1.13",
+    "jsonfile": "6.1.0"
   },
   "engines": {
     "node": ">=14.15.5",
