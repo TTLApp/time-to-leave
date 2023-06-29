@@ -1,0 +1,43 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "Running pre-commit hook with lint checks."
+
+pids=""
+
+npm run clean > /dev/null &
+pids="$pids $!"
+
+get_changed_files()
+{
+    while read -d $'\0' file
+    do
+        echo ${file}
+    done < <(git diff --staged -z --name-only -- $@)
+}
+
+readarray -t changed_css < <(get_changed_files 'css/*.css')
+if [ ! -z "$changed_css" ]; then
+    npx stylelint -- "${changed_css[@]}" &
+    pids="$pids $!"
+fi
+
+readarray -t changed_js < <(get_changed_files '*/*.js')
+if [ ! -z "$changed_js" ]; then
+    npx eslint "${changed_js[@]}" &
+    pids="$pids $!"
+fi
+
+readarray -t changed_docs < <(get_changed_files 'locales/*/*.json' 'docs/*.md' '*.md')
+if [ ! -z "$changed_docs" ]; then
+    npx prettier -c "${changed_docs[@]}" &
+    pids="$pids $!"
+fi
+
+RESULT=0
+wait $pids || let "RESULT=1"
+
+if [ "$RESULT" == "1" ]; then
+    echo "One of the linters has identified formatting issues. Run 'npm run lint-fix' before committing."
+    exit 1
+fi
