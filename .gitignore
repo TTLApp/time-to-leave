@@ -112,3 +112,6 @@ website/.cache
 website/dist
 
 missing.md
+
+# Mac
+.DS_Store
