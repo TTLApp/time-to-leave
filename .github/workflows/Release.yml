@@ -25,7 +25,7 @@ jobs:
         echo ${{ env.APP_VERSION }}
     - name: 'Packing DMG...'
       if: success()
-      run: npx electron-installer-dmg 'release-builds/Time to Leave-darwin-x64/Time to Leave.app' time-to-leave --out 'packages/' --icon=assets/icon-mac.icns
+      run: npx electron-installer-dmg 'release-builds/Time to Leave-darwin-universal/Time to Leave.app' time-to-leave --out 'packages/' --icon=assets/icon-mac.icns
     - name: 'Release to GH'
       if: success()
       uses: ncipollo/release-action@v1
