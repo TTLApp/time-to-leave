@@ -25,7 +25,7 @@ jobs:
         echo ${{ env.APP_VERSION }}
     - name: 'Packing DMG...'
       if: success()
-      run: npx electron-installer-dmg 'release-builds/Time to Leave-darwin-universal/Time to Leave.app' time-to-leave --out 'packages/' --icon=assets/icon-mac.icns
+      run: npx electron-installer-dmg 'release-builds/Time to Leave-darwin-universal/Time to Leave.app' time-to-leave-${{ env.APP_VERSION }} --out 'packages/' --icon=assets/icon-mac.icns
     - name: 'Release to GH'
       if: success()
       uses: ncipollo/release-action@v1
@@ -58,6 +58,10 @@ jobs:
     - name: 'Packing DEB...'
       if: success()
       run: npx electron-installer-debian --src 'release-builds/time-to-leave-linux-x64/' --dest 'packages/' --arch amd64 --icon=assets/ttl.png --verbose
+    - name: 'Renaming DEB...'
+      if: success()
+      # Usual format is 'time-to-leave_2.0.1_amd64.deb'. Consistent expected name is 'time-to-leave-2.0.1-amd64.deb'
+      run: for file in packages/**.deb; do mv -- "$file" "${file//_/-}"; done
     - name: 'Release to GH'
       if: success()
       uses: ncipollo/release-action@v1
@@ -76,6 +80,10 @@ jobs:
       run: |
         sudo apt install -yqq rpm
         npx electron-installer-redhat --src 'release-builds/time-to-leave-linux-x64/' --dest 'packages/' --arch amd64 --icon=assets/ttl.png --verbose
+    - name: 'Renaming RPM...'
+      if: success()
+      # Usual format is 'time-to-leave-2.0.1-1.amd64.rpm'. Consistent expected name is 'time-to-leave-2.0.1-amd64.rpm'
+      run: for file in packages/**.rpm; do mv -- "$file" "${file//-1.amd64/-amd64}"; done
     - name: 'Release to GH'
       if: success()
       uses: ncipollo/release-action@v1
@@ -107,6 +115,13 @@ jobs:
     - name: 'Packing EXE, etc'
       if: success()
       run: npm run setup:win
+    - name: 'Renaming MSI & EXE...'
+      shell: pwsh
+      if: success()
+      # Usual format is 'TimeToLeaveInstaller.exe'. Consistent expected name is 'time-to-leave-2.0.1-installer.exe'
+      run: |
+        $newFileName = "packages/time-to-leave-${{ env.APP_VERSION }}-installer.exe"
+        Rename-Item -Path "packages/TimeToLeaveInstaller.exe" -NewName $newFileName
     - name: 'Release EXE to GH'
       if: success()
       uses: ncipollo/release-action@v1
