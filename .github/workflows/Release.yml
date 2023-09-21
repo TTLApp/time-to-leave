@@ -57,7 +57,7 @@ jobs:
         echo ${{ env.APP_VERSION }}
     - name: 'Packing DEB...'
       if: success()
-      run: npx electron-installer-debian --src 'release-builds/time-to-leave-linux-x64/' --dest 'packages/' --arch amd64 --verbose
+      run: npx electron-installer-debian --src 'release-builds/time-to-leave-linux-x64/' --dest 'packages/' --arch amd64 --icon=assets/ttl.png --verbose
     - name: 'Release to GH'
       if: success()
       uses: ncipollo/release-action@v1
@@ -75,7 +75,7 @@ jobs:
       if: success()
       run: |
         sudo apt install -yqq rpm
-        npx electron-installer-redhat --src 'release-builds/time-to-leave-linux-x64/' --dest 'packages/' --arch amd64 --verbose
+        npx electron-installer-redhat --src 'release-builds/time-to-leave-linux-x64/' --dest 'packages/' --arch amd64 --icon=assets/ttl.png --verbose
     - name: 'Release to GH'
       if: success()
       uses: ncipollo/release-action@v1
