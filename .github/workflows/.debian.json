@@ -1,6 +1,6 @@
 {
   "dest": "release-builds/",
-  "icon": "assets/ttl.png",
+  "icon": "assets/icon-deb.png",
   "categories": [
     "Utility"
   ],

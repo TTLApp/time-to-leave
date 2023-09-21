@@ -15,8 +15,8 @@ const appConfig = {
     macOS: macOS,
     win32: win32,
     appPath,
-    iconpath: path.join(__dirname, win32 ? '../assets/ttl.ico' : '../assets/ttl.png'),
-    trayIcon: path.join(__dirname, win32 ? '../assets/ttl.ico' : '../assets/ttl.png')
+    iconpath: path.join(__dirname, win32 ? '../assets/icon-win.ico' : '../assets/ttl.png'),
+    trayIcon: path.join(__dirname, win32 ? '../assets/icon-win.ico' : '../assets/ttl.png')
 };
 
 function getDetails()
