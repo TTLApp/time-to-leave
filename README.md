@@ -53,11 +53,43 @@ Log the time you started working today, and the program will compute what time y
 
 <img src="./docs/images/notification.jpg" alt="Time to Leave Notification">
 
+This is where the user will input the time they started work, and the time they intend on leaving.
+The data will be user inputted into the text boxes.
+They days worked icon is initially grey.
+If the user selects a day, this icon will turn purple.
+By default, all notification settings are turned on.
+The default time between notifications is 5 minutes.
+Any minimization buttons will be selected off by default.
+These allow the user to minimize the application.
+They will still be able to use the application in the background.
+A workday waiver is defined by days that the user did not work.
+They can self select whether to import this data.
+The data is self-selcted through the icon button to the right.
+A waived workday will be indicated by an X icon to the left of the day.
+After a user-selected time, they will be notified when they have met their time goals for the day.
+
+If their time goal criteria has been met, they will be notified of any such overage.
+They will also be notified that their time for the day is complete.
+
+
+
+
 You can control the preferences, stating your working days, how many hours you work a day and if you want to receive a notification or not.
+
+The icon with an alarm clock indicates if you have a preference for a notification.
+The icon with a refresh symbol indicates if there are any updates.
+The icon with the silverware indicates the user selected preference for a selected break time.
+
 
 <img src="./docs/images/preferences.jpg" alt="Time to Leave Preferences">
 
 You can also add waivers on the days you did not work.
+In the text boxes, users can input what days they worked. 
+This will allow the application to determine all days, including days not worked.
+In the language button, the user can select their language preference.
+In the play button, the user can select if the program should run when the application is started.
+In the balance start date, the user can indicate when they first started their journey into the office.
+In the eye button, users will see if views are sorted by days, weeks or months.
 
 <img src="./docs/images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
