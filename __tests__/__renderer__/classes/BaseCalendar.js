@@ -267,6 +267,8 @@ describe('BaseCalendar.js', () =>
 
     describe('punchDate()', () =>
     {
+        const workAllDayPreferences = ({...getUserPreferences(), 'working-days-saturday': true,
+            'working-days-sunday': true});
         const today = new Date();
         const nextYear = new Date();
         nextYear.setFullYear(today.getFullYear() + 1);
@@ -322,7 +324,8 @@ describe('BaseCalendar.js', () =>
                 date: new Date(),
                 getCalendar: () =>
                 {
-                    const calendar = new ExtendedClass(getUserPreferences(), languageData);
+                    // Setting all days as work days so test works every day
+                    const calendar = new ExtendedClass(workAllDayPreferences, languageData);
                     return calendar;
                 },
                 expect: () =>
@@ -352,7 +355,8 @@ describe('BaseCalendar.js', () =>
                 date: new Date(),
                 getCalendar: () =>
                 {
-                    const calendar = new ExtendedClass(getUserPreferences(), languageData);
+                    // Setting all days as work days so test works every day
+                    const calendar = new ExtendedClass(workAllDayPreferences, languageData);
                     return calendar;
                 },
                 expect: () =>
