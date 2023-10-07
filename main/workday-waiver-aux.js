@@ -60,27 +60,48 @@ function InitHolidays(country, state, city)
         hd.init(country);
     }
 }
+
+function getAllHolidays(country, state, city, year)
+{
+    InitHolidays(country, state, city);
+    return hd.getHolidays(year);
+}
+
+function getCountries()
+{
+    return hd.getCountries();
+}
+
+function getStates(country)
+{
+    return hd.getStates(country);
+}
+
+function getRegions(country, state)
+{
+    return hd.getRegions(country, state);
+}
+
 function setupWorkdayHolidaysHandlers()
 {
     ipcMain.handle('GET_HOLIDAYS', (_event, country, state, city, year) =>
     {
-        InitHolidays(country, state, city);
-        return hd.getHolidays(year);
+        return getAllHolidays(country, state, city, year);
     });
 
     ipcMain.handle('GET_COUNTRIES', () =>
     {
-        return hd.getCountries();
+        return getCountries();
     });
 
     ipcMain.handle('GET_STATES', (_event, country) =>
     {
-        return hd.getStates(country);
+        return getStates(country);
     });
 
     ipcMain.handle('GET_REGIONS', (_event, country, state) =>
     {
-        return hd.getRegions(country, state);
+        return getRegions(country, state);
     });
 }
 
@@ -93,5 +114,9 @@ function setupWorkdayWaiverHandlers()
 }
 
 module.exports = {
+    getAllHolidays,
+    getCountries,
+    getRegions,
+    getStates,
     setupWorkdayWaiverHandlers
 };

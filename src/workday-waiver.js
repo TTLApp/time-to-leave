@@ -194,65 +194,57 @@ function deleteEntryOnClick(event)
     });
 }
 
-function populateCountry()
+async function populateCountry()
 {
     $('#country').empty();
     $('#country').append($('<option></option>').val('--').html('--'));
-    window.mainApi.getCountries().then((countries) =>
+    const countries = await window.mainApi.getCountries();
+    $.each(countries, function(i, p)
     {
-        $.each(countries, function(i, p)
-        {
-            $('#country').append($('<option></option>').val(i).html(p));
-        });
-    }
-    );
+        $('#country').append($('<option></option>').val(i).html(p));
+    });
 }
 
-function populateState(country)
+async function populateState(country)
 {
-    window.mainApi.getStates(country).then((states) =>
+    const states = await window.mainApi.getStates(country);
+    if (states)
     {
-        if (states)
+        $('#state').empty();
+        $('#state').append($('<option></option>').val('--').html('--'));
+        $.each(states, function(i, p)
         {
-            $('#state').empty();
-            $('#state').append($('<option></option>').val('--').html('--'));
-            $.each(states, function(i, p)
-            {
-                $('#state').append($('<option></option>').val(i).html(p));
-            });
-            $('#state').show();
-            $('#holiday-state').show();
-        }
-        else
-        {
-            $('#state').hide();
-            $('#holiday-state').hide();
-        }
+            $('#state').append($('<option></option>').val(i).html(p));
+        });
+        $('#state').show();
+        $('#holiday-state').show();
     }
-    );
+    else
+    {
+        $('#state').hide();
+        $('#holiday-state').hide();
+    }
 }
-function populateCity(country, state)
+
+async function populateCity(country, state)
 {
-    window.mainApi.getRegions(country, state).then((regions) =>
+    const regions = await window.mainApi.getRegions(country, state);
+    if (regions)
     {
-        if (regions)
+        $('#city').empty();
+        $('#city').append($('<option></option>').val('--').html('--'));
+        $.each(regions, function(i, p)
         {
-            $('#city').empty();
-            $('#city').append($('<option></option>').val('--').html('--'));
-            $.each(regions, function(i, p)
-            {
-                $('#city').append($('<option></option>').val(i).html(p));
-            });
-            $('#city').show();
-            $('#holiday-city').show();
-        }
-        else
-        {
-            $('#city').hide();
-            $('#holiday-city').hide();
-        }
+            $('#city').append($('<option></option>').val(i).html(p));
+        });
+        $('#city').show();
+        $('#holiday-city').show();
     }
-    );
+    else
+    {
+        $('#city').hide();
+        $('#holiday-city').hide();
+    }
 }
 
 function populateYear()
@@ -395,15 +387,15 @@ async function addHolidaysAsWaiver()
     await iterateOnHolidays(addHoliday);
 
     //clear data from table and return the configurations to default
-    initializeHolidayInfo();
+    await initializeHolidayInfo();
     window.mainApi.showAlert(getTranslation('$WorkdayWaiver.loaded-waivers-holidays'));
 }
 
-function initializeHolidayInfo()
+async function initializeHolidayInfo()
 {
     toggleAddButton('holiday-button', false);
     populateYear();
-    populateCountry();
+    await populateCountry();
     $('#holiday-list-table').hide();
     $('#state').hide();
     $('#holiday-state').hide();
@@ -444,18 +436,18 @@ $(async() =>
         await addHolidaysAsWaiver();
     });
 
-    initializeHolidayInfo();
-    $('#country').on('change', function()
+    await initializeHolidayInfo();
+    $('#country').on('change', async function()
     {
         $('#state').val([]);
         $('#city').val([]);
-        populateState($(this).find(':selected').val());
+        await populateState($(this).find(':selected').val());
         loadHolidaysTable();
     });
-    $('#state').on('change', function()
+    $('#state').on('change', async function()
     {
         $('#city').val([]);
-        populateCity($('#country').find(':selected').val(), $(this).find(':selected').val());
+        await populateCity($('#country').find(':selected').val(), $(this).find(':selected').val());
         loadHolidaysTable();
     });
     $('#city').on('change', function()

@@ -30,6 +30,12 @@ const {
 } = require('../../src/workday-waiver');
 import { showDialogSync } from '../../js/window-aux.js';
 const { workdayWaiverApi } = require('../../renderer/preload-scripts/workday-waiver-api.js');
+const {
+    getAllHolidays,
+    getCountries,
+    getRegions,
+    getStates
+} = require('../../main/workday-waiver-aux.js');
 
 jest.mock('../../renderer/i18n-translator.js', () => ({
     translatePage: jest.fn().mockReturnThis(),
@@ -58,6 +64,38 @@ window.mainApi.deleteWaiver = (key) =>
     {
         waiverStore.delete(key);
         resolve(true);
+    });
+};
+
+window.mainApi.getHolidays = (country, state, city, year) =>
+{
+    return new Promise((resolve) =>
+    {
+        resolve(getAllHolidays(country, state, city, year));
+    });
+};
+
+window.mainApi.getCountries = () =>
+{
+    return new Promise((resolve) =>
+    {
+        resolve(getCountries());
+    });
+};
+
+window.mainApi.getStates = (country) =>
+{
+    return new Promise((resolve) =>
+    {
+        resolve(getStates(country));
+    });
+};
+
+window.mainApi.getRegions = (country, state) =>
+{
+    return new Promise((resolve) =>
+    {
+        resolve(getRegions(country, state));
     });
 };
 
@@ -244,47 +282,47 @@ describe('Test Workday Waiver Window', function()
             await prepareMockup();
         });
 
-        test('Country was populated', () =>
+        test('Country was populated', async() =>
         {
-            const countiesLength = Object.keys(hd.getCountries()).length;
+            const countriesLength = Object.keys(hd.getCountries()).length;
             expect($('#country option').length).toBe(0);
-            populateCountry();
-            expect($('#country option').length).toBe(countiesLength + 1);
+            await populateCountry();
+            expect($('#country option').length).toBe(countriesLength + 1);
         });
 
-        test('States was populated', () =>
+        test('States was populated', async() =>
         {
             const statesLength = Object.keys(hd.getStates('US')).length;
             expect($('#state option').length).toBe(0);
-            populateState('US');
+            await populateState('US');
             expect($('#state option').length).toBe(statesLength + 1);
             expect($('#state').css('display')).toBe('inline-block');
             expect($('#holiday-state').css('display')).toBe('table-row');
         });
 
-        test('States was not populated', () =>
+        test('States was not populated', async() =>
         {
             expect($('#state option').length).toBe(0);
-            populateState('CN');
+            await populateState('CN');
             expect($('#state option').length).toBe(0);
             expect($('#state').css('display')).toBe('none');
             expect($('#holiday-state').css('display')).toBe('none');
         });
 
-        test('City was populated', () =>
+        test('City was populated', async() =>
         {
             const regionsLength = Object.keys(hd.getRegions('US', 'CA')).length;
             expect($('#city option').length).toBe(0);
-            populateCity('US', 'CA');
+            await populateCity('US', 'CA');
             expect($('#city option').length).toBe(regionsLength + 1);
             expect($('#city').css('display')).toBe('inline-block');
             expect($('#holiday-city').css('display')).toBe('table-row');
         });
 
-        test('City was not populated', () =>
+        test('City was not populated', async() =>
         {
             expect($('#city option').length).toBe(0);
-            populateCity('US', 'AL');
+            await populateCity('US', 'AL');
             expect($('#city option').length).toBe(0);
             expect($('#city').css('display')).toBe('none');
             expect($('#holiday-city').css('display')).toBe('none');
@@ -316,33 +354,36 @@ describe('Test Workday Waiver Window', function()
             await prepareMockup();
         });
 
-        test('Get holidays with no country', () =>
+        test('Get holidays with no country', async() =>
         {
             $('#year').append($('<option selected></option>').val(year).html(year));
             expect($('#year option').length).toBe(1);
-            expect(getHolidays()).toEqual([]);
+            const holidays = await getHolidays();
+            expect(holidays).toEqual([]);
         });
 
-        test('Get country holidays', () =>
+        test('Get country holidays', async() =>
         {
             $('#year').append($('<option selected></option>').val(year).html(year));
             $('#country').append($('<option selected></option>').val(country).html(country));
             expect($('#country option').length).toBe(1);
             hd.init(country);
-            expect(getHolidays()).toEqual(hd.getHolidays(year));
+            const holidays = await getHolidays();
+            expect(holidays).toEqual(hd.getHolidays(year));
         });
 
-        test('Get country with state holidays', () =>
+        test('Get country with state holidays', async() =>
         {
             $('#year').append($('<option selected></option>').val(year).html(year));
             $('#country').append($('<option selected></option>').val(country).html(country));
             $('#state').append($('<option selected></option>').val(state).html(state));
             expect($('#state option').length).toBe(1);
             hd.init(country, state);
-            expect(getHolidays()).toEqual(hd.getHolidays(year));
+            const holidays = await getHolidays();
+            expect(holidays).toEqual(hd.getHolidays(year));
         });
 
-        test('Get country with state and city holidays', () =>
+        test('Get country with state and city holidays', async() =>
         {
             $('#year').append($('<option selected></option>').val(year).html(year));
             $('#country').append($('<option selected></option>').val(country).html(country));
@@ -350,7 +391,8 @@ describe('Test Workday Waiver Window', function()
             $('#city').append($('<option selected></option>').val(city).html(city));
             expect($('#state option').length).toBe(1);
             hd.init(country, state, city);
-            expect(getHolidays()).toEqual(hd.getHolidays(year));
+            const holidays = await getHolidays();
+            expect(holidays).toEqual(hd.getHolidays(year));
         });
     });
 
@@ -365,14 +407,15 @@ describe('Test Workday Waiver Window', function()
             await prepareMockup();
         });
 
-        test('Iterate on holidays', () =>
+        test('Iterate on holidays', async() =>
         {
             $('#year').append($('<option selected></option>').val(year).html(year));
             $('#country').append($('<option selected></option>').val(country).html(country));
             $('#state').append($('<option selected></option>').val(state).html(state));
-            const holidaysLength = getHolidays().length;
+            const holidays = await getHolidays();
+            const holidaysLength = holidays.length;
             const mockCallback = jest.fn();
-            iterateOnHolidays(mockCallback);
+            await iterateOnHolidays(mockCallback);
             expect(mockCallback).toBeCalledTimes(holidaysLength);
         });
 
@@ -382,18 +425,19 @@ describe('Test Workday Waiver Window', function()
             $('#country').append($('<option selected></option>').val(country).html(country));
             $('#state').append($('<option selected></option>').val(state).html(state));
             await loadHolidaysTable();
-            const holidaysLength = getHolidays().length;
+            const holidays = await getHolidays();
+            const holidaysLength = holidays.length;
             const rowLength = $('#holiday-list-table tbody tr').length;
             expect($('#holiday-list-table').css('display')).toBe('table');
             expect(holidaysLength).toBe(rowLength);
         });
 
-        test('Holiday info initialize', () =>
+        test('Holiday info initialize', async() =>
         {
             $('#year').append($('<option selected></option>').val(year).html(year));
             $('#country').append($('<option selected></option>').val(country).html(country));
             $('#state').append($('<option selected></option>').val(state).html(state));
-            initializeHolidayInfo();
+            await initializeHolidayInfo();
             expect($('#holiday-list-table').css('display')).toBe('none');
             expect($('#state').css('display')).toBe('none');
             expect($('#holiday-state').css('display')).toBe('none');
