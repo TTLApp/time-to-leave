@@ -4,15 +4,12 @@ const { ipcRenderer } = require('electron');
 import * as config from '../../src/configs/app.config.js';
 import { getUserPreferencesPromise, showDay } from '../../js/user-preferences.js';
 
-const Holidays = require('date-holidays');
-const hd = new Holidays();
-
-function getLanguageDataPromise()
+function getLanguageData()
 {
     return ipcRenderer.invoke('GET_LANGUAGE_DATA');
 }
 
-function getWaiverDayPromise()
+function getWaiverDay()
 {
     return ipcRenderer.invoke('GET_WAIVER_DAY');
 }
@@ -30,39 +27,6 @@ function showDialogSync(dialogOptions)
 function showDayByPreferences(year, month, day, preferences)
 {
     return showDay(year, month, day, preferences);
-}
-
-function getHolidays(country, state, city, year)
-{
-    if (state !== undefined && city !== undefined)
-    {
-        hd.init(country, state, city);
-    }
-    else if (state !== undefined && state !== '--' )
-    {
-        hd.init(country, state);
-    }
-    else
-    {
-        hd.init(country);
-    }
-
-    return hd.getHolidays(year);
-}
-
-function getCountries()
-{
-    return hd.getCountries();
-}
-
-function getStates(country)
-{
-    return hd.getStates(country);
-}
-
-function getRegions(country, state)
-{
-    return hd.getRegions(country, state);
 }
 
 function getWaiverStoreContents()
@@ -85,11 +49,31 @@ function deleteWaiver(key)
     return ipcRenderer.invoke('DELETE_WAIVER', key);
 }
 
+function getHolidays(country, state, city, year)
+{
+    return ipcRenderer.invoke('GET_HOLIDAYS', country, state, city, year);
+}
+
+function getCountries()
+{
+    return ipcRenderer.invoke('GET_COUNTRIES');
+}
+
+function getStates(country)
+{
+    return ipcRenderer.invoke('GET_STATES', country);
+}
+
+function getRegions(country, state)
+{
+    return ipcRenderer.invoke('GET_REGIONS', country, state);
+}
+
 const workdayWaiverApi = {
     getLanguageMap: () => config.getLanguageMap(),
-    getUserPreferencesPromise: () => getUserPreferencesPromise(),
-    getLanguageDataPromise: () => getLanguageDataPromise(),
-    getWaiverDayPromise: () => getWaiverDayPromise(),
+    getUserPreferences: () => getUserPreferencesPromise(),
+    getLanguageData: () => getLanguageData(),
+    getWaiverDay: () => getWaiverDay(),
     showAlert: (alertMessage) => showAlert(alertMessage),
     showDialogSync: (dialogOptions) => showDialogSync(dialogOptions),
     showDay: (year, month, day, userPreferences) => showDayByPreferences(year, month, day, userPreferences),

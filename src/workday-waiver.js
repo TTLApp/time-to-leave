@@ -180,7 +180,7 @@ function deleteEntryOnClick(event)
         type: 'info',
         buttons: [getTranslation('$WorkdayWaiver.yes'), getTranslation('$WorkdayWaiver.no')]
     };
-    window.mainApi.showDialogSync(options).then(async (result) =>
+    window.mainApi.showDialogSync(options).then(async(result) =>
     {
         const buttonId = result.response;
         if (buttonId === 1)
@@ -198,51 +198,61 @@ function populateCountry()
 {
     $('#country').empty();
     $('#country').append($('<option></option>').val('--').html('--'));
-    $.each(window.mainApi.getCountries(), function(i, p)
+    window.mainApi.getCountries().then((countries) =>
     {
-        $('#country').append($('<option></option>').val(i).html(p));
-    });
+        $.each(countries, function(i, p)
+        {
+            $('#country').append($('<option></option>').val(i).html(p));
+        });
+    }
+    );
 }
 
 function populateState(country)
 {
-    const states = window.mainApi.getStates(country);
-    if (states)
+    window.mainApi.getStates(country).then((states) =>
     {
-        $('#state').empty();
-        $('#state').append($('<option></option>').val('--').html('--'));
-        $.each(states, function(i, p)
+        if (states)
         {
-            $('#state').append($('<option></option>').val(i).html(p));
-        });
-        $('#state').show();
-        $('#holiday-state').show();
+            $('#state').empty();
+            $('#state').append($('<option></option>').val('--').html('--'));
+            $.each(states, function(i, p)
+            {
+                $('#state').append($('<option></option>').val(i).html(p));
+            });
+            $('#state').show();
+            $('#holiday-state').show();
+        }
+        else
+        {
+            $('#state').hide();
+            $('#holiday-state').hide();
+        }
     }
-    else
-    {
-        $('#state').hide();
-        $('#holiday-state').hide();
-    }
+    );
 }
 function populateCity(country, state)
 {
-    const regions = window.mainApi.getRegions(country, state);
-    if (regions)
+    window.mainApi.getRegions(country, state).then((regions) =>
     {
-        $('#city').empty();
-        $('#city').append($('<option></option>').val('--').html('--'));
-        $.each(regions, function(i, p)
+        if (regions)
         {
-            $('#city').append($('<option></option>').val(i).html(p));
-        });
-        $('#city').show();
-        $('#holiday-city').show();
+            $('#city').empty();
+            $('#city').append($('<option></option>').val('--').html('--'));
+            $.each(regions, function(i, p)
+            {
+                $('#city').append($('<option></option>').val(i).html(p));
+            });
+            $('#city').show();
+            $('#holiday-city').show();
+        }
+        else
+        {
+            $('#city').hide();
+            $('#holiday-city').hide();
+        }
     }
-    else
-    {
-        $('#city').hide();
-        $('#holiday-city').hide();
-    }
+    );
 }
 
 function populateYear()
@@ -265,7 +275,7 @@ function getHolidays()
     const country = $('#country').find(':selected') ? $('#country').find(':selected').val() : undefined;
     if (country === undefined)
     {
-        return [];
+        return new Promise((resolve) => { return resolve([]); });
     }
 
     const state = $('#state').find(':selected') ? $('#state').find(':selected').val() : undefined;
@@ -276,7 +286,7 @@ function getHolidays()
 
 async function iterateOnHolidays(func)
 {
-    const holidays = getHolidays();
+    const holidays = await getHolidays();
 
     for (const holiday of holidays)
     {
@@ -348,7 +358,7 @@ async function loadHolidaysTable()
 
     // Fill in reasons to check for conflicts
     const store = await window.mainApi.getWaiverStoreContents();
-    let reasonByDate = {};
+    const reasonByDate = {};
     for (const elem of Object.entries(store))
     {
         const date = elem[0];
@@ -405,13 +415,13 @@ function initializeHolidayInfo()
     clearHolidayTable();
 }
 
-$(async () =>
+$(async() =>
 {
-    userPreferences = await window.mainApi.getUserPreferencesPromise();
+    userPreferences = await window.mainApi.getUserPreferences();
     applyTheme(userPreferences.theme);
 
-    const waiverDay = await window.mainApi.getWaiverDayPromise();
-    languageData = await window.mainApi.getLanguageDataPromise();
+    const waiverDay = await window.mainApi.getWaiverDay();
+    languageData = await window.mainApi.getLanguageData();
 
     setDates(waiverDay);
     setHours(userPreferences['hours-per-day']);
@@ -429,7 +439,7 @@ $(async () =>
         addWaiver();
     });
 
-    $('#holiday-button').on('click', async () =>
+    $('#holiday-button').on('click', async() =>
     {
         await addHolidaysAsWaiver();
     });
@@ -437,11 +447,14 @@ $(async () =>
     initializeHolidayInfo();
     $('#country').on('change', function()
     {
+        $('#state').val([]);
+        $('#city').val([]);
         populateState($(this).find(':selected').val());
         loadHolidaysTable();
     });
     $('#state').on('change', function()
     {
+        $('#city').val([]);
         populateCity($('#country').find(':selected').val(), $(this).find(':selected').val());
         loadHolidaysTable();
     });

@@ -43,15 +43,19 @@ window.mainApi = workdayWaiverApi;
 
 // Mocking with the actual access to store that main would have
 window.mainApi.getWaiverStoreContents = () => { return new Promise((resolve) => resolve(waiverStore.store)); };
-window.mainApi.setWaiver = (key, contents) => {
-    return new Promise((resolve) => {
+window.mainApi.setWaiver = (key, contents) =>
+{
+    return new Promise((resolve) =>
+    {
         waiverStore.set(key, contents);
         resolve(true);
     });
 };
 window.mainApi.hasWaiver = (key) => { return new Promise((resolve) => resolve(waiverStore.has(key))); };
-window.mainApi.deleteWaiver = (key) =>{
-    return new Promise((resolve) => {
+window.mainApi.deleteWaiver = (key) =>
+{
+    return new Promise((resolve) =>
+    {
         waiverStore.delete(key);
         resolve(true);
     });
@@ -94,7 +98,7 @@ describe('Test Workday Waiver Window', function()
 
     describe('Adding new waivers update the db and the page', function()
     {
-        beforeEach(async () =>
+        beforeEach(async() =>
         {
             await prepareMockup();
         });
@@ -147,14 +151,14 @@ describe('Test Workday Waiver Window', function()
             expect(isSorted).toBe(true);
 
         });
-        test('Time is not valid', async () =>
+        test('Time is not valid', async() =>
         {
             $('#hours').val('not a time');
             const waiver = await addWaiver();
             expect(waiver).toBeFalsy();
         });
 
-        test('End date less than start date', async () =>
+        test('End date less than start date', async() =>
         {
             setHours('08:00');
             $('#start-date').val('2020-07-20');
@@ -163,14 +167,14 @@ describe('Test Workday Waiver Window', function()
             expect(waiver).toBeFalsy();
         });
 
-        test('Add waiver with the same date', async () =>
+        test('Add waiver with the same date', async() =>
         {
             addTestWaiver('2020-07-16', 'some reason');
             const waiver = await addTestWaiver('2020-07-16', 'some reason');
             expect(waiver).toBeFalsy();
         });
 
-        test('Range does not contain any working day', async () =>
+        test('Range does not contain any working day', async() =>
         {
             const waiver = await addTestWaiver('2020-13-01', 'some reason');
             expect(waiver).toBeFalsy();
@@ -216,7 +220,7 @@ describe('Test Workday Waiver Window', function()
 
     describe('Delete waiver', () =>
     {
-        test('Waiver was deleted', async () =>
+        test('Waiver was deleted', async() =>
         {
             await prepareMockup();
             addTestWaiver('2020-07-16', 'some reason');
@@ -235,7 +239,7 @@ describe('Test Workday Waiver Window', function()
     {
         const hd = new Holidays();
 
-        beforeEach(async () =>
+        beforeEach(async() =>
         {
             await prepareMockup();
         });
@@ -307,7 +311,7 @@ describe('Test Workday Waiver Window', function()
         const state = 'CA';
         const city = 'LA';
 
-        beforeEach(async () =>
+        beforeEach(async() =>
         {
             await prepareMockup();
         });
@@ -356,7 +360,7 @@ describe('Test Workday Waiver Window', function()
         const country = 'US';
         const state = 'CA';
 
-        beforeEach(async () =>
+        beforeEach(async() =>
         {
             await prepareMockup();
         });
@@ -372,7 +376,7 @@ describe('Test Workday Waiver Window', function()
             expect(mockCallback).toBeCalledTimes(holidaysLength);
         });
 
-        test('Load holidays table', async () =>
+        test('Load holidays table', async() =>
         {
             $('#year').append($('<option selected></option>').val(year).html(year));
             $('#country').append($('<option selected></option>').val(country).html(country));
@@ -400,7 +404,7 @@ describe('Test Workday Waiver Window', function()
 
     describe('Add holiday to list', () =>
     {
-        beforeEach(async () =>
+        beforeEach(async() =>
         {
             await prepareMockup();
         });
@@ -429,7 +433,7 @@ describe('Test Workday Waiver Window', function()
 
     describe('Clearing the table', () =>
     {
-        beforeEach(async () =>
+        beforeEach(async() =>
         {
             await prepareMockup();
             addTestWaiver('2020-07-20', 'some other reason');

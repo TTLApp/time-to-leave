@@ -10,7 +10,6 @@ const { handleSquirrelEvent } = require('./js/squirrel.js');
 const { showAlert, showDialogSync } = require('./js/window-aux.js');
 
 import { appConfig } from './js/app-config.js';
-import { setupWorkdayWaiverStore } from './main/workday-waiver-aux.js';
 
 if (appConfig.win32)
 {
@@ -135,7 +134,6 @@ app.on('ready', () =>
         }
         createWindow();
         createMenu();
-        setupWorkdayWaiverStore();
         setLanguageChangedCallback(createMenu);
         triggerStartupDialogs();
         setInterval(refreshOnDayChange, 60 * 60 * 1000);
