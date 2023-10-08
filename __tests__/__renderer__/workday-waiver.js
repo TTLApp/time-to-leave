@@ -476,7 +476,7 @@ describe('Test Workday Waiver Window', function()
             const secondCell = table.find('td')[1].innerHTML;
             const thirdCell = table.find('td')[2].innerHTML;
             const fourthCell = table.find('td')[4].innerHTML;
-            const fourthCellContent = `<label class="switch"><input type="checkbox" checked="${conflicts || workingDay === 'No' ? '' : 'checked'}" name="import-${day}" id="import-${day}"><span class="slider round"></span></label>`;
+            const fourthCellContent = `<label class="switch"><input type="checkbox" checked="" name="import-${day}" id="import-${day}"><span class="slider round"></span></label>`;
             expect(firstCell).toBe(day);
             expect(secondCell).toBe(reason);
             expect(thirdCell).toBe('undefined');
@@ -497,7 +497,7 @@ describe('Test Workday Waiver Window', function()
             const secondCell = table.find('td')[1].innerHTML;
             const thirdCell = table.find('td')[2].innerHTML;
             const fourthCell = table.find('td')[4].innerHTML;
-            const fourthCellContent = `<label class="switch"><input type="checkbox" checked="${conflicts || workingDay === 'No' ? '' : 'checked'}" name="import-${day}" id="import-${day}"><span class="slider round"></span></label>`;
+            const fourthCellContent = `<label class="switch"><input type="checkbox" name="import-${day}" id="import-${day}"><span class="slider round"></span></label>`;
             expect(firstCell).toBe(day);
             expect(secondCell).toBe(reason);
             expect(thirdCell).toBe(workingDay);
@@ -519,7 +519,7 @@ describe('Test Workday Waiver Window', function()
             const thirdCell = table.find('td')[2].innerHTML;
             const conflictsCell = table.find('td')[3].innerHTML;
             const fourthCell = table.find('td')[4].innerHTML;
-            const fourthCellContent = `<label class="switch"><input type="checkbox" checked="${conflicts || workingDay === 'No' ? '' : 'checked'}" name="import-${day}" id="import-${day}"><span class="slider round"></span></label>`;
+            const fourthCellContent = `<label class="switch"><input type="checkbox" name="import-${day}" id="import-${day}"><span class="slider round"></span></label>`;
             expect(firstCell).toBe(day);
             expect(secondCell).toBe(reason);
             expect(thirdCell).toBe(workingDay);

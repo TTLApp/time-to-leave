@@ -314,7 +314,7 @@ function addHolidayToList(day, reason, workingDay, conflicts)
     if (conflicts)
         $(row.cells[3]).addClass('text-danger');
     conflictsCell.innerHTML = conflicts;
-    importCell.innerHTML = `<label class="switch"><input type="checkbox" checked="${conflicts || workingDay === 'No' ? '' : 'checked'}" name="import-${day}" id="import-${day}"><span class="slider round"></span></label>`;
+    importCell.innerHTML = `<label class="switch"><input type="checkbox" ${conflicts || workingDay === 'No' ? ' ' : 'checked=""'} name="import-${day}" id="import-${day}"><span class="slider round"></span></label>`;
 }
 
 function clearHolidayTable()
