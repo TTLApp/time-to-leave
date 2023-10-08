@@ -33,7 +33,7 @@
     "postinstall": "patch-package",
     "start": "electron .",
     "test": "npm-run-all test:*",
-    "test:jest": "jest --runInBand --detectOpenHandles --verbose --colors --transformIgnorePatterns 'node_modules/(?!astronomia)/' -- ",
+    "test:jest": "jest --runInBand --detectOpenHandles --colors --transformIgnorePatterns 'node_modules/(?!astronomia)/' -- ",
     "test:mocha": "nyc --reporter=lcov --reporter=json mocha tests/*",
     "setup:win": "node scripts/create_windows_installer.js"
   },
