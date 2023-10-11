@@ -12,7 +12,7 @@ const dialog = (electron || electron.remote).dialog;
 function showDialogSync(options)
 {
     options['title'] = options['title'] || 'Time to Leave';
-    return dialog.showMessageBox(BrowserWindow.getFocusedWindow(), options)
+    return dialog.showMessageBox(BrowserWindow.getFocusedWindow(), options);
 }
 
 /**

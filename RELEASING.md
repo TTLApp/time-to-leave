@@ -10,6 +10,7 @@ First, make sure the `changelog.md` displays the correct new version (`## X.Y.Z 
 This will trigger the release action which creates a draft for the release notes.
 
 If something goes wrong:
+
 1. Delete tag locally: `git tag --delete stable/v3.0.0`
 2. Delete tag on remote: `git push --delete origin stable/v3.0.0`
 

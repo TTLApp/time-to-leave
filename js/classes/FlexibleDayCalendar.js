@@ -20,16 +20,16 @@ const { BrowserWindow, dialog } = remote;
  * @param {Object.<string, any>} options
  * @param {function} successCallback
  */
- function showDialog(options, successCallback)
- {
-     options['title'] = options['title'] || 'Time to Leave';
-     dialog.showMessageBox(BrowserWindow.getFocusedWindow(), options)
-         .then(successCallback)
-         .catch(err =>
-         {
-             console.log(err);
-         });
- }
+function showDialog(options, successCallback)
+{
+    options['title'] = options['title'] || 'Time to Leave';
+    dialog.showMessageBox(BrowserWindow.getFocusedWindow(), options)
+        .then(successCallback)
+        .catch(err =>
+        {
+            console.log(err);
+        });
+}
 ////
 
 class FlexibleDayCalendar extends BaseCalendar
