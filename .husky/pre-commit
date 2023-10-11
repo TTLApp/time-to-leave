@@ -13,7 +13,7 @@ get_changed_files()
     while read -d $'\0' file
     do
         echo ${file}
-    done < <(git diff --staged -z --name-only -- $@)
+    done < <(git diff --staged -z --name-only -- "$@")
 }
 
 readarray -t changed_css < <(get_changed_files 'css/*.css')
