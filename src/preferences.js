@@ -69,6 +69,46 @@ function changeValue(type, newVal)
     window.mainApi.notifyNewPreferences(preferences);
 }
 
+function convertTimeFormat(entry)
+{
+    const colonIdx = entry.indexOf(':');
+    const containsColon = colonIdx !== -1;
+    const periodIdx = entry.indexOf('.');
+    const containsPeriod = periodIdx !== -1;
+    const singleStartDigit = (containsColon && colonIdx <= 1) || (containsPeriod && periodIdx <= 1);
+    if (containsColon)
+    {
+        /* istanbul ignore else */
+        if (singleStartDigit)
+        {
+            entry = '0'.concat(entry);
+        }
+    }
+    else if (containsPeriod)
+    {
+        let minutes = parseFloat('0'.concat(entry.substring(periodIdx)));
+        minutes *= 60;
+        minutes = Math.floor(minutes).toString();
+        minutes = minutes.length < 2 ? '0'.concat(minutes) : minutes.substring(0, 2);
+        entry = entry.substring(0, periodIdx).concat(':').concat(minutes);
+        /* istanbul ignore else */
+        if (singleStartDigit)
+        {
+            entry = '0'.concat(entry);
+        }
+    }
+    else
+    {
+        /* istanbul ignore else */
+        if (entry.length < 2)
+        {
+            entry = '0'.concat(entry);
+        }
+        entry = entry.concat(':00');
+    }
+    return entry;
+}
+
 function renderPreferencesWindow()
 {
     // Theme-handling should be towards the top. Applies theme early so it's more natural.
@@ -101,7 +141,9 @@ function renderPreferencesWindow()
         /* istanbul ignore else */
         if (this.checkValidity() === true)
         {
-            changeValue(this.name, this.value);
+            const entry = convertTimeFormat(this.value);
+            this.value = entry;
+            changeValue(this.name, entry);
         }
     });
 
