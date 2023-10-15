@@ -16,14 +16,12 @@
         "ecmaFeatures": {
             "jsx": true
         },
-        "ecmaVersion": 2018,
+        "ecmaVersion": 2020,
         "sourceType": "module"
     },
     "rules": {
         "block-spacing": "error",
-        "eqeqeq": [
-            "error", "always"
-        ],
+        "eqeqeq": ["error", "always"],
         "brace-style": [
             "error",
             "allman",
@@ -31,35 +29,25 @@
                 "allowSingleLine": true
             }
         ],
-        "func-call-spacing": [
-            "error", "never"
-        ],
+        "func-call-spacing": ["error", "never"],
         "indent": "error",
         "keyword-spacing": "error",
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
+        "linebreak-style": ["error", "unix"],
         "no-extra-semi": "error",
         "no-lonely-if": "error",
         "no-var": "error",
-        "prefer-const": ["error", {"destructuring": "all"}],
-        "quotes": [
-            "error",
-            "single"
-        ],
+        "prefer-const": ["error", { "destructuring": "all" }],
+        "quotes": ["error", "single"],
         "semi": "error",
         "no-trailing-spaces": "error",
         "semi-spacing": [
-            "error", {
+            "error",
+            {
                 "before": false,
                 "after": true
-          }
-      ],
+            }
+        ],
         "space-before-blocks": "error",
-        "space-before-function-paren": [
-            "error",
-            "never"
-        ]
+        "space-before-function-paren": ["error", "never"]
     }
 }
