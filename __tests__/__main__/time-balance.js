@@ -4,7 +4,8 @@
 const Store = require('electron-store');
 import {
     computeAllTimeBalanceUntil,
-    getFirstInputInDb
+    getFirstInputInDb,
+    computeAllTimeBalanceUntilAsync
 } from '../../js/time-balance.js';
 import { resetPreferences } from '../../js/user-preferences.js';
 
@@ -91,6 +92,26 @@ describe('Time Balance', () =>
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 6))).resolves.toBe('-16:00');
         // time balance until tue (excluding tue)
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 7))).resolves.toBe('-24:00');
+    });
+
+    test('computeAllTimeBalanceUntil: only regular days, timesAreProgressing false', async() =>
+    {
+        const entryEx = {
+            '2020-6-1': {'values': ['08:00', '12:00', '17:00', '13:00']} // wed (8h total)
+        };
+        flexibleStore.set(entryEx);
+        // time balance until thu (excluding thu)
+        await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 2))).resolves.toBe('-08:00');
+        // time balance until fri (excluding fri)
+        await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 3))).resolves.toBe('-16:00');
+        // time balance until sat (excluding sat)
+        await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 4))).resolves.toBe('-24:00');
+        // time balance until sun (excluding sun)
+        await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 5))).resolves.toBe('-24:00');
+        // time balance until mon (excluding mon)
+        await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 6))).resolves.toBe('-24:00');
+        // time balance until tue (excluding tue)
+        await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 7))).resolves.toBe('-32:00');
     });
 
     test('computeAllTimeBalanceUntil: only regular days (6 entries)', async() =>
@@ -318,4 +339,19 @@ describe('Time Balance', () =>
         waivedWorkdays.set(waivedEntries);
         await expect(computeAllTimeBalanceUntil(new Date(2020, 5, 1))).resolves.toBe('00:00');
     });
+
+    test('computeAllTimeBalanceUntilAsync: target date in the past of entries', async() =>
+    {
+        const entryEx = {
+            '2020-6-1': {'values': ['08:00', '12:00', '13:00', '17:00']}, // wed (8h total)
+            '2020-6-3': {'values': ['08:00', '12:00', '13:00', '17:00']} // fri (8h total)
+        };
+        flexibleStore.set(entryEx);
+        const waivedEntries = {
+            '2020-07-02': { reason: 'Waiver', hours: '02:00' }, // tue
+        };
+        waivedWorkdays.set(waivedEntries);
+        await expect(computeAllTimeBalanceUntilAsync(new Date(2020, 5, 1))).resolves.toBe('00:00');
+    });
+
 });

@@ -9,7 +9,9 @@ Who built 3.0.1:
 <!--- Begin users - Do not remove -->
 
 -   araujoarthur0
+-   ochan12
 -   pallasite99
+-   tupaschoal
 
 <!--- End users - Do not remove -->
 

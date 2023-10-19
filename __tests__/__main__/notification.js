@@ -15,7 +15,7 @@ describe('Notifications', function()
 {
     describe('notify', () =>
     {
-        beforeAll(() =>
+        beforeEach(() =>
         {
             // displays a notification in test fails if mocks are not restored
             jest.restoreAllMocks();
