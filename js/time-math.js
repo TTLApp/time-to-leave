@@ -137,7 +137,7 @@ function isValidDayOfMonth(dayOfMonth, month)
  */
 function validateDate(date)
 {
-    const re = new RegExp('(1|2)[0-9]{3}-(0[1-9]{1}|1[0-1]{1})-(0[0-9]{1}|1[0-9]{1}|2[0-9]{1}|3[0-1]{1})$');
+    const re = new RegExp('(1|2)[0-9]{3}-(0[0-9]{1}|1[0-1]{1})-(0[0-9]{1}|1[0-9]{1}|2[0-9]{1}|3[0-1]{1})$');
     if (re.test(date))
     {
         const [, month, day] = date.split('-').map(parseFloat);

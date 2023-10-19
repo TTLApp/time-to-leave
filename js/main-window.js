@@ -92,7 +92,7 @@ function createWindow()
     // and load the index.html of the app.
     mainWindow.loadFile(path.join(__dirname, '../index.html'));
 
-    ipcMain.on('TOGGLE_TRAY_PUNCH_TIME', function(_event, arg)
+    ipcMain.on('TOGGLE_TRAY_PUNCH_TIME', (_event, arg) =>
     {
         const contextMenuTemplate = getContextMenuTemplate(mainWindow);
         contextMenuTemplate[0].enabled = arg;
@@ -139,6 +139,10 @@ function createWindow()
         {
             event.preventDefault();
             mainWindow.hide();
+        }
+        else
+        {
+            mainWindow.minimize();
         }
     });
 

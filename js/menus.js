@@ -230,16 +230,13 @@ function getEditMenuTemplate(mainWindow)
                         }
                         else if (importResult['failed'] !== 0)
                         {
-                            if (importResult['failed'] !== 0)
-                            {
-                                const message = `${importResult['failed']}/${importResult['total']} ${getCurrentTranslation('$Menu.could-not-be-loaded')}`;
-                                dialog.showMessageBoxSync({
-                                    icon: appConfig.iconpath,
-                                    type: 'warning',
-                                    title: getCurrentTranslation('$Menu.failed-entries'),
-                                    message: message
-                                });
-                            }
+                            const message = `${importResult['failed']}/${importResult['total']} ${getCurrentTranslation('$Menu.could-not-be-loaded')}`;
+                            dialog.showMessageBoxSync({
+                                icon: appConfig.iconpath,
+                                type: 'warning',
+                                title: getCurrentTranslation('$Menu.failed-entries'),
+                                message: message
+                            });
                         }
                         else
                         {

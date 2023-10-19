@@ -255,7 +255,6 @@ describe('main-window.js', () =>
 
         test('Should minimize if minimize-to-tray is false', (done) =>
         {
-            const userPreferencesSpy = jest.spyOn(userPreferences, 'getUserPreferences');
             savePreferences({
                 ...defaultPreferences,
                 ['minimize-to-tray']: false
@@ -266,10 +265,11 @@ describe('main-window.js', () =>
              * @type {BrowserWindow}
              */
             const mainWindow = getMainWindow();
+            const minimizeSpy = jest.spyOn(mainWindow, 'minimize');
             mainWindow.on('ready-to-show', () =>
             {
                 mainWindow.emit('minimize', {});
-                expect(userPreferencesSpy).toHaveBeenCalledTimes(1);
+                expect(minimizeSpy).toBeCalled();
                 done();
             });
         });

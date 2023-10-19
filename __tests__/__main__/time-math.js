@@ -175,15 +175,45 @@ describe('Time Math Functions', () =>
 
     test('validateDate(date)', () =>
     {
-        expect(validateDate('0001-00-00')).toBeFalsy();
-        expect(validateDate('1-00-00')).toBeFalsy();
-        expect(validateDate('1996-13-00')).toBeFalsy();
-        expect(validateDate('1996-1-00')).toBeFalsy();
-        expect(validateDate('1996-01-1')).toBeFalsy();
-        expect(validateDate('1996-01-40')).toBeFalsy();
-        expect(validateDate('1996-01-31')).toBeFalsy();
-        expect(validateDate('I\'m a date!')).toBeFalsy();
-        expect(validateDate('1996-01-29')).toBeTruthy();
-        expect(validateDate('1996-01-30')).toBeFalsy();
+        const tests = [
+            {date: '0001-00-00',valid: false},
+            {date: '1-00-00',valid: false},
+            {date: '1996-13-00',valid: false},
+            {date: '1996-1-00',valid: false},
+            {date: '1996-01-1',valid: false},
+            {date: '1996-01-40',valid: false},
+            {date: '1996-01-31',valid: false},
+            {date: 'I\'m a date!',valid: false},
+            {date: '1996-01-29',valid: true},
+            {date: '1996-01-30',valid: false},
+            {date: '1996-00-01', valid: true},
+            {date: '1996-01-01', valid: true},
+            {date: '1996-02-01', valid: true},
+            {date: '1996-03-01', valid: true},
+            {date: '1996-04-01', valid: true},
+            {date: '1996-05-01', valid: true},
+            {date: '1996-06-01', valid: true},
+            {date: '1996-07-01', valid: true},
+            {date: '1996-08-01', valid: true},
+            {date: '1996-09-01', valid: true},
+            {date: '1996-10-01', valid: true},
+            {date: '1996-11-01', valid: true},
+            {date: '1996-00-40', valid: false},
+            {date: '1996-01-40', valid: false},
+            {date: '1996-02-40', valid: false},
+            {date: '1996-03-40', valid: false},
+            {date: '1996-04-40', valid: false},
+            {date: '1996-05-40', valid: false},
+            {date: '1996-06-40', valid: false},
+            {date: '1996-07-40', valid: false},
+            {date: '1996-08-40', valid: false},
+            {date: '1996-09-40', valid: false},
+            {date: '1996-10-40', valid: false},
+            {date: '1996-11-40', valid: false},
+        ];
+        for (const test of tests)
+        {
+            expect(validateDate(test.date)).toBe(test.valid);
+        }
     });
 });
