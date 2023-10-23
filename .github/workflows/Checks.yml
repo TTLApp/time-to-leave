@@ -32,6 +32,10 @@ jobs:
         shell: bash
         run: |
           npm install
+      - name: '        Lint'
+        shell: bash
+        run: |
+          npm run lint
       - name: '        Tests'
         shell: bash
         env:
