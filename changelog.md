@@ -1,7 +1,6 @@
 ## 3.0.1 (in development)
 
 <!--- Begin changes - Do not remove -->
-
 <!--- End changes - Do not remove -->
 
 Who built 3.0.1:
