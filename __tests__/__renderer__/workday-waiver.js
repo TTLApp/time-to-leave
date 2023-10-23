@@ -466,8 +466,6 @@ describe('Test Workday Waiver Window', function()
         {
             const day = 'test day';
             const reason = 'test reason';
-            const workingDay = undefined;
-            const conflicts = undefined;
             addHolidayToList(day, reason);
             const table = $('#holiday-list-table tbody');
             const rowsLength = table.find('tr').length;
@@ -488,7 +486,6 @@ describe('Test Workday Waiver Window', function()
             const day = 'test day';
             const reason = 'test reason';
             const workingDay = 'No';
-            const conflicts = undefined;
             addHolidayToList(day, reason, workingDay);
             const table = $('#holiday-list-table tbody');
             const rowsLength = table.find('tr').length;
