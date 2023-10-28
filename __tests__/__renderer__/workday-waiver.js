@@ -36,6 +36,10 @@ const {
     getRegions,
     getStates
 } = require('../../main/workday-waiver-aux.js');
+const {
+    defaultPreferences,
+    savePreferences,
+} = require('../../js/user-preferences.js');
 
 jest.mock('../../renderer/i18n-translator.js', () => ({
     translatePage: jest.fn().mockReturnThis(),
@@ -133,6 +137,12 @@ jest.mock('../../js/window-aux.js');
 describe('Test Workday Waiver Window', function()
 {
     process.env.NODE_ENV = 'test';
+
+    beforeAll(() =>
+    {
+        // Making sure the preferences are the default so the tests work as expected
+        savePreferences(defaultPreferences);
+    });
 
     describe('Adding new waivers update the db and the page', function()
     {
