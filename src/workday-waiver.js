@@ -298,7 +298,12 @@ async function iterateOnHolidays(func)
 
 function addHolidayToList(day, reason, workingDay, conflicts)
 {
-    const table = $('#holiday-list-table tbody')[0],
+    addHolidayToTable($('#holiday-list-table'), day, reason, workingDay, conflicts);
+}
+
+function addHolidayToTable(tableObj, day, reason, workingDay, conflicts)
+{
+    const table = $(tableObj).find('tbody')[0],
         row = table.insertRow(table.rows.length),
         dayCell = row.insertCell(0),
         reasonCell = row.insertCell(1),
@@ -319,17 +324,17 @@ function addHolidayToList(day, reason, workingDay, conflicts)
 
 function clearHolidayTable()
 {
-    clearTable('holiday-list-table');
+    clearTable($('#holiday-list-table'));
 }
 
 function clearWaiverList()
 {
-    clearTable('waiver-list-table');
+    clearTable($('#waiver-list-table'));
 }
 
-function clearTable(id)
+function clearTable(tableObj)
 {
-    const table = $(`#${id} tbody`)[0];
+    const table = $(tableObj).find('tbody')[0];
     // Clear all rows before adding new ones
     while (table.rows.length >= 1)
     {
@@ -339,14 +344,14 @@ function clearTable(id)
 
 async function loadHolidaysTable()
 {
-    const holidays = getHolidays();
+    const holidays = await getHolidays();
     if (holidays.length === 0)
     {
+        // Clear table if no holidays are found
+        $('#holiday-list-table').fadeOut(200);
+        toggleAddButton('holiday-button', false);
         return;
     }
-
-    // Clear all rows before adding new ones
-    clearHolidayTable();
 
     // Fill in reasons to check for conflicts
     const store = await window.mainApi.getWaiverStoreContents();
@@ -358,17 +363,27 @@ async function loadHolidaysTable()
         reasonByDate[date] = reason;
     }
 
+    // We'll create a table html object and replace the existing one once it's ready so we don't have a visual delay
+    const oldTable = $('#holiday-list-table');
+    const newTable = oldTable.clone();
+    clearTable(newTable);
+
     async function addHoliday(holidayDate, holidayReason)
     {
         const [tempYear, tempMonth, tempDay] = getDateFromISOStr(holidayDate);
         // Holiday returns month with 1-12 index, but showDay expects 0-11
         const workingDay = window.mainApi.showDay(tempYear, tempMonth - 1, tempDay, userPreferences) ? getTranslation('$WorkdayWaiver.yes') : getTranslation('$WorkdayWaiver.no');
-        addHolidayToList(holidayDate, holidayReason, workingDay, reasonByDate[holidayDate] ?? '');
+        addHolidayToTable(newTable, holidayDate, holidayReason, workingDay, reasonByDate[holidayDate] ?? '');
     }
 
     await iterateOnHolidays(addHoliday);
-    // Show table and enable button
-    $('#holiday-list-table').show();
+
+    // Replace tables and enable button
+    $(oldTable).fadeOut(100, function()
+    {
+        $(this).html(newTable.html()).fadeIn(100);
+    });
+    await $(oldTable).promise();
     toggleAddButton('holiday-button', true);
 }
 
@@ -453,6 +468,14 @@ $(async() =>
     $('#city').on('change', function()
     {
         loadHolidaysTable();
+    });
+    $('#year').on('change', function()
+    {
+        const hasCountry = $('#country').val() !== '--';
+        if (hasCountry)
+        {
+            loadHolidaysTable();
+        }
     });
 
     translatePage(languageData.language, languageData.data, 'WorkdayWaiver');

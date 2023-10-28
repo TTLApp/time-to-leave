@@ -476,8 +476,6 @@ describe('Test Workday Waiver Window', function()
         {
             const day = 'test day';
             const reason = 'test reason';
-            const workingDay = undefined;
-            const conflicts = undefined;
             addHolidayToList(day, reason);
             const table = $('#holiday-list-table tbody');
             const rowsLength = table.find('tr').length;
@@ -498,7 +496,6 @@ describe('Test Workday Waiver Window', function()
             const day = 'test day';
             const reason = 'test reason';
             const workingDay = 'No';
-            const conflicts = undefined;
             addHolidayToList(day, reason, workingDay);
             const table = $('#holiday-list-table tbody');
             const rowsLength = table.find('tr').length;
@@ -548,12 +545,12 @@ describe('Test Workday Waiver Window', function()
             addHolidayToList('test day', 'no reason');
         });
 
-        test('Clear table by ID', () =>
+        test('Clear table by JQuery object', () =>
         {
             const tableId = 'waiver-list-table';
             let rowLength = $(`#${tableId} tbody tr`).length;
             expect(rowLength).toBe(2);
-            clearTable(tableId);
+            clearTable($(`#${tableId}`));
             rowLength = $(`#${tableId} tbody tr`).length;
             expect(rowLength).toBe(0);
         });
