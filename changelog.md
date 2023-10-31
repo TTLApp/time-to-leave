@@ -2,6 +2,7 @@
 
 <!--- Begin changes - Do not remove -->
 
+-   Enhancement [#1009]: Adding an animation to the workday waiver holidays table when the contents switch
 
 <!--- End changes - Do not remove -->
 

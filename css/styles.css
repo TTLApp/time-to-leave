@@ -739,6 +739,10 @@ input:disabled + .slider {
   width: 100%;
 }
 
+#workday-waiver-window .list-date-header {
+  min-width: 80px;
+}
+
 #workday-waiver-window a.nav-link:not(.active) {
   color: var(--page-color);
   border-bottom: 1px solid var(--tab-waiver-border);
