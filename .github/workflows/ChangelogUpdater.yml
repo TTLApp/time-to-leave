@@ -9,14 +9,14 @@ jobs:
     steps:
       - name: Check trigger
         id: check
-        uses: khan/pull-request-comment-trigger@master
+        uses: khan/pull-request-comment-trigger@v1.1.0
         with:
           trigger: '\changelog-update'
           reaction: rocket
           prefix_only: 'true'
         env:
           GITHUB_TOKEN: '${{secrets.GITHUB_TOKEN}}'
-      - uses: tibdex/github-app-token@v1
+      - uses: tibdex/github-app-token@v2
         id: generate-token
         with:
           app_id: ${{ secrets.APP_ID }}
@@ -39,7 +39,7 @@ jobs:
           echo "COMMENT_AUTHOR_ASSOCIATION: $COMMENT_AUTHOR_ASSOCIATION"
       - name: Clone git repo
         if: steps.check.outputs.triggered == 'true'
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Configure Git Agent
         if: steps.check.outputs.triggered == 'true'
         run: |
