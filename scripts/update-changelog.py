@@ -40,8 +40,9 @@ def get_updated_file_content(current_changelog_lines: str, new_change: any, new_
         if line == g_end_changes:
             is_sourcing_changes = False
             new_file_content.extend(get_sorted_unique_entries(changes))
-            # adds an extra item to avoid issues with the linter
-            new_file_content.append('')
+            # adds an extra item to avoid issues with the linter, but only if there is at least one entry
+            if new_file_content[-1] != '':
+                new_file_content.append('')
 
         if line == g_end_users:
             is_sourcing_users = False
@@ -68,6 +69,7 @@ def get_updated_file_content(current_changelog_lines: str, new_change: any, new_
 
     # Include on extra empty line to comply with markdown formatter
     new_file_content.append('')
+
     return new_file_content
 
 def update_changelog(changelog_filename: str, new_change: any, new_user: any):
