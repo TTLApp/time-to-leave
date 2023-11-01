@@ -1,6 +1,6 @@
 'use strict';
 
-const { app, BrowserWindow, clipboard, dialog, shell, ipcMain } = require('electron');
+const { app, BrowserWindow, clipboard, dialog, shell } = require('electron');
 const path = require('path');
 const Store = require('electron-store');
 
