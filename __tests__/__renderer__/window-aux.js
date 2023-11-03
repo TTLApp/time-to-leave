@@ -2,8 +2,7 @@
 'use strict';
 
 const path = require('path');
-const { remote } = require('electron');
-const { BrowserWindow } = remote;
+const BrowserWindow = require('@electron/remote').BrowserWindow;
 import * as windowAux from '../../js/window-aux.js';
 
 describe('window-aux.js Testing', function()

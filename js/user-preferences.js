@@ -88,7 +88,7 @@ function getPreferencesFilePath()
 {
     const path = require('path');
     const electron = require('electron');
-    const userDataPath = (electron.app || electron.remote.app).getPath('userData');
+    const userDataPath = (electron.app || require('@electron/remote').app).getPath('userData');
     return path.join(userDataPath, 'preferences.json');
 }
 

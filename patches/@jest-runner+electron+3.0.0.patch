@@ -1,16 +1,49 @@
 diff --git a/node_modules/@jest-runner/electron/build/rpc/JestWorkerRPC.js b/node_modules/@jest-runner/electron/build/rpc/JestWorkerRPC.js
-index f763e53..a39175b 100644
+index f763e53..75d517b 100644
 --- a/node_modules/@jest-runner/electron/build/rpc/JestWorkerRPC.js
 +++ b/node_modules/@jest-runner/electron/build/rpc/JestWorkerRPC.js
-@@ -46,7 +46,10 @@ const _runInBrowserWindow = testData => {
+@@ -41,12 +41,33 @@ const _runInNode = async testData => {
+   }
+ };
+ 
++// Starting in electron-store 7, it became necessary to explicitly call the below in main
++// to allow the store to work in renderer, which is what we currently do for our tests
++// https://github.com/sindresorhus/electron-store/releases/tag/v7.0.0
++const Store = require('electron-store');
++Store.initRenderer();
++
++// Starting in electron 14 the remote module became a separate module, that needs
++// to be initialized in main before being used in renderer.
++// Initializing here so we can use in renderer tests
++// https://github.com/electron/remote#migrating-from-remote
++const remote = require("@electron/remote/main");
++remote.initialize()
++
+ const _runInBrowserWindow = testData => {
+   return new Promise(resolve => {
      const workerID = (0, _utils.makeUniqWorkerId)();
      const win = new _electron.BrowserWindow({
        show: false,
 -      webPreferences: {nodeIntegration: true}
++      // Starting on electron 12, the only way to use require() on renderer is
++      // is to enable nodeIntegration and disable contextIsolation. Doing this for
++      // our renderer tests
++      // https://github.com/electron/electron/blob/main/docs/breaking-changes.md#default-changed-contextisolation-defaults-to-true
 +      webPreferences: {
 +        nodeIntegration: true,
-+        enableRemoteModule: true
++        enableRemoteModule: true,
++        contextIsolation: false
 +      }
      });
  
      win.loadURL(`file://${require.resolve('../index.html')}`);
+@@ -54,6 +75,9 @@ const _runInBrowserWindow = testData => {
+       win.webContents.send('run-test', testData, workerID);
+     });
+ 
++    // Also needed to enable remote in renderer
++    remote.enable(win.webContents);
++
+     _electron.ipcMain.once(workerID, (event, testResult) => {
+       win.destroy();
+       resolve(testResult);

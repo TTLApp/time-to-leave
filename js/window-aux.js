@@ -1,8 +1,8 @@
 'use strict';
 
 const electron = require('electron');
-const BrowserWindow = (electron || electron.remote).BrowserWindow;
-const dialog = (electron || electron.remote).dialog;
+const BrowserWindow = (electron || require('@electron/remote')).BrowserWindow;
+const dialog = (electron || require('@electron/remote')).dialog;
 
 /**
  * Opens an electron dialog, based on the options, and returns the promise.

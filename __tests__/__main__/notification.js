@@ -30,7 +30,8 @@ describe('Notifications', function()
             notification.on('show', (event) =>
             {
                 expect(event).toBeTruthy();
-                expect(event.sender.title).toBe('Time to Leave');
+                // In Electron 25 the definition of Event changed and we can no longer
+                // check information about the event sender
                 notification.close();
                 done();
             });
@@ -60,7 +61,8 @@ describe('Notifications', function()
             notification.on('show', (event) =>
             {
                 expect(event).toBeTruthy();
-                expect(event.sender.title).toBe('Time to Leave');
+                // In Electron 25 the definition of Event changed and we can no longer
+                // check information about the event sender
                 notification.close();
                 done();
             });
