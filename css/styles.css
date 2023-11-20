@@ -671,7 +671,6 @@ input:disabled + .slider {
 #preferences-window input[type="date"].date-right::-webkit-datetime-edit {
   text-align: right;
   position: relative;
-  left: 25px;
 }
 
 #preferences-window #hours-per-day, #break-time-interval {
