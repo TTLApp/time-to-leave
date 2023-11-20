@@ -162,7 +162,6 @@ body {
 
 .container {
   font-family: 'Montserrat', sans-serif;
-  margin-bottom: 70px;
 }
 
 @media (max-width: 768px) {
@@ -219,6 +218,10 @@ body {
   margin-bottom: auto;
   font-size: 400%;
   float: left;
+}
+
+#calendar.container {
+  margin-bottom: 70px;
 }
 
 #calendar table {
