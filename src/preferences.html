@@ -2,16 +2,12 @@
 <html data-theme="" lang="en">
 
 <head>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="../css/styles.css">
 
-    <!-- First we need to declare jQuery and $ globals with jquery -->
     <script src="../node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
-    <script>
-        window.$ = window.jQuery;
-    </script>
-
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js" charset="utf-8"></script>
     <script type="module" src="preferences.js"></script>
 </head>
