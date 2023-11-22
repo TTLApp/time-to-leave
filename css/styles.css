@@ -175,6 +175,10 @@ body {
   text-align: center;
 }
 
+.th :only-child {
+  -webkit-user-drag: none;
+}
+
 .th-month-name {
   text-align: center;
   font-size: 120%;
@@ -198,6 +202,7 @@ body {
   margin-right: auto;
   margin-top: auto;
   margin-bottom: auto;
+  user-select: none;
 }
 
 .title-header-img {
@@ -208,6 +213,8 @@ body {
 
 .title-header-img img {
   float: right;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .error-tr {
@@ -416,6 +423,10 @@ body {
 .punch-button:disabled {
   opacity: 0.5;
   color: var(--punch-disable-bground);
+}
+
+.punch-button img {
+  -webkit-user-drag: none;
 }
 
 #punch-button-label {
