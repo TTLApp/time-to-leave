@@ -1,5 +1,6 @@
 script:
   - npm install
+  - sudo apt-get install -y dbus-x11
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
   - export DISPLAY=:99
-  - npm start
+  - npm start -- --no-sandbox --disable-gpu
