@@ -301,40 +301,70 @@ class FlexibleMonthCalendar extends BaseCalendar
         {
             slideTimer = setInterval(function()
             {
-                if (direction === 'left')
+                if (direction === 'up')
                 {
-                    element.scrollLeft -= step;
+                    element.scrollTop -= step;
                 }
                 else
                 {
-                    element.scrollLeft += step;
+                    element.scrollTop += step;
                 }
-                if (element.scrollLeft + element.clientWidth === element.scrollWidth)
+                if (element.scrollTop + element.clientHeight === element.scrollHeight)
                 {
                     window.clearInterval(slideTimer);
                 }
             }, speed);
         }
 
-        $('.arrow.left').off('mousedown').on('mousedown', function()
+        $('.arrow.up').off('mousedown').on('mousedown', function()
         {
-            sideScroll($(this).parent().find('.time-cells')[0], 'left', 0, 1);
+            sideScroll($(this).parent().find('.time-cells')[0], 'up', 0, 1);
         });
 
-        $('.arrow.right').off('mousedown').on('mousedown', function()
+        $('.arrow.down').off('mousedown').on('mousedown', function()
         {
-            sideScroll($(this).parent().find('.time-cells')[0], 'right', 0, 1);
+            sideScroll($(this).parent().find('.time-cells')[0], 'down', 0, 1);
         });
 
-        $('.arrow.left').off('mouseup').on('mouseup', function()
+        $('.arrow.up').off('mouseup').on('mouseup', function()
         {
             window.clearInterval(slideTimer);
         });
 
-        $('.arrow.right').off('mouseup').on('mouseup', function()
+        $('.arrow.down').off('mouseup').on('mouseup', function()
         {
             window.clearInterval(slideTimer);
         });
+
+        resizeObserver = new ResizeObserver(entries =>
+        {
+            for (const entry of entries)
+            {
+                toggleArrowColor(entry.target);
+            }
+        });
+
+        $('.time-cells').each((index, element) =>
+        {
+            resizeObserver.observe(element);
+            toggleArrowColor(element);
+            toggleMinusSign(element);
+        });
+
+        function addEntries(element)
+        {
+            const dateKey = $(element).attr('id');
+            const moreThree =
+                calendar.constructor._getRowCode(dateKey, true /*isInterval*/) +
+                calendar.constructor._getRowCode(dateKey) +
+                calendar.constructor._getRowCode(dateKey);
+            $(element).append(moreThree);
+            element.scrollTop = element.scrollHeight - element.clientHeight;
+            $(element).find('input[type=\'time\']').off('input propertychange').on('input propertychange', function()
+            {
+                calendar._updateTimeDayCallback($(this).attr('data-date'));
+            });
+        }
 
         function toggleArrowColor(target)
         {
