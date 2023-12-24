@@ -3,16 +3,8 @@
 /* Fonts from https://fonts.google.com/specimen/Montserrat */
 @font-face {
   font-family: 'Montserrat';
-  src: url('fonts/Montserrat/static/montserrat-regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('fonts/Montserrat/static/montserrat-bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
+  src: url('fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format("truetype-variations");
+  font-weight: 1 999;
 }
 
 /* This is an implicit, and an explicit declaration of the Default color scheme */
