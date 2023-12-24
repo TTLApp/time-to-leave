@@ -1,6 +1,6 @@
 /* stylelint-disable no-descending-specificity */
 
-/* Fonts from https://fonts.google.com/specimen/Montserrat */
+/* Font from https://fonts.google.com/specimen/Montserrat */
 @font-face {
   font-family: 'Montserrat';
   src: url('fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format("truetype-variations");
@@ -372,7 +372,7 @@ body {
 .waived-day-text {
   text-align: right !important;
   margin-top: auto;
-  font-size: 90%;
+  font-size: 80%;
   font-variant-caps: all-petite-caps;
 }
 
@@ -615,6 +615,8 @@ input:disabled + .slider {
 #preferences-window select,
 #preferences-window option,
 #preferences-window input {
+  font-size: 14px;
+  font-weight: 300;
   font-variant-caps: all-petite-caps;
   border: none;
   height: inherit;
@@ -626,6 +628,8 @@ input:disabled + .slider {
 }
 
 #preferences-window .weekdays-selector input[type=checkbox] + label {
+  font-size: 14px;
+  font-weight: 300;
   font-variant-caps: all-petite-caps;
   display: inline-block;
   border-radius: 10px;
@@ -655,6 +659,8 @@ input:disabled + .slider {
 }
 
 #preferences-window p {
+  font-size: 14px;
+  font-weight: 300;
   font-variant-caps: all-petite-caps;
   text-align: left;
 }
