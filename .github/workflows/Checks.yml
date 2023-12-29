@@ -23,7 +23,7 @@ jobs:
         run: |
           export DISPLAY=:99
           # TODO: need to download driver according to electron's version
-          wget --directory-prefix=/tmp https://chromedriver.storage.googleapis.com/87.0.4280.88/chromedriver_linux64.zip
+          wget --directory-prefix=/tmp https://chromedriver.storage.googleapis.com/100.0.4896.20/chromedriver_linux64.zip
           unzip -d /tmp/chromedriver /tmp/chromedriver_linux64.zip
           sudo chmod +x /tmp/chromedriver/chromedriver
           /tmp/chromedriver/chromedriver &
