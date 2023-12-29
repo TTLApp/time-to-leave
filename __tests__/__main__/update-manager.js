@@ -53,7 +53,13 @@ describe('js/update-manager.js', () =>
     {
         test('should not execute when is offline', () =>
         {
-            mocks.net = jest.spyOn(net, 'request').mockImplementation(() => {});
+            mocks.net = jest.spyOn(net, 'request').mockImplementation(() =>
+            {
+                return {
+                    on: () => {},
+                    end: () => {}
+                };
+            });
             checkForUpdates();
             expect(mocks.net).toBeCalledTimes(0);
         });
@@ -67,7 +73,8 @@ describe('js/update-manager.js', () =>
                     {
                         expect(mocks.net).toBeCalledTimes(1);
                         done();
-                    }
+                    },
+                    end: () => {}
                 };
             });
             checkForUpdates();
