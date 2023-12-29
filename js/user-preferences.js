@@ -232,11 +232,16 @@ function getLoadedOrDerivedUserPreferences()
     return readPreferences();
 }
 
-function getUserPreferencesPromise()
+/**
+ * Returns a promise to the user preferences.
+ * @param preferencesFilePathPromise Optionally allows one to pass in a promise that resolves to the preferences file path
+ * @return {Promise<Object>}
+ */
+function getUserPreferencesPromise(preferencesFilePathPromise = getPreferencesFilePathPromise())
 {
     return new Promise((resolve) =>
     {
-        getPreferencesFilePathPromise().then((filePath) =>
+        preferencesFilePathPromise.then((filePath) =>
         {
             initPreferencesFileIfNotExistsOrInvalid(filePath);
             resolve(readPreferences(filePath));

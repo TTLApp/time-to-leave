@@ -28,7 +28,6 @@ const {
     initializeHolidayInfo,
     refreshDataForTest
 } = require('../../src/workday-waiver');
-import { showDialogSync } from '../../js/window-aux.js';
 const { workdayWaiverApi } = require('../../renderer/preload-scripts/workday-waiver-api.js');
 const {
     getAllHolidays,
@@ -38,6 +37,7 @@ const {
 } = require('../../main/workday-waiver-aux.js');
 const {
     defaultPreferences,
+    getUserPreferencesPromise,
     savePreferences,
 } = require('../../js/user-preferences.js');
 
@@ -101,6 +101,24 @@ window.mainApi.getRegions = (country, state) =>
     {
         resolve(getRegions(country, state));
     });
+};
+
+window.mainApi.showDialogSync = () =>
+{
+    return new Promise((resolve) =>
+    {
+        resolve({ response: 0 });
+    });
+};
+
+window.mainApi.getUserPreferences = () =>
+{
+    const preferencesFilePathPromise = new Promise((resolve) =>
+    {
+        const userDataPath = app.getPath('userData');
+        resolve(path.join(userDataPath, 'preferences.json'));
+    });
+    return getUserPreferencesPromise(preferencesFilePathPromise);
 };
 
 const languageData = {'language': 'en', 'data': {'dummy_string': 'dummy_string_translated'}};
@@ -273,10 +291,6 @@ describe('Test Workday Waiver Window', function()
             await prepareMockup();
             addTestWaiver('2020-07-16', 'some reason');
             const deleteBtn = document.querySelectorAll('#waiver-list-table .delete-btn')[0];
-            showDialogSync.mockImplementation((options, cb) =>
-            {
-                cb({ response: 0 });
-            });
             deleteEntryOnClick({target: deleteBtn});
             const length = document.querySelectorAll('#waiver-list-table .delete-btn').length;
             expect(length).toBe(0);
