@@ -39,8 +39,20 @@ jobs:
       - name: '        Tests'
         shell: bash
         env:
-          DISPLAY: ':99'
+          OS: ${{ matrix.os }}
         run: |
+          if [[ $OS == 'ubuntu-20.04' ]]; then
+            # Avoid "failed to connect to the bus" errors on CI https://github.com/microsoft/WSL/issues/7915
+            export XDG_RUNTIME_DIR=/run/user/$(id -u)
+            sudo mkdir -p $XDG_RUNTIME_DIR
+            sudo chmod 700 $XDG_RUNTIME_DIR
+            sudo chown $(id -un):$(id -gn) $XDG_RUNTIME_DIR
+            export DBUS_SESSION_BUS_ADDRESS=unix:path=$XDG_RUNTIME_DIR/bus
+
+            # For ChromeDriver to work
+            export DISPLAY=':99'
+          fi
+
           npm run test:jest
       - name: '        Create COV_REPORT'
         run: |
