@@ -56,11 +56,25 @@ describe('BaseCalendar.js', () =>
 
         window.mainApi.getFlexibleStoreContents = () =>
         {
-            return flexibleStore.store;
+            return new Promise((resolve) =>
+            {
+                resolve(flexibleStore.store);
+            });
         };
         window.mainApi.getWaiverStoreContents = () =>
         {
-            return waivedWorkdays.store;
+            return new Promise((resolve) =>
+            {
+                resolve(waivedWorkdays.store);
+            });
+        };
+        window.mainApi.setFlexibleStoreData = (key, contents) =>
+        {
+            flexibleStore.set(key, contents);
+            return new Promise((resolve) =>
+            {
+                resolve(true);
+            });
         };
     });
 
