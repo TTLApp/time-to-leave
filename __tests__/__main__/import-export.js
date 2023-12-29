@@ -158,6 +158,6 @@ describe('Import export', function()
 
     afterAll(() =>
     {
-        fs.rmdirSync(folder, {recursive: true});
+        fs.rmSync(folder, {recursive: true});
     });
 });
