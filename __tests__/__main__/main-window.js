@@ -1,7 +1,7 @@
 const notification = require('../../js/notification.js');
 const userPreferences = require('../../js/user-preferences.js');
 const { savePreferences, defaultPreferences, resetPreferences } = userPreferences;
-const { BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 
 jest.mock('../../js/update-manager', () => ({
     checkForUpdates: jest.fn(),
@@ -11,6 +11,21 @@ jest.mock('../../js/update-manager', () => ({
 const mainWindowModule = require('../../js/main-window.js');
 const { getMainWindow, createWindow, resetMainWindow, getLeaveByInterval, getWindowTray, triggerStartupDialogs } = mainWindowModule;
 const updateManager = require('../../js/update-manager.js');
+
+// Mocking USER_DATA_PATH for tests below
+ipcMain.handle('USER_DATA_PATH', () =>
+{
+    return new Promise((resolve) =>
+    {
+        resolve(app.getPath('userData'));
+    });
+});
+
+ipcMain.removeHandler('GET_LANGUAGE_DATA');
+ipcMain.handle('GET_LANGUAGE_DATA', () => ({
+    'language': 'en',
+    'data': {}
+}));
 
 describe('main-window.js', () =>
 {
@@ -113,11 +128,6 @@ describe('main-window.js', () =>
                 {
                     ipcMain.emit('FINISH_TEST', event, savedPreferences);
                 });
-                ipcMain.removeHandler('GET_LANGUAGE_DATA');
-                ipcMain.handle('GET_LANGUAGE_DATA', () => ({
-                    'language': 'en',
-                    'data': {}
-                }));
                 ipcMain.on('FINISH_TEST', (event, savedPreferences) =>
                 {
                     expect(windowSpy).toBeCalledTimes(1);
