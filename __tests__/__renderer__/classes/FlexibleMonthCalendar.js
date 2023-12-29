@@ -2,6 +2,7 @@
 'use strict';
 
 const Store = require('electron-store');
+import { computeAllTimeBalanceUntilAsync } from '../../../js/time-balance.js';
 import { defaultPreferences } from '../../../js/user-preferences.js';
 import { CalendarFactory } from '../../../renderer/classes/CalendarFactory.js';
 import { calendarApi } from '../../../renderer/preload-scripts/calendar-api.js';
@@ -49,6 +50,13 @@ window.mainApi.deleteFlexibleStoreData = (key) =>
     {
         flexibleStore.delete(key);
         resolve(true);
+    });
+};
+window.mainApi.computeAllTimeBalanceUntilPromise = (targetDate) =>
+{
+    return new Promise((resolve) =>
+    {
+        resolve(computeAllTimeBalanceUntilAsync(targetDate));
     });
 };
 
