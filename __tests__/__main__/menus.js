@@ -371,13 +371,21 @@ describe('menus.js', () =>
             expect(mocks.showMessageBox).toHaveBeenCalledTimes(1);
             expect(mocks.writeText).toHaveBeenCalledTimes(0);
         });
-        test('Should show about message box', () =>
+        test('Should show about message box', (done) =>
         {
+            mocks.consoleLog = jest.spyOn(console, 'log').mockImplementation();
             mocks.writeText = jest.spyOn(clipboard, 'writeText').mockImplementation(() => {});
             mocks.showMessageBox = jest.spyOn(dialog, 'showMessageBox').mockRejectedValue({response: 1});
             getHelpMenuTemplate({})[4].click();
             expect(mocks.showMessageBox).toHaveBeenCalledTimes(1);
             expect(mocks.writeText).toHaveBeenCalledTimes(0);
+
+            // When the rejection happens, we call console.log with the response
+            setTimeout(() =>
+            {
+                expect(mocks.consoleLog).toHaveBeenCalledWith({response: 1});
+                done();
+            }, 500);
         });
     });
 
