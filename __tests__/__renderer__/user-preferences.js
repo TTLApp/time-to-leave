@@ -9,7 +9,7 @@ const {
     isNotBoolean,
     isNotificationInterval,
 } = require('../../js/user-preferences');
-const fs = require('fs');
+import fs from 'fs';
 
 describe('Should return false if the value is not boolean type', () =>
 {

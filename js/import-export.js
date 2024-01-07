@@ -2,7 +2,7 @@
 'use strict';
 
 const Store = require('electron-store');
-const fs = require('fs');
+import fs from 'fs';
 
 import { validateTime } from './time-math.js';
 import { generateKey } from './date-db-formatter.js';

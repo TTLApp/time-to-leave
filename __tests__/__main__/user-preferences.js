@@ -2,7 +2,7 @@
 'use strict';
 
 const { booleanInputs, defaultPreferences, getDefaultWidthHeight, getPreferencesFilePath, getUserPreferences, savePreferences, showDay, switchCalendarView, notificationIsEnabled, getUserLanguage, getNotificationsInterval, repetitionIsEnabled, getUserPreferencesPromise, resetPreferences } = require('../../js/user-preferences');
-const fs = require('fs');
+import fs from 'fs';
 const { themeOptions } = require('../../renderer/themes');
 const { getLanguageMap, getLanguagesCodes, getLanguageName } = require('../../src/configs/app.config');
 

@@ -2,7 +2,7 @@
 'use strict';
 
 const Store = require('electron-store');
-const fs = require('fs');
+import fs from 'fs';
 const path = require('path');
 const Holidays = require('date-holidays');
 /* eslint-disable-next-line no-global-assign */
