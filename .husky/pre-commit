@@ -13,7 +13,7 @@ get_changed_files()
     while read -d $'\0' file
     do
         echo ${file}
-    done < <(git diff --staged -z --name-only -- "$@")
+    done < <(git diff --staged -z --name-only --diff-filter=d -- "$@")
 }
 
 readarray -t changed_css < <(get_changed_files 'css/*.css')
@@ -22,7 +22,7 @@ if [ ! -z "$changed_css" ]; then
     pids="$pids $!"
 fi
 
-readarray -t changed_js < <(get_changed_files '*/*.js')
+readarray -t changed_js < <(get_changed_files '*/*.cjs' '*/*.js' '*/*.mjs')
 if [ ! -z "$changed_js" ]; then
     npx eslint "${changed_js[@]}" &
     pids="$pids $!"
