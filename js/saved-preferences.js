@@ -1,4 +1,5 @@
 'use strict';
+
 const { changeLanguage } = require('../src/configs/i18next.config');
 
 const { app, ipcMain } = require('electron');

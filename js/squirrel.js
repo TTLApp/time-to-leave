@@ -1,3 +1,5 @@
+'use strict';
+
 function handleSquirrelEvent(application)
 {
     if (process.argv.length === 1)

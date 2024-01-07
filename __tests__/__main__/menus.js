@@ -1,3 +1,5 @@
+'use strict';
+
 const { getContextMenuTemplate, getDockMenuTemplate, getEditMenuTemplate, getHelpMenuTemplate, getMainMenuTemplate, getViewMenuTemplate} = require('../../js/menus.js');
 
 jest.mock('../../src/configs/i18next.config.js', () => ({

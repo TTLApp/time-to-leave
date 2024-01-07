@@ -1,3 +1,5 @@
+'use strict';
+
 const notification = require('../../js/notification.js');
 const userPreferences = require('../../js/user-preferences.js');
 const { savePreferences, defaultPreferences, resetPreferences } = userPreferences;

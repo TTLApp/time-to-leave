@@ -1,3 +1,5 @@
+'use strict';
+
 import ElectronStore from 'electron-store';
 import { BaseCalendar } from '../../../renderer/classes/BaseCalendar.js';
 import { generateKey } from '../../../js/date-db-formatter.js';

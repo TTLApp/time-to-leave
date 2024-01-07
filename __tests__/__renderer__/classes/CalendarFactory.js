@@ -1,3 +1,5 @@
+'use strict';
+
 import { CalendarFactory } from '../../../renderer/classes/CalendarFactory.js';
 import { FlexibleDayCalendar } from '../../../renderer/classes/FlexibleDayCalendar.js';
 import { FlexibleMonthCalendar } from '../../../renderer/classes/FlexibleMonthCalendar.js';

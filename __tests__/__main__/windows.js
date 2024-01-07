@@ -1,3 +1,5 @@
+'use strict';
+
 const { BrowserWindow } = require('electron');
 const { getDateStr } = require('../../js/date-aux.js');
 const windows = require('../../js/windows.js');

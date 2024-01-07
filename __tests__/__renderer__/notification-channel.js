@@ -1,3 +1,5 @@
+'use strict';
+
 const notificationChannel = require('../../renderer/notification-channel.js');
 
 describe('Notifications channel',  () =>

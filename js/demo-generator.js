@@ -1,3 +1,5 @@
+'use strict';
+
 const { hourMinToHourFormatted, sumTime } = require('./time-math.js');
 const { generateKey } = require('./date-db-formatter.js');
 const Store = require('electron-store');

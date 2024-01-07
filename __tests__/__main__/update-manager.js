@@ -1,3 +1,5 @@
+'use strict';
+
 const ElectronStore = require('electron-store');
 const { getDateStr } = require('../../js/date-aux');
 const {shouldCheckForUpdates, checkForUpdates} = require('../../js/update-manager');

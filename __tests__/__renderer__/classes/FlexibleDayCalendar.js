@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+'use strict';
 
 const Store = require('electron-store');
 import { computeAllTimeBalanceUntilAsync } from '../../../js/time-balance.js';

@@ -1,3 +1,5 @@
+'use strict';
+
 const searchLeaveByElement = (event) =>
 {
     const leaveByElement = $('#leave-by').val();
