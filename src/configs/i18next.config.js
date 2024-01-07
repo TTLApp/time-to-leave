@@ -99,5 +99,5 @@ module.exports =
     changeLanguage,
     getCurrentTranslation,
     setLanguageChangedCallback,
-    setupI18n
+    setupI18n,
 };

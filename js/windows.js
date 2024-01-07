@@ -86,11 +86,11 @@ function getWaiverWindow()
 }
 
 module.exports = {
-    prefWindow,
-    tray,
     contextMenu,
-    openWaiverManagerWindow,
     getDialogCoordinates,
     getWaiverWindow,
-    resetWindowsElements
+    openWaiverManagerWindow,
+    prefWindow,
+    resetWindowsElements,
+    tray,
 };

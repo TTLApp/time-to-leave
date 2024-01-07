@@ -63,8 +63,8 @@ const namespace = 'translation';
 
 export {
     fallbackLng,
-    namespace,
     getLanguageMap,
+    getLanguageName,
     getLanguagesCodes,
-    getLanguageName
+    namespace,
 };

@@ -118,5 +118,5 @@ module.exports = {
     getCountries,
     getRegions,
     getStates,
-    setupWorkdayWaiverHandlers
+    setupWorkdayWaiverHandlers,
 };

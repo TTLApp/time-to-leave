@@ -53,5 +53,5 @@ function translatePage(language, languageData, windowName)
 
 export {
     getTranslationInLanguageData,
-    translatePage
+    translatePage,
 };

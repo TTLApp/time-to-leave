@@ -484,8 +484,8 @@ $(async() =>
 export {
     addHolidayToList,
     addWaiver,
-    clearTable,
     clearHolidayTable,
+    clearTable,
     clearWaiverList,
     deleteEntryOnClick,
     getHolidays,
@@ -497,8 +497,8 @@ export {
     populateList,
     populateState,
     populateYear,
+    refreshDataForTest,
     setDates,
     setHours,
     toggleAddButton,
-    refreshDataForTest
 };

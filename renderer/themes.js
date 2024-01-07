@@ -37,7 +37,7 @@ function applyTheme(theme)
 }
 
 export {
-    themeOptions,
     applyTheme,
-    isValidTheme
+    isValidTheme,
+    themeOptions,
 };

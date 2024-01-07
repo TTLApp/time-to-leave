@@ -13,5 +13,5 @@ function generateKey(year, month, day)
 }
 
 export {
-    generateKey,
+    generateKey
 };

@@ -23,6 +23,6 @@ function displayWaiverWindow(waiverDay)
 }
 
 export {
+    displayWaiverWindow,
     formatDayId,
-    displayWaiverWindow
 };

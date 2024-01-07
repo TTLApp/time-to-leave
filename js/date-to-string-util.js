@@ -28,5 +28,5 @@ function getMonthName(languageData, monthIndex)
 
 export {
     getDayAbbr,
-    getMonthName
+    getMonthName,
 };

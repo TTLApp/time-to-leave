@@ -43,5 +43,7 @@ function getCurrentDateTimeStr()
 }
 
 export {
-    getDateStr, getMonthLength, getCurrentDateTimeStr
+    getCurrentDateTimeStr,
+    getDateStr,
+    getMonthLength,
 };

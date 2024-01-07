@@ -81,5 +81,5 @@ async function checkForUpdates(showUpToDateDialog)
 
 module.exports = {
     checkForUpdates,
-    shouldCheckForUpdates
+    shouldCheckForUpdates,
 };

@@ -147,14 +147,14 @@ function validateDate(date)
 }
 
 export {
+    diffDays,
     hourMinToHourFormatted,
+    hourToMinutes,
     isNegative,
-    multiplyTime,
     minutesToHourFormatted,
+    multiplyTime,
     subtractTime,
     sumTime,
+    validateDate,
     validateTime,
-    hourToMinutes,
-    diffDays,
-    validateDate
 };

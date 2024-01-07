@@ -221,8 +221,8 @@ function migrateFixedDbToFlexible()
 }
 
 module.exports = {
-    importDatabaseFromFile,
     exportDatabaseToFile,
+    importDatabaseFromFile,
     migrateFixedDbToFlexible,
-    validEntry
+    validEntry,
 };

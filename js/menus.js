@@ -375,5 +375,5 @@ module.exports = {
     getEditMenuTemplate,
     getHelpMenuTemplate,
     getMainMenuTemplate,
-    getViewMenuTemplate
+    getViewMenuTemplate,
 };

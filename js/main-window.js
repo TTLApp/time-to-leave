@@ -287,13 +287,13 @@ function resetMainWindow()
 }
 
 module.exports = {
-    createWindow,
     createMenu,
+    createWindow,
+    getLeaveByInterval: () => leaveByInterval,
     getMainWindow,
-    triggerStartupDialogs,
-    shouldProposeFlexibleDbMigration,
+    getWindowTray: () => tray,
     proposeFlexibleDbMigration,
     resetMainWindow,
-    getLeaveByInterval: () => leaveByInterval,
-    getWindowTray: () => tray
+    shouldProposeFlexibleDbMigration,
+    triggerStartupDialogs,
 };

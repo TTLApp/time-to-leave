@@ -205,7 +205,7 @@ async function computeAllTimeBalanceUntilAsync(limitDate)
 }
 
 export {
-    computeAllTimeBalanceUntilAsync,
     computeAllTimeBalanceUntil,
-    getFirstInputInDb
+    computeAllTimeBalanceUntilAsync,
+    getFirstInputInDb,
 };
