@@ -10,7 +10,7 @@ const {
 
 import fs from 'fs';
 import Store from 'electron-store';
-const path = require('path');
+import path from 'path';
 
 describe('Import export', function()
 {

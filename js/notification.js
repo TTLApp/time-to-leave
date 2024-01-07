@@ -1,6 +1,6 @@
 'use strict';
 
-const path = require('path');
+import path from 'path';
 const { app } = require('electron');
 const ElectronNotification = require('electron').Notification;
 

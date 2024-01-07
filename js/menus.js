@@ -1,7 +1,7 @@
 'use strict';
 
 const { app, BrowserWindow, clipboard, dialog, shell } = require('electron');
-const path = require('path');
+import path from 'path';
 import Store from 'electron-store';
 
 const { checkForUpdates } = require('./update-manager');

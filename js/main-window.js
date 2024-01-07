@@ -1,7 +1,7 @@
 'use strict';
 
 const { app, BrowserWindow, dialog, ipcMain, Menu, shell, Tray } = require('electron');
-const path = require('path');
+import path from 'path';
 import Store from 'electron-store';
 
 const { checkForUpdates, shouldCheckForUpdates } = require('./update-manager');

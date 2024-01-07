@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
-const path = require('path');
+import path from 'path';
 const BrowserWindow = require('@electron/remote').BrowserWindow;
 import * as windowAux from '../../js/window-aux.cjs';
 

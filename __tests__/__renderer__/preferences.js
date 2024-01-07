@@ -2,7 +2,7 @@
 'use strict';
 
 import fs from 'fs';
-const path = require('path');
+import path from 'path';
 const {
     defaultPreferences,
     getPreferencesFilePath,

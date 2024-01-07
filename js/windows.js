@@ -2,7 +2,7 @@
 
 const { BrowserWindow } = require('electron');
 import { appConfig } from './app-config.cjs';
-const path = require('path');
+import path from 'path';
 import { getDateStr } from './date-aux.js';
 
 // Keep a global reference of the window object, if you don't, the window will

@@ -3,7 +3,7 @@
 
 import Store from 'electron-store';
 import fs from 'fs';
-const path = require('path');
+import path from 'path';
 const Holidays = require('date-holidays');
 /* eslint-disable-next-line no-global-assign */
 window.$ = require('jquery');

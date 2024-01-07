@@ -2,7 +2,7 @@
 
 const i18n = require('i18next');
 const i18nextBackend = require('i18next-node-fs-backend');
-const path = require('path');
+import path from 'path';
 const { ipcMain } = require('electron');
 
 const config = require('../configs/app.config');
