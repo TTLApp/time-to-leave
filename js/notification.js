@@ -127,9 +127,9 @@ function getDismiss()
     return dismissToday;
 }
 
-module.exports = {
+export {
+    createLeaveNotification,
     createNotification,
     getDismiss,
-    createLeaveNotification,
     updateDismiss,
 };
