@@ -1,7 +1,7 @@
 /*eslint-disable no-useless-escape*/
 'use strict';
 
-const { app, ipcMain } = require('electron');
+import { app, ipcMain } from 'electron';
 const { createWindow, createMenu, getMainWindow, triggerStartupDialogs } = require('./js/main-window');
 const { createNotification } = require('./js/notification');
 const { openWaiverManagerWindow } = require('./js/windows.js');

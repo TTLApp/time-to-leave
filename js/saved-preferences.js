@@ -2,7 +2,7 @@
 
 const { changeLanguage } = require('../src/configs/i18next.config');
 
-const { app, ipcMain } = require('electron');
+import { app, ipcMain } from 'electron';
 
 let savedPreferences = null;
 

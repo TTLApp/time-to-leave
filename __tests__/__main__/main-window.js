@@ -3,7 +3,7 @@
 const notification = require('../../js/notification.js');
 const userPreferences = require('../../js/user-preferences.js');
 const { savePreferences, defaultPreferences, resetPreferences } = userPreferences;
-const { app, BrowserWindow, ipcMain } = require('electron');
+import { app, BrowserWindow, ipcMain } from 'electron';
 
 jest.mock('../../js/update-manager', () => ({
     checkForUpdates: jest.fn(),

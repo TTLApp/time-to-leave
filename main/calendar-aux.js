@@ -1,6 +1,6 @@
 'use strict';
 
-const { ipcMain } = require('electron');
+import { ipcMain } from 'electron';
 
 import { computeAllTimeBalanceUntilAsync } from '../js/time-balance.js';
 

@@ -1,6 +1,6 @@
 'use strict';
 
-const { BrowserWindow } = require('electron');
+import { BrowserWindow } from 'electron';
 import { appConfig } from './app-config.cjs';
 import path from 'path';
 import { getDateStr } from './date-aux.js';

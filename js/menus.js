@@ -1,6 +1,6 @@
 'use strict';
 
-const { app, BrowserWindow, clipboard, dialog, shell } = require('electron');
+import { app, BrowserWindow, clipboard, dialog, shell } from 'electron';
 import path from 'path';
 import Store from 'electron-store';
 

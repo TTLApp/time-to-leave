@@ -1,6 +1,6 @@
 'use strict';
 
-const { app, BrowserWindow, dialog, ipcMain, Menu, shell, Tray } = require('electron');
+import { app, BrowserWindow, dialog, ipcMain, Menu, shell, Tray } from 'electron';
 import path from 'path';
 import Store from 'electron-store';
 

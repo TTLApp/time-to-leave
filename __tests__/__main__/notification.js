@@ -4,7 +4,7 @@
 const { createNotification, createLeaveNotification, updateDismiss, getDismiss } = require('../../js/notification.js');
 const { getUserPreferences, savePreferences, resetPreferences } = require('../../js/user-preferences.js');
 const { getDateStr } = require('../../js/date-aux.js');
-const { app } = require('electron');
+import { app } from 'electron';
 
 function buildTimeString(now)
 {

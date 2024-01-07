@@ -1,6 +1,6 @@
 'use strict';
 
-const { app, net, shell, dialog, BrowserWindow } = require('electron');
+import { app, net, shell, dialog, BrowserWindow } from 'electron';
 
 const isOnline = require('is-online');
 import Store from 'electron-store';

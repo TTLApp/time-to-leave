@@ -1,8 +1,7 @@
 'use strict';
 
 import path from 'path';
-const { app } = require('electron');
-const ElectronNotification = require('electron').Notification;
+import { app, Notification as ElectronNotification } from 'electron';
 
 const {
     subtractTime,
