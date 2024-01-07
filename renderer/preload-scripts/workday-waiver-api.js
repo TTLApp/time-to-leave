@@ -1,6 +1,6 @@
 'use strict';
 
-const { ipcRenderer } = require('electron');
+import { ipcRenderer } from 'electron';
 import * as config from '../../src/configs/app.config.js';
 import { getUserPreferencesPromise, showDay } from '../../js/user-preferences.js';
 
@@ -87,6 +87,6 @@ const workdayWaiverApi = {
     deleteWaiver: (key) => deleteWaiver(key)
 };
 
-module.exports = {
+export {
     workdayWaiverApi
 };

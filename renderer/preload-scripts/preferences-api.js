@@ -1,6 +1,6 @@
 'use strict';
 
-const { ipcRenderer } = require('electron');
+import { ipcRenderer } from 'electron';
 import * as config from '../../src/configs/app.config.js';
 import { getUserPreferencesPromise } from '../../js/user-preferences.js';
 
@@ -27,6 +27,6 @@ const preferencesApi = {
     getLanguageDataPromise: () => getLanguageDataPromise()
 };
 
-module.exports = {
+export {
     preferencesApi
 };

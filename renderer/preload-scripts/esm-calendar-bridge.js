@@ -1,7 +1,7 @@
 'use strict';
 
-const { contextBridge } = require('electron');
-const { calendarApi } = require('./calendar-api.js');
+import { contextBridge } from 'electron';
+import { calendarApi } from './calendar-api.js';
 
 contextBridge.exposeInMainWorld(
     'mainApi', calendarApi

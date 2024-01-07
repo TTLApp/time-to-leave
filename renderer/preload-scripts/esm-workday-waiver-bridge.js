@@ -1,7 +1,7 @@
 'use strict';
 
-const { contextBridge } = require('electron');
-const { workdayWaiverApi } = require('./workday-waiver-api.js');
+import { contextBridge } from 'electron';
+import { workdayWaiverApi } from './workday-waiver-api.js';
 
 contextBridge.exposeInMainWorld(
     'mainApi', workdayWaiverApi

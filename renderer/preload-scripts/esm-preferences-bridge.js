@@ -1,7 +1,7 @@
 'use strict';
 
-const { contextBridge } = require('electron');
-const { preferencesApi } = require('./preferences-api.js');
+import { contextBridge } from 'electron';
+import { preferencesApi } from './preferences-api.js';
 
 contextBridge.exposeInMainWorld(
     'mainApi', preferencesApi
