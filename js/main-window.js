@@ -18,7 +18,7 @@ const { getCurrentTranslation } = require('../src/configs/i18next.config');
 let { contextMenu, tray } = require('./windows.js');
 
 import { getDefaultWidthHeight, getUserPreferences, switchCalendarView } from './user-preferences.js';
-import { appConfig, getDetails } from './app-config.js';
+import { appConfig, getDetails } from './app-config.cjs';
 import { createLeaveNotification } from './notification.js';
 
 // Keep a global reference of the window object, if you don't, the window will

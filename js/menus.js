@@ -11,7 +11,7 @@ const { createNotification } = require('./notification');
 const { getCurrentTranslation } = require('../src/configs/i18next.config');
 let { openWaiverManagerWindow, prefWindow, getDialogCoordinates } = require('./windows');
 
-import { appConfig, getDetails } from './app-config.js';
+import { appConfig, getDetails } from './app-config.cjs';
 import { savePreferences } from './user-preferences.js';
 import { getCurrentDateTimeStr } from './date-aux.js';
 

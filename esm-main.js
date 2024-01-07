@@ -7,9 +7,9 @@ const { createNotification } = require('./js/notification');
 const { openWaiverManagerWindow } = require('./js/windows.js');
 const { setupI18n, getCurrentTranslation, setLanguageChangedCallback } = require('./src/configs/i18next.config.js');
 const { handleSquirrelEvent } = require('./js/squirrel.js');
-const { showAlert, showDialogSync } = require('./js/window-aux.js');
+const { showAlert, showDialogSync } = require('./js/window-aux.cjs');
 
-import { appConfig } from './js/app-config.js';
+import { appConfig } from './js/app-config.cjs';
 import { setupCalendarStore } from './main/calendar-aux.js';
 
 if (appConfig.win32)

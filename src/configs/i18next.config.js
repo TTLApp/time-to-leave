@@ -4,7 +4,7 @@ const path = require('path');
 const { ipcMain } = require('electron');
 
 const config = require('../configs/app.config');
-const { appConfig } = require('../../js/app-config');
+const { appConfig } = require('../../js/app-config.cjs');
 
 const i18nextOptions = {
     backend:{

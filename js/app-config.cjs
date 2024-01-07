@@ -29,7 +29,7 @@ function getDetails()
     return `Version: ${version}\nElectron: ${electronVersion}\nChrome: ${chromeVersion}\nNode.js: ${nodeVersion}\nOS: ${OSInfo}`;
 }
 
-export {
+module.exports = {
     appConfig,
-    getDetails
+    getDetails,
 };

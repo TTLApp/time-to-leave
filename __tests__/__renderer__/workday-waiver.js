@@ -150,7 +150,7 @@ async function testWaiverCount(expected)
     expect($('#waiver-list-table tbody')[0].rows.length).toBe(expected);
 }
 
-jest.mock('../../js/window-aux.js');
+jest.mock('../../js/window-aux.cjs');
 
 describe('Test Workday Waiver Window', function()
 {

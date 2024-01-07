@@ -3,9 +3,9 @@
 
 const path = require('path');
 const BrowserWindow = require('@electron/remote').BrowserWindow;
-import * as windowAux from '../../js/window-aux.js';
+import * as windowAux from '../../js/window-aux.cjs';
 
-describe('window-aux.js Testing', function()
+describe('window-aux.cjs Testing', function()
 {
     process.env.NODE_ENV = 'test';
 

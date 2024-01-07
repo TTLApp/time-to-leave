@@ -28,7 +28,7 @@ function showAlert(message)
     dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
 }
 
-export {
+module.exports = {
     showAlert,
-    showDialogSync
+    showDialogSync,
 };
