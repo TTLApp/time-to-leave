@@ -2,7 +2,7 @@
 
 const { app, BrowserWindow, clipboard, dialog, shell } = require('electron');
 const path = require('path');
-const Store = require('electron-store');
+import Store from 'electron-store';
 
 const { checkForUpdates } = require('./update-manager');
 const { getSavedPreferences } = require('./saved-preferences.js');

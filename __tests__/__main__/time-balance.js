@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
-const Store = require('electron-store');
+import Store from 'electron-store';
 import {
     computeAllTimeBalanceUntil,
     getFirstInputInDb,

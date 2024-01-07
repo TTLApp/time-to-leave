@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
-const Store = require('electron-store');
+import Store from 'electron-store';
 import { computeAllTimeBalanceUntilAsync } from '../../../js/time-balance.js';
 import { defaultPreferences } from '../../../js/user-preferences.js';
 import { CalendarFactory } from '../../../renderer/classes/CalendarFactory.js';

@@ -3,7 +3,7 @@
 const { app, net, shell, dialog, BrowserWindow } = require('electron');
 
 const isOnline = require('is-online');
-const Store = require('electron-store');
+import Store from 'electron-store';
 const { getCurrentTranslation } = require('../src/configs/i18next.config');
 import { getDateStr } from './date-aux.js';
 

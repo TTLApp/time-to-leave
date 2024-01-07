@@ -2,7 +2,7 @@
 
 const { app, BrowserWindow, dialog, ipcMain, Menu, shell, Tray } = require('electron');
 const path = require('path');
-const Store = require('electron-store');
+import Store from 'electron-store';
 
 const { checkForUpdates, shouldCheckForUpdates } = require('./update-manager');
 const { migrateFixedDbToFlexible } = require('./import-export.js');

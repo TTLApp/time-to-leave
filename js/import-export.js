@@ -1,7 +1,7 @@
 /*eslint-disable no-prototype-builtins*/
 'use strict';
 
-const Store = require('electron-store');
+import Store from 'electron-store';
 import fs from 'fs';
 
 import { validateTime } from './time-math.js';

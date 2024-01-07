@@ -9,7 +9,7 @@ const {
 } = require('../../js/import-export');
 
 import fs from 'fs';
-const Store = require('electron-store');
+import Store from 'electron-store';
 const path = require('path');
 
 describe('Import export', function()
