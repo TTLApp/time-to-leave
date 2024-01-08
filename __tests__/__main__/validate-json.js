@@ -29,6 +29,21 @@ describe('Validate json', function()
             });
         });
 
+describe('validate date with and without leading 0', function()
+        {
+            const validFlexibleDate1 = [{ 'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+            const validFlexibleDate2 = [{ 'type': 'flexible', 'date': '2020-6-3', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
+            const validWaivedDate1 = [{ 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08:00' }];
+            const validWaivedDate2 = [{ 'type': 'waived', 'date': '2020-6-3', 'data': 'waived', 'hours': '08:00' }];
+            test('should be valid JSON', () =>
+            {
+                expect(validateJSON(validFlexibleDate1)).toBeTruthy();
+                expect(validateJSON(validFlexibleDate2)).toBeTruthy();
+                expect(validateJSON(validWaivedDate1)).toBeTruthy();
+                expect(validateJSON(validWaivedDate2)).toBeTruthy();
+            });
+        });
+
         describe('validate date', function()
         {
             const validFlexibleDate = [{ 'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
