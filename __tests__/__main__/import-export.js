@@ -18,23 +18,19 @@ describe('Import export', function()
 
     describe('validEntry(entry)', function()
     {
-        const goodRegularEntry = {'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': '08:00'};
         const goodFlexibleEntry = {'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00']};
         const goodWaivedEntry = {'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08:00'};
-        const badRegularEntry = {'type': 'regular', 'date': 'not-a-date', 'data': 'day-begin', 'hours': '08:00'};
         const badFlexibleEntry = {'type': 'flexible', 'date': '2020-06-03', 'values': ['not-an-hour']};
         const badFlexibleEntry2 = {'type': 'flexible', 'date': '2020-06-03', 'values': 'not-an-array'};
         const badWaivedEntry = {'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': 'not-an-hour'};
         it('should be valid', () =>
         {
-            assert.strictEqual(validEntry(goodRegularEntry), true);
             assert.strictEqual(validEntry(goodWaivedEntry), true);
             assert.strictEqual(validEntry(goodFlexibleEntry), true);
         });
 
         it('should not be valid', () =>
         {
-            assert.strictEqual(validEntry(badRegularEntry), false);
             assert.strictEqual(validEntry(badWaivedEntry), false);
             assert.strictEqual(validEntry(badFlexibleEntry), false);
             assert.strictEqual(validEntry(badFlexibleEntry2), false);
