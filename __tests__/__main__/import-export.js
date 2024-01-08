@@ -9,7 +9,6 @@ import path from 'path';
 import {
     exportDatabaseToFile,
     importDatabaseFromFile,
-    migrateFixedDbToFlexible,
     validEntry,
 } from '../../js/import-export.js';
 
@@ -43,24 +42,8 @@ describe('Import export', function()
         });
     });
 
-    const store = new Store();
     const flexibleStore = new Store({name: 'flexible-store'});
     const waivedWorkdays = new Store({name: 'waived-workdays'});
-
-    // TODO: Regular store is still here to test migration of dbs. Please remove on the next release.
-    store.clear();
-    const regularEntries = {
-        '2020-3-1-day-begin': '08:00',
-        '2020-3-1-day-end': '17:00',
-        '2020-3-1-day-total': '08:00',
-        '2020-3-1-lunch-begin': '12:00',
-        '2020-3-1-lunch-end': '13:00',
-        '2020-3-1-lunch-total': '01:00',
-        '2020-3-2-day-begin': '10:00',
-        '2020-3-2-day-end': '18:00',
-        '2020-3-2-day-total': '08:00',
-    };
-    store.set(regularEntries);
 
     flexibleStore.clear();
     const flexibleEntries = {
@@ -114,20 +97,6 @@ describe('Import export', function()
         '2020-3-1': {'values': ['08:00', '12:00', '13:00', '17:00']},
         '2020-3-2': {'values': ['10:00', '18:00']}
     };
-
-    describe('migrateFixedDbToFlexible', function()
-    {
-        it('Check that migration works', () =>
-        {
-            assert.strictEqual(flexibleStore.size, 2);
-            flexibleStore.clear();
-            assert.strictEqual(flexibleStore.size, 0);
-            migrateFixedDbToFlexible();
-            assert.strictEqual(flexibleStore.size, 2);
-            assert.deepStrictEqual(flexibleStore.get('2020-3-1'), migratedFlexibleEntries['2020-3-1']);
-            assert.deepStrictEqual(flexibleStore.get('2020-3-2'), migratedFlexibleEntries['2020-3-2']);
-        });
-    });
 
     // TODO: Mixed importing is still here due to compatibility with old dbs. Please remove on the next release.
     const mixedEntriesContent =
