@@ -1,5 +1,5 @@
 'use strict';
-const Validator = require('jsonschema').Validator;
+import { Validator } from 'jsonschema';
 
 const schema = {
     'id': '/singleEntry',
