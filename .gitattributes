@@ -10,6 +10,7 @@
 *.bat             text eol=crlf
 *.cmd             text eol=crlf
 *.coffee          text
+*.cjs             text eol=lf
 *.css             text
 *.htm             text diff=html
 *.html            text diff=html
@@ -21,6 +22,7 @@
 *.less            text
 *.ls              text
 *.map             text -diff
+*.mjs             text eol=lf
 *.od              text
 *.onlydata        text
 *.php             text diff=php
