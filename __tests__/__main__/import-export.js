@@ -15,7 +15,6 @@ describe('Import export', function()
 {
     process.env.NODE_ENV = 'test';
 
-    // TODO: Regular store entries are still here to test import of old dbs. Please remove on the next release.
     describe('validEntry(entry)', function()
     {
         const goodRegularEntry = {'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': '08:00'};
