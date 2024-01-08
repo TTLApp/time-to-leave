@@ -1,8 +1,7 @@
 'use strict';
 
-import { app, BrowserWindow, dialog, ipcMain, Menu, shell, Tray } from 'electron';
+import { app, BrowserWindow, ipcMain, Menu, Tray } from 'electron';
 import path from 'path';
-import Store from 'electron-store';
 
 const { checkForUpdates, shouldCheckForUpdates } = require('./update-manager');
 const {
@@ -17,7 +16,7 @@ const { getCurrentTranslation } = require('../src/configs/i18next.config');
 let { contextMenu, tray } = require('./windows.js');
 
 import { getDefaultWidthHeight, getUserPreferences, switchCalendarView } from './user-preferences.js';
-import { appConfig, getDetails } from './app-config.cjs';
+import { appConfig } from './app-config.cjs';
 import { createLeaveNotification } from './notification.js';
 
 // Keep a global reference of the window object, if you don't, the window will

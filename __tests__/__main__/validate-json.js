@@ -27,7 +27,7 @@ describe('Validate json', function()
             });
         });
 
-describe('validate date with and without leading 0', function()
+        describe('validate date with and without leading 0', function()
         {
             const validFlexibleDate1 = [{ 'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
             const validFlexibleDate2 = [{ 'type': 'flexible', 'date': '2020-6-3', 'values': ['08:00', '12:00', '13:00', '14:00'] }];

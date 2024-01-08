@@ -92,39 +92,6 @@ describe('Import export', function()
         });
     });
 
-    const migratedFlexibleEntries = {
-        '2020-3-1': {'values': ['08:00', '12:00', '13:00', '17:00']},
-        '2020-3-2': {'values': ['10:00', '18:00']}
-    };
-
-    // TODO: Mixed importing is still here due to compatibility with old dbs. Please remove on the next release.
-    const mixedEntriesContent =
-        `[{"type": "regular", "date": "2020-6-3", "data": "day-end", "hours": "10:00"},
-          {"type": "regular", "date": "2020-6-3", "data": "day-begin", "hours": "08:00"},
-          {"type": "flexible", "date": "2020-3-1", "values": ["08:00", "12:00", "13:00", "17:00"]}
-         ]`;
-    const mixedEntriesFile = path.join(folder, 'mixed.ttldb');
-    fs.writeFileSync(mixedEntriesFile, mixedEntriesContent, 'utf8');
-
-    // Expected values have month-1, due to how the db saves them starting from 0
-    const expectedMixedEntries = {
-        '2020-2-1': {'values': ['08:00', '12:00', '13:00', '17:00']},
-        '2020-5-3': {'values': ['08:00', '10:00']}
-    };
-
-    describe('importDatabaseFromFile (mixedContent)', function()
-    {
-        test('Check that import works', () =>
-        {
-            flexibleStore.clear();
-            expect(flexibleStore.size).toBe(0);
-            expect(importDatabaseFromFile([mixedEntriesFile])['result']).toBeTruthy();
-            expect(flexibleStore.size).toBe(2);
-            expect(flexibleStore.get('2020-2-1')).toStrictEqual(expectedMixedEntries['2020-2-1']);
-            expect(flexibleStore.get('2020-5-3')).toStrictEqual(expectedMixedEntries['2020-5-3']);
-        });
-    });
-
     afterAll(() =>
     {
         fs.rmSync(folder, {recursive: true});
