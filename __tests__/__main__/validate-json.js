@@ -1,9 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
-const {
-    validateJSON
-} = require('../../js/validate-json');
+import { validateJSON } from '../../js/validate-json.js';
 
 describe('Validate json', function()
 {
