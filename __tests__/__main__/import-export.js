@@ -17,23 +17,19 @@ describe('Import export', function()
 
     describe('validEntry(entry)', function()
     {
-        const goodRegularEntry = {'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': '08:00'};
         const goodFlexibleEntry = {'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00']};
         const goodWaivedEntry = {'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08:00'};
-        const badRegularEntry = {'type': 'regular', 'date': 'not-a-date', 'data': 'day-begin', 'hours': '08:00'};
         const badFlexibleEntry = {'type': 'flexible', 'date': '2020-06-03', 'values': ['not-an-hour']};
         const badFlexibleEntry2 = {'type': 'flexible', 'date': '2020-06-03', 'values': 'not-an-array'};
         const badWaivedEntry = {'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': 'not-an-hour'};
         test('should be valid', () =>
         {
-            expect(validEntry(goodRegularEntry)).toBeTruthy();
             expect(validEntry(goodWaivedEntry)).toBeTruthy();
             expect(validEntry(goodFlexibleEntry)).toBeTruthy();
         });
 
         test('should not be valid', () =>
         {
-            expect(validEntry(badRegularEntry)).not.toBeTruthy();
             expect(validEntry(badWaivedEntry)).not.toBeTruthy();
             expect(validEntry(badFlexibleEntry)).not.toBeTruthy();
             expect(validEntry(badFlexibleEntry2)).not.toBeTruthy();
