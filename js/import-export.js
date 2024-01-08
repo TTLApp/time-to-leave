@@ -106,20 +106,6 @@ function validEntry(entry)
     return false;
 }
 
-function mergeOldStoreDataIntoFlexibleStore(flexibleEntry, oldStoreHours)
-{
-    let index = 0;
-    for (const hour of flexibleEntry.values)
-    {
-        if (oldStoreHours > hour)
-        {
-            index++;
-        }
-    }
-    flexibleEntry.values.splice(index, 0, oldStoreHours);
-    return flexibleEntry;
-}
-
 function importDatabaseFromFile(filename)
 {
     const flexibleStore = new Store({name: 'flexible-store'});
