@@ -5,7 +5,6 @@ import path from 'path';
 import Store from 'electron-store';
 
 const { checkForUpdates, shouldCheckForUpdates } = require('./update-manager');
-const { migrateFixedDbToFlexible } = require('./import-export.js');
 const {
     getContextMenuTemplate,
     getDockMenuTemplate,
@@ -168,104 +167,6 @@ function triggerStartupDialogs()
     {
         checkForUpdates(/*showUpToDateDialog=*/false);
     }
-
-    if (shouldProposeFlexibleDbMigration())
-    {
-        proposeFlexibleDbMigration();
-    }
-}
-
-function proposeFlexibleDbMigration()
-{
-    const options = {
-        type: 'question',
-        buttons: [getCurrentTranslation('$Menu.migrate'), getCurrentTranslation('$Menu.fresh-start')],
-        defaultId: 2,
-        title: getCurrentTranslation('$Menu.migrate-calendar-to-flexible'),
-        message: getCurrentTranslation('$Menu.should-migrate-to-flexible'),
-    };
-
-    const response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
-    if (response === 0 /*migrate*/)
-    {
-        const migrateResult = migrateFixedDbToFlexible();
-        mainWindow.webContents.send('RELOAD_CALENDAR');
-        if (migrateResult['result'] === true)
-        {
-            dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
-                {
-                    title: 'Time to Leave',
-                    message: getCurrentTranslation('$Menu.database-migrated'),
-                    type: 'info',
-                    icon: appConfig.iconpath,
-                    detail: getCurrentTranslation('$Menu.migration-successful')
-                });
-        }
-        else
-        {
-            handleFailedFlexibleDbMigration(migrateResult);
-        }
-    }
-    else if (response === 1 /*fresh-start*/)
-    {
-        const confirmOptions = {
-            type: 'question',
-            buttons: [getCurrentTranslation('$Menu.cancel'), getCurrentTranslation('$Menu.yes-please')],
-            defaultId: 2,
-            title: getCurrentTranslation('$Menu.fresh-start'),
-            message: getCurrentTranslation('$Menu.fresh-start-confirm'),
-        };
-
-        const confirmResponse = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), confirmOptions);
-        if (confirmResponse === 0 /*cancel*/)
-        {
-            proposeFlexibleDbMigration();
-        }
-    }
-}
-
-/**
- * @param {Object} migrateResult Result of migrateFixedDbToFlexible() call
- */
-function handleFailedFlexibleDbMigration(migrateResult)
-{
-    const warningResponse = dialog.showMessageBoxSync({
-        type: 'warning',
-        buttons: [getCurrentTranslation('$Menu.report'), getCurrentTranslation('$Menu.quit')],
-        title: getCurrentTranslation('$Menu.failed-migrating'),
-        message: getCurrentTranslation('$Menu.something-went-wrong')
-    });
-
-    if (warningResponse === 0 /*report*/)
-    {
-        const issueTitle = 'Failed Migrating Database';
-        const err = migrateResult['err'];
-        const LB = '%0D%0A'; // Line Break char in html encoding
-        const encodedDetails = getDetails().replaceAll('\n', LB);
-        const issueBody = `While performing database migration, my application failed with the following issue:${LB}` +
-            LB +
-            '```' + LB +
-            err + LB +
-            '```' + LB +
-            LB +
-            'Environment:' + LB +
-            LB +
-            encodedDetails + LB +
-            LB +
-            'Please look into it.';
-        shell.openExternal(`https://github.com/thamara/time-to-leave/issues/new?labels=bug&title=${issueTitle}&body=${issueBody}`);
-    }
-
-    app.quit();
-}
-
-function shouldProposeFlexibleDbMigration()
-{
-    const store = new Store();
-    const flexibleStore = new Store({name: 'flexible-store'});
-
-    // There is data saved on the old store, but nothing yet on the flexible store.
-    return store.size !== 0 && flexibleStore.size === 0;
 }
 
 function resetMainWindow()
@@ -292,8 +193,6 @@ module.exports = {
     getLeaveByInterval: () => leaveByInterval,
     getMainWindow,
     getWindowTray: () => tray,
-    proposeFlexibleDbMigration,
     resetMainWindow,
-    shouldProposeFlexibleDbMigration,
     triggerStartupDialogs,
 };
