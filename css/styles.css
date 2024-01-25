@@ -2,7 +2,7 @@
 
 /* Font from https://fonts.google.com/specimen/Montserrat */
 @font-face {
-  font-family: 'Montserrat';
+  font-family: Montserrat;
   src: url('fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format("truetype-variations");
   font-weight: 1 999;
 }
@@ -16,10 +16,10 @@ html[data-theme="light"] {
   --table-bground: white;
   --input-bground: transparent;
   --table-header-bground: var(--table-bground);
-  --table-border: rgb(203, 203, 203);
-  --table-total-border: rgb(164, 158, 207);
-  --table-cell-offtime-bground: rgb(245, 245, 245);
-  --table-cell-offtime-color: rgb(133, 133, 133);
+  --table-border: rgb(203 203 203);
+  --table-total-border: rgb(164 158 207);
+  --table-cell-offtime-bground: rgb(245 245 245);
+  --table-cell-offtime-color: rgb(133 133 133);
   --table-cell-total-bground: var(--table-cell-offtime-bground);
   --table-cell-total-color: var(--table-cell-offtime-color);
   --table-header-label-bground: var(--table-bground);
@@ -27,96 +27,96 @@ html[data-theme="light"] {
   --error: red;
   --punch-bground: var(--table-total-border);
   --punch-color: black;
-  --punch-disable-bground: rgb(134, 134, 134);
-  --slider-background-color: rgb(220, 220, 220);
+  --punch-disable-bground: rgb(134 134 134);
+  --slider-background-color: rgb(220 220 220);
   --slider-checked-color: var(--table-total-border);
   --slider-unchecked-color: white;
   --weekday-background: var(--slider-background-color);
   --weekday-selected: var(--punch-bground);
   --svg-invert: 0;
-  --disabled-input-bground: rgb(175, 175, 175);
-  --title-color: rgb(51, 51, 51);
-  --input-border: rgb(77, 77, 77);
-  --tab-font-color: rgb(51, 51, 51);
+  --disabled-input-bground: rgb(175 175 175);
+  --title-color: rgb(51 51 51);
+  --input-border: rgb(77 77 77);
+  --tab-font-color: rgb(51 51 51);
   --tab-waiver-color: white;
-  --tab-waiver-border: rgb(220, 220, 220);
-  --datepicker-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJXaW5kb3dUZXh0IiBkPSJNMTEuOTkgMkM2LjQ3IDIgMiA2LjQ4IDIgMTJzNC40NyAxMCA5Ljk5IDEwQzE3LjUyIDIyIDIyIDE3LjUyIDIyIDEyUzE3LjUyIDIgMTEuOTkgMnpNMTIgMjBjLTQuNDIgMC04LTMuNTgtOC04czMuNTgtOCA4LTggOCAzLjU4IDggOC0zLjU4IDgtOCA4eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMTIuNSA3SDExdjZsNS4yNSAzLjE1Ljc1LTEuMjMtNC41LTIuNjd6Ii8+PC9zdmc+) 1x);
-  --calendar-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJXaW5kb3dUZXh0IiBkPSJNMjAgM2gtMVYxaC0ydjJIN1YxSDV2Mkg0Yy0xLjEgMC0yIC45LTIgMnYxNmMwIDEuMS45IDIgMiAyaDE2YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMThINFY4aDE2djEzeiIvPjxwYXRoIGZpbGw9Im5vbmUiIGQ9Ik0wIDBoMjR2MjRIMHoiLz48L3N2Zz4=) 1x);
-  --day-calendar-select-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiPg0KICAgIDxwb2x5Z29uIHBvaW50cz0iNTAgODUsIDEwMCAwLCAwIDAiIGZpbGw9ImJsYWNrIj48L3BvbHlnb24+DQo8L3N2Zz4=) 1x);
+  --tab-waiver-border: rgb(220 220 220);
+  --datepicker-icon: image-set(url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJXaW5kb3dUZXh0IiBkPSJNMTEuOTkgMkM2LjQ3IDIgMiA2LjQ4IDIgMTJzNC40NyAxMCA5Ljk5IDEwQzE3LjUyIDIyIDIyIDE3LjUyIDIyIDEyUzE3LjUyIDIgMTEuOTkgMnpNMTIgMjBjLTQuNDIgMC04LTMuNTgtOC04czMuNTgtOCA4LTggOCAzLjU4IDggOC0zLjU4IDgtOCA4eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMTIuNSA3SDExdjZsNS4yNSAzLjE1Ljc1LTEuMjMtNC41LTIuNjd6Ii8+PC9zdmc+") 1x);
+  --calendar-icon: image-set(url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJXaW5kb3dUZXh0IiBkPSJNMjAgM2gtMVYxaC0ydjJIN1YxSDV2Mkg0Yy0xLjEgMC0yIC45LTIgMnYxNmMwIDEuMS45IDIgMiAyaDE2YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMThINFY4aDE2djEzeiIvPjxwYXRoIGZpbGw9Im5vbmUiIGQ9Ik0wIDBoMjR2MjRIMHoiLz48L3N2Zz4=") 1x);
+  --day-calendar-select-icon: image-set(url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiPg0KICAgIDxwb2x5Z29uIHBvaW50cz0iNTAgODUsIDEwMCAwLCAwIDAiIGZpbGw9ImJsYWNrIj48L3BvbHlnb24+DQo8L3N2Zz4=") 1x);
   --outline: 2px dashed #7579e7;
-  --delete-icon: -webkit-image-set(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M11.452 2.597L7.964 6.086l3.488 3.488a1.33 1.33 0 0 1 0 1.879c-.26.26-.6.39-.94.39s-.68-.13-.94-.39L6.086 7.964l-3.488 3.488c-.26.26-.6.39-.94.39s-.68-.13-.94-.39a1.33 1.33 0 0 1 0-1.879l3.488-3.488L.72 2.597a1.33 1.33 0 0 1 0-1.878 1.33 1.33 0 0 1 1.878 0l3.488 3.488L9.574.72a1.33 1.33 0 0 1 1.878 0 1.33 1.33 0 0 1 0 1.878z'/%3E%3C/svg%3E") 1x);
+  --delete-icon: image-set(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M11.452 2.597L7.964 6.086l3.488 3.488a1.33 1.33 0 0 1 0 1.879c-.26.26-.6.39-.94.39s-.68-.13-.94-.39L6.086 7.964l-3.488 3.488c-.26.26-.6.39-.94.39s-.68-.13-.94-.39a1.33 1.33 0 0 1 0-1.879l3.488-3.488L.72 2.597a1.33 1.33 0 0 1 0-1.878 1.33 1.33 0 0 1 1.878 0l3.488 3.488L9.574.72a1.33 1.33 0 0 1 1.878 0 1.33 1.33 0 0 1 0 1.878z'/%3E%3C/svg%3E") 1x);
 }
 
 html[data-theme="dark"] {
-  --page-bground: rgb(39, 39, 39);
+  --page-bground: rgb(39 39 39);
   --page-color: white;
-  --table-bground: rgb(39, 39, 39);
+  --table-bground: rgb(39 39 39);
   --table-header-bground: var(--table-bground);
-  --table-border: rgb(90, 90, 90);
+  --table-border: rgb(90 90 90);
   --input-bground: transparent;
-  --table-total-border: rgb(95, 92, 121);
-  --table-cell-offtime-bground: rgb(71, 71, 71);
-  --table-cell-offtime-color: rgb(151, 151, 151);
+  --table-total-border: rgb(95 92 121);
+  --table-cell-offtime-bground: rgb(71 71 71);
+  --table-cell-offtime-color: rgb(151 151 151);
   --table-cell-total-bground: var(--table-cell-offtime-bground);
   --table-cell-total-color: var(--table-cell-offtime-color);
   --table-header-label-bground: var(--table-bground);
   --table-header-label-shadow: var(--table-border);
   --error: red;
-  --punch-bground: rgb(164, 158, 207);
+  --punch-bground: rgb(164 158 207);
   --punch-color: white;
-  --punch-disable-bground: rgb(134, 134, 134);
+  --punch-disable-bground: rgb(134 134 134);
   --slider-background-color: var(--table-cell-offtime-bground);
   --slider-checked-color: var(--punch-bground);
   --slider-unchecked-color: white;
   --weekday-background: var(--slider-background-color);
   --weekday-selected: var(--punch-bground);
   --svg-invert: 1;
-  --disabled-input-bground: rgb(80, 80, 80);
-  --title-color: rgb(--page-color);
-  --input-border: rgb(77, 77, 77);
+  --disabled-input-bground: rgb(80 80 80);
+  --title-color: rgb(var(--page-color));
+  --input-border: rgb(77 77 77);
   --tab-font-color: white;
-  --tab-waiver-color: rgb(77, 77, 77);
-  --tab-waiver-border: rgb(220, 220, 220);
-  --datepicker-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTExLjk5IDJDNi40NyAyIDIgNi40OCAyIDEyczQuNDcgMTAgOS45OSAxMEMxNy41MiAyMiAyMiAxNy41MiAyMiAxMlMxNy41MiAyIDExLjk5IDJ6TTEyIDIwYy00LjQyIDAtOC0zLjU4LTgtOHMzLjU4LTggOC04IDggMy41OCA4IDgtMy41OCA4LTggOHoiLz48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMi41IDdIMTF2Nmw1LjI1IDMuMTUuNzUtMS4yMy00LjUtMi42N3oiLz48L3N2Zz4=) 1x);
-  --calendar-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTIwIDNoLTFWMWgtMnYySDdWMUg1djJINGMtMS4xIDAtMiAuOS0yIDJ2MTZjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY1YzAtMS4xLS45LTItMi0yem0wIDE4SDRWOGgxNnYxM3oiLz48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PC9zdmc+) 1x);
-  --day-calendar-select-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiPg0KICAgIDxwb2x5Z29uIHBvaW50cz0iNTAgODUsIDEwMCAwLCAwIDAiIGZpbGw9IndoaXRlIj48L3BvbHlnb24+DQo8L3N2Zz4=) 1x);
+  --tab-waiver-color: rgb(77 77 77);
+  --tab-waiver-border: rgb(220 220 220);
+  --datepicker-icon: image-set(url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTExLjk5IDJDNi40NyAyIDIgNi40OCAyIDEyczQuNDcgMTAgOS45OSAxMEMxNy41MiAyMiAyMiAxNy41MiAyMiAxMlMxNy41MiAyIDExLjk5IDJ6TTEyIDIwYy00LjQyIDAtOC0zLjU4LTgtOHMzLjU4LTggOC04IDggMy41OCA4IDgtMy41OCA4LTggOHoiLz48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMi41IDdIMTF2Nmw1LjI1IDMuMTUuNzUtMS4yMy00LjUtMi42N3oiLz48L3N2Zz4=") 1x);
+  --calendar-icon: image-set(url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTIwIDNoLTFWMWgtMnYySDdWMUg1djJINGMtMS4xIDAtMiAuOS0yIDJ2MTZjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY1YzAtMS4xLS45LTItMi0yem0wIDE4SDRWOGgxNnYxM3oiLz48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PC9zdmc+") 1x);
+  --day-calendar-select-icon: image-set(url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiPg0KICAgIDxwb2x5Z29uIHBvaW50cz0iNTAgODUsIDEwMCAwLCAwIDAiIGZpbGw9IndoaXRlIj48L3BvbHlnb24+DQo8L3N2Zz4=") 1x);
   --outline: 2px dashed white;
-  --delete-icon: -webkit-image-set(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M11.452 2.597L7.964 6.086l3.488 3.488a1.33 1.33 0 0 1 0 1.879c-.26.26-.6.39-.94.39s-.68-.13-.94-.39L6.086 7.964l-3.488 3.488c-.26.26-.6.39-.94.39s-.68-.13-.94-.39a1.33 1.33 0 0 1 0-1.879l3.488-3.488L.72 2.597a1.33 1.33 0 0 1 0-1.878 1.33 1.33 0 0 1 1.878 0l3.488 3.488L9.574.72a1.33 1.33 0 0 1 1.878 0 1.33 1.33 0 0 1 0 1.878z' fill='%23fff'/%3E%3C/svg%3E") 1x);
+  --delete-icon: image-set(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M11.452 2.597L7.964 6.086l3.488 3.488a1.33 1.33 0 0 1 0 1.879c-.26.26-.6.39-.94.39s-.68-.13-.94-.39L6.086 7.964l-3.488 3.488c-.26.26-.6.39-.94.39s-.68-.13-.94-.39a1.33 1.33 0 0 1 0-1.879l3.488-3.488L.72 2.597a1.33 1.33 0 0 1 0-1.878 1.33 1.33 0 0 1 1.878 0l3.488 3.488L9.574.72a1.33 1.33 0 0 1 1.878 0 1.33 1.33 0 0 1 0 1.878z' fill='%23fff'/%3E%3C/svg%3E") 1x);
 }
 
 html[data-theme="cadent-star"] {
   --page-bground: transparent;
   --page-color: black;
-  --table-bground: rgba(255, 238, 227, 0.3);
+  --table-bground: rgb(255 238 227 / 30%);
   --input-bground: transparent;
-  --table-header-bground: rgba(255, 238, 227, 0.9);
+  --table-header-bground: rgb(255 238 227 / 90%);
   --table-border: #28292f;
-  --table-total-border: rgb(121, 121, 121);
-  --table-cell-offtime-bground: rgba(0, 0, 0, 0.1);
-  --table-cell-offtime-color: rgba(0, 0, 0, 0.5);
+  --table-total-border: rgb(121 121 121);
+  --table-cell-offtime-bground: rgb(0 0 0 / 10%);
+  --table-cell-offtime-color: rgb(0 0 0 / 50%);
   --table-cell-total-bground: transparent;
   --table-cell-total-color: var(--table-cell-offtime-color);
-  --table-header-label-bground: rgba(255, 238, 227, 0.9);
+  --table-header-label-bground: rgb(255 238 227 / 90%);
   --table-header-label-shadow: var(--table-border);
   --error: red;
   --punch-bground: var(--table-total-border);
-  --punch-color: rgb(228, 228, 228);
-  --punch-disable-bground: rgb(134, 134, 134);
-  --slider-background-color: rgb(220, 220, 220);
+  --punch-color: rgb(228 228 228);
+  --punch-disable-bground: rgb(134 134 134);
+  --slider-background-color: rgb(220 220 220);
   --slider-checked-color: var(--table-total-border);
   --slider-unchecked-color: white;
   --weekday-background: var(--slider-background-color);
   --weekday-selected: var(--punch-bground);
   --svg-invert: 0;
   --disabled-input-bground: transparent;
-  --title-color: rgb(51, 51, 51);
+  --title-color: rgb(51 51 51);
   --input-border: transparent;
   --tab-font-color: black;
   --tab-waiver-color: transparent;
   --tab-waiver-border: black;
-  --datepicker-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJXaW5kb3dUZXh0IiBkPSJNMTEuOTkgMkM2LjQ3IDIgMiA2LjQ4IDIgMTJzNC40NyAxMCA5Ljk5IDEwQzE3LjUyIDIyIDIyIDE3LjUyIDIyIDEyUzE3LjUyIDIgMTEuOTkgMnpNMTIgMjBjLTQuNDIgMC04LTMuNTgtOC04czMuNTgtOCA4LTggOCAzLjU4IDggOC0zLjU4IDgtOCA4eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMTIuNSA3SDExdjZsNS4yNSAzLjE1Ljc1LTEuMjMtNC41LTIuNjd6Ii8+PC9zdmc+) 1x);
-  --calendar-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJXaW5kb3dUZXh0IiBkPSJNMjAgM2gtMVYxaC0ydjJIN1YxSDV2Mkg0Yy0xLjEgMC0yIC45LTIgMnYxNmMwIDEuMS45IDIgMiAyaDE2YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMThINFY4aDE2djEzeiIvPjxwYXRoIGZpbGw9Im5vbmUiIGQ9Ik0wIDBoMjR2MjRIMHoiLz48L3N2Zz4=) 1x);
-  --day-calendar-select-icon: -webkit-image-set(url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiPg0KICAgIDxwb2x5Z29uIHBvaW50cz0iNTAgODUsIDEwMCAwLCAwIDAiIGZpbGw9ImJsYWNrIj48L3BvbHlnb24+DQo8L3N2Zz4=) 1x);
+  --datepicker-icon: image-set(url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJXaW5kb3dUZXh0IiBkPSJNMTEuOTkgMkM2LjQ3IDIgMiA2LjQ4IDIgMTJzNC40NyAxMCA5Ljk5IDEwQzE3LjUyIDIyIDIyIDE3LjUyIDIyIDEyUzE3LjUyIDIgMTEuOTkgMnpNMTIgMjBjLTQuNDIgMC04LTMuNTgtOC04czMuNTgtOCA4LTggOCAzLjU4IDggOC0zLjU4IDgtOCA4eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMTIuNSA3SDExdjZsNS4yNSAzLjE1Ljc1LTEuMjMtNC41LTIuNjd6Ii8+PC9zdmc+") 1x);
+  --calendar-icon: image-set(url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJXaW5kb3dUZXh0IiBkPSJNMjAgM2gtMVYxaC0ydjJIN1YxSDV2Mkg0Yy0xLjEgMC0yIC45LTIgMnYxNmMwIDEuMS45IDIgMiAyaDE2YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMThINFY4aDE2djEzeiIvPjxwYXRoIGZpbGw9Im5vbmUiIGQ9Ik0wIDBoMjR2MjRIMHoiLz48L3N2Zz4=") 1x);
+  --day-calendar-select-icon: image-set(url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiPg0KICAgIDxwb2x5Z29uIHBvaW50cz0iNTAgODUsIDEwMCAwLCAwIDAiIGZpbGw9ImJsYWNrIj48L3BvbHlnb24+DQo8L3N2Zz4=") 1x);
   --outline: 2px dashed black;
 }
 
@@ -149,11 +149,11 @@ html[data-theme="cadent-star"] ::-webkit-scrollbar-track {
 }
 
 html[data-theme="dark"] .text-danger {
-  color: rgb(226, 93, 90);
+  color: rgb(226 93 90);
 }
 
 html[data-theme="cadent-star"] .text-danger {
-  color: rgb(226, 93, 90);
+  color: rgb(226 93 90);
 }
 
 html[data-theme="cadent-star"] body {
@@ -166,10 +166,10 @@ body {
 }
 
 .container {
-  font-family: 'Montserrat', sans-serif;
+  font-family: Montserrat, sans-serif;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .container {
     max-width: initial;
   }
@@ -202,10 +202,7 @@ body {
   padding-top: 5px;
   height: 120%;
   width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: auto;
-  margin-bottom: auto;
+  margin: auto;
   user-select: none;
 }
 
@@ -473,12 +470,10 @@ body {
 
 .right {
   transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
 }
 
 .left {
   transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
 }
 
 .hidden {
@@ -519,12 +514,8 @@ body {
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-color: var(--slider-background-color);
-  -webkit-transition: 0.4s;
   transition: 0.4s;
   transition: outline-color 0s;
 }
@@ -535,7 +526,6 @@ body {
   height: 15px;
   width: 15px;
   background-color: var(--slider-unchecked-color);
-  -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
@@ -549,8 +539,6 @@ input:focus + .slider {
 }
 
 input:checked + .slider::before {
-  -webkit-transform: translateX(15px);
-  -ms-transform: translateX(15px);
   transform: translateX(15px);
 }
 
@@ -575,7 +563,7 @@ input:disabled + .slider {
 /** Common window styles **/
 
 .common-window {
-  font-family: 'Montserrat', sans-serif;
+  font-family: Montserrat, sans-serif;
   padding-right: 10px;
   padding-left: 10px;
   padding-bottom: 10px;
@@ -641,7 +629,7 @@ input:disabled + .slider {
   display: none;
 }
 
-#preferences-window .weekdays-selector input[type=checkbox] + label {
+#preferences-window .weekdays-selector input[type="checkbox"] + label {
   font-size: 14px;
   font-weight: 300;
   font-variant-caps: all-petite-caps;
@@ -657,13 +645,13 @@ input:disabled + .slider {
   user-select: none;
 }
 
-#preferences-window .weekdays-selector input[type=checkbox]:checked + label {
+#preferences-window .weekdays-selector input[type="checkbox"]:checked + label {
   background: var(--weekday-selected);
   color: #fff;
 }
 
-#preferences-window input[type=text]:invalid {
-  color: rgb(255, 71, 71);
+#preferences-window input[type="text"]:invalid {
+  color: rgb(255 71 71);
 }
 
 #preferences-window .flex-box {
@@ -703,8 +691,7 @@ input:disabled + .slider {
 }
 
 #preferences-window i {
-  margin-inline-start: 0em;
-  margin-inline-end: 0.3em;
+  margin-inline: 0em 0.3em;
   width: 1.5ch;
   text-align: center;
 }
@@ -790,7 +777,7 @@ html[data-view='flexible'] .calendar-table-header {
   display: flow-root;
   border-bottom: 2px solid var(--table-border);
   width: 90%;
-  margin: 5px auto 0 auto;
+  margin: 5px auto 0;
 }
 
 html[data-view='flexible'] .calendar-table-header .header-day,
@@ -816,10 +803,10 @@ html[data-view='flexible'] .row-time {
 
 html[data-view='flexible'] .row-waiver .waived-day-text {
   width: 75%;
-  margin: auto 10px auto;
+  margin: auto 10px;
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
   html[data-view='flexible'] .row-waiver .waived-day-text {
     width: 80%;
   }
@@ -845,7 +832,7 @@ html[data-view='flexible'] .arrow.right {
 
 html[data-view='flexible'] #calendar-table-body {
   width: 90%;
-  margin: 0 auto 0 auto;
+  margin: 0 auto;
 }
 
 html[data-view='flexible'] #calendar-table-body > div {
@@ -861,7 +848,7 @@ html[data-view='flexible'] .ti {
 
 html[data-view='flexible'] .weekday {
   width: 60px;
-  margin: auto 0 auto 0;
+  margin: auto 0;
 }
 
 html[data-view='flexible'] .time-cells {
@@ -871,7 +858,7 @@ html[data-view='flexible'] .time-cells {
   display: flex;
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
   html[data-view='flexible'] .time-cells {
     width: 74%;
   }
@@ -905,7 +892,7 @@ html[data-view='flexible'] .minus-sign span {
 
 html[data-view='flexible'] .sign-cell {
   height: 25px;
-  padding: 0 2px 0 2px;
+  padding: 0 2px;
 }
 
 html[data-view='flexible'] .sign-cell.plus-sign {
@@ -935,7 +922,7 @@ html[data-view='flexible'] .non-working-day {
   width: 87%;
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
   html[data-view='flexible'] .non-working-day {
     width: 89%;
   }
@@ -944,7 +931,7 @@ html[data-view='flexible'] .non-working-day {
 html[data-view='flexible'] .day {
   width: 50px;
   text-align: center;
-  margin: auto 0 auto 0;
+  margin: auto 0;
 }
 
 html[data-view='flexible'] .ti input {
@@ -967,7 +954,7 @@ html[data-view='flexible'] .day-total-cell {
   height: 28px;
 }
 
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
   html[data-view='flexible'] .day-total-cell {
     width: 81px;
   }
@@ -1002,7 +989,7 @@ html[data-view='flexible'] .leave-by-time > div {
 
 html[data-view='flexible'] .leave-by-text {
   width: 91%;
-  margin: auto 10px auto;
+  margin: auto 10px;
 }
 
 html[data-view='flexible'] #month-balance {
@@ -1068,7 +1055,7 @@ html[data-view='flexible-day'] #calendar-table-body .second-group {
   text-align: center;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   html[data-view='flexible-day'] #calendar-table-body .second-group {
     width: 67%;
   }
@@ -1091,7 +1078,7 @@ html[data-view='flexible-day'] #calendar-table-body .row-controls {
   border-bottom: 1px solid var(--table-border);
   width: 90% !important;
   margin: auto;
-  padding: 2px 0 2px 0;
+  padding: 2px 0;
 }
 
 html[data-view='flexible-day'] #calendar-table-body .row-entry-pair input {
@@ -1174,16 +1161,16 @@ html[data-view='flexible-day'] .row-total {
   width: 90% !important;
   margin: auto;
   border-bottom: none !important;
-  padding: 10px 0 10px 0;
+  padding: 10px 0;
 }
 
 html[data-view='flexible-day'] .row-total .th {
-  margin: auto 0 auto 0;
+  margin: auto 0;
 }
 
 html[data-view='flexible-day'] .row-waiver {
   margin: auto;
-  padding: 2px 0 12px 0;
+  padding: 2px 0 12px;
   display: flex;
 }
 
@@ -1197,12 +1184,12 @@ html[data-view='flexible-day'] .today-non-working {
 
 html[data-view='flexible-day'] .non-working-day {
   background: none;
-  margin: auto auto 10px auto;
+  margin: auto auto 10px;
   text-align: center;
 }
 
 html[data-view='flexible-day'] .summary {
-  padding: 5px 0 5px 0;
+  padding: 5px 0;
   display: flex;
   border-top: 4px solid var(--table-total-border);
   border-bottom: none !important;
@@ -1224,7 +1211,7 @@ html[data-view='flexible-day'] .month-total-row {
   border-top: 4px solid var(--table-total-border);
   border-bottom: none;
   margin: auto;
-  padding: 5px 0 2px 0;
+  padding: 5px 0 2px;
 }
 
 html[data-view='flexible-day'] .month-total-row .month-total-text {
@@ -1250,7 +1237,7 @@ html[data-view='flexible-day'] .footer {
 
 html[data-view='flexible-day'] .footer .punch-button {
   font-weight: 700;
-  font-family: 'Montserrat', sans-serif;
+  font-family: Montserrat, sans-serif;
 }
 
 html[data-view='flexible-day'] .punch-button img {
