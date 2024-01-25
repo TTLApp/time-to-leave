@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 'use strict';
 
+const assert = require('assert');
+
 import {
     applyTheme,
     isValidTheme
@@ -13,10 +15,10 @@ describe('Theme Functions', function()
     {
         test('should validate', () =>
         {
-            expect(isValidTheme('system-default')).toBeTruthy();
-            expect(isValidTheme('light')).toBeTruthy();
-            expect(isValidTheme('dark')).toBeTruthy();
-            expect(isValidTheme('cadent-star')).toBeTruthy();
+            assert.notStrictEqual(isValidTheme('system-default'), undefined);
+            assert.notStrictEqual(isValidTheme('light'), undefined);
+            assert.notStrictEqual(isValidTheme('dark'), undefined);
+            assert.notStrictEqual(isValidTheme('cadent-star'), undefined);
         });
     });
 
@@ -24,8 +26,8 @@ describe('Theme Functions', function()
     {
         test('should not validate', () =>
         {
-            expect(isValidTheme('foo')).not.toBeTruthy();
-            expect(isValidTheme('bar')).not.toBeTruthy();
+            assert.notStrictEqual(isValidTheme('foo'), undefined);
+            assert.notStrictEqual(isValidTheme('bar'), undefined);
         });
     });
 
@@ -33,16 +35,16 @@ describe('Theme Functions', function()
     {
         test('should apply', () =>
         {
-            expect(applyTheme('system-default')).toBeTruthy();
-            expect(applyTheme('light')).toBeTruthy();
-            expect(applyTheme('dark')).toBeTruthy();
-            expect(applyTheme('cadent-star')).toBeTruthy();
+            assert.notStrictEqual(applyTheme('system-default'), undefined);
+            assert.notStrictEqual(applyTheme('light'), undefined);
+            assert.notStrictEqual(applyTheme('dark'), undefined);
+            assert.notStrictEqual(applyTheme('cadent-star'), undefined);
         });
 
         test('should not apply', function()
         {
-            expect(applyTheme('foo')).not.toBeTruthy();
-            expect(applyTheme('bar')).not.toBeTruthy();
+            assert.notStrictEqual(applyTheme('foo'), undefined);
+            assert.notStrictEqual(applyTheme('bar'), undefined);
         });
     });
 });

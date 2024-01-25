@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
+const assert = require('assert');
 import Store from 'electron-store';
 import fs from 'fs';
 import path from 'path';
@@ -146,8 +147,8 @@ async function addTestWaiver(day, reason)
 async function testWaiverCount(expected)
 {
     const waivedWorkdays = await window.mainApi.getWaiverStoreContents();
-    expect(waivedWorkdays.size).toBe(expected);
-    expect($('#waiver-list-table tbody')[0].rows.length).toBe(expected);
+    assert.strictEqual(waivedWorkdays.size, expected);
+    assert.strictEqual($('#waiver-list-table tbody')[0].rows.length, expected);
 }
 
 jest.mock('../../js/window-aux.cjs');
@@ -214,14 +215,14 @@ describe('Test Workday Waiver Window', function()
                     break;
                 }
             }
-            expect(isSorted).toBe(true);
+            assert.strictEqual(isSorted, true);
 
         });
         test('Time is not valid', async() =>
         {
             $('#hours').val('not a time');
             const waiver = await addWaiver();
-            expect(waiver).toBeFalsy();
+            assert.strictEqual(waiver, false);
         });
 
         test('End date less than start date', async() =>
@@ -230,20 +231,20 @@ describe('Test Workday Waiver Window', function()
             $('#start-date').val('2020-07-20');
             $('#end-date').val('2020-07-19');
             const waiver = await addWaiver();
-            expect(waiver).toBeFalsy();
+            assert.strictEqual(waiver, false);
         });
 
         test('Add waiver with the same date', async() =>
         {
             addTestWaiver('2020-07-16', 'some reason');
             const waiver = await addTestWaiver('2020-07-16', 'some reason');
-            expect(waiver).toBeFalsy();
+            assert.strictEqual(waiver, undefined);
         });
 
         test('Range does not contain any working day', async() =>
         {
             const waiver = await addTestWaiver('2020-13-01', 'some reason');
-            expect(waiver).toBeFalsy();
+            assert.strictEqual(waiver, false);
         });
     });
 
@@ -261,21 +262,21 @@ describe('Test Workday Waiver Window', function()
         test('Testing button is exist', () =>
         {
             const exists = document.querySelectorAll(`#${btnId}`).length;
-            expect(exists).toBeTruthy();
+            assert.notStrictEqual(exists, undefined);
         });
 
         test('Make disabled', () =>
         {
             toggleAddButton(btnId, false);
             const disabled = btn.getAttribute('disabled');
-            expect(disabled).toBe('disabled');
+            assert.strictEqual(disabled, 'disabled');
         });
 
         test('Make not disabled', () =>
         {
             toggleAddButton(btnId, true);
             const notDisabled = btn.getAttribute('disabled');
-            expect(notDisabled).toBeNull();
+            assert.strictEqual(notDisabled, null);
         });
 
         afterAll(() =>
@@ -293,7 +294,7 @@ describe('Test Workday Waiver Window', function()
             const deleteBtn = document.querySelectorAll('#waiver-list-table .delete-btn')[0];
             deleteEntryOnClick({target: deleteBtn});
             const length = document.querySelectorAll('#waiver-list-table .delete-btn').length;
-            expect(length).toBe(0);
+            assert.strictEqual(length, 0);
         });
     });
 
@@ -309,47 +310,47 @@ describe('Test Workday Waiver Window', function()
         test('Country was populated', async() =>
         {
             const countriesLength = Object.keys(hd.getCountries()).length;
-            expect($('#country option').length).toBe(0);
+            assert.strictEqual($('#country option').length, 0);
             await populateCountry();
-            expect($('#country option').length).toBe(countriesLength + 1);
+            assert.strictEqual($('#country option').length, countriesLength + 1);
         });
 
         test('States was populated', async() =>
         {
             const statesLength = Object.keys(hd.getStates('US')).length;
-            expect($('#state option').length).toBe(0);
+            assert.strictEqual($('#state option').length, 0);
             await populateState('US');
-            expect($('#state option').length).toBe(statesLength + 1);
-            expect($('#state').css('display')).toBe('inline-block');
-            expect($('#holiday-state').css('display')).toBe('table-row');
+            assert.strictEqual($('#state option').length, statesLength + 1);
+            assert.strictEqual($('#state').css('display'), 'inline-block');
+            assert.strictEqual($('#holiday-state').css('display'), 'table-row');
         });
 
         test('States was not populated', async() =>
         {
-            expect($('#state option').length).toBe(0);
+            assert.strictEqual($('#state option').length, 0);
             await populateState('CN');
-            expect($('#state option').length).toBe(0);
-            expect($('#state').css('display')).toBe('none');
-            expect($('#holiday-state').css('display')).toBe('none');
+            assert.strictEqual($('#state option').length, 0);
+            assert.strictEqual($('#state').css('display'), 'none');
+            assert.strictEqual($('#holiday-state').css('display'), 'none');
         });
 
         test('City was populated', async() =>
         {
             const regionsLength = Object.keys(hd.getRegions('US', 'CA')).length;
-            expect($('#city option').length).toBe(0);
+            assert.strictEqual($('#city option').length, 0);
             await populateCity('US', 'CA');
-            expect($('#city option').length).toBe(regionsLength + 1);
-            expect($('#city').css('display')).toBe('inline-block');
-            expect($('#holiday-city').css('display')).toBe('table-row');
+            assert.strictEqual($('#city option').length, regionsLength + 1);
+            assert.strictEqual($('#city').css('display'), 'inline-block');
+            assert.strictEqual($('#holiday-city').css('display'), 'table-row');
         });
 
         test('City was not populated', async() =>
         {
-            expect($('#city option').length).toBe(0);
+            assert.strictEqual($('#city option').length, 0);
             await populateCity('US', 'AL');
-            expect($('#city option').length).toBe(0);
-            expect($('#city').css('display')).toBe('none');
-            expect($('#holiday-city').css('display')).toBe('none');
+            assert.strictEqual($('#city option').length, 0);
+            assert.strictEqual($('#city').css('display'), 'none');
+            assert.strictEqual($('#holiday-city').css('display'), 'none');
         });
 
         test('Year was populated', () =>
@@ -357,10 +358,10 @@ describe('Test Workday Waiver Window', function()
             populateYear();
             const thisYear = new Date().getFullYear();
             const values = document.querySelectorAll('#year option');
-            expect($('#year option').length).toBe(10);
+            assert.strictEqual($('#year option').length, 10);
             for (let i = 0; i < 10; i++)
             {
-                expect(values[i].value).toBe(`${thisYear + i}`);
+                assert.strictEqual(values[i].value, `${thisYear + i}`);
             }
         });
     });
@@ -381,7 +382,7 @@ describe('Test Workday Waiver Window', function()
         test('Get holidays with no country', async() =>
         {
             $('#year').append($('<option selected></option>').val(year).html(year));
-            expect($('#year option').length).toBe(1);
+            assert.strictEqual($('#year option').length, 1);
             const holidays = await getHolidays();
             expect(holidays).toEqual([]);
         });
@@ -390,7 +391,7 @@ describe('Test Workday Waiver Window', function()
         {
             $('#year').append($('<option selected></option>').val(year).html(year));
             $('#country').append($('<option selected></option>').val(country).html(country));
-            expect($('#country option').length).toBe(1);
+            assert.strictEqual($('#country option').length, 1);
             hd.init(country);
             const holidays = await getHolidays();
             expect(holidays).toEqual(hd.getHolidays(year));
@@ -401,7 +402,7 @@ describe('Test Workday Waiver Window', function()
             $('#year').append($('<option selected></option>').val(year).html(year));
             $('#country').append($('<option selected></option>').val(country).html(country));
             $('#state').append($('<option selected></option>').val(state).html(state));
-            expect($('#state option').length).toBe(1);
+            assert.strictEqual($('#state option').length, 1);
             hd.init(country, state);
             const holidays = await getHolidays();
             expect(holidays).toEqual(hd.getHolidays(year));
@@ -413,7 +414,7 @@ describe('Test Workday Waiver Window', function()
             $('#country').append($('<option selected></option>').val(country).html(country));
             $('#state').append($('<option selected></option>').val(state).html(state));
             $('#city').append($('<option selected></option>').val(city).html(city));
-            expect($('#state option').length).toBe(1);
+            assert.strictEqual($('#state option').length, 1);
             hd.init(country, state, city);
             const holidays = await getHolidays();
             expect(holidays).toEqual(hd.getHolidays(year));
@@ -448,8 +449,8 @@ describe('Test Workday Waiver Window', function()
             loadHolidaysTable();
             const holidaysLength = 0;
             const rowLength = $('#holiday-list-table tbody tr').length;
-            expect($('#holiday-list-table').css('display')).toBe('table');
-            expect(holidaysLength).toBe(rowLength);
+            assert.strictEqual($('#holiday-list-table').css('display'), 'table');
+            assert.strictEqual(holidaysLength, rowLength);
         });
 
         test('Load holidays table', async() =>
@@ -461,8 +462,8 @@ describe('Test Workday Waiver Window', function()
             const holidays = await getHolidays();
             const holidaysLength = holidays.length;
             const rowLength = $('#holiday-list-table tbody tr').length;
-            expect($('#holiday-list-table').css('display')).toBe('table');
-            expect(holidaysLength).toBe(rowLength);
+            assert.strictEqual($('#holiday-list-table').css('display'), 'table');
+            assert.strictEqual(holidaysLength, rowLength);
         });
 
         test('Holiday info initialize', async() =>
@@ -471,11 +472,11 @@ describe('Test Workday Waiver Window', function()
             $('#country').append($('<option selected></option>').val(country).html(country));
             $('#state').append($('<option selected></option>').val(state).html(state));
             await initializeHolidayInfo();
-            expect($('#holiday-list-table').css('display')).toBe('none');
-            expect($('#state').css('display')).toBe('none');
-            expect($('#holiday-state').css('display')).toBe('none');
-            expect($('#city').css('display')).toBe('none');
-            expect($('#holiday-city').css('display')).toBe('none');
+            assert.strictEqual($('#holiday-list-table').css('display'), 'none');
+            assert.strictEqual($('#state').css('display'), 'none');
+            assert.strictEqual($('#holiday-state').css('display'), 'none');
+            assert.strictEqual($('#city').css('display'), 'none');
+            assert.strictEqual($('#holiday-city').css('display'), 'none');
         });
     });
 
@@ -493,15 +494,15 @@ describe('Test Workday Waiver Window', function()
             addHolidayToList(day, reason);
             const table = $('#holiday-list-table tbody');
             const rowsLength = table.find('tr').length;
-            expect(rowsLength).toBe(1);
+            assert.strictEqual(rowsLength, 1);
             const firstCell = table.find('td')[0].innerHTML;
             const secondCell = table.find('td')[1].innerHTML;
             const thirdCell = table.find('td')[2].innerHTML;
             const fourthCell = table.find('td')[4].innerHTML;
             const fourthCellContent = `<label class="switch"><input type="checkbox" checked="" name="import-${day}" id="import-${day}"><span class="slider round"></span></label>`;
-            expect(firstCell).toBe(day);
-            expect(secondCell).toBe(reason);
-            expect(thirdCell).toBe('undefined');
+            assert.strictEqual(firstCell, day);
+            assert.strictEqual(secondCell, reason);
+            assert.strictEqual(thirdCell, 'undefined');
             expect(fourthCell).toEqual(fourthCellContent);
         });
 
@@ -513,15 +514,15 @@ describe('Test Workday Waiver Window', function()
             addHolidayToList(day, reason, workingDay);
             const table = $('#holiday-list-table tbody');
             const rowsLength = table.find('tr').length;
-            expect(rowsLength).toBe(1);
+            assert.strictEqual(rowsLength, 1);
             const firstCell = table.find('td')[0].innerHTML;
             const secondCell = table.find('td')[1].innerHTML;
             const thirdCell = table.find('td')[2].innerHTML;
             const fourthCell = table.find('td')[4].innerHTML;
             const fourthCellContent = `<label class="switch"><input type="checkbox" name="import-${day}" id="import-${day}"><span class="slider round"></span></label>`;
-            expect(firstCell).toBe(day);
-            expect(secondCell).toBe(reason);
-            expect(thirdCell).toBe(workingDay);
+            assert.strictEqual(firstCell, day);
+            assert.strictEqual(secondCell, reason);
+            assert.strictEqual(thirdCell, workingDay);
             expect(fourthCell).toEqual(fourthCellContent);
         });
 
@@ -534,17 +535,17 @@ describe('Test Workday Waiver Window', function()
             addHolidayToList(day, reason, workingDay, conflicts);
             const table = $('#holiday-list-table tbody');
             const rowsLength = table.find('tr').length;
-            expect(rowsLength).toBe(1);
+            assert.strictEqual(rowsLength, 1);
             const firstCell = table.find('td')[0].innerHTML;
             const secondCell = table.find('td')[1].innerHTML;
             const thirdCell = table.find('td')[2].innerHTML;
             const conflictsCell = table.find('td')[3].innerHTML;
             const fourthCell = table.find('td')[4].innerHTML;
             const fourthCellContent = `<label class="switch"><input type="checkbox" name="import-${day}" id="import-${day}"><span class="slider round"></span></label>`;
-            expect(firstCell).toBe(day);
-            expect(secondCell).toBe(reason);
-            expect(thirdCell).toBe(workingDay);
-            expect(conflictsCell).toBe(conflicts);
+            assert.strictEqual(firstCell, day);
+            assert.strictEqual(secondCell, reason);
+            assert.strictEqual(thirdCell, workingDay);
+            assert.strictEqual(conflictsCell, conflicts);
             expect(fourthCell).toEqual(fourthCellContent);
         });
     });
@@ -563,28 +564,28 @@ describe('Test Workday Waiver Window', function()
         {
             const tableId = 'waiver-list-table';
             let rowLength = $(`#${tableId} tbody tr`).length;
-            expect(rowLength).toBe(2);
+            assert.strictEqual(rowLength, 2);
             clearTable($(`#${tableId}`));
             rowLength = $(`#${tableId} tbody tr`).length;
-            expect(rowLength).toBe(0);
+            assert.strictEqual(rowLength, 0);
         });
 
         test('Clear holiday table', () =>
         {
             let rowLength = $('#holiday-list-table tbody tr').length;
-            expect(rowLength).toBe(1);
+            assert.strictEqual(rowLength, 1);
             clearHolidayTable();
             rowLength = $('#holiday-list-table tbody tr').length;
-            expect(rowLength).toBe(0);
+            assert.strictEqual(rowLength, 0);
         });
 
         test('Clear waiver table', () =>
         {
             let rowLength = $('#waiver-list-table tbody tr').length;
-            expect(rowLength).toBe(2);
+            assert.strictEqual(rowLength, 2);
             clearWaiverList();
             rowLength = $('#waiver-list-table tbody tr').length;
-            expect(rowLength).toBe(0);
+            assert.strictEqual(rowLength, 0);
         });
     });
 });

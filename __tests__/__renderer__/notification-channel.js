@@ -1,5 +1,7 @@
 'use strict';
 
+const assert = require('assert');
+
 const notificationChannel = require('../../renderer/notification-channel.js');
 
 describe('Notifications channel',  () =>
@@ -13,8 +15,8 @@ describe('Notifications channel',  () =>
             sender: {
                 send: (channel, value) =>
                 {
-                    expect(channel).toBe('RECEIVE_LEAVE_BY');
-                    expect(value).toBe('12:12');
+                    assert.strictEqual(channel, 'RECEIVE_LEAVE_BY');
+                    assert.strictEqual(value, '12:12');
                     done();
                 }
             }

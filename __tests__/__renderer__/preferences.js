@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
+const assert = require('assert');
 import fs from 'fs';
 import path from 'path';
 const {
@@ -69,12 +70,12 @@ function checkRenderedItem(item, isCheckbox = false)
     {
         $(`input[name*='${item}']`).prop('checked', (i, val) =>
         {
-            expect(val).toBe(testPreferences[item]);
+            assert.strictEqual(val, testPreferences[item]);
         });
     }
     else
     {
-        expect($(`#${item}`).val()).toBe(testPreferences[item]);
+        assert.strictEqual($(`#${item}`).val(), testPreferences[item]);
     }
 }
 
@@ -207,11 +208,11 @@ describe('Test Preferences Window', () =>
                 if (lastValue === '') lastValue = this.value;
                 else
                 {
-                    expect(lastValue.localeCompare(this.value)).toBeLessThan(0);
+                    assert.strictEqual(lastValue.localeCompare(this.value) < 0, true);
                     lastValue = this.value;
                 }
             });
-            expect(lastValue).not.toBe('');
+            assert.notStrictEqual(lastValue, '');
         });
     });
 });

@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 'use strict';
 
+const assert = require('assert');
+
 import { formatDayId, displayWaiverWindow } from '../../renderer/workday-waiver-aux.js';
 
 // Mocking call
@@ -22,14 +24,14 @@ describe('Workday Waiver Aux', function()
     {
         test('should be valid', () =>
         {
-            expect(formatDayId(validJSDay)).toBe('2020-04-10');
-            expect(formatDayId(validJSDay2)).toBe('2020-01-10');
+            assert.strictEqual(formatDayId(validJSDay), '2020-04-10');
+            assert.strictEqual(formatDayId(validJSDay2), '2020-01-10');
         });
 
         test('should not be valid', () =>
         {
-            expect(formatDayId(garbageString)).toBeNaN();
-            expect(formatDayId(incompleteDate)).toBeNaN();
+            assert.strictEqual(formatDayId(garbageString), NaN);
+            assert.strictEqual(formatDayId(incompleteDate), NaN);
         });
     });
 

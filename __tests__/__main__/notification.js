@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
+const assert = require('assert');
 const { createNotification, createLeaveNotification, updateDismiss, getDismiss } = require('../../js/notification.js');
 const { getUserPreferences, savePreferences, resetPreferences } = require('../../js/user-preferences.js');
 const { getDateStr } = require('../../js/date-aux.js');
@@ -33,12 +34,12 @@ describe('Notifications', function()
             }
             else
             {
-                expect(notification.body).toBe('test');
-                expect(notification.title).toBe('Time to Leave');
+                assert.strictEqual(notification.body, 'test');
+                assert.strictEqual(notification.title, 'Time to Leave');
             }
             notification.on('show', (event) =>
             {
-                expect(event).toBeTruthy();
+                assert.notStrictEqual(event, undefined);
                 // In Electron 25 the definition of Event changed and we can no longer
                 // check information about the event sender
                 notification.close();
@@ -73,12 +74,12 @@ describe('Notifications', function()
             }
             else
             {
-                expect(notification.body).toBe('production');
-                expect(notification.title).toBe('Time to Leave');
+                assert.strictEqual(notification.body, 'production');
+                assert.strictEqual(notification.title, 'Time to Leave');
             }
             notification.on('show', (event) =>
             {
-                expect(event).toBeTruthy();
+                assert.notStrictEqual(event, undefined);
                 // In Electron 25 the definition of Event changed and we can no longer
                 // check information about the event sender
                 notification.close();
@@ -111,13 +112,13 @@ describe('Notifications', function()
             preferences['notification'] = false;
             savePreferences(preferences);
             const notify = createLeaveNotification(true);
-            expect(notify).toBe(false);
+            assert.strictEqual(notify, false);
         });
 
         test('Should fail when leaveByElement is not found', () =>
         {
             const notify = createLeaveNotification(undefined);
-            expect(notify).toBe(false);
+            assert.strictEqual(notify, false);
         });
 
         test('Should fail when notifications have been dismissed', () =>
@@ -126,13 +127,13 @@ describe('Notifications', function()
             const dateToday = getDateStr(now);
             updateDismiss(dateToday);
             const notify = createLeaveNotification(true);
-            expect(notify).toBe(false);
+            assert.strictEqual(notify, false);
         });
 
         test('Should fail when time is not valid', () =>
         {
             const notify = createLeaveNotification('33:90');
-            expect(notify).toBe(false);
+            assert.strictEqual(notify, false);
         });
 
         test('Should fail when time is in the future', () =>
@@ -141,7 +142,7 @@ describe('Notifications', function()
             const now = new Date();
             now.setMinutes(now.getMinutes() + 1);
             const notify = createLeaveNotification(buildTimeString(now));
-            expect(notify).toBe(false);
+            assert.strictEqual(notify, false);
         });
 
         test('Should fail when time is in the past', () =>
@@ -149,7 +150,7 @@ describe('Notifications', function()
             const now = new Date();
             now.setMinutes(now.getMinutes() - 9);
             const notify = createLeaveNotification(buildTimeString(now));
-            expect(notify).toBe(false);
+            assert.strictEqual(notify, false);
         });
 
         test('Should fail when repetition is disabled', () =>
@@ -160,61 +161,61 @@ describe('Notifications', function()
             const now = new Date();
             now.setHours(now.getHours() - 1);
             const notify = createLeaveNotification(buildTimeString(now));
-            expect(notify).toBe(false);
+            assert.strictEqual(notify, false);
         });
 
         test('Should pass when time is correct and dismiss action is pressed', () =>
         {
             const now = new Date();
             const notify = createLeaveNotification(buildTimeString(now));
-            expect(notify).toBeTruthy();
-            expect(getDismiss()).toBe(null);
-            expect(notify.listenerCount('action')).toBe(1);
-            expect(notify.listenerCount('close')).toBe(1);
-            expect(notify.listenerCount('click')).toBe(1);
+            assert.notStrictEqual(notify, undefined);
+            assert.strictEqual(getDismiss(), null);
+            assert.strictEqual(notify.listenerCount('action'), 1);
+            assert.strictEqual(notify.listenerCount('close'), 1);
+            assert.strictEqual(notify.listenerCount('click'), 1);
             notify.emit('action', 'dismiss');
-            expect(getDismiss()).toBe(getDateStr(now));
+            assert.strictEqual(getDismiss(), getDateStr(now));
         });
 
         test('Should pass when time is correct and other action is pressed', () =>
         {
             const now = new Date();
             const notify = createLeaveNotification(buildTimeString(now));
-            expect(notify).toBeTruthy();
-            expect(getDismiss()).toBe(null);
-            expect(notify.listenerCount('action')).toBe(1);
-            expect(notify.listenerCount('close')).toBe(1);
-            expect(notify.listenerCount('click')).toBe(1);
+            assert.notStrictEqual(notify, undefined);
+            assert.strictEqual(getDismiss(), null);
+            assert.strictEqual(notify.listenerCount('action'), 1);
+            assert.strictEqual(notify.listenerCount('close'), 1);
+            assert.strictEqual(notify.listenerCount('click'), 1);
             notify.emit('action', '');
-            expect(getDismiss()).toBe(null);
+            assert.strictEqual(getDismiss(), null);
         });
 
         test('Should pass when time is correct and close is pressed', () =>
         {
             const now = new Date();
             const notify = createLeaveNotification(buildTimeString(now));
-            expect(notify).toBeTruthy();
-            expect(getDismiss()).toBe(null);
-            expect(notify.listenerCount('action')).toBe(1);
-            expect(notify.listenerCount('close')).toBe(1);
-            expect(notify.listenerCount('click')).toBe(1);
+            assert.notStrictEqual(notify, undefined);
+            assert.strictEqual(getDismiss(), null);
+            assert.strictEqual(notify.listenerCount('action'), 1);
+            assert.strictEqual(notify.listenerCount('close'), 1);
+            assert.strictEqual(notify.listenerCount('click'), 1);
             notify.emit('close');
-            expect(getDismiss()).toBe(getDateStr(now));
+            assert.strictEqual(getDismiss(), getDateStr(now));
         });
 
         test('Should pass when time is correct and close is pressed', (done) =>
         {
             jest.spyOn(app, 'emit').mockImplementation((key) =>
             {
-                expect(key).toBe('activate');
+                assert.strictEqual(key, 'activate');
                 done();
             });
             const now = new Date();
             const notify = createLeaveNotification(buildTimeString(now));
-            expect(notify).toBeTruthy();
-            expect(notify.listenerCount('action')).toBe(1);
-            expect(notify.listenerCount('close')).toBe(1);
-            expect(notify.listenerCount('click')).toBe(1);
+            assert.notStrictEqual(notify, undefined);
+            assert.strictEqual(notify.listenerCount('action'), 1);
+            assert.strictEqual(notify.listenerCount('close'), 1);
+            assert.strictEqual(notify.listenerCount('click'), 1);
             notify.emit('click', 'Clicked on notification');
         });
     });

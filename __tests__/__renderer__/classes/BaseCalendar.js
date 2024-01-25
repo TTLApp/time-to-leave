@@ -1,5 +1,6 @@
 'use strict';
 
+const assert = require('assert');
 import Store from 'electron-store';
 import { BaseCalendar } from '../../../renderer/classes/BaseCalendar.js';
 import { generateKey } from '../../../js/date-db-formatter.js';
@@ -104,7 +105,7 @@ describe('BaseCalendar.js', () =>
             const preferences = {view: 'day'};
             const languageData = {hello: 'hola'};
             const calendar = new ExtendedClass(preferences, languageData);
-            expect(calendar._calendarDate).toBeInstanceOf(Date);
+            assert.strictEqual(calendar._calendarDate instanceof Date, true);
             expect(calendar._languageData).toEqual(languageData);
             expect(calendar._preferences).toEqual(preferences);
 
@@ -133,7 +134,7 @@ describe('BaseCalendar.js', () =>
             const preferences = {view: 'day'};
             const languageData = {hello: 'hola'};
             const calendar = new ExtendedClass(preferences, languageData);
-            expect(calendar._calendarDate).toBeInstanceOf(Date);
+            assert.strictEqual(calendar._calendarDate instanceof Date, true);
             expect(calendar._languageData).toEqual(languageData);
             expect(calendar._preferences).toEqual(preferences);
 
@@ -212,9 +213,9 @@ describe('BaseCalendar.js', () =>
             setTimeout(() =>
             {
                 expect(mocks.compute).toHaveBeenCalledTimes(1);
-                expect($('#overall-balance').val()).toBe('2022-02-31');
-                expect($('#overall-balance').hasClass('text-danger')).toBe(true);
-                expect($('#overall-balance').hasClass('text-success')).toBe(false);
+                assert.strictEqual($('#overall-balance').val(), '2022-02-31');
+                assert.strictEqual($('#overall-balance').hasClass('text-danger'), true);
+                assert.strictEqual($('#overall-balance').hasClass('text-success'), false);
                 done();
             }, 500);
         });
@@ -232,9 +233,9 @@ describe('BaseCalendar.js', () =>
             setTimeout(() =>
             {
                 expect(mocks.compute).toHaveBeenCalledTimes(1);
-                expect($('#overall-balance').val()).toBe('2022-02-31');
-                expect($('#overall-balance').hasClass('text-danger')).toBe(false);
-                expect($('#overall-balance').hasClass('text-success')).toBe(true);
+                assert.strictEqual($('#overall-balance').val(), '2022-02-31');
+                assert.strictEqual($('#overall-balance').hasClass('text-danger'), false);
+                assert.strictEqual($('#overall-balance').hasClass('text-success'), true);
                 done();
             }, 500);
         });
@@ -459,7 +460,7 @@ describe('BaseCalendar.js', () =>
             calendar._updateDayTotal(key);
             const dayTotalSpan = $('#' + key).parent().find('.day-total-cell span');
             $(`#${key}`).remove();
-            expect(dayTotalSpan.text()).toBe('');
+            assert.strictEqual(dayTotalSpan.text(), '');
         });
 
         test('Should update when day has ended', async() =>
@@ -479,7 +480,7 @@ describe('BaseCalendar.js', () =>
             calendar._updateDayTotal(key);
             const dayTotalSpan = $('#' + key).parent().find('.day-total-cell span');
             $(`#${key}`).remove();
-            expect(dayTotalSpan.html()).toBe('08:30');
+            assert.strictEqual(dayTotalSpan.html(), '08:30');
         });
     });
 

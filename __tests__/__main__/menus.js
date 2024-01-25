@@ -1,5 +1,6 @@
 'use strict';
 
+const assert = require('assert');
 const { getContextMenuTemplate, getDockMenuTemplate, getEditMenuTemplate, getHelpMenuTemplate, getMainMenuTemplate, getViewMenuTemplate} = require('../../js/menus.js');
 
 jest.mock('../../src/configs/i18next.config.js', () => ({
@@ -92,7 +93,7 @@ describe('menus.js', () =>
     {
         test('Should have 3 options', () =>
         {
-            expect(getMainMenuTemplate().length).toBe(3);
+            assert.strictEqual(getMainMenuTemplate().length, 3);
         });
 
         getMainMenuTemplate().forEach((menu) =>
@@ -105,22 +106,22 @@ describe('menus.js', () =>
                 ];
                 if ('type' in menu)
                 {
-                    expect(menu.type).toBe('separator');
+                    assert.strictEqual(menu.type, 'separator');
                 }
                 else
                 {
                     for (const t of tests)
                     {
-                        expect(menu[t.field]).toBeTruthy();
-                        expect(typeof menu[t.field]).toBe(t.type);
+                        assert.notStrictEqual(menu[t.field], undefined);
+                        assert.strictEqual(typeof menu[t.field], t.type);
                     }
                     if ('id' in menu)
                     {
-                        expect(typeof menu.id).toBe('string');
+                        assert.strictEqual(typeof menu.id, 'string');
                     }
                     if ('accelerator' in menu)
                     {
-                        expect(typeof menu.accelerator).toBe('string');
+                        assert.strictEqual(typeof menu.accelerator, 'string');
                     }
                 }
             });
@@ -149,7 +150,7 @@ describe('menus.js', () =>
     {
         test('Should have 3 options', () =>
         {
-            expect(getContextMenuTemplate().length).toBe(3);
+            assert.strictEqual(getContextMenuTemplate().length, 3);
         });
 
         getContextMenuTemplate().forEach((menu) =>
@@ -162,8 +163,8 @@ describe('menus.js', () =>
                 ];
                 for (const t of tests)
                 {
-                    expect(menu[t.field]).toBeTruthy();
-                    expect(typeof menu[t.field]).toBe(t.type);
+                    assert.notStrictEqual(menu[t.field], undefined);
+                    assert.strictEqual(typeof menu[t.field], t.type);
                 }
             });
 
@@ -175,7 +176,7 @@ describe('menus.js', () =>
                 webContents: {
                     send: (key) =>
                     {
-                        expect(key).toBe('PUNCH_DATE');
+                        assert.strictEqual(key, 'PUNCH_DATE');
                     }
                 }
             };
@@ -207,7 +208,7 @@ describe('menus.js', () =>
     {
         test('Should have 1 option', () =>
         {
-            expect(getDockMenuTemplate().length).toBe(1);
+            assert.strictEqual(getDockMenuTemplate().length, 1);
         });
 
         getDockMenuTemplate().forEach((menu) =>
@@ -220,8 +221,8 @@ describe('menus.js', () =>
                 ];
                 for (const t of tests)
                 {
-                    expect(menu[t.field]).toBeTruthy();
-                    expect(typeof menu[t.field]).toBe(t.type);
+                    assert.notStrictEqual(menu[t.field], undefined);
+                    assert.strictEqual(typeof menu[t.field], t.type);
                 }
             });
         });
@@ -232,7 +233,7 @@ describe('menus.js', () =>
                 webContents: {
                     send: (key) =>
                     {
-                        expect(key).toBe('PUNCH_DATE');
+                        assert.strictEqual(key, 'PUNCH_DATE');
                     }
                 }
             };
@@ -248,7 +249,7 @@ describe('menus.js', () =>
     {
         test('Should have 2 option', () =>
         {
-            expect(getViewMenuTemplate().length).toBe(2);
+            assert.strictEqual(getViewMenuTemplate().length, 2);
         });
 
         getViewMenuTemplate().forEach((menu) =>
@@ -261,8 +262,8 @@ describe('menus.js', () =>
                 ];
                 for (const t of tests)
                 {
-                    expect(menu[t.field]).toBeTruthy();
-                    expect(typeof menu[t.field]).toBe(t.type);
+                    assert.notStrictEqual(menu[t.field], undefined);
+                    assert.strictEqual(typeof menu[t.field], t.type);
                 }
             });
         });
@@ -298,7 +299,7 @@ describe('menus.js', () =>
     {
         test('Should have 5 option', () =>
         {
-            expect(getHelpMenuTemplate().length).toBe(5);
+            assert.strictEqual(getHelpMenuTemplate().length, 5);
         });
 
         getHelpMenuTemplate().forEach((menu) =>
@@ -311,14 +312,14 @@ describe('menus.js', () =>
                 ];
                 if ('type' in menu)
                 {
-                    expect(menu.type).toBe('separator');
+                    assert.strictEqual(menu.type, 'separator');
                 }
                 else
                 {
                     for (const t of tests)
                     {
-                        expect(menu[t.field]).toBeTruthy();
-                        expect(typeof menu[t.field]).toBe(t.type);
+                        assert.notStrictEqual(menu[t.field], undefined);
+                        assert.strictEqual(typeof menu[t.field], t.type);
                     }
                 }
             });
@@ -328,7 +329,7 @@ describe('menus.js', () =>
         {
             mocks.window = jest.spyOn(shell, 'openExternal').mockImplementation((key) =>
             {
-                expect(key).toBe('https://github.com/thamara/time-to-leave');
+                assert.strictEqual(key, 'https://github.com/thamara/time-to-leave');
                 done();
             });
             getHelpMenuTemplate()[0].click();
@@ -338,7 +339,7 @@ describe('menus.js', () =>
         {
             mocks.window = jest.spyOn(updateManager, 'checkForUpdates').mockImplementation((key) =>
             {
-                expect(key).toBe(true);
+                assert.strictEqual(key, true);
                 done();
             });
             getHelpMenuTemplate()[1].click();
@@ -348,7 +349,7 @@ describe('menus.js', () =>
         {
             mocks.window = jest.spyOn(shell, 'openExternal').mockImplementation((key) =>
             {
-                expect(key).toBe('https://github.com/thamara/time-to-leave/issues/new');
+                assert.strictEqual(key, 'https://github.com/thamara/time-to-leave/issues/new');
                 done();
             });
             getHelpMenuTemplate()[2].click();
@@ -395,7 +396,7 @@ describe('menus.js', () =>
     {
         test('Should have 10 options', () =>
         {
-            expect(getEditMenuTemplate().length).toBe(10);
+            assert.strictEqual(getEditMenuTemplate().length, 10);
         });
 
         getEditMenuTemplate().forEach((menu) =>
@@ -407,30 +408,30 @@ describe('menus.js', () =>
                 ];
                 if ('type' in menu)
                 {
-                    expect(menu.type).toBe('separator');
+                    assert.strictEqual(menu.type, 'separator');
                 }
                 else
                 {
                     for (const t of tests)
                     {
-                        expect(menu[t.field]).toBeTruthy();
-                        expect(typeof menu[t.field]).toBe(t.type);
+                        assert.notStrictEqual(menu[t.field], undefined);
+                        assert.strictEqual(typeof menu[t.field], t.type);
                     }
                     if ('id' in menu)
                     {
-                        expect(typeof menu.id).toBe('string');
+                        assert.strictEqual(typeof menu.id, 'string');
                     }
                     if ('accelerator' in menu)
                     {
-                        expect(typeof menu.accelerator).toBe('string');
+                        assert.strictEqual(typeof menu.accelerator, 'string');
                     }
                     if ('selector' in menu)
                     {
-                        expect(typeof menu.selector).toBe('string');
+                        assert.strictEqual(typeof menu.selector, 'string');
                     }
                     if ('click' in menu)
                     {
-                        expect(typeof menu.click).toBe('function');
+                        assert.strictEqual(typeof menu.click, 'function');
                     }
                 }
             });
@@ -460,12 +461,11 @@ describe('menus.js', () =>
 
         test('Should show dialog for importing db', () =>
         {
-            expect.assertions(5);
             const mainWindow = {
                 webContents: {
                     send: (key) =>
                     {
-                        expect(key).toBe('RELOAD_CALENDAR');
+                        assert.strictEqual(key, 'RELOAD_CALENDAR');
                     }
                 }
             };
@@ -485,12 +485,11 @@ describe('menus.js', () =>
 
         test('Should show fail dialog for importing db', () =>
         {
-            expect.assertions(5);
             const mainWindow = {
                 webContents: {
                     send: (key) =>
                     {
-                        expect(key).toBe('RELOAD_CALENDAR');
+                        assert.strictEqual(key, 'RELOAD_CALENDAR');
                     }
                 }
             };
@@ -510,12 +509,11 @@ describe('menus.js', () =>
 
         test('Should show fail dialog for importing db', () =>
         {
-            expect.assertions(5);
             const mainWindow = {
                 webContents: {
                     send: (key) =>
                     {
-                        expect(key).toBe('RELOAD_CALENDAR');
+                        assert.strictEqual(key, 'RELOAD_CALENDAR');
                     }
                 }
             };
@@ -574,7 +572,7 @@ describe('menus.js', () =>
                 webContents: {
                     send: (key) =>
                     {
-                        expect(key).toBe('RELOAD_CALENDAR');
+                        assert.strictEqual(key, 'RELOAD_CALENDAR');
                     }
                 }
             };

@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
+const assert = require('assert');
 import Store from 'electron-store';
 import { computeAllTimeBalanceUntilAsync } from '../../../js/time-balance.js';
 import { defaultPreferences } from '../../../js/user-preferences.js';
@@ -90,24 +91,24 @@ describe('FlexibleMonthCalendar class Tests', () =>
 
     test('FlexibleMonthCalendar starts with today\'s date', () =>
     {
-        expect(calendar.constructor.name).toBe('FlexibleMonthCalendar');
-        expect(calendar._getCalendarDate()).toBe(today.getDate());
-        expect(calendar._getCalendarYear()).toBe(today.getFullYear());
-        expect(calendar._getCalendarMonth()).toBe(today.getMonth());
+        assert.strictEqual(calendar.constructor.name, 'FlexibleMonthCalendar');
+        assert.strictEqual(calendar._getCalendarDate(), today.getDate());
+        assert.strictEqual(calendar._getCalendarYear(), today.getFullYear());
+        assert.strictEqual(calendar._getCalendarMonth(), today.getMonth());
     });
 
     test('FlexibleMonthCalendar "today" methods return today\'s date', () =>
     {
-        expect(calendar._getTodayDate()).toBe(today.getDate());
-        expect(calendar._getTodayYear()).toBe(today.getFullYear());
-        expect(calendar._getTodayMonth()).toBe(today.getMonth());
+        assert.strictEqual(calendar._getTodayDate(), today.getDate());
+        assert.strictEqual(calendar._getTodayYear(), today.getFullYear());
+        assert.strictEqual(calendar._getTodayMonth(), today.getMonth());
     });
 
     test('FlexibleMonthCalendar internal storage correct loading', () =>
     {
         expect(calendar._internalStore['2020-3-1']).toStrictEqual(regularEntries['2020-3-1']);
         expect(calendar._getStore('2020-3-1')).toStrictEqual(regularEntries['2020-3-1']['values']);
-        expect(calendar._internalStore['2010-3-1']).toBe(undefined);
+        assert.strictEqual(calendar._internalStore['2010-3-1'], undefined);
         expect(calendar._getStore('2010-3-1')).toStrictEqual([]);
 
         expect(Object.keys(calendar._internalStore).length).toStrictEqual(2);
@@ -121,7 +122,7 @@ describe('FlexibleMonthCalendar class Tests', () =>
         expect(flexibleStore.size).toStrictEqual(3);
 
         calendar._removeStore('2010-3-1');
-        expect(calendar._internalStore['2010-3-1']).toBe(undefined);
+        assert.strictEqual(calendar._internalStore['2010-3-1'], undefined);
         expect(calendar._getStore('2010-3-1')).toStrictEqual([]);
 
         // remove just sets the value as undefined in internal store, if it existed
@@ -158,26 +159,26 @@ describe('FlexibleMonthCalendar class Tests', () =>
 
     test('FlexibleMonthCalendar Month Changes', () =>
     {
-        expect(calendar._getCalendarMonth()).toBe(today.getMonth());
+        assert.strictEqual(calendar._getCalendarMonth(), today.getMonth());
         const expectedNextMonth = today.getMonth() + 1 === 12 ? 0 : (today.getMonth() + 1);
         const expectedPrevMonth = today.getMonth() === 0 ? 11 : (today.getMonth() - 1);
 
         calendar._nextMonth();
-        expect(calendar._getCalendarMonth()).toBe(expectedNextMonth);
+        assert.strictEqual(calendar._getCalendarMonth(), expectedNextMonth);
 
         calendar._prevMonth();
-        expect(calendar._getCalendarMonth()).toBe(today.getMonth());
+        assert.strictEqual(calendar._getCalendarMonth(), today.getMonth());
 
         calendar._prevMonth();
-        expect(calendar._getCalendarMonth()).toBe(expectedPrevMonth);
+        assert.strictEqual(calendar._getCalendarMonth(), expectedPrevMonth);
 
         calendar._goToCurrentDate();
-        expect(calendar._getCalendarMonth()).toBe(today.getMonth());
+        assert.strictEqual(calendar._getCalendarMonth(), today.getMonth());
     });
 
     test('FlexibleMonthCalendar Year Changes', () =>
     {
-        expect(calendar._getCalendarYear()).toBe(today.getFullYear());
+        assert.strictEqual(calendar._getCalendarYear(), today.getFullYear());
         const expectedNextYear = today.getFullYear() + 1;
         const expectedPrevYear = today.getFullYear() - 1;
 
@@ -186,22 +187,22 @@ describe('FlexibleMonthCalendar class Tests', () =>
             calendar._nextMonth();
         }
 
-        expect(calendar._getCalendarMonth()).toBe(today.getMonth());
-        expect(calendar._getCalendarYear()).toBe(expectedNextYear);
+        assert.strictEqual(calendar._getCalendarMonth(), today.getMonth());
+        assert.strictEqual(calendar._getCalendarYear(), expectedNextYear);
 
         calendar._goToCurrentDate();
-        expect(calendar._getCalendarYear()).toBe(today.getFullYear());
+        assert.strictEqual(calendar._getCalendarYear(), today.getFullYear());
 
         for (let i = 0; i < 12; i++)
         {
             calendar._prevMonth();
         }
 
-        expect(calendar._getCalendarMonth()).toBe(today.getMonth());
-        expect(calendar._getCalendarYear()).toBe(expectedPrevYear);
+        assert.strictEqual(calendar._getCalendarMonth(), today.getMonth());
+        assert.strictEqual(calendar._getCalendarYear(), expectedPrevYear);
 
         calendar._goToCurrentDate();
-        expect(calendar._getCalendarYear()).toBe(today.getFullYear());
+        assert.strictEqual(calendar._getCalendarYear(), today.getFullYear());
     });
 
     describe('FlexibleMonthCalendar RefreshOnDayChange', () =>
@@ -215,9 +216,9 @@ describe('FlexibleMonthCalendar class Tests', () =>
             // Refreshing with the date being looked at should push it to today
             calendar.refreshOnDayChange(prevMonthDate.getDate(), prevMonthDate.getMonth(), prevMonthDate.getFullYear());
 
-            expect(calendar._getCalendarDate()).toBe(today.getDate());
-            expect(calendar._getCalendarYear()).toBe(today.getFullYear());
-            expect(calendar._getCalendarMonth()).toBe(today.getMonth());
+            assert.strictEqual(calendar._getCalendarDate(), today.getDate());
+            assert.strictEqual(calendar._getCalendarYear(), today.getFullYear());
+            assert.strictEqual(calendar._getCalendarMonth(), today.getMonth());
         });
 
         test('FlexibleMonthCalendar refresh set to another month', () =>
@@ -228,7 +229,7 @@ describe('FlexibleMonthCalendar class Tests', () =>
             // Refreshing with a date not being looked at should not push it to today
             calendar.refreshOnDayChange(today.getDate(), today.getMonth(), today.getFullYear());
 
-            expect(calendar._getCalendarMonth()).not.toBe(today.getMonth());
+            assert.notStrictEqual(calendar._getCalendarMonth(), today.getMonth());
         });
     });
 
@@ -237,10 +238,10 @@ describe('FlexibleMonthCalendar class Tests', () =>
         const testPreferences = defaultPreferences;
         testPreferences['view'] = 'day';
         let calendar = await CalendarFactory.getInstance(testPreferences, languageData);
-        expect(calendar.constructor.name).toBe('FlexibleDayCalendar');
+        assert.strictEqual(calendar.constructor.name, 'FlexibleDayCalendar');
 
         testPreferences['view'] = 'month';
         calendar = await CalendarFactory.getInstance(testPreferences, languageData, calendar);
-        expect(calendar.constructor.name).toBe('FlexibleMonthCalendar');
+        assert.strictEqual(calendar.constructor.name, 'FlexibleMonthCalendar');
     });
 });

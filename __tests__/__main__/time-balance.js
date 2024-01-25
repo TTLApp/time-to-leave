@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
+const assert = require('assert');
 import Store from 'electron-store';
 import {
     computeAllTimeBalanceUntil,
@@ -23,7 +24,7 @@ describe('Time Balance', () =>
 
     test('getFirstInputInDb: no input', () =>
     {
-        expect(getFirstInputInDb()).toBe('');
+        assert.strictEqual(getFirstInputInDb(), '');
     });
 
     test('getFirstInputInDb: input 1', () =>
@@ -32,7 +33,7 @@ describe('Time Balance', () =>
             '2020-3-1': {'values': ['08:00']}
         };
         flexibleStore.set(entryEx);
-        expect(getFirstInputInDb()).toBe('2020-3-1');
+        assert.strictEqual(getFirstInputInDb(), '2020-3-1');
     });
 
     test('getFirstInputInDb: input 2', () =>
@@ -42,7 +43,7 @@ describe('Time Balance', () =>
             '2020-3-3': {'values': ['08:00']}
         };
         flexibleStore.set(entryEx);
-        expect(getFirstInputInDb()).toBe('2020-3-1');
+        assert.strictEqual(getFirstInputInDb(), '2020-3-1');
     });
 
     test('getFirstInputInDb: input 3', () =>
@@ -53,7 +54,7 @@ describe('Time Balance', () =>
             '2020-2-1': {'values': ['08:00']}
         };
         flexibleStore.set(entryEx);
-        expect(getFirstInputInDb()).toBe('2020-2-1');
+        assert.strictEqual(getFirstInputInDb(), '2020-2-1');
     });
 
     test('getFirstInputInDb: input 4', () =>
@@ -66,7 +67,7 @@ describe('Time Balance', () =>
             '2020-6-10': {'values': ['08:00', '12:00', '13:00', '19:00']}
         };
         flexibleStore.set(entryEx);
-        expect(getFirstInputInDb()).toBe('2020-6-6');
+        assert.strictEqual(getFirstInputInDb(), '2020-6-6');
     });
 
     test('computeAllTimeBalanceUntil: no input', async() =>

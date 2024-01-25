@@ -1,5 +1,6 @@
 'use strict';
 
+const assert = require('assert');
 import { BrowserWindow } from 'electron';
 const { getDateStr } = require('../../js/date-aux.js');
 const windows = require('../../js/windows.js');
@@ -19,10 +20,10 @@ describe('windows.js', () =>
 
     test('Elements should be null on starting', () =>
     {
-        expect(getWaiverWindow()).toBe(null);
-        expect(tray).toBe(null);
-        expect(contextMenu).toBe(null);
-        expect(prefWindow).toBe(null);
+        assert.strictEqual(getWaiverWindow(), null);
+        assert.strictEqual(tray, null);
+        assert.strictEqual(contextMenu, null);
+        assert.strictEqual(prefWindow, null);
     });
 
     test('Should create waiver window', (done) =>
@@ -31,9 +32,9 @@ describe('windows.js', () =>
             show: false
         });
         openWaiverManagerWindow(mainWindow);
-        expect(getWaiverWindow()).not.toBe(null);
-        expect(getWaiverWindow()).toBeInstanceOf(BrowserWindow);
-        expect(getWaiverWindow().getSize()).toEqual([600, 500]);
+        assert.notStrictEqual(getWaiverWindow(), null);
+        assert.strictEqual(getWaiverWindow() instanceof BrowserWindow, true);
+        assert.deepEqual(getWaiverWindow().getSize(), [600, 500]);
         done();
     });
 
@@ -44,7 +45,7 @@ describe('windows.js', () =>
         });
         openWaiverManagerWindow(mainWindow);
         openWaiverManagerWindow(mainWindow);
-        expect(getWaiverWindow()).not.toBe(null);
+        assert.notStrictEqual(getWaiverWindow(), null);
         // It should only load once the URL because it already exists
         expect(showSpy).toHaveBeenCalledTimes(2);
         expect(loadSpy).toHaveBeenCalledTimes(1);
@@ -57,8 +58,8 @@ describe('windows.js', () =>
             show: false
         });
         openWaiverManagerWindow(mainWindow, true);
-        expect(getWaiverWindow()).not.toBe(null);
-        expect(global.waiverDay).toBe(getDateStr(new Date()));
+        assert.notStrictEqual(getWaiverWindow(), null);
+        assert.strictEqual(global.waiverDay, getDateStr(new Date()));
         done();
     });
 
@@ -69,7 +70,7 @@ describe('windows.js', () =>
         });
         openWaiverManagerWindow(mainWindow, true);
         getWaiverWindow().emit('close');
-        expect(getWaiverWindow()).toBe(null);
+        assert.strictEqual(getWaiverWindow(), null);
     });
 
     test('Should get dialog coordinates', () =>
@@ -82,7 +83,7 @@ describe('windows.js', () =>
                 height: 600
             })
         });
-        expect(coordinates).toEqual({
+        assert.deepStrictEqual(coordinates, {
             x: 150,
             y: 475
         });

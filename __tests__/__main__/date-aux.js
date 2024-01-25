@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
+const assert = require('assert');
 import { getDateStr, getCurrentDateTimeStr, getMonthLength } from '../../js/date-aux.js';
 
 describe('Date Functions', () =>
@@ -13,12 +14,12 @@ describe('Date Functions', () =>
     {
         test('Given a JS Date() object, should return YYYY-MM-DD', () =>
         {
-            expect(getDateStr(testDate)).toBe(expectedDate);
+            assert.strictEqual(getDateStr(testDate), expectedDate);
         });
 
         test('Given an insane object, should return an error', () =>
         {
-            expect(getDateStr(badDate)).not.toBe(expectedDate);
+            assert.notStrictEqual(getDateStr(badDate), expectedDate);
         });
     });
 
@@ -27,18 +28,18 @@ describe('Date Functions', () =>
         const testYear = 2024;
         test('Given for the Year(2024) and Months, should return number of days in month', () =>
         {
-            expect(getMonthLength(testYear, 0)).toBe(31);
-            expect(getMonthLength(testYear, 1)).toBe(29);
-            expect(getMonthLength(testYear, 2)).toBe(31);
-            expect(getMonthLength(testYear, 3)).toBe(30);
-            expect(getMonthLength(testYear, 4)).toBe(31);
-            expect(getMonthLength(testYear, 5)).toBe(30);
-            expect(getMonthLength(testYear, 6)).toBe(31);
-            expect(getMonthLength(testYear, 7)).toBe(31);
-            expect(getMonthLength(testYear, 8)).toBe(30);
-            expect(getMonthLength(testYear, 9)).toBe(31);
-            expect(getMonthLength(testYear, 10)).toBe(30);
-            expect(getMonthLength(testYear, 11)).toBe(31);
+            assert.strictEqual(getMonthLength(testYear, 0), 31);
+            assert.strictEqual(getMonthLength(testYear, 1), 29);
+            assert.strictEqual(getMonthLength(testYear, 2), 31);
+            assert.strictEqual(getMonthLength(testYear, 3), 30);
+            assert.strictEqual(getMonthLength(testYear, 4), 31);
+            assert.strictEqual(getMonthLength(testYear, 5), 30);
+            assert.strictEqual(getMonthLength(testYear, 6), 31);
+            assert.strictEqual(getMonthLength(testYear, 7), 31);
+            assert.strictEqual(getMonthLength(testYear, 8), 30);
+            assert.strictEqual(getMonthLength(testYear, 9), 31);
+            assert.strictEqual(getMonthLength(testYear, 10), 30);
+            assert.strictEqual(getMonthLength(testYear, 11), 31);
         });
     });
 
@@ -49,12 +50,12 @@ describe('Date Functions', () =>
 
         test('Should return Current Date Time string in YYYY_MM_DD_HH_MM_SS format with no spaces or unexpected characters making sure it accepts digits', () =>
         {
-            expect(looseRegexCurrentDateTime.test(getCurrentDateTimeStr())).toBe(true);
+            assert.strictEqual(looseRegexCurrentDateTime.test(getCurrentDateTimeStr()), true);
         });
 
         test('Should return Current Date Time string in YYYY_MM_DD_HH_MM_SS format with no spaces or unexpected characters', () =>
         {
-            expect(regexCurrentDateTime.test(getCurrentDateTimeStr())).toBe(true);
+            assert.strictEqual(regexCurrentDateTime.test(getCurrentDateTimeStr()), true);
         });
     });
 });

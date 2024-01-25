@@ -1,5 +1,6 @@
 'use strict';
 
+const assert = require('assert');
 const notification = require('../../js/notification.js');
 const userPreferences = require('../../js/user-preferences.js');
 const { savePreferences, defaultPreferences, resetPreferences } = userPreferences;
@@ -42,16 +43,16 @@ describe('main-window.js', () =>
     {
         test('Should be null if it has not been started', () =>
         {
-            expect(getWindowTray()).toBe(null);
-            expect(getMainWindow()).toBe(null);
-            expect(getLeaveByInterval()).toBe(null);
+            assert.strictEqual(getWindowTray(), null);
+            assert.strictEqual(getMainWindow(), null);
+            assert.strictEqual(getLeaveByInterval(), null);
         });
 
         test('Should get window', () =>
         {
             createWindow();
             expect(showSpy).toHaveBeenCalledTimes(1);
-            expect(getMainWindow()).toBeInstanceOf(BrowserWindow);
+            assert.strictEqual(getMainWindow() instanceof BrowserWindow, true);
         });
     });
 
@@ -65,17 +66,17 @@ describe('main-window.js', () =>
              * @type {BrowserWindow}
              */
             const mainWindow = getMainWindow();
-            expect(mainWindow).toBeInstanceOf(BrowserWindow);
-            expect(ipcMain.listenerCount('TOGGLE_TRAY_PUNCH_TIME')).toBe(1);
-            expect(ipcMain.listenerCount('RESIZE_MAIN_WINDOW')).toBe(1);
-            expect(ipcMain.listenerCount('SWITCH_VIEW')).toBe(1);
-            expect(ipcMain.listenerCount('RECEIVE_LEAVE_BY')).toBe(1);
-            expect(mainWindow.listenerCount('minimize')).toBe(2);
-            expect(mainWindow.listenerCount('close')).toBe(1);
+            assert.strictEqual(mainWindow instanceof BrowserWindow, true);
+            assert.strictEqual(ipcMain.listenerCount('TOGGLE_TRAY_PUNCH_TIME'), 1);
+            assert.strictEqual(ipcMain.listenerCount('RESIZE_MAIN_WINDOW'), 1);
+            assert.strictEqual(ipcMain.listenerCount('SWITCH_VIEW'), 1);
+            assert.strictEqual(ipcMain.listenerCount('RECEIVE_LEAVE_BY'), 1);
+            assert.strictEqual(mainWindow.listenerCount('minimize'), 2);
+            assert.strictEqual(mainWindow.listenerCount('close'), 1);
             expect(loadFileSpy).toHaveBeenCalledTimes(1);
             expect(showSpy).toHaveBeenCalledTimes(1);
-            expect(getLeaveByInterval()).not.toBe(null);
-            expect(getLeaveByInterval()._idleNext.expiry).toBeGreaterThan(0);
+            assert.notStrictEqual(getLeaveByInterval(), null);
+            assert.strictEqual(getLeaveByInterval()._idleNext.expiry > 0, true);
         });
     });
 
@@ -264,7 +265,7 @@ describe('main-window.js', () =>
                 mainWindow.emit('minimize', {
                     preventDefault: () => {}
                 });
-                expect(mainWindow.isVisible()).toBe(false);
+                assert.strictEqual(mainWindow.isVisible(), false);
                 done();
             });
         });
@@ -309,8 +310,8 @@ describe('main-window.js', () =>
                 mainWindow.emit('close', {
                     preventDefault: () => {}
                 });
-                expect(mainWindow.isDestroyed()).toBe(false);
-                expect(mainWindow.isVisible()).toBe(false);
+                assert.strictEqual(mainWindow.isDestroyed(), false);
+                assert.strictEqual(mainWindow.isVisible(), false);
                 done();
             });
         });
@@ -337,7 +338,7 @@ describe('main-window.js', () =>
                 mainWindow.emit('close', {
                     preventDefault: () => {}
                 });
-                expect(mainWindow.isDestroyed()).toBe(true);
+                assert.strictEqual(mainWindow.isDestroyed(), true);
                 done();
             });
         });

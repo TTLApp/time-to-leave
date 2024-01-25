@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
+const assert = require('assert');
 import path from 'path';
 const BrowserWindow = require('@electron/remote').BrowserWindow;
 import * as windowAux from '../../js/window-aux.cjs';
@@ -32,7 +33,7 @@ describe('window-aux.cjs Testing', function()
     //     {
     //         const testWindow = new BrowserWindow(browserWindowOptions);
     //         testWindow.loadURL(mockHtmlPath);
-    //         expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
+    //         assert.notStrictEqual(testWindow.webContents.isDevToolsOpened(), undefined);
 
     //         testWindow.webContents.on('dom-ready', () =>
     //         {
@@ -44,14 +45,14 @@ describe('window-aux.cjs Testing', function()
     //         });
 
     //         await new Promise(r => setTimeout(r, timeoutValue));
-    //         expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
+    //         assert.notStrictEqual(testWindow.webContents.isDevToolsOpened(), undefined);
     //     });
 
     //     test('Bind: should open devTools', async() =>
     //     {
     //         const testWindow = new BrowserWindow(browserWindowOptions);
     //         testWindow.loadURL(mockHtmlPath);
-    //         expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
+    //         assert.notStrictEqual(testWindow.webContents.isDevToolsOpened(), undefined);
 
     //         testWindow.webContents.on('dom-ready', () =>
     //         {
@@ -64,14 +65,14 @@ describe('window-aux.cjs Testing', function()
     //         });
 
     //         await new Promise(r => setTimeout(r, timeoutValue));
-    //         expect(testWindow.webContents.isDevToolsOpened()).toBeTruthy();
+    //         assert.notStrictEqual(testWindow.webContents.isDevToolsOpened(), undefined);
     //     });
 
     //     test('Bind: bad shortcut, should not open devTools', async() =>
     //     {
     //         const testWindow = new BrowserWindow(browserWindowOptions);
     //         testWindow.loadURL(mockHtmlPath);
-    //         expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
+    //         assert.notStrictEqual(testWindow.webContents.isDevToolsOpened(), undefined);
 
     //         testWindow.webContents.on('dom-ready', () =>
     //         {
@@ -84,7 +85,7 @@ describe('window-aux.cjs Testing', function()
     //         });
 
     //         await new Promise(r => setTimeout(r, timeoutValue));
-    //         expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
+    //         assert.notStrictEqual(testWindow.webContents.isDevToolsOpened(), undefined);
     //     });
     // });
 
@@ -114,7 +115,7 @@ describe('window-aux.cjs Testing', function()
             });
 
             await new Promise(r => setTimeout(r, timeoutValue));
-            expect(testWindow).toBeDefined();
+            assert.notStrictEqual(testWindow, undefined);
             expect(spy).toHaveBeenCalled();
 
             spy.mockRestore();
@@ -140,7 +141,7 @@ describe('window-aux.cjs Testing', function()
             });
 
             await new Promise(r => setTimeout(r, timeoutValue));
-            expect(testWindow).toBeDefined();
+            assert.notStrictEqual(testWindow, undefined);
             expect(spy).toHaveBeenCalled();
 
             spy.mockRestore();

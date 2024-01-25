@@ -1,5 +1,6 @@
 'use strict';
 
+const assert = require('assert');
 import { CalendarFactory } from '../../../renderer/classes/CalendarFactory.js';
 import { FlexibleDayCalendar } from '../../../renderer/classes/FlexibleDayCalendar.js';
 import { FlexibleMonthCalendar } from '../../../renderer/classes/FlexibleMonthCalendar.js';
@@ -43,10 +44,10 @@ describe('CalendarFactory', () =>
         const promise = CalendarFactory.getInstance({
             view: 'not_supported'
         }, {});
-        expect(promise).toBeInstanceOf(Promise);
+        assert.strictEqual(promise instanceof Promise, true);
         promise.then(() => {}).catch((reason) =>
         {
-            expect(reason).toBe('Could not instantiate not_supported');
+            assert.strictEqual(reason, 'Could not instantiate not_supported');
         });
     });
 
@@ -67,7 +68,7 @@ describe('CalendarFactory', () =>
                 view: 'day',
             }, {}, testCalendar);
             expect(calendar).toEqual(testCalendar);
-            expect(calls).toBe(3);
+            assert.strictEqual(calls, 3);
         });
 
         test('Should return new calendar without resizing', async() =>
@@ -84,8 +85,8 @@ describe('CalendarFactory', () =>
             const calendar = await CalendarFactory.getInstance({
                 view: 'day',
             }, {}, testCalendar);
-            expect(calendar).toBeInstanceOf(FlexibleDayCalendar);
-            expect(calls).toBe(0);
+            assert.strictEqual(calendar instanceof FlexibleDayCalendar, true);
+            assert.strictEqual(calls, 0);
         });
 
         test('Should return new calendar without resizing', async() =>
@@ -98,8 +99,8 @@ describe('CalendarFactory', () =>
             const calendar = await CalendarFactory.getInstance({
                 view: 'day',
             }, {}, undefined);
-            expect(calendar).toBeInstanceOf(FlexibleDayCalendar);
-            expect(calls).toBe(0);
+            assert.strictEqual(calendar instanceof FlexibleDayCalendar, true);
+            assert.strictEqual(calls, 0);
         });
 
         test('Should return new calendar with resizing', async() =>
@@ -120,8 +121,8 @@ describe('CalendarFactory', () =>
             const calendar = await CalendarFactory.getInstance({
                 view: 'day',
             }, {}, testCalendar);
-            expect(calendar).toBeInstanceOf(FlexibleDayCalendar);
-            expect(calls).toBe(1);
+            assert.strictEqual(calendar instanceof FlexibleDayCalendar, true);
+            assert.strictEqual(calls, 1);
         });
     });
 
@@ -142,7 +143,7 @@ describe('CalendarFactory', () =>
                 view: 'month',
             }, {}, testCalendar);
             expect(calendar).toEqual(testCalendar);
-            expect(calls).toBe(3);
+            assert.strictEqual(calls, 3);
         });
 
         test('Should return new calendar without resizing', async() =>
@@ -155,8 +156,8 @@ describe('CalendarFactory', () =>
             const calendar = await CalendarFactory.getInstance({
                 view: 'month',
             }, {}, undefined);
-            expect(calendar).toBeInstanceOf(FlexibleMonthCalendar);
-            expect(calls).toBe(0);
+            assert.strictEqual(calendar instanceof FlexibleMonthCalendar, true);
+            assert.strictEqual(calls, 0);
         });
 
         test('Should return new calendar with resizing', async() =>
@@ -177,8 +178,8 @@ describe('CalendarFactory', () =>
             const calendar = await CalendarFactory.getInstance({
                 view: 'month',
             }, {}, testCalendar);
-            expect(calendar).toBeInstanceOf(FlexibleMonthCalendar);
-            expect(calls).toBe(1);
+            assert.strictEqual(calendar instanceof FlexibleMonthCalendar, true);
+            assert.strictEqual(calls, 1);
         });
     });
 });

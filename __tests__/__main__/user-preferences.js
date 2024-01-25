@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
+const assert = require('assert');
 const { booleanInputs, defaultPreferences, getDefaultWidthHeight, getPreferencesFilePath, getUserPreferences, savePreferences, showDay, switchCalendarView, notificationIsEnabled, getUserLanguage, getNotificationsInterval, repetitionIsEnabled, getUserPreferencesPromise, resetPreferences } = require('../../js/user-preferences');
 import fs from 'fs';
 const { themeOptions } = require('../../renderer/themes');
@@ -41,14 +42,14 @@ describe('Preferences Main', () =>
 
     test('showDay(year, month, day)', () =>
     {
-        expect(showDay(2020, 1, 1)).toBe(days['working-days-saturday']);
-        expect(showDay(2020, 1, 2)).toBe(days['working-days-sunday']);
-        expect(showDay(2020, 1, 3)).toBe(days['working-days-monday']);
-        expect(showDay(2020, 1, 4)).toBe(days['working-days-tuesday']);
-        expect(showDay(2020, 1, 5)).toBe(days['working-days-wednesday']);
-        expect(showDay(2020, 1, 6)).toBe(days['working-days-thursday']);
-        expect(showDay(2020, 1, 7)).toBe(days['working-days-friday']);
-        expect(showDay(2020, 1, 7, defaultPreferences)).toBe(days['working-days-friday']);
+        assert.strictEqual(showDay(2020, 1, 1), days['working-days-saturday']);
+        assert.strictEqual(showDay(2020, 1, 2), days['working-days-sunday']);
+        assert.strictEqual(showDay(2020, 1, 3), days['working-days-monday']);
+        assert.strictEqual(showDay(2020, 1, 4), days['working-days-tuesday']);
+        assert.strictEqual(showDay(2020, 1, 5), days['working-days-wednesday']);
+        assert.strictEqual(showDay(2020, 1, 6), days['working-days-thursday']);
+        assert.strictEqual(showDay(2020, 1, 7), days['working-days-friday']);
+        assert.strictEqual(showDay(2020, 1, 7, defaultPreferences), days['working-days-friday']);
     });
 
     describe('getDefaultWidthHeight()', () =>
@@ -56,7 +57,7 @@ describe('Preferences Main', () =>
 
         test('Month view', () =>
         {
-            expect(defaultPreferences['view']).toBe('month');
+            assert.strictEqual(defaultPreferences['view'], 'month');
             savePreferences(defaultPreferences);
 
             expect(getDefaultWidthHeight()).toStrictEqual({ width: 1010, height: 800 });
@@ -78,14 +79,14 @@ describe('Preferences Main', () =>
 
         test('Month to Day', () =>
         {
-            expect(defaultPreferences['view']).toBe('month');
+            assert.strictEqual(defaultPreferences['view'], 'month');
             savePreferences(defaultPreferences);
 
-            expect(getUserPreferences()['view']).toBe('month');
+            assert.strictEqual(getUserPreferences()['view'], 'month');
             switchCalendarView();
 
             const preferences = getUserPreferences();
-            expect(preferences['view']).toBe('day');
+            assert.strictEqual(preferences['view'], 'day');
         });
 
         test('Day to Month', () =>
@@ -95,11 +96,11 @@ describe('Preferences Main', () =>
             preferences['view'] = 'day';
             savePreferences(preferences);
 
-            expect(getUserPreferences()['view']).toBe('day');
+            assert.strictEqual(getUserPreferences()['view'], 'day');
             switchCalendarView();
 
             preferences = getUserPreferences();
-            expect(preferences['view']).toBe('month');
+            assert.strictEqual(preferences['view'], 'month');
         });
     });
 
@@ -107,32 +108,32 @@ describe('Preferences Main', () =>
     {
         beforeEach(() =>
         {
-            expect(defaultPreferences['notifications-interval']).toBe('5');
+            assert.strictEqual(defaultPreferences['notifications-interval'], '5');
             savePreferences(defaultPreferences);
 
-            expect(getUserPreferences()['notifications-interval']).toBe('5');
-            expect(getNotificationsInterval()).toBe('5');
+            assert.strictEqual(getUserPreferences()['notifications-interval'], '5');
+            assert.strictEqual(getNotificationsInterval(), '5');
         });
 
         test('Saving valid number as notifications-interval', () =>
         {
             setNewPreference('notifications-interval', '6');
-            expect(getUserPreferences()['notifications-interval']).toBe('6');
-            expect(getNotificationsInterval()).toBe('6');
+            assert.strictEqual(getUserPreferences()['notifications-interval'], '6');
+            assert.strictEqual(getNotificationsInterval(), '6');
         });
 
         test('Saving invalid number as notifications-interval', () =>
         {
             setNewPreference('notifications-interval', '0');
-            expect(getUserPreferences()['notifications-interval']).toBe('5');
-            expect(getNotificationsInterval()).toBe('5');
+            assert.strictEqual(getUserPreferences()['notifications-interval'], '5');
+            assert.strictEqual(getNotificationsInterval(), '5');
         });
 
         test('Saving invalid text as notifications-interval', () =>
         {
             setNewPreference('notifications-interval', 'ab');
-            expect(getUserPreferences()['notifications-interval']).toBe('5');
-            expect(getNotificationsInterval()).toBe('5');
+            assert.strictEqual(getUserPreferences()['notifications-interval'], '5');
+            assert.strictEqual(getNotificationsInterval(), '5');
         });
     });
 
@@ -141,22 +142,22 @@ describe('Preferences Main', () =>
         test('Saving valid language', () =>
         {
             setNewPreference('language', 'es');
-            expect(getUserPreferences()['language']).toBe('es');
-            expect(getUserLanguage()).toBe('es');
+            assert.strictEqual(getUserPreferences()['language'], 'es');
+            assert.strictEqual(getUserLanguage(), 'es');
         });
 
         test('Saving invalid number as language', () =>
         {
             setNewPreference('language', 5);
-            expect(getUserPreferences()['language']).toBe('en');
-            expect(getUserLanguage()).toBe('en');
+            assert.strictEqual(getUserPreferences()['language'], 'en');
+            assert.strictEqual(getUserLanguage(), 'en');
         });
 
         test('Saving invalid string language', () =>
         {
             setNewPreference('language', 'es-AR');
-            expect(getUserPreferences()['language']).toBe('en');
-            expect(getUserLanguage()).toBe('en');
+            assert.strictEqual(getUserPreferences()['language'], 'en');
+            assert.strictEqual(getUserLanguage(), 'en');
         });
 
     });
@@ -166,19 +167,19 @@ describe('Preferences Main', () =>
         test('Saving invalid string as notification preference', () =>
         {
             setNewPreference('notification', 'true');
-            expect(notificationIsEnabled()).toBe(true);
+            assert.strictEqual(notificationIsEnabled(), true);
         });
 
         test('Saving invalid number as notification preference', () =>
         {
             setNewPreference('notification', 8);
-            expect(notificationIsEnabled()).toBe(true);
+            assert.strictEqual(notificationIsEnabled(), true);
         });
 
         test('Saving valid boolean as notification preference', () =>
         {
             setNewPreference('notification', false);
-            expect(notificationIsEnabled()).toBe(false);
+            assert.strictEqual(notificationIsEnabled(), false);
         });
     });
 
@@ -187,19 +188,19 @@ describe('Preferences Main', () =>
         test('Saving invalid string as repetition preference', () =>
         {
             setNewPreference('repetition', 'true');
-            expect(repetitionIsEnabled()).toBe(true);
+            assert.strictEqual(repetitionIsEnabled(), true);
         });
 
         test('Saving invalid number as repetition preference', () =>
         {
             setNewPreference('repetition', 15);
-            expect(repetitionIsEnabled()).toBe(true);
+            assert.strictEqual(repetitionIsEnabled(), true);
         });
 
         test('Saving valid boolean as repetition preference', () =>
         {
             setNewPreference('repetition', false);
-            expect(repetitionIsEnabled()).toBe(false);
+            assert.strictEqual(repetitionIsEnabled(), false);
         });
     });
 
@@ -215,25 +216,25 @@ describe('Preferences Main', () =>
             test(`Saving invalid string as ${pref} preference`, () =>
             {
                 setNewPreference(pref, 'true');
-                expect(getUserPreferences()[pref]).toBe(defaultPreferences[pref]);
+                assert.strictEqual(getUserPreferences()[pref], defaultPreferences[pref]);
             });
 
             test(`Saving invalid number as ${pref} preference`, () =>
             {
                 setNewPreference(pref, 20);
-                expect(getUserPreferences()[pref]).toBe(defaultPreferences[pref]);
+                assert.strictEqual(getUserPreferences()[pref], defaultPreferences[pref]);
             });
 
             test(`Saving valid boolean as ${pref} preference`, () =>
             {
                 setNewPreference(pref, false);
-                expect(getUserPreferences()[pref]).toBe(false);
+                assert.strictEqual(getUserPreferences()[pref], false);
             });
 
             test(`Saving valid boolean as ${pref} preference`, () =>
             {
                 setNewPreference(pref, true);
-                expect(getUserPreferences()[pref]).toBe(true);
+                assert.strictEqual(getUserPreferences()[pref], true);
             });
         }
     });
@@ -245,20 +246,20 @@ describe('Preferences Main', () =>
             test(`Saving valid theme ${theme}`, () =>
             {
                 setNewPreference('theme', theme);
-                expect(getUserPreferences()['theme']).toBe(theme);
+                assert.strictEqual(getUserPreferences()['theme'], theme);
             });
         }
 
         test('Saving invalid string as theme', () =>
         {
             setNewPreference('theme', 'DARKKKK');
-            expect(getUserPreferences()['theme']).toBe(defaultPreferences.theme);
+            assert.strictEqual(getUserPreferences()['theme'], defaultPreferences.theme);
         });
 
         test('Saving invalid number as theme', () =>
         {
             setNewPreference('theme', 5);
-            expect(getUserPreferences()['theme']).toBe(defaultPreferences.theme);
+            assert.strictEqual(getUserPreferences()['theme'], defaultPreferences.theme);
         });
     });
     describe('Hours Per Day', () =>
@@ -266,37 +267,37 @@ describe('Preferences Main', () =>
         test('Saving invalid number as hours per day', () =>
         {
             setNewPreference('hours-per-day', 1223);
-            expect(getUserPreferences()['hours-per-day']).toBe(defaultPreferences['hours-per-day']);
+            assert.strictEqual(getUserPreferences()['hours-per-day'], defaultPreferences['hours-per-day']);
         });
 
         test('Saving invalid amount of hours per day', () =>
         {
             setNewPreference('hours-per-day', '30:00');
-            expect(getUserPreferences()['hours-per-day']).toBe(defaultPreferences['hours-per-day']);
+            assert.strictEqual(getUserPreferences()['hours-per-day'], defaultPreferences['hours-per-day']);
         });
 
         test('Saving invalid minutes in hours per day', () =>
         {
             setNewPreference('hours-per-day', '20:99');
-            expect(getUserPreferences()['hours-per-day']).toBe(defaultPreferences['hours-per-day']);
+            assert.strictEqual(getUserPreferences()['hours-per-day'], defaultPreferences['hours-per-day']);
         });
 
         test('Saving invalid boolean as hours per day', () =>
         {
             setNewPreference('hours-per-day', true);
-            expect(getUserPreferences()['hours-per-day']).toBe(defaultPreferences['hours-per-day']);
+            assert.strictEqual(getUserPreferences()['hours-per-day'], defaultPreferences['hours-per-day']);
         });
 
         test('Saving valid hours per day', () =>
         {
             setNewPreference('hours-per-day', '06:00');
-            expect(getUserPreferences()['hours-per-day']).toBe('06:00');
+            assert.strictEqual(getUserPreferences()['hours-per-day'], '06:00');
         });
 
         test('Saving valid hours per day', () =>
         {
             setNewPreference('hours-per-day', '01:30');
-            expect(getUserPreferences()['hours-per-day']).toBe('01:30');
+            assert.strictEqual(getUserPreferences()['hours-per-day'], '01:30');
         });
     });
     describe('Break Time Interval', () =>
@@ -304,37 +305,37 @@ describe('Preferences Main', () =>
         test('Saving invalid number as break-time-interval', () =>
         {
             setNewPreference('break-time-interval', 1223);
-            expect(getUserPreferences()['break-time-interval']).toBe(defaultPreferences['break-time-interval']);
+            assert.strictEqual(getUserPreferences()['break-time-interval'], defaultPreferences['break-time-interval']);
         });
 
         test('Saving invalid hours in break-time-interval', () =>
         {
             setNewPreference('break-time-interval', '30:00');
-            expect(getUserPreferences()['break-time-interval']).toBe(defaultPreferences['break-time-interval']);
+            assert.strictEqual(getUserPreferences()['break-time-interval'], defaultPreferences['break-time-interval']);
         });
 
         test('Saving invalid mintes in break-time-interval', () =>
         {
             setNewPreference('break-time-interval', '20:99');
-            expect(getUserPreferences()['break-time-interval']).toBe(defaultPreferences['break-time-interval']);
+            assert.strictEqual(getUserPreferences()['break-time-interval'], defaultPreferences['break-time-interval']);
         });
 
         test('Saving invalid boolean as break-time-interval', () =>
         {
             setNewPreference('break-time-interval', true);
-            expect(getUserPreferences()['break-time-interval']).toBe(defaultPreferences['break-time-interval']);
+            assert.strictEqual(getUserPreferences()['break-time-interval'], defaultPreferences['break-time-interval']);
         });
 
         test('Saving valid break-time-interval', () =>
         {
             setNewPreference('break-time-interval', '00:30');
-            expect(getUserPreferences()['break-time-interval']).toBe('00:30');
+            assert.strictEqual(getUserPreferences()['break-time-interval'], '00:30');
         });
 
         test('Saving valid break-time-interval', () =>
         {
             setNewPreference('break-time-interval', '00:15');
-            expect(getUserPreferences()['break-time-interval']).toBe('00:15');
+            assert.strictEqual(getUserPreferences()['break-time-interval'], '00:15');
         });
     });
     describe('Overall balance start date', () =>
@@ -342,19 +343,19 @@ describe('Preferences Main', () =>
         test('Saving invalid month in overall-balance-start-date', () =>
         {
             setNewPreference( 'overall-balance-start-date', '2022-13-01');
-            expect(getUserPreferences()['overall-balance-start-date']).toBe(defaultPreferences['overall-balance-start-date']);
+            assert.strictEqual(getUserPreferences()['overall-balance-start-date'], defaultPreferences['overall-balance-start-date']);
         });
 
         test('Saving invalid day in overall-balance-start-date', () =>
         {
             setNewPreference( 'overall-balance-start-date', '2022-10-32');
-            expect(getUserPreferences()['overall-balance-start-date']).toBe(defaultPreferences['overall-balance-start-date']);
+            assert.strictEqual(getUserPreferences()['overall-balance-start-date'], defaultPreferences['overall-balance-start-date']);
         });
 
         test('Saving valid date', () =>
         {
             setNewPreference( 'overall-balance-start-date', '2022-10-02');
-            expect(getUserPreferences()['overall-balance-start-date']).toBe('2022-10-02');
+            assert.strictEqual(getUserPreferences()['overall-balance-start-date'], '2022-10-02');
         });
     });
     describe('Update remind me after', () =>
@@ -362,37 +363,37 @@ describe('Preferences Main', () =>
         test('Saving invalid numner as update-remind-me-after', () =>
         {
             setNewPreference( 'update-remind-me-after', new Date('2022-13-01').getTime());
-            expect(getUserPreferences()['update-remind-me-after']).toBe(defaultPreferences['update-remind-me-after']);
+            assert.strictEqual(getUserPreferences()['update-remind-me-after'], defaultPreferences['update-remind-me-after']);
         });
 
         test('Saving invalid month in update-remind-me-after', () =>
         {
             setNewPreference( 'update-remind-me-after', '2022-13-01');
-            expect(getUserPreferences()['update-remind-me-after']).toBe(defaultPreferences['update-remind-me-after']);
+            assert.strictEqual(getUserPreferences()['update-remind-me-after'], defaultPreferences['update-remind-me-after']);
         });
 
         test('Saving invalid date in update-remind-me-after', () =>
         {
             setNewPreference( 'update-remind-me-after', '2022-10-32');
-            expect(getUserPreferences()['update-remind-me-after']).toBe(defaultPreferences['update-remind-me-after']);
+            assert.strictEqual(getUserPreferences()['update-remind-me-after'], defaultPreferences['update-remind-me-after']);
         });
 
         test('Saving valid date', () =>
         {
             setNewPreference( 'update-remind-me-after', '2022-10-02');
-            expect(getUserPreferences()['update-remind-me-after']).toBe('2022-10-02');
+            assert.strictEqual(getUserPreferences()['update-remind-me-after'], '2022-10-02');
         });
     });
     describe('savePreferences()', () =>
     {
         test('Save to wrong path', () =>
         {
-            expect(savePreferences(defaultPreferences, './not/existing/folder')).toBeInstanceOf(Error);
+            assert.strictEqual(savePreferences(defaultPreferences, './not/existing/folder') instanceof Error, true);
         });
 
         test('Save to default path', () =>
         {
-            expect(savePreferences(defaultPreferences)).toBe(true);
+            assert.strictEqual(savePreferences(defaultPreferences), true);
         });
     });
     describe('resetPreferences()', () =>
@@ -433,7 +434,7 @@ describe('Preferences Main', () =>
 
         test('Should return a promise', () =>
         {
-            expect(getUserPreferencesPromise()).toBeInstanceOf(Promise);
+            assert.strictEqual(getUserPreferencesPromise() instanceof Promise, true);
         });
 
         test('Should resolve promise', async() =>
@@ -451,7 +452,7 @@ describe('Preferences Main', () =>
     {
         test('getLanguageMap() should have language code keys', () =>
         {
-            expect(Object.keys(getLanguageMap()).length).toBeGreaterThan(0);
+            assert.strictEqual(Object.keys(getLanguageMap()).length > 0, true);
         });
 
         test('getLanguageMap() keys should be sorted', () =>
@@ -462,11 +463,11 @@ describe('Preferences Main', () =>
                 if (lastLanguage === '') lastLanguage = language;
                 else
                 {
-                    expect(language.localeCompare(lastLanguage)).toBeGreaterThan(0);
+                    assert.strictEqual(language.localeCompare(lastLanguage) > 0, true);
                     lastLanguage = language;
                 }
             });
-            expect(lastLanguage).not.toBe('');
+            assert.notStrictEqual(lastLanguage, '');
 
         });
 
@@ -477,33 +478,33 @@ describe('Preferences Main', () =>
 
         test('getLanguageName() should return correct language', () =>
         {
-            expect(getLanguageName('bn')).toBe('বাংলা');
-            expect(getLanguageName('ca')).toBe('Catalàn');
-            expect(getLanguageName('de-DE')).toBe('Deutsch');
-            expect(getLanguageName('el')).toBe('Ελληνικά');
-            expect(getLanguageName('en')).toBe('English');
-            expect(getLanguageName('es')).toBe('Español');
-            expect(getLanguageName('fr-FR')).toBe('Français - France');
-            expect(getLanguageName('gu')).toBe('ગુજરાતી');
-            expect(getLanguageName('he')).toBe('עברית');
-            expect(getLanguageName('hi')).toBe('हिंदी');
-            expect(getLanguageName('id')).toBe('Bahasa Indonesia');
-            expect(getLanguageName('it')).toBe('Italiano');
-            expect(getLanguageName('ja')).toBe('日本語');
-            expect(getLanguageName('ko')).toBe('한국어');
-            expect(getLanguageName('mr')).toBe('मराठी');
-            expect(getLanguageName('nl')).toBe('Nederlands');
-            expect(getLanguageName('pl')).toBe('Polski');
-            expect(getLanguageName('pt-BR')).toBe('Português - Brasil');
-            expect(getLanguageName('pt-MI')).toBe('Português - Minerês');
-            expect(getLanguageName('pt-PT')).toBe('Português - Portugal');
-            expect(getLanguageName('ru-RU')).toBe('Русский');
-            expect(getLanguageName('sv-SE')).toBe('Svenska');
-            expect(getLanguageName('ta')).toBe('தமிழ்');
-            expect(getLanguageName('th-TH')).toBe('ไทย');
-            expect(getLanguageName('tr-TR')).toBe('Türkçe');
-            expect(getLanguageName('uk-UA')).toBe('Українська');
-            expect(getLanguageName('zh-TW')).toBe('繁體中文');
+            assert.strictEqual(getLanguageName('bn'), 'বাংলা');
+            assert.strictEqual(getLanguageName('ca'), 'Catalàn');
+            assert.strictEqual(getLanguageName('de-DE'), 'Deutsch');
+            assert.strictEqual(getLanguageName('el'), 'Ελληνικά');
+            assert.strictEqual(getLanguageName('en'), 'English');
+            assert.strictEqual(getLanguageName('es'), 'Español');
+            assert.strictEqual(getLanguageName('fr-FR'), 'Français - France');
+            assert.strictEqual(getLanguageName('gu'), 'ગુજરાતી');
+            assert.strictEqual(getLanguageName('he'), 'עברית');
+            assert.strictEqual(getLanguageName('hi'), 'हिंदी');
+            assert.strictEqual(getLanguageName('id'), 'Bahasa Indonesia');
+            assert.strictEqual(getLanguageName('it'), 'Italiano');
+            assert.strictEqual(getLanguageName('ja'), '日本語');
+            assert.strictEqual(getLanguageName('ko'), '한국어');
+            assert.strictEqual(getLanguageName('mr'), 'मराठी');
+            assert.strictEqual(getLanguageName('nl'), 'Nederlands');
+            assert.strictEqual(getLanguageName('pl'), 'Polski');
+            assert.strictEqual(getLanguageName('pt-BR'), 'Português - Brasil');
+            assert.strictEqual(getLanguageName('pt-MI'), 'Português - Minerês');
+            assert.strictEqual(getLanguageName('pt-PT'), 'Português - Portugal');
+            assert.strictEqual(getLanguageName('ru-RU'), 'Русский');
+            assert.strictEqual(getLanguageName('sv-SE'), 'Svenska');
+            assert.strictEqual(getLanguageName('ta'), 'தமிழ்');
+            assert.strictEqual(getLanguageName('th-TH'), 'ไทย');
+            assert.strictEqual(getLanguageName('tr-TR'), 'Türkçe');
+            assert.strictEqual(getLanguageName('uk-UA'), 'Українська');
+            assert.strictEqual(getLanguageName('zh-TW'), '繁體中文');
         });
     });
 

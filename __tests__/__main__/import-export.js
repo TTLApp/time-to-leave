@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 
+const assert = require('assert');
 const {
     exportDatabaseToFile,
     importDatabaseFromFile,
@@ -28,17 +29,17 @@ describe('Import export', function()
         const badWaivedEntry = {'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': 'not-an-hour'};
         test('should be valid', () =>
         {
-            expect(validEntry(goodRegularEntry)).toBeTruthy();
-            expect(validEntry(goodWaivedEntry)).toBeTruthy();
-            expect(validEntry(goodFlexibleEntry)).toBeTruthy();
+            assert.notStrictEqual(validEntry(goodRegularEntry), undefined);
+            assert.notStrictEqual(validEntry(goodWaivedEntry), undefined);
+            assert.notStrictEqual(validEntry(goodFlexibleEntry), undefined);
         });
 
         test('should not be valid', () =>
         {
-            expect(validEntry(badRegularEntry)).not.toBeTruthy();
-            expect(validEntry(badWaivedEntry)).not.toBeTruthy();
-            expect(validEntry(badFlexibleEntry)).not.toBeTruthy();
-            expect(validEntry(badFlexibleEntry2)).not.toBeTruthy();
+            assert.notStrictEqual(validEntry(badRegularEntry), undefined);
+            assert.notStrictEqual(validEntry(badWaivedEntry), undefined);
+            assert.notStrictEqual(validEntry(badFlexibleEntry), undefined);
+            assert.notStrictEqual(validEntry(badFlexibleEntry2), undefined);
         });
     });
 
@@ -82,8 +83,8 @@ describe('Import export', function()
     {
         test('Check that export works', () =>
         {
-            expect(exportDatabaseToFile(path.join(folder, 'exported_file.ttldb'))).toBeTruthy();
-            expect(exportDatabaseToFile('/not/a/valid/path')).not.toBeTruthy();
+            assert.notStrictEqual(exportDatabaseToFile(path.join(folder, 'exported_file.ttldb')), undefined);
+            assert.notStrictEqual(exportDatabaseToFile('/not/a/valid/path'), undefined);
         });
     });
 
@@ -101,11 +102,11 @@ describe('Import export', function()
     {
         test('Check that import works', () =>
         {
-            expect(importDatabaseFromFile([path.join(folder, 'exported_file.ttldb')])['result']).toBeTruthy();
-            expect(importDatabaseFromFile(['/not/a/valid/path'])['result']).not.toBeTruthy();
-            expect(importDatabaseFromFile(['/not/a/valid/path'])['failed']).toBe(0);
-            expect(importDatabaseFromFile([invalidEntriesFile])['result']).not.toBeTruthy();
-            expect(importDatabaseFromFile([invalidEntriesFile])['failed']).toBe(5);
+            assert.notStrictEqual(importDatabaseFromFile([path.join(folder, 'exported_file.ttldb')])['result'], undefined);
+            assert.notStrictEqual(importDatabaseFromFile(['/not/a/valid/path'])['result'], undefined);
+            assert.strictEqual(importDatabaseFromFile(['/not/a/valid/path'])['failed'], 0);
+            assert.notStrictEqual(importDatabaseFromFile([invalidEntriesFile])['result'], undefined);
+            assert.strictEqual(importDatabaseFromFile([invalidEntriesFile])['failed'], 5);
         });
     });
 
@@ -118,11 +119,11 @@ describe('Import export', function()
     {
         test('Check that migration works', () =>
         {
-            expect(flexibleStore.size).toBe(2);
+            assert.strictEqual(flexibleStore.size, 2);
             flexibleStore.clear();
-            expect(flexibleStore.size).toBe(0);
+            assert.strictEqual(flexibleStore.size, 0);
             migrateFixedDbToFlexible();
-            expect(flexibleStore.size).toBe(2);
+            assert.strictEqual(flexibleStore.size, 2);
             expect(flexibleStore.get('2020-3-1')).toStrictEqual(migratedFlexibleEntries['2020-3-1']);
             expect(flexibleStore.get('2020-3-2')).toStrictEqual(migratedFlexibleEntries['2020-3-2']);
         });
@@ -148,9 +149,9 @@ describe('Import export', function()
         test('Check that import works', () =>
         {
             flexibleStore.clear();
-            expect(flexibleStore.size).toBe(0);
-            expect(importDatabaseFromFile([mixedEntriesFile])['result']).toBeTruthy();
-            expect(flexibleStore.size).toBe(2);
+            assert.strictEqual(flexibleStore.size, 0);
+            assert.notStrictEqual(importDatabaseFromFile([mixedEntriesFile])['result'], undefined);
+            assert.strictEqual(flexibleStore.size, 2);
             expect(flexibleStore.get('2020-2-1')).toStrictEqual(expectedMixedEntries['2020-2-1']);
             expect(flexibleStore.get('2020-5-3')).toStrictEqual(expectedMixedEntries['2020-5-3']);
         });

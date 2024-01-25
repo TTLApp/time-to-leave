@@ -1,5 +1,6 @@
 'use strict';
 
+const assert = require('assert');
 import Store from 'electron-store';
 const { getDateStr } = require('../../js/date-aux');
 const {shouldCheckForUpdates, checkForUpdates} = require('../../js/update-manager');
@@ -30,7 +31,7 @@ describe('js/update-manager.js', () =>
         {
             const store = new Store();
             store.set('update-remind-me-after', false);
-            expect(shouldCheckForUpdates()).toBe(true);
+            assert.strictEqual(shouldCheckForUpdates(), true);
         });
 
         test('Should return true when was checked before today', () =>
@@ -39,7 +40,7 @@ describe('js/update-manager.js', () =>
             now.setDate(now.getDate() - 1);
             const store = new Store();
             store.set('update-remind-me-after', getDateStr(now));
-            expect(shouldCheckForUpdates()).toBe(true);
+            assert.strictEqual(shouldCheckForUpdates(), true);
         });
 
         test('Should return false when was checked today', () =>
@@ -47,7 +48,7 @@ describe('js/update-manager.js', () =>
             const now = new Date();
             const store = new Store();
             store.set('update-remind-me-after', getDateStr(now));
-            expect(shouldCheckForUpdates()).toBe(false);
+            assert.strictEqual(shouldCheckForUpdates(), false);
         });
     });
 
