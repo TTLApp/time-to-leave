@@ -23,7 +23,7 @@ describe('window-aux.cjs Testing', function()
     const timeoutValue = 1500;
 
     // Testcase no longer being used since the move to electron without remote
-    // but we should make use of it for a mocha testcase to still be sure the proferences window
+    // but we should make use of it for a mocha testcase to still be sure the preferences window
     // and workday waiver have the shortcut working
 
     // describe('bindDevToolsShortcut(window)', function()
@@ -33,7 +33,7 @@ describe('window-aux.cjs Testing', function()
     //     {
     //         const testWindow = new BrowserWindow(browserWindowOptions);
     //         testWindow.loadURL(mockHtmlPath);
-    //         assert.notStrictEqual(testWindow.webContents.isDevToolsOpened(), undefined);
+    //         assert.strictEqual(testWindow.webContents.isDevToolsOpened(), false);
 
     //         testWindow.webContents.on('dom-ready', () =>
     //         {
@@ -45,7 +45,7 @@ describe('window-aux.cjs Testing', function()
     //         });
 
     //         await new Promise(r => setTimeout(r, timeoutValue));
-    //         assert.notStrictEqual(testWindow.webContents.isDevToolsOpened(), undefined);
+    //         assert.strictEqual(testWindow.webContents.isDevToolsOpened(), false);
     //     });
 
     //     test('Bind: should open devTools', async() =>

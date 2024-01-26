@@ -29,17 +29,17 @@ describe('Import export', function()
         const badWaivedEntry = {'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': 'not-an-hour'};
         test('should be valid', () =>
         {
-            assert.notStrictEqual(validEntry(goodRegularEntry), undefined);
-            assert.notStrictEqual(validEntry(goodWaivedEntry), undefined);
-            assert.notStrictEqual(validEntry(goodFlexibleEntry), undefined);
+            assert.strictEqual(validEntry(goodRegularEntry), true);
+            assert.strictEqual(validEntry(goodWaivedEntry), true);
+            assert.strictEqual(validEntry(goodFlexibleEntry), true);
         });
 
         test('should not be valid', () =>
         {
-            assert.notStrictEqual(validEntry(badRegularEntry), undefined);
-            assert.notStrictEqual(validEntry(badWaivedEntry), undefined);
-            assert.notStrictEqual(validEntry(badFlexibleEntry), undefined);
-            assert.notStrictEqual(validEntry(badFlexibleEntry2), undefined);
+            assert.strictEqual(validEntry(badRegularEntry), false);
+            assert.strictEqual(validEntry(badWaivedEntry), false);
+            assert.strictEqual(validEntry(badFlexibleEntry), false);
+            assert.strictEqual(validEntry(badFlexibleEntry2), false);
         });
     });
 
@@ -83,8 +83,8 @@ describe('Import export', function()
     {
         test('Check that export works', () =>
         {
-            assert.notStrictEqual(exportDatabaseToFile(path.join(folder, 'exported_file.ttldb')), undefined);
-            assert.notStrictEqual(exportDatabaseToFile('/not/a/valid/path'), undefined);
+            assert.strictEqual(exportDatabaseToFile(path.join(folder, 'exported_file.ttldb')), true);
+            assert.strictEqual(exportDatabaseToFile('/not/a/valid/path'), false);
         });
     });
 
@@ -102,10 +102,10 @@ describe('Import export', function()
     {
         test('Check that import works', () =>
         {
-            assert.notStrictEqual(importDatabaseFromFile([path.join(folder, 'exported_file.ttldb')])['result'], undefined);
-            assert.notStrictEqual(importDatabaseFromFile(['/not/a/valid/path'])['result'], undefined);
+            assert.strictEqual(importDatabaseFromFile([path.join(folder, 'exported_file.ttldb')])['result'], true);
+            assert.strictEqual(importDatabaseFromFile(['/not/a/valid/path'])['result'], false);
             assert.strictEqual(importDatabaseFromFile(['/not/a/valid/path'])['failed'], 0);
-            assert.notStrictEqual(importDatabaseFromFile([invalidEntriesFile])['result'], undefined);
+            assert.strictEqual(importDatabaseFromFile([invalidEntriesFile])['result'], false);
             assert.strictEqual(importDatabaseFromFile([invalidEntriesFile])['failed'], 5);
         });
     });
@@ -150,7 +150,7 @@ describe('Import export', function()
         {
             flexibleStore.clear();
             assert.strictEqual(flexibleStore.size, 0);
-            assert.notStrictEqual(importDatabaseFromFile([mixedEntriesFile])['result'], undefined);
+            assert.strictEqual(importDatabaseFromFile([mixedEntriesFile])['result'], true);
             assert.strictEqual(flexibleStore.size, 2);
             expect(flexibleStore.get('2020-2-1')).toStrictEqual(expectedMixedEntries['2020-2-1']);
             expect(flexibleStore.get('2020-5-3')).toStrictEqual(expectedMixedEntries['2020-5-3']);

@@ -18,13 +18,13 @@ describe('Validate json', function()
 
             test('should be valid JSON', () =>
             {
-                assert.notStrictEqual(validateJSON(validWaivedType), undefined);
-                assert.notStrictEqual(validateJSON(validFlexibleType), undefined);
+                assert.strictEqual(validateJSON(validWaivedType), true);
+                assert.strictEqual(validateJSON(validFlexibleType), true);
             });
             test('should not be valid JSON', () =>
             {
-                assert.notStrictEqual(validateJSON(invalidTypeValue), undefined);
-                assert.notStrictEqual(validateJSON(invalidTypeType), undefined);
+                assert.strictEqual(validateJSON(invalidTypeValue), false);
+                assert.strictEqual(validateJSON(invalidTypeType), false);
             });
         });
 
@@ -36,10 +36,10 @@ describe('Validate json', function()
             const validWaivedDate2 = [{ 'type': 'waived', 'date': '2020-6-3', 'data': 'waived', 'hours': '08:00' }];
             test('should be valid JSON', () =>
             {
-                assert.notStrictEqual(validateJSON(validFlexibleDate1), undefined);
-                assert.notStrictEqual(validateJSON(validFlexibleDate2), undefined);
-                assert.notStrictEqual(validateJSON(validWaivedDate1), undefined);
-                assert.notStrictEqual(validateJSON(validWaivedDate2), undefined);
+                assert.strictEqual(validateJSON(validFlexibleDate1), true);
+                assert.strictEqual(validateJSON(validFlexibleDate2), true);
+                assert.strictEqual(validateJSON(validWaivedDate1), true);
+                assert.strictEqual(validateJSON(validWaivedDate2), true);
             });
         });
 
@@ -53,15 +53,15 @@ describe('Validate json', function()
             const invalidDayInMonth = [{ 'type': 'flexible', 'date': '2020-04-31', 'values': ['08:00', '12:00', '13:00', '14:00'] }];
             test('should be valid JSON', () =>
             {
-                assert.notStrictEqual(validateJSON(validWaivedDate), undefined);
-                assert.notStrictEqual(validateJSON(validFlexibleDate), undefined);
+                assert.strictEqual(validateJSON(validWaivedDate), true);
+                assert.strictEqual(validateJSON(validFlexibleDate), true);
             });
             test('should not be valid JSON', () =>
             {
-                assert.notStrictEqual(validateJSON(invalidDateFormat), undefined);
-                assert.notStrictEqual(validateJSON(invalidDateType), undefined);
-                assert.notStrictEqual(validateJSON(invalidDateValue), undefined);
-                assert.notStrictEqual(validateJSON(invalidDayInMonth), undefined);
+                assert.strictEqual(validateJSON(invalidDateFormat), false);
+                assert.strictEqual(validateJSON(invalidDateType), false);
+                assert.strictEqual(validateJSON(invalidDateValue), false);
+                assert.strictEqual(validateJSON(invalidDayInMonth), false);
             });
         });
 
@@ -71,11 +71,11 @@ describe('Validate json', function()
             const invalidDataType = [{ 'type': 'waived', 'date': '2020-06-03', 'data': ['waived'], 'hours': '08:00' }];
             test('should be valid JSON', () =>
             {
-                assert.notStrictEqual(validateJSON(validData), undefined);
+                assert.strictEqual(validateJSON(validData), true);
             });
             test('should not be valid JSON', () =>
             {
-                assert.notStrictEqual(validateJSON(invalidDataType), undefined);
+                assert.strictEqual(validateJSON(invalidDataType), false);
             });
         });
 
@@ -89,15 +89,15 @@ describe('Validate json', function()
             const invalidHoursValueNegative = [{ 'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '-01:00' }];
             test('should be valid JSON', () =>
             {
-                assert.notStrictEqual(validateJSON(validHours), undefined);
-                assert.notStrictEqual(validateJSON(validHours2), undefined);
+                assert.strictEqual(validateJSON(validHours), true);
+                assert.strictEqual(validateJSON(validHours2), true);
             });
             test('should not be valid JSON', () =>
             {
-                assert.notStrictEqual(validateJSON(invalidHoursFormat), undefined);
-                assert.notStrictEqual(validateJSON(invalidHoursType), undefined);
-                assert.notStrictEqual(validateJSON(invalidHoursValue), undefined);
-                assert.notStrictEqual(validateJSON(invalidHoursValueNegative), undefined);
+                assert.strictEqual(validateJSON(invalidHoursFormat), false);
+                assert.strictEqual(validateJSON(invalidHoursType), false);
+                assert.strictEqual(validateJSON(invalidHoursValue), false);
+                assert.strictEqual(validateJSON(invalidHoursValueNegative), false);
             });
         });
 
@@ -113,17 +113,17 @@ describe('Validate json', function()
             const invalidPointsInTime = [{ 'type': 'flexible', 'date': '2020-02-01', 'values': ['08:00', '07:00', '13:00', '14:00'] }];
             test('should be valid JSON', () =>
             {
-                assert.notStrictEqual(validateJSON(validValues), undefined);
+                assert.strictEqual(validateJSON(validValues), true);
             });
             test('should not be valid JSON', () =>
             {
-                assert.notStrictEqual(validateJSON(invalidValuesFormat1), undefined);
-                assert.notStrictEqual(validateJSON(invalidValuesFormat2), undefined);
-                assert.notStrictEqual(validateJSON(invalidValuesFormat3), undefined);
-                assert.notStrictEqual(validateJSON(invalidValuesFormat4), undefined);
-                assert.notStrictEqual(validateJSON(invalidValuesType), undefined);
-                assert.notStrictEqual(validateJSON(invalidValuesValue), undefined);
-                assert.notStrictEqual(validateJSON(invalidPointsInTime), undefined);
+                assert.strictEqual(validateJSON(invalidValuesFormat1), false);
+                assert.strictEqual(validateJSON(invalidValuesFormat2), false);
+                assert.strictEqual(validateJSON(invalidValuesFormat3), false);
+                assert.strictEqual(validateJSON(invalidValuesFormat4), false);
+                assert.strictEqual(validateJSON(invalidValuesType), false);
+                assert.strictEqual(validateJSON(invalidValuesValue), false);
+                assert.strictEqual(validateJSON(invalidPointsInTime), false);
             });
         });
 
@@ -137,18 +137,18 @@ describe('Validate json', function()
                 for (let i = 1; i <= 9; i++)
                 {
                     const firstNineDays = [{ 'type': 'flexible', 'date': `2020-12-0${i}`, 'values': ['08:00', '12:00', '13:00', '14:00'] }];
-                    assert.notStrictEqual(validateJSON(firstNineDays), undefined);
+                    assert.strictEqual(validateJSON(firstNineDays), true);
                 }
                 for (let i = 10; i <= 31; i++)
                 {
                     const restDays = [{ 'type': 'flexible', 'date': `2020-12-${i}`, 'values': ['08:00', '12:00', '13:00', '14:00'] }];
-                    assert.notStrictEqual(validateJSON(restDays), undefined);
+                    assert.strictEqual(validateJSON(restDays), true);
                 }
             });
             test('should not be valid JSON', () =>
             {
-                assert.notStrictEqual(validateJSON(invalidDay), undefined);
-                assert.notStrictEqual(validateJSON(invalidDay2), undefined);
+                assert.strictEqual(validateJSON(invalidDay), false);
+                assert.strictEqual(validateJSON(invalidDay2), false);
             });
         });
 
@@ -162,18 +162,18 @@ describe('Validate json', function()
                 for (let i = 1; i <= 9; i++)
                 {
                     const firstNineMonths = [{ 'type': 'flexible', 'date': `2020-0${i}-13`, 'values': ['08:00', '12:00', '13:00', '14:00'] }];
-                    assert.notStrictEqual(validateJSON(firstNineMonths), undefined);
+                    assert.strictEqual(validateJSON(firstNineMonths), true);
                 }
                 for (let i = 10; i <= 12; i++)
                 {
                     const restMonths = [{ 'type': 'flexible', 'date': `2020-${i}-13`, 'values': ['08:00', '12:00', '13:00', '14:00'] }];
-                    assert.notStrictEqual(validateJSON(restMonths), undefined);
+                    assert.strictEqual(validateJSON(restMonths), true);
                 }
             });
             test('should not be valid JSON', () =>
             {
-                assert.notStrictEqual(validateJSON(invalidMonth), undefined);
-                assert.notStrictEqual(validateJSON(invalidMonth2), undefined);
+                assert.strictEqual(validateJSON(invalidMonth), false);
+                assert.strictEqual(validateJSON(invalidMonth2), false);
             });
         });
 
@@ -184,12 +184,12 @@ describe('Validate json', function()
 
             test('should be valid JSON', () =>
             {
-                assert.notStrictEqual(validateJSON(validLeapYear), undefined);
+                assert.strictEqual(validateJSON(validLeapYear), true);
 
             });
             test('should not be valid JSON', () =>
             {
-                assert.notStrictEqual(validateJSON(invalidLeapYear), undefined);
+                assert.strictEqual(validateJSON(invalidLeapYear), false);
             });
         });
     });

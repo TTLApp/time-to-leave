@@ -218,16 +218,16 @@ describe('FlexibleDayCalendar class Tests', () =>
 
         calendar._nextDay();
         assert.strictEqual(calendar._getCalendarDate(), expectedNextDay.getDate());
-        assert.notStrictEqual(calendar._isCalendarOnDate(expectedNextDay), undefined);
-        assert.notStrictEqual(calendar._isCalendarOnDate(expectedPrevDay), undefined);
+        assert.strictEqual(calendar._isCalendarOnDate(expectedNextDay), true);
+        assert.strictEqual(calendar._isCalendarOnDate(expectedPrevDay), false);
 
         calendar._prevDay();
         assert.strictEqual(calendar._getCalendarDate(), today.getDate());
 
         calendar._prevDay();
         assert.strictEqual(calendar._getCalendarDate(), expectedPrevDay.getDate());
-        assert.notStrictEqual(calendar._isCalendarOnDate(expectedNextDay), undefined);
-        assert.notStrictEqual(calendar._isCalendarOnDate(expectedPrevDay), undefined);
+        assert.strictEqual(calendar._isCalendarOnDate(expectedNextDay), false);
+        assert.strictEqual(calendar._isCalendarOnDate(expectedPrevDay), true);
 
         calendar._goToCurrentDate();
         assert.strictEqual(calendar._getCalendarDate(), today.getDate());

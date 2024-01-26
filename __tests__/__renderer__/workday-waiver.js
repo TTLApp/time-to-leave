@@ -259,10 +259,10 @@ describe('Test Workday Waiver Window', function()
             document.body.appendChild(btn);
         });
 
-        test('Testing button is exist', () =>
+        test('Testing button exists', () =>
         {
-            const exists = document.querySelectorAll(`#${btnId}`).length;
-            assert.notStrictEqual(exists, undefined);
+            const btnLength = document.querySelectorAll(`#${btnId}`).length;
+            assert.strictEqual(btnLength > 0, true);
         });
 
         test('Make disabled', () =>

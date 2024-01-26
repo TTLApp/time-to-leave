@@ -40,12 +40,12 @@ describe('Time Math Functions', () =>
     {
         test('date1 Should not be negative', () =>
         {
-            assert.notStrictEqual(isNegative(date2), undefined);
+            assert.strictEqual(isNegative(date2), false);
         });
 
         test('-date2 Should be negative', () =>
         {
-            assert.notStrictEqual(isNegative('-' + date2), undefined);
+            assert.strictEqual(isNegative('-' + date2), true);
         });
 
     });
@@ -160,34 +160,34 @@ describe('Time Math Functions', () =>
     // Time Validation
     test('validateTime(HH:MM)', () =>
     {
-        assert.notStrictEqual(validateTime('00:00'), undefined);
-        assert.notStrictEqual(validateTime('00:01'), undefined);
-        assert.notStrictEqual(validateTime('00:11'), undefined);
-        assert.notStrictEqual(validateTime('01:11'), undefined);
-        assert.notStrictEqual(validateTime('11:11'), undefined);
-        assert.notStrictEqual(validateTime('23:59'), undefined);
-        assert.notStrictEqual(validateTime('-04:00'), undefined);
-        assert.notStrictEqual(validateTime('24:00'), undefined);
-        assert.notStrictEqual(validateTime('34:00'), undefined);
-        assert.notStrictEqual(validateTime('4:00'), undefined);
-        assert.notStrictEqual(validateTime('00:1'), undefined);
-        assert.notStrictEqual(validateTime('--:--'), undefined);
-        assert.notStrictEqual(validateTime(''), undefined);
+        assert.strictEqual(validateTime('00:00'), true);
+        assert.strictEqual(validateTime('00:01'), true);
+        assert.strictEqual(validateTime('00:11'), true);
+        assert.strictEqual(validateTime('01:11'), true);
+        assert.strictEqual(validateTime('11:11'), true);
+        assert.strictEqual(validateTime('23:59'), true);
+        assert.strictEqual(validateTime('-04:00'), true);
+        assert.strictEqual(validateTime('24:00'), false);
+        assert.strictEqual(validateTime('34:00'), false);
+        assert.strictEqual(validateTime('4:00'), false);
+        assert.strictEqual(validateTime('00:1'), false);
+        assert.strictEqual(validateTime('--:--'), false);
+        assert.strictEqual(validateTime(''), false);
     });
 
     test('validateDate(date)', () =>
     {
         const tests = [
-            {date: '0001-00-00',valid: false},
-            {date: '1-00-00',valid: false},
-            {date: '1996-13-00',valid: false},
-            {date: '1996-1-00',valid: false},
-            {date: '1996-01-1',valid: false},
-            {date: '1996-01-40',valid: false},
-            {date: '1996-01-31',valid: false},
-            {date: 'I\'m a date!',valid: false},
-            {date: '1996-01-29',valid: true},
-            {date: '1996-01-30',valid: false},
+            {date: '0001-00-00', valid: false},
+            {date: '1-00-00', valid: false},
+            {date: '1996-13-00', valid: false},
+            {date: '1996-1-00', valid: false},
+            {date: '1996-01-1', valid: false},
+            {date: '1996-01-40', valid: false},
+            {date: '1996-01-31', valid: false},
+            {date: 'I\'m a date!', valid: false},
+            {date: '1996-01-29', valid: true},
+            {date: '1996-01-30', valid: false},
             {date: '1996-00-01', valid: true},
             {date: '1996-01-01', valid: true},
             {date: '1996-02-01', valid: true},
