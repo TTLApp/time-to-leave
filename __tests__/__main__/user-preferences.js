@@ -504,6 +504,7 @@ describe('Preferences Main', () =>
             assert.strictEqual(getLanguageName('th-TH'), 'ไทย');
             assert.strictEqual(getLanguageName('tr-TR'), 'Türkçe');
             assert.strictEqual(getLanguageName('uk-UA'), 'Українська');
+            assert.strictEqual(getLanguageName('zh-CN'), '简体中文');
             assert.strictEqual(getLanguageName('zh-TW'), '繁體中文');
         });
     });

@@ -30,6 +30,7 @@
 <a href="docs/README-th-TH.md"><img src="https://img.shields.io/badge/th--TH-ภาษาไทย-purple" alt="เอกสารฉบับนี้มีให้บริการในรูปแบบภาษาไทย"></a>
 <a href="docs/README-tr-TR.md"><img src="https://img.shields.io/badge/tr-T%C3%BCrk%C3%A7e-purple" alt="Bu belge Türkçe olarak da mevcuttur"></a>
 <a href="docs/README-uk-UA.md"><img src="https://img.shields.io/badge/uk--UA-Українська-purple" alt="Документація додатку українською"></a>
+<a href="docs/README-zh-CN.md"><img src="https://img.shields.io/badge/zh--CN-简体中文-purple" alt="此文档亦适用于简体中文"></a>
 <a href="docs/README-zh-TW.md"><img src="https://img.shields.io/badge/zh--TW-繁體中文-purple" alt="此文檔亦適用於繁體中文"></a>
 <br/>
 
