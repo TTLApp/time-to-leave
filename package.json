@@ -35,6 +35,7 @@
     "test": "npm-run-all test:*",
     "test:jest": "jest --runInBand --verbose=false --detectOpenHandles --colors --transformIgnorePatterns 'node_modules/(?!astronomia)/' -- ",
     "test:mocha": "nyc --reporter=lcov --reporter=json mocha tests/*",
+    "test:electron-mocha-main": "c8 electron-mocha --config __tests__/electron-mocha-main.config.cjs",
     "setup:win": "node scripts/create_windows_installer.js"
   },
   "license": "GPL-3.0",
@@ -42,6 +43,7 @@
     "@babel/plugin-transform-modules-commonjs": "7.23.3",
     "@electron/remote": "2.0.12",
     "@jest-runner/electron": "3.0.0",
+    "c8": "9.1.0",
     "electron": "27.0.3",
     "electron-mocha": "12.2.0",
     "electron-packager": "15.5.1",

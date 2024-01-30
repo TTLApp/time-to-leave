@@ -54,6 +54,7 @@ jobs:
           fi
 
           npm run test:jest
+          npm run test:electron-mocha-main
       - name: '        Create COV_REPORT'
         run: |
           mkdir COV_REPORT

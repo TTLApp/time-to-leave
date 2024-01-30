@@ -1,18 +1,18 @@
 /* eslint-disable no-undef */
 'use strict';
 
-const assert = require('assert');
+import assert from 'assert';
 
 import {
+    diffDays,
+    hourToMinutes,
     isNegative,
-    multiplyTime,
     minutesToHourFormatted,
+    multiplyTime,
     subtractTime,
     sumTime,
+    validateDate,
     validateTime,
-    hourToMinutes,
-    diffDays,
-    validateDate
 } from '../../js/time-math.js';
 
 const date1 = new Date(-349891200000);
@@ -21,29 +21,27 @@ const date3 = new Date();
 
 describe('Time Math Functions', () =>
 {
-
     describe('Difference between two days', () =>
     {
-        test('expect diffDays 22350', () =>
+        it('expect diffDays 22350', () =>
         {
             assert.strictEqual(diffDays(date1, date2), 22350);
         });
 
-        test('expect diffDays greater than 0', () =>
+        it('expect diffDays greater than 0', () =>
         {
             assert.strictEqual(diffDays(date1, date3) > 0, true);
         });
-
     });
 
     describe('Determine negative dates', () =>
     {
-        test('date1 Should not be negative', () =>
+        it('date1 Should not be negative', () =>
         {
             assert.strictEqual(isNegative(date2), false);
         });
 
-        test('-date2 Should be negative', () =>
+        it('-date2 Should be negative', () =>
         {
             assert.strictEqual(isNegative('-' + date2), true);
         });
@@ -52,31 +50,31 @@ describe('Time Math Functions', () =>
 
     describe('Minutes formatted to HH:MM', () =>
     {
-        test('0 should return 00:00', () =>
+        it('0 should return 00:00', () =>
         {
             assert.strictEqual(minutesToHourFormatted(0), '00:00');
             assert.strictEqual(minutesToHourFormatted(-0), '00:00');
         });
 
-        test('1 should return 00:01', () =>
+        it('1 should return 00:01', () =>
         {
             assert.strictEqual(minutesToHourFormatted(1), '00:01');
             assert.strictEqual(minutesToHourFormatted(-1), '-00:01');
         });
 
-        test('59 should return 00:59', () =>
+        it('59 should return 00:59', () =>
         {
             assert.strictEqual(minutesToHourFormatted(59), '00:59');
             assert.strictEqual(minutesToHourFormatted(-59), '-00:59');
         });
 
-        test('60 should return 01:00', () =>
+        it('60 should return 01:00', () =>
         {
             assert.strictEqual(minutesToHourFormatted(60), '01:00');
             assert.strictEqual(minutesToHourFormatted(-60), '-01:00');
         });
 
-        test('61 should return 01:01', () =>
+        it('61 should return 01:01', () =>
         {
             assert.strictEqual(minutesToHourFormatted(61), '01:01');
             assert.strictEqual(minutesToHourFormatted(-61), '-01:01');
@@ -87,28 +85,28 @@ describe('Time Math Functions', () =>
     describe('HH:MM formatted to minutes', () =>
     {
 
-        test('00:00 should return 0', () =>
+        it('00:00 should return 0', () =>
         {
             assert.strictEqual(hourToMinutes('00:00'), 0);
             assert.strictEqual(hourToMinutes('-00:00') < 1, true);
         });
 
-        test('01:01 should return 61', () =>
+        it('01:01 should return 61', () =>
         {
             assert.strictEqual(hourToMinutes('01:01'), 61);
             assert.strictEqual(hourToMinutes('-01:01'), -61);
         });
-        test('00:01 should return 1', () =>
+        it('00:01 should return 1', () =>
         {
             assert.strictEqual(hourToMinutes('00:01'), 1);
             assert.strictEqual(hourToMinutes('-00:01'), -1);
         });
-        test('00:59 should return 59', () =>
+        it('00:59 should return 59', () =>
         {
             assert.strictEqual(hourToMinutes('00:59'), 59);
             assert.strictEqual(hourToMinutes('-00:59'), -59);
         });
-        test('01:00 should return 60', () =>
+        it('01:00 should return 60', () =>
         {
             assert.strictEqual(hourToMinutes('01:00'), 60);
             assert.strictEqual(hourToMinutes('-01:00'), -60);
@@ -118,14 +116,14 @@ describe('Time Math Functions', () =>
     // Multiply time
     describe('Multiply Time', () =>
     {
-        test('01:00 * 10 should be 10:00', () =>
+        it('01:00 * 10 should be 10:00', () =>
         {
             assert.strictEqual(multiplyTime('01:00', 10), '10:00');
             assert.strictEqual(multiplyTime('-01:00', 10), '-10:00');
             assert.strictEqual(multiplyTime('01:00', -10), '-10:00');
         });
 
-        test('00:60 * 1 should be 01:00', () =>
+        it('00:60 * 1 should be 01:00', () =>
         {
             assert.strictEqual(multiplyTime('00:60', 1), '01:00');
             assert.strictEqual(multiplyTime('-00:60', 1), '-01:00');
@@ -134,7 +132,7 @@ describe('Time Math Functions', () =>
     });
 
     // Subtract time
-    test('subtractTime(HH:MM, HH:MM)', () =>
+    it('subtractTime(HH:MM, HH:MM)', () =>
     {
         assert.strictEqual(subtractTime('1:00', '1:00'), '00:00');
         assert.strictEqual(subtractTime('00:00', '00:00'), '00:00');
@@ -147,7 +145,7 @@ describe('Time Math Functions', () =>
     });
 
     // Sum time
-    test('sumTime(HH:MM, HH:MM)', () =>
+    it('sumTime(HH:MM, HH:MM)', () =>
     {
         assert.strictEqual(sumTime('01:00', '01:00'), '02:00');
         assert.strictEqual(sumTime('00:00', '00:00'), '00:00');
@@ -158,7 +156,7 @@ describe('Time Math Functions', () =>
     });
 
     // Time Validation
-    test('validateTime(HH:MM)', () =>
+    it('validateTime(HH:MM)', () =>
     {
         assert.strictEqual(validateTime('00:00'), true);
         assert.strictEqual(validateTime('00:01'), true);
@@ -175,7 +173,7 @@ describe('Time Math Functions', () =>
         assert.strictEqual(validateTime(''), false);
     });
 
-    test('validateDate(date)', () =>
+    it('validateDate(date)', () =>
     {
         const tests = [
             {date: '0001-00-00', valid: false},
