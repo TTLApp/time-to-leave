@@ -58,14 +58,13 @@ jobs:
       - name: '        Create COV_REPORT'
         run: |
           mkdir COV_REPORT
-      - name: '        Copy coverage results'
+      - name: '        Merge coverage results'
         run: |
-          cp coverage_c8/coverage-final.json COV_REPORT/coverage-final-c8.json
-          cp coverage_jest/coverage-final.json COV_REPORT/coverage-final-jest.json
+          npx istanbul-merge --out COV_REPORT/coverage-final.json coverage_c8/coverage-final.json coverage_jest/coverage-final.json
       - name: '        CodeCov'
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: COV_REPORT/coverage-final-c8.json,COV_REPORT/coverage-final-jest.json
+          files: COV_REPORT/coverage-final.json,
           name: codecov-${{ matrix.os }}
           verbose: true
