@@ -53,18 +53,19 @@ jobs:
             export DISPLAY=':99'
           fi
 
-          npm run test:jest
           npm run test:electron-mocha-main
+          npm run test:jest
       - name: '        Create COV_REPORT'
         run: |
           mkdir COV_REPORT
-      - name: '        Copy jest results'
+      - name: '        Copy coverage results'
         run: |
+          cp coverage_c8/coverage-final.json COV_REPORT/coverage-final-c8.json
           cp coverage_jest/coverage-final.json COV_REPORT/coverage-final-jest.json
       - name: '        CodeCov'
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: COV_REPORT/coverage-final-jest.json
+          files: COV_REPORT/coverage-final-c8.json,COV_REPORT/coverage-final-jest.json
           name: codecov-${{ matrix.os }}
           verbose: true

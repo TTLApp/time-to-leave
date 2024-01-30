@@ -1,0 +1,6 @@
+{
+    "all": true,
+    "include": ["js/**.{cjs,js,mjs}", "js/classes/**.{cjs,js,mjs}", "src/**.{cjs,js,mjs}", "./main.{cjs,js,mjs}"],
+    "reporter": ["clover", "json", "lcov", "text"],
+    "reportsDir": "coverage_c8"
+}

@@ -25,6 +25,7 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
+coverage_c8
 coverage_jest
 *.lcov
 
