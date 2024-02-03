@@ -61,11 +61,11 @@ jobs:
           mkdir COV_REPORT
       - name: '        Merge coverage results'
         run: |
-          npx istanbul-merge --out COV_REPORT/coverage-final.json coverage_c8/coverage-final.json coverage_jest/coverage-final.json coverage_mocha/coverage-final.json
+          npx istanbul-merge --out COV_REPORT/coverage-final.json coverage_c8/coverage-final.json coverage_jest/coverage-final.json
       - name: '        CodeCov'
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: COV_REPORT/coverage-final.json
+          files: COV_REPORT/coverage-final.json,coverage_mocha/coverage-final.json
           name: codecov-${{ matrix.os }}
           verbose: true
