@@ -27,6 +27,7 @@ lib-cov
 coverage
 coverage_c8
 coverage_jest
+coverage_mocha
 *.lcov
 
 # nyc test coverage
