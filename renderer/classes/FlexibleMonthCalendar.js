@@ -736,7 +736,6 @@ class FlexibleMonthCalendar extends BaseCalendar
             inputs = $('#' + key + 'input[type="time"]');
         }
         let i = 0;
-        console.log('get these values to store at ' + key + ':  ' + values);
         function indexIsInterval(index)
         {
             return index % 3 === 0;
@@ -771,11 +770,7 @@ class FlexibleMonthCalendar extends BaseCalendar
                 }
                 input.val('');
             }
-            console.log('trying to set: ');
-            console.log(input);
-            console.log('value to: ' + element);
             $(input).val(element);
-            console.log(input);
             i++;
         }
 
