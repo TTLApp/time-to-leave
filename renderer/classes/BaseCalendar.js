@@ -5,7 +5,8 @@ import {
     isNegative,
     subtractTime,
     sumTime,
-    validateTime
+    validateTime,
+    validate24Time
 } from '../../js/time-math.js';
 import { getDateStr, getMonthLength } from '../../js/date-aux.js';
 import { generateKey } from '../../js/date-db-formatter.js';
@@ -179,10 +180,19 @@ class BaseCalendar
 
         $('#punch-button').on('click', () => { calendar.punchDate(); });
 
-        $('input[type=\'time\']').off('input propertychange').on('input propertychange', function()
+        $('.ti input[type=\'time\']').off('input propertychange').on('input propertychange', function()
         {
             //  deepcode ignore no-invalid-this: jQuery use
             calendar._updateTimeDayCallback($(this).attr('data-date'));
+        });
+        // update function for 24 hour time as well
+        $('.ti input[type=\'text\']').off('keypress').on('keypress', function()
+        {
+            //only update once they hit enter within the textbox
+            if (event.which === 13)
+            {
+                calendar._updateTimeDayCallback($(this).attr('data-date'));
+            }
         });
 
         this._updateAllTimeBalance();
@@ -355,7 +365,7 @@ class BaseCalendar
     }
 
     /**
-     * Returns "break time interval" set in preferences
+     * Returns if "break time interval" was set in preferences
      * @return {string}
      */
     _getBreakTimeInterval()
@@ -370,6 +380,15 @@ class BaseCalendar
     _getCountToday()
     {
         return this._preferences['count-today'];
+    }
+
+    /**
+     * Returns if "24 hour time" was set in preferences.
+     * @return {Boolean}
+     */
+    _getTime24()
+    {
+        return this._preferences['time-24'];
     }
 
     /**
@@ -441,6 +460,13 @@ class BaseCalendar
      */
     _setStore(key, newValues)
     {
+        newValues.forEach((item, index, array) =>
+        {
+            if (item.length < 5)
+            {
+                array[index] = '0' + item;
+            }
+        });
         this._internalStore[key] = { values: newValues };
         window.mainApi.setFlexibleStoreData(key, this._internalStore[key]);
     }
@@ -476,7 +502,11 @@ class BaseCalendar
     _areAllInputsFilled(year, month, day)
     {
         const dateKey = generateKey(year, month, day);
-        const inputs = $('#' + dateKey + ' input[type="time"]');
+        let inputs = $('#' + dateKey + ' input[type="time"]');
+        if (this._getTime24())
+        {
+            inputs = $('#' + dateKey + ' input[type="text"]');
+        }
         let allInputsFilled = true;
         for (const input of inputs)
         {
@@ -600,11 +630,13 @@ class BaseCalendar
     {
         const dayTotalSpan = $('#' + key).parent().find('.day-total-cell span');
         dayTotalSpan.html('');
-
-        const inputs = $('#' + key + ' input[type="time"]');
+        let inputs = $('#' + key + ' input[type="time"]');
+        if (this._getTime24())
+        {
+            inputs = $('#' + key + ' input[type="text"]');
+        }
         const values = this._getStore(key);
         const validatedTimes = this._validateTimes(values);
-
         const storeHasExpectedSize = values.length === inputs.length;
         const inputsHaveExpectedSize = inputs.length >= 2 && inputs.length % 2 === 0;
         const validatedTimesOk = validatedTimes.length > 0 && validatedTimes.every(time => time !== '--:--');
@@ -681,7 +713,10 @@ class BaseCalendar
         {
             for (const time of values)
             {
-                validatedTimes.push(validateTime(time) ? time : '--:--');
+                if (this._getTime24())
+                    validatedTimes.push(validate24Time(time) ? time : '--:--');
+                else
+                    validatedTimes.push(validateTime(time) ? time : '--:--');
             }
         }
 

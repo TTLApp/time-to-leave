@@ -29,6 +29,7 @@ function isValidView(view)
 
 const defaultPreferences = {
     'count-today': false,
+    'time-24': false,
     'close-to-tray': true,
     'minimize-to-tray': true,
     'hide-non-working-days': false,
@@ -56,6 +57,7 @@ const defaultPreferences = {
 // Handle Boolean Inputs
 const booleanInputs = [
     'count-today',
+    'time-24',
     'close-to-tray',
     'minimize-to-tray',
     'hide-non-working-days',

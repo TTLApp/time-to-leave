@@ -95,6 +95,17 @@ function validateTime(time)
 }
 
 /**
+ * Validates that a string is a valid 24 hour time, following the format of HH:MM
+ * @returns true if it's valid
+ */
+function validate24Time(time)
+{
+    if (time.length < 5) { time = '0' + time; }
+    const re = new RegExp('^-?(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$');
+    return re.test(time);
+}
+
+/**
  * Get a difference between two dates.
  * date1, or date2 should be javascript Date instance.
  * @return Number
@@ -157,4 +168,5 @@ export {
     sumTime,
     validateDate,
     validateTime,
+    validate24Time
 };

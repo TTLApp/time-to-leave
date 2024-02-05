@@ -156,7 +156,7 @@ class FlexibleMonthCalendar extends BaseCalendar
                 '</div>';
     }
 
-    static _getRowCode(dateKey, isInterval = false)
+    static _getRowCode(dateKey, isTime24 = false, isInterval = false)
     {
         if (isInterval)
         {
@@ -164,7 +164,13 @@ class FlexibleMonthCalendar extends BaseCalendar
                         '<div class="interval" colspan="4"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>' +
                     '</div>';
         }
-        return  '<div class="row-time">' +
+        if (isTime24)
+        {
+            return '<div class="row-time">' +
+                        '<div class="ti" colspan="4"><input type="text" placeholder="--:--" data-date="' + dateKey + '"></div>' +
+                    '</div>';
+        }
+        return '<div class="row-time">' +
                     '<div class="ti" colspan="4"><input type="time" data-date="' + dateKey + '"></div>' +
                 '</div>';
     }
@@ -297,6 +303,7 @@ class FlexibleMonthCalendar extends BaseCalendar
     {
         const calendar = this;
         let slideTimer;
+        const time24 = this._getTime24();
         function sideScroll(element, direction, speed, step)
         {
             slideTimer = setInterval(function()
@@ -370,15 +377,26 @@ class FlexibleMonthCalendar extends BaseCalendar
         {
             const dateKey = $(element).attr('id');
             const moreThree =
-                calendar.constructor._getRowCode(dateKey, true /*isInterval*/) +
-                calendar.constructor._getRowCode(dateKey) +
-                calendar.constructor._getRowCode(dateKey);
+                calendar.constructor._getRowCode(dateKey, time24, true /*isInterval*/) +
+                calendar.constructor._getRowCode(dateKey, time24) +
+                calendar.constructor._getRowCode(dateKey, time24);
             $(element).append(moreThree);
             element.scrollLeft = element.scrollWidth - element.clientWidth;
-            $(element).find('input[type=\'time\']').off('input propertychange').on('input propertychange', function()
+            if (this._getTime24())
             {
-                calendar._updateTimeDayCallback($(this).attr('data-date'));
-            });
+                $(element).find('input[type=\'text\']').off('input propertychange').on('input propertychange', function()
+                {
+                    calendar._updateTimeDayCallback($(this).attr('data-date'));
+                });
+            }
+            else
+            {
+                $(element).find('input[type=\'time\']').off('input propertychange').on('input propertychange', function()
+                {
+                    calendar._updateTimeDayCallback($(this).attr('data-date'));
+                });
+            }
+
         }
 
         $('.plus-sign span').off('click').on('click', function()
@@ -646,7 +664,11 @@ class FlexibleMonthCalendar extends BaseCalendar
 
     _updateDayIntervals(key)
     {
-        const inputs = $('#' + key + ' input[type="time"]');
+        let inputs = $('#' + key + ' input[type="time"]');
+        if (this._getTime24())
+        {
+            inputs = $('#' + key + ' input[type="text"]');
+        }
         let i = 0;
         let timeStart = '';
         let timeEnd = '';
@@ -682,8 +704,11 @@ class FlexibleMonthCalendar extends BaseCalendar
     {
         // Cleaning intervals
         $('#' + dateKey + ' .interval span').html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
-
-        const inputs = $('#' + dateKey + ' .ti input[type=\'time\']');
+        let inputs = $('#' + dateKey + ' .ti input[type=\'time\']');
+        if (this._getTime24())
+        {
+            inputs = $('#' + dateKey + ' .ti input[type=\'text\']');
+        }
         const newValues = [];
         for (const element of inputs)
         {
@@ -704,9 +729,14 @@ class FlexibleMonthCalendar extends BaseCalendar
     _setTableData(key)
     {
         const values = this._getStore(key);
-        const inputs = $('#' + key + ' input[type="time"]');
+        const time24 = this._getTime24();
+        let inputs = $('#' + key + ' input[type="time"]');
+        if (time24)
+        {
+            inputs = $('#' + key + 'input[type="time"]');
+        }
         let i = 0;
-
+        console.log('get these values to store at ' + key + ':  ' + values);
         function indexIsInterval(index)
         {
             return index % 3 === 0;
@@ -716,18 +746,36 @@ class FlexibleMonthCalendar extends BaseCalendar
         {
             if (indexIsInterval(i + 1))
             {
-                $(this.constructor._getRowCode(key, true /*isInterval*/)).appendTo('#' + key);
+                if (time24)
+                {
+                    $(this.constructor._getRowCode(key, true, true /*isInterval*/)).appendTo('#' + key);
+
+                }
+                else
+                {
+                    $(this.constructor._getRowCode(key, false, true /*isInterval*/)).appendTo('#' + key);
+                }
                 i++;
             }
 
             let input = inputs[i];
             if (input === undefined)
             {
-                input = $(this.constructor._getRowCode(key)).appendTo('#' + key).find('input[type="time"]');
+                if (time24)
+                {
+                    input = $(this.constructor._getRowCode(key, true)).appendTo('#' + key).find('input[type="text"]');
+                }
+                else
+                {
+                    input = $(this.constructor._getRowCode(key, false)).appendTo('#' + key).find('input[type="time"]');
+                }
                 input.val('');
             }
+            console.log('trying to set: ');
+            console.log(input);
+            console.log('value to: ' + element);
             $(input).val(element);
-
+            console.log(input);
             i++;
         }
 
@@ -752,11 +800,24 @@ class FlexibleMonthCalendar extends BaseCalendar
             ++i;
             if (indexIsInterval(i))
             {
-                $(this.constructor._getRowCode(key, true /*isInterval*/)).appendTo('#' + key);
+                if (time24)
+                {
+                    $(this.constructor._getRowCode(key, true, true /*isInterval*/)).appendTo('#' + key);
+
+                }
+                else
+                {
+                    $(this.constructor._getRowCode(key, false, true /*isInterval*/)).appendTo('#' + key);
+                }
+            }
+            else
+            if (time24)
+            {
+                $(this.constructor._getRowCode(key, true)).appendTo('#' + key).find('.input[type="time"]');
             }
             else
             {
-                $(this.constructor._getRowCode(key)).appendTo('#' + key).find('input[type="time"]');
+                $(this.constructor._getRowCode(key, false)).appendTo('#' + key).find('input[type="time"]');
             }
         }
 
