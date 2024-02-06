@@ -3,6 +3,7 @@ module.exports = {
     color: true,
     parallel: true,
     require: [
-        '@babel/register'
+        '@babel/register',
+        '@babel/plugin-transform-modules-commonjs'
     ]
 };
