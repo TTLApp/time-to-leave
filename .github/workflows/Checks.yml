@@ -56,16 +56,10 @@ jobs:
           npm run test:electron-mocha-main
           npm run test:jest
           npm run test:mocha
-      - name: '        Create COV_REPORT'
-        run: |
-          mkdir COV_REPORT
-      - name: '        Merge coverage results'
-        run: |
-          npx istanbul-merge --out COV_REPORT/coverage-final.json coverage_c8/coverage-final.json coverage_jest/coverage-final.json
       - name: '        CodeCov'
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: COV_REPORT/coverage-final.json,coverage_mocha/coverage-final.json
+          files: coverage_c8/coverage-final.json,coverage_jest/coverage-final.json,coverage_mocha/coverage-final.json
           name: codecov-${{ matrix.os }}
           verbose: true
