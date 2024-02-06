@@ -34,7 +34,7 @@
     "start": "electron .",
     "test": "npm-run-all test:*",
     "test:jest": "jest --runInBand --verbose=false --detectOpenHandles --colors --transformIgnorePatterns 'node_modules/(?!astronomia)/' -- ",
-    "test:mocha": "c8 -o ./coverage_mocha mocha tests/*",
+    "test:mocha": "c8 -o ./coverage_mocha -- mocha --config tests/mocha.config.cjs tests/*",
     "test:electron-mocha-main": "c8 electron-mocha --config __tests__/electron-mocha-main.config.cjs",
     "setup:win": "node scripts/create_windows_installer.js"
   },
