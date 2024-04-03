@@ -206,5 +206,3 @@
         "hours-on-invalid": "this.setCustomValidity(\"请以有效的 24 小时格式输入时间，从 00:00 到 23:59\")"
     }
 }
-    
-    
