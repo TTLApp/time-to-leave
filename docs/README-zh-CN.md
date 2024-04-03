@@ -52,4 +52,3 @@ Time to Leave 运行在 MacOS，Windows 和 Linux。你可以在[最新发布](h
 Icons 由[freepik](https://www.flaticon.com/authors/freepik)制作，来源自[www.flaticon.com](https://www.flaticon.com)。
 
 View Switch Icon 由[Pixel perfect](https://www.flaticon.com/authors/pixel-perfect)制作，来源自[www.flaticon.com](https://www.flaticon.com)。
-
