@@ -44,6 +44,11 @@ function getWaiverStoreContents()
     return ipcRenderer.invoke('GET_WAIVER_STORE_CONTENTS');
 }
 
+function getWorkdayStoreContents()
+{
+    return ipcRenderer.invoke('GET_WORKDAY_STORE_CONTENTS');
+}
+
 function getFlexibleStoreContents()
 {
     return ipcRenderer.invoke('GET_FLEXIBLE_STORE_CONTENTS');
@@ -82,6 +87,7 @@ const calendarApi = {
     displayWaiverWindow: (waiverDay) => displayWaiverWindow(waiverDay),
     showDialogSync: (dialogOptions) => showDialogSync(dialogOptions),
     getWaiverStoreContents: () => getWaiverStoreContents(),
+    getWorkdayStoreContents: () => getWorkdayStoreContents(),
     getFlexibleStoreContents: () => getFlexibleStoreContents(),
     setFlexibleStoreData: (key, contents) => setFlexibleStoreData(key, contents),
     deleteFlexibleStoreData: (key) => deleteFlexibleStoreData(key),

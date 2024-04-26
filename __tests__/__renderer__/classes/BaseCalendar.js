@@ -53,6 +53,8 @@ describe('BaseCalendar.js', () =>
         flexibleStore.clear();
         const waivedWorkdays = new Store({name: 'waived-workdays'});
         waivedWorkdays.clear();
+        const workdayStore = new Store({name: 'temp-workdays'});
+        workdayStore.clear();
         ExtendedClass.prototype._initCalendar = () => {};
         ExtendedClass.prototype._getTargetDayForAllTimeBalance = () => {};
 
@@ -68,6 +70,13 @@ describe('BaseCalendar.js', () =>
             return new Promise((resolve) =>
             {
                 resolve(waivedWorkdays.store);
+            });
+        };
+        window.mainApi.getWorkdayStoreContents = () =>
+        {
+            return new Promise((resolve) =>
+            {
+                resolve(workdayStore.store);
             });
         };
         window.mainApi.setFlexibleStoreData = (key, contents) =>

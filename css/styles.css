@@ -745,6 +745,20 @@ input:disabled + .slider {
   color: var(--punch-disable-bground);
 }
 
+#workday-waiver-window .add-workday-button {
+  opacity: 0.9;
+  width: 100%;
+  height: 24px;
+  border: none;
+  color: var(--punch-color);
+  background-color: var(--punch-bground);
+}
+
+#workday-waiver-window .add-workday-button:disabled {
+  opacity: 0.5;
+  color: var(--punch-disable-bground);
+}
+
 #workday-waiver-window #waiver-list-table,
 #workday-waiver-window #holiday-list-table {
   width: 100%;

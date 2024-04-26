@@ -7,6 +7,7 @@ const { ipcMain } = require('electron');
 
 const Store = require('electron-store');
 const waiverStore = new Store({name: 'waived-workdays'});
+const workdayStore = new Store({name: 'temp-workdays'});
 
 const Holidays = require('date-holidays');
 const hd = new Holidays();
@@ -17,6 +18,12 @@ function getWaiverStore()
 {
     return waiverStore.store;
 }
+
+function getWorkdayStore()
+{
+    return workdayStore.store;
+}
+
 
 function setupWorkdayWaiverStoreHandlers()
 {
@@ -39,6 +46,27 @@ function setupWorkdayWaiverStoreHandlers()
     ipcMain.handle('DELETE_WAIVER', (_event, key) =>
     {
         waiverStore.delete(key);
+        return true;
+    });
+    ipcMain.handle('GET_WORKDAY_STORE_CONTENTS', () =>
+    {
+        return getWorkdayStore();
+    });
+
+    ipcMain.handle('SET_WORKDAY', (_event, key, contents) =>
+    {
+        workdayStore.set(key, contents);
+        return true;
+    });
+
+    ipcMain.handle('HAS_WORKDAY', (_event, key) =>
+    {
+        return workdayStore.has(key);
+    });
+
+    ipcMain.handle('DELETE_WORKDAY', (_event, key) =>
+    {
+        workdayStore.delete(key);
         return true;
     });
 }

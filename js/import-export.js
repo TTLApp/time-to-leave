@@ -54,6 +54,28 @@ function _getWaivedEntries()
     return output;
 }
 
+/**
+ * Returns the database (only waived workday entries) as an array of:
+ *   . type: workday
+ *   . date
+ *   . data: (reason)
+ */
+function _getWorkdayEntries()
+{
+    const workdayStore = new Store({name: 'temp-workdays'});
+    const output = [];
+    for (const entry of workdayStore)
+    {
+        const date = entry[0];
+        const reason = entry[1]['reason'];
+        const hours = entry[1]['hours'];
+
+        //The waived workday database uses human month index (1-12)
+        output.push({'type': 'waived', 'date': date, 'data': reason, 'hours': hours});
+    }
+    return output;
+}
+
 function exportDatabaseToFile(filename)
 {
     let information = _getFlexibleEntries();

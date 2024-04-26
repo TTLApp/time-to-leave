@@ -46,6 +46,7 @@ describe('Import export', function()
     const store = new Store();
     const flexibleStore = new Store({name: 'flexible-store'});
     const waivedWorkdays = new Store({name: 'waived-workdays'});
+    const workdayStore = new Store({name: 'temp-workdays'});
 
     // TODO: Regular store is still here to test migration of dbs. Please remove on the next release.
     store.clear();

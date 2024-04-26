@@ -14,6 +14,11 @@ function getWaiverDay()
     return ipcRenderer.invoke('GET_WAIVER_DAY');
 }
 
+function getWorkdayDay()
+{
+    return ipcRenderer.invoke('GET_WORKDAY_DAY');
+}
+
 function showAlert(alertMessage)
 {
     ipcRenderer.send('SHOW_ALERT', alertMessage);
@@ -49,6 +54,26 @@ function deleteWaiver(key)
     return ipcRenderer.invoke('DELETE_WAIVER', key);
 }
 
+function getWorkdayStoreContents()
+{
+    return ipcRenderer.invoke('GET_WORKDAY_STORE_CONTENTS');
+}
+
+function setWorkday(key, contents)
+{
+    return ipcRenderer.invoke('SET_WORKDAY', key, contents);
+}
+
+function hasWorkday(key)
+{
+    return ipcRenderer.invoke('HAS_WORKDAY', key);
+}
+
+function deleteWorkday(key)
+{
+    return ipcRenderer.invoke('DELETE_WORKDAY', key);
+}
+
 function getHolidays(country, state, city, year)
 {
     return ipcRenderer.invoke('GET_HOLIDAYS', country, state, city, year);
@@ -74,6 +99,7 @@ const workdayWaiverApi = {
     getUserPreferences: () => getUserPreferencesPromise(),
     getLanguageData: () => getLanguageData(),
     getWaiverDay: () => getWaiverDay(),
+    getWorkdayDay: () => getWorkdayDay(),
     showAlert: (alertMessage) => showAlert(alertMessage),
     showDialogSync: (dialogOptions) => showDialogSync(dialogOptions),
     showDay: (year, month, day, userPreferences) => showDayByPreferences(year, month, day, userPreferences),
@@ -84,7 +110,11 @@ const workdayWaiverApi = {
     getWaiverStoreContents: () => getWaiverStoreContents(),
     setWaiver: (key, contents) => setWaiver(key, contents),
     hasWaiver: (key) => hasWaiver(key),
-    deleteWaiver: (key) => deleteWaiver(key)
+    deleteWaiver: (key) => deleteWaiver(key),
+    getWorkdayStoreContents: () => getWorkdayStoreContents(),
+    setWorkday: (key, contents) => setWorkday(key, contents),
+    hasWorkday: (key) => hasWorkday(key),
+    deleteWorkday: (key) => deleteWorkday(key)
 };
 
 export {

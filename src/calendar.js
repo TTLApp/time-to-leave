@@ -50,6 +50,15 @@ window.mainApi.handleWaiverSaved(async() =>
 });
 
 /*
+ * Get notified when workdays get updated.
+ */
+window.mainApi.handleWorkdaySaved(async() =>
+{
+    await calendar.loadInternalWorkdayStore();
+    calendar.redraw();
+});
+
+/*
  * Punch the date and time as requested by user.
  */
 window.mainApi.handlePunchDate(() =>

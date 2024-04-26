@@ -10,6 +10,7 @@ const Holidays = require('date-holidays');
 window.$ = require('jquery');
 const {
     addWaiver,
+    addWorkday,
     populateList,
     setDates,
     setHours,
@@ -48,6 +49,7 @@ jest.mock('../../renderer/i18n-translator.js', () => ({
 }));
 
 const waiverStore = new Store({name: 'waived-workdays'});
+const workdayStore = new Store({name: 'temp-workdays'});
 
 // APIs from the preload script of the workday waiver window
 window.mainApi = workdayWaiverApi;
@@ -68,6 +70,26 @@ window.mainApi.deleteWaiver = (key) =>
     return new Promise((resolve) =>
     {
         waiverStore.delete(key);
+        resolve(true);
+    });
+};
+
+// Mocking with the actual access to store that main would have
+window.mainApi.getWorkdayStoreContents = () => { return new Promise((resolve) => resolve(workdayStore.store)); };
+window.mainApi.setWorkday = (key, contents) =>
+{
+    return new Promise((resolve) =>
+    {
+        workdayStore.set(key, contents);
+        resolve(true);
+    });
+};
+window.mainApi.hasWorkday= (key) => { return new Promise((resolve) => resolve(workdayStore.has(key))); };
+window.mainApi.deleteWorkday = (key) =>
+{
+    return new Promise((resolve) =>
+    {
+        workdayStore.delete(key);
         resolve(true);
     });
 };
@@ -127,6 +149,7 @@ const languageData = {'language': 'en', 'data': {'dummy_string': 'dummy_string_t
 async function prepareMockup()
 {
     waiverStore.clear();
+    workdayStore.clear();
     const workdayWaiverHtml = path.join(__dirname, '../../src/workday-waiver.html');
     const content = fs.readFileSync(workdayWaiverHtml);
     const parser = new DOMParser();

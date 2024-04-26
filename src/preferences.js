@@ -1,7 +1,10 @@
 'use strict';
 
+const assert = require('assert');
 import { applyTheme } from '../renderer/themes.js';
+import { resetPreferences } from '../js/user-preferences.js';
 import { translatePage } from '../renderer/i18n-translator.js';
+// const { resetPreferences } = require('../js/user-preferences.js');
 
 // Global values for preferences page
 let usersStyles;
@@ -201,3 +204,10 @@ export {
     listenerLanguage,
     renderPreferencesWindow,
 };
+
+$(async() =>
+{    $('#reset-button').on('click', () =>
+    {
+        resetPreferences();;
+    });
+});

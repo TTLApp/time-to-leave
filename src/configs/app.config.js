@@ -27,7 +27,6 @@ const languages = {
     'th-TH': 'ไทย',
     'tr-TR':'Türkçe',
     'uk-UA': 'Українська',
-    'zh-CN': '简体中文',
     'zh-TW': '繁體中文',
 };
 
