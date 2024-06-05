@@ -84,7 +84,7 @@ function validEntry(entry)
         let validatedTime = true;
         if (entry.type === 'flexible')
         {
-            hasExpectedProperties = entry.hasOwnProperty('values') && Array.isArray(entry.values);
+            hasExpectedProperties = entry.hasOwnProperty('values') && Array.isArray(entry.values) && entry.values.length > 0;
             if (hasExpectedProperties)
             {
                 for (const value of entry.values)
