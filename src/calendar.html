@@ -19,15 +19,18 @@
 </head>
 
 <body>
-    <div id="theme-toggle-area" class="theme-toggle-container">
-        <label for="theme-toggle">Theme:</label>
-        <select id="theme-toggle" class="form-control">
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-        </select>
-    </div> 
+    <div id="theme-toggle-area" class="theme-switch-container">
+        <div class="switch">
+            <label for="toggle">
+                <input id="toggle" class="toggle-switch" type="checkbox">
+                <div class="sun-moon"><div class="dots"></div></div>
+                <div class="background"><div class="stars1"></div><div class="stars2"></div></div>
+                <div class="fill"></div>
+            </label>
+        </div>
+    </div>
+    
     <div id="calendar" class="container"></div>
-       
     <div id="footer" class="footer"></div>
 </body>
 
