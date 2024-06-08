@@ -76,3 +76,12 @@ $(async() =>
     const preferences = await window.mainApi.getUserPreferencesPromise();
     setupCalendar(preferences);
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('change', function() {
+        const theme = themeToggle.value;
+        document.documentElement.setAttribute('data-theme', theme);
+        // Additional code to persist theme selection can be added here
+    });
+});
