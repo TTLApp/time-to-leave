@@ -1250,8 +1250,8 @@ html[data-view='flexible-day'] .punch-button img {
 
 .switch {
   position: relative;
-  width: 7.5rem;
-  height: 4rem;
+  width: 3.75rem; /* Half of the original width */
+  height: 2rem; /* Half of the original height */
 }
 
 .switch input {
@@ -1269,14 +1269,13 @@ html[data-view='flexible-day'] .punch-button img {
 .background {
   z-index: 1;
   position: absolute;
-  width: 7.5rem;
-  height: 4rem;
-  border-radius: 2.5rem;
-  border: 0.25rem solid #202020;
+  width: 3.75rem;
+  height: 2rem;
+  border-radius: 1.25rem; /* Half of the original border-radius */
+  border: 0.125rem solid #202020; /* Half of the original border thickness */
   background: linear-gradient(to right, #484848 0%, #202020 100%);
   transition: all 0.3s;
 }
-
 
 .switch input:checked ~ .fill {
   background: #E9F8FD;
@@ -1285,21 +1284,21 @@ html[data-view='flexible-day'] .punch-button img {
 .stars1,
 .stars2 {
   position: absolute;
-  height: 0.4rem;
-  width: 0.4rem;
+  height: 0.2rem; /* Half of the original height */
+  width: 0.2rem; /* Half of the original width */
   background: #FFFFFF;
   border-radius: 50%;
   transition: 0.3s all ease;
 }
 
 .stars1 {
-  top: 6px;
-  right: 23px;
+  top: 3px;
+  right: 11.5px;
 }
 
 .stars2 {
-  top: 40px;
-  right: 48px;
+  top: 20px;
+  right: 24px;
 }
 
 .stars1:after,
@@ -1309,31 +1308,31 @@ html[data-view='flexible-day'] .punch-button img {
   position: absolute;
   content: "";
   display: block;
-  height: 0.25rem;
-  width: 0.25rem;
+  height: 0.125rem; /* Half of the original size */
+  width: 0.125rem; /* Half of the original size */
   background: #FFFFFF;
   border-radius: 50%;
   transition: 0.2s all ease;
 }
 
 .stars1:after {
-  top: 8px;
-  right: 20px;
+  top: 4px;
+  right: 10px;
 }
 
 .stars1:before {
-  top: 18px;
-  right: -12px;
+  top: 9px;
+  right: -6px;
 }
 
 .stars2:after {
-  top: -8px;
-  right: -16px;
+  top: -4px;
+  right: -8px;
 }
 
 .stars2:before {
-  top: 6px;
-  right: -26px;
+  top: 3px;
+  right: -13px;
 }
 
 .sun-moon {
@@ -1341,23 +1340,23 @@ html[data-view='flexible-day'] .punch-button img {
   position: absolute;
   left: 0;
   display: inline-block;
-  height: 3rem;
-  width: 3rem;
-  margin: 0.5rem;
+  height: 1.5rem; /* Half of the original height */
+  width: 1.5rem; /* Half of the original width */
+  margin: 0.25rem; /* Half of the original margin */
   background: #FFFDF2;
   border-radius: 50%;
   transition: all 0.5s ease;
-  border: 0.25rem solid #DEE2C6;
+  border: 0.125rem solid #DEE2C6; /* Half of the original border thickness */
 }
 
 .sun-moon .dots {
   position: absolute;
-  top: 3px;
-  left: 23px;
-  height: 1rem;
-  width: 1rem;
+  top: 1.5px;
+  left: 11.5px;
+  height: 0.5rem; /* Half of the original height */
+  width: 0.5rem; /* Half of the original width */
   background: #EFEEDB;
-  border: 0.25rem solid #DEE2C6;
+  border: 0.125rem solid #DEE2C6; /* Half of the original border thickness */
   border-radius: 50%;
   transition: 0.4s all ease;
 }
@@ -1367,27 +1366,24 @@ html[data-view='flexible-day'] .punch-button img {
   position: absolute;
   content: "";
   display: block;
-  height: 0.25rem;
-  width: 0.25rem;
+  height: 0.5rem; /* Half of the original size */
+  width: 0.5rem; /* Half of the original size */
   background: #EFEEDB;
-  border: 0.25rem solid #DEE2C6;
+  border: 0.125rem solid #DEE2C6; /* Half of the original border thickness */
   border-radius: 50%;
   transition: 0.4s all ease;
 }
 
-.sun-moon .dots:after {
-  top: -4px;
-  left: -26px;
-}
+
 
 .sun-moon .dots:before {
-  top: 18px;
-  left: -10px;
+  top: 2.5px;
+  left: -4px;
 }
 
 /* Transition to Sun */
 .switch input:checked ~ .sun-moon {
-  left: calc(100% - 4rem);
+  left: calc(100% - 2rem); /* Adjusted left value */
   background: #F5EC59;
   border-color: #E7C65C;
   transform: rotate(-25deg);
@@ -1401,20 +1397,20 @@ html[data-view='flexible-day'] .punch-button img {
 }
 
 .switch input:checked ~ .sun-moon .dots {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 0.75rem; /* Adjusted height */
+  width: 0.75rem; /* Adjusted width */
   top: 0px;
-  left: -20px;
+  left: -10px; /* Adjusted left value */
   transform: rotate(25deg);
 }
 
 .switch input:checked ~ .background .stars1,
 .switch input:checked ~ .background .stars2 {
   opacity: 0;
-  transform: translateY(2rem);
+  transform: translateY(1rem); /* Adjusted translateY value */
 }
 
 .switch input:checked ~ .background {
-  border: 0.25rem solid #78C1D5;
+  border: 0.125rem solid #78C1D5; /* Half of the original border thickness */
   background: linear-gradient(to right, #78C1D5 0%, #BBE7F5 100%);
 }

@@ -17,27 +17,50 @@ class FlexibleDayCalendar extends BaseCalendar
     * @param {Object.<string, any>} preferences
     * @param {Object.<string, string>} languageData
     */
-    constructor(preferences, languageData)
-    {
+     constructor(preferences, languageData) {
         super(preferences, languageData);
+        this._currentTheme = localStorage.getItem('theme') || 'light'; // Load theme from localStorage or default to 'light'
     }
 
     /**
      * Initializes the calendar by generating the html code, binding JS events and then drawing according to DB.
      */
-    _initCalendar()
-    {
+     _initCalendar() {
         this._generateTemplate();
+        this._bindEvents();
+        this._applyInitialTheme(); // Apply the stored or default theme on initialization
+    }
 
+
+    _bindEvents() {
         $('#next-day').on('click', () => { this._nextDay(); });
         $('#prev-day').on('click', () => { this._prevDay(); });
         $('#switch-view').on('click', () => { this._switchView(); });
         $('#current-day').on('click', () => { this._goToCurrentDate(); });
-        $('#input-calendar-date').on('change', (event) =>
-        {
+        $('#input-calendar-date').on('change', (event) => {
             const [year, month, day] = $(event.target).val().split('-');
-            this._goToDate(new Date(year, month-1, day));
+            this._goToDate(new Date(year, month - 1, day));
         });
+        this._setupThemeToggle();
+    }
+
+    _setupThemeToggle() {
+        const themeToggle = document.getElementById('toggle');
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
+
+    _applyInitialTheme() {
+        document.documentElement.setAttribute('data-theme', this._currentTheme);
+        const themeToggle = document.getElementById('toggle');
+        themeToggle.checked = this._currentTheme === 'dark';
     }
 
     /**
@@ -48,32 +71,48 @@ class FlexibleDayCalendar extends BaseCalendar
         const body = this._getBody();
         $('#calendar').html(body);
         $('html').attr('data-view', 'flexible-day');
+        $('#calendar').html(this._getBody());
+        $('html').attr('data-view', 'flexible-day');
     }
 
     /**
      * Returns the header of the page, with the image, name and a message.
      * @return {string}
      */
-    _getPageHeader()
-    {
+     _getPageHeader() {
         const switchView = `<input id="switch-view" type="image" src="../assets/switch.svg" alt="${this._getTranslation('$BaseCalendar.switch-view')}" title="${this._getTranslation('$BaseCalendar.switch-view')}" height="24" width="24"></input>`;
         const todayBut = `<input id="current-day" type="image" src="../assets/calendar.svg" alt="${this._getTranslation('$FlexibleDayCalendar.current-day')}" title="${this._getTranslation('$FlexibleDayCalendar.current-day')}" height="24" width="24"></input>`;
         const leftBut = `<input id="prev-day" type="image" src="../assets/left-arrow.svg" alt="${this._getTranslation('$FlexibleDayCalendar.previous-day')}" height="24" width="24"></input>`;
         const rightBut = `<input id="next-day" type="image" src="../assets/right-arrow.svg" alt="${this._getTranslation('$FlexibleDayCalendar.next-day')}" height="24" width="24"></input>`;
         const title = 'Time to Leave';
-        return '<div class="title-header">'+
-                    '<div class="title-header-img"><img src="../assets/ttl.svg" height="64" width="64"></div>' +
+        const themeToggleButton = `
+        <div id="theme-toggle-area" class="theme-switch-container">
+            <div class="switch">
+                <label for="toggle">
+                    <input id="toggle" class="toggle-switch" type="checkbox">
+                    <div class="sun-moon"><div class="dots"></div></div>
+                    <div class="background"><div class="stars1"></div><div class="stars2"></div></div>
+                    <div class="fill"></div>
+                </label>
+            </div>
+        </div>`;
+    
+        // Theme toggle button moved to the left of the logo
+        return '<div class="title-header">' +
+                    `<div class="title-header-img"><img src="../assets/ttl.svg" height="64" width="64"></div>` +
                     `<div class="title-header-text">${title}</div>` +
                     '<div class="title-header-msg"></div>' +
                '</div>' +
-                '<table class="table-header"><tr>' +
+               '<table class="table-header"><tr>' +
+                    `${themeToggleButton}` +
                     '<th class="th but-switch-view" colspan="2">' + switchView + '</th>' +
                     '<th class="th but-left">' + leftBut + '</th>' +
                     '<th class="th th-month-name" colspan="18"><div class="div-th-month-name"><span id="header-date"></span></span><input type="date" id="input-calendar-date" required></div></th>' +
                     '<th class="th but-right">' + rightBut + '</th>' +
                     '<th class="th but-today" colspan="2">' + todayBut + '</th>' +
-                '</tr></table>';
+               '</tr></table>';
     }
+    
 
     /**
      * Returns the template code of the body of the page.
@@ -720,6 +759,8 @@ class FlexibleDayCalendar extends BaseCalendar
         }
         return targetDate;
     }
+
+    
 }
 
 export {

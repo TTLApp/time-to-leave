@@ -77,23 +77,7 @@ $(async() =>
     setupCalendar(preferences);
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const themeToggle = document.getElementById('toggle');
-    themeToggle.addEventListener('change', function() {
-        if (this.checked) {
-            document.documentElement.setAttribute('data-theme', 'light');
-            // Optionally save user preference for theme here, e.g., to local storage
-        } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            // Optionally save user preference for theme here, e.g., to local storage
-        }
-    });
 
-    // Optionally load and apply user preference for theme on page load
-    const currentTheme = localStorage.getItem('theme') || 'light'; // Assuming 'light' as default
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    themeToggle.checked = currentTheme === 'dark';
-});
 
 
 
