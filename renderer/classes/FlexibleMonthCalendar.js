@@ -111,9 +111,9 @@ class FlexibleMonthCalendar extends BaseCalendar
      */
     _getPageHeader() {
         const switchView = `<input id="switch-view" type="image" src="../assets/switch.svg" alt="${this._getTranslation('$BaseCalendar.switch-view')}" title="${this._getTranslation('$BaseCalendar.switch-view')}" height="24" width="24"></input>`;
-        const todayBut = `<input id="current-day" type="image" src="../assets/calendar.svg" alt="${this._getTranslation('$FlexibleDayCalendar.current-day')}" title="${this._getTranslation('$FlexibleDayCalendar.current-day')}" height="24" width="24"></input>`;
-        const leftBut = `<input id="prev-day" type="image" src="../assets/left-arrow.svg" alt="${this._getTranslation('$FlexibleDayCalendar.previous-day')}" height="24" width="24"></input>`;
-        const rightBut = `<input id="next-day" type="image" src="../assets/right-arrow.svg" alt="${this._getTranslation('$FlexibleDayCalendar.next-day')}" height="24" width="24"></input>`;
+        const todayBut = `<input id="current-month" type="image" src="../assets/calendar.svg" alt="${this._getTranslation('$FlexibleMonthCalendar.current-month')}" title="${this._getTranslation('$FlexibleMonthCalendar.current-month')}" height="24" width="24"></input>`;
+        const leftBut = `<input id="prev-month" type="image" src="../assets/left-arrow.svg" alt="${this._getTranslation('$FlexibleMonthCalendar.previous-month')}" height="24" width="24"></input>`;
+        const rightBut = `<input id="next-month" type="image" src="../assets/right-arrow.svg" alt="${this._getTranslation('$FlexibleMonthCalendar.next-month')}" height="24" width="24"></input>`;
         const title = 'Time to Leave';
     
         const themeToggleButton = `
@@ -129,17 +129,18 @@ class FlexibleMonthCalendar extends BaseCalendar
         </div>`;
     
         return '<div class="title-header">'+
-                    `<div class="title-header-img"><img src="../assets/ttl.svg" height="64" width="64"></div>` +
-                    `<div class="title-header-text">${title}</div>` +
-                    '<div class="title-header-msg"></div>' +
+                '<div class="title-header title-header-img"><img src="../assets/ttl.svg" height="64" width="64"></div>' +
+                `<div class="title-header title-header-text">${title}</div>` +
+                '<div class="title-header title-header-msg"></div>' +
                '</div>' +
+               
                 '<table class="table-header"><tr>' +
-                    '<th class="th but-switch-view" colspan="2">' + switchView + '</th>' +
+                    `${themeToggleButton}`  +
+                    '<th class="th but-switch-view">' + switchView + '</th>' +
                     '<th class="th but-left">' + leftBut + '</th>' +
-                    '<th class="th th-month-name" colspan="18"><div class="div-th-month-name"><span id="header-date"></span></span><input type="date" id="input-calendar-date" required></div></th>' +
-                    '<th class="th but-right">' + rightBut + '</th>' +
-                    '<th class="th but-today" colspan="2">' + todayBut + '</th>' +
-                    `${themeToggleButton}` +
+                    '<th class="th th-month-name" colspan="18"><div class="div-th-month-name" id="month-year"></div></th>' +
+                    '<th class="th but-right">' + rightBut + '</th>' + 
+                    '<th class="th but-today">' + todayBut + '</th>' +
                 '</tr></table>';
     }
 
