@@ -2,10 +2,39 @@
 
 import { applyTheme } from '../renderer/themes.js';
 import { translatePage } from '../renderer/i18n-translator.js';
-
+import { nativeTheme } from 'electron';  // Import nativeTheme from Electron
 // Global values for preferences page
 let usersStyles;
 let preferences;
+
+function applySystemTheme() {
+    // Check system preference for dark mode and set the theme accordingly
+    const systemTheme = nativeTheme.shouldUseDarkColors ? 'dark' : 'light';
+    preferences['theme'] = systemTheme;
+    applyTheme(systemTheme);
+}
+
+function renderPreferencesWindow() {
+    const theme = 'theme';
+
+    // Apply system theme initially
+    applySystemTheme();
+
+    // Set theme dropdown to selected theme from usersStyles or system preferences
+    if (theme in usersStyles) {
+        $('#' + theme).val(usersStyles[theme]);
+    }
+
+    $('#theme').on('change', function() {
+        changeValue('theme', this.value);
+        applyTheme(this.value);
+    });
+
+    // Continue with other preference setups...
+}
+
+// Listen for theme changes in real-time
+nativeTheme.on('updated', applySystemTheme);
 
 function populateLanguages()
 {
