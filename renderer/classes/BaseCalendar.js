@@ -659,8 +659,18 @@ class BaseCalendar
             }
             if (timesAreProgressing)
             {
+                const hoursSet = this._getHoursPerDay();
+                const breakSet = this._getBreakTimeInterval();
+                const [workingHours, workingMinutes] = hoursSet.split(":").map(Number);
+                const [breakHours, breakMinutes] = breakSet.split(":").map(Number);
+
+                let totalMinutes = workingMinutes + breakMinutes;
+                let totalHours = workingHours + breakHours + Math.floor(totalMinutes / 60);
+                totalMinutes = totalMinutes % 60;
+                const totalTime = `${String(totalHours).padStart(2, "0")}:${String(totalMinutes).padStart(2, "0")}`;
+
                 const lastTime = validatedTimes[validatedTimes.length-1];
-                const remainingTime = subtractTime(dayTotal, this._getHoursPerDay());
+                const remainingTime = subtractTime(dayTotal, totalTime);
                 leaveBy = sumTime(lastTime, remainingTime);
             }
         }
