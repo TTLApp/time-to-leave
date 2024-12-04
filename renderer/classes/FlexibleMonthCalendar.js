@@ -60,7 +60,20 @@ class FlexibleMonthCalendar extends BaseCalendar
         }
         return targetDate;
     }
-
+    /* Returns the working hours for the specified day of the week. */
+    _getHoursForDay(dayIndex)
+    {
+        const dayKeys = [
+            'hours-sunday',
+            'hours-monday',
+            'hours-tuesday',
+            'hours-wednesday',
+            'hours-thursday',
+            'hours-friday',
+            'hours-saturday'
+        ];
+        return this._preferences[dayKeys[dayIndex]] || '08:00'; // Default to '08:00' if no preference is set
+    }
     /*
      * Generates the calendar HTML view.
      */
@@ -499,52 +512,56 @@ class FlexibleMonthCalendar extends BaseCalendar
     /*
     * Updates the monthly time balance.
     */
-    _updateBalance()
-    {
+    _updateBalance() {
         const now = new Date();
         const monthLength = getMonthLength(this._getCalendarYear(), this._getCalendarMonth());
-        let workingDaysToCompute = 0;
+        let workingDaysToCompute = [];
         let monthTotalWorked = '00:00';
         let countDays = false;
         let isNextDay = false;
-
-        for (let day = 1; day <= monthLength; ++day)
-        {
-            const isToday = (now.getDate() === day && now.getMonth() === this._getCalendarMonth() && now.getFullYear() === this._getCalendarYear());
+    
+        for (let day = 1; day <= monthLength; ++day) {
+            const isToday = now.getDate() === day &&
+                now.getMonth() === this._getCalendarMonth() &&
+                now.getFullYear() === this._getCalendarYear();
+    
             // balance should consider preferences and count or not today
-            if (isToday && !this._getCountToday() || isNextDay && this._getCountToday())
-            {
+            if (isToday && !this._getCountToday() || isNextDay && this._getCountToday()) {
                 break;
             }
             isNextDay = isToday;
-
-            if (!this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day))
-            {
+    
+            if (!this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day)) {
                 continue;
             }
-
+    
             const dayTotal = this._getDayTotal(this._getCalendarYear(), this._getCalendarMonth(), day);
-            if (dayTotal !== undefined && dayTotal.length !== 0)
-            {
+            if (dayTotal) {
                 countDays = true;
                 monthTotalWorked = sumTime(monthTotalWorked, dayTotal);
-            }
-            if (countDays)
-            {
-                workingDaysToCompute += 1;
+
+                const dayIndex = new Date(this._getCalendarYear(), this._getCalendarMonth(), day).getDay();
+                workingDaysToCompute.push(dayIndex);
             }
         }
-        const monthTotalToWork = multiplyTime(this._getHoursPerDay(), workingDaysToCompute * -1);
+    
+        const monthTotalToWork = workingDaysToCompute.reduce((total, dayIndex) => {
+            return sumTime(total, multiplyTime(this._getHoursForDay(dayIndex), -1));
+        }, '00:00');
+    
         const balance = sumTime(monthTotalToWork, monthTotalWorked);
+    
+
         const balanceElement = $('#month-balance');
-        if (balanceElement)
-        {
+        if (balanceElement) {
             balanceElement.val(balance);
             balanceElement.removeClass('text-success text-danger');
             balanceElement.addClass(isNegative(balance) ? 'text-danger' : 'text-success');
         }
         this._updateAllTimeBalance();
     }
+    
+    
 
     /*
      * Updates data displayed based on the database.
@@ -630,7 +647,8 @@ class FlexibleMonthCalendar extends BaseCalendar
         const dayTotal = $('#' + dateKey).parent().find(' .day-total span').html();
         if (dayTotal !== undefined && dayTotal.length > 0)
         {
-            const dayBalance = subtractTime(this._getHoursPerDay(), dayTotal);
+            const dayIndex = new Date(this._getTodayYear(), this._getTodayMonth(), this._getTodayDate()).getDay();
+            const dayBalance = subtractTime(this._getHoursForDay(dayIndex), dayTotal);
             $('#leave-day-balance').html(dayBalance);
             $('#leave-day-balance').removeClass('text-success text-danger');
             $('#leave-day-balance').addClass(isNegative(dayBalance) ? 'text-danger' : 'text-success');

@@ -336,6 +336,19 @@ class BaseCalendar
         return this._preferences['hours-per-day'];
     }
 
+    _getHoursForDay(dayIndex) {
+        const days = [
+            'sunday',
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+            'saturday'
+        ];
+        return this._preferences[`hours-${days[dayIndex]}`] || '08:00'; 
+    }
+
     /**
      * Returns if "hide non-working days" was set in preferences.
      * @return {Boolean}
@@ -659,8 +672,10 @@ class BaseCalendar
             }
             if (timesAreProgressing)
             {
-                const lastTime = validatedTimes[validatedTimes.length-1];
-                const remainingTime = subtractTime(dayTotal, this._getHoursPerDay());
+                const lastTime = validatedTimes[validatedTimes.length - 1];
+                const dayIndex = new Date(this._getTodayYear(), this._getTodayMonth(), this._getTodayDate()).getDay();
+                const dayHours = this._getHoursForDay(dayIndex);
+                const remainingTime = subtractTime(dayTotal, dayHours);
                 leaveBy = sumTime(lastTime, remainingTime);
             }
         }
