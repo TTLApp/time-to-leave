@@ -512,56 +512,61 @@ class FlexibleMonthCalendar extends BaseCalendar
     /*
     * Updates the monthly time balance.
     */
-    _updateBalance() {
+    _updateBalance()
+    {
         const now = new Date();
         const monthLength = getMonthLength(this._getCalendarYear(), this._getCalendarMonth());
-        let workingDaysToCompute = [];
+        const workingDaysToCompute = [];
         let monthTotalWorked = '00:00';
-        let countDays = false;
         let isNextDay = false;
-    
-        for (let day = 1; day <= monthLength; ++day) {
+
+        for (let day = 1; day <= monthLength; ++day)
+        {
             const isToday = now.getDate() === day &&
                 now.getMonth() === this._getCalendarMonth() &&
                 now.getFullYear() === this._getCalendarYear();
-    
-            // balance should consider preferences and count or not today
-            if (isToday && !this._getCountToday() || isNextDay && this._getCountToday()) {
+
+            // balance should consider preferences and count or notyyyyyyyyyyyyyyyyyyyyyyyy today
+            if (isToday && !this._getCountToday() || isNextDay && this._getCountToday())
+            {
                 break;
             }
             isNextDay = isToday;
-    
-            if (!this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day)) {
+
+            if (!this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day))
+            {
                 continue;
             }
-    
+
             const dayTotal = this._getDayTotal(this._getCalendarYear(), this._getCalendarMonth(), day);
-            if (dayTotal) {
-                countDays = true;
+            if (dayTotal)
+            {
                 monthTotalWorked = sumTime(monthTotalWorked, dayTotal);
 
                 const dayIndex = new Date(this._getCalendarYear(), this._getCalendarMonth(), day).getDay();
                 workingDaysToCompute.push(dayIndex);
             }
         }
-    
-        const monthTotalToWork = workingDaysToCompute.reduce((total, dayIndex) => {
+
+        const monthTotalToWork = workingDaysToCompute.reduce((total, dayIndex) =>
+        {
             return sumTime(total, multiplyTime(this._getHoursForDay(dayIndex), -1));
         }, '00:00');
-    
+
         const balance = sumTime(monthTotalToWork, monthTotalWorked);
-    
+
 
         const balanceElement = $('#month-balance');
-        if (balanceElement) {
+        if (balanceElement)
+        {
             balanceElement.val(balance);
             balanceElement.removeClass('text-success text-danger');
             balanceElement.addClass(isNegative(balance) ? 'text-danger' : 'text-success');
         }
         this._updateAllTimeBalance();
     }
-    
-    
+
+
 
     /*
      * Updates data displayed based on the database.

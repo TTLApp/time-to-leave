@@ -2,7 +2,6 @@
 
 import {
     isNegative,
-    multiplyTime,
     subtractTime,
     sumTime,
     validateTime
@@ -63,7 +62,8 @@ class FlexibleDayCalendar extends BaseCalendar
             'hours-friday',
             'hours-saturday'
         ];
-        if (dayIndex < 0 || dayIndex > 6) {
+        if (dayIndex < 0 || dayIndex > 6)
+        {
             throw new Error('Invalid dayIndex provided to _getHoursForDay.');
         }
         return this._preferences[dayKeys[dayIndex]] || '08:00';
@@ -404,37 +404,37 @@ class FlexibleDayCalendar extends BaseCalendar
     {
         const yesterday = new Date(this._calendarDate);
         yesterday.setDate(this._calendarDate.getDate() - 1);
-        let workingDaysToCompute = 0,
-            monthTotalWorked = '00:00';
-        let countDays = false;
+
+        let monthTotalWorked = '00:00';
 
         const limit = this._getCountToday() ? this._getCalendarDate() : (yesterday.getMonth() !== this._getCalendarMonth() ? 0 : yesterday.getDate());
-        for (let day = 1; day <= limit; ++day) {
-            if (!this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day)) {
+        for (let day = 1; day <= limit; ++day)
+        {
+            if (!this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day))
+            {
                 continue;
             }
             const dayTotal = this._getDayTotal(this._getCalendarYear(), this._getCalendarMonth(), day);
-            if (dayTotal !== undefined) {
-                countDays = true;
-        
-                const dayIndex = new Date(this._getCalendarYear(), this._getCalendarMonth(), day).getDay(); // Get current day 
-                const hoursForDay = this._getHoursForDay(dayIndex); 
+            if (dayTotal !== undefined)
+            {
+
+                const dayIndex = new Date(this._getCalendarYear(), this._getCalendarMonth(), day).getDay(); // Get current day
+                const hoursForDay = this._getHoursForDay(dayIndex);
                 const dayBalance = subtractTime(hoursForDay, dayTotal);
-                monthTotalWorked = sumTime(monthTotalWorked, dayBalance); 
+                monthTotalWorked = sumTime(monthTotalWorked, dayBalance);
             }
-            if (countDays) {
-                workingDaysToCompute += 1;
-            }
+
         }
-        
+
         const balance = monthTotalWorked;
         const balanceElement = $('#month-balance');
-        if (balanceElement) {
+        if (balanceElement)
+        {
             balanceElement.html(balance);
             balanceElement.removeClass('text-success text-danger');
             balanceElement.addClass(isNegative(balance) ? 'text-danger' : 'text-success');
         }
-        
+
     }
 
     /**
@@ -456,8 +456,8 @@ class FlexibleDayCalendar extends BaseCalendar
         const dayTotal = $('.day-total span').html();
         if (dayTotal !== undefined && dayTotal.length > 0)
         {
-            const dayIndex = new Date(this._getTodayYear(), this._getTodayMonth(), this._getTodayDate()).getDay(); 
-            const dayHours = this._getHoursForDay(dayIndex); 
+            const dayIndex = new Date(this._getTodayYear(), this._getTodayMonth(), this._getTodayDate()).getDay();
+            const dayHours = this._getHoursForDay(dayIndex);
             const dayBalance = subtractTime(dayHours, dayTotal);
             $('#leave-day-balance').val(dayBalance);
             $('#leave-day-balance').removeClass('text-success text-danger');
