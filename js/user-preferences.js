@@ -32,7 +32,14 @@ const defaultPreferences = {
     'close-to-tray': true,
     'minimize-to-tray': true,
     'hide-non-working-days': false,
-    'hours-per-day': '08:00',
+    'hours-sunday': '08:00',
+    'hours-monday': '08:00',
+    'hours-tuesday': '08:00',
+    'hours-wednesday': '08:00',
+    'hours-thursday': '08:00',
+    'hours-friday': '08:00',
+    'hours-saturday': '08:00',
+    'hours-per-day': '08:00', //probably need to remove
     'enable-prefill-break-time': false,
     'break-time-interval': '00:30',
     'notification': true,
@@ -76,6 +83,13 @@ const timeInputs = [
     'notifications-interval',
     'hours-per-day',
     'break-time-interval',
+    'hours-sunday',
+    'hours-monday',
+    'hours-tuesday',
+    'hours-wednesday',
+    'hours-thursday',
+    'hours-friday',
+    'hours-saturday',
 ];
 
 const isNotBoolean = (val) => typeof val !== 'boolean';
@@ -111,7 +125,9 @@ function savePreferences(preferencesOptions, filePath = getPreferencesFilePath()
 {
     try
     {
-        getFs().writeFileSync(filePath, JSON.stringify(preferencesOptions));
+        const preferencesToSave = { ...defaultPreferences, ...preferencesOptions };
+        getFs().writeFileSync(filePath, JSON.stringify(preferencesToSave));
+
     }
     catch (err)
     {
@@ -190,6 +206,13 @@ function initPreferencesFileIfNotExistsOrInvalid(filePath = getPreferencesFilePa
                 'notifications-interval' : () => isNotificationInterval(value),
                 'hours-per-day' : () =>  validateTime(value),
                 'break-time-interval' : () =>  validateTime(value),
+                'hours-sunday': () => validateTime(value),
+                'hours-monday': () => validateTime(value),
+                'hours-tuesday': () => validateTime(value),
+                'hours-wednesday': () => validateTime(value),
+                'hours-thursday': () => validateTime(value),
+                'hours-friday': () => validateTime(value),
+                'hours-saturday': () => validateTime(value),
             };
             if (!timeValidationEnum[key]())
             {

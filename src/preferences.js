@@ -65,7 +65,13 @@ function refreshContent()
 
 function changeValue(type, newVal)
 {
+    //preferences[type] = "03:00 07:00 04:00 02:00 03:00 03:00 05:00";
     preferences[type] = newVal;
+    //preferences["hours-per-day"] = "03:00 07:00 04:00 02:00 03:00 03:00 05:00";
+    //console.log("HELP friday "+ preferences["hours-friday"]);
+    //console.log("HELP2 "+ preferences["hours-per-day"]);
+    console.log('HELP2 '+ preferences[type]);
+
     window.mainApi.notifyNewPreferences(preferences);
 }
 
@@ -182,6 +188,76 @@ function renderPreferencesWindow()
     {
         notificationsInterval.prop('disabled', !repetition.is(':checked'));
     });
+
+    const days = [
+        { id: 'sunday', label: 'Sunday' },
+        { id: 'monday', label: 'Monday' },
+        { id: 'tuesday', label: 'Tuesday' },
+        { id: 'wednesday', label: 'Wednesday' },
+        { id: 'thursday', label: 'Thursday' },
+        { id: 'friday', label: 'Friday' },
+        { id: 'saturday', label: 'Saturday' },
+    ];
+
+    const hoursContainer = $('#hours-container');
+
+    function updateHoursInputs()
+    {
+        hoursContainer.empty(); // Clear previous inputs
+
+        days.forEach(day =>
+        {
+            const isChecked = $(`#${day.id}`).is(':checked');
+            if (isChecked)
+            {
+                const inputId = `hours-${day.id}`;
+                const storedValue = usersStyles[inputId] || '08:00'; // Default or saved value
+
+                const inputHTML = `
+                    <div class="flex-box">
+                        <label for="${inputId}">${day.label}</label>
+                        <input 
+                            type="text" 
+                            id="${inputId}" 
+                            name="${inputId}" 
+                            maxlength="5" 
+                            pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" 
+                            value="${storedValue}" 
+                            size="5" 
+                            required 
+                        />
+                    </div>
+                `;
+                hoursContainer.append(inputHTML);
+
+                $(`#${inputId}`).on('change', function()
+                {
+                    if (this.checkValidity())
+                    {
+                        changeValue(inputId, this.value);
+                    }
+                });
+            }
+        });
+    }
+
+    days.forEach(day =>
+    {
+        const checkbox = $(`#${day.id}`);
+        if (checkbox)
+        {
+            checkbox.prop('checked', usersStyles[`working-days-${day.id}`] || false);
+
+            checkbox.on('change', function()
+            {
+                changeValue(`working-days-${day.id}`, this.checked);
+                updateHoursInputs();
+            });
+        }
+    });
+
+    updateHoursInputs();
+
 }
 /* istanbul ignore next */
 $(() =>

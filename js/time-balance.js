@@ -64,12 +64,26 @@ function _getOverallBalanceStartDate()
     return savedPreferences['overall-balance-start-date'];
 }
 
-function _getHoursPerDay()
+// function _getHoursPerDay()
+// {
+//     const savedPreferences = getUserPreferences();
+//     return savedPreferences['hours-per-day'];
+// }
+
+function _getHoursForDay(dayIndex)
 {
     const savedPreferences = getUserPreferences();
-    return savedPreferences['hours-per-day'];
+    const days = [
+        'sunday',
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday'
+    ];
+    return savedPreferences[`hours-${days[dayIndex]}`] || '08:00';
 }
-
 /**
 * Given an array of times from a day in the flexible calendar, returns the
 * day total according to same calculation rules as those of the calendar.
@@ -170,7 +184,7 @@ async function computeAllTimeBalanceUntil(limitDate)
     const totals = _getDayTotalsFromStores(firstDate, limitDate);
 
     const preferences = getUserPreferences();
-    const hoursPerDay = _getHoursPerDay();
+    // const hoursPerDay = _getHoursPerDay();
     let allTimeTotal = '00:00';
     const date = new Date(firstDate);
     const limitDateStr = getDateStr(limitDate);
@@ -179,8 +193,10 @@ async function computeAllTimeBalanceUntil(limitDate)
     {
         if (showDay(date.getFullYear(), date.getMonth(), date.getDate(), preferences))
         {
+            const dayIndex = date.getDay();
+            const dayHours = _getHoursForDay(dayIndex);
             const dayTotal = dateStr in totals ? totals[dateStr] : '00:00';
-            const dayBalance = subtractTime(hoursPerDay, dayTotal);
+            const dayBalance = subtractTime(dayHours, dayTotal);
             allTimeTotal = sumTime(dayBalance, allTimeTotal);
         }
         date.setDate(date.getDate() + 1);
