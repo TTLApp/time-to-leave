@@ -336,7 +336,8 @@ class BaseCalendar
         return this._preferences['hours-per-day'];
     }
 
-    _getHoursForDay(dayIndex) {
+    _getHoursForDay(dayIndex)
+    {
         const days = [
             'sunday',
             'monday',
@@ -346,7 +347,7 @@ class BaseCalendar
             'friday',
             'saturday'
         ];
-        return this._preferences[`hours-${days[dayIndex]}`] || '08:00'; 
+        return this._preferences[`hours-${days[dayIndex]}`] || '08:00';
     }
 
     /**
