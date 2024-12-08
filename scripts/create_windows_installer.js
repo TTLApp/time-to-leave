@@ -23,3 +23,10 @@ function getInstallerConfig()
         iconUrl: 'https://raw.githubusercontent.com/thamara/time-to-leave/main/assets/icon-win.ico',
     });
 }
+
+savePreferences() {
+    // Convert preferences to a format suitable for storage
+    const preferencesToSave = JSON.stringify(this._preferences);
+    // Save to local storage or database
+    localStorage.setItem('userPreferences', preferencesToSave);
+}
