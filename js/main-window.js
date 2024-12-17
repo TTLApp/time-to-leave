@@ -130,6 +130,8 @@ function createWindow()
         mainWindow.show();
     });
 
+    tray.setToolTip('Time to Leave');
+
     tray.on('right-click', () =>
     {
         tray.popUpContextMenu(contextMenu);
