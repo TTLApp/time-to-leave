@@ -68,7 +68,7 @@ class MonthCalendar extends BaseCalendar
     {
         const body = this._getBody();
         $('#calendar').html(body);
-        $('html').attr('data-view', 'flexible');
+        $('html').attr('data-view', 'month');
     }
 
     /*

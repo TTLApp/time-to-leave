@@ -47,7 +47,7 @@ class DayCalendar extends BaseCalendar
     {
         const body = this._getBody();
         $('#calendar').html(body);
-        $('html').attr('data-view', 'flexible-day');
+        $('html').attr('data-view', 'day');
     }
 
     /**
