@@ -58,14 +58,6 @@ window.mainApi.handlePunchDate(() =>
 });
 
 /*
- * Reload calendar, used after database altering actions.
- */
-window.mainApi.handleReloadCalendar(() =>
-{
-    calendar.reload();
-});
-
-/*
  * Returns value of "leave by" for notifications.
  */
 window.mainApi.handleLeaveBy(searchLeaveByElement);
