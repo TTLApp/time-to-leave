@@ -43,6 +43,7 @@
         "yes": "Tak"
     },
     "$FlexibleMonthCalendar": {
+        "add-entry": "Add entry",
         "add-waiver-day": "Dodaj zwolnienie",
         "current-month": "Przejdź do bieżącego miesiąca",
         "day": "Dzień",
@@ -54,6 +55,8 @@
         "on": "Do",
         "previous-month": "Poprzedni miesiąc",
         "remove-entry": "Usuń wpis",
+        "scroll-left-entry": "See previous entries",
+        "scroll-right-entry": "See later entries",
         "total": "Suma",
         "waived-day": "Dzień wolny",
         "working-days": "Dni robocze",

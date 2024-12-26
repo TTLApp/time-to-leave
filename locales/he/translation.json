@@ -43,6 +43,7 @@
         "yes": "כן"
     },
     "$FlexibleMonthCalendar": {
+        "add-entry": "Add entry",
         "add-waiver-day": "הוספת ויתור ליום זה",
         "current-month": "עבור לחודש הנוכחי",
         "day": "יום",
@@ -54,6 +55,8 @@
         "on": "פועל",
         "previous-month": "חודש קודם",
         "remove-entry": "הסרת רשומה",
+        "scroll-left-entry": "See previous entries",
+        "scroll-right-entry": "See later entries",
         "total": "סך הכל",
         "waived-day": "יום שוויתרת עליו",
         "working-days": "ימי עבודה",

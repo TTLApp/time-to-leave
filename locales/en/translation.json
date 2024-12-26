@@ -43,6 +43,7 @@
         "yes": "Yes"
     },
     "$FlexibleMonthCalendar": {
+        "add-entry": "Add entry",
         "add-waiver-day": "Add a waiver for this day",
         "current-month": "Go to Current Month",
         "day": "Day",
@@ -54,6 +55,8 @@
         "on": "On",
         "previous-month": "Previous Month",
         "remove-entry": "Remove entry",
+        "scroll-left-entry": "See previous entries",
+        "scroll-right-entry": "See later entries",
         "total": "Total",
         "waived-day": "Waived day",
         "working-days": "Working days",

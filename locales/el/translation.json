@@ -43,6 +43,7 @@
         "yes": "Ναι"
     },
     "$FlexibleMonthCalendar": {
+        "add-entry": "Add entry",
         "add-waiver-day": "Προσθήκη απαλλαγής για αυτή την ημέρα",
         "current-month": "Μετάβαση στον τρέχοντα μήνα",
         "day": "Ημέρα",
@@ -54,6 +55,8 @@
         "on": "Στις",
         "previous-month": "Προηγούμενος μήνας",
         "remove-entry": "Αφαίρεση καταχώρησης",
+        "scroll-left-entry": "See previous entries",
+        "scroll-right-entry": "See later entries",
         "total": "Σύνολο",
         "waived-day": "Ημέρα απαλλαγής",
         "working-days": "Εργάσιμες ημέρες",

@@ -213,14 +213,14 @@ class FlexibleMonthCalendar extends BaseCalendar
                     '<img src="../assets/waiver.svg" height="16" class="waiver-img">' +
                 '</div>' +
                 '<div class="sign-cell minus-sign">' +
-                    '<span title="Delete Entry">-</span>' +
+                    `<span title="${this._getTranslation('$FlexibleMonthCalendar.remove-entry')}">-</span>` +
                 '</div>' +
-                '<i title="Previous Entry" class="arrow left"></i>' +
+                `<i title="${this._getTranslation('$FlexibleMonthCalendar.scroll-left-entry')}" class="arrow left"></i>` +
                 '<div class="time-cells" id="' + dateKey + '">' +
                 '</div>' +
-                '<i title="Next Entry" class="arrow right"></i>' +
+                `<i title="${this._getTranslation('$FlexibleMonthCalendar.scroll-right-entry')}" class="arrow right"></i>` +
                 '<div class="sign-cell plus-sign">' +
-                    '<span title="Add Entry">+</span>' +
+                    `<span title="${this._getTranslation('$FlexibleMonthCalendar.add-entry')}">+</span>` +
                 '</div>' +
                 '<div class="day-total-cell">' +
                     '<div class="day-total"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>' +

@@ -43,6 +43,7 @@
         "yes": "بله"
     },
     "$FlexibleMonthCalendar": {
+        "add-entry": "Add entry",
         "add-waiver-day": "اضافه کردن معافیت کاری برای این روز",
         "current-month": "برو به ماه فعلی",
         "day": "روز",
@@ -54,6 +55,8 @@
         "on": "در",
         "previous-month": "ماه قبل",
         "remove-entry": "حذف این مورد",
+        "scroll-left-entry": "See previous entries",
+        "scroll-right-entry": "See later entries",
         "total": "مجموع",
         "waived-day": "روز معاف شده",
         "working-days": "روزهای کاری",

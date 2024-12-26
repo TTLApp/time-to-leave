@@ -43,6 +43,7 @@
         "yes": "होय"
     },
     "$FlexibleMonthCalendar": {
+        "add-entry": "Add entry",
         "add-waiver-day": "या दिवसासाठी माफी जोडा",
         "current-month": "चालू महिन्यात जा",
         "day": "दिवस",
@@ -54,6 +55,8 @@
         "on": "चालू",
         "previous-month": "मागील महिना",
         "remove-entry": "प्रविष्टी काढा",
+        "scroll-left-entry": "See previous entries",
+        "scroll-right-entry": "See later entries",
         "total": "एकूण",
         "waived-day": "माफीचा दिवस",
         "working-days": "कामाचे दिवस",

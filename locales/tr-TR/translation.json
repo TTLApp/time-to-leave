@@ -43,6 +43,7 @@
         "yes": "Evet"
     },
     "$FlexibleMonthCalendar": {
+        "add-entry": "Add entry",
         "add-waiver-day": "Bugün için izili gün ekle",
         "current-month": "Şimdiki Aya Git",
         "day": "Gün",
@@ -54,6 +55,8 @@
         "on": "Üzerinde",
         "previous-month": "Önceki Ay",
         "remove-entry": "Girdiyi Sil",
+        "scroll-left-entry": "See previous entries",
+        "scroll-right-entry": "See later entries",
         "total": "Toplam",
         "waived-day": "İzinli Gündü.",
         "working-days": "Çalışma Günleri",

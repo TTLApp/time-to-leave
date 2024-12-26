@@ -43,6 +43,7 @@
         "yes": "ஆம்"
     },
     "$FlexibleMonthCalendar": {
+        "add-entry": "Add entry",
         "add-waiver-day": "இந்த நாளுக்கு விலக்கு சேர்க்கவும்",
         "current-month": "நடப்பு மாதத்திற்குச் செல்ல",
         "day": "நாள்",
@@ -54,6 +55,8 @@
         "on": "ஆன்",
         "previous-month": "சென்ற மாதம்",
         "remove-entry": "உள்ளீட்டை அகற்று",
+        "scroll-left-entry": "See previous entries",
+        "scroll-right-entry": "See later entries",
         "total": "மொத்தம்",
         "waived-day": "விலக்களிக்கப்பட்ட நாள்",
         "working-days": "வேலை நாட்கள்",

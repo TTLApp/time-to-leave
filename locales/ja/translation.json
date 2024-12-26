@@ -43,6 +43,7 @@
         "yes": "はい"
     },
     "$FlexibleMonthCalendar": {
+        "add-entry": "Add entry",
         "add-waiver-day": "勤務免除日に変更",
         "current-month": "現在の月へ",
         "day": "日",
@@ -54,6 +55,8 @@
         "on": "時点",
         "previous-month": "前の月",
         "remove-entry": "記録の削除",
+        "scroll-left-entry": "See previous entries",
+        "scroll-right-entry": "See later entries",
         "total": "合計",
         "waived-day": "勤務免除日",
         "working-days": "勤務日数",

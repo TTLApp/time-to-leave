@@ -43,6 +43,7 @@
         "yes": "ใช่"
     },
     "$FlexibleMonthCalendar": {
+        "add-entry": "Add entry",
         "add-waiver-day": "เพิ่มวันหยุดสำหรับวันนี้",
         "current-month": "ไปยังเดือนปัจจุบัน",
         "day": "วัน",
@@ -54,6 +55,8 @@
         "on": "ในวัน",
         "previous-month": "เดือนที่แล้ว",
         "remove-entry": "ลบรายการ",
+        "scroll-left-entry": "See previous entries",
+        "scroll-right-entry": "See later entries",
         "total": "ทั้งหมด",
         "waived-day": "วันหยุด",
         "working-days": "วันทำงาน",

@@ -43,6 +43,7 @@
         "yes": "Так"
     },
     "$FlexibleMonthCalendar": {
+        "add-entry": "Add entry",
         "add-waiver-day": "Взяти відгул цього дня",
         "current-month": "Перейти до поточного місяця",
         "day": "День",
@@ -54,6 +55,8 @@
         "on": "в",
         "previous-month": "Попередній місяць",
         "remove-entry": "Видалити запис",
+        "scroll-left-entry": "See previous entries",
+        "scroll-right-entry": "See later entries",
         "total": "Всього",
         "waived-day": "Відгул",
         "working-days": "Робочі дні",

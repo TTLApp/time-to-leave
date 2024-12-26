@@ -43,6 +43,7 @@
         "yes": "예"
     },
     "$FlexibleMonthCalendar": {
+        "add-entry": "Add entry",
         "add-waiver-day": "이 일자에 휴가 등록",
         "current-month": "이번 달로 이동",
         "day": "일자",
@@ -54,6 +55,8 @@
         "on": "기준일",
         "previous-month": "이전 달",
         "remove-entry": "작업 단위 제거",
+        "scroll-left-entry": "See previous entries",
+        "scroll-right-entry": "See later entries",
         "total": "총 작업 시간",
         "waived-day": "휴가일",
         "working-days": "총 근무일",

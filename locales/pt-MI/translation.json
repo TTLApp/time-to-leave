@@ -43,6 +43,7 @@
         "yes": "Sim"
     },
     "$FlexibleMonthCalendar": {
+        "add-entry": "Adicionar registro",
         "add-waiver-day": "Adicionar dia de folga",
         "current-month": "Ir para o Mês Atual",
         "day": "Dia",
@@ -54,6 +55,8 @@
         "on": "Em",
         "previous-month": "Mês Anterior",
         "remove-entry": "Remover registro",
+        "scroll-left-entry": "Ver registros patrás",
+        "scroll-right-entry": "Ver registros pafrente",
         "total": "Total",
         "waived-day": "Dia de Folga",
         "working-days": "Dias úteis",

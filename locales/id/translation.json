@@ -43,6 +43,7 @@
         "yes": "Ya"
     },
     "$FlexibleMonthCalendar": {
+        "add-entry": "Add entry",
         "add-waiver-day": "Tambah hari pengecualian ",
         "current-month": "Bulan terakhir",
         "day": "Hari",
@@ -54,6 +55,8 @@
         "on": "Hidup",
         "previous-month": "Bulan sebelumnya",
         "remove-entry": "Hapus entri",
+        "scroll-left-entry": "See previous entries",
+        "scroll-right-entry": "See later entries",
         "total": "Total",
         "waived-day": "Hari pengecualian",
         "working-days": "Hari bekerja",

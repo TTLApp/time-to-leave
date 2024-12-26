@@ -43,6 +43,7 @@
         "yes": "Sì"
     },
     "$FlexibleMonthCalendar": {
+        "add-entry": "Add entry",
         "add-waiver-day": "Escludi questo giorno",
         "current-month": "Vai al mese corrente",
         "day": "Giorno",
@@ -54,6 +55,8 @@
         "on": "Su",
         "previous-month": "Mese precedente",
         "remove-entry": "Rimuovi record",
+        "scroll-left-entry": "See previous entries",
+        "scroll-right-entry": "See later entries",
         "total": "Totale",
         "waived-day": "Giorno escluso",
         "working-days": "Giorni feriali",

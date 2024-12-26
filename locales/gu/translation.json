@@ -43,6 +43,7 @@
         "yes": "હા"
     },
     "$FlexibleMonthCalendar": {
+        "add-entry": "Add entry",
         "add-waiver-day": "આ દિવસ માટે એક માફી ઉમેરો",
         "current-month": "વર્તમાન મહિના પર જાઓ",
         "day": "દિવસ",
@@ -54,6 +55,8 @@
         "on": "ચાલુ",
         "previous-month": "પાછલો મહિનો",
         "remove-entry": "પ્રવેશ દૂર કરો",
+        "scroll-left-entry": "See previous entries",
+        "scroll-right-entry": "See later entries",
         "total": "કુલ",
         "waived-day": "માફ દિવસ",
         "working-days": "કાર્યકારી દિવસો",

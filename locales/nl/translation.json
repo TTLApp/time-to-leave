@@ -43,6 +43,7 @@
         "yes": "Ja"
     },
     "$FlexibleMonthCalendar": {
+        "add-entry": "Add entry",
         "add-waiver-day": "Voeg een uitzondering toe voor deze dag",
         "current-month": "Naar de huidige maand gaan",
         "day": "Dag",
@@ -54,6 +55,8 @@
         "on": "Op",
         "previous-month": "Vorige maand",
         "remove-entry": "Gegevens verwijderen",
+        "scroll-left-entry": "See previous entries",
+        "scroll-right-entry": "See later entries",
         "total": "Totaal",
         "waived-day": "Vrije dag",
         "working-days": "Werkdagen",
