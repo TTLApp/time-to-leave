@@ -58,6 +58,14 @@ window.mainApi.handlePunchDate(() =>
 });
 
 /*
+ * Reload theme.
+ */
+window.mainApi.handleThemeChange(async(event, theme) =>
+{
+    applyTheme(theme);
+});
+
+/*
  * Returns value of "leave by" for notifications.
  */
 window.mainApi.handleLeaveBy(searchLeaveByElement);

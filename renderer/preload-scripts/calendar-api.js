@@ -73,6 +73,7 @@ const calendarApi = {
     handleWaiverSaved: (callback) => ipcRenderer.on('WAIVER_SAVED', callback),
     handleCalendarReload: (callback) => ipcRenderer.on('RELOAD_CALENDAR', callback),
     handlePunchDate: (callback) => ipcRenderer.on('PUNCH_DATE', callback),
+    handleThemeChange: (callback) => ipcRenderer.on('RELOAD_THEME', callback),
     handleLeaveBy: (callback) => ipcRenderer.on('GET_LEAVE_BY', callback),
     resizeMainWindow: () => resizeMainWindow(),
     switchView: () => switchView(),

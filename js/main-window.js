@@ -1,6 +1,6 @@
 'use strict';
 
-import { app, BrowserWindow, dialog, ipcMain, Menu, shell, Tray } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain, Menu, nativeTheme, shell, Tray } from 'electron';
 import path from 'path';
 import Store from 'electron-store';
 
@@ -162,6 +162,16 @@ function createWindow()
         }
     });
 
+    // Listen for system theme changes in real-time
+    nativeTheme.on('updated', () =>
+    {
+        const savedPreferences = getUserPreferences();
+        const theme = savedPreferences['theme'];
+        if (theme === 'system-default')
+        {
+            mainWindow.webContents.send('RELOAD_THEME', theme);
+        }
+    });
 }
 
 function triggerStartupDialogs()
