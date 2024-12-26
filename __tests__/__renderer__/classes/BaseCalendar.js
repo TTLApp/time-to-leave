@@ -49,18 +49,18 @@ describe('BaseCalendar.js', () =>
     const mocks = {};
     beforeEach(() =>
     {
-        const flexibleStore = new Store({name: 'flexible-store'});
-        flexibleStore.clear();
+        const entryStore = new Store({name: 'flexible-store'});
+        entryStore.clear();
         const waivedWorkdays = new Store({name: 'waived-workdays'});
         waivedWorkdays.clear();
         ExtendedClass.prototype._initCalendar = () => {};
         ExtendedClass.prototype._getTargetDayForAllTimeBalance = () => {};
 
-        window.mainApi.getFlexibleStoreContents = () =>
+        window.mainApi.getStoreContents = () =>
         {
             return new Promise((resolve) =>
             {
-                resolve(flexibleStore.store);
+                resolve(entryStore.store);
             });
         };
         window.mainApi.getWaiverStoreContents = () =>
@@ -70,9 +70,9 @@ describe('BaseCalendar.js', () =>
                 resolve(waivedWorkdays.store);
             });
         };
-        window.mainApi.setFlexibleStoreData = (key, contents) =>
+        window.mainApi.setStoreData = (key, contents) =>
         {
-            flexibleStore.set(key, contents);
+            entryStore.set(key, contents);
             return new Promise((resolve) =>
             {
                 resolve(true);
@@ -122,8 +122,8 @@ describe('BaseCalendar.js', () =>
         test('Should build with default internal store values', async(done) =>
         {
             ExtendedClass.prototype._initCalendar = () => { done(); };
-            const flexibleStore = new Store({name: 'flexible-store'});
-            flexibleStore.set('flexible', 'store');
+            const entryStore = new Store({name: 'flexible-store'});
+            entryStore.set('flexible', 'store');
 
             const waivedWorkdays = new Store({name: 'waived-workdays'});
             waivedWorkdays.set('2022-01-01', {
@@ -465,11 +465,11 @@ describe('BaseCalendar.js', () =>
 
         test('Should update when day has ended', async() =>
         {
-            const flexibleStore = new Store({name: 'flexible-store'});
+            const entryStore = new Store({name: 'flexible-store'});
             const newDate = new Date();
             const key = generateKey(newDate.getFullYear(), newDate.getMonth(), newDate.getDate());
-            flexibleStore.set(key, '08:00');
-            flexibleStore.set(key, '16:00');
+            entryStore.set(key, '08:00');
+            entryStore.set(key, '16:00');
             $('body').append(`<div id="${key}" ></div>`);
             $('body').append('<div class="day-total-cell" ><span>--:--</span></div>');
             $(`#${key}`).append('<input type="time" value="08:00" />');

@@ -10,7 +10,7 @@ import { getDateStr } from './date-aux.js';
 import { getUserPreferences, showDay } from './user-preferences.js';
 
 // Global values for calendar
-const flexibleStore = new Store({ name: 'flexible-store' });
+const entryStore = new Store({ name: 'flexible-store' });
 const waivedWorkdays = new Store({ name: 'waived-workdays' });
 
 function getFirstInputInDb()
@@ -20,7 +20,7 @@ function getFirstInputInDb()
     const [startYear, startMonth, startDay] = startDateStr.split('-');
     const startDate = new Date(startYear, startMonth - 1, startDay);
 
-    for (const value of flexibleStore)
+    for (const value of entryStore)
     {
         const [year, month, day] = value[0].split('-');
         if (new Date(year, month, day) >= startDate)
@@ -71,11 +71,11 @@ function _getHoursPerDay()
 }
 
 /**
-* Given an array of times from a day in the flexible calendar, returns the
-* day total according to same calculation rules as those of the calendar.
+* Given an array of times from a day in the calendar, returns the day
+* total according to same calculation rules as those of the calendar.
 * @param {string[]} values
 */
-function _getFlexibleDayTotal(values)
+function _getDayTotal(values)
 {
     const inputsHaveExpectedSize = values.length >= 2 && values.length % 2 === 0;
     const timesOk = values.length > 0 && values.every(time => time !== '--:--');
@@ -141,12 +141,12 @@ function _getDayTotalsFromStores(firstDate, limitDate)
 
     }
 
-    for (const value of flexibleStore)
+    for (const value of entryStore)
     {
         const [key, dateValue] = getDateStrAndDateValue(value, _getDateFromStoreDb(value[0]));
         if (key && dateValue)
         {
-            totals[key] = _getFlexibleDayTotal(dateValue.values);
+            totals[key] = _getDayTotal(dateValue.values);
         }
     }
 

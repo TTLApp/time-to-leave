@@ -58,12 +58,12 @@ function generateDemoInformation(dateFromStr, dateToStr, workingDays, usualTimes
         const entry1 = sumTime(usualTimes[1], randomTime(0, 15));
         const entry2 = sumTime(usualTimes[2], randomTime(0, 15));
         const entry3 = sumTime(usualTimes[3], randomTime(0, 30));
-        const flexibleEntry = { values: [entry0, entry1, entry2, entry3] };
-        valuesToStore[generateKey(day.getFullYear(), day.getMonth(), day.getDate())] = flexibleEntry;
+        const entry = { values: [entry0, entry1, entry2, entry3] };
+        valuesToStore[generateKey(day.getFullYear(), day.getMonth(), day.getDate())] = entry;
     }
     console.log(`Generated ${Object.keys(valuesToStore).length} entries`);
-    const flexibleStore = new Store({name: 'flexible-store'});
-    flexibleStore.set(valuesToStore);
+    const entryStore = new Store({name: 'flexible-store'});
+    entryStore.set(valuesToStore);
 }
 
 module.exports = {

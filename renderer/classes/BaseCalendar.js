@@ -397,8 +397,8 @@ class BaseCalendar
     {
         this._internalStore = {};
 
-        const flexibleStore = await window.mainApi.getFlexibleStoreContents();
-        for (const entry of Object.entries(flexibleStore))
+        const entryStore = await window.mainApi.getStoreContents();
+        for (const entry of Object.entries(entryStore))
         {
             const key = entry[0];
             const value = entry[1];
@@ -442,7 +442,7 @@ class BaseCalendar
     _setStore(key, newValues)
     {
         this._internalStore[key] = { values: newValues };
-        window.mainApi.setFlexibleStoreData(key, this._internalStore[key]);
+        window.mainApi.setStoreData(key, this._internalStore[key]);
     }
 
     /*
@@ -451,7 +451,7 @@ class BaseCalendar
     _removeStore(key)
     {
         this._internalStore[key] = undefined;
-        window.mainApi.deleteFlexibleStoreData(key);
+        window.mainApi.deleteStoreData(key);
     }
 
     /**

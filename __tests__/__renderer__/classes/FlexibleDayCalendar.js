@@ -32,24 +32,24 @@ jest.mock('../../../renderer/i18n-translator.js', () => ({
 
 const languageData = {'language': 'en', 'data': {'dummy_string': 'dummy_string_translated'}};
 
-const flexibleStore = new Store({name: 'flexible-store'});
+const entryStore = new Store({name: 'flexible-store'});
 const waivedWorkdays = new Store({name: 'waived-workdays'});
 
-window.mainApi.getFlexibleStoreContents = () => { return new Promise((resolve) => { resolve(flexibleStore.store); }); };
+window.mainApi.getStoreContents = () => { return new Promise((resolve) => { resolve(entryStore.store); }); };
 window.mainApi.getWaiverStoreContents = () => { return new Promise((resolve) => resolve(waivedWorkdays.store)); };
-window.mainApi.setFlexibleStoreData = (key, contents) =>
+window.mainApi.setStoreData = (key, contents) =>
 {
     return new Promise((resolve) =>
     {
-        flexibleStore.set(key, contents);
+        entryStore.set(key, contents);
         resolve(true);
     });
 };
-window.mainApi.deleteFlexibleStoreData = (key) =>
+window.mainApi.deleteStoreData = (key) =>
 {
     return new Promise((resolve) =>
     {
-        flexibleStore.delete(key);
+        entryStore.delete(key);
         resolve(true);
     });
 };
@@ -65,12 +65,12 @@ describe('FlexibleDayCalendar class Tests', () =>
 {
     process.env.NODE_ENV = 'test';
 
-    flexibleStore.clear();
+    entryStore.clear();
     const regularEntries = {
         '2020-3-1': {'values': ['08:00', '12:00', '13:00', '17:00']},
         '2020-3-2': {'values': ['10:00', '18:00']}
     };
-    flexibleStore.set(regularEntries);
+    entryStore.set(regularEntries);
 
     waivedWorkdays.clear();
     const waivedEntries = {
@@ -113,14 +113,14 @@ describe('FlexibleDayCalendar class Tests', () =>
         expect(calendar._getStore('2010-3-1')).toStrictEqual([]);
 
         expect(Object.keys(calendar._internalStore).length).toStrictEqual(2);
-        expect(flexibleStore.size).toStrictEqual(2);
+        expect(entryStore.size).toStrictEqual(2);
 
         calendar._setStore('2010-3-1', ['05:00']);
         expect(calendar._internalStore['2010-3-1']).toStrictEqual({'values': ['05:00']});
         expect(calendar._getStore('2010-3-1')).toStrictEqual(['05:00']);
 
         expect(Object.keys(calendar._internalStore).length).toStrictEqual(3);
-        expect(flexibleStore.size).toStrictEqual(3);
+        expect(entryStore.size).toStrictEqual(3);
 
         calendar._removeStore('2010-3-1');
         assert.strictEqual(calendar._internalStore['2010-3-1'], undefined);
@@ -128,7 +128,7 @@ describe('FlexibleDayCalendar class Tests', () =>
 
         // remove just sets the value as undefined in internal store, if it existed
         expect(Object.keys(calendar._internalStore).length).toStrictEqual(3);
-        expect(flexibleStore.size).toStrictEqual(2);
+        expect(entryStore.size).toStrictEqual(2);
     });
 
     test('FlexibleDayCalendar internal waiver storage correct loading', async() =>

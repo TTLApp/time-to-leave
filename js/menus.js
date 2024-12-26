@@ -312,11 +312,11 @@ function getEditMenuTemplate(mainWindow)
                 {
                     const store = new Store();
                     const waivedWorkdays = new Store({ name: 'waived-workdays' });
-                    const flexibleStore = new Store({ name: 'flexible-store' });
+                    const entryStore = new Store({ name: 'flexible-store' });
 
                     store.clear();
                     waivedWorkdays.clear();
-                    flexibleStore.clear();
+                    entryStore.clear();
                     // Reload only the calendar itself to avoid a flash
                     mainWindow.webContents.send('RELOAD_CALENDAR');
                     dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {

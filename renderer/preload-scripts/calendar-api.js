@@ -44,19 +44,19 @@ function getWaiverStoreContents()
     return ipcRenderer.invoke('GET_WAIVER_STORE_CONTENTS');
 }
 
-function getFlexibleStoreContents()
+function getStoreContents()
 {
-    return ipcRenderer.invoke('GET_FLEXIBLE_STORE_CONTENTS');
+    return ipcRenderer.invoke('GET_STORE_CONTENTS');
 }
 
-function setFlexibleStoreData(key, contents)
+function setStoreData(key, contents)
 {
-    return ipcRenderer.invoke('SET_FLEXIBLE_STORE_DATA', key, contents);
+    return ipcRenderer.invoke('SET_STORE_DATA', key, contents);
 }
 
-function deleteFlexibleStoreData(key)
+function deleteStoreData(key)
 {
-    return ipcRenderer.invoke('DELETE_FLEXIBLE_STORE_DATA', key);
+    return ipcRenderer.invoke('DELETE_STORE_DATA', key);
 }
 
 function computeAllTimeBalanceUntilPromise(targetDate)
@@ -82,9 +82,9 @@ const calendarApi = {
     displayWaiverWindow: (waiverDay) => displayWaiverWindow(waiverDay),
     showDialogSync: (dialogOptions) => showDialogSync(dialogOptions),
     getWaiverStoreContents: () => getWaiverStoreContents(),
-    getFlexibleStoreContents: () => getFlexibleStoreContents(),
-    setFlexibleStoreData: (key, contents) => setFlexibleStoreData(key, contents),
-    deleteFlexibleStoreData: (key) => deleteFlexibleStoreData(key),
+    getStoreContents: () => getStoreContents(),
+    setStoreData: (key, contents) => setStoreData(key, contents),
+    deleteStoreData: (key) => deleteStoreData(key),
     computeAllTimeBalanceUntilPromise: (targetDate) => computeAllTimeBalanceUntilPromise(targetDate),
 };
 

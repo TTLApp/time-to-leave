@@ -18,34 +18,34 @@ describe('Import export', function()
 
     describe('validEntry(entry)', function()
     {
-        const goodFlexibleEntry = {'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00']};
+        const goodEntry = {'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00']};
         const goodWaivedEntry = {'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08:00'};
-        const badFlexibleEntry = {'type': 'flexible', 'date': '2020-06-03', 'values': ['not-an-hour']};
-        const badFlexibleEntry2 = {'type': 'flexible', 'date': '2020-06-03', 'values': 'not-an-array'};
+        const badEntry = {'type': 'flexible', 'date': '2020-06-03', 'values': ['not-an-hour']};
+        const badEntry2 = {'type': 'flexible', 'date': '2020-06-03', 'values': 'not-an-array'};
         const badWaivedEntry = {'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': 'not-an-hour'};
         it('should be valid', () =>
         {
             assert.strictEqual(validEntry(goodWaivedEntry), true);
-            assert.strictEqual(validEntry(goodFlexibleEntry), true);
+            assert.strictEqual(validEntry(goodEntry), true);
         });
 
         it('should not be valid', () =>
         {
             assert.strictEqual(validEntry(badWaivedEntry), false);
-            assert.strictEqual(validEntry(badFlexibleEntry), false);
-            assert.strictEqual(validEntry(badFlexibleEntry2), false);
+            assert.strictEqual(validEntry(badEntry), false);
+            assert.strictEqual(validEntry(badEntry2), false);
         });
     });
 
-    const flexibleStore = new Store({name: 'flexible-store'});
+    const entryStore = new Store({name: 'flexible-store'});
     const waivedWorkdays = new Store({name: 'waived-workdays'});
 
-    flexibleStore.clear();
-    const flexibleEntries = {
+    entryStore.clear();
+    const entries = {
         '2020-3-1': {'values': ['08:00', '12:00', '13:00', '17:00']},
         '2020-3-2': {'values': ['07:00', '11:00', '14:00', '18:00']}
     };
-    flexibleStore.set(flexibleEntries);
+    entryStore.set(entries);
 
     waivedWorkdays.clear();
     const waivedEntries = {

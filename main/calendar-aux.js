@@ -6,29 +6,29 @@ import { computeAllTimeBalanceUntilAsync } from '../js/time-balance.js';
 
 import Store from 'electron-store';
 
-const flexibleStore = new Store({name: 'flexible-store'});
+const entryStore = new Store({name: 'flexible-store'});
 
-function getFlexibleStore()
+function getEntryStore()
 {
-    return flexibleStore.store;
+    return entryStore.store;
 }
 
 function setupCalendarStore()
 {
-    ipcMain.handle('GET_FLEXIBLE_STORE_CONTENTS', () =>
+    ipcMain.handle('GET_STORE_CONTENTS', () =>
     {
-        return getFlexibleStore();
+        return getEntryStore();
     });
 
-    ipcMain.handle('SET_FLEXIBLE_STORE_DATA', (event, key, contents) =>
+    ipcMain.handle('SET_STORE_DATA', (event, key, contents) =>
     {
-        flexibleStore.set(key, contents);
+        entryStore.set(key, contents);
         return true;
     });
 
-    ipcMain.handle('DELETE_FLEXIBLE_STORE_DATA', (event, key) =>
+    ipcMain.handle('DELETE_STORE_DATA', (event, key) =>
     {
-        flexibleStore.delete(key);
+        entryStore.delete(key);
         return true;
     });
 

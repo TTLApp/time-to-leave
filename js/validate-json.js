@@ -7,7 +7,7 @@ const schema = {
     'items': {
         oneOf: [
             {'$ref': '/waivedEntry'},
-            {'$ref': '/flexibleEntry'}
+            {'$ref': '/entry'}
         ]
     }
 };
@@ -40,8 +40,8 @@ const schemaWaivedEntry = {
     ]
 };
 
-const schemaFlexibleEntry = {
-    'id': '/flexibleEntry',
+const schemaEntry = {
+    'id': '/entry',
     'type': 'object',
     'properties': {
         'type':
@@ -126,7 +126,7 @@ Validator.prototype.customFormats.dateFormat = function(dateStr)
 };
 
 /**
- * Adds custom format to validator that checks if values in flexible entry are valid.
+ * Adds custom format to validator that checks if values in entry are valid.
  * Items in timePointArray have to be in an ascending order.
  *
  * @param {Array} timePointArray
@@ -162,7 +162,7 @@ Validator.prototype.customFormats.timePointFormat = function(timePointArray)
 function validateJSON(instance)
 {
     const v = new Validator();
-    v.addSchema(schemaFlexibleEntry, '/flexibleEntry');
+    v.addSchema(schemaEntry, '/entry');
     v.addSchema(schemaWaivedEntry, '/waivedEntry');
 
     return v.validate(instance, schema).valid;

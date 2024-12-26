@@ -9,16 +9,16 @@ import { validateTime } from './time-math.js';
 import { generateKey } from './date-db-formatter.js';
 
 /**
- * Returns the database (only flexible calendar entries) as an array of:
+ * Returns the database as an array of:
  *   . type: flexible
  *   . date
  *   . values: times
  */
-function _getFlexibleEntries()
+function _getEntries()
 {
-    const flexibleStore = new Store({name: 'flexible-store'});
+    const entryStore = new Store({name: 'flexible-store'});
     const output = [];
-    for (const entry of flexibleStore)
+    for (const entry of entryStore)
     {
         const key = entry[0];
         const value = entry[1];
@@ -57,7 +57,7 @@ function _getWaivedEntries()
 
 function exportDatabaseToFile(filename)
 {
-    let information = _getFlexibleEntries();
+    let information = _getEntries();
     information = information.concat(_getWaivedEntries());
     try
     {
@@ -108,13 +108,13 @@ function validEntry(entry)
 
 function importDatabaseFromFile(filename)
 {
-    const flexibleStore = new Store({name: 'flexible-store'});
+    const entryStore = new Store({name: 'flexible-store'});
     const waivedWorkdays = new Store({name: 'waived-workdays'});
     try
     {
         const information = JSON.parse(fs.readFileSync(filename[0], 'utf-8'));
         let failedEntries = 0;
-        const flexibleEntries = {};
+        const entries = {};
         const waiverEntries = {};
         for (let i = 0; i < information.length; ++i)
         {
@@ -135,11 +135,11 @@ function importDatabaseFromFile(filename)
                 //The main database uses a JS-based month index (0-11)
                 //So we need to adjust it from human month index (1-12)
                 const date = generateKey(year, (parseInt(month) - 1), day);
-                flexibleEntries[date] = {values: entry.values};
+                entries[date] = {values: entry.values};
             }
         }
 
-        flexibleStore.set(flexibleEntries);
+        entryStore.set(entries);
         waivedWorkdays.set(waiverEntries);
 
         if (failedEntries !== 0)

@@ -10,14 +10,14 @@ import {
 } from '../../js/time-balance.js';
 import { resetPreferences } from '../../js/user-preferences.js';
 
-const flexibleStore = new Store({name: 'flexible-store'});
+const entryStore = new Store({name: 'flexible-store'});
 const waivedWorkdays = new Store({name: 'waived-workdays'});
 
 describe('Time Balance', () =>
 {
     beforeEach(() =>
     {
-        flexibleStore.clear();
+        entryStore.clear();
         waivedWorkdays.clear();
         resetPreferences();
     });
@@ -32,7 +32,7 @@ describe('Time Balance', () =>
         const entryEx = {
             '2020-3-1': {'values': ['08:00']}
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         assert.strictEqual(getFirstInputInDb(), '2020-3-1');
     });
 
@@ -42,7 +42,7 @@ describe('Time Balance', () =>
             '2020-3-1': {'values': ['08:00']},
             '2020-3-3': {'values': ['08:00']}
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         assert.strictEqual(getFirstInputInDb(), '2020-3-1');
     });
 
@@ -53,7 +53,7 @@ describe('Time Balance', () =>
             '2020-3-3': {'values': ['08:00']},
             '2020-2-1': {'values': ['08:00']}
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         assert.strictEqual(getFirstInputInDb(), '2020-2-1');
     });
 
@@ -66,7 +66,7 @@ describe('Time Balance', () =>
             '2020-6-9': {'values': ['10:00', '12:00', '13:00', '22:00']},
             '2020-6-10': {'values': ['08:00', '12:00', '13:00', '19:00']}
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         assert.strictEqual(getFirstInputInDb(), '2020-6-6');
     });
 
@@ -80,7 +80,7 @@ describe('Time Balance', () =>
         const entryEx = {
             '2020-6-1': {'values': ['08:00', '12:00', '13:00', '17:00']} // wed (8h total)
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         // time balance until thu (excluding thu)
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 2))).resolves.toBe('00:00');
         // time balance until fri (excluding fri)
@@ -100,7 +100,7 @@ describe('Time Balance', () =>
         const entryEx = {
             '2020-6-1': {'values': ['08:00', '12:00', '17:00', '13:00']} // wed (8h total)
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         // time balance until thu (excluding thu)
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 2))).resolves.toBe('-08:00');
         // time balance until fri (excluding fri)
@@ -120,7 +120,7 @@ describe('Time Balance', () =>
         const entryEx = {
             '2020-6-1': {'values': ['08:00', '10:00', '10:30', '11:30', '13:00', '17:00']} // wed (7h total)
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         // time balance until thu (excluding thu)
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 2))).resolves.toBe('-01:00');
         // time balance until fri (excluding fri)
@@ -140,7 +140,7 @@ describe('Time Balance', () =>
         const entryEx = {
             '2020-6-1': {'values': ['08:00', '12:00', '13:00', '18:30']} // wed (9h30 total)
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         // time balance until thu (excluding thu)
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 2))).resolves.toBe('01:30');
         // time balance until fri (excluding fri)
@@ -154,7 +154,7 @@ describe('Time Balance', () =>
         const entryEx = {
             '2020-6-1': {'values': ['06:00', '12:00', '13:00', '14:00', '14:30', '16:00', '17:00', '18:30']} // wed (10h total)
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         // time balance until thu (excluding thu)
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 2))).resolves.toBe('02:00');
         // time balance until fri (excluding fri)
@@ -168,7 +168,7 @@ describe('Time Balance', () =>
         const entryEx = {
             '2020-6-1': {'values': ['08:00', '12:00', '13:00', '15:15']} // wed (6h15 total)
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         // time balance until thu (excluding thu)
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 2))).resolves.toBe('-01:45');
         // time balance until fri (excluding fri)
@@ -184,7 +184,7 @@ describe('Time Balance', () =>
             '2020-6-2': {'values': ['08:00', '12:00', '13:00', '18:15']}, // thu (9h15 total)
             '2020-6-3': {'values': ['08:00', '12:00', '13:00', '15:15']} // fri (6h15 total)
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         // time balance until thu (excluding thu)
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 2))).resolves.toBe('-01:45');
         // time balance until fri (excluding fri)
@@ -203,7 +203,7 @@ describe('Time Balance', () =>
             '2020-6-10': {'values': ['08:00', '12:00', '13:00', '15:00', '17:00']}, // fri (odd #entries, day is not considered => -8h)[-20h]
             '2020-6-13': {'values': ['00:00', '18:00']}, // mon (18h/+10h)[-10h]
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         // time balance until mon (excluding mon)
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 6))).resolves.toBe('00:00');
         // time balance until tue (excluding tue)
@@ -232,7 +232,7 @@ describe('Time Balance', () =>
             '2020-6-10': {'values': ['08:00', '12:00', '13:00', '15:00']}, // fri (even #entries, and > 4 => only up to '15:00' => 6h/-2h)[-10h]
             '2020-6-13': {'values': ['00:00', '18:00']}, // mon (18h/+10h)[0h]
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         // time balance until mon (excluding mon)
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 6))).resolves.toBe('00:00');
         // time balance until tue (excluding tue)
@@ -257,7 +257,7 @@ describe('Time Balance', () =>
             '2020-6-1': {'values': ['08:00', '12:00', '13:00', '17:00']}, // wed (8h total)
             '2020-6-3': {'values': ['08:00', '12:00', '13:00', '17:00']} // fri (8h total)
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         // time balance until thu (excluding thu)
         await expect(computeAllTimeBalanceUntil(new Date(2020, 6, 2))).resolves.toBe('00:00');
         // time balance until fri (excluding fri)
@@ -274,7 +274,7 @@ describe('Time Balance', () =>
             '2020-6-1': {'values': ['08:00', '12:00', '13:00', '17:00']}, // wed (8h total)
             '2020-6-3': {'values': ['08:00', '12:00', '13:00', '17:00']} // fri (8h total)
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         const waivedEntries = {
             '2020-07-02': { reason: 'Waiver', hours: '08:00' }, // thu
         };
@@ -292,7 +292,7 @@ describe('Time Balance', () =>
         const entryEx = {
             '2020-6-8': {'values': ['08:00', '12:00', '13:00', '17:00']} // wed (8h total)
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         const waivedEntries = {
             '2020-07-09': { reason: 'Waiver', hours: '08:00' }, // tue
             '2020-07-10': { reason: 'Waiver', hours: '08:00' }, // fri
@@ -314,7 +314,7 @@ describe('Time Balance', () =>
             '2020-6-1': {'values': ['08:00', '12:00', '13:00', '17:00']}, // wed (8h total)
             '2020-6-3': {'values': ['08:00', '12:00', '13:00', '17:00']} // fri (8h total)
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         const waivedEntries = {
             '2020-07-02': { reason: 'Waiver', hours: '02:00' }, // tue
         };
@@ -333,7 +333,7 @@ describe('Time Balance', () =>
             '2020-6-1': {'values': ['08:00', '12:00', '13:00', '17:00']}, // wed (8h total)
             '2020-6-3': {'values': ['08:00', '12:00', '13:00', '17:00']} // fri (8h total)
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         const waivedEntries = {
             '2020-07-02': { reason: 'Waiver', hours: '02:00' }, // tue
         };
@@ -347,7 +347,7 @@ describe('Time Balance', () =>
             '2020-6-1': {'values': ['08:00', '12:00', '13:00', '17:00']}, // wed (8h total)
             '2020-6-3': {'values': ['08:00', '12:00', '13:00', '17:00']} // fri (8h total)
         };
-        flexibleStore.set(entryEx);
+        entryStore.set(entryEx);
         const waivedEntries = {
             '2020-07-02': { reason: 'Waiver', hours: '02:00' }, // tue
         };
