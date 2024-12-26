@@ -238,6 +238,7 @@ $(() =>
 });
 
 export {
+    convertTimeFormat,
     refreshContent,
     populateLanguages,
     listenerLanguage,

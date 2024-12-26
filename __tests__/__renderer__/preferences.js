@@ -21,6 +21,7 @@ window.mainApi = preferencesApi;
 window.mainApi.getUserPreferencesPromise = () => { return new Promise((resolve) => resolve(getUserPreferences())); };
 
 const {
+    convertTimeFormat,
     refreshContent,
     populateLanguages,
     listenerLanguage,
@@ -213,6 +214,49 @@ describe('Test Preferences Window', () =>
                 }
             });
             assert.notStrictEqual(lastValue, '');
+        });
+    });
+
+    describe('Check if configure hours per day conversion function', () =>
+    {
+        test('should convert single digit hour to HH:MM format', () =>
+        {
+            assert.strictEqual(convertTimeFormat('6'), '06:00');
+        });
+
+        test('should convert double digit hour to HH:MM format', () =>
+        {
+            assert.strictEqual(convertTimeFormat('12'), '12:00');
+        });
+
+        test('should convert H.M format to HH:MM format', () =>
+        {
+            assert.strictEqual(convertTimeFormat('6.5'), '06:30');
+        });
+
+        test('should convert H.MM format to HH:MM format', () =>
+        {
+            assert.strictEqual(convertTimeFormat('6.50'), '06:30');
+        });
+
+        test('should convert HH.M format to HH:MM format', () =>
+        {
+            assert.strictEqual(convertTimeFormat('12.5'), '12:30');
+        });
+
+        test('should convert HH.MM format to HH:MM format', () =>
+        {
+            assert.strictEqual(convertTimeFormat('12.50'), '12:30');
+        });
+
+        test('should convert H:MM format to HH:MM format', () =>
+        {
+            assert.strictEqual(convertTimeFormat('6:30'), '06:30');
+        });
+
+        test('should convert HH:MM format to HH:MM format', () =>
+        {
+            assert.strictEqual(convertTimeFormat('12:30'), '12:30');
         });
     });
 });
