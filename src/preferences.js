@@ -2,7 +2,7 @@
 
 import { applyTheme } from '../renderer/themes.js';
 import { translatePage } from '../renderer/i18n-translator.js';
-import { nativeTheme } from 'electron';  // Import nativeTheme from Electron
+import { nativeTheme } from 'electron';
 // Global values for preferences page
 let usersStyles;
 let preferences;
@@ -13,28 +13,6 @@ function applySystemTheme() {
     preferences['theme'] = systemTheme;
     applyTheme(systemTheme);
 }
-
-function renderPreferencesWindow() {
-    const theme = 'theme';
-
-    // Apply system theme initially
-    applySystemTheme();
-
-    // Set theme dropdown to selected theme from usersStyles or system preferences
-    if (theme in usersStyles) {
-        $('#' + theme).val(usersStyles[theme]);
-    }
-
-    $('#theme').on('change', function() {
-        changeValue('theme', this.value);
-        applyTheme(this.value);
-    });
-
-    // Continue with other preference setups...
-}
-
-// Listen for theme changes in real-time
-nativeTheme.on('updated', applySystemTheme);
 
 function populateLanguages()
 {
@@ -102,6 +80,9 @@ function renderPreferencesWindow()
 {
     // Theme-handling should be towards the top. Applies theme early so it's more natural.
     const theme = 'theme';
+
+    // Apply system theme initially
+    applySystemTheme();
 
     /* istanbul ignore else */
     if (theme in usersStyles)
@@ -222,6 +203,9 @@ $(() =>
         renderPreferencesWindow();
         setupLanguages();
     });
+
+    // Listen for theme changes in real-time
+    nativeTheme.on('updated', applySystemTheme);
 });
 
 export {
