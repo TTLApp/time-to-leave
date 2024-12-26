@@ -16,9 +16,9 @@ import { generateKey } from './date-db-formatter.js';
  */
 function _getEntries()
 {
-    const entryStore = new Store({name: 'flexible-store'});
+    const calendarStore = new Store({name: 'flexible-store'});
     const output = [];
-    for (const entry of entryStore)
+    for (const entry of calendarStore)
     {
         const key = entry[0];
         const value = entry[1];
@@ -108,7 +108,7 @@ function validEntry(entry)
 
 function importDatabaseFromFile(filename)
 {
-    const entryStore = new Store({name: 'flexible-store'});
+    const calendarStore = new Store({name: 'flexible-store'});
     const waivedWorkdays = new Store({name: 'waived-workdays'});
     try
     {
@@ -139,7 +139,7 @@ function importDatabaseFromFile(filename)
             }
         }
 
-        entryStore.set(entries);
+        calendarStore.set(entries);
         waivedWorkdays.set(waiverEntries);
 
         if (failedEntries !== 0)

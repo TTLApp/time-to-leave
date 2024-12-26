@@ -10,7 +10,7 @@ import { getDateStr } from './date-aux.js';
 import { getUserPreferences, showDay } from './user-preferences.js';
 
 // Global values for calendar
-const entryStore = new Store({ name: 'flexible-store' });
+const calendarStore = new Store({ name: 'flexible-store' });
 const waivedWorkdays = new Store({ name: 'waived-workdays' });
 
 function getFirstInputInDb()
@@ -20,7 +20,7 @@ function getFirstInputInDb()
     const [startYear, startMonth, startDay] = startDateStr.split('-');
     const startDate = new Date(startYear, startMonth - 1, startDay);
 
-    for (const value of entryStore)
+    for (const value of calendarStore)
     {
         const [year, month, day] = value[0].split('-');
         if (new Date(year, month, day) >= startDate)
@@ -141,7 +141,7 @@ function _getDayTotalsFromStores(firstDate, limitDate)
 
     }
 
-    for (const value of entryStore)
+    for (const value of calendarStore)
     {
         const [key, dateValue] = getDateStrAndDateValue(value, _getDateFromStoreDb(value[0]));
         if (key && dateValue)

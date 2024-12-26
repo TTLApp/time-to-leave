@@ -397,8 +397,8 @@ class BaseCalendar
     {
         this._internalStore = {};
 
-        const entryStore = await window.mainApi.getStoreContents();
-        for (const entry of Object.entries(entryStore))
+        const calendarStore = await window.mainApi.getStoreContents();
+        for (const entry of Object.entries(calendarStore))
         {
             const key = entry[0];
             const value = entry[1];

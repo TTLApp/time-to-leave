@@ -62,8 +62,8 @@ function generateDemoInformation(dateFromStr, dateToStr, workingDays, usualTimes
         valuesToStore[generateKey(day.getFullYear(), day.getMonth(), day.getDate())] = entry;
     }
     console.log(`Generated ${Object.keys(valuesToStore).length} entries`);
-    const entryStore = new Store({name: 'flexible-store'});
-    entryStore.set(valuesToStore);
+    const calendarStore = new Store({name: 'flexible-store'});
+    calendarStore.set(valuesToStore);
 }
 
 module.exports = {

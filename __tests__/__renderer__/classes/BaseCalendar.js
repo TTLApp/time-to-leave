@@ -49,8 +49,8 @@ describe('BaseCalendar.js', () =>
     const mocks = {};
     beforeEach(() =>
     {
-        const entryStore = new Store({name: 'flexible-store'});
-        entryStore.clear();
+        const calendarStore = new Store({name: 'flexible-store'});
+        calendarStore.clear();
         const waivedWorkdays = new Store({name: 'waived-workdays'});
         waivedWorkdays.clear();
         ExtendedClass.prototype._initCalendar = () => {};
@@ -60,7 +60,7 @@ describe('BaseCalendar.js', () =>
         {
             return new Promise((resolve) =>
             {
-                resolve(entryStore.store);
+                resolve(calendarStore.store);
             });
         };
         window.mainApi.getWaiverStoreContents = () =>
@@ -72,7 +72,7 @@ describe('BaseCalendar.js', () =>
         };
         window.mainApi.setStoreData = (key, contents) =>
         {
-            entryStore.set(key, contents);
+            calendarStore.set(key, contents);
             return new Promise((resolve) =>
             {
                 resolve(true);
@@ -122,8 +122,8 @@ describe('BaseCalendar.js', () =>
         test('Should build with default internal store values', async(done) =>
         {
             ExtendedClass.prototype._initCalendar = () => { done(); };
-            const entryStore = new Store({name: 'flexible-store'});
-            entryStore.set('flexible', 'store');
+            const calendarStore = new Store({name: 'flexible-store'});
+            calendarStore.set('flexible', 'store');
 
             const waivedWorkdays = new Store({name: 'waived-workdays'});
             waivedWorkdays.set('2022-01-01', {
@@ -465,11 +465,11 @@ describe('BaseCalendar.js', () =>
 
         test('Should update when day has ended', async() =>
         {
-            const entryStore = new Store({name: 'flexible-store'});
+            const calendarStore = new Store({name: 'flexible-store'});
             const newDate = new Date();
             const key = generateKey(newDate.getFullYear(), newDate.getMonth(), newDate.getDate());
-            entryStore.set(key, '08:00');
-            entryStore.set(key, '16:00');
+            calendarStore.set(key, '08:00');
+            calendarStore.set(key, '16:00');
             $('body').append(`<div id="${key}" ></div>`);
             $('body').append('<div class="day-total-cell" ><span>--:--</span></div>');
             $(`#${key}`).append('<input type="time" value="08:00" />');

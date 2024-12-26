@@ -37,15 +37,15 @@ describe('Import export', function()
         });
     });
 
-    const entryStore = new Store({name: 'flexible-store'});
+    const calendarStore = new Store({name: 'flexible-store'});
     const waivedWorkdays = new Store({name: 'waived-workdays'});
 
-    entryStore.clear();
+    calendarStore.clear();
     const entries = {
         '2020-3-1': {'values': ['08:00', '12:00', '13:00', '17:00']},
         '2020-3-2': {'values': ['07:00', '11:00', '14:00', '18:00']}
     };
-    entryStore.set(entries);
+    calendarStore.set(entries);
 
     waivedWorkdays.clear();
     const waivedEntries = {
