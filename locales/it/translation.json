@@ -28,7 +28,7 @@
         "tue": "Mar",
         "wed": "Mer"
     },
-    "$FlexibleDayCalendar": {
+    "$DayCalendar": {
         "add-entry": "Add entry",
         "current-day": "Vai al giorno corrente",
         "day-total": "Totale giornata",
@@ -43,7 +43,7 @@
         "waived-day": "Giorno escluso",
         "yes": "Sì"
     },
-    "$FlexibleMonthCalendar": {
+    "$MonthCalendar": {
         "add-entry": "Add entry",
         "add-waiver-day": "Escludi questo giorno",
         "current-month": "Vai al mese corrente",

@@ -16,7 +16,7 @@ import {
 import { getMonthName, getDayAbbr } from '../../js/date-to-string-util.js';
 import { BaseCalendar } from './BaseCalendar.js';
 
-class FlexibleMonthCalendar extends BaseCalendar
+class MonthCalendar extends BaseCalendar
 {
     /**
     * @param {Object.<string, any>} preferences
@@ -90,9 +90,9 @@ class FlexibleMonthCalendar extends BaseCalendar
     _getPageHeader()
     {
         const switchView = `<input id="switch-view" type="image" src="../assets/switch.svg" alt="${this._getTranslation('$BaseCalendar.switch-view')}" title="${this._getTranslation('$BaseCalendar.switch-view')}" height="24" width="24"></input>`;
-        const todayBut = `<input id="current-month" type="image" src="../assets/calendar.svg" alt="${this._getTranslation('$FlexibleMonthCalendar.current-month')}" title="${this._getTranslation('$FlexibleMonthCalendar.current-month')}" height="24" width="24"></input>`;
-        const leftBut = `<input id="prev-month" type="image" src="../assets/left-arrow.svg" alt="${this._getTranslation('$FlexibleMonthCalendar.previous-month')}" title="${this._getTranslation('$FlexibleMonthCalendar.previous-month')}" height="24" width="24"></input>`;
-        const rightBut = `<input id="next-month" type="image" src="../assets/right-arrow.svg" alt="${this._getTranslation('$FlexibleMonthCalendar.next-month')}" title="${this._getTranslation('$FlexibleMonthCalendar.next-month')}" height="24" width="24"></input>`;
+        const todayBut = `<input id="current-month" type="image" src="../assets/calendar.svg" alt="${this._getTranslation('$MonthCalendar.current-month')}" title="${this._getTranslation('$MonthCalendar.current-month')}" height="24" width="24"></input>`;
+        const leftBut = `<input id="prev-month" type="image" src="../assets/left-arrow.svg" alt="${this._getTranslation('$MonthCalendar.previous-month')}" title="${this._getTranslation('$MonthCalendar.previous-month')}" height="24" width="24"></input>`;
+        const rightBut = `<input id="next-month" type="image" src="../assets/right-arrow.svg" alt="${this._getTranslation('$MonthCalendar.next-month')}" title="${this._getTranslation('$MonthCalendar.next-month')}" height="24" width="24"></input>`;
         const title = 'Time to Leave';
         return '<div class="title-header">'+
                     '<div class="title-header title-header-img"><img src="../assets/ttl.svg" height="64" width="64"></div>' +
@@ -114,8 +114,8 @@ class FlexibleMonthCalendar extends BaseCalendar
     _getTableHeaderCode()
     {
         return '<div class="calendar-table-header">' +
-                    `<div class="header-day">${this._getTranslation('$FlexibleMonthCalendar.day')}</div>` +
-                    `<div class="header-day-total">${this._getTranslation('$FlexibleMonthCalendar.total')}</div>` +
+                    `<div class="header-day">${this._getTranslation('$MonthCalendar.day')}</div>` +
+                    `<div class="header-day-total">${this._getTranslation('$MonthCalendar.total')}</div>` +
                 '</div>\n';
     }
 
@@ -126,7 +126,7 @@ class FlexibleMonthCalendar extends BaseCalendar
     {
         const leaveByCode = '<input type="text" id="leave-by" size="5" disabled>';
         return  '<div class="summary" id="summary-unfinished-day">' +
-                    `<div class="leave-by-text" colspan="7">${this._getTranslation('$FlexibleMonthCalendar.leave-by')}</div>` +
+                    `<div class="leave-by-text" colspan="7">${this._getTranslation('$MonthCalendar.leave-by')}</div>` +
                     '<div class="leave-by-time">' +
                         leaveByCode +
                     '</div>' +
@@ -145,10 +145,10 @@ class FlexibleMonthCalendar extends BaseCalendar
     _getBalanceRowCode()
     {
         return '<div class="month-total-row">' +
-                    `<div class="month-total-text" title="${this._getTranslation('$FlexibleMonthCalendar.last-day-balance')}">${this._getTranslation('$FlexibleMonthCalendar.on')}</div>` +
-                    `<div class="month-total-time" title="${this._getTranslation('$FlexibleMonthCalendar.last-day-balance')}"><span id="month-day-input"></span></div>` +
-                    `<div class="month-total-text" title="${this._getTranslation('$FlexibleMonthCalendar.working-days-title')}">${this._getTranslation('$FlexibleMonthCalendar.working-days')}</div>` +
-                    `<div class="month-total-time" title="${this._getTranslation('$FlexibleMonthCalendar.working-days-title')}"><span id="month-working-days"></span></div>` +
+                    `<div class="month-total-text" title="${this._getTranslation('$MonthCalendar.last-day-balance')}">${this._getTranslation('$MonthCalendar.on')}</div>` +
+                    `<div class="month-total-time" title="${this._getTranslation('$MonthCalendar.last-day-balance')}"><span id="month-day-input"></span></div>` +
+                    `<div class="month-total-text" title="${this._getTranslation('$MonthCalendar.working-days-title')}">${this._getTranslation('$MonthCalendar.working-days')}</div>` +
+                    `<div class="month-total-time" title="${this._getTranslation('$MonthCalendar.working-days-title')}"><span id="month-working-days"></span></div>` +
                     `<div class="month-total-text" title="${this._getTranslation('$BaseCalendar.month-balance-title')}">${this._getTranslation('$BaseCalendar.month-balance')}</div>` +
                     `<div class="month-total-time" title="${this._getTranslation('$BaseCalendar.month-balance-title')}"><input type="text" id="month-balance"     size="8" disabled></div>` +
                     `<div class="month-total-text" title="${this._getTranslation('$BaseCalendar.overall-balance-title')}">${this._getTranslation('$BaseCalendar.overall-balance')}</div>` +
@@ -190,7 +190,7 @@ class FlexibleMonthCalendar extends BaseCalendar
         const waivedInfo = this._getWaiverStore(year, month, day);
         if (waivedInfo !== undefined)
         {
-            const summaryStr = `<b>${this._getTranslation('$FlexibleMonthCalendar.waived-day')}: </b>` + waivedInfo['reason'];
+            const summaryStr = `<b>${this._getTranslation('$MonthCalendar.waived-day')}: </b>` + waivedInfo['reason'];
             const waivedLineHtmlCode =
                 '<div class="row-waiver" id="' + dateKey + '">' +
                     '<div class="weekday">' + getDayAbbr(this._languageData.data, weekDay) + '</div>' +
@@ -207,20 +207,20 @@ class FlexibleMonthCalendar extends BaseCalendar
 
         let htmlCode =
                 '<div>' +
-                `<div class="weekday waiver-trigger" title="${this._getTranslation('$FlexibleMonthCalendar.add-waiver-day')}">` + getDayAbbr(this._languageData.data, weekDay) + '</div>' +
+                `<div class="weekday waiver-trigger" title="${this._getTranslation('$MonthCalendar.add-waiver-day')}">` + getDayAbbr(this._languageData.data, weekDay) + '</div>' +
                 '<div class="day">' +
                     '<span class="day-number"> ' + day + ' </span>' +
                     '<img src="../assets/waiver.svg" height="16" class="waiver-img">' +
                 '</div>' +
                 '<div class="sign-cell minus-sign">' +
-                    `<span title="${this._getTranslation('$FlexibleMonthCalendar.remove-entry')}">-</span>` +
+                    `<span title="${this._getTranslation('$MonthCalendar.remove-entry')}">-</span>` +
                 '</div>' +
-                `<i title="${this._getTranslation('$FlexibleMonthCalendar.scroll-left-entry')}" class="arrow left"></i>` +
+                `<i title="${this._getTranslation('$MonthCalendar.scroll-left-entry')}" class="arrow left"></i>` +
                 '<div class="time-cells" id="' + dateKey + '">' +
                 '</div>' +
-                `<i title="${this._getTranslation('$FlexibleMonthCalendar.scroll-right-entry')}" class="arrow right"></i>` +
+                `<i title="${this._getTranslation('$MonthCalendar.scroll-right-entry')}" class="arrow right"></i>` +
                 '<div class="sign-cell plus-sign">' +
-                    `<span title="${this._getTranslation('$FlexibleMonthCalendar.add-entry')}">+</span>` +
+                    `<span title="${this._getTranslation('$MonthCalendar.add-entry')}">+</span>` +
                 '</div>' +
                 '<div class="day-total-cell">' +
                     '<div class="day-total"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>' +
@@ -241,8 +241,8 @@ class FlexibleMonthCalendar extends BaseCalendar
     _updateTableHeader()
     {
         $('#month-year').html(`${getMonthName(this._languageData.data, this._getCalendarMonth())} ${this._getCalendarYear()}`);
-        $('.header-day').text(this._getTranslation('$FlexibleMonthCalendar.day'));
-        $('.header-day-total').text(this._getTranslation('$FlexibleMonthCalendar.total'));
+        $('.header-day').text(this._getTranslation('$MonthCalendar.day'));
+        $('.header-day-total').text(this._getTranslation('$MonthCalendar.total'));
     }
 
     /**
@@ -291,7 +291,7 @@ class FlexibleMonthCalendar extends BaseCalendar
     }
 
     /*
-     * Draws the arrows and +/- buttons for the flexible calendar.
+     * Draws the arrows and +/- buttons for the calendar.
      */
     _drawArrowsAndButtons()
     {
@@ -409,10 +409,10 @@ class FlexibleMonthCalendar extends BaseCalendar
                 const [year, month, day] = dateKey.split('-');
                 const date = [year, parseInt(month) + 1, day].join('-');
                 const removeEntriesDialogOptions = {
-                    title: `${calendar._getTranslation('$FlexibleMonthCalendar.remove-entry')}`,
-                    message: `${calendar._getTranslation('$FlexibleMonthCalendar.entry-removal-confirmation')} ${date}?`,
+                    title: `${calendar._getTranslation('$MonthCalendar.remove-entry')}`,
+                    message: `${calendar._getTranslation('$MonthCalendar.entry-removal-confirmation')} ${date}?`,
                     type: 'info',
-                    buttons: [calendar._getTranslation('$FlexibleMonthCalendar.yes'), calendar._getTranslation('$FlexibleMonthCalendar.no')]
+                    buttons: [calendar._getTranslation('$MonthCalendar.yes'), calendar._getTranslation('$MonthCalendar.no')]
                 };
                 const getInputs = $(element).find('input');
                 const len = getInputs.length;
@@ -802,5 +802,5 @@ class FlexibleMonthCalendar extends BaseCalendar
 }
 
 export {
-    FlexibleMonthCalendar
+    MonthCalendar
 };

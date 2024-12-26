@@ -11,7 +11,7 @@ import { getDateStr, getMonthLength } from '../../js/date-aux.js';
 import { generateKey } from '../../js/date-db-formatter.js';
 import { BaseCalendar } from './BaseCalendar.js';
 
-class FlexibleDayCalendar extends BaseCalendar
+class DayCalendar extends BaseCalendar
 {
     /**
     * @param {Object.<string, any>} preferences
@@ -57,9 +57,9 @@ class FlexibleDayCalendar extends BaseCalendar
     _getPageHeader()
     {
         const switchView = `<input id="switch-view" type="image" src="../assets/switch.svg" alt="${this._getTranslation('$BaseCalendar.switch-view')}" title="${this._getTranslation('$BaseCalendar.switch-view')}" height="24" width="24"></input>`;
-        const todayBut = `<input id="current-day" type="image" src="../assets/calendar.svg" alt="${this._getTranslation('$FlexibleDayCalendar.current-day')}" title="${this._getTranslation('$FlexibleDayCalendar.current-day')}" height="24" width="24"></input>`;
-        const leftBut = `<input id="prev-day" type="image" src="../assets/left-arrow.svg" alt="${this._getTranslation('$FlexibleDayCalendar.previous-day')}" title="${this._getTranslation('$FlexibleDayCalendar.previous-day')}" height="24" width="24"></input>`;
-        const rightBut = `<input id="next-day" type="image" src="../assets/right-arrow.svg" alt="${this._getTranslation('$FlexibleDayCalendar.next-day')}" title="${this._getTranslation('$FlexibleDayCalendar.next-day')}" height="24" width="24"></input>`;
+        const todayBut = `<input id="current-day" type="image" src="../assets/calendar.svg" alt="${this._getTranslation('$DayCalendar.current-day')}" title="${this._getTranslation('$DayCalendar.current-day')}" height="24" width="24"></input>`;
+        const leftBut = `<input id="prev-day" type="image" src="../assets/left-arrow.svg" alt="${this._getTranslation('$DayCalendar.previous-day')}" title="${this._getTranslation('$DayCalendar.previous-day')}" height="24" width="24"></input>`;
+        const rightBut = `<input id="next-day" type="image" src="../assets/right-arrow.svg" alt="${this._getTranslation('$DayCalendar.next-day')}" title="${this._getTranslation('$DayCalendar.next-day')}" height="24" width="24"></input>`;
         const title = 'Time to Leave';
         return '<div class="title-header">'+
                     '<div class="title-header-img"><img src="../assets/ttl.svg" height="64" width="64"></div>' +
@@ -96,7 +96,7 @@ class FlexibleDayCalendar extends BaseCalendar
     _getSummaryRowCode()
     {
         const leaveByCode = '<input type="text" id="leave-by" size="5" disabled>';
-        const summaryStr = this._getTranslation('$FlexibleDayCalendar.leave-by');
+        const summaryStr = this._getTranslation('$DayCalendar.leave-by');
         let code = '<div class="summary" id="summary-unfinished-day">' +
                      '<div class="leave-by-text">' + summaryStr + '</div>' +
                      '<div class="leave-by-time">' + leaveByCode + '</div>' +
@@ -156,14 +156,14 @@ class FlexibleDayCalendar extends BaseCalendar
         if (!this._showDay(year, month, day))
         {
             return '<div class="today-non-working" id="' + dateKey + '">' +
-                        `<div class="non-working-day">${this._getTranslation('$FlexibleDayCalendar.not-a-working-day')}</div>` +
+                        `<div class="non-working-day">${this._getTranslation('$DayCalendar.not-a-working-day')}</div>` +
                     '</div>\n';
         }
 
         const waivedInfo = this._getWaiverStore(year, month, day);
         if (waivedInfo !== undefined)
         {
-            const summaryStr = `<b>${this._getTranslation('$FlexibleDayCalendar.waived-day')}: </b>` + waivedInfo['reason'];
+            const summaryStr = `<b>${this._getTranslation('$DayCalendar.waived-day')}: </b>` + waivedInfo['reason'];
             const waivedLineHtmlCode =
                  '<div class="row-waiver" id="' + dateKey + '">' +
                     '<div class="waived-day-text" colspan="5">' + summaryStr + '</div>' +
@@ -178,7 +178,7 @@ class FlexibleDayCalendar extends BaseCalendar
             '<div class="rows-time" id="' + dateKey + '">' +
             '</div>' +
             '<div class="row-total">' +
-                `<div class="th th-label first-group" colspan="3">${this._getTranslation('$FlexibleDayCalendar.day-total')}</div>` +
+                `<div class="th th-label first-group" colspan="3">${this._getTranslation('$DayCalendar.day-total')}</div>` +
                 '<div class="second-group">' +
                     '<div class="day-total-cell">' +
                         '<div class="day-total"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>' +
@@ -186,7 +186,7 @@ class FlexibleDayCalendar extends BaseCalendar
                 '</div>' +
                 '<div class="third-group">' +
                     '<div class="sign-cell">' +
-                        `<div title="${this._getTranslation('$FlexibleDayCalendar.add-entry')}" class="sign-container"><span class="plus-sign">+</span></div>` +
+                        `<div title="${this._getTranslation('$DayCalendar.add-entry')}" class="sign-container"><span class="plus-sign">+</span></div>` +
                     '</div>' +
                 '</div>' +
             '</div>\n';
@@ -286,13 +286,13 @@ class FlexibleDayCalendar extends BaseCalendar
     {
         const minusSignCode =
         '<div class="sign-cell">' +
-            `<div title="${this._getTranslation('$FlexibleDayCalendar.remove-entry')}" class="sign-container"><span class="minus-sign">-</span></div>` +
+            `<div title="${this._getTranslation('$DayCalendar.remove-entry')}" class="sign-container"><span class="minus-sign">-</span></div>` +
         '</div>';
         return minusSignCode;
     }
 
     /**
-     * Draws +/- buttons for the flexible calendar.
+     * Draws +/- buttons for the calendar.
      */
     _drawButtons()
     {
@@ -318,10 +318,10 @@ class FlexibleDayCalendar extends BaseCalendar
             {
                 const dateKey = $('.rows-time').attr('id');
                 const removeEntriesDialogOptions = {
-                    title: calendar._getTranslation('$FlexibleDayCalendar.remove-entry'),
-                    message: calendar._getTranslation('$FlexibleDayCalendar.entry-removal-confirmation'),
+                    title: calendar._getTranslation('$DayCalendar.remove-entry'),
+                    message: calendar._getTranslation('$DayCalendar.entry-removal-confirmation'),
                     type: 'info',
-                    buttons: [calendar._getTranslation('$FlexibleDayCalendar.yes'), calendar._getTranslation('$FlexibleDayCalendar.no')]
+                    buttons: [calendar._getTranslation('$DayCalendar.yes'), calendar._getTranslation('$DayCalendar.no')]
                 };
                 const getInputs = $('.row-entry-pair').find('input');
                 const len = getInputs.length;
@@ -644,7 +644,7 @@ class FlexibleDayCalendar extends BaseCalendar
         // 2 pairs is the default minimum size of the table, when no entries are there
         const numberOfPairs = Math.ceil(entrySize/2) >= 1 ? Math.ceil(entrySize/2) : 2;
 
-        const translatedEntry = this._getTranslation('$FlexibleDayCalendar.entry');
+        const translatedEntry = this._getTranslation('$DayCalendar.entry');
         const minusSignCode = this._getMinusSignCode();
 
         function entryPairHTMLCode(entryIndex, isLastRow)
@@ -730,5 +730,5 @@ class FlexibleDayCalendar extends BaseCalendar
 }
 
 export {
-    FlexibleDayCalendar
+    DayCalendar
 };

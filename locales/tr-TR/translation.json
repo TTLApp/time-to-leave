@@ -28,7 +28,7 @@
         "tue": "Sl",
         "wed": "Çrb"
     },
-    "$FlexibleDayCalendar": {
+    "$DayCalendar": {
         "add-entry": "Add entry",
         "current-day": "Bugüne Git",
         "day-total": "Gün Toplamı",
@@ -43,7 +43,7 @@
         "waived-day": "İzinli Gün",
         "yes": "Evet"
     },
-    "$FlexibleMonthCalendar": {
+    "$MonthCalendar": {
         "add-entry": "Add entry",
         "add-waiver-day": "Bugün için izili gün ekle",
         "current-month": "Şimdiki Aya Git",

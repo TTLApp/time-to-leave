@@ -28,7 +28,7 @@
         "tue": "Tis",
         "wed": "Ons"
     },
-    "$FlexibleDayCalendar": {
+    "$DayCalendar": {
         "add-entry": "Add entry",
         "current-day": "Gå till Aktuell Dag",
         "day-total": "Dag Total",
@@ -43,7 +43,7 @@
         "waived-day": "Ledig dag",
         "yes": "Ja"
     },
-    "$FlexibleMonthCalendar": {
+    "$MonthCalendar": {
         "add-entry": "Add entry",
         "add-waiver-day": "Lägg till ledighet för denna dag",
         "current-month": "Gå till aktuell månad",

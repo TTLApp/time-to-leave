@@ -28,7 +28,7 @@
         "tue": "Вт",
         "wed": "Ср"
     },
-    "$FlexibleDayCalendar": {
+    "$DayCalendar": {
         "add-entry": "Add entry",
         "current-day": "Перейти до поточного дня",
         "day-total": "Всього за день",
@@ -43,7 +43,7 @@
         "waived-day": "Відгул",
         "yes": "Так"
     },
-    "$FlexibleMonthCalendar": {
+    "$MonthCalendar": {
         "add-entry": "Add entry",
         "add-waiver-day": "Взяти відгул цього дня",
         "current-month": "Перейти до поточного місяця",

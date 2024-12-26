@@ -28,7 +28,7 @@
         "tue": "יום שלישי",
         "wed": "יום רביעי"
     },
-    "$FlexibleDayCalendar": {
+    "$DayCalendar": {
         "add-entry": "Add entry",
         "current-day": "מעבר ליום הנוכחי",
         "day-total": "מאזן יומי",
@@ -43,7 +43,7 @@
         "waived-day": "יום שוויתרת עליו",
         "yes": "כן"
     },
-    "$FlexibleMonthCalendar": {
+    "$MonthCalendar": {
         "add-entry": "Add entry",
         "add-waiver-day": "הוספת ויתור ליום זה",
         "current-month": "עבור לחודש הנוכחי",

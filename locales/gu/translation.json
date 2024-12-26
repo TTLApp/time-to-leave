@@ -28,7 +28,7 @@
         "tue": "મંગળ",
         "wed": "બુધ"
     },
-    "$FlexibleDayCalendar": {
+    "$DayCalendar": {
         "add-entry": "Add entry",
         "current-day": "વર્તમાન દિવસ પર જાઓ",
         "day-total": "દિવસનો કુલ",
@@ -43,7 +43,7 @@
         "waived-day": "માફ દિવસ",
         "yes": "હા"
     },
-    "$FlexibleMonthCalendar": {
+    "$MonthCalendar": {
         "add-entry": "Add entry",
         "add-waiver-day": "આ દિવસ માટે એક માફી ઉમેરો",
         "current-month": "વર્તમાન મહિના પર જાઓ",

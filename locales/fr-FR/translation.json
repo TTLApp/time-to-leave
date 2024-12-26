@@ -28,7 +28,7 @@
         "tue": "Mar",
         "wed": "Mer"
     },
-    "$FlexibleDayCalendar": {
+    "$DayCalendar": {
         "add-entry": "Add entry",
         "current-day": "Aller à Aujourd'hui",
         "day-total": "Total du jour",
@@ -43,7 +43,7 @@
         "waived-day": "Jour de dispense",
         "yes": "Oui"
     },
-    "$FlexibleMonthCalendar": {
+    "$MonthCalendar": {
         "add-entry": "Add entry",
         "add-waiver-day": "Ajouter une dispense pour ce jour",
         "current-month": "Aller au mois en cours",

@@ -2,8 +2,8 @@
 
 const assert = require('assert');
 import { CalendarFactory } from '../../../renderer/classes/CalendarFactory.js';
-import { FlexibleDayCalendar } from '../../../renderer/classes/FlexibleDayCalendar.js';
-import { FlexibleMonthCalendar } from '../../../renderer/classes/FlexibleMonthCalendar.js';
+import { DayCalendar } from '../../../renderer/classes/DayCalendar.js';
+import { MonthCalendar } from '../../../renderer/classes/MonthCalendar.js';
 
 import { calendarApi } from '../../../renderer/preload-scripts/calendar-api.js';
 
@@ -51,14 +51,14 @@ describe('CalendarFactory', () =>
         });
     });
 
-    describe('FlexibleDayCalendar', () =>
+    describe('DayCalendar', () =>
     {
         test('Should fail wrong view', async() =>
         {
             let calls = 0;
             const testCalendar = {
                 constructor: {
-                    name: 'FlexibleDayCalendar',
+                    name: 'DayCalendar',
                 },
                 updateLanguageData: () => { calls++; },
                 updatePreferences: () => { calls++; },
@@ -76,7 +76,7 @@ describe('CalendarFactory', () =>
             let calls = 0;
             const testCalendar = {
                 constructor: {
-                    name: 'NOT FlexibleDayCalendar',
+                    name: 'NOT DayCalendar',
                 },
                 updateLanguageData: () => { calls++; },
                 updatePreferences: () => { calls++; },
@@ -85,7 +85,7 @@ describe('CalendarFactory', () =>
             const calendar = await CalendarFactory.getInstance({
                 view: 'day',
             }, {}, testCalendar);
-            assert.strictEqual(calendar instanceof FlexibleDayCalendar, true);
+            assert.strictEqual(calendar instanceof DayCalendar, true);
             assert.strictEqual(calls, 0);
         });
 
@@ -99,7 +99,7 @@ describe('CalendarFactory', () =>
             const calendar = await CalendarFactory.getInstance({
                 view: 'day',
             }, {}, undefined);
-            assert.strictEqual(calendar instanceof FlexibleDayCalendar, true);
+            assert.strictEqual(calendar instanceof DayCalendar, true);
             assert.strictEqual(calls, 0);
         });
 
@@ -108,7 +108,7 @@ describe('CalendarFactory', () =>
             let calls = 0;
             const testCalendar = {
                 constructor: {
-                    name: 'NOT FlexibleDayCalendar',
+                    name: 'NOT DayCalendar',
                 },
                 updateLanguageData: () => { calls++; },
                 updatePreferences: () => { calls++; },
@@ -121,19 +121,19 @@ describe('CalendarFactory', () =>
             const calendar = await CalendarFactory.getInstance({
                 view: 'day',
             }, {}, testCalendar);
-            assert.strictEqual(calendar instanceof FlexibleDayCalendar, true);
+            assert.strictEqual(calendar instanceof DayCalendar, true);
             assert.strictEqual(calls, 1);
         });
     });
 
-    describe('FlexibleMonthCalendar', () =>
+    describe('MonthCalendar', () =>
     {
         test('Should fail wrong view', async() =>
         {
             let calls = 0;
             const testCalendar = {
                 constructor: {
-                    name: 'FlexibleMonthCalendar',
+                    name: 'MonthCalendar',
                 },
                 updateLanguageData: () => { calls++; },
                 updatePreferences: () => { calls++; },
@@ -156,7 +156,7 @@ describe('CalendarFactory', () =>
             const calendar = await CalendarFactory.getInstance({
                 view: 'month',
             }, {}, undefined);
-            assert.strictEqual(calendar instanceof FlexibleMonthCalendar, true);
+            assert.strictEqual(calendar instanceof MonthCalendar, true);
             assert.strictEqual(calls, 0);
         });
 
@@ -165,7 +165,7 @@ describe('CalendarFactory', () =>
             let calls = 0;
             const testCalendar = {
                 constructor: {
-                    name: 'NOT FlexibleMonthCalendar',
+                    name: 'NOT MonthCalendar',
                 },
                 updateLanguageData: () => { calls++; },
                 updatePreferences: () => { calls++; },
@@ -178,7 +178,7 @@ describe('CalendarFactory', () =>
             const calendar = await CalendarFactory.getInstance({
                 view: 'month',
             }, {}, testCalendar);
-            assert.strictEqual(calendar instanceof FlexibleMonthCalendar, true);
+            assert.strictEqual(calendar instanceof MonthCalendar, true);
             assert.strictEqual(calls, 1);
         });
     });

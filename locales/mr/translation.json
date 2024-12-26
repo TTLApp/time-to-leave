@@ -28,7 +28,7 @@
         "tue": "मंगळ",
         "wed": "बुध"
     },
-    "$FlexibleDayCalendar": {
+    "$DayCalendar": {
         "add-entry": "Add entry",
         "current-day": "चालू दिवस जा",
         "day-total": "दिवस एकूण",
@@ -43,7 +43,7 @@
         "waived-day": "माफीचा दिवस",
         "yes": "होय"
     },
-    "$FlexibleMonthCalendar": {
+    "$MonthCalendar": {
         "add-entry": "Add entry",
         "add-waiver-day": "या दिवसासाठी माफी जोडा",
         "current-month": "चालू महिन्यात जा",

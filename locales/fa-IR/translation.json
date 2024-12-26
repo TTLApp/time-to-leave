@@ -28,7 +28,7 @@
         "tue": "سه شنبه",
         "wed": "چهارشنبه"
     },
-    "$FlexibleDayCalendar": {
+    "$DayCalendar": {
         "add-entry": "Add entry",
         "current-day": "برو به امروز",
         "day-total": "مجموع این روز",
@@ -43,7 +43,7 @@
         "waived-day": "روز لغو شده (معافیت از کار)",
         "yes": "بله"
     },
-    "$FlexibleMonthCalendar": {
+    "$MonthCalendar": {
         "add-entry": "Add entry",
         "add-waiver-day": "اضافه کردن معافیت کاری برای این روز",
         "current-month": "برو به ماه فعلی",

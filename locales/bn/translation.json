@@ -28,7 +28,7 @@
         "tue": "মঙ্গল",
         "wed": "বুধ"
     },
-    "$FlexibleDayCalendar": {
+    "$DayCalendar": {
         "add-entry": "Add entry",
         "current-day": "বর্তমান দিনে যান",
         "day-total": "মোট দিন",
@@ -43,7 +43,7 @@
         "waived-day": "মওকুফ দিন",
         "yes": "হ্যা"
     },
-    "$FlexibleMonthCalendar": {
+    "$MonthCalendar": {
         "add-entry": "Add entry",
         "add-waiver-day": "এই দিনের জন্য মওকুফ যোগ করুন",
         "current-month": "চলতি মাসে যান",

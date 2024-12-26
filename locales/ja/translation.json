@@ -28,7 +28,7 @@
         "tue": "火",
         "wed": "水"
     },
-    "$FlexibleDayCalendar": {
+    "$DayCalendar": {
         "add-entry": "Add entry",
         "current-day": "現在の日付へ",
         "day-total": "1日の合計",
@@ -43,7 +43,7 @@
         "waived-day": "勤務免除日",
         "yes": "はい"
     },
-    "$FlexibleMonthCalendar": {
+    "$MonthCalendar": {
         "add-entry": "Add entry",
         "add-waiver-day": "勤務免除日に変更",
         "current-month": "現在の月へ",

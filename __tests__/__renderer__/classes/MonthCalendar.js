@@ -61,7 +61,7 @@ window.mainApi.computeAllTimeBalanceUntilPromise = (targetDate) =>
     });
 };
 
-describe('FlexibleMonthCalendar class Tests', () =>
+describe('MonthCalendar class Tests', () =>
 {
     process.env.NODE_ENV = 'test';
 
@@ -89,22 +89,22 @@ describe('FlexibleMonthCalendar class Tests', () =>
         calendar = await CalendarFactory.getInstance(testPreferences, languageData);
     });
 
-    test('FlexibleMonthCalendar starts with today\'s date', () =>
+    test('MonthCalendar starts with today\'s date', () =>
     {
-        assert.strictEqual(calendar.constructor.name, 'FlexibleMonthCalendar');
+        assert.strictEqual(calendar.constructor.name, 'MonthCalendar');
         assert.strictEqual(calendar._getCalendarDate(), today.getDate());
         assert.strictEqual(calendar._getCalendarYear(), today.getFullYear());
         assert.strictEqual(calendar._getCalendarMonth(), today.getMonth());
     });
 
-    test('FlexibleMonthCalendar "today" methods return today\'s date', () =>
+    test('MonthCalendar "today" methods return today\'s date', () =>
     {
         assert.strictEqual(calendar._getTodayDate(), today.getDate());
         assert.strictEqual(calendar._getTodayYear(), today.getFullYear());
         assert.strictEqual(calendar._getTodayMonth(), today.getMonth());
     });
 
-    test('FlexibleMonthCalendar internal storage correct loading', () =>
+    test('MonthCalendar internal storage correct loading', () =>
     {
         expect(calendar._internalStore['2020-3-1']).toStrictEqual(regularEntries['2020-3-1']);
         expect(calendar._getStore('2020-3-1')).toStrictEqual(regularEntries['2020-3-1']['values']);
@@ -130,7 +130,7 @@ describe('FlexibleMonthCalendar class Tests', () =>
         expect(entryStore.size).toStrictEqual(2);
     });
 
-    test('FlexibleMonthCalendar internal waiver storage correct loading', async() =>
+    test('MonthCalendar internal waiver storage correct loading', async() =>
     {
         // Waiver Store internally saves the human month index, but the calendar methods use JS month index
         expect(calendar._internalWaiverStore['2019-12-31']).toStrictEqual({ reason: 'New Year\'s eve', hours: '08:00' });
@@ -157,7 +157,7 @@ describe('FlexibleMonthCalendar class Tests', () =>
         expect(calendar._getWaiverStore(2010, 11, 31)).toStrictEqual({ reason: 'New Year\'s eve', hours: '08:00' });
     });
 
-    test('FlexibleMonthCalendar Month Changes', () =>
+    test('MonthCalendar Month Changes', () =>
     {
         assert.strictEqual(calendar._getCalendarMonth(), today.getMonth());
         const expectedNextMonth = today.getMonth() + 1 === 12 ? 0 : (today.getMonth() + 1);
@@ -176,7 +176,7 @@ describe('FlexibleMonthCalendar class Tests', () =>
         assert.strictEqual(calendar._getCalendarMonth(), today.getMonth());
     });
 
-    test('FlexibleMonthCalendar Year Changes', () =>
+    test('MonthCalendar Year Changes', () =>
     {
         assert.strictEqual(calendar._getCalendarYear(), today.getFullYear());
         const expectedNextYear = today.getFullYear() + 1;
@@ -205,9 +205,9 @@ describe('FlexibleMonthCalendar class Tests', () =>
         assert.strictEqual(calendar._getCalendarYear(), today.getFullYear());
     });
 
-    describe('FlexibleMonthCalendar RefreshOnDayChange', () =>
+    describe('MonthCalendar RefreshOnDayChange', () =>
     {
-        test('FlexibleMonthCalendar refresh set correctly', () =>
+        test('MonthCalendar refresh set correctly', () =>
         {
             // Calendar is set as if someone was looking at previous month
             calendar._prevMonth();
@@ -221,7 +221,7 @@ describe('FlexibleMonthCalendar class Tests', () =>
             assert.strictEqual(calendar._getCalendarMonth(), today.getMonth());
         });
 
-        test('FlexibleMonthCalendar refresh set to another month', () =>
+        test('MonthCalendar refresh set to another month', () =>
         {
             // Calendar is set as if someone was looking at previous month
             calendar._prevMonth();
@@ -233,15 +233,15 @@ describe('FlexibleMonthCalendar class Tests', () =>
         });
     });
 
-    test('FlexibleDayCalendar to FlexibleMonthCalendar', async() =>
+    test('DayCalendar to MonthCalendar', async() =>
     {
         const testPreferences = defaultPreferences;
         testPreferences['view'] = 'day';
         let calendar = await CalendarFactory.getInstance(testPreferences, languageData);
-        assert.strictEqual(calendar.constructor.name, 'FlexibleDayCalendar');
+        assert.strictEqual(calendar.constructor.name, 'DayCalendar');
 
         testPreferences['view'] = 'month';
         calendar = await CalendarFactory.getInstance(testPreferences, languageData, calendar);
-        assert.strictEqual(calendar.constructor.name, 'FlexibleMonthCalendar');
+        assert.strictEqual(calendar.constructor.name, 'MonthCalendar');
     });
 });

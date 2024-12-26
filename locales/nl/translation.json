@@ -28,7 +28,7 @@
         "tue": "Di",
         "wed": "Wo"
     },
-    "$FlexibleDayCalendar": {
+    "$DayCalendar": {
         "add-entry": "Add entry",
         "current-day": "Naar de huidige dag gaan",
         "day-total": "Dagtotaal",
@@ -43,7 +43,7 @@
         "waived-day": "Vrije dag",
         "yes": "Ja"
     },
-    "$FlexibleMonthCalendar": {
+    "$MonthCalendar": {
         "add-entry": "Add entry",
         "add-waiver-day": "Voeg een uitzondering toe voor deze dag",
         "current-month": "Naar de huidige maand gaan",

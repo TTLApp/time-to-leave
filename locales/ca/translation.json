@@ -28,7 +28,7 @@
         "tue": "Dim",
         "wed": "Dim"
     },
-    "$FlexibleDayCalendar": {
+    "$DayCalendar": {
         "add-entry": "Add entry",
         "current-day": "Anar al dia actual",
         "day-total": "Total del dia",
@@ -43,7 +43,7 @@
         "waived-day": "Dia de descans",
         "yes": "Sí"
     },
-    "$FlexibleMonthCalendar": {
+    "$MonthCalendar": {
         "add-entry": "Add entry",
         "add-waiver-day": "Afegeix dia lliure",
         "current-month": "Anar al mes actual",

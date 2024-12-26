@@ -28,7 +28,7 @@
         "tue": "二",
         "wed": "三"
     },
-    "$FlexibleDayCalendar": {
+    "$DayCalendar": {
         "add-entry": "Add entry",
         "current-day": "回到當前日子",
         "day-total": "日子總計",
@@ -43,7 +43,7 @@
         "waived-day": "已豁免日子",
         "yes": "是"
     },
-    "$FlexibleMonthCalendar": {
+    "$MonthCalendar": {
         "add-entry": "Add entry",
         "add-waiver-day": "為此日增加豁免",
         "current-month": "回到當前月份",
