@@ -58,8 +58,8 @@ class FlexibleDayCalendar extends BaseCalendar
     {
         const switchView = `<input id="switch-view" type="image" src="../assets/switch.svg" alt="${this._getTranslation('$BaseCalendar.switch-view')}" title="${this._getTranslation('$BaseCalendar.switch-view')}" height="24" width="24"></input>`;
         const todayBut = `<input id="current-day" type="image" src="../assets/calendar.svg" alt="${this._getTranslation('$FlexibleDayCalendar.current-day')}" title="${this._getTranslation('$FlexibleDayCalendar.current-day')}" height="24" width="24"></input>`;
-        const leftBut = `<input id="prev-day" type="image" src="../assets/left-arrow.svg" alt="${this._getTranslation('$FlexibleDayCalendar.previous-day')}" height="24" width="24"></input>`;
-        const rightBut = `<input id="next-day" type="image" src="../assets/right-arrow.svg" alt="${this._getTranslation('$FlexibleDayCalendar.next-day')}" height="24" width="24"></input>`;
+        const leftBut = `<input id="prev-day" type="image" src="../assets/left-arrow.svg" alt="${this._getTranslation('$FlexibleDayCalendar.previous-day')}" title="${this._getTranslation('$FlexibleDayCalendar.previous-day')}" height="24" width="24"></input>`;
+        const rightBut = `<input id="next-day" type="image" src="../assets/right-arrow.svg" alt="${this._getTranslation('$FlexibleDayCalendar.next-day')}" title="${this._getTranslation('$FlexibleDayCalendar.next-day')}" height="24" width="24"></input>`;
         const title = 'Time to Leave';
         return '<div class="title-header">'+
                     '<div class="title-header-img"><img src="../assets/ttl.svg" height="64" width="64"></div>' +
@@ -186,7 +186,7 @@ class FlexibleDayCalendar extends BaseCalendar
                 '</div>' +
                 '<div class="third-group">' +
                     '<div class="sign-cell">' +
-                        '<div class="sign-container"><span class="plus-sign">+</span></div>' +
+                        `<div title="${this._getTranslation('$FlexibleDayCalendar.add-entry')}" class="sign-container"><span class="plus-sign">+</span></div>` +
                     '</div>' +
                 '</div>' +
             '</div>\n';
@@ -280,6 +280,18 @@ class FlexibleDayCalendar extends BaseCalendar
     }
 
     /**
+     * Get code for - button.
+     */
+    _getMinusSignCode()
+    {
+        const minusSignCode =
+        '<div class="sign-cell">' +
+            `<div title="${this._getTranslation('$FlexibleDayCalendar.remove-entry')}" class="sign-container"><span class="minus-sign">-</span></div>` +
+        '</div>';
+        return minusSignCode;
+    }
+
+    /**
      * Draws +/- buttons for the flexible calendar.
      */
     _drawButtons()
@@ -293,10 +305,7 @@ class FlexibleDayCalendar extends BaseCalendar
 
             if (existingEntryPairs - 1 > 1)
             {
-                const minusSignCode =
-                    '<div class="sign-cell">' +
-                        '<div class="sign-container"><span class="minus-sign">-</span></div>' +
-                    '</div>';
+                const minusSignCode = calendar._getMinusSignCode();
                 $(minusSignCode).appendTo('.rows-time > div:last-of-type > .third-group');
                 $('.sign-cell:has(span.minus-sign)').off('click').on('click', removeEntries);
             }
@@ -636,12 +645,10 @@ class FlexibleDayCalendar extends BaseCalendar
         const numberOfPairs = Math.ceil(entrySize/2) >= 1 ? Math.ceil(entrySize/2) : 2;
 
         const translatedEntry = this._getTranslation('$FlexibleDayCalendar.entry');
+        const minusSignCode = this._getMinusSignCode();
+
         function entryPairHTMLCode(entryIndex, isLastRow)
         {
-            const minusSignCode =
-                '<div class="sign-cell">' +
-                    '<div class="sign-container"><span class="minus-sign">-</span></div>' +
-                '</div>';
             const shouldPrintMinusSign = numberOfPairs > 1 && isLastRow;
 
             return '<div class="row-entry-pair">' +

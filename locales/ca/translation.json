@@ -29,6 +29,7 @@
         "wed": "Dim"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "Anar al dia actual",
         "day-total": "Total del dia",
         "entry": "Entrada",

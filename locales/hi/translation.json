@@ -29,6 +29,7 @@
         "wed": "बुध"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "वर्तमान दिन पर जाएं",
         "day-total": "दिन का कुल",
         "entry": "प्रवेश",

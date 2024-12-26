@@ -29,6 +29,7 @@
         "wed": "수"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "오늘로 이동",
         "day-total": "오늘의 총 작업 시간",
         "entry": "작업",

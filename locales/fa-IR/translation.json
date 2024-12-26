@@ -29,6 +29,7 @@
         "wed": "چهارشنبه"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "برو به امروز",
         "day-total": "مجموع این روز",
         "entry": "مورد",

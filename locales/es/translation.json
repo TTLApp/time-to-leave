@@ -29,6 +29,7 @@
         "wed": "Mié"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Añade entrada",
         "current-day": "Ir a dia actual",
         "day-total": "Total del día",
         "entry": "Entrada",

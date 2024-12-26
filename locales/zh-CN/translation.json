@@ -29,6 +29,7 @@
         "wed": "三"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "回到当前日子",
         "day-total": "日子总计",
         "entry": "纪录",

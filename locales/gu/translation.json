@@ -29,6 +29,7 @@
         "wed": "બુધ"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "વર્તમાન દિવસ પર જાઓ",
         "day-total": "દિવસનો કુલ",
         "entry": "પ્રવેશ",

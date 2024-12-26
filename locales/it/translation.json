@@ -29,6 +29,7 @@
         "wed": "Mer"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "Vai al giorno corrente",
         "day-total": "Totale giornata",
         "entry": "Record",

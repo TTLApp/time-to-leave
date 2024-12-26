@@ -29,6 +29,7 @@
         "wed": "Ons"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "Gå till Aktuell Dag",
         "day-total": "Dag Total",
         "entry": "Post",

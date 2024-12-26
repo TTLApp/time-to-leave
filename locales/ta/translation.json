@@ -29,6 +29,7 @@
         "wed": "புதன்"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "நடப்பு நாளுக்குச் செல்ல",
         "day-total": "நாள் மொத்தம்",
         "entry": "பதிவு",

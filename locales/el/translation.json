@@ -29,6 +29,7 @@
         "wed": "Τετ"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "Μετάβαση στην Τρέχουσα Ημέρα",
         "day-total": "Συνολική Ημέρα",
         "entry": "Καταχώρηση",

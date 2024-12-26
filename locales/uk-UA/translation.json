@@ -29,6 +29,7 @@
         "wed": "Ср"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "Перейти до поточного дня",
         "day-total": "Всього за день",
         "entry": "Запис",

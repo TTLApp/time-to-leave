@@ -29,6 +29,7 @@
         "wed": "พ."
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "ไปที่วันปัจจุบัน",
         "day-total": "วันทั้งหมด",
         "entry": "รายการ",

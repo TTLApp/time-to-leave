@@ -29,6 +29,7 @@
         "wed": "Mi"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "Zum heutigen Tag springen",
         "day-total": "Tag gesamt",
         "entry": "Eintrag",

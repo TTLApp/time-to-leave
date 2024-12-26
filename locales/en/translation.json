@@ -29,6 +29,7 @@
         "wed": "Wed"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "Go to Current Day",
         "day-total": "Day Total",
         "entry": "Entry",

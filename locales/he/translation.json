@@ -29,6 +29,7 @@
         "wed": "יום רביעי"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "מעבר ליום הנוכחי",
         "day-total": "מאזן יומי",
         "entry": "רשומה",

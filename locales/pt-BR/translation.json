@@ -29,6 +29,7 @@
         "wed": "Qua"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Adicionar registro",
         "current-day": "Ir para o Dia Atual",
         "day-total": "Total do Dia",
         "entry": "Registro",

@@ -29,6 +29,7 @@
         "wed": "Rab"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "Hari terakhir",
         "day-total": "Total hari",
         "entry": "Entri",

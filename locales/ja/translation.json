@@ -29,6 +29,7 @@
         "wed": "水"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "現在の日付へ",
         "day-total": "1日の合計",
         "entry": "記録",

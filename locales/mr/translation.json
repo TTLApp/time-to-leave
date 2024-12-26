@@ -29,6 +29,7 @@
         "wed": "बुध"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "चालू दिवस जा",
         "day-total": "दिवस एकूण",
         "entry": "प्रवेश",

@@ -29,6 +29,7 @@
         "wed": "Śr"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "Przejdź do bieżącego dnia",
         "day-total": "Dzisiejszy czas pracy",
         "entry": "Wpis",

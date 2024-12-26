@@ -29,6 +29,7 @@
         "wed": "Wo"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "Naar de huidige dag gaan",
         "day-total": "Dagtotaal",
         "entry": "Invoer",

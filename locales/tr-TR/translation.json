@@ -29,6 +29,7 @@
         "wed": "Çrb"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "Bugüne Git",
         "day-total": "Gün Toplamı",
         "entry": "Girdi",

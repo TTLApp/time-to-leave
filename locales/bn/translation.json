@@ -29,6 +29,7 @@
         "wed": "বুধ"
     },
     "$FlexibleDayCalendar": {
+        "add-entry": "Add entry",
         "current-day": "বর্তমান দিনে যান",
         "day-total": "মোট দিন",
         "entry": "প্রবেশ",
