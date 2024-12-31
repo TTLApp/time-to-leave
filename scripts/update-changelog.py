@@ -10,7 +10,7 @@ from pathlib import Path
 # And updates the the changelog file to include the new information
 
 # Global settings
-g_prefix_line = '-   '
+g_prefix_line = '- '
 g_begin_changes = '<!--- Begin changes - Do not remove -->'
 g_end_changes = '<!--- End changes - Do not remove -->'
 g_begin_users = '<!--- Begin users - Do not remove -->'
