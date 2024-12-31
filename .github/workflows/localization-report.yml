@@ -35,8 +35,8 @@ jobs:
           body=$(cat comparison.md)
           body="${body//'%'/'%25'}"
           body="${body//$'\n'/'%0A'}"
-          body="${body//$'\r'/'%0D'}" 
-          echo ::set-output name=log::$body
+          body="${body//$'\r'/'%0D'}"
+          echo "log=$body" >> $GITHUB_OUTPUT
       - uses: tibdex/github-app-token@v1
         id: generate-token
         with:
