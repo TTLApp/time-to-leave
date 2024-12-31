@@ -8,7 +8,7 @@ from urllib.parse import urlencode, unquote, urlparse, parse_qsl, ParseResult
 
 LOCALES_PATH = 'locales/'
 BASELINE_LANGUAGE = 'en'
-LANG_CONFIG_FILE = 'src/configs/app.config.js'
+LANG_CONFIG_FILE = 'src/configs/app.config.mjs'
 SCOPE_KEY_TO_IGNORE = {'$Menu' : ['ttl-github']}
 
 LANG_SCOPE_KEY_TO_IGNORE = {'de-DE': {'$Preferences' : ['themes', 'hours-per-day'],
