@@ -141,7 +141,7 @@
         "numberOfEntries": "Jumlah Entri",
         "overallBalanceStart": "Rata Rata Keseluruhan Tanggal Mulai ",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "Sab",
         "startOnLogin": "Mulai saat Login",

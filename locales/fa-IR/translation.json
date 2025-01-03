@@ -141,7 +141,7 @@
         "numberOfEntries": "تعداد موارد",
         "overallBalanceStart": "تاریخ شروع محاسبه اختلاف ساعت های کاری",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "شنبه",
         "startOnLogin": "بازکردن هنگام ورود به سیستم",

@@ -6,7 +6,6 @@ import { getTranslationInLanguageData, translatePage } from '../renderer/i18n-tr
 // Global values for preferences page
 let usersStyles;
 let preferences;
-let listenersCreated = false;
 
 function populateLanguages()
 {
@@ -183,90 +182,100 @@ function renderPreferencesWindow()
         notification.is(':checked') && usersStyles['repetition']
     );
     notificationsInterval.prop('disabled', !repetition.is(':checked'));
+}
 
-    if (!listenersCreated)
+function setupListeners()
+{
+    $('input[type="checkbox"]').on('change', function()
     {
-        $('input[type="checkbox"]').on('change', function()
-        {
-            changeValue(this.name, this.checked);
-        });
+        changeValue(this.name, this.checked);
+    });
 
-        $('#hours-per-day, #break-time-interval').on('change', function()
+    $('#hours-per-day, #break-time-interval').on('change', function()
+    {
+        /* istanbul ignore else */
+        if (this.checkValidity() === true)
         {
-            /* istanbul ignore else */
-            if (this.checkValidity() === true)
+            const entry = convertTimeFormat(this.value);
+            this.value = entry;
+            changeValue(this.name, entry);
+        }
+    });
+
+    $('input[type="number"], input[type="date"]').on('change', function()
+    {
+        changeValue(this.name, this.value);
+    });
+
+    $('#theme').on('change', function()
+    {
+        changeValue('theme', this.value);
+        applyTheme(this.value);
+    });
+
+    $('#view').on('change', function()
+    {
+        changeValue('view', this.value);
+    });
+
+    $('#reset-button').on('click', function()
+    {
+        console.log("1");
+        window.mainApi.getLanguageDataPromise().then(languageData =>
+        {
+            console.log("2");
+            const options = {
+                type: 'question',
+                buttons: [getTranslationInLanguageData(languageData.data, '$Preferences.yes-please'), getTranslationInLanguageData(languageData.data, '$Preferences.no-thanks')],
+                defaultId: 1,
+                cancelId: 1,
+                title: getTranslationInLanguageData(languageData.data, '$Preferences.reset-preferences'),
+                message: getTranslationInLanguageData(languageData.data, '$Preferences.confirm-reset-preferences'),
+            };
+            window.mainApi.showDialogSync(options).then((result) =>
             {
-                const entry = convertTimeFormat(this.value);
-                this.value = entry;
-                changeValue(this.name, entry);
-            }
-        });
-
-        $('input[type="number"], input[type="date"]').on('change', function()
-        {
-            changeValue(this.name, this.value);
-        });
-
-        $('#theme').on('change', function()
-        {
-            changeValue('theme', this.value);
-            applyTheme(this.value);
-        });
-
-        $('#view').on('change', function()
-        {
-            changeValue('view', this.value);
-        });
-
-        $('#reset-button').on('click', function()
-        {
-            window.mainApi.getLanguageDataPromise().then(languageData =>
-            {
-                const options = {
-                    type: 'question',
-                    buttons: [getTranslationInLanguageData(languageData.data, '$Preferences.yes-please'), getTranslationInLanguageData(languageData.data, '$Preferences.no-thanks')],
-                    defaultId: 1,
-                    cancelId: 1,
-                    title: getTranslationInLanguageData(languageData.data, '$Preferences.reset-preferences'),
-                    message: getTranslationInLanguageData(languageData.data, '$Preferences.confirm-reset-preferences'),
-                };
-                window.mainApi.showDialogSync(options).then((result) =>
+                if (result.response === 0 /*Yes*/)
                 {
-                    if (result.response === 0 /*Yes*/)
-                    {
-                        $('.reset-button').text(getTranslationInLanguageData(languageData.data, '$Preferences.resetted'));
-                        setTimeout(() =>
-                        {
-                            $('.reset-button').text(getTranslationInLanguageData(languageData.data, '$Preferences.reset'));
-                        }, 3000);
-                        resetContent();
-                    }
-                });
+                    resetContent();
+                    const optionsReset = {
+                        type: 'info',
+                        message: getTranslationInLanguageData(languageData.data, '$Preferences.reset-preferences'),
+                        detail: getTranslationInLanguageData(languageData.data, '$Preferences.reset-success'),
+                    };
+                    window.mainApi.showDialogSync(optionsReset);
+                }
             });
         });
+    });
 
-        prefillBreak.on('change', function()
-        {
-            breakInterval.prop('disabled', !prefillBreak.is(':checked'));
-        });
+    const prefillBreak = $('#enable-prefill-break-time');
+    const breakInterval = $('#break-time-interval');
 
-        notification.on('change', function()
-        {
-            repetition.prop('disabled', !notification.is(':checked'));
-            repetition.prop(
-                'checked',
-                notification.is(':checked') && usersStyles['repetition']
-            );
-            notificationsInterval.prop('disabled', !repetition.is(':checked'));
-        });
+    prefillBreak.on('change', function()
+    {
+        breakInterval.prop('disabled', !prefillBreak.is(':checked'));
+    });
 
-        repetition.on('change', function()
-        {
-            notificationsInterval.prop('disabled', !repetition.is(':checked'));
-        });
-    }
-    listenersCreated = true;
+    const notification = $('#notification');
+    const repetition = $('#repetition');
+    const notificationsInterval = $('#notifications-interval');
+
+    notification.on('change', function()
+    {
+        repetition.prop('disabled', !notification.is(':checked'));
+        repetition.prop(
+            'checked',
+            notification.is(':checked') && usersStyles['repetition']
+        );
+        notificationsInterval.prop('disabled', !repetition.is(':checked'));
+    });
+
+    repetition.on('change', function()
+    {
+        notificationsInterval.prop('disabled', !repetition.is(':checked'));
+    });
 }
+
 /* istanbul ignore next */
 $(() =>
 {
@@ -275,6 +284,7 @@ $(() =>
         usersStyles = userPreferences;
         preferences = usersStyles;
         renderPreferencesWindow();
+        setupListeners();
         setupLanguages();
     });
 });

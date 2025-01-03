@@ -141,7 +141,7 @@
         "numberOfEntries": "Nombre d'entrées",
         "overallBalanceStart": "Date de début du solde global",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "Sam",
         "startOnLogin": "Lancer au démarrage",

@@ -6,6 +6,7 @@ import '../../__mocks__/jquery.mjs';
 import assert from 'assert';
 import fs from 'fs';
 import { JSDOM } from 'jsdom';
+import sinon from 'sinon';
 import path from 'path';
 
 import { rootDir } from '../../js/app-config.mjs';
@@ -16,6 +17,8 @@ import {
     savePreferences,
 } from '../../js/user-preferences.mjs';
 import { preferencesApi } from '../../renderer/preload-scripts/preferences-api.mjs';
+import { i18nTranslatorMock } from '../../renderer/i18n-translator.js';
+i18nTranslatorMock.mock('getTranslationInLanguageData', sinon.stub().returnsThis());
 
 const isCheckBox = true;
 const weekdays = [
@@ -294,14 +297,6 @@ describe('Test Preferences Window', () =>
             resetContent();
             populateLanguages();
             listenerLanguage();
-        });
-
-        it('Click reset and check button text change', () =>
-        {
-            const resetText = $('#reset-button').text();
-            $('#reset-button').trigger('click');
-            const resetTextAfterClick = $('#reset-button').text();
-            assert.notStrictEqual(resetText, resetTextAfterClick);
         });
 
         it('Click reset and check that setting was restored', () =>

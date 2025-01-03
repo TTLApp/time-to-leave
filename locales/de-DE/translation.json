@@ -141,7 +141,7 @@
         "numberOfEntries": "Anzahl an Einträgen",
         "overallBalanceStart": "Gesamtbilanz Startdatum",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "Sa",
         "startOnLogin": "Starten beim Login",

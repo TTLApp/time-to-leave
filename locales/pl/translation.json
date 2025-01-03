@@ -141,7 +141,7 @@
         "numberOfEntries": "Liczba wpisów",
         "overallBalanceStart": "Data rozpoczęcia ogólnej statystyki",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "Sob",
         "startOnLogin": "Uruchom przy starcie systemu",

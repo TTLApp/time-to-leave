@@ -141,7 +141,7 @@
         "numberOfEntries": "Aantal invoergegevens",
         "overallBalanceStart": "Algemeen overzicht startdatum",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "Za",
         "startOnLogin": "Starten met inloggen",

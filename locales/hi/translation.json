@@ -141,7 +141,7 @@
         "numberOfEntries": "प्रविष्टियोंकी संख्या",
         "overallBalanceStart": "ओवरऑल बैलेंस स्टार्ट डेट",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "शनि",
         "startOnLogin": "लॉगिन पर शुरू करें",

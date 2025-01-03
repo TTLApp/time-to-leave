@@ -141,7 +141,7 @@
         "numberOfEntries": "Número de Registos",
         "overallBalanceStart": "Data de Início do Balanço Total",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "Sáb",
         "startOnLogin": "Iniciar com o Login",

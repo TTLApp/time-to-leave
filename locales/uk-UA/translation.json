@@ -141,7 +141,7 @@
         "numberOfEntries": "Кількість записів",
         "overallBalanceStart": "Дата початку загального балансу",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "Сб",
         "startOnLogin": "Автозапуск при вході в систему",

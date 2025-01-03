@@ -141,7 +141,7 @@
         "numberOfEntries": "하루 작업 단위 개수",
         "overallBalanceStart": "총 작업 달성도 집계 시작일",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "토",
         "startOnLogin": "시스템 시작 시 자동 실행",

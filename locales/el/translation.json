@@ -141,7 +141,7 @@
         "numberOfEntries": "Αριθμός εγγραφών",
         "overallBalanceStart": "Ημερομηνία Έναρξης Συνολικού Ισοζυγίου",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "Σαβ",
         "startOnLogin": "Εκκίνηση κατά την είσοδο στο σύστημα",

@@ -141,7 +141,7 @@
         "numberOfEntries": "પ્રવેશોની સંખ્યા",
         "overallBalanceStart": "એકંદરે બેલેન્સ પ્રારંભ તારીખ",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "શનિ",
         "startOnLogin": "લોગિન પર પ્રારંભ કરો",

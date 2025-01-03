@@ -141,7 +141,7 @@
         "numberOfEntries": "記録の数",
         "overallBalanceStart": "累計計算の開始日",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "土",
         "startOnLogin": "ログイン時に起動",

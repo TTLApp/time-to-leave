@@ -142,7 +142,7 @@
         "numberOfEntries": "এন্ট্রির সংখ্যা",
         "overallBalanceStart": "সামগ্রিক ব্যালেন্স শুরুর তারিখ",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "শনি",
         "startOnLogin": "লগইন শুরু করুন",

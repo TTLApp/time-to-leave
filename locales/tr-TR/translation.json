@@ -141,7 +141,7 @@
         "numberOfEntries": "Girdi Sayısı",
         "overallBalanceStart": "Başlangıç Tarihinden İtibaren Genel Bilanço",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "Cmt",
         "startOnLogin": "Giriş Yap",

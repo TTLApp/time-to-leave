@@ -141,7 +141,7 @@
         "numberOfEntries": "உள்ளீடுகளின் எண்ணிக்கை",
         "overallBalanceStart": "ஒட்டுமொத்த இருப்பு தொடக்க தேதி",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "சனி",
         "startOnLogin": "உள்நுழைவில் தொடங்கவும்",

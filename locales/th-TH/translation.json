@@ -141,7 +141,7 @@
         "numberOfEntries": "จำนวนรายการ",
         "overallBalanceStart": "ภาพรวมชั่วโมงที่เหลือในวันเริ่ม",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "เสาร์",
         "startOnLogin": "เริ่มเมื่อเข้าสู่ระบบ",

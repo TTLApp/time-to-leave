@@ -141,7 +141,7 @@
         "numberOfEntries": "Número de entradas",
         "overallBalanceStart": "Data de início do balanço total",
         "reset": "Resetá",
-        "resetted": "Resetô!",
+        "reset-success": "Vortamo direitin as preferência pro padrão!",
         "reset-preferences": "Resetá pros trem original",
         "sat": "Sáb",
         "startOnLogin": "Iniciar com Login",

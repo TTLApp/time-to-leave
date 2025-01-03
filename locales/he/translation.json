@@ -141,7 +141,7 @@
         "numberOfEntries": "כמות רשומות",
         "overallBalanceStart": "זמן התחלה של מאזן כללי",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "יום שבת",
         "startOnLogin": "התחל בעת חיבור",

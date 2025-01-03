@@ -64,7 +64,6 @@ html[data-theme="dark"] {
   --table-header-label-shadow: var(--table-border);
   --error: red;
   --punch-bground: rgb(164 158 207);
-  --reset-color: rgb(242 93 77);
   --punch-color: white;
   --punch-disable-bground: rgb(134 134 134);
   --slider-background-color: var(--table-cell-offtime-bground);
@@ -101,7 +100,6 @@ html[data-theme="cadent-star"] {
   --table-header-label-bground: rgb(255 238 227 / 90%);
   --table-header-label-shadow: var(--table-border);
   --error: red;
-  --reset-color: rgb(242 93 77);
   --punch-bground: var(--table-total-border);
   --punch-color: rgb(228 228 228);
   --punch-disable-bground: rgb(134 134 134);
@@ -699,13 +697,17 @@ input:disabled + .slider {
   text-align: center;
 }
 
-#preferences-window .reset-button {
+#preferences-window #reset-button {
   opacity: 0.9;
   width: 25%;
   height: 24px;
   border: none;
   color: var(--punch-color);
   background-color: var(--reset-color);
+}
+
+#preferences-window #reset-button:hover {
+  background-color: hsl(0, 100%, 60%);
 }
 
 /* Waiver page styles */

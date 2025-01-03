@@ -141,7 +141,7 @@
         "numberOfEntries": "Antal poster",
         "overallBalanceStart": "Startdatum för totalsaldo",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "Lör",
         "startOnLogin": "Start vid inloggning",

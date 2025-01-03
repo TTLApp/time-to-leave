@@ -141,7 +141,7 @@
         "numberOfEntries": "Número de entradas",
         "overallBalanceStart": "Data de início do balanço total",
         "reset": "Restaurar",
-        "resetted": "Restaurado!",
+        "reset-success": "Preferências restauradas para o padrão com sucesso!",
         "reset-preferences": "Restaurar preferências padrão",
         "sat": "Sáb",
         "startOnLogin": "Iniciar com Login",

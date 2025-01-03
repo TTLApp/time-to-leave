@@ -141,7 +141,7 @@
         "numberOfEntries": "Количество записей",
         "overallBalanceStart": "Дата начала общей статистики",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "Сб",
         "startOnLogin": "Войти",

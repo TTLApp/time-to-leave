@@ -141,7 +141,7 @@
         "numberOfEntries": "Nombre de entrades",
         "overallBalanceStart": "Balanç general Data D'inici",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "Dis",
         "startOnLogin": "Començar al inici de sessió",

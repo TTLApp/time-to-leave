@@ -141,7 +141,7 @@
         "numberOfEntries": "Numero di record",
         "overallBalanceStart": "Data di inizio bilanciamento complessivo",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "Sab",
         "startOnLogin": "Avvia al login",

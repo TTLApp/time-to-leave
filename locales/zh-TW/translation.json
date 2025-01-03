@@ -141,7 +141,7 @@
         "numberOfEntries": "紀錄數量",
         "overallBalanceStart": "總體結餘開始日期",
         "reset": "Reset",
-        "resetted": "Reset!",
+        "reset-success": "Preferences successfully reset to default!",
         "reset-preferences": "Reset to default preferences",
         "sat": "六",
         "startOnLogin": "登入系統後自動啟動程序",
