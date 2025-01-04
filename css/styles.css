@@ -707,7 +707,7 @@ input:disabled + .slider {
 }
 
 #preferences-window #reset-button:hover {
-  background-color: hsl(0, 100%, 60%);
+  background-color: hsl(0deg 100% 60%);
 }
 
 /* Waiver page styles */
