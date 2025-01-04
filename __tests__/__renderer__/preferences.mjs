@@ -87,6 +87,7 @@ let listenerLanguage;
 let populateLanguages;
 let refreshContent;
 let renderPreferencesWindow;
+let setupListeners;
 let resetContent;
 
 describe('Test Preferences Window', () =>
@@ -101,14 +102,15 @@ describe('Test Preferences Window', () =>
 
         // Stub methods
         window.mainApi.notifyNewPreferences = () => {};
-        window.mainApi.getLanguageDatePromise = () => {};
         window.mainApi.showDialogSync = () => { return new Promise((resolve) => resolve({ response: 0 })); };
 
-        // TODO: add the necessary values here for the reset test to work
-        // window.mainApi.getLanguageDataPromise = () => { return new Promise((resolve) => resolve({
-        //     'language': 'en',
-        //     'data': {}
-        // })); };
+        window.mainApi.getLanguageDataPromise = () =>
+        {
+            return new Promise((resolve) => resolve({
+                'language': 'en',
+                'data': {}
+            }));
+        };
 
         resetPreferenceFile();
 
@@ -120,6 +122,7 @@ describe('Test Preferences Window', () =>
         populateLanguages = file.populateLanguages;
         refreshContent = file.refreshContent;
         renderPreferencesWindow = file.renderPreferencesWindow;
+        setupListeners = file.setupListeners;
         resetContent = file.resetContent;
     });
 
@@ -289,7 +292,7 @@ describe('Test Preferences Window', () =>
         });
     });
 
-    describe('Checking if reset button is responsive', () =>
+    describe('Checking reset logic', () =>
     {
         beforeEach(async function()
         {
@@ -299,12 +302,34 @@ describe('Test Preferences Window', () =>
             listenerLanguage();
         });
 
-        it('Click reset and check that setting was restored', () =>
+        it('Check reset function restores setting', () =>
         {
-            changeItemValue('count-today', true);
-            checkRenderedItem('count-today');
+            changeItemInputValue('count-today', true);
+            checkRenderedItem('count-today', isCheckBox);
+            resetContent();
+            $('input[name*=\'count-today\']').prop('checked', (i, val) =>
+            {
+                assert.strictEqual(val, false);
+            });
+        });
+
+        it('Click reset and check that reset function is being called', (done) =>
+        {
+            changeItemInputValue('count-today', true);
+            checkRenderedItem('count-today', isCheckBox);
+            // For some reason listeners are not set-up when we get to this point
+            // despite them being called at the beginning of the test
+            setupListeners();
             $('#reset-button').trigger('click');
-            assert.strictEqual($('#count-today').val(), false);
+            // Need to briefly timeout so the click actions can propagate
+            setTimeout(() =>
+            {
+                $('input[name*=\'count-today\']').prop('checked', (i, val) =>
+                {
+                    assert.strictEqual(val, false);
+                });
+                done();
+            }, 1);
         });
     });
 });

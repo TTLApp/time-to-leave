@@ -220,10 +220,8 @@ function setupListeners()
 
     $('#reset-button').on('click', function()
     {
-        console.log("1");
         window.mainApi.getLanguageDataPromise().then(languageData =>
         {
-            console.log("2");
             const options = {
                 type: 'question',
                 buttons: [getTranslationInLanguageData(languageData.data, '$Preferences.yes-please'), getTranslationInLanguageData(languageData.data, '$Preferences.no-thanks')],
@@ -295,5 +293,6 @@ export {
     resetContent,
     populateLanguages,
     listenerLanguage,
+    setupListeners,
     renderPreferencesWindow,
 };
