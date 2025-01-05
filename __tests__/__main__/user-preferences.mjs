@@ -77,7 +77,7 @@ describe('Preferences Main', () =>
 
         it('Day view', () =>
         {
-            const preferences = getDefaultPreferences();
+            const preferences = structuredClone(getDefaultPreferences());
 
             preferences['view'] = 'day';
             savePreferences(preferences);
@@ -103,7 +103,7 @@ describe('Preferences Main', () =>
 
         it('Day to Month', () =>
         {
-            let preferences = getDefaultPreferences();
+            let preferences = structuredClone(getDefaultPreferences());
 
             preferences['view'] = 'day';
             savePreferences(preferences);
