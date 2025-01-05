@@ -35,7 +35,7 @@ Who built X.Y.Z:
 ```
 
 2. Bump `package.json` to developer version (version + 1)-dev
-3. Bump the links in website/src/index.html (search for the old version tag)
+3. Bump the links in [website](https://github.com/TTLApp/website/blob/main/src/index.html) (search for the old version tag)
 4. `git commit -am "Bump to version vX.Y.Z-dev"`
 5. `git push`
 6. Create PR in HomeBrew cask updating version. See [example](https://github.com/Homebrew/homebrew-cask/pull/105569/files).

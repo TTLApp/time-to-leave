@@ -4,5 +4,4 @@ node_modules/
 **/*.svg
 **/*.html
 **/*.css
-website/**/*.js
 release-builds
