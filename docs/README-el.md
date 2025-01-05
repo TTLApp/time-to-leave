@@ -7,8 +7,8 @@
 
 <br/>
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Πλατφόρμες">
-<img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Λήψεις συνολικά">
-<a href="https://github.com/thamara/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Τελευταία Έκδοση"></a>
+<img src="https://img.shields.io/github/downloads/TTLApp/time-to-leave/total" alt="Λήψεις συνολικά">
+<a href="https://github.com/TTLApp/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/TTLApp/time-to-leave" alt="Τελευταία Έκδοση"></a>
 <a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="Πρόσκληση για συνεισφορά"></a>
 
    <br/>
@@ -36,7 +36,7 @@
 
 ## Πώς να εγκαταστήσετε το TTL
 
-Το Time to Leave λειτουργεί σε MacOS, Windows και Linux, και μπορείτε να κατεβάσετε την επιθυμητή έκδοση από την [τελευταία έκδοση](https://github.com/thamara/time-to-leave/releases/latest).
+Το Time to Leave λειτουργεί σε MacOS, Windows και Linux, και μπορείτε να κατεβάσετε την επιθυμητή έκδοση από την [τελευταία έκδοση](https://github.com/TTLApp/time-to-leave/releases/latest).
 
 ## Πώς να δημιουργήσετε και να συνεισφέρετε στο TTL
 

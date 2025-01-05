@@ -8,8 +8,8 @@
   <br/>
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
-<img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Toplam İndirilme Sayısı">
-<a href="https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="En Son Sürümü"></a>
+<img src="https://img.shields.io/github/downloads/TTLApp/time-to-leave/total" alt="Toplam İndirilme Sayısı">
+<a href="https://github.com/TTLApp/time-to-leave/releases/tag/v.1.5.5"><img src="https://img.shields.io/github/v/release/TTLApp/time-to-leave" alt="En Son Sürümü"></a>
 <a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="En Son Sürümü"></a>
 
    <br/>
@@ -37,7 +37,7 @@ Aynı zamanda izinli olduğunuz günleri de çalışmadığınız günlere ekley
 
 ## TTL'i Nasıl Yüklerim
 
-Time to Leave Macos, Windows ve Linux versiyonu bulunmaktadır. İstediğiniz versiyonu [buradan](https://github.com/thamara/time-to-leave/releases/latest) indirebilirsiniz.
+Time to Leave Macos, Windows ve Linux versiyonu bulunmaktadır. İstediğiniz versiyonu [buradan](https://github.com/TTLApp/time-to-leave/releases/latest) indirebilirsiniz.
 
 ## TTL'e Nasıl Katkıda Bulunabilirim
 

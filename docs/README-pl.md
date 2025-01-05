@@ -8,8 +8,8 @@
   <br>
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
-<img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Downloads in Total">
-<a href="https://github.com/thamara/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Latest Release"></a>
+<img src="https://img.shields.io/github/downloads/TTLApp/time-to-leave/total" alt="Downloads in Total">
+<a href="https://github.com/TTLApp/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/TTLApp/time-to-leave" alt="Latest Release"></a>
 <a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="Latest Release"></a>
 
    <br/>
@@ -36,7 +36,7 @@ Możesz dodać zwolnienia do dni, w których nie ma cię w pracy.
 
 ## Jak zainstalować _Time to Leave_
 
-_Time to Leave_ działa na systemach Windows, MacOS i Linux. Pożądaną wersję możesz pobrać z [ostatniego wydania na githubie](https://github.com/thamara/time-to-leave/releases/latest).
+_Time to Leave_ działa na systemach Windows, MacOS i Linux. Pożądaną wersję możesz pobrać z [ostatniego wydania na githubie](https://github.com/TTLApp/time-to-leave/releases/latest).
 
 ## Jak wesprzeć _Time to Leave_
 

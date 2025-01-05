@@ -8,8 +8,8 @@
   <br/>
 
   <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
-  <img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Downloads in Total">
-  <a href="https://github.com/thamara/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Latest Release"></a>
+  <img src="https://img.shields.io/github/downloads/TTLApp/time-to-leave/total" alt="Downloads in Total">
+  <a href="https://github.com/TTLApp/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/TTLApp/time-to-leave" alt="Latest Release"></a>
   <a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="Latest Release"></a>
 
   <br/>
@@ -36,7 +36,7 @@
 
 ## কিভাবে TTL ইনস্টল করবেন
 
-ছেড়ে যাওয়ার সময় ম্যাকওএস, উইন্ডোজ এবং লিনাক্সে কাজ করে এবং আপনি [সর্বশেষ প্রকাশ](https://github.com/thamara/time-to-leave/releases/latest) থেকে পছন্দসই সংস্করণটি ডাউনলোড করতে পারেন।
+ছেড়ে যাওয়ার সময় ম্যাকওএস, উইন্ডোজ এবং লিনাক্সে কাজ করে এবং আপনি [সর্বশেষ প্রকাশ](https://github.com/TTLApp/time-to-leave/releases/latest) থেকে পছন্দসই সংস্করণটি ডাউনলোড করতে পারেন।
 
 ## কিভাবে টিটিএল তৈরি এবং অবদান রাখতে হয়
 

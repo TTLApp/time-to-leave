@@ -8,8 +8,8 @@
   <br/>
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
-<img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Downloads in Total">
-<a href="https://github.com/thamara/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Latest Release"></a>
+<img src="https://img.shields.io/github/downloads/TTLApp/time-to-leave/total" alt="Downloads in Total">
+<a href="https://github.com/TTLApp/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/TTLApp/time-to-leave" alt="Latest Release"></a>
 <a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="Latest Release"></a>
 
    <br/>
@@ -36,7 +36,7 @@ Você também pode adicionar folgas nos dias que não trabalhou.
 
 ## Como instalar o TTL
 
-Time to Leave funciona em MacOS, Windows e Linux, e você pode baixar a versão desejada da [última versão](https://github.com/thamara/time-to-leave/releases/latest).
+Time to Leave funciona em MacOS, Windows e Linux, e você pode baixar a versão desejada da [última versão](https://github.com/TTLApp/time-to-leave/releases/latest).
 
 ## Como fazer o build e contribuir com o TTL
 

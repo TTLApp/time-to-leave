@@ -6,8 +6,8 @@
 [Домашня сторінка](https://timetoleave.app/)
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Платформа">
-<img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Загальна кількість завантажень">
-<a href="https://github.com/thamara/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Останній реліз"></a>
+<img src="https://img.shields.io/github/downloads/TTLApp/time-to-leave/total" alt="Загальна кількість завантажень">
+<a href="https://github.com/TTLApp/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/TTLApp/time-to-leave" alt="Останній реліз"></a>
 <a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="Останній реліз"></a>
 
    <br/>
@@ -35,7 +35,7 @@
 
 ## Як встановити TTL
 
-Time to Leave працює на MacOS, Windows та Linux, і ви можете завантажити потрібну версію з [останнього релізу](https://github.com/thamara/time-to-leave/releases/latest).
+Time to Leave працює на MacOS, Windows та Linux, і ви можете завантажити потрібну версію з [останнього релізу](https://github.com/TTLApp/time-to-leave/releases/latest).
 
 ## Як зробити свій внесок у розробку TTL
 

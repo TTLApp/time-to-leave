@@ -8,8 +8,8 @@
   <br/>
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
-<img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Downloads in Total">
-<a href="https://github.com/thamara/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Latest Release"></a>
+<img src="https://img.shields.io/github/downloads/TTLApp/time-to-leave/total" alt="Downloads in Total">
+<a href="https://github.com/TTLApp/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/TTLApp/time-to-leave" alt="Latest Release"></a>
 <a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="Latest Release"></a>
 
    <br/>
@@ -36,7 +36,7 @@
 
 ## การติดตั้ง
 
-Time to Leave รองรับบนระบบปฏิบัติการ MacOS, Windows และ Linux, สามารถดาวน์โหลดเวอร์ชันล่าสุดได้[ที่นี่](https://github.com/thamara/time-to-leave/releases/latest).
+Time to Leave รองรับบนระบบปฏิบัติการ MacOS, Windows และ Linux, สามารถดาวน์โหลดเวอร์ชันล่าสุดได้[ที่นี่](https://github.com/TTLApp/time-to-leave/releases/latest).
 
 ## การมีส่วนรวมและการร่วมพัฒนา
 

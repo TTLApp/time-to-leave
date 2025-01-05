@@ -8,8 +8,8 @@
 <br/>
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
-<img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Downloads in Total">
-<a href="https://github.com/thamara/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Latest Release"></a>
+<img src="https://img.shields.io/github/downloads/TTLApp/time-to-leave/total" alt="Downloads in Total">
+<a href="https://github.com/TTLApp/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/TTLApp/time-to-leave" alt="Latest Release"></a>
 <a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="Latest Release"></a>
 
    <br/>
@@ -37,7 +37,7 @@
 
 ## <p dir="rtl">آموزش نصب TTL</p>
 
-<p dir="rtl">برنامه Time to Leave در سیستم عامل های مک، ویندوز و لینوکس نصب می شود و شما می توانید نسخه مورد نظرتان را از <a href="https://github.com/thamara/time-to-leave/releases/latest">این لینک</a> دانلود کنید.</p>
+<p dir="rtl">برنامه Time to Leave در سیستم عامل های مک، ویندوز و لینوکس نصب می شود و شما می توانید نسخه مورد نظرتان را از <a href="https://github.com/TTLApp/time-to-leave/releases/latest">این لینک</a> دانلود کنید.</p>
 
 ## <p dir="rtl">آموزش اجرای برنامه از طریق کد و مشارکت در TTL</p>
 
