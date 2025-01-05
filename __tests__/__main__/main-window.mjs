@@ -6,7 +6,7 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import { match, spy, stub, useFakeTimers } from 'sinon';
 
 import { notificationMock } from '../../js/notification.mjs';
-import { savePreferences, defaultPreferences, resetPreferences } from '../../js/user-preferences.mjs';
+import { savePreferences, getDefaultPreferences, resetPreferences } from '../../js/user-preferences.mjs';
 
 import {
     createWindow,
@@ -117,7 +117,7 @@ describe('main-window.mjs', () =>
         it('It should not resize window if values are smaller than minimum', (done) =>
         {
             assert.strictEqual(savePreferences({
-                ...defaultPreferences,
+                ...getDefaultPreferences(),
                 ['view']: 'day'
             }), true);
             createWindow();
@@ -147,7 +147,7 @@ describe('main-window.mjs', () =>
         it('It should send new event to ipcRenderer', (done) =>
         {
             assert.strictEqual(savePreferences({
-                ...defaultPreferences,
+                ...getDefaultPreferences(),
                 ['view']: 'month'
             }), true);
             createWindow();
@@ -287,7 +287,7 @@ describe('main-window.mjs', () =>
         it('Should get hidden if minimize-to-tray is true', (done) =>
         {
             savePreferences({
-                ...defaultPreferences,
+                ...getDefaultPreferences(),
                 ['minimize-to-tray']: true
             });
             createWindow();
@@ -308,7 +308,7 @@ describe('main-window.mjs', () =>
         it('Should minimize if minimize-to-tray is false', (done) =>
         {
             savePreferences({
-                ...defaultPreferences,
+                ...getDefaultPreferences(),
                 ['minimize-to-tray']: false
             });
 
@@ -333,7 +333,7 @@ describe('main-window.mjs', () =>
         it('Should get hidden if close-to-tray is true', (done) =>
         {
             savePreferences({
-                ...defaultPreferences,
+                ...getDefaultPreferences(),
                 ['close-to-tray']: true
             });
             createWindow();
@@ -355,7 +355,7 @@ describe('main-window.mjs', () =>
         it('Should close if close-to-tray is false', (done) =>
         {
             savePreferences({
-                ...defaultPreferences,
+                ...getDefaultPreferences(),
                 ['close-to-tray']: false,
                 ['minimize-to-tray']: false
             });

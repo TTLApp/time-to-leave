@@ -5,7 +5,7 @@ import assert from 'assert';
 import fs from 'fs';
 
 import {
-    defaultPreferences,
+    getDefaultPreferences,
     getPreferencesFilePath,
     getUserPreferences,
     isNotBoolean,
@@ -68,7 +68,7 @@ describe('User Preferences save/load', () =>
         }
     });
 
-    const testPreferences = structuredClone(defaultPreferences);
+    const testPreferences = structuredClone(getDefaultPreferences());
     testPreferences['working-days-sunday'] = true;
 
     const empty = {};
@@ -77,9 +77,9 @@ describe('User Preferences save/load', () =>
     {
         it('getUserPreferences() before saving any', () =>
         {
-            assert.notStrictEqual(savePreferences(defaultPreferences), undefined);
+            assert.notStrictEqual(savePreferences(getDefaultPreferences()), undefined);
             assert.notDeepStrictEqual(getUserPreferences(), empty);
-            assert.deepStrictEqual(getUserPreferences(), defaultPreferences);
+            assert.deepStrictEqual(getUserPreferences(), getDefaultPreferences());
         });
 
         it('savePreferences()', () =>
@@ -90,7 +90,7 @@ describe('User Preferences save/load', () =>
         it('getUserPreferences() to check that it saved', () =>
         {
             assert.deepStrictEqual(getUserPreferences(), testPreferences);
-            assert.notStrictEqual(savePreferences(defaultPreferences), undefined);
+            assert.notStrictEqual(savePreferences(getDefaultPreferences()), undefined);
         });
     });
 });

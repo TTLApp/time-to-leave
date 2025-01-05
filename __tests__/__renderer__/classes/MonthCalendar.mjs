@@ -7,7 +7,7 @@ import assert from 'assert';
 import Store from 'electron-store';
 
 import { computeAllTimeBalanceUntilAsync } from '../../../js/time-balance.mjs';
-import { defaultPreferences } from '../../../js/user-preferences.mjs';
+import { getDefaultPreferences } from '../../../js/user-preferences.mjs';
 import { BaseCalendar } from '../../../renderer/classes/BaseCalendar.js';
 import { CalendarFactory } from '../../../renderer/classes/CalendarFactory.js';
 import { calendarApi } from '../../../renderer/preload-scripts/calendar-api.mjs';
@@ -82,7 +82,7 @@ describe('MonthCalendar class Tests', () =>
     });
 
     const today = new Date();
-    const testPreferences = structuredClone(defaultPreferences);
+    const testPreferences = structuredClone(getDefaultPreferences());
     const languageData = {'language': 'en', 'data': {'dummy_string': 'dummy_string_translated'}};
 
     let calendar;
@@ -237,7 +237,7 @@ describe('MonthCalendar class Tests', () =>
 
     it('DayCalendar to MonthCalendar', async() =>
     {
-        const testPreferences = structuredClone(defaultPreferences);
+        const testPreferences = structuredClone(getDefaultPreferences());
         testPreferences['view'] = 'day';
         let calendar = await CalendarFactory.getInstance(testPreferences, languageData);
         assert.strictEqual(calendar.constructor.name, 'DayCalendar');

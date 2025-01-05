@@ -144,9 +144,9 @@ function readPreferences(filePath = getPreferencesFilePath())
 function getDerivedPrefsFromLoadedPrefs(loadedPreferences)
 {
     const derivedPreferences = {};
-    Object.keys(defaultPreferences).forEach(function(key)
+    Object.keys(getDefaultPreferences()).forEach(function(key)
     {
-        derivedPreferences[key] = (typeof loadedPreferences[key] !== 'undefined') ? loadedPreferences[key] : defaultPreferences[key];
+        derivedPreferences[key] = (typeof loadedPreferences[key] !== 'undefined') ? loadedPreferences[key] : getDefaultPreferences()[key];
     });
 
     return derivedPreferences;
@@ -160,7 +160,7 @@ function initPreferencesFileIfNotExistsOrInvalid(filePath = getPreferencesFilePa
 {
     if (!getFs().existsSync(filePath))
     {
-        savePreferences(defaultPreferences);
+        savePreferences(getDefaultPreferences());
         return;
     }
 
@@ -183,7 +183,7 @@ function initPreferencesFileIfNotExistsOrInvalid(filePath = getPreferencesFilePa
 
         if (isNotBoolean(value) && booleanInputs.includes(key))
         {
-            derivedPrefs[key] = defaultPreferences[key];
+            derivedPrefs[key] = getDefaultPreferences()[key];
             shouldSaveDerivedPrefs = true;
         }
 
@@ -196,7 +196,7 @@ function initPreferencesFileIfNotExistsOrInvalid(filePath = getPreferencesFilePa
             };
             if (!timeValidationEnum[key]())
             {
-                derivedPrefs[key] = defaultPreferences[key];
+                derivedPrefs[key] = getDefaultPreferences()[key];
                 shouldSaveDerivedPrefs = true;
             }
         }
@@ -212,7 +212,7 @@ function initPreferencesFileIfNotExistsOrInvalid(filePath = getPreferencesFilePa
         {
             if (!inputEnum[key]())
             {
-                derivedPrefs[key] = defaultPreferences[key];
+                derivedPrefs[key] = getDefaultPreferences()[key];
                 shouldSaveDerivedPrefs = true;
             }
         }
@@ -362,12 +362,11 @@ function repetitionIsEnabled()
  */
 function resetPreferences()
 {
-    savePreferences(defaultPreferences);
+    savePreferences(getDefaultPreferences());
 }
 
 export {
     booleanInputs,
-    defaultPreferences,
     getDefaultWidthHeight,
     getLoadedOrDerivedUserPreferences as getUserPreferences,
     getNotificationsInterval,

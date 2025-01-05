@@ -18,7 +18,7 @@ import {
     getStates
 } from '../../main/workday-waiver-aux.mjs';
 import {
-    defaultPreferences,
+    getDefaultPreferences,
     getUserPreferencesPromise,
     savePreferences,
 } from '../../js/user-preferences.mjs';
@@ -192,7 +192,7 @@ describe('Test Workday Waiver Window', function()
         window.mainApi.showAlert = () => {};
 
         // Making sure the preferences are the default so the tests work as expected
-        savePreferences(defaultPreferences);
+        savePreferences(getDefaultPreferences());
     });
 
     describe('Adding new waivers update the db and the page', function()

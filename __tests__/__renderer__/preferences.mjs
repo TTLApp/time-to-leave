@@ -11,7 +11,7 @@ import path from 'path';
 
 import { rootDir } from '../../js/app-config.mjs';
 import {
-    defaultPreferences,
+    getDefaultPreferences,
     getPreferencesFilePath,
     getUserPreferences,
     savePreferences,
@@ -79,7 +79,7 @@ function resetPreferenceFile()
     }
 }
 
-const testPreferences = Object.assign({}, defaultPreferences);
+const testPreferences = Object.assign({}, getDefaultPreferences());
 
 // Functions from preferences.js that will be imported dynamically
 let convertTimeFormat;
@@ -221,7 +221,7 @@ describe('Test Preferences Window', () =>
             {
                 changeItemInputValue(
                     `working-days-${value}`,
-                    !defaultPreferences[`working-days-${value}`]
+                    !getDefaultPreferences()[`working-days-${value}`]
                 );
                 checkRenderedItem(`working-days-${value}`, isCheckBox);
             });
