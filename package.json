@@ -3,11 +3,11 @@
   "productName": "Time to Leave",
   "version": "3.0.1-dev",
   "description": "Log work hours and get notified when it's time to leave the office and start to live.",
-  "author": "Thamara Andrade",
-  "homepage": "https://github.com/thamara/time-to-leave#readme",
+  "author": "TTLApp Organization",
+  "homepage": "https://github.com/TTLApp/time-to-leave#readme",
   "repository": {
     "type": "git",
-    "url": "github:thamara/time-to-leave.git"
+    "url": "github:TTLApp/time-to-leave.git"
   },
   "type": "module",
   "main": "main.mjs",
