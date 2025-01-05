@@ -20,6 +20,6 @@ function getInstallerConfig()
         setupExe: 'TimeToLeaveInstaller.exe',
         noMsi: true,
         loadingGif: 'assets/installer.gif',
-        iconUrl: 'https://raw.githubusercontent.com/thamara/time-to-leave/main/assets/icon-win.ico',
+        iconUrl: 'https://raw.githubusercontent.com/TTLApp/time-to-leave/main/assets/icon-win.ico',
     });
 }

@@ -25,7 +25,7 @@ async function _checkForUpdates(showUpToDateDialog)
         return;
     }
 
-    const request = net.request('https://api.github.com/repos/thamara/time-to-leave/releases/latest');
+    const request = net.request('https://api.github.com/repos/TTLApp/time-to-leave/releases/latest');
     request.on('response', (response) =>
     {
         response.on('data', (chunk) =>
@@ -53,7 +53,7 @@ async function _checkForUpdates(showUpToDateDialog)
                     if (response === 1)
                     {
                         //Download latest version
-                        shell.openExternal('https://github.com/thamara/time-to-leave/releases/latest');
+                        shell.openExternal('https://github.com/TTLApp/time-to-leave/releases/latest');
                     }
                     else if (response === 2)
                     {

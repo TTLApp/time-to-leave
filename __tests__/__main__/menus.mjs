@@ -276,7 +276,7 @@ describe('menus.js', () =>
         {
             const shellStub = stub(shell, 'openExternal').callsFake((key) =>
             {
-                assert.strictEqual(key, 'https://github.com/thamara/time-to-leave');
+                assert.strictEqual(key, 'https://github.com/TTLApp/time-to-leave');
                 shellStub.restore();
                 done();
             });
@@ -297,7 +297,7 @@ describe('menus.js', () =>
         {
             const shellStub = stub(shell, 'openExternal').callsFake((key) =>
             {
-                assert.strictEqual(key, 'https://github.com/thamara/time-to-leave/issues/new');
+                assert.strictEqual(key, 'https://github.com/TTLApp/time-to-leave/issues/new');
                 shellStub.restore();
                 done();
             });

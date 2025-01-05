@@ -344,7 +344,7 @@ function getHelpMenuTemplate()
             label: getCurrentTranslation('$Menu.ttl-github'),
             click()
             {
-                shell.openExternal('https://github.com/thamara/time-to-leave');
+                shell.openExternal('https://github.com/TTLApp/time-to-leave');
             }
         },
         {
@@ -359,7 +359,7 @@ function getHelpMenuTemplate()
             click()
             {
                 shell.openExternal(
-                    'https://github.com/thamara/time-to-leave/issues/new'
+                    'https://github.com/TTLApp/time-to-leave/issues/new'
                 );
             }
         },
