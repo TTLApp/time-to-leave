@@ -252,7 +252,7 @@ def get_new_issue_url(locale : str, missing_translations : dict) -> str:
         body += '\n```\n{}\n```\n\n'.format(json.dumps(missing_translations, indent=2))
     except:
         body += '\n```\n{}\n```\n\n'.format(missing_translations)
-    base_url = f'https://github.com/thamara/time-to-leave/issues/new?labels=localization,good+first+issue,Hacktoberfest'
+    base_url = f'https://github.com/TTLApp/time-to-leave/issues/new?labels=localization,good+first+issue,Hacktoberfest'
     opts = { 'body': body , 'title': f'Add missing translations for {language}'}
     return f'[(Open issue)]({add_url_params(base_url, opts)})'
 
