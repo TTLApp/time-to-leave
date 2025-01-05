@@ -7,6 +7,7 @@ on:
 
 jobs:
   missing-translations:
+    if: github.repository == 'TTLApp/time-to-leave'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
