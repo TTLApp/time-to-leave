@@ -33,7 +33,7 @@ Working on your first Pull Request? You can learn how from this _free_ series [H
 ## Setup
 
 If you intend on contributing to the project, you will need to [fork the main repository](https://guides.github.com/activities/forking/) first, and then clone it to your local machine.
-If you just want to build it locally, you can clone directly from the main repository: `https://github.com/thamara/time-to-leave`
+If you just want to build it locally, you can clone directly from the main repository: `https://github.com/TTLApp/time-to-leave`
 
 ### Clone the repository
 

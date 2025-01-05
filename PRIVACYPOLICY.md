@@ -1,6 +1,6 @@
 # Privacy Policy
 
-Thamara Andrade built the Time to Leave app as an Open Source app. This application is provided by Thamara Andrade at no cost and is intended for use as is.
+Thamara Andrade and the TTLApp organization built the Time to Leave app as an Open Source app. This application is provided by the TTLApp organization at no cost and is intended for use as is.
 
 Time to Leave does not collect, use or disclosure personal Information from its users.
 
