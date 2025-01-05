@@ -29,7 +29,7 @@ jobs:
       uses: peter-evans/create-or-update-comment@v1
       with:
         # Update the comment in issue 475
-        # https://github.com/thamara/time-to-leave/issues/475#issuecomment-808787273
+        # https://github.com/TTLApp/time-to-leave/issues/475#issuecomment-808787273
         comment-id: 808787273
         edit-mode: replace
         body: ${{ steps.get-comment-body.outputs.body }}

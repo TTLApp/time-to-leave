@@ -3,7 +3,7 @@ on:
 name: Update package dependencies
 jobs:
   package-update:
-    if: github.repository == 'thamara/time-to-leave'
+    if: github.repository == 'TTLApp/time-to-leave'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
