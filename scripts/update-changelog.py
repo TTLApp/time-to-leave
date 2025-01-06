@@ -20,10 +20,38 @@ def remove_prefix(text: str, prefix: str) -> str:
     """Remove the prefix from the string"""
     return re.sub(r'^{0}'.format(re.escape(prefix)), '', text)
 
+ENTRY_TYPE_RE = re.compile(r'(.*) ?\[')
+ENTRY_NUMBER_RE = re.compile(r'\#(\d+)')
+
+def changelog_entry_compare(entry_a, entry_b):
+    """Sort the changelog lexicographically and consider PR numbers as integers"""
+    entry_a_number_match = ENTRY_NUMBER_RE.search(entry_a)
+    entry_b_number_match = ENTRY_NUMBER_RE.search(entry_b)
+    # If both have issue/PR numbers, compare text first and then numbers
+    if entry_a_number_match and entry_b_number_match:
+        entry_a_type = ENTRY_TYPE_RE.search(entry_a)
+        entry_b_type = ENTRY_TYPE_RE.search(entry_b)
+        if entry_a_type.group(1) != entry_b_type.group(1):
+            return -1 if entry_a < entry_b else 1
+        else:
+            entry_a_number = int(entry_a_number_match.group(1))
+            entry_b_number = int(entry_b_number_match.group(1))
+            if entry_a_number < entry_b_number:
+                return -1
+            elif entry_a_number > entry_b_number:
+                return 1
+            else:
+                return 0
+    # If there is no PR number, might as well just sort by text
+    else:
+        return -1 if entry_a < entry_b else 1
+
 def get_sorted_unique_entries(entries) -> list:
     """Return a sorted list of unique entries"""
+    from functools import cmp_to_key
+    letter_cmp_key = cmp_to_key(changelog_entry_compare)
     entries = list(set(entries))
-    entries.sort()
+    entries.sort(key=letter_cmp_key)
     return [('{}{}'.format(g_prefix_line, entry) if entry else '') for entry in entries]
 
 def get_updated_file_content(current_changelog_lines: str, new_change: any, new_user: any) -> list:
