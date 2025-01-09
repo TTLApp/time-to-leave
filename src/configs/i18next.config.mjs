@@ -1,7 +1,7 @@
 'use strict';
 
 import { ipcMain } from 'electron';
-import i18nextBackend from 'i18next-node-fs-backend';
+import i18nextBackend from 'i18next-fs-backend';
 import path from 'path';
 
 import { fallbackLng, getLanguagesCodes } from './app.config.mjs';
