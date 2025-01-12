@@ -78,7 +78,7 @@ describe('Windows tests', () =>
             show: false
         });
         Windows.openWaiverManagerWindow(mainWindow, true);
-        Windows.getWaiverWindow().emit('close');
+        Windows.getWaiverWindow().close();
         assert.strictEqual(Windows.getWaiverWindow(), null);
     });
 
