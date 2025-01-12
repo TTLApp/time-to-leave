@@ -20,6 +20,7 @@ def remove_prefix(text: str, prefix: str) -> str:
     """Remove the prefix from the string"""
     return re.sub(r'^{0}'.format(re.escape(prefix)), '', text)
 
+# Looking for any of the entries with an ID, like "Enhancement [#948]..."		
 ENTRY_TYPE_RE = re.compile(r'(.*) ?\[')
 ENTRY_NUMBER_RE = re.compile(r'\#(\d+)')
 
