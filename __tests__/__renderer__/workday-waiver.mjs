@@ -4,6 +4,7 @@
 import '../../__mocks__/jquery.mjs';
 
 import assert from 'assert';
+import Holidays from 'date-holidays';
 import Store from 'electron-store';
 import { JSDOM } from 'jsdom';
 import sinon from 'sinon';
@@ -23,10 +24,6 @@ import {
     savePreferences,
 } from '../../js/user-preferences.mjs';
 
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-
-const Holidays = require('date-holidays');
 
 import { i18nTranslatorMock } from '../../renderer/i18n-translator.js';
 i18nTranslatorMock.mock('translatePage', sinon.stub().returnsThis());

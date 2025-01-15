@@ -1,19 +1,13 @@
 'use strict';
 
-// Allow require()
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-
+import Holidays from 'date-holidays';
 import { ipcMain } from 'electron';
 import Store from 'electron-store';
+
+const hd = new Holidays();
 const waiverStore = new Store({name: 'waived-workdays'});
 
-// 'date-holidays' must be required and not imported
-const Holidays = require('date-holidays');
-const hd = new Holidays();
-
 // Waiver Store handlers
-
 function getWaiverStore()
 {
     return waiverStore.store;
