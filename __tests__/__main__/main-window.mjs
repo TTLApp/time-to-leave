@@ -79,7 +79,7 @@ describe('main-window.mjs', () =>
             assert.strictEqual(ipcMain.listenerCount('SWITCH_VIEW'), 1);
             assert.strictEqual(ipcMain.listenerCount('RECEIVE_LEAVE_BY'), 1);
             assert.strictEqual(mainWindow.listenerCount('minimize'), 2);
-            assert.strictEqual(mainWindow.listenerCount('close'), 1);
+            assert.strictEqual(mainWindow.listenerCount('close'), 2);
             assert.strictEqual(loadFileSpy.calledOnce, true);
             assert.strictEqual(showSpy.calledOnce, true);
             assert.notStrictEqual(getLeaveByInterval(), null);
