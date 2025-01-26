@@ -12,6 +12,7 @@ import {
     getUserPreferences,
     resetPreferences,
     savePreferences,
+    showDay,
     switchCalendarView
 } from '../../../js/user-preferences.mjs';
 import TimeBalance from '../../../js/time-balance.mjs';
@@ -45,33 +46,34 @@ describe('BaseCalendar.js', () =>
         ExtendedClass.prototype._getTargetDayForAllTimeBalance = () => {};
 
         // Mocked APIs from the preload script of the calendar window
-        window.mainApi = calendarApi;
+        window.calendarApi = calendarApi;
+        window.rendererApi = {};
 
-        window.mainApi.computeAllTimeBalanceUntilPromise = (targetDate) =>
+        window.calendarApi.computeAllTimeBalanceUntilPromise = (targetDate) =>
         {
             return TimeBalance.computeAllTimeBalanceUntilAsync(targetDate);
         };
 
-        window.mainApi.switchView = () =>
+        window.calendarApi.switchView = () =>
         {
             switchCalendarView();
         };
 
-        window.mainApi.getStoreContents = () =>
+        window.calendarApi.getStoreContents = () =>
         {
             return new Promise((resolve) =>
             {
                 resolve(calendarStore.store);
             });
         };
-        window.mainApi.getWaiverStoreContents = () =>
+        window.rendererApi.getWaiverStoreContents = () =>
         {
             return new Promise((resolve) =>
             {
                 resolve(waivedWorkdays.store);
             });
         };
-        window.mainApi.setStoreData = (key, contents) =>
+        window.calendarApi.setStoreData = (key, contents) =>
         {
             calendarStore.set(key, contents);
             return new Promise((resolve) =>
@@ -79,6 +81,7 @@ describe('BaseCalendar.js', () =>
                 resolve(true);
             });
         };
+        window.rendererApi.showDay = showDay;
     });
 
     describe('constructor', () =>

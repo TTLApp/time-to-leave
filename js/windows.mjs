@@ -5,6 +5,7 @@ import path from 'path';
 
 import { appConfig, rootDir } from './app-config.mjs';
 import { getDateStr } from './date-aux.mjs';
+import { getUserPreferences } from './user-preferences.mjs';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -30,6 +31,7 @@ class Windows
         }
         const htmlPath = path.join('file://', rootDir, '/src/workday-waiver.html');
         const dialogCoordinates = Windows.getDialogCoordinates(600, 500, mainWindow);
+        const userPreferences = getUserPreferences();
         global.waiverWindow = new BrowserWindow({ width: 600,
             height: 500,
             x: dialogCoordinates.x,
@@ -40,7 +42,10 @@ class Windows
             webPreferences: {
                 nodeIntegration: true,
                 preload: path.join(rootDir, '/renderer/preload-scripts/workday-waiver-bridge.mjs'),
-                contextIsolation: true
+                contextIsolation: true,
+                additionalArguments: [
+                    `--preferences=${JSON.stringify(userPreferences)}`,
+                ],
             } });
         global.waiverWindow.setMenu(null);
         global.waiverWindow.loadURL(htmlPath);

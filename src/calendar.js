@@ -9,7 +9,7 @@ let calendar = undefined;
 
 function setupCalendar(preferences)
 {
-    window.mainApi.getLanguageDataPromise().then(async languageData =>
+    window.rendererApi.getLanguageDataPromise().then(async languageData =>
     {
         calendar = await CalendarFactory.getInstance(preferences, languageData, calendar);
         applyTheme(preferences.theme);
@@ -19,7 +19,7 @@ function setupCalendar(preferences)
 /*
  * Reload the calendar upon request from main
  */
-window.mainApi.handleCalendarReload(async() =>
+window.calendarApi.handleCalendarReload(async() =>
 {
     await calendar.reload();
 });
@@ -27,7 +27,7 @@ window.mainApi.handleCalendarReload(async() =>
 /*
  * Update the calendar after a day has passed
  */
-window.mainApi.handleRefreshOnDayChange((event, oldDate, oldMonth, oldYear) =>
+window.calendarApi.handleRefreshOnDayChange((event, oldDate, oldMonth, oldYear) =>
 {
     calendar.refreshOnDayChange(oldDate, oldMonth, oldYear);
 });
@@ -35,7 +35,7 @@ window.mainApi.handleRefreshOnDayChange((event, oldDate, oldMonth, oldYear) =>
 /*
  * Get notified when preferences has been updated.
  */
-window.mainApi.handlePreferencesSaved((event, prefs) =>
+window.calendarApi.handlePreferencesSaved((event, prefs) =>
 {
     setupCalendar(prefs);
 });
@@ -43,7 +43,7 @@ window.mainApi.handlePreferencesSaved((event, prefs) =>
 /*
  * Get notified when waivers get updated.
  */
-window.mainApi.handleWaiverSaved(async() =>
+window.calendarApi.handleWaiverSaved(async() =>
 {
     await calendar.loadInternalWaiveStore();
     calendar.redraw();
@@ -52,7 +52,7 @@ window.mainApi.handleWaiverSaved(async() =>
 /*
  * Punch the date and time as requested by user.
  */
-window.mainApi.handlePunchDate(() =>
+window.calendarApi.handlePunchDate(() =>
 {
     calendar.punchDate();
 });
@@ -60,7 +60,7 @@ window.mainApi.handlePunchDate(() =>
 /*
  * Reload theme.
  */
-window.mainApi.handleThemeChange(async(event, theme) =>
+window.calendarApi.handleThemeChange(async(event, theme) =>
 {
     applyTheme(theme);
 });
@@ -68,11 +68,11 @@ window.mainApi.handleThemeChange(async(event, theme) =>
 /*
  * Returns value of "leave by" for notifications.
  */
-window.mainApi.handleLeaveBy(searchLeaveByElement);
+window.calendarApi.handleLeaveBy(searchLeaveByElement);
 
 // On page load, create the calendar and setup notification
-$(async() =>
+$(() =>
 {
-    const preferences = await window.mainApi.getUserPreferencesPromise();
+    const preferences = window.rendererApi.getOriginalUserPreferences();
     setupCalendar(preferences);
 });

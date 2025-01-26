@@ -3,8 +3,6 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
-const { ipcRenderer } = require('electron');
-
 import TimeMath from './time-math.mjs';
 import { isValidTheme } from '../renderer/themes.js';
 import { getLanguagesCodes } from '../src/configs/app.config.mjs';
@@ -91,20 +89,8 @@ function getPreferencesFilePath()
 {
     const path = require('path');
     const electron = require('electron');
-    const userDataPath = (electron.app || require('@electron/remote').app).getPath('userData');
+    const userDataPath = electron.app.getPath('userData');
     return path.join(userDataPath, 'preferences.json');
-}
-
-function getPreferencesFilePathPromise()
-{
-    return new Promise((resolve) =>
-    {
-        ipcRenderer.invoke('USER_DATA_PATH').then(userDataPath =>
-        {
-            const path = require('path');
-            resolve(path.join(userDataPath, 'preferences.json'));
-        });
-    });
 }
 
 /*
@@ -236,23 +222,6 @@ function getLoadedOrDerivedUserPreferences()
 }
 
 /**
- * Returns a promise to the user preferences.
- * @param preferencesFilePathPromise Optionally allows one to pass in a promise that resolves to the preferences file path
- * @return {Promise<Object>}
- */
-function getUserPreferencesPromise(preferencesFilePathPromise = getPreferencesFilePathPromise())
-{
-    return new Promise((resolve) =>
-    {
-        preferencesFilePathPromise.then((filePath) =>
-        {
-            initPreferencesFileIfNotExistsOrInvalid(filePath);
-            resolve(readPreferences(filePath));
-        });
-    });
-}
-
-/**
  * Returns the default user preferences.
  */
 function getDefaultPreferences()
@@ -372,7 +341,6 @@ export {
     getNotificationsInterval,
     getPreferencesFilePath,
     getUserLanguage,
-    getUserPreferencesPromise,
     getDefaultPreferences,
     isNotBoolean,
     isNotificationInterval,

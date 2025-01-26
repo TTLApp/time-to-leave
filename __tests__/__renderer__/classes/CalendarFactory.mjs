@@ -18,9 +18,9 @@ describe('CalendarFactory', () =>
     before(() =>
     {
         // Mocked APIs from the preload script of the calendar window
-        window.mainApi = calendarApi;
+        window.calendarApi = calendarApi;
 
-        window.mainApi.resizeMainWindow = stub();
+        window.calendarApi.resizeMainWindow = stub();
 
         Object.setPrototypeOf(DayCalendar, stub());
         Object.setPrototypeOf(MonthCalendar, stub());
@@ -61,7 +61,7 @@ describe('CalendarFactory', () =>
 
         it('Should return new calendar with resizing if passing in an instance that is not a DayCalendar', async() =>
         {
-            window.mainApi.resizeMainWindow.resetHistory();
+            window.calendarApi.resizeMainWindow.resetHistory();
             let calls = 0;
             const testCalendar = {
                 constructor: {
@@ -76,17 +76,17 @@ describe('CalendarFactory', () =>
             }, {}, testCalendar);
             assert.strictEqual(calendar instanceof DayCalendar, true);
             assert.strictEqual(calls, 0);
-            assert.strictEqual(window.mainApi.resizeMainWindow.calledOnce, true);
+            assert.strictEqual(window.calendarApi.resizeMainWindow.calledOnce, true);
         });
 
         it('Should return new calendar without resizing if passing in an undefined instance', async() =>
         {
-            window.mainApi.resizeMainWindow.resetHistory();
+            window.calendarApi.resizeMainWindow.resetHistory();
             const calendar = await CalendarFactory.getInstance({
                 view: 'day',
             }, {}, undefined);
             assert.strictEqual(calendar instanceof DayCalendar, true);
-            assert.strictEqual(window.mainApi.resizeMainWindow.notCalled, true);
+            assert.strictEqual(window.calendarApi.resizeMainWindow.notCalled, true);
         });
     });
 
@@ -112,17 +112,17 @@ describe('CalendarFactory', () =>
 
         it('Should return new calendar without resizing if passing in an undefined instance', async() =>
         {
-            window.mainApi.resizeMainWindow.resetHistory();
+            window.calendarApi.resizeMainWindow.resetHistory();
             const calendar = await CalendarFactory.getInstance({
                 view: 'month',
             }, {}, undefined);
             assert.strictEqual(calendar instanceof MonthCalendar, true);
-            assert.strictEqual(window.mainApi.resizeMainWindow.notCalled, true);
+            assert.strictEqual(window.calendarApi.resizeMainWindow.notCalled, true);
         });
 
         it('Should return new calendar with resizing if passing in an instance that is not a MonthCalendar', async() =>
         {
-            window.mainApi.resizeMainWindow.resetHistory();
+            window.calendarApi.resizeMainWindow.resetHistory();
             let calls = 0;
             const testCalendar = {
                 constructor: {
@@ -137,7 +137,7 @@ describe('CalendarFactory', () =>
             }, {}, testCalendar);
             assert.strictEqual(calendar instanceof MonthCalendar, true);
             assert.strictEqual(calls, 0);
-            assert.strictEqual(window.mainApi.resizeMainWindow.calledOnce, true);
+            assert.strictEqual(window.calendarApi.resizeMainWindow.calledOnce, true);
         });
     });
 

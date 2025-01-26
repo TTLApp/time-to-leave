@@ -5,14 +5,6 @@ const require = createRequire(import.meta.url);
 
 const { ipcRenderer } = require('electron');
 
-import * as config from '../../src/configs/app.config.mjs';
-import { getUserPreferencesPromise, showDay } from '../../js/user-preferences.mjs';
-
-function getLanguageDataPromise()
-{
-    return ipcRenderer.invoke('GET_LANGUAGE_DATA');
-}
-
 function resizeMainWindow()
 {
     ipcRenderer.send('RESIZE_MAIN_WINDOW');
@@ -28,24 +20,9 @@ function toggleTrayPunchTime(enable)
     ipcRenderer.send('TOGGLE_TRAY_PUNCH_TIME', enable);
 }
 
-function showDayByPreferences(year, month, day, preferences)
-{
-    return showDay(year, month, day, preferences);
-}
-
 function displayWaiverWindow(waiverDay)
 {
     ipcRenderer.send('SET_WAIVER_DAY', waiverDay);
-}
-
-function showDialogSync(dialogOptions)
-{
-    return ipcRenderer.invoke('SHOW_DIALOG', dialogOptions);
-}
-
-function getWaiverStoreContents()
-{
-    return ipcRenderer.invoke('GET_WAIVER_STORE_CONTENTS');
 }
 
 function getStoreContents()
@@ -69,9 +46,6 @@ function computeAllTimeBalanceUntilPromise(targetDate)
 }
 
 const calendarApi = {
-    getLanguageMap: () => config.getLanguageMap(),
-    getUserPreferencesPromise: () => getUserPreferencesPromise(),
-    getLanguageDataPromise: () => getLanguageDataPromise(),
     handleRefreshOnDayChange: (callback) => ipcRenderer.on('REFRESH_ON_DAY_CHANGE', callback),
     handlePreferencesSaved: (callback) => ipcRenderer.on('PREFERENCES_SAVED', callback),
     handleWaiverSaved: (callback) => ipcRenderer.on('WAIVER_SAVED', callback),
@@ -82,10 +56,7 @@ const calendarApi = {
     resizeMainWindow: () => resizeMainWindow(),
     switchView: () => switchView(),
     toggleTrayPunchTime: (enable) => toggleTrayPunchTime(enable),
-    showDay: (year, month, day, userPreferences) => showDayByPreferences(year, month, day, userPreferences),
     displayWaiverWindow: (waiverDay) => displayWaiverWindow(waiverDay),
-    showDialogSync: (dialogOptions) => showDialogSync(dialogOptions),
-    getWaiverStoreContents: () => getWaiverStoreContents(),
     getStoreContents: () => getStoreContents(),
     setStoreData: (key, contents) => setStoreData(key, contents),
     deleteStoreData: (key) => deleteStoreData(key),

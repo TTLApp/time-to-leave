@@ -4,14 +4,13 @@ import { applyTheme } from '../renderer/themes.js';
 import i18nTranslator from '../renderer/i18n-translator.js';
 
 // Global values for preferences page
-let usersStyles;
 let preferences;
 
 function populateLanguages()
 {
     const languageOpts = $('#language');
     languageOpts.empty();
-    $.each(window.mainApi.getLanguageMap(), (key, value) =>
+    $.each(window.preferencesApi.getLanguageMap(), (key, value) =>
     {
         languageOpts.append(
             $('<option />')
@@ -21,9 +20,9 @@ function populateLanguages()
     });
     // Select current display language
     /* istanbul ignore else */
-    if ('language' in usersStyles)
+    if ('language' in preferences)
     {
-        $('#language').val(usersStyles['language']);
+        $('#language').val(preferences['language']);
     }
 }
 
@@ -32,10 +31,10 @@ function listenerLanguage()
     $('#language').on('change', function()
     {
         preferences['language'] = this.value;
-        window.mainApi.changeLanguagePromise(this.value).then((languageData) =>
+        window.preferencesApi.changeLanguagePromise(this.value).then((languageData) =>
         {
             i18nTranslator.translatePage(this.value, languageData, 'Preferences');
-            window.mainApi.notifyNewPreferences(preferences);
+            window.preferencesApi.notifyNewPreferences(preferences);
         });
     });
 }
@@ -44,38 +43,23 @@ function setupLanguages()
 {
     populateLanguages();
     listenerLanguage();
-    window.mainApi.getLanguageDataPromise().then(languageData =>
+    window.rendererApi.getLanguageDataPromise().then(languageData =>
     {
-        i18nTranslator.translatePage(usersStyles['language'], languageData.data, 'Preferences');
-    });
-}
-
-function refreshContent()
-{
-    return new Promise((resolve) =>
-    {
-        window.mainApi.getUserPreferencesPromise().then(userPreferences =>
-        {
-            usersStyles = userPreferences;
-            preferences = usersStyles;
-            resolve();
-        });
+        i18nTranslator.translatePage(preferences['language'], languageData.data, 'Preferences');
     });
 }
 
 function resetContent()
 {
-    const defaultPreferences = window.mainApi.getDefaultPreferences();
-    usersStyles = defaultPreferences;
-    preferences = usersStyles;
+    preferences = window.preferencesApi.getDefaultPreferences();
     renderPreferencesWindow();
-    window.mainApi.notifyNewPreferences(preferences);
+    window.preferencesApi.notifyNewPreferences(preferences);
 }
 
 function changeValue(type, newVal)
 {
     preferences[type] = newVal;
-    window.mainApi.notifyNewPreferences(preferences);
+    window.preferencesApi.notifyNewPreferences(preferences);
 }
 
 function convertTimeFormat(entry)
@@ -124,9 +108,9 @@ function renderPreferencesWindow()
     const theme = 'theme';
 
     /* istanbul ignore else */
-    if (theme in usersStyles)
+    if (theme in preferences)
     {
-        $('#' + theme).val(usersStyles[theme]);
+        $('#' + theme).val(preferences[theme]);
     }
     const selectedThemeOption = $('#' + theme)
         .children('option:selected')
@@ -135,9 +119,9 @@ function renderPreferencesWindow()
     applyTheme(selectedThemeOption);
 
     /* istanbul ignore else */
-    if ('view' in usersStyles)
+    if ('view' in preferences)
     {
-        $('#view').val(usersStyles['view']);
+        $('#view').val(preferences['view']);
     }
 
     $('input').each(function()
@@ -148,9 +132,9 @@ function renderPreferencesWindow()
         if (input.attr('type') === 'checkbox')
         {
             /* istanbul ignore else */
-            if (name in usersStyles)
+            if (name in preferences)
             {
-                input.prop('checked', usersStyles[name]);
+                input.prop('checked', preferences[name]);
             }
             preferences[name] = input.prop('checked');
         }
@@ -159,9 +143,9 @@ function renderPreferencesWindow()
         )
         {
             /* istanbul ignore else */
-            if (name in usersStyles)
+            if (name in preferences)
             {
-                input.val(usersStyles[name]);
+                input.val(preferences[name]);
             }
             preferences[name] = input.val();
         }
@@ -179,7 +163,7 @@ function renderPreferencesWindow()
     repetition.prop('disabled', !notification.is(':checked'));
     repetition.prop(
         'checked',
-        notification.is(':checked') && usersStyles['repetition']
+        notification.is(':checked') && preferences['repetition']
     );
     notificationsInterval.prop('disabled', !repetition.is(':checked'));
 }
@@ -220,7 +204,7 @@ function setupListeners()
 
     $('#reset-button').on('click', function()
     {
-        window.mainApi.getLanguageDataPromise().then(languageData =>
+        window.rendererApi.getLanguageDataPromise().then(languageData =>
         {
             const options = {
                 type: 'question',
@@ -230,7 +214,7 @@ function setupListeners()
                 title: i18nTranslator.getTranslationInLanguageData(languageData.data, '$Preferences.reset-preferences'),
                 message: i18nTranslator.getTranslationInLanguageData(languageData.data, '$Preferences.confirm-reset-preferences'),
             };
-            window.mainApi.showDialogSync(options).then((result) =>
+            window.rendererApi.showDialogSync(options).then((result) =>
             {
                 if (result.response === 0 /*Yes*/)
                 {
@@ -240,7 +224,7 @@ function setupListeners()
                         message: i18nTranslator.getTranslationInLanguageData(languageData.data, '$Preferences.reset-preferences'),
                         detail: i18nTranslator.getTranslationInLanguageData(languageData.data, '$Preferences.reset-success'),
                     };
-                    window.mainApi.showDialogSync(optionsReset);
+                    window.rendererApi.showDialogSync(optionsReset);
                 }
             });
         });
@@ -263,7 +247,7 @@ function setupListeners()
         repetition.prop('disabled', !notification.is(':checked'));
         repetition.prop(
             'checked',
-            notification.is(':checked') && usersStyles['repetition']
+            notification.is(':checked') && preferences['repetition']
         );
         notificationsInterval.prop('disabled', !repetition.is(':checked'));
     });
@@ -277,19 +261,14 @@ function setupListeners()
 /* istanbul ignore next */
 $(() =>
 {
-    window.mainApi.getUserPreferencesPromise().then((userPreferences) =>
-    {
-        usersStyles = userPreferences;
-        preferences = usersStyles;
-        renderPreferencesWindow();
-        setupListeners();
-        setupLanguages();
-    });
+    preferences = window.rendererApi.getOriginalUserPreferences();
+    renderPreferencesWindow();
+    setupListeners();
+    setupLanguages();
 });
 
 export {
     convertTimeFormat,
-    refreshContent,
     resetContent,
     populateLanguages,
     listenerLanguage,

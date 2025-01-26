@@ -12,7 +12,6 @@ import { rootDir } from '../../js/app-config.mjs';
 import {
     getDefaultPreferences,
     getPreferencesFilePath,
-    getUserPreferences,
     savePreferences,
 } from '../../js/user-preferences.mjs';
 import { preferencesApi } from '../../renderer/preload-scripts/preferences-api.mjs';
@@ -83,7 +82,6 @@ const testPreferences = Object.assign({}, getDefaultPreferences());
 let convertTimeFormat;
 let listenerLanguage;
 let populateLanguages;
-let refreshContent;
 let renderPreferencesWindow;
 let setupListeners;
 let resetContent;
@@ -95,22 +93,23 @@ describe('Test Preferences Window', () =>
         stub(i18nTranslator, 'getTranslationInLanguageData').returnsThis();
 
         // APIs from the preload script of the preferences window
-        window.mainApi = preferencesApi;
+        window.preferencesApi = preferencesApi;
 
-        // Mocking with the actual access that main would have
-        window.mainApi.getUserPreferencesPromise = () => { return new Promise((resolve) => resolve(getUserPreferences())); };
+        // Mocking with the actual value
+        window.rendererApi = {
+            getLanguageDataPromise: () =>
+            {
+                return new Promise((resolve) => resolve({
+                    'language': 'en',
+                    'data': {}
+                }));
+            },
+            getOriginalUserPreferences: () => { return testPreferences; },
+            showDialogSync: () => { return new Promise((resolve) => resolve({ response: 0 })); }
+        };
 
         // Stub methods
-        window.mainApi.notifyNewPreferences = () => {};
-        window.mainApi.showDialogSync = () => { return new Promise((resolve) => resolve({ response: 0 })); };
-
-        window.mainApi.getLanguageDataPromise = () =>
-        {
-            return new Promise((resolve) => resolve({
-                'language': 'en',
-                'data': {}
-            }));
-        };
+        window.preferencesApi.notifyNewPreferences = () => {};
 
         resetPreferenceFile();
 
@@ -120,7 +119,6 @@ describe('Test Preferences Window', () =>
         convertTimeFormat = file.convertTimeFormat;
         listenerLanguage = file.listenerLanguage;
         populateLanguages = file.populateLanguages;
-        refreshContent = file.refreshContent;
         renderPreferencesWindow = file.renderPreferencesWindow;
         setupListeners = file.setupListeners;
         resetContent = file.resetContent;
@@ -131,7 +129,6 @@ describe('Test Preferences Window', () =>
         beforeEach(async function()
         {
             await prepareMockup();
-            await refreshContent();
             renderPreferencesWindow();
             populateLanguages();
             listenerLanguage();
