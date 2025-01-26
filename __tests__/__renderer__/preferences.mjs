@@ -12,7 +12,6 @@ import { rootDir } from '../../js/app-config.mjs';
 import {
     getDefaultPreferences,
     getPreferencesFilePath,
-    getUserPreferences,
     savePreferences,
 } from '../../js/user-preferences.mjs';
 import { preferencesApi } from '../../renderer/preload-scripts/preferences-api.mjs';
@@ -83,7 +82,6 @@ const testPreferences = Object.assign({}, getDefaultPreferences());
 let convertTimeFormat;
 let listenerLanguage;
 let populateLanguages;
-let refreshContent;
 let renderPreferencesWindow;
 let setupListeners;
 let resetContent;
@@ -98,7 +96,7 @@ describe('Test Preferences Window', () =>
         window.mainApi = preferencesApi;
 
         // Mocking with the actual access that main would have
-        window.mainApi.getUserPreferencesPromise = () => { return new Promise((resolve) => resolve(getUserPreferences())); };
+        window.mainApi.getOriginalUserPreferences = () => { return testPreferences; };
 
         // Stub methods
         window.mainApi.notifyNewPreferences = () => {};
@@ -120,7 +118,6 @@ describe('Test Preferences Window', () =>
         convertTimeFormat = file.convertTimeFormat;
         listenerLanguage = file.listenerLanguage;
         populateLanguages = file.populateLanguages;
-        refreshContent = file.refreshContent;
         renderPreferencesWindow = file.renderPreferencesWindow;
         setupListeners = file.setupListeners;
         resetContent = file.resetContent;
@@ -131,7 +128,6 @@ describe('Test Preferences Window', () =>
         beforeEach(async function()
         {
             await prepareMockup();
-            await refreshContent();
             renderPreferencesWindow();
             populateLanguages();
             listenerLanguage();

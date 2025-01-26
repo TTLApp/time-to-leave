@@ -6,7 +6,7 @@ const require = createRequire(import.meta.url);
 const { ipcRenderer } = require('electron');
 
 import * as config from '../../src/configs/app.config.mjs';
-import { getUserPreferencesPromise, getDefaultPreferences } from '../../js/user-preferences.mjs';
+import { getDefaultPreferences } from '../../js/user-preferences.mjs';
 
 function notifyNewPreferences(preferences)
 {
@@ -28,10 +28,17 @@ function showDialogSync(dialogOptions)
     return ipcRenderer.invoke('SHOW_DIALOG', dialogOptions);
 }
 
+function getOriginalUserPreferences()
+{
+    const preferences = process.argv.filter((arg) => arg.startsWith('--preferences='))[0]?.split('=')?.[1];
+    console.log(preferences);
+    return JSON.parse(preferences || '{}');
+}
+
 const preferencesApi = {
     notifyNewPreferences: (preferences) => notifyNewPreferences(preferences),
     getLanguageMap: () => config.getLanguageMap(),
-    getUserPreferencesPromise: () => getUserPreferencesPromise(),
+    getOriginalUserPreferences: () => getOriginalUserPreferences(),
     getDefaultPreferences: () => getDefaultPreferences(),
     changeLanguagePromise: (language) => changeLanguagePromise(language),
     getLanguageDataPromise: () => getLanguageDataPromise(),

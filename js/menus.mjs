@@ -10,7 +10,7 @@ import ImportExport from './import-export.mjs';
 import Notification from './notification.mjs';
 import { getSavedPreferences } from './saved-preferences.mjs';
 import UpdateManager from './update-manager.mjs';
-import { savePreferences } from './user-preferences.mjs';
+import { getUserPreferences, savePreferences } from './user-preferences.mjs';
 import Windows from './windows.mjs';
 import i18NextConfig from '../src/configs/i18next.config.mjs';
 
@@ -130,6 +130,7 @@ function getEditMenuTemplate(mainWindow)
 
                 const htmlPath = path.join('file://', rootDir, 'src/preferences.html');
                 const dialogCoordinates = Windows.getDialogCoordinates(550, 620, mainWindow);
+                const userPreferences = getUserPreferences();
                 global.prefWindow = new BrowserWindow({ width: 550,
                     height: 620,
                     minWidth: 480,
@@ -141,7 +142,10 @@ function getEditMenuTemplate(mainWindow)
                     webPreferences: {
                         nodeIntegration: true,
                         preload: path.join(rootDir, '/renderer/preload-scripts/preferences-bridge.mjs'),
-                        contextIsolation: true
+                        contextIsolation: true,
+                        additionalArguments: [
+                            `--preferences=${JSON.stringify(userPreferences)}`,
+                        ],
                     } });
                 global.prefWindow.setMenu(null);
                 global.prefWindow.loadURL(htmlPath);

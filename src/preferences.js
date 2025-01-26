@@ -4,7 +4,6 @@ import { applyTheme } from '../renderer/themes.js';
 import i18nTranslator from '../renderer/i18n-translator.js';
 
 // Global values for preferences page
-let usersStyles;
 let preferences;
 
 function populateLanguages()
@@ -21,9 +20,9 @@ function populateLanguages()
     });
     // Select current display language
     /* istanbul ignore else */
-    if ('language' in usersStyles)
+    if ('language' in preferences)
     {
-        $('#language').val(usersStyles['language']);
+        $('#language').val(preferences['language']);
     }
 }
 
@@ -46,28 +45,13 @@ function setupLanguages()
     listenerLanguage();
     window.mainApi.getLanguageDataPromise().then(languageData =>
     {
-        i18nTranslator.translatePage(usersStyles['language'], languageData.data, 'Preferences');
-    });
-}
-
-function refreshContent()
-{
-    return new Promise((resolve) =>
-    {
-        window.mainApi.getUserPreferencesPromise().then(userPreferences =>
-        {
-            usersStyles = userPreferences;
-            preferences = usersStyles;
-            resolve();
-        });
+        i18nTranslator.translatePage(preferences['language'], languageData.data, 'Preferences');
     });
 }
 
 function resetContent()
 {
-    const defaultPreferences = window.mainApi.getDefaultPreferences();
-    usersStyles = defaultPreferences;
-    preferences = usersStyles;
+    preferences = window.mainApi.getDefaultPreferences();
     renderPreferencesWindow();
     window.mainApi.notifyNewPreferences(preferences);
 }
@@ -124,9 +108,9 @@ function renderPreferencesWindow()
     const theme = 'theme';
 
     /* istanbul ignore else */
-    if (theme in usersStyles)
+    if (theme in preferences)
     {
-        $('#' + theme).val(usersStyles[theme]);
+        $('#' + theme).val(preferences[theme]);
     }
     const selectedThemeOption = $('#' + theme)
         .children('option:selected')
@@ -135,9 +119,9 @@ function renderPreferencesWindow()
     applyTheme(selectedThemeOption);
 
     /* istanbul ignore else */
-    if ('view' in usersStyles)
+    if ('view' in preferences)
     {
-        $('#view').val(usersStyles['view']);
+        $('#view').val(preferences['view']);
     }
 
     $('input').each(function()
@@ -148,9 +132,9 @@ function renderPreferencesWindow()
         if (input.attr('type') === 'checkbox')
         {
             /* istanbul ignore else */
-            if (name in usersStyles)
+            if (name in preferences)
             {
-                input.prop('checked', usersStyles[name]);
+                input.prop('checked', preferences[name]);
             }
             preferences[name] = input.prop('checked');
         }
@@ -159,9 +143,9 @@ function renderPreferencesWindow()
         )
         {
             /* istanbul ignore else */
-            if (name in usersStyles)
+            if (name in preferences)
             {
-                input.val(usersStyles[name]);
+                input.val(preferences[name]);
             }
             preferences[name] = input.val();
         }
@@ -179,7 +163,7 @@ function renderPreferencesWindow()
     repetition.prop('disabled', !notification.is(':checked'));
     repetition.prop(
         'checked',
-        notification.is(':checked') && usersStyles['repetition']
+        notification.is(':checked') && preferences['repetition']
     );
     notificationsInterval.prop('disabled', !repetition.is(':checked'));
 }
@@ -263,7 +247,7 @@ function setupListeners()
         repetition.prop('disabled', !notification.is(':checked'));
         repetition.prop(
             'checked',
-            notification.is(':checked') && usersStyles['repetition']
+            notification.is(':checked') && preferences['repetition']
         );
         notificationsInterval.prop('disabled', !repetition.is(':checked'));
     });
@@ -277,19 +261,14 @@ function setupListeners()
 /* istanbul ignore next */
 $(() =>
 {
-    window.mainApi.getUserPreferencesPromise().then((userPreferences) =>
-    {
-        usersStyles = userPreferences;
-        preferences = usersStyles;
-        renderPreferencesWindow();
-        setupListeners();
-        setupLanguages();
-    });
+    preferences = window.mainApi.getOriginalUserPreferences();
+    renderPreferencesWindow();
+    setupListeners();
+    setupLanguages();
 });
 
 export {
     convertTimeFormat,
-    refreshContent,
     resetContent,
     populateLanguages,
     listenerLanguage,
