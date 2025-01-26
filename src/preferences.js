@@ -10,7 +10,7 @@ function populateLanguages()
 {
     const languageOpts = $('#language');
     languageOpts.empty();
-    $.each(window.mainApi.getLanguageMap(), (key, value) =>
+    $.each(window.preferencesApi.getLanguageMap(), (key, value) =>
     {
         languageOpts.append(
             $('<option />')
@@ -31,10 +31,10 @@ function listenerLanguage()
     $('#language').on('change', function()
     {
         preferences['language'] = this.value;
-        window.mainApi.changeLanguagePromise(this.value).then((languageData) =>
+        window.preferencesApi.changeLanguagePromise(this.value).then((languageData) =>
         {
             i18nTranslator.translatePage(this.value, languageData, 'Preferences');
-            window.mainApi.notifyNewPreferences(preferences);
+            window.preferencesApi.notifyNewPreferences(preferences);
         });
     });
 }
@@ -43,7 +43,7 @@ function setupLanguages()
 {
     populateLanguages();
     listenerLanguage();
-    window.mainApi.getLanguageDataPromise().then(languageData =>
+    window.preferencesApi.getLanguageDataPromise().then(languageData =>
     {
         i18nTranslator.translatePage(preferences['language'], languageData.data, 'Preferences');
     });
@@ -51,15 +51,15 @@ function setupLanguages()
 
 function resetContent()
 {
-    preferences = window.mainApi.getDefaultPreferences();
+    preferences = window.preferencesApi.getDefaultPreferences();
     renderPreferencesWindow();
-    window.mainApi.notifyNewPreferences(preferences);
+    window.preferencesApi.notifyNewPreferences(preferences);
 }
 
 function changeValue(type, newVal)
 {
     preferences[type] = newVal;
-    window.mainApi.notifyNewPreferences(preferences);
+    window.preferencesApi.notifyNewPreferences(preferences);
 }
 
 function convertTimeFormat(entry)
@@ -204,7 +204,7 @@ function setupListeners()
 
     $('#reset-button').on('click', function()
     {
-        window.mainApi.getLanguageDataPromise().then(languageData =>
+        window.preferencesApi.getLanguageDataPromise().then(languageData =>
         {
             const options = {
                 type: 'question',
@@ -214,7 +214,7 @@ function setupListeners()
                 title: i18nTranslator.getTranslationInLanguageData(languageData.data, '$Preferences.reset-preferences'),
                 message: i18nTranslator.getTranslationInLanguageData(languageData.data, '$Preferences.confirm-reset-preferences'),
             };
-            window.mainApi.showDialogSync(options).then((result) =>
+            window.preferencesApi.showDialogSync(options).then((result) =>
             {
                 if (result.response === 0 /*Yes*/)
                 {
@@ -224,7 +224,7 @@ function setupListeners()
                         message: i18nTranslator.getTranslationInLanguageData(languageData.data, '$Preferences.reset-preferences'),
                         detail: i18nTranslator.getTranslationInLanguageData(languageData.data, '$Preferences.reset-success'),
                     };
-                    window.mainApi.showDialogSync(optionsReset);
+                    window.preferencesApi.showDialogSync(optionsReset);
                 }
             });
         });
@@ -261,7 +261,7 @@ function setupListeners()
 /* istanbul ignore next */
 $(() =>
 {
-    preferences = window.mainApi.getOriginalUserPreferences();
+    preferences = window.rendererApi.getOriginalUserPreferences();
     renderPreferencesWindow();
     setupListeners();
     setupLanguages();

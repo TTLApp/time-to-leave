@@ -93,16 +93,18 @@ describe('Test Preferences Window', () =>
         stub(i18nTranslator, 'getTranslationInLanguageData').returnsThis();
 
         // APIs from the preload script of the preferences window
-        window.mainApi = preferencesApi;
+        window.preferencesApi = preferencesApi;
 
-        // Mocking with the actual access that main would have
-        window.mainApi.getOriginalUserPreferences = () => { return testPreferences; };
+        // Mocking with the actual value
+        window.rendererApi = {
+            getOriginalUserPreferences: () => { return testPreferences; }
+        };
 
         // Stub methods
-        window.mainApi.notifyNewPreferences = () => {};
-        window.mainApi.showDialogSync = () => { return new Promise((resolve) => resolve({ response: 0 })); };
+        window.preferencesApi.notifyNewPreferences = () => {};
+        window.preferencesApi.showDialogSync = () => { return new Promise((resolve) => resolve({ response: 0 })); };
 
-        window.mainApi.getLanguageDataPromise = () =>
+        window.preferencesApi.getLanguageDataPromise = () =>
         {
             return new Promise((resolve) => resolve({
                 'language': 'en',
