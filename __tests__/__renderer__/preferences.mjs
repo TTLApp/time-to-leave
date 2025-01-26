@@ -97,20 +97,19 @@ describe('Test Preferences Window', () =>
 
         // Mocking with the actual value
         window.rendererApi = {
-            getOriginalUserPreferences: () => { return testPreferences; }
+            getLanguageDataPromise: () =>
+            {
+                return new Promise((resolve) => resolve({
+                    'language': 'en',
+                    'data': {}
+                }));
+            },
+            getOriginalUserPreferences: () => { return testPreferences; },
+            showDialogSync: () => { return new Promise((resolve) => resolve({ response: 0 })); }
         };
 
         // Stub methods
         window.preferencesApi.notifyNewPreferences = () => {};
-        window.preferencesApi.showDialogSync = () => { return new Promise((resolve) => resolve({ response: 0 })); };
-
-        window.preferencesApi.getLanguageDataPromise = () =>
-        {
-            return new Promise((resolve) => resolve({
-                'language': 'en',
-                'data': {}
-            }));
-        };
 
         resetPreferenceFile();
 

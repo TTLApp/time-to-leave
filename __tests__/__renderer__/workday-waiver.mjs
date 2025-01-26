@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 'use strict';
 
 import '../../__mocks__/jquery.mjs';
@@ -20,17 +19,14 @@ import {
 } from '../../main/workday-waiver-aux.mjs';
 import {
     getDefaultPreferences,
-    getUserPreferencesPromise,
+    getUserPreferences,
     savePreferences,
 } from '../../js/user-preferences.mjs';
 import i18nTranslator from '../../renderer/i18n-translator.js';
 
-
 const waiverStore = new Store({name: 'waived-workdays'});
 
 const document = window.document;
-
-const languageData = {'language': 'en', 'data': {'dummy_string': 'dummy_string_translated'}};
 
 let htmlDoc = undefined;
 
@@ -53,7 +49,6 @@ let clearHolidayTable;
 let clearWaiverList;
 let loadHolidaysTable;
 let initializeHolidayInfo;
-let refreshDataForTest;
 
 async function prepareMockup()
 {
@@ -65,7 +60,6 @@ async function prepareMockup()
     }
     window.document.documentElement.innerHTML = htmlDoc.window.document.documentElement.innerHTML;
     await populateList();
-    refreshDataForTest(languageData);
 }
 
 async function addTestWaiver(day, reason)
@@ -111,14 +105,13 @@ describe('Test Workday Waiver Window', function()
         clearWaiverList = file.clearWaiverList;
         loadHolidaysTable = file.loadHolidaysTable;
         initializeHolidayInfo = file.initializeHolidayInfo;
-        refreshDataForTest = file.refreshDataForTest;
 
         // APIs from the preload script of the workday waiver window
-        global.window.mainApi = workdayWaiverApi;
+        window.workdayWaiverApi = workdayWaiverApi;
 
         // Mocking with the actual access to store that main would have
-        window.mainApi.getWaiverStoreContents = () => { return new Promise((resolve) => resolve(waiverStore.store)); };
-        window.mainApi.setWaiver = (key, contents) =>
+        window.workdayWaiverApi.getWaiverStoreContents = () => { return new Promise((resolve) => resolve(waiverStore.store)); };
+        window.workdayWaiverApi.setWaiver = (key, contents) =>
         {
             return new Promise((resolve) =>
             {
@@ -126,8 +119,8 @@ describe('Test Workday Waiver Window', function()
                 resolve(true);
             });
         };
-        window.mainApi.hasWaiver = (key) => { return new Promise((resolve) => resolve(waiverStore.has(key))); };
-        window.mainApi.deleteWaiver = (key) =>
+        window.workdayWaiverApi.hasWaiver = (key) => { return new Promise((resolve) => resolve(waiverStore.has(key))); };
+        window.workdayWaiverApi.deleteWaiver = (key) =>
         {
             return new Promise((resolve) =>
             {
@@ -135,8 +128,15 @@ describe('Test Workday Waiver Window', function()
                 resolve(true);
             });
         };
+        window.workdayWaiverApi.getWaiverDay = () =>
+        {
+            return new Promise((resolve) =>
+            {
+                resolve(global.waiverDay);
+            });
+        };
 
-        window.mainApi.getHolidays = (country, state, city, year) =>
+        window.workdayWaiverApi.getHolidays = (country, state, city, year) =>
         {
             return new Promise((resolve) =>
             {
@@ -144,7 +144,7 @@ describe('Test Workday Waiver Window', function()
             });
         };
 
-        window.mainApi.getCountries = () =>
+        window.workdayWaiverApi.getCountries = () =>
         {
             return new Promise((resolve) =>
             {
@@ -152,7 +152,7 @@ describe('Test Workday Waiver Window', function()
             });
         };
 
-        window.mainApi.getStates = (country) =>
+        window.workdayWaiverApi.getStates = (country) =>
         {
             return new Promise((resolve) =>
             {
@@ -160,7 +160,7 @@ describe('Test Workday Waiver Window', function()
             });
         };
 
-        window.mainApi.getRegions = (country, state) =>
+        window.workdayWaiverApi.getRegions = (country, state) =>
         {
             return new Promise((resolve) =>
             {
@@ -168,25 +168,28 @@ describe('Test Workday Waiver Window', function()
             });
         };
 
-        window.mainApi.showDialogSync = () =>
-        {
-            return new Promise((resolve) =>
+        window.rendererApi = {
+            getLanguageDataPromise: () =>
             {
-                resolve({ response: 0 });
-            });
+                return new Promise((resolve) => resolve({
+                    'language': 'en',
+                    'data': {}
+                }));
+            },
+            showDialogSync: () =>
+            {
+                return new Promise((resolve) =>
+                {
+                    resolve({ response: 0 });
+                });
+            },
+            getOriginalUserPreferences: () =>
+            {
+                return getUserPreferences();
+            }
         };
 
-        window.mainApi.getUserPreferences = () =>
-        {
-            const preferencesFilePathPromise = new Promise((resolve) =>
-            {
-                const userDataPath = app.getPath('userData');
-                resolve(path.join(userDataPath, 'preferences.json'));
-            });
-            return getUserPreferencesPromise(preferencesFilePathPromise);
-        };
-
-        window.mainApi.showAlert = () => {};
+        window.workdayWaiverApi.showAlert = () => {};
 
         // Making sure the preferences are the default so the tests work as expected
         savePreferences(getDefaultPreferences());

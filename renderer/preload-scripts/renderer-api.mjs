@@ -1,5 +1,12 @@
 'use strict';
 
+import { ipcRenderer } from 'electron';
+
+function getLanguageDataPromise()
+{
+    return ipcRenderer.invoke('GET_LANGUAGE_DATA');
+}
+
 function getOriginalUserPreferences()
 {
     const preferences = process.argv.filter((arg) => arg.startsWith('--preferences='))[0]?.split('=')?.[1];
@@ -7,8 +14,15 @@ function getOriginalUserPreferences()
     return JSON.parse(preferences || '{}');
 }
 
+function showDialogSync(dialogOptions)
+{
+    return ipcRenderer.invoke('SHOW_DIALOG', dialogOptions);
+}
+
 const rendererApi = {
-    getOriginalUserPreferences
+    getLanguageDataPromise,
+    getOriginalUserPreferences,
+    showDialogSync,
 };
 
 export {

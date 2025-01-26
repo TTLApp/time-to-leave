@@ -43,7 +43,7 @@ function setupLanguages()
 {
     populateLanguages();
     listenerLanguage();
-    window.preferencesApi.getLanguageDataPromise().then(languageData =>
+    window.rendererApi.getLanguageDataPromise().then(languageData =>
     {
         i18nTranslator.translatePage(preferences['language'], languageData.data, 'Preferences');
     });
@@ -204,7 +204,7 @@ function setupListeners()
 
     $('#reset-button').on('click', function()
     {
-        window.preferencesApi.getLanguageDataPromise().then(languageData =>
+        window.rendererApi.getLanguageDataPromise().then(languageData =>
         {
             const options = {
                 type: 'question',
@@ -214,7 +214,7 @@ function setupListeners()
                 title: i18nTranslator.getTranslationInLanguageData(languageData.data, '$Preferences.reset-preferences'),
                 message: i18nTranslator.getTranslationInLanguageData(languageData.data, '$Preferences.confirm-reset-preferences'),
             };
-            window.preferencesApi.showDialogSync(options).then((result) =>
+            window.rendererApi.showDialogSync(options).then((result) =>
             {
                 if (result.response === 0 /*Yes*/)
                 {
@@ -224,7 +224,7 @@ function setupListeners()
                         message: i18nTranslator.getTranslationInLanguageData(languageData.data, '$Preferences.reset-preferences'),
                         detail: i18nTranslator.getTranslationInLanguageData(languageData.data, '$Preferences.reset-success'),
                     };
-                    window.preferencesApi.showDialogSync(optionsReset);
+                    window.rendererApi.showDialogSync(optionsReset);
                 }
             });
         });

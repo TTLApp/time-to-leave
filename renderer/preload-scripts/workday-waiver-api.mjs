@@ -5,13 +5,7 @@ const require = createRequire(import.meta.url);
 
 const { ipcRenderer } = require('electron');
 
-import * as config from '../../src/configs/app.config.mjs';
-import { getUserPreferencesPromise, showDay } from '../../js/user-preferences.mjs';
-
-function getLanguageData()
-{
-    return ipcRenderer.invoke('GET_LANGUAGE_DATA');
-}
+import { showDay } from '../../js/user-preferences.mjs';
 
 function getWaiverDay()
 {
@@ -21,11 +15,6 @@ function getWaiverDay()
 function showAlert(alertMessage)
 {
     ipcRenderer.send('SHOW_ALERT', alertMessage);
-}
-
-function showDialogSync(dialogOptions)
-{
-    return ipcRenderer.invoke('SHOW_DIALOG', dialogOptions);
 }
 
 function showDayByPreferences(year, month, day, preferences)
@@ -74,12 +63,8 @@ function getRegions(country, state)
 }
 
 const workdayWaiverApi = {
-    getLanguageMap: () => config.getLanguageMap(),
-    getUserPreferences: () => getUserPreferencesPromise(),
-    getLanguageData: () => getLanguageData(),
     getWaiverDay: () => getWaiverDay(),
     showAlert: (alertMessage) => showAlert(alertMessage),
-    showDialogSync: (dialogOptions) => showDialogSync(dialogOptions),
     showDay: (year, month, day, userPreferences) => showDayByPreferences(year, month, day, userPreferences),
     getHolidays: (country, state, city, year) => getHolidays(country, state, city, year),
     getCountries: () => getCountries(),
