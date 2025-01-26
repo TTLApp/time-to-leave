@@ -3,6 +3,7 @@
 import { app, ipcMain } from 'electron';
 
 import i18NextConfig from '../src/configs/i18next.config.mjs';
+import IpcConstants from './ipc-constants.mjs';
 
 let savedPreferences = null;
 
@@ -11,7 +12,7 @@ function getSavedPreferences()
     return savedPreferences;
 }
 
-ipcMain.on('PREFERENCE_SAVE_DATA_NEEDED', (event, preferences) =>
+ipcMain.on(IpcConstants.PreferenceSaveDataNeeded, (event, preferences) =>
 {
     savedPreferences = preferences;
     app.setLoginItemSettings({

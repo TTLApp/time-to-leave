@@ -1,7 +1,7 @@
 'use strict';
 
 import assert from 'assert';
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { BrowserWindow, ipcMain } from 'electron';
 import { match, spy, stub, useFakeTimers } from 'sinon';
 
 import Notification from '../../js/notification.mjs';
@@ -16,18 +16,10 @@ import {
 } from '../../js/main-window.mjs';
 
 import UpdateManager from '../../js/update-manager.mjs';
+import IpcConstants from '../../js/ipc-constants.mjs';
 
-// Mocking USER_DATA_PATH for tests below
-ipcMain.handle('USER_DATA_PATH', () =>
-{
-    return new Promise((resolve) =>
-    {
-        resolve(app.getPath('userData'));
-    });
-});
-
-ipcMain.removeHandler('GET_LANGUAGE_DATA');
-ipcMain.handle('GET_LANGUAGE_DATA', () => ({
+ipcMain.removeHandler(IpcConstants.GetLanguageData);
+ipcMain.handle(IpcConstants.GetLanguageData, () => ({
     'language': 'en',
     'data': {}
 }));
@@ -74,10 +66,10 @@ describe('main-window.mjs', () =>
              */
             const mainWindow = getMainWindow();
             assert.strictEqual(mainWindow instanceof BrowserWindow, true);
-            assert.strictEqual(ipcMain.listenerCount('TOGGLE_TRAY_PUNCH_TIME'), 1);
-            assert.strictEqual(ipcMain.listenerCount('RESIZE_MAIN_WINDOW'), 1);
-            assert.strictEqual(ipcMain.listenerCount('SWITCH_VIEW'), 1);
-            assert.strictEqual(ipcMain.listenerCount('RECEIVE_LEAVE_BY'), 1);
+            assert.strictEqual(ipcMain.listenerCount(IpcConstants.ToggleTrayPunchTime), 1);
+            assert.strictEqual(ipcMain.listenerCount(IpcConstants.ResizeMainWindow), 1);
+            assert.strictEqual(ipcMain.listenerCount(IpcConstants.SwitchView), 1);
+            assert.strictEqual(ipcMain.listenerCount(IpcConstants.ReceiveLeaveBy), 1);
             assert.strictEqual(mainWindow.listenerCount('minimize'), 2);
             assert.strictEqual(mainWindow.listenerCount('close'), 2);
             assert.strictEqual(loadFileSpy.calledOnce, true);
@@ -87,7 +79,7 @@ describe('main-window.mjs', () =>
         });
     });
 
-    describe('emit RESIZE_MAIN_WINDOW', function()
+    describe('emit IpcConstants.ResizeMainWindow', function()
     {
         it('It should resize window', (done) =>
         {
@@ -101,7 +93,7 @@ describe('main-window.mjs', () =>
                 // Wait a bit for values to accomodate
                 await new Promise(res => setTimeout(res, 500));
 
-                assert.strictEqual(ipcMain.emit('RESIZE_MAIN_WINDOW'), true);
+                assert.strictEqual(ipcMain.emit(IpcConstants.ResizeMainWindow), true);
                 const windowSize = mainWindow.getSize();
                 assert.strictEqual(windowSize.length, 2);
 
@@ -127,7 +119,7 @@ describe('main-window.mjs', () =>
                 // Wait a bit for values to accomodate
                 await new Promise(res => setTimeout(res, 500));
 
-                assert.strictEqual(ipcMain.emit('RESIZE_MAIN_WINDOW'), true);
+                assert.strictEqual(ipcMain.emit(IpcConstants.ResizeMainWindow), true);
                 const windowSize = mainWindow.getSize();
                 assert.strictEqual(windowSize.length, 2);
 
@@ -139,7 +131,7 @@ describe('main-window.mjs', () =>
         });
     });
 
-    describe('emit SWITCH_VIEW', () =>
+    describe('emit IpcConstants.SwitchView', () =>
     {
         it('It should send new event to ipcRenderer', (done) =>
         {
@@ -159,21 +151,17 @@ describe('main-window.mjs', () =>
 
                 const windowStub = stub(mainWindow.webContents, 'send').callsFake((event, savedPreferences) =>
                 {
-                    ipcMain.emit('FINISH_TEST', event, savedPreferences);
-                });
-                ipcMain.on('FINISH_TEST', (event, savedPreferences) =>
-                {
                     assert.strictEqual(windowStub.calledOnce, true);
                     assert.strictEqual(savedPreferences['view'], 'day');
                     done();
                 });
-                ipcMain.emit('SWITCH_VIEW');
+                ipcMain.emit(IpcConstants.SwitchView);
                 windowStub.restore();
             });
         });
     });
 
-    describe('emit RECEIVE_LEAVE_BY', () =>
+    describe('emit IpcConstants.ReceiveLeaveBy', () =>
     {
         it('Should not show notification when notifications is not sent', (done) =>
         {
@@ -188,7 +176,7 @@ describe('main-window.mjs', () =>
                 {
                     return false;
                 });
-                ipcMain.emit('RECEIVE_LEAVE_BY', {}, undefined);
+                ipcMain.emit(IpcConstants.ReceiveLeaveBy, {}, undefined);
                 assert.strictEqual(Notification.createLeaveNotification.calledOnce, true);
                 Notification.createLeaveNotification.restore();
                 done();
@@ -216,7 +204,7 @@ describe('main-window.mjs', () =>
             {
                 const now = new Date();
                 ipcMain.emit(
-                    'RECEIVE_LEAVE_BY',
+                    IpcConstants.ReceiveLeaveBy,
                     {},
                     `0${now.getHours()}`.slice(-2) + ':' + `0${now.getMinutes()}`.slice(-2)
                 );
@@ -239,10 +227,6 @@ describe('main-window.mjs', () =>
                 {
                     showSpy.callsFake(() =>
                     {
-                        ipcMain.emit('FINISH_TEST');
-                    });
-                    ipcMain.on('FINISH_TEST', () =>
-                    {
                         assert.strictEqual(showSpy.calledTwice, true);
                         showSpy.resetBehavior();
                         done();
@@ -264,10 +248,6 @@ describe('main-window.mjs', () =>
                 mainWindow.on('ready-to-show', () =>
                 {
                     const trayStub = stub(global.tray, 'popUpContextMenu').callsFake(() =>
-                    {
-                        ipcMain.emit('FINISH_TEST');
-                    });
-                    ipcMain.on('FINISH_TEST', () =>
                     {
                         assert.strictEqual(trayStub.calledOnce, true);
                         trayStub.restore();

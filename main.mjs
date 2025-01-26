@@ -13,6 +13,7 @@ import i18NextConfig from './src/configs/i18next.config.mjs';
 
 // Allow require()
 import { createRequire } from 'module';
+import IpcConstants from './js/ipc-constants.mjs';
 const require = createRequire(import.meta.url);
 
 const { showAlert, showDialogSync } = require('./js/window-aux.cjs');
@@ -28,32 +29,24 @@ if (appConfig.win32)
 
 setupWorkdayWaiverHandlers();
 
-ipcMain.on('SET_WAIVER_DAY', (event, waiverDay) =>
+ipcMain.on(IpcConstants.SetWaiverDay, (event, waiverDay) =>
 {
     global.waiverDay = waiverDay;
     const mainWindow = getMainWindow();
     Windows.openWaiverManagerWindow(mainWindow);
 });
 
-ipcMain.handle('GET_WAIVER_DAY', () =>
+ipcMain.handle(IpcConstants.GetWaiverDay, () =>
 {
     return global.waiverDay;
 });
 
-ipcMain.handle('USER_DATA_PATH', () =>
-{
-    return new Promise((resolve) =>
-    {
-        resolve(app.getPath('userData'));
-    });
-});
-
-ipcMain.on('SHOW_ALERT', (event, alertMessage) =>
+ipcMain.on(IpcConstants.ShowAlert, (event, alertMessage) =>
 {
     showAlert(alertMessage);
 });
 
-ipcMain.handle('SHOW_DIALOG', (event, dialogOptions) =>
+ipcMain.handle(IpcConstants.ShowDialog, (event, dialogOptions) =>
 {
     return showDialogSync(dialogOptions);
 });
@@ -100,7 +93,7 @@ function refreshOnDayChange()
         launchDate = today;
 
         // Reload only the calendar itself to avoid a flash
-        mainWindow.webContents.send('REFRESH_ON_DAY_CHANGE', oldDate, oldMonth, oldYear);
+        mainWindow.webContents.send(IpcConstants.RefreshOnDayChange, oldDate, oldMonth, oldYear);
     }
 }
 

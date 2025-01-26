@@ -2,11 +2,12 @@
 
 import { ipcRenderer } from 'electron';
 
+import IpcConstants from '../../js/ipc-constants.mjs';
 import { showDay } from '../../js/user-preferences.mjs';
 
 function getLanguageDataPromise()
 {
-    return ipcRenderer.invoke('GET_LANGUAGE_DATA');
+    return ipcRenderer.invoke(IpcConstants.GetLanguageData);
 }
 
 function getOriginalUserPreferences()
@@ -18,12 +19,12 @@ function getOriginalUserPreferences()
 
 function getWaiverStoreContents()
 {
-    return ipcRenderer.invoke('GET_WAIVER_STORE_CONTENTS');
+    return ipcRenderer.invoke(IpcConstants.GetWaiverStoreContents);
 }
 
 function showDialogSync(dialogOptions)
 {
-    return ipcRenderer.invoke('SHOW_DIALOG', dialogOptions);
+    return ipcRenderer.invoke(IpcConstants.ShowDialog, dialogOptions);
 }
 
 const rendererApi = {

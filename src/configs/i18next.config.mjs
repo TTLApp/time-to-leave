@@ -10,6 +10,7 @@ import { appConfig } from '../../js/app-config.mjs';
 
 // TODO: make async below again
 import { getUserLanguage } from '../../js/user-preferences.mjs';
+import IpcConstants from '../../js/ipc-constants.mjs';
 
 const i18nextOptions = {
     backend:{
@@ -32,7 +33,7 @@ const i18nextOptions = {
     }
 };
 
-ipcMain.handle('CHANGE_LANGUAGE', (event, language) =>
+ipcMain.handle(IpcConstants.ChangeLanguage, (event, language) =>
 {
     return new Promise((resolve) =>
     {
@@ -48,7 +49,7 @@ function getCurrentLanguageData()
     return i18n.getDataByLanguage(i18n.language);
 }
 
-ipcMain.handle('GET_LANGUAGE_DATA', () =>
+ipcMain.handle(IpcConstants.GetLanguageData, () =>
 {
     return {
         'language': i18n.language,

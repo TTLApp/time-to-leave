@@ -4,6 +4,8 @@ import Holidays from 'date-holidays';
 import { ipcMain } from 'electron';
 import Store from 'electron-store';
 
+import IpcConstants from '../js/ipc-constants.mjs';
+
 const hd = new Holidays();
 const waiverStore = new Store({name: 'waived-workdays'});
 
@@ -15,23 +17,23 @@ function getWaiverStore()
 
 function setupWorkdayWaiverStoreHandlers()
 {
-    ipcMain.handle('GET_WAIVER_STORE_CONTENTS', () =>
+    ipcMain.handle(IpcConstants.GetWaiverStoreContents, () =>
     {
         return getWaiverStore();
     });
 
-    ipcMain.handle('SET_WAIVER', (_event, key, contents) =>
+    ipcMain.handle(IpcConstants.SetWaiver, (_event, key, contents) =>
     {
         waiverStore.set(key, contents);
         return true;
     });
 
-    ipcMain.handle('HAS_WAIVER', (_event, key) =>
+    ipcMain.handle(IpcConstants.HasWaiver, (_event, key) =>
     {
         return waiverStore.has(key);
     });
 
-    ipcMain.handle('DELETE_WAIVER', (_event, key) =>
+    ipcMain.handle(IpcConstants.DeleteWaiver, (_event, key) =>
     {
         waiverStore.delete(key);
         return true;
@@ -79,22 +81,22 @@ function getRegions(country, state)
 
 function setupWorkdayHolidaysHandlers()
 {
-    ipcMain.handle('GET_HOLIDAYS', (_event, country, state, city, year) =>
+    ipcMain.handle(IpcConstants.GetHolidays, (_event, country, state, city, year) =>
     {
         return getAllHolidays(country, state, city, year);
     });
 
-    ipcMain.handle('GET_COUNTRIES', () =>
+    ipcMain.handle(IpcConstants.GetCountries, () =>
     {
         return getCountries();
     });
 
-    ipcMain.handle('GET_STATES', (_event, country) =>
+    ipcMain.handle(IpcConstants.GetStates, (_event, country) =>
     {
         return getStates(country);
     });
 
-    ipcMain.handle('GET_REGIONS', (_event, country, state) =>
+    ipcMain.handle(IpcConstants.GetRegions, (_event, country, state) =>
     {
         return getRegions(country, state);
     });

@@ -14,6 +14,7 @@ import {
 } from '../../js/menus.mjs';
 
 import i18NextConfig from '../../src/configs/i18next.config.mjs';
+import IpcConstants from '../../js/ipc-constants.mjs';
 import Windows from '../../js/windows.mjs';
 import Notification from '../../js/notification.mjs';
 import UpdateManager from '../../js/update-manager.mjs';
@@ -116,7 +117,7 @@ describe('menus.js', () =>
                 webContents: {
                     send: (key) =>
                     {
-                        assert.strictEqual(key, 'PUNCH_DATE');
+                        assert.strictEqual(key, IpcConstants.PunchDate);
                     }
                 }
             };
@@ -177,7 +178,7 @@ describe('menus.js', () =>
                 webContents: {
                     send: (key) =>
                     {
-                        assert.strictEqual(key, 'PUNCH_DATE');
+                        assert.strictEqual(key, IpcConstants.PunchDate);
                     }
                 }
             };
@@ -435,7 +436,7 @@ describe('menus.js', () =>
                 webContents: {
                     send: (key) =>
                     {
-                        assert.strictEqual(key, 'RELOAD_CALENDAR');
+                        assert.strictEqual(key, IpcConstants.ReloadCalendar);
                     }
                 }
             };
@@ -460,7 +461,7 @@ describe('menus.js', () =>
                 webContents: {
                     send: (key) =>
                     {
-                        assert.strictEqual(key, 'RELOAD_CALENDAR');
+                        assert.strictEqual(key, IpcConstants.ReloadCalendar);
                     }
                 }
             };
@@ -485,7 +486,7 @@ describe('menus.js', () =>
                 webContents: {
                     send: (key) =>
                     {
-                        assert.strictEqual(key, 'RELOAD_CALENDAR');
+                        assert.strictEqual(key, IpcConstants.ReloadCalendar);
                     }
                 }
             };
@@ -547,7 +548,7 @@ describe('menus.js', () =>
                 webContents: {
                     send: (key) =>
                     {
-                        assert.strictEqual(key, 'RELOAD_CALENDAR');
+                        assert.strictEqual(key, IpcConstants.ReloadCalendar);
                     }
                 }
             };

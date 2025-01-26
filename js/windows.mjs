@@ -6,6 +6,7 @@ import path from 'path';
 import { appConfig, rootDir } from './app-config.mjs';
 import { getDateStr } from './date-aux.mjs';
 import { getUserPreferences } from './user-preferences.mjs';
+import IpcConstants from './ipc-constants.mjs';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -53,7 +54,7 @@ class Windows
         global.waiverWindow.on('close', function()
         {
             global.waiverWindow = null;
-            mainWindow.webContents.send('WAIVER_SAVED');
+            mainWindow.webContents.send(IpcConstants.WaiverSaved);
         });
         global.waiverWindow.webContents.on('before-input-event', (event, input) =>
         {

@@ -4,6 +4,7 @@ import { ipcMain } from 'electron';
 import Store from 'electron-store';
 
 import TimeBalance from '../js/time-balance.mjs';
+import IpcConstants from '../js/ipc-constants.mjs';
 
 const calendarStore = new Store({name: 'flexible-store'});
 
@@ -14,24 +15,24 @@ function getCalendarStore()
 
 function setupCalendarStore()
 {
-    ipcMain.handle('GET_STORE_CONTENTS', () =>
+    ipcMain.handle(IpcConstants.GetStoreContents, () =>
     {
         return getCalendarStore();
     });
 
-    ipcMain.handle('SET_STORE_DATA', (event, key, contents) =>
+    ipcMain.handle(IpcConstants.SetStoreData, (event, key, contents) =>
     {
         calendarStore.set(key, contents);
         return true;
     });
 
-    ipcMain.handle('DELETE_STORE_DATA', (event, key) =>
+    ipcMain.handle(IpcConstants.DeleteStoreData, (event, key) =>
     {
         calendarStore.delete(key);
         return true;
     });
 
-    ipcMain.handle('COMPUTE_ALL_TIME_BALANCE_UNTIL', (event, targetDate) =>
+    ipcMain.handle(IpcConstants.ComputeAllTimeBalanceUntil, (event, targetDate) =>
     {
         return TimeBalance.computeAllTimeBalanceUntilAsync(targetDate);
     });

@@ -13,6 +13,7 @@ import UpdateManager from './update-manager.mjs';
 import { getUserPreferences, savePreferences } from './user-preferences.mjs';
 import Windows from './windows.mjs';
 import i18NextConfig from '../src/configs/i18next.config.mjs';
+import IpcConstants from './ipc-constants.mjs';
 
 function getMainMenuTemplate(mainWindow)
 {
@@ -46,7 +47,7 @@ function getContextMenuTemplate(mainWindow)
             {
                 const now = new Date();
 
-                mainWindow.webContents.send('PUNCH_DATE');
+                mainWindow.webContents.send(IpcConstants.PunchDate);
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
                 Notification.createNotification(
                     `${i18NextConfig.getCurrentTranslation(
@@ -81,7 +82,7 @@ function getDockMenuTemplate(mainWindow)
             {
                 const now = new Date();
 
-                mainWindow.webContents.send('PUNCH_DATE');
+                mainWindow.webContents.send(IpcConstants.PunchDate);
                 // Slice keeps "HH:MM" part of "HH:MM:SS GMT+HHMM (GMT+HH:MM)" time string
                 Notification.createNotification(
                     `${i18NextConfig.getCurrentTranslation(
@@ -157,7 +158,7 @@ function getEditMenuTemplate(mainWindow)
                     if (savedPreferences !== null)
                     {
                         savePreferences(savedPreferences);
-                        mainWindow.webContents.send('PREFERENCES_SAVED', savedPreferences);
+                        mainWindow.webContents.send(IpcConstants.PreferencesSaved, savedPreferences);
                     }
                 });
                 global.prefWindow.webContents.on('before-input-event', (event, input) =>
@@ -239,7 +240,7 @@ function getEditMenuTemplate(mainWindow)
                     {
                         const importResult = ImportExport.importDatabaseFromFile(response);
                         // Reload only the calendar itself to avoid a flash
-                        mainWindow.webContents.send('RELOAD_CALENDAR');
+                        mainWindow.webContents.send(IpcConstants.ReloadCalendar);
                         if (importResult['result'])
                         {
                             dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
@@ -305,7 +306,7 @@ function getEditMenuTemplate(mainWindow)
                     waivedWorkdays.clear();
                     calendarStore.clear();
                     // Reload only the calendar itself to avoid a flash
-                    mainWindow.webContents.send('RELOAD_CALENDAR');
+                    mainWindow.webContents.send(IpcConstants.ReloadCalendar);
                     dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
                         title: 'Time to Leave',
                         message: i18NextConfig.getCurrentTranslation('$Menu.clear-database'),

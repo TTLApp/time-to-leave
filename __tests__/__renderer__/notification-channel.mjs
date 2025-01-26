@@ -5,6 +5,7 @@ import '../../__mocks__/jquery.mjs';
 import assert from 'assert';
 
 import { searchLeaveByElement } from '../../renderer/notification-channel.js';
+import IpcConstants from '../../js/ipc-constants.mjs';
 
 describe('Notifications channel',  () =>
 {
@@ -16,7 +17,7 @@ describe('Notifications channel',  () =>
             sender: {
                 send: (channel, value) =>
                 {
-                    assert.strictEqual(channel, 'RECEIVE_LEAVE_BY');
+                    assert.strictEqual(channel, IpcConstants.ReceiveLeaveBy);
                     assert.strictEqual(value, '12:12');
                     done();
                 }

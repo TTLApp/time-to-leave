@@ -16,6 +16,7 @@ import Notification from './notification.mjs';
 import UpdateManager from './update-manager.mjs';
 import { getDefaultWidthHeight, getUserPreferences, switchCalendarView } from './user-preferences.mjs';
 import i18NextConfig from '../src/configs/i18next.config.mjs';
+import IpcConstants from './ipc-constants.mjs';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -98,7 +99,7 @@ function createWindow()
     // and load the main html of the app as the default window
     mainWindow.loadFile(path.join(rootDir, 'src/calendar.html'));
 
-    ipcMain.on('TOGGLE_TRAY_PUNCH_TIME', (_event, arg) =>
+    ipcMain.on(IpcConstants.ToggleTrayPunchTime, (_event, arg) =>
     {
         const contextMenuTemplate = getContextMenuTemplate(mainWindow);
         contextMenuTemplate[0].enabled = arg;
@@ -106,19 +107,19 @@ function createWindow()
         global.tray.setContextMenu(global.contextMenu);
     });
 
-    ipcMain.on('RESIZE_MAIN_WINDOW', () =>
+    ipcMain.on(IpcConstants.ResizeMainWindow, () =>
     {
         const widthHeight = getDefaultWidthHeight();
         mainWindow.setSize(widthHeight.width, widthHeight.height);
     });
 
-    ipcMain.on('SWITCH_VIEW', () =>
+    ipcMain.on(IpcConstants.SwitchView, () =>
     {
         const preferences = switchCalendarView();
-        mainWindow.webContents.send('PREFERENCES_SAVED', preferences);
+        mainWindow.webContents.send(IpcConstants.PreferencesSaved, preferences);
     });
 
-    ipcMain.on('RECEIVE_LEAVE_BY', (event, element) =>
+    ipcMain.on(IpcConstants.ReceiveLeaveBy, (event, element) =>
     {
         const notification = Notification.createLeaveNotification(element);
         if (notification) notification.show();
@@ -126,7 +127,7 @@ function createWindow()
 
     leaveByInterval = setInterval(() =>
     {
-        mainWindow.webContents.send('GET_LEAVE_BY');
+        mainWindow.webContents.send(IpcConstants.GetLeaveBy);
     }, 60 * 1000);
 
     global.tray = new Tray(appConfig.trayIcon);
@@ -174,7 +175,7 @@ function createWindow()
         const theme = savedPreferences['theme'];
         if (theme === 'system-default')
         {
-            mainWindow.webContents.send('RELOAD_THEME', theme);
+            mainWindow.webContents.send(IpcConstants.ReloadTheme, theme);
         }
     });
 }
