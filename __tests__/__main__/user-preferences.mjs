@@ -11,7 +11,6 @@ import {
     getPreferencesFilePath,
     getUserLanguage,
     getUserPreferences,
-    getUserPreferencesPromise,
     notificationIsEnabled,
     repetitionIsEnabled,
     resetPreferences,
@@ -27,14 +26,6 @@ function setNewPreference(preference, value)
     const preferences = getUserPreferences();
     preferences[preference] = value;
     savePreferences(preferences);
-}
-
-function mockGetPreferencesFilePathPromise(path)
-{
-    return new Promise((resolve) =>
-    {
-        resolve(path);
-    });
 }
 
 describe('Preferences Main', () =>
@@ -441,34 +432,6 @@ describe('Preferences Main', () =>
                 });
             }
         }
-    });
-
-    describe('getUserPreferencesPromise()', () =>
-    {
-        before(() =>
-        {
-            fs.writeFileSync('./dummy_file.txt', 'This should be tried to be parsed and fail');
-        });
-
-        it('Should return a promise', () =>
-        {
-            assert.strictEqual(getUserPreferencesPromise() instanceof Promise, true);
-        });
-
-        it('Should resolve promise to empty if file is broken', async() =>
-        {
-            assert.deepStrictEqual(await getUserPreferencesPromise(mockGetPreferencesFilePathPromise('./')), {});
-        });
-
-        it('Should resolve promise to default preferences if file is unparseable', async() =>
-        {
-            assert.deepStrictEqual(await getUserPreferencesPromise(mockGetPreferencesFilePathPromise('./dummy_file.txt')), getDefaultPreferences());
-        });
-
-        after(() =>
-        {
-            fs.unlinkSync('./dummy_file.txt', () => {});
-        });
     });
 
     describe('App config languages', () =>

@@ -21,6 +21,7 @@ import {
     getDefaultPreferences,
     getUserPreferences,
     savePreferences,
+    showDay,
 } from '../../js/user-preferences.mjs';
 import i18nTranslator from '../../renderer/i18n-translator.js';
 
@@ -72,7 +73,7 @@ async function addTestWaiver(day, reason)
 
 async function testWaiverCount(expected)
 {
-    const waivedWorkdays = await window.mainApi.getWaiverStoreContents();
+    const waivedWorkdays = await window.rendererApi.getWaiverStoreContents();
     assert.strictEqual(waivedWorkdays.size, expected);
     assert.strictEqual($('#waiver-list-table tbody')[0].rows.length, expected);
 }
@@ -108,9 +109,10 @@ describe('Test Workday Waiver Window', function()
 
         // APIs from the preload script of the workday waiver window
         window.workdayWaiverApi = workdayWaiverApi;
+        window.rendererApi = {};
 
         // Mocking with the actual access to store that main would have
-        window.workdayWaiverApi.getWaiverStoreContents = () => { return new Promise((resolve) => resolve(waiverStore.store)); };
+        window.rendererApi.getWaiverStoreContents = () => { return new Promise((resolve) => resolve(waiverStore.store)); };
         window.workdayWaiverApi.setWaiver = (key, contents) =>
         {
             return new Promise((resolve) =>
@@ -168,26 +170,25 @@ describe('Test Workday Waiver Window', function()
             });
         };
 
-        window.rendererApi = {
-            getLanguageDataPromise: () =>
-            {
-                return new Promise((resolve) => resolve({
-                    'language': 'en',
-                    'data': {}
-                }));
-            },
-            showDialogSync: () =>
-            {
-                return new Promise((resolve) =>
-                {
-                    resolve({ response: 0 });
-                });
-            },
-            getOriginalUserPreferences: () =>
-            {
-                return getUserPreferences();
-            }
+        window.rendererApi.getLanguageDataPromise = () =>
+        {
+            return new Promise((resolve) => resolve({
+                'language': 'en',
+                'data': {}
+            }));
         };
+        window.rendererApi.showDialogSync = () =>
+        {
+            return new Promise((resolve) =>
+            {
+                resolve({ response: 0 });
+            });
+        };
+        window.rendererApi.getOriginalUserPreferences = () =>
+        {
+            return getUserPreferences();
+        };
+        window.rendererApi.showDay = showDay;
 
         window.workdayWaiverApi.showAlert = () => {};
 

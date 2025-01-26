@@ -62,7 +62,7 @@ class BaseCalendar
     _updateAllTimeBalance()
     {
         const targetDate = this._getTargetDayForAllTimeBalance();
-        window.mainApi.computeAllTimeBalanceUntilPromise(targetDate)
+        window.calendarApi.computeAllTimeBalanceUntilPromise(targetDate)
             .then(balance =>
             {
                 const balanceElement = $('#overall-balance');
@@ -391,7 +391,7 @@ class BaseCalendar
     {
         this._internalStore = {};
 
-        const calendarStore = await window.mainApi.getStoreContents();
+        const calendarStore = await window.calendarApi.getStoreContents();
         for (const entry of Object.entries(calendarStore))
         {
             const key = entry[0];
@@ -408,7 +408,7 @@ class BaseCalendar
     {
         this._internalWaiverStore = {};
 
-        const waivedWorkdays = await window.mainApi.getWaiverStoreContents();
+        const waivedWorkdays = await window.rendererApi.getWaiverStoreContents();
         for (const entry of Object.entries(waivedWorkdays))
         {
             const date = entry[0];
@@ -436,7 +436,7 @@ class BaseCalendar
     _setStore(key, newValues)
     {
         this._internalStore[key] = { values: newValues };
-        window.mainApi.setStoreData(key, this._internalStore[key]);
+        window.calendarApi.setStoreData(key, this._internalStore[key]);
     }
 
     /*
@@ -445,7 +445,7 @@ class BaseCalendar
     _removeStore(key)
     {
         this._internalStore[key] = undefined;
-        window.mainApi.deleteStoreData(key);
+        window.calendarApi.deleteStoreData(key);
     }
 
     /**
@@ -457,7 +457,7 @@ class BaseCalendar
      */
     _showDay(year, month, day)
     {
-        return window.mainApi.showDay(year, month, day, this._preferences);
+        return window.rendererApi.showDay(year, month, day, this._preferences);
     }
 
     /**
@@ -703,7 +703,7 @@ class BaseCalendar
     _togglePunchButton(enable)
     {
         $('#punch-button').prop('disabled', !enable);
-        window.mainApi.toggleTrayPunchTime(enable);
+        window.calendarApi.toggleTrayPunchTime(enable);
     }
 
     /**
@@ -711,7 +711,7 @@ class BaseCalendar
      */
     _switchView()
     {
-        window.mainApi.switchView();
+        window.calendarApi.switchView();
     }
 }
 

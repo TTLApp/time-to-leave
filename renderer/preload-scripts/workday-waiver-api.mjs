@@ -5,8 +5,6 @@ const require = createRequire(import.meta.url);
 
 const { ipcRenderer } = require('electron');
 
-import { showDay } from '../../js/user-preferences.mjs';
-
 function getWaiverDay()
 {
     return ipcRenderer.invoke('GET_WAIVER_DAY');
@@ -15,16 +13,6 @@ function getWaiverDay()
 function showAlert(alertMessage)
 {
     ipcRenderer.send('SHOW_ALERT', alertMessage);
-}
-
-function showDayByPreferences(year, month, day, preferences)
-{
-    return showDay(year, month, day, preferences);
-}
-
-function getWaiverStoreContents()
-{
-    return ipcRenderer.invoke('GET_WAIVER_STORE_CONTENTS');
 }
 
 function setWaiver(key, contents)
@@ -65,12 +53,10 @@ function getRegions(country, state)
 const workdayWaiverApi = {
     getWaiverDay: () => getWaiverDay(),
     showAlert: (alertMessage) => showAlert(alertMessage),
-    showDay: (year, month, day, userPreferences) => showDayByPreferences(year, month, day, userPreferences),
     getHolidays: (country, state, city, year) => getHolidays(country, state, city, year),
     getCountries: () => getCountries(),
     getStates: (country) => getStates(country),
     getRegions: (country, state) => getRegions(country, state),
-    getWaiverStoreContents: () => getWaiverStoreContents(),
     setWaiver: (key, contents) => setWaiver(key, contents),
     hasWaiver: (key) => hasWaiver(key),
     deleteWaiver: (key) => deleteWaiver(key)

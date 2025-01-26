@@ -321,7 +321,7 @@ class DayCalendar extends BaseCalendar
                 const len = getInputs.length;
                 if (getInputs.get(len-1).value !== '' || getInputs.get(len-2).value !== '')
                 {
-                    window.mainApi.showDialogSync(removeEntriesDialogOptions).then((result) =>
+                    window.rendererApi.showDialogSync(removeEntriesDialogOptions).then((result) =>
                     {
                         const buttonId = result.response;
                         if (buttonId === 1)

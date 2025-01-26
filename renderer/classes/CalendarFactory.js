@@ -19,7 +19,7 @@ class CalendarFactory
         {
             if (calendar !== undefined && calendar.constructor.name !== constructorName)
             {
-                window.mainApi.resizeMainWindow();
+                window.calendarApi.resizeMainWindow();
             }
             calendar = new CalendarClass(preferences, languageData);
             await calendar.reload();

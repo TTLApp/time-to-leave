@@ -76,7 +76,7 @@ function addRowToListTable(day, reason, hours)
 async function populateList()
 {
     clearWaiverList();
-    const store = await window.workdayWaiverApi.getWaiverStoreContents();
+    const store = await window.rendererApi.getWaiverStoreContents();
     for (const elem of Object.entries(store))
     {
         const date = elem[0];
@@ -125,7 +125,7 @@ async function addWaiver()
         const removeWaiverStr = getTranslation('$WorkdayWaiver.remove-waiver');
         const [tempYear, tempMonth, tempDay] = getDateFromISOStr(tempDateStr);
         const hasWaiver = await window.workdayWaiverApi.hasWaiver(tempDateStr);
-        noWorkingDaysOnRange &= !window.workdayWaiverApi.showDay(tempYear, tempMonth-1, tempDay, userPreferences) && !hasWaiver;
+        noWorkingDaysOnRange &= !window.rendererApi.showDay(tempYear, tempMonth-1, tempDay, userPreferences) && !hasWaiver;
 
         if (hasWaiver)
         {
@@ -149,7 +149,7 @@ async function addWaiver()
         const tempDateStr = getDateStr(tempDate);
         const [tempYear, tempMonth, tempDay] = getDateFromISOStr(tempDateStr);
         const hasWaiver = await window.workdayWaiverApi.hasWaiver(tempDateStr);
-        if (window.workdayWaiverApi.showDay(tempYear, tempMonth-1, tempDay, userPreferences) && !hasWaiver)
+        if (window.rendererApi.showDay(tempYear, tempMonth-1, tempDay, userPreferences) && !hasWaiver)
         {
             await window.workdayWaiverApi.setWaiver(tempDateStr, { 'reason' : reason, 'hours' : hours });
             addRowToListTable(tempDateStr, reason, hours);
@@ -348,7 +348,7 @@ async function loadHolidaysTable()
     }
 
     // Fill in reasons to check for conflicts
-    const store = await window.workdayWaiverApi.getWaiverStoreContents();
+    const store = await window.rendererApi.getWaiverStoreContents();
     const reasonByDate = {};
     for (const elem of Object.entries(store))
     {
@@ -366,7 +366,7 @@ async function loadHolidaysTable()
     {
         const [tempYear, tempMonth, tempDay] = getDateFromISOStr(holidayDate);
         // Holiday returns month with 1-12 index, but showDay expects 0-11
-        const workingDay = window.workdayWaiverApi.showDay(tempYear, tempMonth - 1, tempDay, userPreferences) ? getTranslation('$WorkdayWaiver.yes') : getTranslation('$WorkdayWaiver.no');
+        const workingDay = window.rendererApi.showDay(tempYear, tempMonth - 1, tempDay, userPreferences) ? getTranslation('$WorkdayWaiver.yes') : getTranslation('$WorkdayWaiver.no');
         addHolidayToTable(newTable, holidayDate, holidayReason, workingDay, reasonByDate[holidayDate] ?? '');
     }
 

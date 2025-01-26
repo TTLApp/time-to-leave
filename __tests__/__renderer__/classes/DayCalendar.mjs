@@ -46,17 +46,18 @@ describe('DayCalendar class Tests', () =>
         waivedWorkdays.set(waivedEntries);
 
         // APIs from the preload script of the calendar window
-        window.mainApi = calendarApi;
+        window.calendarApi = calendarApi;
+        window.rendererApi = {};
 
         // Stubbing methods that don't need the actual implementation for the tests
-        window.mainApi.toggleTrayPunchTime = () => {};
-        window.mainApi.resizeMainWindow = () => {};
+        window.calendarApi.toggleTrayPunchTime = () => {};
+        window.calendarApi.resizeMainWindow = () => {};
         BaseCalendar.prototype._getTranslation = () => {};
         BaseCalendar.prototype.redraw = () => {};
 
-        window.mainApi.getStoreContents = () => { return new Promise((resolve) => { resolve(entryStore.store); }); };
-        window.mainApi.getWaiverStoreContents = () => { return new Promise((resolve) => resolve(waivedWorkdays.store)); };
-        window.mainApi.setStoreData = (key, contents) =>
+        window.calendarApi.getStoreContents = () => { return new Promise((resolve) => { resolve(entryStore.store); }); };
+        window.rendererApi.getWaiverStoreContents = () => { return new Promise((resolve) => resolve(waivedWorkdays.store)); };
+        window.calendarApi.setStoreData = (key, contents) =>
         {
             return new Promise((resolve) =>
             {
@@ -64,7 +65,7 @@ describe('DayCalendar class Tests', () =>
                 resolve(true);
             });
         };
-        window.mainApi.deleteStoreData = (key) =>
+        window.calendarApi.deleteStoreData = (key) =>
         {
             return new Promise((resolve) =>
             {
@@ -72,7 +73,7 @@ describe('DayCalendar class Tests', () =>
                 resolve(true);
             });
         };
-        window.mainApi.computeAllTimeBalanceUntilPromise = (targetDate) =>
+        window.calendarApi.computeAllTimeBalanceUntilPromise = (targetDate) =>
         {
             return new Promise((resolve) =>
             {

@@ -70,6 +70,7 @@ function createWindow()
 {
     // Create the browser window.
     const widthHeight = getDefaultWidthHeight();
+    const userPreferences = getUserPreferences();
     mainWindow = new BrowserWindow({
         width: widthHeight.width,
         height: widthHeight.height,
@@ -82,7 +83,10 @@ function createWindow()
         webPreferences: {
             nodeIntegration: true,
             preload: path.join(rootDir, '/renderer/preload-scripts/calendar-bridge.mjs'),
-            contextIsolation: true
+            contextIsolation: true,
+            additionalArguments: [
+                `--preferences=${JSON.stringify(userPreferences)}`,
+            ],
         }
     });
 
