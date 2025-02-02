@@ -15,7 +15,7 @@ describe('Workday Waiver Aux', function()
         // Mocking call
         // TODO: find a better way to mock this or even really test it
         global.window = {
-            mainApi: {
+            calendarApi: {
                 displayWaiverWindow: () => {}
             }
         };

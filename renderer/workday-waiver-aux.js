@@ -19,7 +19,7 @@ function formatDayId(dayId)
  */
 function displayWaiverWindow(waiverDay)
 {
-    window.mainApi.displayWaiverWindow(waiverDay);
+    window.calendarApi.displayWaiverWindow(waiverDay);
 }
 
 export {
