@@ -70,8 +70,8 @@ function createMenu()
 function createWindow()
 {
     // Create the browser window.
-    const widthHeight = getDefaultWidthHeight();
     const userPreferences = getUserPreferences();
+    const widthHeight = getDefaultWidthHeight(userPreferences);
     mainWindow = new BrowserWindow({
         width: widthHeight.width,
         height: widthHeight.height,
@@ -102,12 +102,6 @@ function createWindow()
         contextMenuTemplate[0].enabled = arg;
         global.contextMenu = Menu.buildFromTemplate(contextMenuTemplate);
         global.tray.setContextMenu(global.contextMenu);
-    });
-
-    ipcMain.on(IpcConstants.ResizeMainWindow, () =>
-    {
-        const widthHeight = getDefaultWidthHeight();
-        mainWindow.setSize(widthHeight.width, widthHeight.height);
     });
 
     ipcMain.on(IpcConstants.SwitchView, () =>

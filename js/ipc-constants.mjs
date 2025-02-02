@@ -23,7 +23,6 @@ const IpcConstants = Object.freeze(
         RefreshOnDayChange: 'REFRESH_ON_DAY_CHANGE',
         ReloadCalendar: 'RELOAD_CALENDAR',
         ReloadTheme: 'RELOAD_THEME',
-        ResizeMainWindow: 'RESIZE_MAIN_WINDOW',
         SetStoreData: 'SET_STORE_DATA',
         SetWaiver: 'SET_WAIVER',
         SetWaiverDay: 'SET_WAIVER_DAY',

@@ -285,9 +285,8 @@ function switchCalendarView()
     return preferences;
 }
 
-function getDefaultWidthHeight()
+function getDefaultWidthHeight(preferences)
 {
-    const preferences = getLoadedOrDerivedUserPreferences();
     if (preferences['view'] === 'month')
     {
         return { width: 1010, height: 800 };
@@ -297,7 +296,6 @@ function getDefaultWidthHeight()
         return { width: 500, height: 500 };
     }
 }
-
 
 /*
  * Returns the value of language in preferences.

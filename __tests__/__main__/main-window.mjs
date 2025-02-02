@@ -71,7 +71,6 @@ describe('main-window.mjs', () =>
             const mainWindow = getMainWindow();
             assert.strictEqual(mainWindow instanceof BrowserWindow, true);
             assert.strictEqual(ipcMain.listenerCount(IpcConstants.ToggleTrayPunchTime), 1);
-            assert.strictEqual(ipcMain.listenerCount(IpcConstants.ResizeMainWindow), 1);
             assert.strictEqual(ipcMain.listenerCount(IpcConstants.SwitchView), 1);
             assert.strictEqual(ipcMain.listenerCount(IpcConstants.ReceiveLeaveBy), 1);
             assert.strictEqual(mainWindow.listenerCount('minimize'), 2);
@@ -82,58 +81,6 @@ describe('main-window.mjs', () =>
             mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
             {
                 assert.strictEqual(showSpy.calledOnce, true);
-                done();
-            });
-        });
-    });
-
-    describe('emit IpcConstants.ResizeMainWindow', function()
-    {
-        it('It should resize window', (done) =>
-        {
-            createWindow();
-            /**
-             * @type {BrowserWindow}
-             */
-            const mainWindow = getMainWindow();
-            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, async() =>
-            {
-                // Wait a bit for values to accomodate
-                await new Promise(res => setTimeout(res, 500));
-
-                assert.strictEqual(ipcMain.emit(IpcConstants.ResizeMainWindow), true);
-                const windowSize = mainWindow.getSize();
-                assert.strictEqual(windowSize.length, 2);
-
-                // Width and height are within 5 pixels of the expected values
-                assert.strictEqual(Math.abs(windowSize[0] - 1010) < 5, true, `Value was ${windowSize[0]}`);
-                assert.strictEqual(Math.abs(windowSize[1] - 800) < 5, true, `Value was ${windowSize[1]}`);
-                done();
-            });
-        });
-        it('It should not resize window if values are smaller than minimum', (done) =>
-        {
-            assert.strictEqual(savePreferences({
-                ...getDefaultPreferences(),
-                ['view']: 'day'
-            }), true);
-            createWindow();
-            /**
-             * @type {BrowserWindow}
-             */
-            const mainWindow = getMainWindow();
-            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, async() =>
-            {
-                // Wait a bit for values to accomodate
-                await new Promise(res => setTimeout(res, 500));
-
-                assert.strictEqual(ipcMain.emit(IpcConstants.ResizeMainWindow), true);
-                const windowSize = mainWindow.getSize();
-                assert.strictEqual(windowSize.length, 2);
-
-                // Width and height are within 5 pixels of the expected values
-                assert.strictEqual(Math.abs(windowSize[0] - 500) < 5, true, `Value was ${windowSize[0]}`);
-                assert.strictEqual(Math.abs(windowSize[1] - 500) < 5, true, `Value was ${windowSize[1]}`);
                 done();
             });
         });

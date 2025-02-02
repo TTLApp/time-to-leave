@@ -51,7 +51,6 @@ describe('MonthCalendar class Tests', () =>
 
         // Stubbing methods that don't need the actual implementation for the tests
         // window.calendarApi.toggleTrayPunchTime = () => {};
-        window.calendarApi.resizeMainWindow = () => {};
         BaseCalendar.prototype._getTranslation = () => {};
         BaseCalendar.prototype.redraw = () => {};
         window.calendarApi.getStoreContents = () => { return new Promise((resolve) => { resolve(entryStore.store); }); };

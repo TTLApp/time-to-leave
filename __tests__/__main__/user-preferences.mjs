@@ -55,24 +55,16 @@ describe('Preferences Main', () =>
     {
         it('Month view', function()
         {
-            // For some reason this test takes longer when running the whole testsuite. My suspicion is that
-            // writing to file inside getDefaultWidthHeight is taking longer after many tests write to the file.
-            // Thus, increasing the timeout.
-            this.timeout(15000);
-            assert.strictEqual(getDefaultPreferences()['view'], 'month');
-            savePreferences(getDefaultPreferences());
-
-            assert.deepStrictEqual(getDefaultWidthHeight(), { width: 1010, height: 800 });
+            const preferences = structuredClone(getDefaultPreferences());
+            assert.strictEqual(preferences['view'], 'month');
+            assert.deepStrictEqual(getDefaultWidthHeight(preferences), { width: 1010, height: 800 });
         });
 
         it('Day view', () =>
         {
             const preferences = structuredClone(getDefaultPreferences());
-
             preferences['view'] = 'day';
-            savePreferences(preferences);
-
-            assert.deepStrictEqual(getDefaultWidthHeight(), { width: 500, height: 500 });
+            assert.deepStrictEqual(getDefaultWidthHeight(preferences), { width: 500, height: 500 });
         });
     });
 

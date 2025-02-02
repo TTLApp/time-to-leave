@@ -17,3 +17,6 @@ window.matchMedia = window.matchMedia || function()
 
 // Mocking requestAnimationFrame since it's not usually defined but we use it
 global.requestAnimationFrame = callback => callback();
+
+// Mocking resizeTo since it's not implemented by JSDOM but used by the calendar
+window.resizeTo = () => {};
