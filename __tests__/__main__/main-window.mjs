@@ -104,6 +104,14 @@ describe('main-window.mjs', () =>
                 // Wait a bit for values to accomodate
                 await new Promise(res => setTimeout(res, 500));
 
+                const windowSize = mainWindow.getSize();
+                assert.strictEqual(windowSize.length, 2);
+
+                // First within the month view sizes
+                // Width and height are within 5 pixels of the expected values
+                assert.strictEqual(Math.abs(windowSize[0] - 1010) < 5, true, `Value was ${windowSize[0]}`);
+                assert.strictEqual(Math.abs(windowSize[1] - 800) < 5, true, `Value was ${windowSize[1]}`);
+
                 const windowStub = stub(mainWindow.webContents, 'send').callsFake((event, savedPreferences) =>
                 {
                     assert.strictEqual(windowStub.calledOnce, true);
@@ -111,6 +119,14 @@ describe('main-window.mjs', () =>
                     done();
                 });
                 ipcMain.emit(IpcConstants.SwitchView);
+
+                // Wait a bit for values to accomodate
+                await new Promise(res => setTimeout(res, 500));
+
+                // Now in day view sizes
+                assert.strictEqual(Math.abs(windowSize[0] - 500) < 5, true, `Value was ${windowSize[0]}`);
+                assert.strictEqual(Math.abs(windowSize[1] - 500) < 5, true, `Value was ${windowSize[1]}`);
+
                 windowStub.restore();
             });
         });
