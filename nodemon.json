@@ -1,0 +1,4 @@
+{
+  "watch": ["css/","js/","renderer","src","main","main.mjs"],
+  "ext": "js, css, mjs"
+}

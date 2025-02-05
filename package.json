@@ -14,7 +14,7 @@
   "scripts": {
     "clean": "rimraf coverage release-builds __tests__/__main__/__database.ttldb__ ",
     "debug:main": "electron --inspect=5858 .",
-    "debug:render": "electron --remote-debugging-port=9222 .",
+    "debug:render": "nodemon --watch . --exec \"electron --remote-debugging-port=9222 .\"",
     "lint": "npm-run-all --parallel lint:*",
     "lint:css": "stylelint css/*.css",
     "lint:eslint": "eslint .",
@@ -53,6 +53,7 @@
     "husky": "9.1.7",
     "jsdom": "26.0.0",
     "mocha": "11.1.0",
+    "nodemon": "3.1.9",
     "npm-run-all": "4.1.5",
     "playwright": "1.50.0",
     "prettier": "3.4.2",
