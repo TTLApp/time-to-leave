@@ -12,7 +12,7 @@
   "type": "module",
   "main": "main.mjs",
   "scripts": {
-    "clean": "rimraf coverage release-builds __tests__/__main__/__database.ttldb__ ",
+    "clean": "npx rimraf coverage release-builds __tests__/__main__/__database.ttldb__ ",
     "debug:main": "electron --inspect=5858 .",
     "debug:render": "electron --remote-debugging-port=9222 .",
     "lint": "npm-run-all --parallel lint:*",
@@ -28,7 +28,7 @@
     "package:deb": "electron-packager . time-to-leave --overwrite --asar --platform=linux --arch=x64 --icon=assets/icon-deb.png --prune=true --out=release-builds --ignore=__tests__ --ignore=tests --ignore=./scripts --ignore=Resources --ignore=release-builds --ignore=packages --ignore=coverage_c8 --ignore=__mocks__ --ignore=docs",
     "package:mac": "electron-packager . --overwrite --platform=darwin --arch=universal --icon=assets/icon-mac.icns --prune=true --out=release-builds --ignore=__tests__ --ignore=tests --ignore=./scripts --ignore=Resources --ignore=release-builds --ignore=packages --ignore=coverage_c8 --ignore=__mocks__ --ignore=docs",
     "package:win": "electron-packager . \"Time to Leave\" --overwrite --platform=win32 --arch=ia32 --icon=assets/icon-win.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Time to Leave\" --ignore=__tests__ --ignore=tests --ignore=./scripts --ignore=Resources --ignore=release-builds --ignore=packages --ignore=coverage_c8 --ignore=__mocks__ --ignore=docs",
-    "preinstall": "npx npm-force-resolutions",
+    "preinstall": "npx force-resolutions",
     "prepare": "husky",
     "pretest": "npm run clean",
     "start": "electron .",
@@ -56,10 +56,9 @@
     "npm-run-all": "4.1.5",
     "playwright": "1.50.0",
     "prettier": "3.4.2",
-    "rimraf": "6.0.1",
     "sinon": "18.0.1",
-    "stylelint": "16.12.0",
-    "stylelint-config-standard": "36.0.1"
+    "stylelint": "16.14.1",
+    "stylelint-config-standard": "37.0.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "6.7.2",
@@ -76,5 +75,8 @@
   },
   "engines": {
     "node": ">=20.18.0"
+  },
+  "resolutions": {
+    "rimraf": "6.0.1"
   }
 }
