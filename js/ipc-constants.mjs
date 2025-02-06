@@ -27,7 +27,7 @@ const IpcConstants = Object.freeze(
         SetStoreData: 'SET_STORE_DATA',
         SetWaiver: 'SET_WAIVER',
         SetWaiverDay: 'SET_WAIVER_DAY',
-        ShowAlert: 'SHOW_ALERT',
+        ShowDialogSync: 'SHOW_DIALOG_SYNC',
         ShowDialog: 'SHOW_DIALOG',
         SwitchView: 'SWITCH_VIEW',
         ToggleTrayPunchTime: 'TOGGLE_TRAY_PUNCH_TIME',

@@ -177,7 +177,7 @@ describe('Test Workday Waiver Window', function()
                 'data': {}
             }));
         };
-        window.rendererApi.showDialogSync = () =>
+        window.rendererApi.showDialog = () =>
         {
             return new Promise((resolve) =>
             {
@@ -190,7 +190,7 @@ describe('Test Workday Waiver Window', function()
         };
         window.rendererApi.showDay = showDay;
 
-        window.workdayWaiverApi.showAlert = () => {};
+        window.workdayWaiverApi.showDialogSync = () => {};
 
         // Making sure the preferences are the default so the tests work as expected
         savePreferences(getDefaultPreferences());

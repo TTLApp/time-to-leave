@@ -22,6 +22,11 @@ import ImportExport from '../../js/import-export.mjs';
 
 import Store from 'electron-store';
 
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
+const windowAux = require('../../js/window-aux.cjs');
+
 describe('menus.js', () =>
 {
     const mocks = {};
@@ -311,7 +316,7 @@ describe('menus.js', () =>
         it('Should show about message box and write to clipboard', (done) =>
         {
             const writeTextStub = stub(clipboard, 'writeText');
-            const showMessageBoxStub = stub(dialog, 'showMessageBox').resolves({response: 0});
+            const showMessageBoxStub = stub(windowAux, 'showDialog').resolves({response: 0});
             getHelpMenuTemplate({})[4].click();
             setTimeout(() =>
             {
@@ -325,7 +330,7 @@ describe('menus.js', () =>
         it('Should show about message box', () =>
         {
             const writeTextStub = stub(clipboard, 'writeText');
-            const showMessageBoxStub = stub(dialog, 'showMessageBox').resolves({response: 1});
+            const showMessageBoxStub = stub(windowAux, 'showDialog').resolves({response: 1});
             getHelpMenuTemplate({})[4].click();
             assert.strictEqual(showMessageBoxStub.calledOnce, true);
             assert.strictEqual(writeTextStub.notCalled, true);
@@ -336,7 +341,7 @@ describe('menus.js', () =>
         {
             const consoleSpy = stub(console, 'log');
             const writeTextStub = stub(clipboard, 'writeText');
-            const showMessageBoxStub = stub(dialog, 'showMessageBox').rejects({response: 1});
+            const showMessageBoxStub = stub(windowAux, 'showDialog').rejects({response: 1});
             getHelpMenuTemplate({})[4].click();
             assert.strictEqual(showMessageBoxStub.calledOnce, true);
             assert.strictEqual(writeTextStub.notCalled, true);
@@ -358,7 +363,7 @@ describe('menus.js', () =>
         let showMessageBoxStub;
         before(() =>
         {
-            showMessageBoxStub = stub(dialog, 'showMessageBox');
+            showMessageBoxStub = stub(windowAux, 'showDialog');
         });
 
         beforeEach(() =>
@@ -441,7 +446,7 @@ describe('menus.js', () =>
                 }
             };
             const showOpenDialogSyncStub = stub(dialog, 'showOpenDialogSync').returns(true);
-            const showMessageBoxSyncStub = stub(dialog, 'showMessageBoxSync').returns(0);
+            const showMessageBoxSyncStub = stub(windowAux, 'showDialogSync').returns(0);
             mocks._importDatabaseFromFile = stub(ImportExport, 'importDatabaseFromFile').returns({
                 result: true,
                 failed: 0
@@ -466,7 +471,7 @@ describe('menus.js', () =>
                 }
             };
             const showOpenDialogSyncStub = stub(dialog, 'showOpenDialogSync').returns(true);
-            const showMessageBoxSyncStub = stub(dialog, 'showMessageBoxSync').returns(0);
+            const showMessageBoxSyncStub = stub(windowAux, 'showDialogSync').returns(0);
             mocks._importDatabaseFromFile = stub(ImportExport, 'importDatabaseFromFile').returns({
                 result: false,
                 failed: 1
@@ -491,7 +496,7 @@ describe('menus.js', () =>
                 }
             };
             const showOpenDialogSyncStub = stub(dialog, 'showOpenDialogSync').returns(true);
-            const showMessageBoxSyncStub = stub(dialog, 'showMessageBoxSync').returns(0);
+            const showMessageBoxSyncStub = stub(windowAux, 'showDialogSync').returns(0);
             mocks._importDatabaseFromFile = stub(ImportExport, 'importDatabaseFromFile').returns({
                 result: false,
                 failed: 0
@@ -508,7 +513,7 @@ describe('menus.js', () =>
         it('Should not show dialog for importing db', () =>
         {
             const showOpenDialogSyncStub = stub(dialog, 'showOpenDialogSync').returns(false);
-            const showMessageBoxSyncStub = stub(dialog, 'showMessageBoxSync').returns(1);
+            const showMessageBoxSyncStub = stub(windowAux, 'showDialogSync').returns(1);
             mocks._importDatabaseFromFile = stub(ImportExport, 'importDatabaseFromFile');
             getEditMenuTemplate()[8].click();
             assert.strictEqual(showOpenDialogSyncStub.calledOnce, true);
@@ -522,7 +527,7 @@ describe('menus.js', () =>
         it('Should not show dialog for importing db', () =>
         {
             const showOpenDialogSyncStub = stub(dialog, 'showOpenDialogSync').returns(true);
-            const showMessageBoxSyncStub = stub(dialog, 'showMessageBoxSync').returns(1);
+            const showMessageBoxSyncStub = stub(windowAux, 'showDialogSync').returns(1);
             mocks._importDatabaseFromFile = stub(ImportExport, 'importDatabaseFromFile');
             getEditMenuTemplate()[8].click();
             assert.strictEqual(showOpenDialogSyncStub.calledOnce, true);
@@ -535,7 +540,7 @@ describe('menus.js', () =>
 
         it('Should not show dialog for clearing db', () =>
         {
-            const showMessageBoxSyncStub = stub(dialog, 'showMessageBoxSync').returns(0);
+            const showMessageBoxSyncStub = stub(windowAux, 'showDialogSync').returns(1);
             getEditMenuTemplate()[9].click();
             assert.strictEqual(showMessageBoxSyncStub.calledOnce, true);
             assert.strictEqual(showMessageBoxStub.notCalled, true);
@@ -553,7 +558,7 @@ describe('menus.js', () =>
                 }
             };
             const clearStoreStub = stub(Store.prototype, 'clear');
-            const showMessageBoxSyncStub = stub(dialog, 'showMessageBoxSync').returns(1);
+            const showMessageBoxSyncStub = stub(windowAux, 'showDialogSync').returns(0);
             getEditMenuTemplate(mainWindow)[9].click();
             assert.strictEqual(showMessageBoxSyncStub.calledOnce, true);
             assert.strictEqual(showMessageBoxStub.calledOnce, true);

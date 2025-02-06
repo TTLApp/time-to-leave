@@ -1,11 +1,17 @@
 'use strict';
 
-import { app, net, shell, dialog, BrowserWindow } from 'electron';
+import { app, net, shell } from 'electron';
 import Store from 'electron-store';
 import isOnline from 'is-online';
 
 import { getDateStr } from './date-aux.mjs';
 import i18NextConfig from '../src/configs/i18next.config.mjs';
+
+// Allow require()
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
+const WindowAux = require('./window-aux.cjs');
 
 class UpdateManager
 {
@@ -47,10 +53,11 @@ class UpdateManager
                                 i18NextConfig.getCurrentTranslation('$UpdateManager.remindBtn')
                             ],
                             defaultId: 1,
-                            title: i18NextConfig.getCurrentTranslation('$UpdateManager.title'),
-                            message: i18NextConfig.getCurrentTranslation('$UpdateManager.old-version-msg'),
+                            cancelId: 0,
+                            message: i18NextConfig.getCurrentTranslation('$UpdateManager.title'),
+                            detail: i18NextConfig.getCurrentTranslation('$UpdateManager.old-version-msg'),
                         };
-                        const response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
+                        const response = WindowAux.showDialogSync(options);
                         if (response === 1)
                         {
                             //Download latest version
@@ -70,10 +77,11 @@ class UpdateManager
                         const options = {
                             type: 'info',
                             buttons: [i18NextConfig.getCurrentTranslation('$Menu.ok')],
-                            title: i18NextConfig.getCurrentTranslation('$UpdateManager.title'),
-                            message: i18NextConfig.getCurrentTranslation('$UpdateManager.upto-date-msg')
+                            message: i18NextConfig.getCurrentTranslation('$UpdateManager.title'),
+                            detail: i18NextConfig.getCurrentTranslation('$UpdateManager.upto-date-msg'),
+                            defaultId: 1
                         };
-                        dialog.showMessageBox(null, options);
+                        WindowAux.showDialog(options);
                     }
                 }
             });

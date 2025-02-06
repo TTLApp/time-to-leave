@@ -9,6 +9,7 @@
 - Enhancement [#946]: Included formal json scheme validator
 - Enhancement [#948]: Allow vertical scroll when horizontal scroll reaches edges on month view
 - Enhancement [#1009]: Adding an animation to the workday waiver holidays table when the contents switch
+- Enhancement [#1139]: Improved consistency of all pop-ups in the application
 - Fix [#1008]: Sourced conflicting holidays being imported by default
 - Fix [#1028]: Make images and icons not draggable
 - Fix [#1034]: Preserving TTL font when offline

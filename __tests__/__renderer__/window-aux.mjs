@@ -92,7 +92,7 @@ describe('window-aux.cjs Testing', function()
     //     });
     // });
 
-    describe('showDialogSync(options)', function()
+    describe('showDialog(options)', function()
     {
         it('Does not crash', async() =>
         {
@@ -102,12 +102,12 @@ describe('window-aux.cjs Testing', function()
             let spy;
             testWindow.webContents.on('dom-ready', () =>
             {
-                spy = sinon.spy(windowAux, 'showDialogSync');
+                spy = sinon.spy(windowAux, 'showDialog');
 
                 const options = {
                     title: 'Time to Leave',
                 };
-                windowAux.showDialogSync(options).then(() =>
+                windowAux.showDialog(options).then(() =>
                 {
                     return;
                 });
@@ -125,7 +125,7 @@ describe('window-aux.cjs Testing', function()
         });
     });
 
-    describe('showAlert(message)', function()
+    describe('showDialogSync(message)', function()
     {
         it('Does not crash', async() =>
         {
@@ -135,8 +135,8 @@ describe('window-aux.cjs Testing', function()
             let spy;
             testWindow.webContents.on('dom-ready', () =>
             {
-                spy = sinon.stub(windowAux, 'showAlert');
-                windowAux.showAlert('Test showAlert');
+                spy = sinon.stub(windowAux, 'showDialogSync');
+                windowAux.showDialogSync('Test showDialogSync');
             });
             testWindow.webContents.on('did-fail-load', (event, code, desc, url, isMainFrame) =>
             {

@@ -298,17 +298,14 @@ body {
 
 .but-left {
   text-align: left;
-  vertical-align: center;
 }
 
 .but-right {
   text-align: right;
-  vertical-align: center;
 }
 
 .but-today {
   text-align: right;
-  vertical-align: center;
 }
 
 .but-switch-view input {

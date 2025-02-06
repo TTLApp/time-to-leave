@@ -312,16 +312,18 @@ class DayCalendar extends BaseCalendar
             {
                 const dateKey = $('.rows-time').attr('id');
                 const removeEntriesDialogOptions = {
-                    title: calendar._getTranslation('$DayCalendar.remove-entry'),
-                    message: calendar._getTranslation('$DayCalendar.entry-removal-confirmation'),
-                    type: 'info',
-                    buttons: [calendar._getTranslation('$DayCalendar.yes'), calendar._getTranslation('$DayCalendar.no')]
+                    message: calendar._getTranslation('$DayCalendar.remove-entry'),
+                    detail: calendar._getTranslation('$DayCalendar.entry-removal-confirmation'),
+                    type: 'question',
+                    buttons: [calendar._getTranslation('$DayCalendar.yes'), calendar._getTranslation('$DayCalendar.no')],
+                    defaultId: 1,
+                    cancelId: 1
                 };
                 const getInputs = $('.row-entry-pair').find('input');
                 const len = getInputs.length;
                 if (getInputs.get(len-1).value !== '' || getInputs.get(len-2).value !== '')
                 {
-                    window.rendererApi.showDialogSync(removeEntriesDialogOptions).then((result) =>
+                    window.rendererApi.showDialog(removeEntriesDialogOptions).then((result) =>
                     {
                         const buttonId = result.response;
                         if (buttonId === 1)

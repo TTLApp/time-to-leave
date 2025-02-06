@@ -112,7 +112,12 @@ async function addWaiver()
 
     if (diff < 0)
     {
-        window.workdayWaiverApi.showAlert(getTranslation('$WorkdayWaiver.end-date-cannot-be-less'));
+        const options = {
+            type: 'warning',
+            message: getTranslation('$WorkdayWaiver.add-waiver'),
+            detail: getTranslation('$WorkdayWaiver.end-date-cannot-be-less')
+        };
+        window.workdayWaiverApi.showDialogSync(options);
         return false;
     }
 
@@ -129,7 +134,12 @@ async function addWaiver()
 
         if (hasWaiver)
         {
-            window.workdayWaiverApi.showAlert(`${alreadyHaveWaiverStr} ${tempDateStr}. ${removeWaiverStr}`);
+            const options = {
+                type: 'warning',
+                message: getTranslation('$WorkdayWaiver.add-waiver'),
+                detail: `${alreadyHaveWaiverStr} ${tempDateStr}. ${removeWaiverStr}`
+            };
+            window.workdayWaiverApi.showDialogSync(options);
             return false;
         }
 
@@ -138,7 +148,12 @@ async function addWaiver()
 
     if (noWorkingDaysOnRange)
     {
-        window.workdayWaiverApi.showAlert(getTranslation('$WorkdayWaiver.no-working-days-on-range'));
+        const options = {
+            type: 'warning',
+            message: getTranslation('$WorkdayWaiver.add-waiver'),
+            detail: getTranslation('$WorkdayWaiver.no-working-days-on-range')
+        };
+        window.workdayWaiverApi.showDialogSync(options);
         return false;
     }
 
@@ -170,13 +185,15 @@ async function deleteEntryOnClick(event)
     const deleteWaiverMessageStr = getTranslation('$WorkdayWaiver.delete-waiver-message');
 
     const options = {
-        title: 'Time to Leave',
-        message: `${deleteWaiverMessageStr} ${day}?`,
-        type: 'info',
-        buttons: [getTranslation('$WorkdayWaiver.yes'), getTranslation('$WorkdayWaiver.no')]
+        message: getTranslation('$WorkdayWaiver.add-waiver'),
+        detail: `${deleteWaiverMessageStr} ${day}?`,
+        type: 'question',
+        buttons: [getTranslation('$WorkdayWaiver.yes'), getTranslation('$WorkdayWaiver.no')],
+        defaultId: 1,
+        cancelId: 1
     };
 
-    const result = await window.rendererApi.showDialogSync(options);
+    const result = await window.rendererApi.showDialog(options);
     const buttonId = result.response;
     if (buttonId === 1)
     {
@@ -397,7 +414,12 @@ async function addHolidaysAsWaiver()
 
     //clear data from table and return the configurations to default
     await initializeHolidayInfo();
-    window.workdayWaiverApi.showAlert(getTranslation('$WorkdayWaiver.loaded-waivers-holidays'));
+    const options = {
+        type: 'info',
+        message: getTranslation('$WorkdayWaiver.add-waiver'),
+        detail: getTranslation('$WorkdayWaiver.loaded-waivers-holidays')
+    };
+    window.workdayWaiverApi.showDialogSync(options);
 }
 
 async function initializeHolidayInfo()

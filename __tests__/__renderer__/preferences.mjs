@@ -105,7 +105,7 @@ describe('Test Preferences Window', () =>
                 }));
             },
             getOriginalUserPreferences: () => { return testPreferences; },
-            showDialogSync: () => { return new Promise((resolve) => resolve({ response: 0 })); }
+            showDialog: () => { return new Promise((resolve) => resolve({ response: 0 })); }
         };
 
         // Stub methods

@@ -22,7 +22,7 @@ function getWaiverStoreContents()
     return ipcRenderer.invoke(IpcConstants.GetWaiverStoreContents);
 }
 
-function showDialogSync(dialogOptions)
+function showDialog(dialogOptions)
 {
     return ipcRenderer.invoke(IpcConstants.ShowDialog, dialogOptions);
 }
@@ -32,7 +32,7 @@ const rendererApi = {
     getOriginalUserPreferences,
     getWaiverStoreContents,
     showDay,
-    showDialogSync,
+    showDialog,
 };
 
 export {

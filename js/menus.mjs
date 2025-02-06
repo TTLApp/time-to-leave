@@ -15,6 +15,12 @@ import Windows from './windows.mjs';
 import i18NextConfig from '../src/configs/i18next.config.mjs';
 import IpcConstants from './ipc-constants.mjs';
 
+// Allow require()
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
+const WindowAux = require('./window-aux.cjs');
+
 function getMainMenuTemplate(mainWindow)
 {
     return [
@@ -192,11 +198,9 @@ function getEditMenuTemplate(mainWindow)
                 if (response)
                 {
                     ImportExport.exportDatabaseToFile(response);
-                    dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
-                        title: 'Time to Leave',
+                    WindowAux.showDialog({
                         message: i18NextConfig.getCurrentTranslation('$Menu.database-export'),
                         type: 'info',
-                        icon: appConfig.iconpath,
                         detail: i18NextConfig.getCurrentTranslation('$Menu.database-was-exported')
                     });
                 }
@@ -227,15 +231,13 @@ function getEditMenuTemplate(mainWindow)
                             i18NextConfig.getCurrentTranslation('$Menu.yes-please'),
                             i18NextConfig.getCurrentTranslation('$Menu.no-thanks')
                         ],
-                        defaultId: 2,
-                        title: i18NextConfig.getCurrentTranslation('$Menu.import-database'),
-                        message: i18NextConfig.getCurrentTranslation('$Menu.confirm-import-db')
+                        defaultId: 1,
+                        cancelId: 1,
+                        message: i18NextConfig.getCurrentTranslation('$Menu.import-database'),
+                        detail: i18NextConfig.getCurrentTranslation('$Menu.confirm-import-db')
                     };
 
-                    const confirmation = dialog.showMessageBoxSync(
-                        BrowserWindow.getFocusedWindow(),
-                        options
-                    );
+                    const confirmation = WindowAux.showDialogSync(options);
                     if (confirmation === /*Yes*/ 0)
                     {
                         const importResult = ImportExport.importDatabaseFromFile(response);
@@ -243,11 +245,9 @@ function getEditMenuTemplate(mainWindow)
                         mainWindow.webContents.send(IpcConstants.ReloadCalendar);
                         if (importResult['result'])
                         {
-                            dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
-                                title: 'Time to Leave',
+                            WindowAux.showDialog({
                                 message: i18NextConfig.getCurrentTranslation('$Menu.database-imported'),
                                 type: 'info',
-                                icon: appConfig.iconpath,
                                 detail: i18NextConfig.getCurrentTranslation('$Menu.import-successful')
                             });
                         }
@@ -256,20 +256,18 @@ function getEditMenuTemplate(mainWindow)
                             const message = `${importResult['failed']}/${
                                 importResult['total']
                             } ${i18NextConfig.getCurrentTranslation('$Menu.could-not-be-loaded')}`;
-                            dialog.showMessageBoxSync({
-                                icon: appConfig.iconpath,
+                            WindowAux.showDialogSync({
                                 type: 'warning',
-                                title: i18NextConfig.getCurrentTranslation('$Menu.failed-entries'),
-                                message: message
+                                message: i18NextConfig.getCurrentTranslation('$Menu.failed-entries'),
+                                detail: message
                             });
                         }
                         else
                         {
-                            dialog.showMessageBoxSync({
-                                icon: appConfig.iconpath,
-                                type: 'warning',
-                                title: i18NextConfig.getCurrentTranslation('$Menu.failed-entries'),
-                                message: i18NextConfig.getCurrentTranslation('$Menu.something-went-wrong')
+                            WindowAux.showDialogSync({
+                                type: 'error',
+                                message: i18NextConfig.getCurrentTranslation('$Menu.failed-entries'),
+                                detail: i18NextConfig.getCurrentTranslation('$Menu.something-went-wrong')
                             });
                         }
                     }
@@ -283,20 +281,17 @@ function getEditMenuTemplate(mainWindow)
                 const options = {
                     type: 'question',
                     buttons: [
-                        i18NextConfig.getCurrentTranslation('$Menu.cancel'),
                         i18NextConfig.getCurrentTranslation('$Menu.yes-please'),
                         i18NextConfig.getCurrentTranslation('$Menu.no-thanks')
                     ],
-                    defaultId: 2,
-                    title: i18NextConfig.getCurrentTranslation('$Menu.clear-database'),
-                    message: i18NextConfig.getCurrentTranslation('$Menu.confirm-clear-all-data')
+                    defaultId: 1,
+                    cancelId: 1,
+                    message: i18NextConfig.getCurrentTranslation('$Menu.clear-database'),
+                    detail: i18NextConfig.getCurrentTranslation('$Menu.confirm-clear-all-data')
                 };
 
-                const response = dialog.showMessageBoxSync(
-                    BrowserWindow.getFocusedWindow(),
-                    options
-                );
-                if (response === 1)
+                const response = WindowAux.showDialogSync(options);
+                if (response === 0)
                 {
                     const store = new Store();
                     const waivedWorkdays = new Store({ name: 'waived-workdays' });
@@ -307,11 +302,9 @@ function getEditMenuTemplate(mainWindow)
                     calendarStore.clear();
                     // Reload only the calendar itself to avoid a flash
                     mainWindow.webContents.send(IpcConstants.ReloadCalendar);
-                    dialog.showMessageBox(BrowserWindow.getFocusedWindow(), {
-                        title: 'Time to Leave',
+                    WindowAux.showDialog({
                         message: i18NextConfig.getCurrentTranslation('$Menu.clear-database'),
                         type: 'info',
-                        icon: appConfig.iconpath,
                         detail: `\n${i18NextConfig.getCurrentTranslation('$Menu.all-clear')}`
                     });
                 }
@@ -376,19 +369,18 @@ function getHelpMenuTemplate()
             click()
             {
                 const detail = getDetails();
-                dialog
-                    .showMessageBox(BrowserWindow.getFocusedWindow(), {
-                        title: 'Time to Leave',
-                        message: 'Time to Leave',
-                        type: 'info',
-                        icon: appConfig.iconpath,
-                        detail: `\n${detail}`,
-                        buttons: [
-                            i18NextConfig.getCurrentTranslation('$Menu.copy'),
-                            i18NextConfig.getCurrentTranslation('$Menu.ok')
-                        ],
-                        noLink: true
-                    })
+                WindowAux.showDialog({
+                    message: 'Time to Leave',
+                    type: 'info',
+                    detail: `\n${detail}`,
+                    buttons: [
+                        i18NextConfig.getCurrentTranslation('$Menu.copy'),
+                        i18NextConfig.getCurrentTranslation('$Menu.ok')
+                    ],
+                    defaultId: 1,
+                    cancelId: 1,
+                    noLink: true
+                })
                     .then(result =>
                     {
                         const buttonId = result.response;
