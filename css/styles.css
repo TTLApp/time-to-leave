@@ -292,8 +292,9 @@ body {
 }
 
 .month-total-row {
-  border-bottom: 4px solid var(--table-total-border);
-  border-top: 4px solid var(--table-total-border);
+  position: sticky;
+  bottom: 2.9rem;
+  background-color: var(--table-header-label-bground);
 }
 
 .but-left {
@@ -409,22 +410,23 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 50px;
+  height: 3rem;
   font-size: 200%;
   text-align: center;
 }
 
 .punch-button {
-  opacity: 0.9;
+  opacity: 1;
   width: calc(100vw - 60px);
   height: 100%;
   border: none;
   color: var(--punch-color);
   background-color: var(--punch-bground);
+
 }
 
 .punch-button:disabled {
-  opacity: 0.5;
+  opacity: 1;
   color: var(--punch-disable-bground);
 }
 
@@ -1242,7 +1244,7 @@ html[data-view='day'] .month-total-row .month-total-time {
 }
 
 html[data-view='day'] .footer {
-  height: 32px;
+  height: 3em;
   font-size: 100%;
 }
 
