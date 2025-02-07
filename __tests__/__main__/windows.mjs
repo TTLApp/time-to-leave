@@ -45,6 +45,8 @@ describe('Windows tests', () =>
         {
             return new Promise(resolve => resolve([]));
         });
+
+        Windows.resetWindowsElements();
     });
 
     it('Elements should be null on starting', () =>
