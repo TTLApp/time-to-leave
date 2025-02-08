@@ -416,18 +416,15 @@ body {
 }
 
 .punch-button {
-  opacity: 1;
   width: calc(100vw - 60px);
   height: 100%;
   border: none;
   color: var(--punch-color);
   background-color: var(--punch-bground);
-
 }
 
 .punch-button:disabled {
-  opacity: 1;
-  color: var(--punch-disable-bground);
+  background-color: var(--punch-disable-bground);
 }
 
 .punch-button img {
