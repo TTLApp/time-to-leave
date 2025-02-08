@@ -90,7 +90,7 @@
         "import-db-from-file": "डेटाबेस फ़ाइल से आयात करें",
         "import-successful": "वाह! आयात सफल!",
         "menu": "मेन्यू",
-        "no-thanks": "जी नहीं, धन्यवाद",
+        "no": "नहीं",
         "ok": "ठीक",
         "paste": "पेस्ट करें",
         "preferences": "पसंद",
@@ -106,7 +106,7 @@
         "ttl-github": "टीटीएल गिटहब",
         "view": "देखे",
         "workday-waiver-manager": "कार्यदिवस छूट प्रबंधक",
-        "yes-please": "जी कहिये"
+        "yes": "हाँ"
     },
     "$Notification": {
         "punch-reminder": "में पंच करने के लिए मत भूलना!",
@@ -136,7 +136,7 @@
         "mon": "सोम",
         "month": "महीना",
         "notification": "अधिसूचना",
-        "no-thanks": "जी नहीं, धन्यवाद",
+        "no": "नहीं",
         "numberOfEntries": "प्रविष्टियोंकी संख्या",
         "overallBalanceStart": "ओवरऑल बैलेंस स्टार्ट डेट",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "देखे",
         "wed": "बुध",
         "workingDays": "कार्य दिवस",
-        "yes-please": "जी कहिये"
+        "yes": "हाँ"
     },
     "$UpdateManager": {
         "dismissBtn": "खारिज करें",

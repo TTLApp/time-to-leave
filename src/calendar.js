@@ -74,5 +74,15 @@ window.calendarApi.handleLeaveBy(searchLeaveByElement);
 $(() =>
 {
     const preferences = window.rendererApi.getOriginalUserPreferences();
-    setupCalendar(preferences);
+    requestAnimationFrame(() =>
+    {
+        setupCalendar(preferences);
+        requestAnimationFrame(() =>
+        {
+            setTimeout(() =>
+            {
+                window.rendererApi.notifyWindowReadyToShow();
+            }, 100);
+        });
+    });
 });

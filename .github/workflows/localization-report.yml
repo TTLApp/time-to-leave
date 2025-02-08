@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'
       - name: Checkout repository
@@ -37,7 +37,7 @@ jobs:
           body="${body//$'\n'/'%0A'}"
           body="${body//$'\r'/'%0D'}"
           echo "log=$body" >> $GITHUB_OUTPUT
-      - uses: tibdex/github-app-token@v1
+      - uses: tibdex/github-app-token@v2
         id: generate-token
         with:
           app_id: ${{ secrets.APP_ID }}
@@ -50,7 +50,7 @@ jobs:
           comment-author: 'time-to-leave[bot]'
           body-includes: Localization report
       - name: Create or update comment
-        uses: peter-evans/create-or-update-comment@v2
+        uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}

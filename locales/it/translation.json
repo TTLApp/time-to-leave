@@ -90,7 +90,7 @@
         "import-db-from-file": "Importa database da file",
         "import-successful": "Yay! Importazione conclusa con successo!",
         "menu": "Menu",
-        "no-thanks": "No, grazie",
+        "no": "No",
         "ok": "OK",
         "paste": "Incolla",
         "preferences": "Preferenze",
@@ -106,7 +106,7 @@
         "ttl-github": "TTL GitHub",
         "view": "Mostra",
         "workday-waiver-manager": "Gestore giorni lavorativi esclusi",
-        "yes-please": "Sì, per favore"
+        "yes": "Sì"
     },
     "$Notification": {
         "punch-reminder": "Non dimenticarti di registrare l'inizio!",
@@ -136,7 +136,7 @@
         "mon": "Lun",
         "month": "Mese",
         "notification": "Notifiche",
-        "no-thanks": "No, grazie",
+        "no": "No",
         "numberOfEntries": "Numero di record",
         "overallBalanceStart": "Data di inizio bilanciamento complessivo",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "Visuale",
         "wed": "Mer",
         "workingDays": "Giorni feriali",
-        "yes-please": "Sì, per favore"
+        "yes": "Sì"
     },
     "$UpdateManager": {
         "dismissBtn": "Ignora",

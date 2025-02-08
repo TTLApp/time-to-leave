@@ -12,6 +12,8 @@ const dialog = electron.dialog;
 function showDialog(options)
 {
     options['title'] = options['title'] || 'Time to Leave';
+    // Avoid Windows trying to guess how to best show buttons and show a mix of them
+    options['noLink'] = true;
     return dialog.showMessageBox(BrowserWindow.getFocusedWindow(), options);
 }
 
@@ -23,6 +25,8 @@ function showDialog(options)
 function showDialogSync(options)
 {
     options['title'] = options['title'] || 'Time to Leave';
+    // Avoid Windows trying to guess how to best show buttons and show a mix of them
+    options['noLink'] = true;
     return dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
 }
 

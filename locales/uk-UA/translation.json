@@ -90,7 +90,7 @@
         "import-db-from-file": "Імпорт бази даних із файлу",
         "import-successful": "Ура! Імпорт успішний!",
         "menu": "Меню",
-        "no-thanks": "Ні, дякую",
+        "no": "Ні",
         "ok": "Окей",
         "paste": "Вставити",
         "preferences": "Налаштування",
@@ -106,7 +106,7 @@
         "ttl-github": "TTL GitHub",
         "view": "Переглянути",
         "workday-waiver-manager": "Менеджер відгулів",
-        "yes-please": "Так, будь ласка"
+        "yes": "Так"
     },
     "$Notification": {
         "punch-reminder": "Не забудь записати час!",
@@ -136,7 +136,7 @@
         "mon": "Пн",
         "month": "Місяць",
         "notification": "Сповіщення",
-        "no-thanks": "Ні, дякую",
+        "no": "Ні",
         "numberOfEntries": "Кількість записів",
         "overallBalanceStart": "Дата початку загального балансу",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "Вид",
         "wed": "Ср",
         "workingDays": "Робочі дні",
-        "yes-please": "Так, будь ласка"
+        "yes": "Так"
     },
     "$UpdateManager": {
         "dismissBtn": "Відхилити",

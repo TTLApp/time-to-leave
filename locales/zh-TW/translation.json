@@ -90,7 +90,7 @@
         "import-db-from-file": "從文件導入資料庫",
         "import-successful": "太好了！導入成功！",
         "menu": "目錄",
-        "no-thanks": "不用了，謝謝",
+        "no": "否",
         "ok": "好的",
         "paste": "貼上",
         "preferences": "喜好設定",
@@ -106,7 +106,7 @@
         "ttl-github": "TTL GitHub",
         "view": "查看",
         "workday-waiver-manager": "工作日豁免管理員",
-        "yes-please": "好的，謝謝"
+        "yes": "是"
     },
     "$Notification": {
         "punch-reminder": "別忘了打卡！",
@@ -136,7 +136,7 @@
         "mon": "一",
         "month": "月",
         "notification": "通知",
-        "no-thanks": "不用了，謝謝",
+        "no": "否",
         "numberOfEntries": "紀錄數量",
         "overallBalanceStart": "總體結餘開始日期",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "查看",
         "wed": "三",
         "workingDays": "工作日",
-        "yes-please": "好的，謝謝"
+        "yes": "是"
     },
     "$UpdateManager": {
         "dismissBtn": "撤銷",

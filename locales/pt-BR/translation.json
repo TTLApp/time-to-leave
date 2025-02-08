@@ -90,7 +90,7 @@
         "import-db-from-file": "Importar Base de Dados de um Arquivo",
         "import-successful": "Uhul! Sucesso ao importar!",
         "menu": "Menu",
-        "no-thanks": "Não, valeu",
+        "no": "Não",
         "ok": "OK",
         "paste": "Colar",
         "preferences": "Preferências",
@@ -106,7 +106,7 @@
         "ttl-github": "TTL GitHub",
         "view": "Exibir",
         "workday-waiver-manager": "Gerenciador de Folgas",
-        "yes-please": "Sim, por favor"
+        "yes": "Simr"
     },
     "$Notification": {
         "punch-reminder": "Não esqueça de bater ponto!",
@@ -136,7 +136,7 @@
         "mon": "Seg",
         "month": "Mês",
         "notification": "Notificação",
-        "no-thanks": "Não, valeu",
+        "no": "Não",
         "numberOfEntries": "Número de entradas",
         "overallBalanceStart": "Data de início do balanço total",
         "reset": "Restaurar",
@@ -154,11 +154,11 @@
         "view": "Visão",
         "wed": "Qua",
         "workingDays": "Dias úteis",
-        "yes-please": "Sim, por favor"
+        "yes": "Sim"
     },
     "$UpdateManager": {
         "dismissBtn": "Dispensar",
-        "downloadBtn": "Fazer o download da última versão",
+        "downloadBtn": "Baixar última versão",
         "old-version-msg": "Você está usando uma versão antiga do TTT e perdendo muita coisa legal!",
         "remindBtn": "Lembre-me mais tarde",
         "title": "TTL Verifique atualizações",

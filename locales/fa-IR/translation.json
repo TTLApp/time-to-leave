@@ -90,7 +90,7 @@
         "import-db-from-file": "وارد کردن دیتابیس از فایل",
         "import-successful": "با موفقیت وارد شد!",
         "menu": "منو",
-        "no-thanks": "خیر",
+        "no": "خیر",
         "ok": "باشه",
         "paste": "جای گذاری",
         "preferences": "تنظیمات",
@@ -106,7 +106,7 @@
         "ttl-github": "گیت هاب TTL",
         "view": "نمایش",
         "workday-waiver-manager": "مدیریت معافیت روزهای کاری",
-        "yes-please": "بله"
+        "yes": "بله"
     },
     "$Notification": {
         "punch-reminder": "ثبت کردن زمان را فراموش نکنید!",
@@ -136,7 +136,7 @@
         "mon": "دوشنبه",
         "month": "ماهانه",
         "notification": "اعلان ها",
-        "no-thanks": "خیر",
+        "no": "خیر",
         "numberOfEntries": "تعداد موارد",
         "overallBalanceStart": "تاریخ شروع محاسبه اختلاف ساعت های کاری",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "شیوه نمایش",
         "wed": "چهارشنبه",
         "workingDays": "روزهای کاری",
-        "yes-please": "بله"
+        "yes": "بله"
     },
     "$UpdateManager": {
         "dismissBtn": "رد کردن",

@@ -93,9 +93,6 @@ function createWindow()
 
     createMenu();
 
-    // Prevents flickering from maximize
-    mainWindow.show();
-
     // and load the main html of the app as the default window
     mainWindow.loadFile(path.join(rootDir, 'src/calendar.html'));
 
@@ -155,6 +152,12 @@ function createWindow()
         {
             mainWindow.minimize();
         }
+    });
+
+    // Prevents flickering from maximize
+    mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
+    {
+        mainWindow.show();
     });
 
     // Emitted when the window is closed.

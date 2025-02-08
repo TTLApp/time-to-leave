@@ -90,7 +90,7 @@
         "import-db-from-file": "Importar base de datos de un archivo",
         "import-successful": "¡Sí! ¡Importación exitosa!",
         "menu": "Menú",
-        "no-thanks": "No, gracias",
+        "no": "No",
         "ok": "OK",
         "paste": "Pegar",
         "preferences": "Preferencias",
@@ -106,7 +106,7 @@
         "ttl-github": "GitHub de TTL",
         "view": "Vista",
         "workday-waiver-manager": "Gerente de Exención de Jornada Laboral",
-        "yes-please": "Sí, por favor"
+        "yes": "Sí"
     },
     "$Notification": {
         "punch-reminder": "¡No olvides marcar tarjeta!",
@@ -136,7 +136,7 @@
         "mon": "Lun",
         "month": "Mes",
         "notification": "Notificación",
-        "no-thanks": "No, gracias",
+        "no": "No",
         "numberOfEntries": "Número de entradas",
         "overallBalanceStart": "Balance general Fecha de inicio",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "Vista",
         "wed": "Mié",
         "workingDays": "Días de trabajo",
-        "yes-please": "Sí, por favor"
+        "yes": "Sír"
     },
     "$UpdateManager": {
         "dismissBtn": "Ahora no",

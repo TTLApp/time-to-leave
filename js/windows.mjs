@@ -5,7 +5,8 @@ import path from 'path';
 
 import { appConfig, rootDir } from './app-config.mjs';
 import { getDateStr } from './date-aux.mjs';
-import { getUserPreferences } from './user-preferences.mjs';
+import { getSavedPreferences } from './saved-preferences.mjs';
+import { getUserPreferences, savePreferences } from './user-preferences.mjs';
 import IpcConstants from './ipc-constants.mjs';
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -39,6 +40,7 @@ class Windows
             y: dialogCoordinates.y,
             parent: mainWindow,
             resizable: true,
+            show: false,
             icon: appConfig.iconpath,
             webPreferences: {
                 nodeIntegration: true,
@@ -50,13 +52,69 @@ class Windows
             } });
         global.waiverWindow.setMenu(null);
         global.waiverWindow.loadURL(htmlPath);
-        global.waiverWindow.show();
+        global.waiverWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
+        {
+            global.waiverWindow.show();
+        });
         global.waiverWindow.on('close', function()
         {
             global.waiverWindow = null;
             mainWindow.webContents.send(IpcConstants.WaiverSaved);
         });
         global.waiverWindow.webContents.on('before-input-event', (event, input) =>
+        {
+            if (input.control && input.shift && input.key.toLowerCase() === 'i')
+            {
+                BrowserWindow.getFocusedWindow().webContents.toggleDevTools();
+            }
+        });
+    }
+
+    static openPreferencesWindow(mainWindow)
+    {
+        if (global.prefWindow !== null)
+        {
+            global.prefWindow.show();
+            return;
+        }
+
+        const htmlPath = path.join('file://', rootDir, 'src/preferences.html');
+        const dialogCoordinates = Windows.getDialogCoordinates(550, 620, mainWindow);
+        const userPreferences = getUserPreferences();
+        global.prefWindow = new BrowserWindow({ width: 550,
+            height: 620,
+            minWidth: 480,
+            x: dialogCoordinates.x,
+            y: dialogCoordinates.y,
+            parent: mainWindow,
+            show: false,
+            resizable: true,
+            icon: appConfig.iconpath,
+            webPreferences: {
+                nodeIntegration: true,
+                preload: path.join(rootDir, '/renderer/preload-scripts/preferences-bridge.mjs'),
+                contextIsolation: true,
+                additionalArguments: [
+                    `--preferences=${JSON.stringify(userPreferences)}`,
+                ],
+            } });
+        global.prefWindow.setMenu(null);
+        global.prefWindow.loadURL(htmlPath);
+        global.prefWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
+        {
+            global.prefWindow.show();
+        });
+        global.prefWindow.on('close', function()
+        {
+            global.prefWindow = null;
+            const savedPreferences = getSavedPreferences();
+            if (savedPreferences !== null)
+            {
+                savePreferences(savedPreferences);
+                mainWindow.webContents.send(IpcConstants.PreferencesSaved, savedPreferences);
+            }
+        });
+        global.prefWindow.webContents.on('before-input-event', (event, input) =>
         {
             if (input.control && input.shift && input.key.toLowerCase() === 'i')
             {
@@ -84,6 +142,11 @@ class Windows
     static getWaiverWindow()
     {
         return global.waiverWindow;
+    }
+
+    static getPreferencesWindow()
+    {
+        return global.prefWindow;
     }
 
     static resetWindowsElements()

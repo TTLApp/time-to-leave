@@ -2,15 +2,12 @@
 
 import { app, BrowserWindow, clipboard, dialog, shell } from 'electron';
 import Store from 'electron-store';
-import path from 'path';
 
-import { appConfig, getDetails, rootDir } from './app-config.mjs';
+import { appConfig, getDetails } from './app-config.mjs';
 import { getCurrentDateTimeStr } from './date-aux.mjs';
 import ImportExport from './import-export.mjs';
 import Notification from './notification.mjs';
-import { getSavedPreferences } from './saved-preferences.mjs';
 import UpdateManager from './update-manager.mjs';
-import { getUserPreferences, savePreferences } from './user-preferences.mjs';
 import Windows from './windows.mjs';
 import i18NextConfig from '../src/configs/i18next.config.mjs';
 import IpcConstants from './ipc-constants.mjs';
@@ -129,51 +126,7 @@ function getEditMenuTemplate(mainWindow)
             accelerator: appConfig.macOS ? 'Command+,' : 'Control+,',
             click()
             {
-                if (global.prefWindow !== null)
-                {
-                    global.prefWindow.show();
-                    return;
-                }
-
-                const htmlPath = path.join('file://', rootDir, 'src/preferences.html');
-                const dialogCoordinates = Windows.getDialogCoordinates(550, 620, mainWindow);
-                const userPreferences = getUserPreferences();
-                global.prefWindow = new BrowserWindow({ width: 550,
-                    height: 620,
-                    minWidth: 480,
-                    x: dialogCoordinates.x,
-                    y: dialogCoordinates.y,
-                    parent: mainWindow,
-                    resizable: true,
-                    icon: appConfig.iconpath,
-                    webPreferences: {
-                        nodeIntegration: true,
-                        preload: path.join(rootDir, '/renderer/preload-scripts/preferences-bridge.mjs'),
-                        contextIsolation: true,
-                        additionalArguments: [
-                            `--preferences=${JSON.stringify(userPreferences)}`,
-                        ],
-                    } });
-                global.prefWindow.setMenu(null);
-                global.prefWindow.loadURL(htmlPath);
-                global.prefWindow.show();
-                global.prefWindow.on('close', function()
-                {
-                    global.prefWindow = null;
-                    const savedPreferences = getSavedPreferences();
-                    if (savedPreferences !== null)
-                    {
-                        savePreferences(savedPreferences);
-                        mainWindow.webContents.send(IpcConstants.PreferencesSaved, savedPreferences);
-                    }
-                });
-                global.prefWindow.webContents.on('before-input-event', (event, input) =>
-                {
-                    if (input.control && input.shift && input.key.toLowerCase() === 'i')
-                    {
-                        BrowserWindow.getFocusedWindow().webContents.toggleDevTools();
-                    }
-                });
+                Windows.openPreferencesWindow(mainWindow);
             }
         },
         { type: 'separator' },
@@ -228,8 +181,8 @@ function getEditMenuTemplate(mainWindow)
                     const options = {
                         type: 'question',
                         buttons: [
-                            i18NextConfig.getCurrentTranslation('$Menu.yes-please'),
-                            i18NextConfig.getCurrentTranslation('$Menu.no-thanks')
+                            i18NextConfig.getCurrentTranslation('$Menu.yes'),
+                            i18NextConfig.getCurrentTranslation('$Menu.no')
                         ],
                         defaultId: 1,
                         cancelId: 1,
@@ -281,8 +234,8 @@ function getEditMenuTemplate(mainWindow)
                 const options = {
                     type: 'question',
                     buttons: [
-                        i18NextConfig.getCurrentTranslation('$Menu.yes-please'),
-                        i18NextConfig.getCurrentTranslation('$Menu.no-thanks')
+                        i18NextConfig.getCurrentTranslation('$Menu.yes'),
+                        i18NextConfig.getCurrentTranslation('$Menu.no')
                     ],
                     defaultId: 1,
                     cancelId: 1,

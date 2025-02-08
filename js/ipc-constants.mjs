@@ -32,6 +32,7 @@ const IpcConstants = Object.freeze(
         SwitchView: 'SWITCH_VIEW',
         ToggleTrayPunchTime: 'TOGGLE_TRAY_PUNCH_TIME',
         WaiverSaved: 'WAIVER_SAVED',
+        WindowReadyToShow: 'WINDOW_READY_TO_SHOW',
     });
 
 export default IpcConstants;

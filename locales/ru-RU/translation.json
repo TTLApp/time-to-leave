@@ -90,7 +90,7 @@
         "import-db-from-file": "Импортировать базу данных из файла",
         "import-successful": "Успешный импорт!",
         "menu": "Меню",
-        "no-thanks": "Нет, спасибо",
+        "no": "Нет",
         "ok": "Окей",
         "paste": "Копировать",
         "preferences": "Персональные настройки",
@@ -106,7 +106,7 @@
         "ttl-github": "TTL GitHub",
         "view": "Вид",
         "workday-waiver-manager": "Менеджер отгулов",
-        "yes-please": "Да, пожалуйста"
+        "yes": "Да"
     },
     "$Notification": {
         "punch-reminder": "Не забудьте добавить время работы!",
@@ -136,7 +136,7 @@
         "mon": "Пн",
         "month": "Месяц",
         "notification": "Уведомление",
-        "no-thanks": "Нет, спасибо",
+        "no": "Нет",
         "numberOfEntries": "Количество записей",
         "overallBalanceStart": "Дата начала общей статистики",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "Вид",
         "wed": "Ср",
         "workingDays": "Рабочие дни",
-        "yes-please": "Да, пожалуйста"
+        "yes": "Да"
     },
     "$UpdateManager": {
         "dismissBtn": "Отклонить",

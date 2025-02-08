@@ -90,7 +90,7 @@
         "import-db-from-file": "Importuj bazę danych z pliku",
         "import-successful": "Zaimportowano pomyślnie!",
         "menu": "Menu",
-        "no-thanks": "Nie, dziękuję",
+        "no": "Nie",
         "ok": "Ok",
         "paste": "Wklej",
         "preferences": "Preferencje",
@@ -106,7 +106,7 @@
         "ttl-github": "GitHub TTL",
         "view": "Wyświetl",
         "workday-waiver-manager": "Menadżer czasu wolnego",
-        "yes-please": "Tak, proszę"
+        "yes": "Tak"
     },
     "$Notification": {
         "punch-reminder": "Nie zapomnij uzupełnić czasu pracy!",
@@ -136,7 +136,7 @@
         "mon": "Pon",
         "month": "Miesiąc",
         "notification": "Powiadomienia",
-        "no-thanks": "Nie, dziękuję",
+        "no": "Nie",
         "numberOfEntries": "Liczba wpisów",
         "overallBalanceStart": "Data rozpoczęcia ogólnej statystyki",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "Widok",
         "wed": "Śr",
         "workingDays": "Dni pracy",
-        "yes-please": "Tak, proszę"
+        "yes": "Tak"
     },
     "$UpdateManager": {
         "dismissBtn": "Odrzuć",

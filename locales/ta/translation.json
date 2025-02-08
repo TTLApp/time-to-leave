@@ -90,7 +90,7 @@
         "import-db-from-file": "கோப்புக்கு டேட்டாபேஸை இறக்குமதி செய்க",
         "import-successful": "வெற்றிகரமாக இறக்குமதி செய்யப்பட்டது",
         "menu": "மெனு",
-        "no-thanks": "இல்லை, நன்றி",
+        "no": "இல்லை",
         "ok": "சரி",
         "paste": "பேஸ்ட்",
         "preferences": "விருப்பத்தேர்வுகள்",
@@ -106,7 +106,7 @@
         "ttl-github": "TTL கிட் ஹப்",
         "view": "காட்சி",
         "workday-waiver-manager": "வேலை நாள் விலக்கு மேலாளர் ",
-        "yes-please": "ஆமாம் தயவு செய்து"
+        "yes": "ஆம்"
     },
     "$Notification": {
         "punch-reminder": "பன்ச் செய்ய மறவாதீர்கள்",
@@ -136,7 +136,7 @@
         "mon": "திங்கள்",
         "month": "மாதம்",
         "notification": "அறிவிப்பு",
-        "no-thanks": "இல்லை, நன்றி",
+        "no": "இல்லை",
         "numberOfEntries": "உள்ளீடுகளின் எண்ணிக்கை",
         "overallBalanceStart": "ஒட்டுமொத்த இருப்பு தொடக்க தேதி",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "காட்சி",
         "wed": "புதன்",
         "workingDays": "வேலை நாட்கள்",
-        "yes-please": "ஆமாம் தயவு செய்து"
+        "yes": "ஆம்"
     },
     "$UpdateManager": {
         "dismissBtn": "நிராகரி",

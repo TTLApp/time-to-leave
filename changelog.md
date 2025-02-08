@@ -22,6 +22,7 @@
 - Fix [#1081]: No tooltip when the cursor hovers over tray icon
 - Fix [#1086]: Missing tooltip on calendar navigation icons
 - Fix [#1093]: System default theme not listening to system theme change
+- Fix [#1129]: Windows flicker when opening
 - Translation [#1073]: Improved French (fr-fr) translation.
 - Translation: Time to Leave is now available in Simplified Chinese (zh-CN)!
 

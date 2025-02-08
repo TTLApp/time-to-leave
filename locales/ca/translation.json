@@ -90,7 +90,7 @@
         "import-db-from-file": "Importar base de dades d'un arxiu",
         "import-successful": "¡Importació exitosa!",
         "menu": "Menú",
-        "no-thanks": "No, gracies",
+        "no": "No",
         "ok": "D'acord",
         "paste": "Enganxar",
         "preferences": "Preferències",
@@ -106,7 +106,7 @@
         "ttl-github": "GitHub de TTL",
         "view": "Vista",
         "workday-waiver-manager": "Gerent de Exempció de Jornada Laboral",
-        "yes-please": "Sí, si us plau"
+        "yes": "Sí"
     },
     "$Notification": {
         "punch-reminder": "No T'oblidis de fitxar!",
@@ -136,7 +136,7 @@
         "mon": "Dil",
         "month": "Mes",
         "notification": "Notificació",
-        "no-thanks": "No, gracies",
+        "no": "No",
         "numberOfEntries": "Nombre de entrades",
         "overallBalanceStart": "Balanç general Data D'inici",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "Vista",
         "wed": "Dim",
         "workingDays": "Dies de treball",
-        "yes-please": "Sí, si us plau"
+        "yes": "Sí"
     },
     "$UpdateManager": {
         "dismissBtn": "Ara no",

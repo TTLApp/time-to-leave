@@ -90,7 +90,7 @@
         "import-db-from-file": "Veritabanını dosyadan içe aktar",
         "import-successful": "Yaşasın! İçe aktarma başarılı!",
         "menu": "Menü",
-        "no-thanks": "Hayır, Teşekkürler",
+        "no": "Hayır",
         "ok": "Tamam",
         "paste": "Yapıştır",
         "preferences": "Tercihler",
@@ -106,7 +106,7 @@
         "ttl-github": "TTL GitHub",
         "view": "Görünüm",
         "workday-waiver-manager": "İzinli İş Günü Yöneticisi",
-        "yes-please": "Evet, Lütfen"
+        "yes": "Evet"
     },
     "$Notification": {
         "punch-reminder": "Damga atmayı unutmayınız!",
@@ -136,7 +136,7 @@
         "mon": "Pzt",
         "month": "Ay",
         "notification": "Bildirim",
-        "no-thanks": "Hayır, Teşekkürler",
+        "no": "Hayır",
         "numberOfEntries": "Girdi Sayısı",
         "overallBalanceStart": "Başlangıç Tarihinden İtibaren Genel Bilanço",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "Görünüm",
         "wed": "Çrb",
         "workingDays": "İş günleri",
-        "yes-please": "Evet, Lütfen"
+        "yes": "Evet"
     },
     "$UpdateManager": {
         "dismissBtn": "İşten Çıkar",

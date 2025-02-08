@@ -90,7 +90,7 @@
         "import-db-from-file": "Εισαγωγή βάσης δεδομένων από αρχείο",
         "import-successful": "Ναι! Εισαγωγή επιτυχής!",
         "menu": "Μενού",
-        "no-thanks": "Όχι, ευχαριστώ",
+        "no": "Όχι",
         "ok": "OK",
         "paste": "Επικόλληση",
         "preferences": "Προτιμήσεις",
@@ -106,7 +106,7 @@
         "ttl-github": "TTL GitHub",
         "view": "Προβολή",
         "workday-waiver-manager": "Διαχείριση απαλλαγής εργάσιμης ημέρας",
-        "yes-please": "Ναι, παρακαλώ"
+        "yes": "Ναι"
     },
     "$Notification": {
         "punch-reminder": "Μην ξεχάσετε να κάνετε την εισαγωγή!",
@@ -136,7 +136,7 @@
         "mon": "Δευ",
         "month": "Μήνας",
         "notification": "Ειδοποίηση",
-        "no-thanks": "Όχι, ευχαριστώ",
+        "no": "Όχι",
         "numberOfEntries": "Αριθμός εγγραφών",
         "overallBalanceStart": "Ημερομηνία Έναρξης Συνολικού Ισοζυγίου",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "Προβολή",
         "wed": "Τετ",
         "workingDays": "Εργάσιμες ημέρες",
-        "yes-please": "Ναι, παρακαλώ"
+        "yes": "Ναι"
     },
     "$UpdateManager": {
         "dismissBtn": "Απόρριψη",

@@ -90,7 +90,7 @@
         "import-db-from-file": "Importer la base de données à partir d'un fichier",
         "import-successful": "Youpi ! Importation réussie !",
         "menu": "Menu",
-        "no-thanks": "Non merci",
+        "no": "Non",
         "ok": "OK",
         "paste": "Coller",
         "preferences": "Préférences",
@@ -106,7 +106,7 @@
         "ttl-github": "GitHub",
         "view": "Vue",
         "workday-waiver-manager": "Gestionnaire de dispenses",
-        "yes-please": "Oui, s'il vous plaît"
+        "yes": "Oui"
     },
     "$Notification": {
         "punch-reminder": "N'oubliez pas de pointer !",
@@ -136,7 +136,7 @@
         "mon": "Lun",
         "month": "Mois",
         "notification": "Notification",
-        "no-thanks": "Non merci",
+        "no": "Non",
         "numberOfEntries": "Nombre d'entrées",
         "overallBalanceStart": "Date de début du solde global",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "Vue",
         "wed": "Mer",
         "workingDays": "Jours de travail",
-        "yes-please": "Oui s'il vous plaît"
+        "yes": "Oui"
     },
     "$UpdateManager": {
         "dismissBtn": "Rejeter",

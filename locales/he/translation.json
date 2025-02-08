@@ -90,7 +90,7 @@
         "import-db-from-file": "יבא מסד נתונים מקובץ",
         "import-successful": "יש! יבוא הצליח!",
         "menu": "תפריט",
-        "no-thanks": "לא, תודה",
+        "no": "לא",
         "ok": "אוקי",
         "paste": "הדבק",
         "preferences": "הגדרות",
@@ -106,7 +106,7 @@
         "ttl-github": "TTL GitHub",
         "view": "צפה",
         "workday-waiver-manager": "מנהל ויתור יום עבודה",
-        "yes-please": "כן, בבקשה"
+        "yes": "כן"
     },
     "$Notification": {
         "punch-reminder": "אל תשכח לנקוב בזמן!",
@@ -136,7 +136,7 @@
         "mon": "יום שני",
         "month": "חודש",
         "notification": "התראה",
-        "no-thanks": "לא, תודה",
+        "no": "לא",
         "numberOfEntries": "כמות רשומות",
         "overallBalanceStart": "זמן התחלה של מאזן כללי",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "תצוגה",
         "wed": "יום רביעי",
         "workingDays": "ימי עבודה",
-        "yes-please": "כן, בבקשה"
+        "yes": "כן"
     },
     "$UpdateManager": {
         "dismissBtn": "לפטור",

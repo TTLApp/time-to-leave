@@ -90,7 +90,7 @@
         "import-db-from-file": "Impor database dari file",
         "import-successful": "Yes! Impor berhasil!",
         "menu": "Menu",
-        "no-thanks": "Tidak, Terima Kasih",
+        "no": "Tidak",
         "ok": "OK",
         "paste": "Tempel",
         "preferences": "Pengaturan",
@@ -106,7 +106,7 @@
         "ttl-github": "TTL GitHub",
         "view": "Tampilan",
         "workday-waiver-manager": "Atur pengecualian Hari kerja",
-        "yes-please": "Ya"
+        "yes": "Ya"
     },
     "$Notification": {
         "punch-reminder": "Jangan lupa untuk rekam!",
@@ -136,7 +136,7 @@
         "mon": "Sen",
         "month": "Bulan",
         "notification": "Notifikasi",
-        "no-thanks": "Tidak, Terima Kasih",
+        "no": "Tidak",
         "numberOfEntries": "Jumlah Entri",
         "overallBalanceStart": "Rata Rata Keseluruhan Tanggal Mulai ",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "Tampilan",
         "wed": "Rab",
         "workingDays": "Hari Kerja",
-        "yes-please": "Ya"
+        "yes": "Ya"
     },
     "$UpdateManager": {
         "dismissBtn": "Hilangkan",

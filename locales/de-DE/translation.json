@@ -90,7 +90,7 @@
         "import-db-from-file": "Datenbank Import aus Datei",
         "import-successful": "Yay! Import erfolgreich!",
         "menu": "Menü",
-        "no-thanks": "Nein, danke",
+        "no": "Nein",
         "ok": "OK",
         "paste": "Einfügen",
         "preferences": "Einstellungen",
@@ -106,7 +106,7 @@
         "ttl-github": "TTL GitHub",
         "view": "Ansicht",
         "workday-waiver-manager": "Arbeitstag Ausschluss Manager",
-        "yes-please": "Ja, bitte"
+        "yes": "Ja"
     },
     "$Notification": {
         "punch-reminder": "Nicht vergessen Zeiten einzutragen",
@@ -136,7 +136,7 @@
         "mon": "Mo",
         "month": "Monat",
         "notification": "Benachrichtigungen",
-        "no-thanks": "Nein, danke",
+        "no": "Nein",
         "numberOfEntries": "Anzahl an Einträgen",
         "overallBalanceStart": "Gesamtbilanz Startdatum",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "Ansicht",
         "wed": "Mi",
         "workingDays": "Arbeitstage",
-        "yes-please": "Ja, bitte"
+        "yes": "Ja"
     },
     "$UpdateManager": {
         "dismissBtn": "Ablehnen",

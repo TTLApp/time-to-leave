@@ -90,7 +90,7 @@
         "import-db-from-file": "ファイルからデータベースをインポート",
         "import-successful": "インポート成功!",
         "menu": "メニュー",
-        "no-thanks": "いいえ、結構です",
+        "no": "いいえ",
         "ok": "OK",
         "paste": "貼り付け",
         "preferences": "設定",
@@ -106,7 +106,7 @@
         "ttl-github": "TTL GitHubへ",
         "view": "表示",
         "workday-waiver-manager": "勤務免除日の管理",
-        "yes-please": "はい、お願いします"
+        "yes": "はい"
     },
     "$Notification": {
         "punch-reminder": "打刻をお忘れなく!",
@@ -136,7 +136,7 @@
         "mon": "月",
         "month": "月",
         "notification": "通知",
-        "no-thanks": "いいえ、結構です",
+        "no": "いいえ",
         "numberOfEntries": "記録の数",
         "overallBalanceStart": "累計計算の開始日",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "表示",
         "wed": "水",
         "workingDays": "勤務日",
-        "yes-please": "はい、お願いします"
+        "yes": "はい"
     },
     "$UpdateManager": {
         "dismissBtn": "無視",

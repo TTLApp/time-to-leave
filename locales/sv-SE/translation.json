@@ -90,7 +90,7 @@
         "import-db-from-file": "Importera database från en fil",
         "import-successful": "Jippi! Importen lyckades!",
         "menu": "Meny",
-        "no-thanks": "Nej tack!",
+        "no": "Nej",
         "ok": "OK",
         "paste": "Klistra in",
         "preferences": "Preferenser",
@@ -106,7 +106,7 @@
         "ttl-github": "TTL GitHub",
         "view": "Vy",
         "workday-waiver-manager": "Hantera ledighet",
-        "yes-please": "Ja tack!"
+        "yes": "Ja"
     },
     "$Notification": {
         "punch-reminder": "Glöm inte att stämpla in!",
@@ -136,7 +136,7 @@
         "mon": "Mån",
         "month": "Månad",
         "notification": "Notifiering",
-        "no-thanks": "Nej tack!",
+        "no": "Nej",
         "numberOfEntries": "Antal poster",
         "overallBalanceStart": "Startdatum för totalsaldo",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "Vy",
         "wed": "Ons",
         "workingDays": "Arbetsdagar",
-        "yes-please": "Ja tack!"
+        "yes": "Ja"
     },
     "$UpdateManager": {
         "dismissBtn": "Avvisa",

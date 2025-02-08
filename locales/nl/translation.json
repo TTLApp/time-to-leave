@@ -90,7 +90,7 @@
         "import-db-from-file": "Databasebestand inladen",
         "import-successful": "Joepie! Succesvol ingeladen!",
         "menu": "Menu",
-        "no-thanks": "Nee, bedankt",
+        "no": "Nee",
         "ok": "Oké",
         "paste": "Plakken",
         "preferences": "Voorkeuren",
@@ -106,7 +106,7 @@
         "ttl-github": "GitHubpagina",
         "view": "Bekijken",
         "workday-waiver-manager": "Vrije dagen beheren",
-        "yes-please": "Ja, graag"
+        "yes": "Ja"
     },
     "$Notification": {
         "punch-reminder": "Vergeet niet de begintijd in te voeren!",
@@ -136,7 +136,7 @@
         "mon": "Ma",
         "month": "Maand",
         "notification": "Melding",
-        "no-thanks": "Nee, bedankt",
+        "no": "Nee",
         "numberOfEntries": "Aantal invoergegevens",
         "overallBalanceStart": "Algemeen overzicht startdatum",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "Weergeven op",
         "wed": "Wo",
         "workingDays": "Werkdagen",
-        "yes-please": "Ja, graag"
+        "yes": "Ja"
     },
     "$UpdateManager": {
         "dismissBtn": "Afwijzen",

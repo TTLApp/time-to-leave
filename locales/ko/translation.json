@@ -90,7 +90,7 @@
         "import-db-from-file": "파일로부터 데이터베이스 가져오기",
         "import-successful": "와! 성공적으로 가져왔어요!",
         "menu": "메뉴",
-        "no-thanks": "아뇨, 괜찮아요",
+        "no": "아니오",
         "ok": "확인",
         "paste": "붙여넣기",
         "preferences": "설정",
@@ -106,7 +106,7 @@
         "ttl-github": "TTL GitHub",
         "view": "보기",
         "workday-waiver-manager": "휴가 관리자",
-        "yes-please": "네, 그래 주세요"
+        "yes": "예"
     },
     "$Notification": {
         "punch-reminder": "시간 기록하는 것 잊지 마세요!",
@@ -136,7 +136,7 @@
         "mon": "월",
         "month": "월별",
         "notification": "알림 표시",
-        "no-thanks": "아뇨, 괜찮아요",
+        "no": "아니오",
         "numberOfEntries": "하루 작업 단위 개수",
         "overallBalanceStart": "총 작업 달성도 집계 시작일",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "보기 모드",
         "wed": "수",
         "workingDays": "작업 요일 지정",
-        "yes-please": "네, 그래 주세요"
+        "yes": "예"
     },
     "$UpdateManager": {
         "dismissBtn": "닫기",

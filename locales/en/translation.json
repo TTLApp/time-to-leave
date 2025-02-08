@@ -90,7 +90,7 @@
         "import-db-from-file": "Import database from file",
         "import-successful": "Yay! Import successful!",
         "menu": "Menu",
-        "no-thanks": "No, thanks",
+        "no": "No",
         "ok": "OK",
         "paste": "Paste",
         "preferences": "Preferences",
@@ -106,7 +106,7 @@
         "ttl-github": "TTL GitHub",
         "view": "View",
         "workday-waiver-manager": "Workday Waiver Manager",
-        "yes-please": "Yes, please"
+        "yes": "Yes"
     },
     "$Notification": {
         "punch-reminder": "Don't forget to punch in!",
@@ -136,7 +136,7 @@
         "mon": "Mon",
         "month": "Month",
         "notification": "Notification",
-        "no-thanks": "No, thanks",
+        "no": "No",
         "numberOfEntries": "Number of Entries",
         "overallBalanceStart": "Overall Balance Start Date",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "View",
         "wed": "Wed",
         "workingDays": "Working days",
-        "yes-please": "Yes, please"
+        "yes": "Yes"
     },
     "$UpdateManager": {
         "dismissBtn": "Dismiss",

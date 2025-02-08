@@ -13,13 +13,17 @@ function getLanguageDataPromise()
 function getOriginalUserPreferences()
 {
     const preferences = process.argv.filter((arg) => arg.startsWith('--preferences='))[0]?.split('=')?.[1];
-    console.log(preferences);
     return JSON.parse(preferences || '{}');
 }
 
 function getWaiverStoreContents()
 {
     return ipcRenderer.invoke(IpcConstants.GetWaiverStoreContents);
+}
+
+function notifyWindowReadyToShow()
+{
+    ipcRenderer.send(IpcConstants.WindowReadyToShow);
 }
 
 function showDialog(dialogOptions)
@@ -31,6 +35,7 @@ const rendererApi = {
     getLanguageDataPromise,
     getOriginalUserPreferences,
     getWaiverStoreContents,
+    notifyWindowReadyToShow,
     showDay,
     showDialog,
 };

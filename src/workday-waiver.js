@@ -441,7 +441,18 @@ async function initializeHolidayInfo()
 $(async() =>
 {
     userPreferences = window.rendererApi.getOriginalUserPreferences();
-    applyTheme(userPreferences.theme);
+
+    requestAnimationFrame(() =>
+    {
+        applyTheme(userPreferences.theme);
+        requestAnimationFrame(() =>
+        {
+            setTimeout(() =>
+            {
+                window.rendererApi.notifyWindowReadyToShow();
+            }, 100);
+        });
+    });
 
     const waiverDay = await window.workdayWaiverApi.getWaiverDay();
     languageData = await window.rendererApi.getLanguageDataPromise();

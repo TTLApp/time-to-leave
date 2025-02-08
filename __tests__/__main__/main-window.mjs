@@ -47,17 +47,21 @@ describe('main-window.mjs', () =>
             assert.strictEqual(getLeaveByInterval(), null);
         });
 
-        it('Should get window', () =>
+        it('Should get window', (done) =>
         {
             createWindow();
-            assert.strictEqual(showSpy.calledOnce, true);
             assert.strictEqual(getMainWindow() instanceof BrowserWindow, true);
+            getMainWindow().webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
+            {
+                assert.strictEqual(showSpy.calledOnce, true);
+                done();
+            });
         });
     });
 
     describe('createWindow()', () =>
     {
-        it('Should create and get window default behaviour', () =>
+        it('Should create and get window default behaviour', (done) =>
         {
             const loadFileSpy = spy(BrowserWindow.prototype, 'loadFile');
             createWindow();
@@ -73,9 +77,13 @@ describe('main-window.mjs', () =>
             assert.strictEqual(mainWindow.listenerCount('minimize'), 2);
             assert.strictEqual(mainWindow.listenerCount('close'), 2);
             assert.strictEqual(loadFileSpy.calledOnce, true);
-            assert.strictEqual(showSpy.calledOnce, true);
             assert.notStrictEqual(getLeaveByInterval(), null);
             assert.strictEqual(getLeaveByInterval()._idleNext.expiry > 0, true);
+            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
+            {
+                assert.strictEqual(showSpy.calledOnce, true);
+                done();
+            });
         });
     });
 
@@ -88,7 +96,7 @@ describe('main-window.mjs', () =>
              * @type {BrowserWindow}
              */
             const mainWindow = getMainWindow();
-            mainWindow.on('ready-to-show', async() =>
+            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, async() =>
             {
                 // Wait a bit for values to accomodate
                 await new Promise(res => setTimeout(res, 500));
@@ -114,7 +122,7 @@ describe('main-window.mjs', () =>
              * @type {BrowserWindow}
              */
             const mainWindow = getMainWindow();
-            mainWindow.on('ready-to-show', async() =>
+            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, async() =>
             {
                 // Wait a bit for values to accomodate
                 await new Promise(res => setTimeout(res, 500));
@@ -144,7 +152,7 @@ describe('main-window.mjs', () =>
              * @type {BrowserWindow}
              */
             const mainWindow = getMainWindow();
-            mainWindow.on('ready-to-show', async() =>
+            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, async() =>
             {
                 // Wait a bit for values to accomodate
                 await new Promise(res => setTimeout(res, 500));
@@ -170,7 +178,7 @@ describe('main-window.mjs', () =>
              * @type {BrowserWindow}
              */
             const mainWindow = getMainWindow();
-            mainWindow.on('ready-to-show', () =>
+            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
             {
                 stub(Notification, 'createLeaveNotification').callsFake(() =>
                 {
@@ -200,7 +208,7 @@ describe('main-window.mjs', () =>
              * @type {BrowserWindow}
              */
             const mainWindow = getMainWindow();
-            mainWindow.on('ready-to-show', () =>
+            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
             {
                 const now = new Date();
                 ipcMain.emit(
@@ -223,7 +231,7 @@ describe('main-window.mjs', () =>
                  * @type {BrowserWindow}
                  */
                 const mainWindow = getMainWindow();
-                mainWindow.on('ready-to-show', () =>
+                mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
                 {
                     showSpy.callsFake(() =>
                     {
@@ -245,7 +253,7 @@ describe('main-window.mjs', () =>
                  * @type {BrowserWindow}
                  */
                 const mainWindow = getMainWindow();
-                mainWindow.on('ready-to-show', () =>
+                mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
                 {
                     const trayStub = stub(global.tray, 'popUpContextMenu').callsFake(() =>
                     {
@@ -272,7 +280,7 @@ describe('main-window.mjs', () =>
              * @type {BrowserWindow}
              */
             const mainWindow = getMainWindow();
-            mainWindow.on('ready-to-show', () =>
+            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
             {
                 mainWindow.emit('minimize', {
                     preventDefault: () => {}
@@ -295,7 +303,7 @@ describe('main-window.mjs', () =>
              */
             const mainWindow = getMainWindow();
             const minimizeSpy = spy(mainWindow, 'minimize');
-            mainWindow.on('ready-to-show', () =>
+            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
             {
                 mainWindow.emit('minimize', {});
                 assert.strictEqual(minimizeSpy.called, true);
@@ -318,7 +326,7 @@ describe('main-window.mjs', () =>
              * @type {BrowserWindow}
              */
             const mainWindow = getMainWindow();
-            mainWindow.on('ready-to-show', () =>
+            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
             {
                 mainWindow.emit('close', {
                     preventDefault: () => {}
@@ -341,7 +349,7 @@ describe('main-window.mjs', () =>
              * @type {BrowserWindow}
              */
             const mainWindow = getMainWindow();
-            mainWindow.on('ready-to-show', () =>
+            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
             {
                 // Force the exit
                 mainWindow.on('close', () =>
@@ -396,7 +404,7 @@ describe('main-window.mjs', () =>
              * @type {BrowserWindow}
              */
             const mainWindow = getMainWindow();
-            mainWindow.on('ready-to-show', () =>
+            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
             {
                 mainWindow.emit('close', {
                     preventDefault: () => {}
@@ -422,13 +430,13 @@ describe('main-window.mjs', () =>
                 clock.restore();
                 done();
             });
-            mainWindow.on('ready-to-show', () =>
+            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
             {
                 mainWindow.emit('close', {
                     preventDefault: () => {}
                 });
                 assert.strictEqual(intervalSpy.calledOnceWithExactly(match.func, 60 * 1000), true);
-                clock.next();
+                clock.nextAsync();
                 intervalSpy.restore();
             });
         });

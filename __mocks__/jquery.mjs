@@ -14,3 +14,6 @@ window.matchMedia = window.matchMedia || function()
         removeListener: function() {}
     };
 };
+
+// Mocking requestAnimationFrame since it's not usually defined but we use it
+global.requestAnimationFrame = callback => callback();

@@ -90,7 +90,7 @@
         "import-db-from-file": "Importar base de dados de um ficheiro",
         "import-successful": "Yey! Sucesso ao importar!",
         "menu": "Menu",
-        "no-thanks": "Não, obrigado",
+        "no": "Não",
         "ok": "OK",
         "paste": "Colar",
         "preferences": "Configurações",
@@ -106,7 +106,7 @@
         "ttl-github": "TTL GitHub",
         "view": "Ver",
         "workday-waiver-manager": "Gestor de Folgas",
-        "yes-please": "Sim, por favor"
+        "yes": "Sim"
     },
     "$Notification": {
         "punch-reminder": "Não te esqueças de picar o ponto!",
@@ -136,7 +136,7 @@
         "mon": "Seg",
         "month": "Mês",
         "notification": "Notificação",
-        "no-thanks": "Não, obrigado",
+        "no": "Não",
         "numberOfEntries": "Número de Registos",
         "overallBalanceStart": "Data de Início do Balanço Total",
         "reset": "Reset",
@@ -154,7 +154,7 @@
         "view": "Ver",
         "wed": "Qua",
         "workingDays": "Dias úteis",
-        "yes-please": "Sim, por favor"
+        "yes": "Sim"
     },
     "$UpdateManager": {
         "dismissBtn": "Dispensar",

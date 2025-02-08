@@ -189,6 +189,7 @@ describe('Test Workday Waiver Window', function()
             return getUserPreferences();
         };
         window.rendererApi.showDay = showDay;
+        window.rendererApi.notifyWindowReadyToShow = () => {};
 
         window.workdayWaiverApi.showDialogSync = () => {};
 
