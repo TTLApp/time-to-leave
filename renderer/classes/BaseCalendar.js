@@ -39,7 +39,6 @@ class BaseCalendar
     /**
      * Returns a date object for which the all time balance will be calculated.
      * If current month, returns the actual day. If not, first day of following month.
-     * //  deepcode ignore valid-jsdoc: <not yet implemented>
      * @return {Date}
      */
     _getTargetDayForAllTimeBalance()
@@ -175,7 +174,6 @@ class BaseCalendar
 
         $('input[type=\'time\']').off('input propertychange').on('input propertychange', function()
         {
-            //  deepcode ignore no-invalid-this: jQuery use
             calendar._updateTimeDayCallback($(this).attr('data-date'));
         });
 

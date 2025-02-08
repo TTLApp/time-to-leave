@@ -1,4 +1,3 @@
-// file deepcode ignore no-invalid-this: the this keyword is being used for testing purposes only in this file
 'use strict';
 
 import { _electron as electron } from 'playwright';
@@ -17,7 +16,6 @@ describe('Application launch', function()
 
     let electronApp;
 
-    //  deepcode ignore UseArrowFunction: => will not work on here
     beforeEach(async function()
     {
         electronApp = await electron.launch({ args: ['main.mjs'], env: process.env, cwd: rootDir});
