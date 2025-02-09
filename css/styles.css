@@ -421,10 +421,11 @@ body {
   border: none;
   color: var(--punch-color);
   background-color: var(--punch-bground);
+  transition: filter 0.3s;
 }
 
 .punch-button:hover:enabled {
-  filter: brightness(110%);
+  filter: brightness(125%);
 }
 
 .punch-button:disabled {
