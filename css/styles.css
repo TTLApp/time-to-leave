@@ -435,11 +435,13 @@ body {
 
 .punch-button img {
   -webkit-user-drag: none;
+  width: 2.3rem;
+  height: 2.3rem;
+  padding-bottom: 0.5rem;
 }
 
 #punch-button-label {
   cursor: pointer;
-  margin: auto;
 }
 
 .punch-button:disabled #punch-button-label {
