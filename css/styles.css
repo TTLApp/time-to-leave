@@ -424,7 +424,8 @@ body {
 }
 
 .punch-button:disabled {
-  background-color: var(--punch-disable-bground);
+  color: var(--punch-disable-bground);
+  filter: brightness(50%);
 }
 
 .punch-button img {
