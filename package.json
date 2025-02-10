@@ -13,8 +13,8 @@
   "main": "main.mjs",
   "scripts": {
     "clean": "npx rimraf coverage release-builds __tests__/__main__/__database.ttldb__ ",
-    "debug:main": "electron --inspect=5858 .",
-    "debug:render": "electron --remote-debugging-port=9222 .",
+    "debug:main": "electronmon --inspect=5858 .",
+    "debug:render": "electronmon --remote-debugging-port=9222 .",
     "lint": "npm-run-all --parallel lint:*",
     "lint:css": "stylelint css/*.css",
     "lint:eslint": "eslint .",
@@ -31,7 +31,7 @@
     "preinstall": "npx force-resolutions",
     "prepare": "husky",
     "pretest": "npm run clean",
-    "start": "electron .",
+    "start": "electronmon .",
     "test": "npm-run-all test:*",
     "test:mocha": "c8 -o ./coverage_mocha -- mocha",
     "test:electron-mocha": "c8 electron-mocha",
@@ -45,8 +45,8 @@
     "@eslint/js": "9.20.0",
     "c8": "10.1.3",
     "electron": "34.1.1",
+    "electronmon": "2.0.3",
     "electron-mocha": "13.1.0",
-    "electron-reloader": "1.2.3",
     "electron-winstaller": "5.4.0",
     "eslint": "9.20.0",
     "globals": "15.14.0",
@@ -56,7 +56,6 @@
     "npm-run-all": "4.1.5",
     "playwright": "1.50.1",
     "prettier": "3.4.2",
-    "rimraf": "6.0.1",
     "sinon": "19.0.2",
     "stylelint": "16.14.1",
     "stylelint-config-standard": "37.0.0"
@@ -77,7 +76,7 @@
   "engines": {
     "node": ">=20.18.0"
   },
-  "resolutions": {
-    "rimraf": "6.0.1"
+  "electronmon": {
+    "patterns": ["!__tests__/**"]
   }
 }
