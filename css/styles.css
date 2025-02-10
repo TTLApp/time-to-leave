@@ -421,6 +421,8 @@ body {
   border: none;
   color: var(--punch-color);
   background-color: var(--punch-bground);
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
 }
 
 .punch-button:disabled {
@@ -632,7 +634,7 @@ input:disabled + .slider {
   font-weight: 300;
   font-variant-caps: all-petite-caps;
   display: inline-block;
-  border-radius: 10px;
+  border-radius: 0.5rem;
   background: var(--weekday-background);
   height: 40px;
   width: 45px;
@@ -699,6 +701,7 @@ input:disabled + .slider {
   width: 25%;
   height: 24px;
   border: none;
+  border-radius: 0.5rem;
   color: var(--punch-color);
   background-color: var(--reset-color);
 }
@@ -747,6 +750,7 @@ input:disabled + .slider {
   width: 100%;
   height: 24px;
   border: none;
+  border-radius: 0.5rem;
   color: var(--punch-color);
   background-color: var(--punch-bground);
 }
@@ -1126,7 +1130,7 @@ html[data-view='day'] #calendar-table-body .sign-cell .sign-container {
   height: 24px;
   overflow: hidden;
   background-color: var(--table-cell-total-bground);
-  border-radius: 15px;
+  border-radius: 0.5rem;
   width: 25px;
   cursor: pointer;
 }
