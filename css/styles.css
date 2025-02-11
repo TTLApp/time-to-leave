@@ -620,6 +620,7 @@ input:disabled + .slider {
   font-size: 14px;
   font-weight: 300;
   font-variant-caps: all-petite-caps;
+  border-radius: 0.5rem;
   border: none;
   height: inherit;
   line-height: normal;
