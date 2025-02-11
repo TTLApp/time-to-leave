@@ -172,18 +172,3 @@ app.on('activate', () =>
         mainWindow.show();
     }
 });
-
-const env = process.env.NODE_ENV || 'development';
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
-if (env === 'development')
-{
-    try
-    {
-        require('electron-reloader')(module);
-    }
-    catch
-    {
-        // We don't need to do anything in this block.
-    }
-}
