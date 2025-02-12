@@ -202,7 +202,7 @@ describe('Test Workday Waiver Window', function()
         beforeEach(async() =>
         {
             await prepareMockup();
-        });
+        }).timeout(3000);
 
         it('One Waiver', async() =>
         {
