@@ -424,10 +424,6 @@ body {
   transition: filter 0.3s;
 }
 
-.punch-button:hover:enabled {
-  filter: brightness(125%);
-}
-
 .punch-button:disabled {
   color: var(--punch-disable-bground);
   filter: brightness(50%);
