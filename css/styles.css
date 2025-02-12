@@ -626,6 +626,11 @@ input:disabled + .slider {
   line-height: normal;
 }
 
+#preferences-window input {
+  padding-left: 0;
+  padding-right: 0.3rem;
+}
+
 #preferences-window .weekdays-selector input {
   display: none;
 }
@@ -659,6 +664,7 @@ input:disabled + .slider {
   display: flex;
   height: 25px;
   justify-content: space-between;
+  padding-right: 0.5rem;
 }
 
 #preferences-window p {
