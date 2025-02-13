@@ -424,7 +424,6 @@ body {
   border-top-right-radius: 0.5rem;
   border-top-left-radius: 0.5rem;
   transition: filter 0.3s;
-
 }
 
 .punch-button:disabled {
