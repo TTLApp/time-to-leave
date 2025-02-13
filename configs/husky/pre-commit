@@ -19,7 +19,7 @@ if [ ! -z "$changed_css" ]; then
     pids="$pids $!"
 fi
 
-readarray -t changed_js < <(get_changed_files '*/*.cjs' '*/*.js' '*/*.mjs')
+readarray -t changed_js < <(get_changed_files '*.cjs' '*.js' '*.mjs')
 if [ ! -z "$changed_js" ]; then
     eslint "${changed_js[@]}" --config configs/eslint.config.mjs &
     pids="$pids $!"
