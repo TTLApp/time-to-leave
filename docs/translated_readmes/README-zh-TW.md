@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>讓它來幫助你紀錄工作時數，和提醒你是時候該走去開始享受真正的生活</p>
 
@@ -14,7 +14,7 @@
 
    <br/>
 
-  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
+  <img src="../images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -24,15 +24,15 @@
 
 紀錄你今天開始工作的時間，程式會計算你何時應該離開辦公室，包含你花費在午餐的時間。當時間到了，程式就會通知你。
 
-<img src="./images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 你可以設定喜好設定，敘述你的工作日子、一日裡有多少小時你需要工作、並且你想不想被通知。
 
-<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 你也可以加入豁免來移除你不需要工作的日子。
 
-<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## 如何安裝 TTL
 

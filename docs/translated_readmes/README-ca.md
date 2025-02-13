@@ -1,5 +1,5 @@
 <div align = "center">
-  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>Registra les hores treballades i rep una notificació quant sigui l'hora de plegar i comeneçar a viure</p>
 
@@ -14,7 +14,7 @@
 
    <br/>
 
-  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
+  <img src="../images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -24,15 +24,15 @@
 
 Registreu el temps que heu començat a treballar avui i el programa calcularà quina hora heu de sortir de l'oficina, tenint en compte el temps que heu passat a dinar. Quan arribi el moment, el programa us ho notificarà.
 
-<img src="./images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 Podeu controlar les preferències, indicant els vostres dies laborables, quantes hores treballeu al dia i si voleu o no notificacions.
 
-<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 També podeu afegir exempcions els dies que no hàgiu treballat.
 
-<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## Com instal·lar TTL
 

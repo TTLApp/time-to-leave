@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/timetoleave.png" alt="Time to Leave ロゴ">
+  <img src="../../assets/timetoleave.png" alt="Time to Leave ロゴ">
 
   <p>勤務時間を記録しましょう。仕事を終え、生活を始める時間に通知が届きます。</p>
 
@@ -14,7 +14,7 @@
 
    <br/>
 
-  <img src="./images/screenshot.jpg" alt="Time to Leave スクリーンショット">
+  <img src="../images/screenshot.jpg" alt="Time to Leave スクリーンショット">
 
   <br/>
 
@@ -24,15 +24,15 @@
 
 あなたが今日仕事を始めた時間を記録すると、プログラムは、あなたがランチに費やした時間を考慮して、退勤すべき時間を計算します。時間になると、プログラムはあなたに通知します。
 
-<img src="./images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 あなたの勤務日、１日に何時間働くか、通知が欲しいかどうか、あなたのお好みで設定できます。
 
-<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 働かなかった日には勤務免除を設定することもできます。
 
-<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## TTL のインストール方法
 
@@ -40,8 +40,8 @@ Time to Leave は MacOS、Windows、Linux で動作し、[最新リリース](ht
 
 ## TTL の構築と貢献の仕方
 
-お手伝いをしてくださる方は、私達の[コントリビューション](CONTRIBUTING.md)ガイドラインをご一読ください。
-詳細は[開発ガイド](DEVELOPMENT.md)もご参照ください。
+お手伝いをしてくださる方は、私達の[コントリビューション](../CONTRIBUTING.md)ガイドラインをご一読ください。
+詳細は[開発ガイド](../DEVELOPMENT.md)もご参照ください。
 
 ## ご連絡はこちら
 

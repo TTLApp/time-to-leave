@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>Catat jam kerja dan dapatkan notifikasi saat jam pulang kantor tiba. Lalu mulailah hidup!</p>
 
@@ -14,7 +14,7 @@
 
    <br/>
 
-  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
+  <img src="../images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -24,15 +24,15 @@
 
 Catat waktu saat kamu mulai bekerja dan program ini akan memperkirakan pukul berapa kamu harus pulang, dengan mempertimbangkan waktu makan siang kamu. Ketika jam pulang tiba, maka program ini akan memberitahukan kamu.
 
-<img src="./images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 Kamu dapat mengatur prefrensi yang kamu inginkan. Seperti kapan kamu akan memulai bekerja dan berapa lama kamu bekerja dalam 1 hari. Selain itu, kamu juga dapat mengatur apakah kamu ingin mendapatkan notifikasi atau tidak.
 
-<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 Kamu juga dapat menambahkan pengabaian di hari ketika kamu tidak bekerja.
 
-<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## Cara menginstal TTL
 

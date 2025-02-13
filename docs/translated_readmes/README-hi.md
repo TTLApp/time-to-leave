@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>काम के घंटे लॉग इन करें और सूचना प्राप्त करें जब कार्यालय छोड़ने और रहने के लिए समय हो</p>
 
@@ -13,7 +13,7 @@
 
    <br/>
 
-  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
+  <img src="../images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -23,15 +23,15 @@
 
 आज आपने जो काम करना शुरू किया है, उसे लॉग इन करें, और लंच पर आपके द्वारा बिताए गए समय को देखते हुए कार्यक्रम की गणना करेगा कि आपको किस समय कार्यालय छोड़ना चाहिए। जब समय होगा, तो कार्यक्रम आपको सूचित करेगा।
 
-<img src="./images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 आप अपने काम के दिनों को बताते हुए वरीयताओं को नियंत्रित कर सकते हैं कि आप एक दिन में कितने घंटे काम करते हैं और यदि आप अधिसूचना चाहते हैं या नहीं।
 
-<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 आप उन दिनों पर छूट भी जोड़ सकते हैं जब आपने काम नहीं किया था।
 
-<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## टीटीएल कैसे स्थापित करें
 

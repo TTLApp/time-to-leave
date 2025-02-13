@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>Registra le ore di lavoro e ricevi una notifica quando è ora di lasciare l'ufficio e iniziare a vivere</p>
 
@@ -14,7 +14,7 @@
 
    <br/>
 
-  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
+  <img src="../images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -24,15 +24,15 @@
 
 Registra il momento in cui hai cominciato a lavorare oggi, e il programma calcolerà a che ora dovresti lasciare l'ufficio, considerando il tempo speso per il pranzo. Quando sarà ora, il programma ti invierà una notifica.
 
-<img src="./images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 Puoi controllare le impostazioni, indicare i tuoi giorni lavorativi, quante ore al giorno lavori e se vuoi ricevere le notifiche o no.
 
-<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 Puoi anche escludere i giorni in cui non hai lavorato.
 
-<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## Come installare TTL
 
@@ -40,8 +40,8 @@ Time to Leave funziona su MacOS, Windows e Linux, e puoi scaricare la versione d
 
 ## Come compilare e contribuire a TTL
 
-Se vuoi aiutare, leggi le nostre [linee guida](CONTRIBUTING.md).
-Puoi anche fare riferimento alla [guida di sviluppo](DEVELOPMENT.md) per maggiori informazioni.
+Se vuoi aiutare, leggi le nostre [linee guida](../CONTRIBUTING.md).
+Puoi anche fare riferimento alla [guida di sviluppo](../DEVELOPMENT.md) per maggiori informazioni.
 
 ## Mettiti in contatto!
 

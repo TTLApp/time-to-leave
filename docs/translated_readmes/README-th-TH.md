@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>บันทึกเวลาการทำงานและแจ้งเตือนเมื่อถึงเวลาเลิกงาน</p>
 
@@ -14,7 +14,7 @@
 
    <br/>
 
-  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
+  <img src="../images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -24,15 +24,15 @@
 
 บันทึกเวลาเข้างาน-ออกงาน และการพักกลาวันในแต่ละวัน เพื่อแจ้งเตือนเวลาที่ควรจะเลิกงาน.
 
-<img src="./images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 สามารถตั้งค่าได้ตามใจคุณ เช่น จำนวนวันที่ทำงาน จำนวนชั่วโมงที่ทำงานในแต่ละวัน หรือสามารถเลือกเปิด/ปิดการแจ้งเตือนได้
 
-<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 สามารถกำหนดวันลาป่วย ลาพักร้อน ลากิจ หรือวันหยุดราชการได้ตามต้องการ
 
-<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## การติดตั้ง
 

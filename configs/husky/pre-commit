@@ -15,19 +15,19 @@ get_changed_files()
 
 readarray -t changed_css < <(get_changed_files 'css/*.css')
 if [ ! -z "$changed_css" ]; then
-    stylelint -- "${changed_css[@]}" &
+    stylelint -- "${changed_css[@]}" --config configs/.stylelintrc.json --ignore-path configs/.stylelintignore &
     pids="$pids $!"
 fi
 
 readarray -t changed_js < <(get_changed_files '*/*.cjs' '*/*.js' '*/*.mjs')
 if [ ! -z "$changed_js" ]; then
-    eslint "${changed_js[@]}" &
+    eslint "${changed_js[@]}" --config configs/eslint.config.mjs &
     pids="$pids $!"
 fi
 
-readarray -t changed_docs < <(get_changed_files 'locales/*/*.json' 'docs/*.md' '*.md')
+readarray -t changed_docs < <(get_changed_files 'locales/*/*.json' 'docs/*.md' 'docs/translated_readmes/*.md' '*.md')
 if [ ! -z "$changed_docs" ]; then
-    prettier -c "${changed_docs[@]}" &
+    prettier -c "${changed_docs[@]}" --config configs/.prettierrc.json --ignore-path .gitignore --ignore-path configs/.prettierignore &
     pids="$pids $!"
 fi
 

@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>Enregistrez vos heures de travail et soyez averti lorsqu'il est temps de quitter le bureau et de commencer à vivre</p>
 
@@ -14,7 +14,7 @@
 
    <br/>
 
-  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
+  <img src="../images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -24,15 +24,15 @@
 
 Enregistrez l'heure à laquelle vous avez commencé à travailler aujourd'hui et le programme calculera l'heure à laquelle vous devez quitter le bureau, tout en tenant compte du temps que vous avez passé au déjeuner. Quand il sera temps, le programme vous en informera.
 
-<img src="./images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 Vous pouvez contrôler vos préférences, en indiquant vos jours de travail, combien d'heures vous travaillez par jour et si vous souhaitez une notification ou pas.
 
-<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 Vous pouvez également ajouter des dispenses les jours où vous ne travailler pas.
 
-<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## Comment installer TTL
 

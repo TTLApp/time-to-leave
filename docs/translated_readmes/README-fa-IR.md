@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p dir="rtl">ساعات کاری را ثبت کنید و در زمان پایان کار برنامه به شما اطلاع میدهد که اداره را ترک کنید و به زندگیتان برسید.</p>
 
@@ -14,7 +14,7 @@
 
    <br/>
 
-  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
+  <img src="../images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -25,15 +25,15 @@
 
 <p dir="rtl">زمانی که روز کاریتان را شروع کردید در برنامه ثبت کنید و برنامه با توجه به زمانی که برای صرف ناهار گذرانده اید برای شما حساب می کند که چه موقع باید اداره را ترک کنید. هنگامی که زمان آن فرا رسید برنامه به شما خبر می دهد.</p>
 
-<img src="./images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 <p dir="rtl">شما می توانید تنظیمات را مدیریت کنید، روزهای کاریتان را مشخص کنید، می توانید تنظیم کنید که چند ساعت در یک روز کار می کنید و همچنین مشخص کنید که می خواهید اعلان دریافت کنید یا نه.</p>
 
-<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 <p dir="rtl">شما همچنین می توانید روزهایی که کار نمی کنید را به عنوان معافیت کاری اضافه کنید.</p>
 
-<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## <p dir="rtl">آموزش نصب TTL</p>
 

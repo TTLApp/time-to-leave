@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/timetoleave.png" alt="டைம் டு லீவின் லோகோ">
+  <img src="../../assets/timetoleave.png" alt="டைம் டு லீவின் லோகோ">
 
   <p>வேலை நேரத்தை பதிவு செய்து,அலுவலகத்தை விட்டு வெளியேறி வாழத் தொடங்க உதவியான அறிவிப்புகளை பெறுங்கள்</p>
 
@@ -14,7 +14,7 @@
 
    <br/>
 
-   <img src="./images/screenshot.jpg" alt="டைம் டு லீவின் ஸ்கிரீன்ஷாட்">
+   <img src="../images/screenshot.jpg" alt="டைம் டு லீவின் ஸ்கிரீன்ஷாட்">
 
   <br/>
 
@@ -24,13 +24,13 @@
 
 இன்று நீங்கள் வேலை செய்யத் தொடங்கிய நேரத்தை பதிவுசெய்க, நீங்கள் மதிய உணவிற்கு செலவழித்த நேரத்தைக் கருத்தில் கொண்டு, நீங்கள் அலுவலகத்தை விட்டு வெளியேற வேண்டிய நேரத்தை நிரல் கணக்கிடும். நேரம் வரும்போது, ​​நிரல் உங்களுக்கு அறிவிக்கும்.
 
-<img src="./images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
-<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 நீங்கள் வேலை செய்யாத நாட்களில் விலக்கையும் சேர்க்கலாம்.
 
-<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## TTL ஐ எவ்வாறு இன்ஸ்டால் செய்வது
 

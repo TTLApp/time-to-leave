@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>Houd je werktijden bij en krijg een melding wanneer het tijd is om het kantoor te verlaten en wat anders te gaan doen</p>
 
@@ -14,7 +14,7 @@
 
    <br/>
 
-   <img src="./images/screenshot.jpg" alt="Time to Leave schermafbeelding">
+   <img src="../images/screenshot.jpg" alt="Time to Leave schermafbeelding">
 
   <br/>
 
@@ -24,15 +24,15 @@
 
 Noteer de tijd waarop je begonnen bent met werken en het programma zal berekenen tot hoe laat je moet werken. Het programma houdt rekening met de tijd die je hebt besteed aan je pauze. Wanneer het tijd is, krijg je een melding.
 
-<img src="./images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 Je kunt zelf de voorkeuren bepalen, met daarin je werkdagen, hoeveel uur je per dag werkt en of je een melding wilt of niet.
 
-<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 Je kunt ook vrije dagen en feestdagen toevoegen aan je kalender.
 
-<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## Time to Leave installeren
 

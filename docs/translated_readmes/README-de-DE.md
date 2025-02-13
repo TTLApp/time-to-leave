@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>Erfasse deine Arbeitszeit und werde benachrichtigt, wenn es Zeit ist, das Büro zu verlassen und dein Leben zu genießen</p>
 
@@ -14,7 +14,7 @@
 
    <br/>
 
-  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
+  <img src="../images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -24,15 +24,15 @@
 
 Erfasse die Zeit, wann du deinen heutigen Arbeitstag angefangen hast, und Time to Leave wird dir unter Berücksichtigung der Zeit, die du beim Essen verbracht hast, ausrechnen, wann du das Büro verlassen solltest. Wenn es Zeit ist zu gehen, wird dich Time to Leave benachrichtigen.
 
-<img src="./images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 In den Einstellungen kannst du Arbeitstage, Arbeitstunden pro Tag und ob du benachrichtigt werden möchtest oder nicht, einstellen.
 
-<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 Du kannst Tage, an denen du nicht gearbeitet hast, als Freizeit festlegen.
 
-<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## TTL installieren
 

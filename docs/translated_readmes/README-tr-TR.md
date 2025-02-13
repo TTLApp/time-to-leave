@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="../assets/timetoleave.png" alt="Time to Leave Simgesi">
+    <img src="../../assets/timetoleave.png" alt="Time to Leave Simgesi">
 
   <p>Çalışma saatlerinizi kaydedin ve ofisten ayrılma zamanınız geldiğinde bildirim alın. Yaşamaya kaldığınız yerden devam edin. </p>
 
@@ -14,7 +14,7 @@
 
    <br/>
 
-   <img src="./images/screenshot.jpg" alt="Time to Leave Ekran Görüntüsü">
+   <img src="../images/screenshot.jpg" alt="Time to Leave Ekran Görüntüsü">
 
   <br/>
 
@@ -25,15 +25,15 @@
 
 Bugün işe başladığınız saati kaydedin,program sizin için -öğle yemeği için harcadığınız zamanı da göz önünde bulundurarak- ofisten ne zaman ayrılmanız gerektiğini hesaplayacaktır.Zamanı geldiğinde ise sizi bilgilendirecektir.
 
-<img src="./images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 Tercihleriniz, çalışma günlerinizi, günde kaç saat çalıştığınızı ve bildirim isteyip istemediğinizi belirterek kontrol edebilirsiniz.
 
-<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 Aynı zamanda izinli olduğunuz günleri de çalışmadığınız günlere ekleyebilirsiniz.
 
-<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## TTL'i Nasıl Yüklerim
 

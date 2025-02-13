@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>Записуйте робочий час і отримуйте повідомлення, коли час покинути офіс та розпочати жити.</p>
 
@@ -12,7 +12,7 @@
 
    <br/>
 
-  <img src="./images/screenshot.jpg" alt="Скріншот інтерфейсу Time to Leave">
+  <img src="../images/screenshot.jpg" alt="Скріншот інтерфейсу Time to Leave">
 
   <br/>
 
@@ -23,15 +23,15 @@
 
 Запишіть час початку роботи сьогодні, і програма обчислить, коли ви повинні залишити офіс, враховуючи час обіду. Коли настане час, програма повідомить вас.
 
-<img src="./docs/images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 Ви можете керувати налаштуваннями, вказуючи свої робочі дні, скільки годин працюєте за день і чи хочете ви отримувати сповіщення.
 
-<img src="./docs/images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 Ви також можете додавати відгули на дні, коли ви не працювали.
 
-<img src="./docs/images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## Як встановити TTL
 
@@ -39,8 +39,8 @@ Time to Leave працює на MacOS, Windows та Linux, і ви можете 
 
 ## Як зробити свій внесок у розробку TTL
 
-Якщо ви хочете допомогти, ознайомтесь [як зробити внесок](CONTRIBUTING.md).
-Також ви можете звернутись до нашого [керівництва по розробці](DEVELOPMENT.md) для отримання додаткової інформації.
+Якщо ви хочете допомогти, ознайомтесь [як зробити внесок](../CONTRIBUTING.md).
+Також ви можете звернутись до нашого [керівництва по розробці](../DEVELOPMENT.md) для отримання додаткової інформації.
 
 ## Залишайся на звʼязку!
 

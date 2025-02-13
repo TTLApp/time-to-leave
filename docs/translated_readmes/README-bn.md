@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>কাজের সময় লগ ইন করুন এবং অফিস থেকে বেরিয়ে আসার সময় এবং বিজ্ঞাপন পান</p>
 
@@ -14,7 +14,7 @@
 
   <br/>
 
-  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
+  <img src="../images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -24,15 +24,15 @@
 
 আপনি আজ কাজ শুরু করার সময় লগ ইন করুন, এবং আপনি লাঞ্চে কাটানো সময় বিবেচনা করে আপনার অফিস থেকে বের হওয়ার সময়টি গণনা করা হবে। যখন সময় হবে, প্রোগ্রামটি আপনাকে অবহিত করবে।
 
-<img src="./docs/images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 আপনি আপনার কাজের দিন, আপনি দিনে কত ঘন্টা কাজ করেন এবং যদি আপনি একটি বিজ্ঞপ্তি পেতে চান বা না চান তা উল্লেখ করে পছন্দগুলি নিয়ন্ত্রণ করতে পারেন।
 
-<img src="./docs/images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 আপনি যে দিনগুলি কাজ করেননি সেদিন আপনি ছাড়ও যোগ করতে পারেন।
 
-<img src="./docs/images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## কিভাবে TTL ইনস্টল করবেন
 
@@ -40,9 +40,9 @@
 
 ## কিভাবে টিটিএল তৈরি এবং অবদান রাখতে হয়
 
-আপনি যদি সাহায্য করতে চান, আমাদের [অবদান](CONTRIBUTING.md) নির্দেশিকা পড়ুন।
+আপনি যদি সাহায্য করতে চান, আমাদের [অবদান](../CONTRIBUTING.md) নির্দেশিকা পড়ুন।
 
-আরো তথ্যের জন্য আপনি আমাদের [ডেভেলপমেন্ট গাইড](DEVELOPMENT.md) থেকেও জানতে পারেন।
+আরো তথ্যের জন্য আপনি আমাদের [ডেভেলপমেন্ট গাইড](../DEVELOPMENT.md) থেকেও জানতে পারেন।
 
 ## যোগাযোগ করুন!
 

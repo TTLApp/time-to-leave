@@ -292,8 +292,9 @@ body {
 }
 
 .month-total-row {
-  border-bottom: 4px solid var(--table-total-border);
-  border-top: 4px solid var(--table-total-border);
+  position: sticky;
+  bottom: 2.9rem;
+  background-color: var(--table-header-label-bground);
 }
 
 .but-left {
@@ -409,13 +410,12 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 50px;
+  height: 3rem;
   font-size: 200%;
   text-align: center;
 }
 
 .punch-button {
-  opacity: 0.9;
   width: calc(100vw - 60px);
   height: 100%;
   border: none;
@@ -423,20 +423,24 @@ body {
   background-color: var(--punch-bground);
   border-top-right-radius: 0.5rem;
   border-top-left-radius: 0.5rem;
+  transition: filter 0.3s;
+
 }
 
 .punch-button:disabled {
-  opacity: 0.5;
   color: var(--punch-disable-bground);
+  filter: brightness(50%);
 }
 
 .punch-button img {
   -webkit-user-drag: none;
+  width: 2.3rem;
+  height: 2.3rem;
+  padding-bottom: 0.5rem;
 }
 
 #punch-button-label {
   cursor: pointer;
-  margin: auto;
 }
 
 .punch-button:disabled #punch-button-label {
@@ -1253,7 +1257,7 @@ html[data-view='day'] .month-total-row .month-total-time {
 }
 
 html[data-view='day'] .footer {
-  height: 32px;
+  height: 3em;
   font-size: 100%;
 }
 

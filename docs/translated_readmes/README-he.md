@@ -12,7 +12,7 @@
 
    <br/>
 
-  <img src="./docs/images/screenshot.jpg" alt="Time to Leave Screenshot">
+  <img src="../images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -24,15 +24,15 @@
 <div dir="rtl">
 רשום את הזמן שהתחלת לעבוד היום, והתוכנה תחשב מתי אתה צריך לעזוב את המשרד, בהתחשב בזמן שאתה מבלה בו לארוחת צהריים. כשיגיע הזמן, התוכנה תתן לך התראה.
 
-<img src="./docs/images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 אפשר לשלוט בהעדפות, לבחור את ימי העבודה שלך, כמה שעות אתה עובד ביום ואם אתה רוצה לקבל התראות או לא.
 
-<img src="./docs/images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 אתה גם יכול להוסיף ויתורים על ימים שבהם אתה לא עבדת.
 
-<img src="./docs/images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## איך להתקין את TTL
 
@@ -40,8 +40,8 @@ Time to Leave רץ על MacOS, Windows ו-Linux, וגם אפשר להוריד ג
 
 ## איך לבנות ולתרום ל-TTL
 
-אם אתם רוצים לעזור, תקראו את מדריך [התרומה](CONTRIBUTING.md).
-אפשר גם להסתכל על [מדריך הפיתוח](DEVELOPMENT.md) שלנו בשביל עוד מידע.
+אם אתם רוצים לעזור, תקראו את מדריך [התרומה](../CONTRIBUTING.md).
+אפשר גם להסתכל על [מדריך הפיתוח](../DEVELOPMENT.md) שלנו בשביל עוד מידע.
 
 ## צרו איתנו קשר!
 

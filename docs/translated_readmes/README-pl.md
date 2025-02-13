@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>Kontroluj czas pracy. <i>Time to Leave</i> przypomni Ci, kiedy zakończyć pracę i zacząć żyć.</p>
 
@@ -14,7 +14,7 @@
 
    <br/>
 
-  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
+  <img src="../images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -24,15 +24,15 @@
 
 Wpisz czas rozpoczęcia pracy, a aplikacja obliczy kiedy powinineś ją zakończyć, uwzględniając przerwę na śniadanie. Kiedy ta pora nadejdzie, program przypomni Ci, że już czas zakończyć pracę.
 
-<img src="./images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 Możesz kontrolować preferencje, między innymi: dni pracujące, ilość godzin w dniu pracy, oraz czy chcesz być powiadamiany.
 
-<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 Możesz dodać zwolnienia do dni, w których nie ma cię w pracy.
 
-<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## Jak zainstalować _Time to Leave_
 

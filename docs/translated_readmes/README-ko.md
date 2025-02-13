@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>업무 시간을 기록하고 사무실을 떠나 일상으로 돌아갈 시간을 알려 줍니다.</p>
 
@@ -14,7 +14,7 @@
 
    <br/>
 
-  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
+  <img src="../images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -24,15 +24,15 @@
 
 오늘 몇 시에 일을 시작했는지 기록하고, 점심 시간을 얼마나 보냈는지에 따라 몇 시에 퇴근해야 할지 계산해 줍니다. 퇴근 시간이 되면 이렇게 알려 줄 거에요.
 
-<img src="./images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 설정 메뉴에서 무슨 요일에 일하는지, 하루에 얼마나 일하는지 등을 정할 수 있습니다. 알림 여부도 변경할 수 있습니다.
 
-<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 일하지 않는 날에는 휴가를 등록할 수도 있습니다.
 
-<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## TTL 설치하기
 

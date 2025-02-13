@@ -10,6 +10,7 @@
 - Enhancement [#948]: Allow vertical scroll when horizontal scroll reaches edges on month view
 - Enhancement [#1009]: Adding an animation to the workday waiver holidays table when the contents switch
 - Enhancement [#1139]: Improved consistency of all pop-ups in the application
+- Enhancement [#1142]: Make balance row always visible above the punch button
 - Fix [#1008]: Sourced conflicting holidays being imported by default
 - Fix [#1028]: Make images and icons not draggable
 - Fix [#1034]: Preserving TTL font when offline
@@ -32,6 +33,7 @@ Who built 3.0.1:
 
 <!--- Begin users - Do not remove -->
 
+- Atomic-Germ
 - BamButz
 - Karroteu
 - SarahRemus

@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
+  <img src="../../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>Registrera arbretstid och bli notifierad när det är dags att lämna jobbet och leva livet</p>
 
@@ -12,7 +12,7 @@
 
    <br/>
 
-  <img src="./images/screenshot.jpg" alt="Time to Leave Screenshot">
+  <img src="../images/screenshot.jpg" alt="Time to Leave Screenshot">
 
   <br/>
 
@@ -23,15 +23,15 @@
 
 Registrera tiden du började arbeta idag, och programmet kommer att räkna fram vilken du bör lämna kontoret, efter att ha tagit hänsyn till din tid för lunch. När det är dags, programmet kommer att notifiera dig.
 
-<img src="./images/notification.jpg" alt="Time to Leave Notification">
+<img src="../images/notification.jpg" alt="Time to Leave Notification">
 
 Du kan styra dina preferenser, konfigurera dina arbetsdagar, hur många timmar du arbetar per dag och om du vill ha en notifiering eller inte.
 
-<img src="./images/preferences.jpg" alt="Time to Leave Preferences">
+<img src="../images/preferences.jpg" alt="Time to Leave Preferences">
 
 Du kan också lägga till dagar du är ledig, dagar du inte arbetar.
 
-<img src="./images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
+<img src="../images/waiver_manager.jpg" alt="Time to Leave Waiver Manager">
 
 ## Hur man installerar TTL
 
@@ -39,8 +39,8 @@ Time to Leave fungerar på MacOS, Windows och Linux, och du kan ladda ned den ve
 
 ## Hur man bygger och bidrar till TTL
 
-Om du vill hjälpa till, läs vår [att bidra](CONTRIBUTING.md) guidelines.
-Du kan också läsa vår [utvecklarguide](DEVELOPMENT.md) för mer information.
+Om du vill hjälpa till, läs vår [att bidra](../CONTRIBUTING.md) guidelines.
+Du kan också läsa vår [utvecklarguide](../DEVELOPMENT.md) för mer information.
 
 ## Ta kontakt!
 
