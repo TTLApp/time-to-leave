@@ -25,6 +25,7 @@ jobs:
           wget --directory-prefix=/tmp https://chromedriver.storage.googleapis.com/100.0.4896.20/chromedriver_linux64.zip
           unzip -d /tmp/chromedriver /tmp/chromedriver_linux64.zip
           sudo chmod +x /tmp/chromedriver/chromedriver
+          # Fix not being able to run electron on CI https://github.com/microsoft/playwright/issues/34251#issuecomment-2580645333
           sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
           /tmp/chromedriver/chromedriver &
           sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
