@@ -179,8 +179,21 @@ body {
   }
 }
 
-.cursor-wait {
+html.wait {
   cursor: wait;
+  transition: 0.4s;
+}
+
+html[data-theme="dark"].wait {
+  filter: opacity(0.95);
+}
+
+html[data-theme="cadent-star"].wait {
+  filter: opacity(0.75);
+}
+
+html[data-theme="light"].wait {
+  filter: brightness(0.75);
 }
 
 .dayheader {

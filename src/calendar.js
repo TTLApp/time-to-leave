@@ -71,11 +71,12 @@ window.calendarApi.handleThemeChange(async(event, theme) =>
 window.calendarApi.handleLeaveBy(searchLeaveByElement);
 
 /*
- * Change the cursor on the app to a wait cursor while an operation is happening.
+ * Change the main window style to indicate an operation is processing.
  */
-window.calendarApi.handleToggleCursorWait((enable) =>
+window.calendarApi.handleToggleMainWindowWait((event, enable) =>
 {
-    const waitClass = 'cursor-wait';
+    console.log(enable);
+    const waitClass = 'wait';
     if (enable)
     {
         if (!$('html').hasClass(waitClass))
