@@ -179,39 +179,42 @@ describe('main-window.mjs', () =>
             const windowSpy = spy(mainWindow.webContents, 'send');
             mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
             {
-                const windowSize = mainWindow.getSize();
-                assert.strictEqual(windowSize.length, 2);
-
-                // First, check the month view sizes
-                // Width and height are within 5 pixels of the expected values
-                const macOS = process.platform === 'darwin';
-                const expectedWidth = macOS ? 970 : 800; // For some reason the width is different on macOS
-                assert.strictEqual(Math.abs(windowSize[0] - 1010) < 5, true, `Value was ${windowSize[0]}`);
-                assert.strictEqual(Math.abs(windowSize[1] - expectedWidth) < 5, true, `Value was ${windowSize[1]}`);
-
-                mainWindow.webContents.on('content-bounds-updated', () =>
+                setTimeout(() =>
                 {
-                    setTimeout(() =>
+                    const windowSize = mainWindow.getSize();
+                    assert.strictEqual(windowSize.length, 2);
+
+                    // First, check the month view sizes
+                    // Width and height are within 5 pixels of the expected values
+                    const macOS = process.platform === 'darwin';
+                    const expectedWidth = macOS ? 970 : 800; // For some reason the width is different on macOS
+                    assert.strictEqual(Math.abs(windowSize[0] - 1010) < 5, true, `Value was ${windowSize[0]}`);
+                    assert.strictEqual(Math.abs(windowSize[1] - expectedWidth) < 5, true, `Value was ${windowSize[1]}`);
+
+                    mainWindow.webContents.on('content-bounds-updated', () =>
                     {
-                        const windowSize = mainWindow.getSize();
-                        assert.strictEqual(windowSize.length, 2);
+                        setTimeout(() =>
+                        {
+                            const windowSize = mainWindow.getSize();
+                            assert.strictEqual(windowSize.length, 2);
 
-                        // Now in day view sizes
-                        assert.strictEqual(Math.abs(windowSize[0] - 500) < 5, true, `Value was ${windowSize[0]}`);
-                        assert.strictEqual(Math.abs(windowSize[1] - 500) < 5, true, `Value was ${windowSize[1]}`);
+                            // Now in day view sizes
+                            assert.strictEqual(Math.abs(windowSize[0] - 500) < 5, true, `Value was ${windowSize[0]}`);
+                            assert.strictEqual(Math.abs(windowSize[1] - 500) < 5, true, `Value was ${windowSize[1]}`);
 
-                        assert.strictEqual(windowSpy.calledOnce, true);
+                            assert.strictEqual(windowSpy.calledOnce, true);
 
-                        const firstCall = windowSpy.firstCall;
-                        assert.strictEqual(firstCall.args[0], IpcConstants.PreferencesSaved);
-                        assert.strictEqual(firstCall.args[1]['view'], 'day');
+                            const firstCall = windowSpy.firstCall;
+                            assert.strictEqual(firstCall.args[0], IpcConstants.PreferencesSaved);
+                            assert.strictEqual(firstCall.args[1]['view'], 'day');
 
-                        windowSpy.restore();
-                        done();
-                    }, 300);
-                });
+                            windowSpy.restore();
+                            done();
+                        }, 300);
+                    });
 
-                ipcMain.emit(IpcConstants.SwitchView);
+                    ipcMain.emit(IpcConstants.SwitchView);
+                }, 300);
             });
         });
     });
