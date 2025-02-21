@@ -572,7 +572,6 @@ input[type="number"]::-webkit-inner-spin-button {
 /* Make the number input not have the buttons on the right */
 input[type="number"] {
     appearance: textfield;
-    appearance: textfield;
     border: 1px solid #ccc;
     padding: 1px 4.8px 1px 0px;
     border-radius: 4px;
