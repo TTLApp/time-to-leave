@@ -489,22 +489,36 @@ describe('main-window.mjs', () =>
         });
     });
 
-    it('Toggling wait state for the window', async() =>
+    describe('toggleMainWindowWait()', () =>
     {
-        createWindow();
-        const mainWindow = getMainWindow();
-        let hasClass = await mainWindow.webContents.executeJavaScript('$("html").hasClass("wait")');
-        assert.strictEqual(hasClass, false, 'Starts without wait class');
+        it('Starts without wait class', () =>
+        {
+            createWindow();
+            const mainWindow = getMainWindow();
+            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, async() =>
+            {
+                const hasClass = await mainWindow.webContents.executeJavaScript('$("html").hasClass("wait")');
+                assert.strictEqual(hasClass, false, 'Starts without wait class');
+            });
+        });
 
-        toggleMainWindowWait(true);
-        await new Promise(r => setTimeout(r, 50));
-        hasClass = await mainWindow.webContents.executeJavaScript('$("html").hasClass("wait")');
-        assert.strictEqual(hasClass, true, 'Now has wait class');
+        it('Toggling wait state for the window', () =>
+        {
+            createWindow();
+            const mainWindow = getMainWindow();
+            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, async() =>
+            {
+                toggleMainWindowWait(true);
+                await new Promise(r => setTimeout(r, 50));
+                let hasClass = await mainWindow.webContents.executeJavaScript('$("html").hasClass("wait")');
+                assert.strictEqual(hasClass, true, 'Now has wait class');
 
-        toggleMainWindowWait(false);
-        await new Promise(r => setTimeout(r, 50));
-        hasClass = await mainWindow.webContents.executeJavaScript('$("html").hasClass("wait")');
-        assert.strictEqual(hasClass, false, 'Back to not having wait class');
+                toggleMainWindowWait(false);
+                await new Promise(r => setTimeout(r, 50));
+                hasClass = await mainWindow.webContents.executeJavaScript('$("html").hasClass("wait")');
+                assert.strictEqual(hasClass, false, 'Back to not having wait class');
+            });
+        });
     });
 
     afterEach(() =>
