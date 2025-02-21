@@ -51,6 +51,7 @@ const calendarApi = {
     handleThemeChange: (callback) => ipcRenderer.on(IpcConstants.ReloadTheme, callback),
     handleLeaveBy: (callback) => ipcRenderer.on(IpcConstants.GetLeaveBy, callback),
     getDefaultWidthHeight: getDefaultWidthHeight,
+    handleToggleCursorWait: (callback) => ipcRenderer.on(IpcConstants.ToggleCursorWait, callback),
     switchView: () => switchView(),
     toggleTrayPunchTime: (enable) => toggleTrayPunchTime(enable),
     displayWaiverWindow: (waiverDay) => displayWaiverWindow(waiverDay),

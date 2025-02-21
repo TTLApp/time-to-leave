@@ -179,6 +179,10 @@ body {
   }
 }
 
+.cursor-wait {
+  cursor: wait;
+}
+
 .dayheader {
   text-align: center;
 }

@@ -70,6 +70,25 @@ window.calendarApi.handleThemeChange(async(event, theme) =>
  */
 window.calendarApi.handleLeaveBy(searchLeaveByElement);
 
+/*
+ * Change the cursor on the app to a wait cursor while an operation is happening.
+ */
+window.calendarApi.handleToggleCursorWait((enable) =>
+{
+    const waitClass = 'cursor-wait';
+    if (enable)
+    {
+        if (!$('html').hasClass(waitClass))
+        {
+            $('html').addClass(waitClass);
+        }
+    }
+    else
+    {
+        $('html').removeClass(waitClass);
+    }
+});
+
 // On page load, create the calendar and setup notification
 $(() =>
 {
