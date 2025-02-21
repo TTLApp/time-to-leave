@@ -51,7 +51,6 @@ describe('DayCalendar class Tests', () =>
 
         // Stubbing methods that don't need the actual implementation for the tests
         window.calendarApi.toggleTrayPunchTime = () => {};
-        window.calendarApi.resizeMainWindow = () => {};
         BaseCalendar.prototype._getTranslation = () => {};
         BaseCalendar.prototype.redraw = () => {};
 

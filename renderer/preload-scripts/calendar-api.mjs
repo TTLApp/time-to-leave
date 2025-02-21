@@ -2,14 +2,10 @@
 
 import { createRequire } from 'module';
 import IpcConstants from '../../js/ipc-constants.mjs';
+import { getDefaultWidthHeight } from '../../js/user-preferences.mjs';
 const require = createRequire(import.meta.url);
 
 const { ipcRenderer } = require('electron');
-
-function resizeMainWindow()
-{
-    ipcRenderer.send(IpcConstants.ResizeMainWindow);
-}
 
 function switchView()
 {
@@ -54,7 +50,7 @@ const calendarApi = {
     handlePunchDate: (callback) => ipcRenderer.on(IpcConstants.PunchDate, callback),
     handleThemeChange: (callback) => ipcRenderer.on(IpcConstants.ReloadTheme, callback),
     handleLeaveBy: (callback) => ipcRenderer.on(IpcConstants.GetLeaveBy, callback),
-    resizeMainWindow: () => resizeMainWindow(),
+    getDefaultWidthHeight: getDefaultWidthHeight,
     switchView: () => switchView(),
     toggleTrayPunchTime: (enable) => toggleTrayPunchTime(enable),
     displayWaiverWindow: (waiverDay) => displayWaiverWindow(waiverDay),
