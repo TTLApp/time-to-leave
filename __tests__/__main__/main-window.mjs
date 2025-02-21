@@ -182,12 +182,12 @@ describe('main-window.mjs', () =>
                 const windowSize = mainWindow.getSize();
                 assert.strictEqual(windowSize.length, 2);
 
-                // First within the month view sizes
+                // First, check the month view sizes
                 // Width and height are within 5 pixels of the expected values
                 const macOS = process.platform === 'darwin';
-                const expectedWidth = macOS ? 970 : 1010;
-                assert.strictEqual(Math.abs(windowSize[0] - expectedWidth) < 5, true, `Value was ${windowSize[0]}`);
-                assert.strictEqual(Math.abs(windowSize[1] - 800) < 5, true, `Value was ${windowSize[1]}`);
+                const expectedWidth = macOS ? 970 : 800; // For some reason the width is different on macOS
+                assert.strictEqual(Math.abs(windowSize[0] - 1010) < 5, true, `Value was ${windowSize[0]}`);
+                assert.strictEqual(Math.abs(windowSize[1] - expectedWidth) < 5, true, `Value was ${windowSize[1]}`);
 
                 mainWindow.webContents.on('content-bounds-updated', () =>
                 {
