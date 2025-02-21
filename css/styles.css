@@ -565,13 +565,13 @@ input:disabled + .slider {
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
+    appearance: none;
     margin: 0;
 }
 
 /* Make the number input not have the buttons on the right */
 input[type="number"] {
-    -moz-appearance: textfield;
+    appearance: textfield;
     appearance: textfield;
     border: 1px solid #ccc;
     padding: 1px 4.8px 1px 0px;
@@ -716,6 +716,7 @@ input[type="number"] {
 
 #preferences-window #hours-per-day, #break-time-interval {
   text-align: right;
+
   /* redefine the width in terms of characters for simpler match to notification interval */
   width: 5.4ch;
 }
