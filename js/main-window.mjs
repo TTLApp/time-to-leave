@@ -190,7 +190,7 @@ function createWindow()
  */
 function toggleMainWindowWait(enable)
 {
-    mainWindow.webContents.send(IpcConstants.ToggleMainWindowWait, enable);
+    getMainWindow()?.webContents.send(IpcConstants.ToggleMainWindowWait, enable);
 }
 
 function triggerStartupDialogs()
