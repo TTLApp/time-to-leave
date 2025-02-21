@@ -12,6 +12,7 @@ import {
     getLeaveByInterval,
     getMainWindow,
     resetMainWindow,
+    toggleMainWindowWait,
     triggerStartupDialogs
 } from '../../js/main-window.mjs';
 
@@ -486,6 +487,24 @@ describe('main-window.mjs', () =>
                 intervalSpy.restore();
             });
         });
+    });
+
+    it('Toggling wait state for the window', async() =>
+    {
+        createWindow();
+        const mainWindow = getMainWindow();
+        let hasClass = await mainWindow.webContents.executeJavaScript('$("html").hasClass("wait")');
+        assert.strictEqual(hasClass, false, 'Starts without wait class');
+
+        toggleMainWindowWait(true);
+        await new Promise(r => setTimeout(r, 50));
+        hasClass = await mainWindow.webContents.executeJavaScript('$("html").hasClass("wait")');
+        assert.strictEqual(hasClass, true, 'Now has wait class');
+
+        toggleMainWindowWait(false);
+        await new Promise(r => setTimeout(r, 50));
+        hasClass = await mainWindow.webContents.executeJavaScript('$("html").hasClass("wait")');
+        assert.strictEqual(hasClass, false, 'Back to not having wait class');
     });
 
     afterEach(() =>
