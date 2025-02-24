@@ -491,7 +491,7 @@ describe('main-window.mjs', () =>
 
     describe('toggleMainWindowWait()', () =>
     {
-        it('Starts without wait class', () =>
+        it('Starts without wait class', (done) =>
         {
             createWindow();
             const mainWindow = getMainWindow();
@@ -499,10 +499,12 @@ describe('main-window.mjs', () =>
             {
                 const hasClass = await mainWindow.webContents.executeJavaScript('$("html").hasClass("wait")');
                 assert.strictEqual(hasClass, false, 'Starts without wait class');
+
+                done();
             });
         });
 
-        it('Toggling wait state for the window', () =>
+        it('Toggling wait state for the window', (done) =>
         {
             createWindow();
             const mainWindow = getMainWindow();
@@ -517,6 +519,8 @@ describe('main-window.mjs', () =>
                 await new Promise(r => setTimeout(r, 50));
                 hasClass = await mainWindow.webContents.executeJavaScript('$("html").hasClass("wait")');
                 assert.strictEqual(hasClass, false, 'Back to not having wait class');
+
+                done();
             });
         });
     });
