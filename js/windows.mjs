@@ -5,6 +5,7 @@ import path from 'path';
 
 import { appConfig, rootDir } from './app-config.mjs';
 import { getDateStr } from './date-aux.mjs';
+import { toggleMainWindowWait } from './main-window.mjs';
 import { getSavedPreferences } from './saved-preferences.mjs';
 import { getUserPreferences, savePreferences } from './user-preferences.mjs';
 import IpcConstants from './ipc-constants.mjs';
@@ -54,6 +55,7 @@ class Windows
         global.waiverWindow.loadURL(htmlPath);
         global.waiverWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
         {
+            toggleMainWindowWait(false /*enable*/);
             global.waiverWindow.show();
         });
         global.waiverWindow.on('close', function()
@@ -68,6 +70,7 @@ class Windows
                 BrowserWindow.getFocusedWindow().webContents.toggleDevTools();
             }
         });
+        toggleMainWindowWait(true /*enable*/);
     }
 
     static openPreferencesWindow(mainWindow)
@@ -102,6 +105,7 @@ class Windows
         global.prefWindow.loadURL(htmlPath);
         global.prefWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
         {
+            toggleMainWindowWait(false /*enable*/);
             global.prefWindow.show();
         });
         global.prefWindow.on('close', function()
@@ -121,6 +125,7 @@ class Windows
                 BrowserWindow.getFocusedWindow().webContents.toggleDevTools();
             }
         });
+        toggleMainWindowWait(true /*enable*/);
     }
 
     /**
