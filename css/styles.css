@@ -267,7 +267,6 @@ body {
 }
 
 #calendar .table-header {
-  margin-left: auto;
   margin-right: auto;
   table-layout: fixed;
   width: 90%;
@@ -332,10 +331,6 @@ body {
 
 .but-today {
   text-align: right;
-}
-
-.but-switch-view input {
-  width: 85%;
 }
 
 #calendar input {
