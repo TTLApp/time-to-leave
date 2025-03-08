@@ -203,34 +203,52 @@ body {
 }
 
 .title-header {
-  padding-top: 5px;
-  height: 120%;
-  width: 90%;
-  margin: auto;
-  user-select: none;
+  justify-content: stretch;
+  width: 100%;
+  vertical-align: middle;
 }
 
 .title-header-img {
   float: right;
-  margin-right: -5px;
-  width: 5%;
+  vertical-align: middle;
+  height: 4rem;
+  margin-top: 0.5rem;
 }
 
 .title-header-img img {
-  float: right;
   user-select: none;
   -webkit-user-drag: none;
+  vertical-align: middle;
+}
+
+.title-header-text {
+  user-select: none;
+  float: left;
+  font-size: 3em;
+  font-weight: 300;
+  vertical-align: middle;
+  margin-bottom: 2rem;
+  -webkit-user-drag: none;
+}
+
+@media (width <= 436px) {
+  .title-header-text {
+    font-size: 2rem;
+    margin-top: 0.25rem;
+    margin-left: 0.25rem;
+  }
+  .title-header-img {
+    width: 3rem;
+    height: 3rem;
+    margin-top: 0;
+  }
+  .title-header-img img {
+    width: 100%;
+  }
 }
 
 .error-tr {
   border-bottom: 2px solid var(--error) !important;
-}
-
-.title-header-text {
-  text-align: left;
-  margin-bottom: auto;
-  font-size: 400%;
-  float: left;
 }
 
 #calendar.container {
@@ -383,6 +401,18 @@ body {
   margin-top: auto;
   font-size: 80%;
   font-variant-caps: all-petite-caps;
+}
+
+@media (width <= 556px) {
+  .leave-by-text {
+    font-size: 75%;
+  }
+}
+
+@media (width < 530px) {
+  .leave-by-text {
+    font-size: 70%;
+  }
 }
 
 .month-total-text {
