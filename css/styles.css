@@ -235,15 +235,15 @@ body {
 
 @media (width <= 436px) {
   .title-header-text {
-    font-size: 2rem;
     margin-top: 0.25rem;
-    margin-left: 0.25rem;
+    margin-left: 1.75rem;
   }
 
   .title-header-img {
     width: 3rem;
     height: 3rem;
     margin-top: 0;
+    display: none;
   }
 
   .title-header-img img {
