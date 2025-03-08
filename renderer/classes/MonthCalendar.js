@@ -95,10 +95,10 @@ class MonthCalendar extends BaseCalendar
                '</div>' +
                 '<table class="table-header"><tr>' +
                     '<th class="th but-switch-view" colspan="2">' + switchView + '</th>' +
-                    '<th class="th but-left">' + leftBut + '</th>' +
+                    '<th class="th but-left" colspan="2">' + leftBut + '</th>' +
                     '<th class="th th-month-name" colspan="18"><div class="div-th-month-name" id="month-year"></div></th>' +
-                    '<th class="th but-right">' + rightBut + '</th>' +
-                    '<th class="th but-today">' + todayBut + '</th>' +
+                    '<th class="th but-right" colspan="2">' + rightBut + '</th>' +
+                    '<th class="th but-today" colspan="2">' + todayBut + '</th>' +
                 '</tr></table>';
     }
 
