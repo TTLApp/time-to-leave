@@ -167,6 +167,7 @@ html[data-theme="cadent-star"] body {
 body {
   background-color: var(--page-bground);
   color: var(--page-color);
+  min-width: 400px;
 }
 
 .container {
@@ -206,6 +207,7 @@ body {
   justify-content: stretch;
   width: 100%;
   vertical-align: middle;
+  z-index: -1;
 }
 
 .title-header-img {
@@ -237,11 +239,13 @@ body {
     margin-top: 0.25rem;
     margin-left: 0.25rem;
   }
+
   .title-header-img {
     width: 3rem;
     height: 3rem;
     margin-top: 0;
   }
+
   .title-header-img img {
     width: 100%;
   }
@@ -411,7 +415,7 @@ body {
 
 @media (width < 530px) {
   .leave-by-text {
-    font-size: 70%;
+    line-height: 0.80rem;
   }
 }
 
