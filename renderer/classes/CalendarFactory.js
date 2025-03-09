@@ -19,7 +19,7 @@ class CalendarFactory
         {
             if (calendar !== undefined && calendar.constructor.name !== constructorName)
             {
-                window.calendarApi.resizeMainWindow();
+                CalendarFactory.ResizeCalendar(preferences);
             }
             calendar = new CalendarClass(preferences, languageData);
             await calendar.reload();
@@ -32,6 +32,12 @@ class CalendarFactory
             calendar.redraw();
             return calendar;
         }
+    }
+
+    static ResizeCalendar(preferences)
+    {
+        const widthHeight = window.calendarApi.getDefaultWidthHeight(preferences);
+        window.resizeTo(widthHeight.width, widthHeight.height);
     }
 }
 

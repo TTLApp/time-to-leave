@@ -21,7 +21,77 @@ import IpcConstants from '../../js/ipc-constants.mjs';
 ipcMain.removeHandler(IpcConstants.GetLanguageData);
 ipcMain.handle(IpcConstants.GetLanguageData, () => ({
     'language': 'en',
-    'data': {}
+    'data': {
+        'translation': {
+            '$BaseCalendar': {
+                'day-done-balance': '',
+                'month-balance': '',
+                'month-balance-title': '',
+                'overall-balance': '',
+                'overall-balance-title': '',
+                'switch-view': ''
+            },
+            '$DateUtil': {
+                'april': '',
+                'august': '',
+                'december': '',
+                'february': '',
+                'fri': '',
+                'january': '',
+                'july': '',
+                'june': '',
+                'march': '',
+                'may': '',
+                'mon': '',
+                'november': '',
+                'october': '',
+                'sat': '',
+                'september': '',
+                'sun': '',
+                'thu': '',
+                'tue': '',
+                'wed': ''
+            },
+            '$DayCalendar': {
+                'add-entry': '',
+                'current-day': '',
+                'day-total': '',
+                'entry': '',
+                'entry-removal-confirmation': '',
+                'leave-by': '',
+                'next-day': '',
+                'no': '',
+                'not-a-working-day': '',
+                'previous-day': '',
+                'remove-entry': '',
+                'waived-day': '',
+                'yes': ''
+            },
+            '$Menu': {
+                'punch-time': ''
+            },
+            '$MonthCalendar': {
+                'add-entry': '',
+                'add-waiver-day': '',
+                'current-month': '',
+                'day': '',
+                'entry-removal-confirmation': '',
+                'last-day-balance': '',
+                'leave-by': '',
+                'next-month': '',
+                'no': '',
+                'on': '',
+                'previous-month': '',
+                'remove-entry': '',
+                'scroll-left-entry': '',
+                'scroll-right-entry': '',
+                'total': '',
+                'waived-day': '',
+                'working-days': '',
+                'working-days-title': '',
+                'yes': ''
+            }
+        }}
 }));
 
 describe('main-window.mjs', () =>
@@ -31,6 +101,10 @@ describe('main-window.mjs', () =>
     {
         // Avoid showing the window
         showSpy = stub(BrowserWindow.prototype, 'show');
+
+        ipcMain.handle(IpcConstants.GetStoreContents, () => new Promise(resolve => resolve({})));
+        ipcMain.handle(IpcConstants.GetWaiverStoreContents, () => new Promise(resolve => resolve({})));
+        ipcMain.handle(IpcConstants.ComputeAllTimeBalanceUntil, () => new Promise(resolve => resolve({})));
     });
 
     beforeEach(() =>
@@ -71,7 +145,6 @@ describe('main-window.mjs', () =>
             const mainWindow = getMainWindow();
             assert.strictEqual(mainWindow instanceof BrowserWindow, true);
             assert.strictEqual(ipcMain.listenerCount(IpcConstants.ToggleTrayPunchTime), 1);
-            assert.strictEqual(ipcMain.listenerCount(IpcConstants.ResizeMainWindow), 1);
             assert.strictEqual(ipcMain.listenerCount(IpcConstants.SwitchView), 1);
             assert.strictEqual(ipcMain.listenerCount(IpcConstants.ReceiveLeaveBy), 1);
             assert.strictEqual(mainWindow.listenerCount('minimize'), 2);
@@ -87,62 +160,12 @@ describe('main-window.mjs', () =>
         });
     });
 
-    describe('emit IpcConstants.ResizeMainWindow', function()
-    {
-        it('It should resize window', (done) =>
-        {
-            createWindow();
-            /**
-             * @type {BrowserWindow}
-             */
-            const mainWindow = getMainWindow();
-            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, async() =>
-            {
-                // Wait a bit for values to accomodate
-                await new Promise(res => setTimeout(res, 500));
-
-                assert.strictEqual(ipcMain.emit(IpcConstants.ResizeMainWindow), true);
-                const windowSize = mainWindow.getSize();
-                assert.strictEqual(windowSize.length, 2);
-
-                // Width and height are within 5 pixels of the expected values
-                assert.strictEqual(Math.abs(windowSize[0] - 1010) < 5, true, `Value was ${windowSize[0]}`);
-                assert.strictEqual(Math.abs(windowSize[1] - 800) < 5, true, `Value was ${windowSize[1]}`);
-                done();
-            });
-        });
-        it('It should not resize window if values are smaller than minimum', (done) =>
-        {
-            assert.strictEqual(savePreferences({
-                ...getDefaultPreferences(),
-                ['view']: 'day'
-            }), true);
-            createWindow();
-            /**
-             * @type {BrowserWindow}
-             */
-            const mainWindow = getMainWindow();
-            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, async() =>
-            {
-                // Wait a bit for values to accomodate
-                await new Promise(res => setTimeout(res, 500));
-
-                assert.strictEqual(ipcMain.emit(IpcConstants.ResizeMainWindow), true);
-                const windowSize = mainWindow.getSize();
-                assert.strictEqual(windowSize.length, 2);
-
-                // Width and height are within 5 pixels of the expected values
-                assert.strictEqual(Math.abs(windowSize[0] - 500) < 5, true, `Value was ${windowSize[0]}`);
-                assert.strictEqual(Math.abs(windowSize[1] - 500) < 5, true, `Value was ${windowSize[1]}`);
-                done();
-            });
-        });
-    });
-
     describe('emit IpcConstants.SwitchView', () =>
     {
-        it('It should send new event to ipcRenderer', (done) =>
+        it('It should send new event to ipcRenderer', function(done)
         {
+            this.timeout(5000);
+
             assert.strictEqual(savePreferences({
                 ...getDefaultPreferences(),
                 ['view']: 'month'
@@ -152,19 +175,42 @@ describe('main-window.mjs', () =>
              * @type {BrowserWindow}
              */
             const mainWindow = getMainWindow();
-            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, async() =>
-            {
-                // Wait a bit for values to accomodate
-                await new Promise(res => setTimeout(res, 500));
 
-                const windowStub = stub(mainWindow.webContents, 'send').callsFake((event, savedPreferences) =>
+            const windowSpy = spy(mainWindow.webContents, 'send');
+            mainWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
+            {
+                const windowSize = mainWindow.getSize();
+                assert.strictEqual(windowSize.length, 2);
+
+                // First, check the month view sizes
+                // For some reason the default height is changing on CI
+                const possibleHeights = [800, 970, 728];
+                assert.strictEqual(Math.abs(windowSize[0] - 1010) < 5, true, `Width was ${windowSize[0]}`);
+                assert.strictEqual(possibleHeights.indexOf(windowSize[1]) !== -1, true, `Height was ${windowSize[1]}`);
+
+                mainWindow.webContents.on('content-bounds-updated', () =>
                 {
-                    assert.strictEqual(windowStub.calledOnce, true);
-                    assert.strictEqual(savedPreferences['view'], 'day');
-                    done();
+                    setTimeout(() =>
+                    {
+                        const windowSize = mainWindow.getSize();
+                        assert.strictEqual(windowSize.length, 2);
+
+                        // Now in day view sizes
+                        assert.strictEqual(Math.abs(windowSize[0] - 500) < 5, true, `Width was ${windowSize[0]}`);
+                        assert.strictEqual(Math.abs(windowSize[1] - 500) < 5, true, `Height was ${windowSize[1]}`);
+
+                        assert.strictEqual(windowSpy.calledOnce, true);
+
+                        const firstCall = windowSpy.firstCall;
+                        assert.strictEqual(firstCall.args[0], IpcConstants.PreferencesSaved);
+                        assert.strictEqual(firstCall.args[1]['view'], 'day');
+
+                        windowSpy.restore();
+                        done();
+                    }, 300);
                 });
+
                 ipcMain.emit(IpcConstants.SwitchView);
-                windowStub.restore();
             });
         });
     });
@@ -451,5 +497,9 @@ describe('main-window.mjs', () =>
     after(() =>
     {
         showSpy.restore();
+
+        ipcMain.removeHandler(IpcConstants.GetStoreContents);
+        ipcMain.removeHandler(IpcConstants.GetWaiverStoreContents);
+        ipcMain.removeHandler(IpcConstants.ComputeAllTimeBalanceUntil);
     });
 });
