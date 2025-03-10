@@ -1080,7 +1080,6 @@ html[data-view='month'] #overall-balance {
 
 html[data-view='day'] .title-header {
   width: 100%;
-  margin-bottom: 80px;
 }
 
 html[data-view='day'] .title-header-text {
