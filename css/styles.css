@@ -167,6 +167,7 @@ html[data-theme="cadent-star"] body {
 body {
   background-color: var(--page-bground);
   color: var(--page-color);
+  min-width: 400px;
 }
 
 .container {
@@ -203,34 +204,54 @@ body {
 }
 
 .title-header {
-  padding-top: 5px;
-  height: 120%;
-  width: 90%;
-  margin: auto;
-  user-select: none;
+  justify-content: stretch;
+  width: 100%;
+  vertical-align: middle;
+  z-index: -1;
 }
 
 .title-header-img {
   float: right;
-  margin-right: -5px;
-  width: 5%;
+  vertical-align: middle;
+  height: 4rem;
+  margin-top: 0.5rem;
 }
 
 .title-header-img img {
-  float: right;
   user-select: none;
   -webkit-user-drag: none;
+  vertical-align: middle;
+}
+
+.title-header-text {
+  user-select: none;
+  float: left;
+  font-size: 3em;
+  font-weight: 300;
+  vertical-align: middle;
+  -webkit-user-drag: none;
+}
+
+@media (width <= 436px) {
+  .title-header-text {
+    margin-top: 0.25rem;
+    margin-left: 1.75rem;
+  }
+
+  .title-header-img {
+    width: 3rem;
+    height: 3rem;
+    margin-top: 0;
+    display: none;
+  }
+
+  .title-header-img img {
+    width: 100%;
+  }
 }
 
 .error-tr {
   border-bottom: 2px solid var(--error) !important;
-}
-
-.title-header-text {
-  text-align: left;
-  margin-bottom: auto;
-  font-size: 400%;
-  float: left;
 }
 
 #calendar.container {
@@ -245,7 +266,6 @@ body {
 }
 
 #calendar .table-header {
-  margin-left: auto;
   margin-right: auto;
   table-layout: fixed;
   width: 90%;
@@ -310,10 +330,6 @@ body {
 
 .but-today {
   text-align: right;
-}
-
-.but-switch-view input {
-  width: 85%;
 }
 
 #calendar input {
@@ -383,6 +399,18 @@ body {
   margin-top: auto;
   font-size: 80%;
   font-variant-caps: all-petite-caps;
+}
+
+@media (width <= 556px) {
+  .leave-by-text {
+    font-size: 75%;
+  }
+}
+
+@media (width < 530px) {
+  .leave-by-text {
+    line-height: 0.80rem;
+  }
 }
 
 .month-total-text {
