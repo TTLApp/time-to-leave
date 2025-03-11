@@ -437,15 +437,17 @@ class MonthCalendar extends BaseCalendar
             removeEntries(element);
         });
 
-        $('.time-cells').mousewheel(function(e, delta)
+        $('.time-cells').on('wheel', { passive: true }, function(e)
         {
+            const delta = e.originalEvent.deltaY;
             const currentScroll = this.scrollLeft;
-            this.scrollLeft -= (delta * 30);
+            this.scrollLeft -= delta;
             if (currentScroll !== this.scrollLeft)
             {
                 e.preventDefault();
             }
         });
+
     }
 
     /**

@@ -12,12 +12,12 @@ import { CalendarFactory } from '../../../renderer/classes/CalendarFactory.js';
 import { calendarApi } from '../../../renderer/preload-scripts/calendar-api.mjs';
 
 window.$.fn.extend({
-    mousewheel: function()
+    wheel: function()
     {
         /*mocked empty function*/
     },
 
-    unmousewheel: function()
+    unwheel: function()
     {
         /*mocked empty function*/
     }
