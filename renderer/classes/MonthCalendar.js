@@ -31,6 +31,7 @@ class MonthCalendar extends BaseCalendar
         $('#prev-month').on('click', () => { this._prevMonth(); });
         $('#current-month').on('click', () => { this._goToCurrentDate(); });
         $('#switch-view').on('click', () => { this._switchView(); });
+
     }
 
     /**
@@ -447,6 +448,22 @@ class MonthCalendar extends BaseCalendar
                 e.preventDefault();
             }
         });
+
+        // Add keyboard accessibility for arrow keys
+        $('.time-cells').on('keydown', function(e)
+        {
+            const step = 50; // Adjust step as needed
+            if (e.key === 'ArrowLeft')
+            {
+                this.scrollLeft -= step;
+                e.preventDefault();
+            }
+            else if (e.key === 'ArrowRight')
+            {
+                this.scrollLeft += step;
+                e.preventDefault();
+            }
+        }).attr('tabindex', '0'); // Make the time cells focusable
 
     }
 
