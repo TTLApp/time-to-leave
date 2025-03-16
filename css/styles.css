@@ -208,6 +208,8 @@ body {
   width: 100%;
   vertical-align: middle;
   z-index: -1;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .title-header-img {
@@ -215,6 +217,8 @@ body {
   vertical-align: middle;
   height: 4rem;
   margin-top: 0.5rem;
+  padding-right: var(--bs-gutter-x);
+  padding-left: var(--bs-gutter-x);
 }
 
 .title-header-img img {
@@ -230,6 +234,8 @@ body {
   font-weight: 300;
   vertical-align: middle;
   -webkit-user-drag: none;
+  padding-right: var(--bs-gutter-x);
+  padding-left: var(--bs-gutter-x);
 }
 
 @media (width <= 436px) {
