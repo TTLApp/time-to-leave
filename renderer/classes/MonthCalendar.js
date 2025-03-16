@@ -31,7 +31,6 @@ class MonthCalendar extends BaseCalendar
         $('#prev-month').on('click', () => { this._prevMonth(); });
         $('#current-month').on('click', () => { this._goToCurrentDate(); });
         $('#switch-view').on('click', () => { this._switchView(); });
-
     }
 
     /**
