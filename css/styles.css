@@ -1271,7 +1271,7 @@ html[data-view='day'] .summary {
 }
 
 html[data-view='day'] .summary .leave-by-text {
-  margin: 2px 20px auto auto;
+  margin: auto 20px auto auto;
 }
 
 html[data-view='day'] .summary .leave-by-time {
