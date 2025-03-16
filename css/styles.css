@@ -208,8 +208,6 @@ body {
   width: 100%;
   vertical-align: middle;
   z-index: -1;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .title-header-img {
@@ -238,21 +236,16 @@ body {
   padding-left: var(--bs-gutter-x);
 }
 
-@media (width <= 436px) {
+@media (width <= 521px) {
   .title-header-text {
-    margin-top: 0.25rem;
-    margin-left: 1.75rem;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
 
   .title-header-img {
-    width: 3rem;
-    height: 3rem;
-    margin-top: 0;
     display: none;
-  }
-
-  .title-header-img img {
-    width: 100%;
   }
 }
 
