@@ -177,6 +177,16 @@ function createWindow()
     });
 }
 
+/**
+ * Toggles the main window style to indicate an operation is processing
+ *
+ * @param {Boolean} enable Enable or not the style
+ */
+function toggleMainWindowWait(enable)
+{
+    getMainWindow()?.webContents.send(IpcConstants.ToggleMainWindowWait, enable);
+}
+
 function triggerStartupDialogs()
 {
     if (UpdateManager.shouldCheckForUpdates())
@@ -209,5 +219,6 @@ export {
     getLeaveByInterval,
     getMainWindow,
     resetMainWindow,
+    toggleMainWindowWait,
     triggerStartupDialogs,
 };

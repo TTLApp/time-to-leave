@@ -11,6 +11,7 @@
 - Enhancement [#1009]: Adding an animation to the workday waiver holidays table when the contents switch
 - Enhancement [#1139]: Improved consistency of all pop-ups in the application
 - Enhancement [#1142]: Make balance row always visible above the punch button
+- Enhancement [#1146]: Add a progress indication to main window when another window is being opened
 - Enhancement [#1155]: Round squared buttons and fields to match app look
 - Enhancement [#1165]: Restyle number inputs in preferences window
 - Fix [#1008]: Sourced conflicting holidays being imported by default
