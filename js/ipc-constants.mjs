@@ -29,6 +29,7 @@ const IpcConstants = Object.freeze(
         ShowDialogSync: 'SHOW_DIALOG_SYNC',
         ShowDialog: 'SHOW_DIALOG',
         SwitchView: 'SWITCH_VIEW',
+        ToggleMainWindowWait: 'TOGGLE_MAIN_WINDOW_WAIT',
         ToggleTrayPunchTime: 'TOGGLE_TRAY_PUNCH_TIME',
         WaiverSaved: 'WAIVER_SAVED',
         WindowReadyToShow: 'WINDOW_READY_TO_SHOW',
