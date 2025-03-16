@@ -463,7 +463,6 @@ class MonthCalendar extends BaseCalendar
                 e.preventDefault();
             }
         }).attr('tabindex', '0'); // Make the time cells focusable
-
     }
 
     /**
