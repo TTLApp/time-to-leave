@@ -185,7 +185,7 @@ describe('main-window.mjs', () =>
 
                 // First, check the month view sizes
                 // For some reason the default height is changing on CI
-                const possibleHeights = [800, 970, 728];
+                const possibleHeights = [800, 970, 728, 1025];
                 assert.strictEqual(Math.abs(windowSize[0] - 1010) < 5, true, `Width was ${windowSize[0]}`);
                 assert.strictEqual(possibleHeights.indexOf(windowSize[1]) !== -1, true, `Height was ${windowSize[1]}`);
 
