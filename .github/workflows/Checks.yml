@@ -6,7 +6,8 @@ on:
       - update/*
       - dev/*
       - fix/*
-  pull_request: main
+  pull_request:
+      - main
 jobs:
   'Checking':
     runs-on: ${{ matrix.os }}
