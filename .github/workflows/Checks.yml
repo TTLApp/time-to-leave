@@ -7,7 +7,6 @@ on:
       - dev/*
       - fix/*
   pull_request:
-      - main
 jobs:
   'Checking':
     runs-on: ${{ matrix.os }}
