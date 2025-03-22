@@ -437,15 +437,32 @@ class MonthCalendar extends BaseCalendar
             removeEntries(element);
         });
 
-        $('.time-cells').mousewheel(function(e, delta)
+        $('.time-cells').on('wheel', { passive: true }, function(e)
         {
+            const delta = e.originalEvent.deltaY;
             const currentScroll = this.scrollLeft;
-            this.scrollLeft -= (delta * 30);
+            this.scrollLeft -= delta;
             if (currentScroll !== this.scrollLeft)
             {
                 e.preventDefault();
             }
         });
+
+        // Add keyboard accessibility for arrow keys
+        $('.time-cells').on('keydown', function(e)
+        {
+            const step = 50; // Adjust step as needed
+            if (e.key === 'ArrowLeft')
+            {
+                this.scrollLeft -= step;
+                e.preventDefault();
+            }
+            else if (e.key === 'ArrowRight')
+            {
+                this.scrollLeft += step;
+                e.preventDefault();
+            }
+        }).attr('tabindex', '0'); // Make the time cells focusable
     }
 
     /**
