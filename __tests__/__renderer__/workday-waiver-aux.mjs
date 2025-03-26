@@ -46,7 +46,13 @@ describe('Workday Waiver Aux', function()
         ipcMain.removeHandler(IpcConstants.GetLanguageData);
         ipcMain.handle(IpcConstants.GetLanguageData, () => ({
             'language': 'en',
-            'data': {}
+            'data': {
+                'translation': {
+                    '$WorkdayWaiver': {
+                        'hideNonWorkingDay': ''
+                    }
+                }
+            }
         }));
         ipcMain.handle(IpcConstants.GetWaiverStoreContents, () =>
         {

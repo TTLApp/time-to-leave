@@ -13,12 +13,13 @@ const windowAux = require('../../js/window-aux.cjs');
 
 describe('window-aux.cjs Testing', function()
 {
-    const mockHtmlPath = path.join('file://', rootDir, '/__mocks__/mock.html');
+    const mockHtmlPath = path.join(rootDir, '/__mocks__/mock.html');
 
     // const devToolsShortcut = new KeyboardEvent('keyup', {keyCode: 73, ctrlKey: true, shiftKey: true});
     // const badDevToolsShortcut = new KeyboardEvent('keyup', {keyCode: 74, ctrlKey: true, shiftKey: true});
     const browserWindowOptions = {
         webPreferences: {
+            contextIsolation: true,
             enableRemoteModule: true,
             nodeIntegration: true
         }
@@ -35,7 +36,7 @@ describe('window-aux.cjs Testing', function()
     //     test('No bind: should not open anything', async() =>
     //     {
     //         const testWindow = new BrowserWindow(browserWindowOptions);
-    //         testWindow.loadURL(mockHtmlPath);
+    //         testWindow.loadFile(mockHtmlPath);
     //         assert.strictEqual(testWindow.webContents.isDevToolsOpened(), false);
 
     //         testWindow.webContents.on('dom-ready', () =>
@@ -54,7 +55,7 @@ describe('window-aux.cjs Testing', function()
     //     test('Bind: should open devTools', async() =>
     //     {
     //         const testWindow = new BrowserWindow(browserWindowOptions);
-    //         testWindow.loadURL(mockHtmlPath);
+    //         testWindow.loadFile(mockHtmlPath);
     //         assert.notStrictEqual(testWindow.webContents.isDevToolsOpened(), undefined);
 
     //         testWindow.webContents.on('dom-ready', () =>
@@ -74,7 +75,7 @@ describe('window-aux.cjs Testing', function()
     //     test('Bind: bad shortcut, should not open devTools', async() =>
     //     {
     //         const testWindow = new BrowserWindow(browserWindowOptions);
-    //         testWindow.loadURL(mockHtmlPath);
+    //         testWindow.loadFile(mockHtmlPath);
     //         assert.notStrictEqual(testWindow.webContents.isDevToolsOpened(), undefined);
 
     //         testWindow.webContents.on('dom-ready', () =>
@@ -97,7 +98,7 @@ describe('window-aux.cjs Testing', function()
         it('Does not crash', async() =>
         {
             const testWindow = new BrowserWindow(browserWindowOptions);
-            testWindow.loadURL(mockHtmlPath);
+            testWindow.loadFile(mockHtmlPath);
 
             let spy;
             testWindow.webContents.on('dom-ready', () =>
@@ -130,7 +131,7 @@ describe('window-aux.cjs Testing', function()
         it('Does not crash', async() =>
         {
             const testWindow = new BrowserWindow(browserWindowOptions);
-            testWindow.loadURL(mockHtmlPath);
+            testWindow.loadFile(mockHtmlPath);
 
             let spy;
             testWindow.webContents.on('dom-ready', () =>

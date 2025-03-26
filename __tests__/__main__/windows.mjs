@@ -16,7 +16,7 @@ describe('Windows tests', () =>
     {
         // Avoid window being shown
         showSpy = stub(BrowserWindow.prototype, 'show');
-        loadSpy = spy(BrowserWindow.prototype, 'loadURL');
+        loadSpy = spy(BrowserWindow.prototype, 'loadFile');
 
         // Mocking for tests below
         ipcMain.handle(IpcConstants.GetWaiverDay, () =>
@@ -33,6 +33,9 @@ describe('Windows tests', () =>
                 'translation': {
                     '$Preferences': {
                         'hideNonWorkingDay': ''
+                    },
+                    '$WorkdayWaiver': {
+                        'header-help': ''
                     }
                 }
             }
