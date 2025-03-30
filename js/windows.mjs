@@ -32,7 +32,7 @@ class Windows
             const today = new Date();
             global.waiverDay = getDateStr(today);
         }
-        const htmlPath = path.join('file://', rootDir, '/src/workday-waiver.html');
+        const htmlPath = path.join(rootDir, '/src/workday-waiver.html');
         const dialogCoordinates = Windows.getDialogCoordinates(600, 500, mainWindow);
         const userPreferences = getUserPreferences();
         global.waiverWindow = new BrowserWindow({ width: 600,
@@ -52,7 +52,7 @@ class Windows
                 ],
             } });
         global.waiverWindow.setMenu(null);
-        global.waiverWindow.loadURL(htmlPath);
+        global.waiverWindow.loadFile(htmlPath);
         global.waiverWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
         {
             toggleMainWindowWait(false /*enable*/);
@@ -81,7 +81,7 @@ class Windows
             return;
         }
 
-        const htmlPath = path.join('file://', rootDir, 'src/preferences.html');
+        const htmlPath = path.join(rootDir, 'src/preferences.html');
         const dialogCoordinates = Windows.getDialogCoordinates(550, 620, mainWindow);
         const userPreferences = getUserPreferences();
         global.prefWindow = new BrowserWindow({ width: 550,
@@ -102,7 +102,7 @@ class Windows
                 ],
             } });
         global.prefWindow.setMenu(null);
-        global.prefWindow.loadURL(htmlPath);
+        global.prefWindow.loadFile(htmlPath);
         global.prefWindow.webContents.ipc.on(IpcConstants.WindowReadyToShow, () =>
         {
             toggleMainWindowWait(false /*enable*/);

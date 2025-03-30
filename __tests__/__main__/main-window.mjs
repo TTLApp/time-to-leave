@@ -136,9 +136,14 @@ describe('main-window.mjs', () =>
 
     describe('createWindow()', () =>
     {
+        let loadFileSpy;
+        before(() =>
+        {
+            loadFileSpy = spy(BrowserWindow.prototype, 'loadFile');
+        });
+
         it('Should create and get window default behaviour', (done) =>
         {
-            const loadFileSpy = spy(BrowserWindow.prototype, 'loadFile');
             createWindow();
             /**
              * @type {BrowserWindow}
@@ -158,6 +163,11 @@ describe('main-window.mjs', () =>
                 assert.strictEqual(showSpy.calledOnce, true);
                 done();
             });
+        });
+
+        after(() =>
+        {
+            loadFileSpy.restore();
         });
     });
 
