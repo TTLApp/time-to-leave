@@ -28,11 +28,22 @@ const weekdays = [
     'sunday'
 ];
 
+let windowReady = false;
+async function waitUntilWindowReady()
+{
+    while (!windowReady)
+    {
+        await new Promise(r => setTimeout(r, 100));
+    }
+}
+
 async function prepareMockup()
 {
     const userPreferences = path.join(rootDir, '/src/preferences.html');
     const htmlDoc = await JSDOM.fromFile(userPreferences, 'text/html');
     window.document.documentElement.innerHTML = htmlDoc.window.document.documentElement.innerHTML;
+    // The script on the preferences page only gets loaded once. We wait here until it is loaded so the page is ready for interactions
+    await waitUntilWindowReady();
 }
 
 function changeItemValue(item, value)
@@ -105,7 +116,7 @@ describe('Test Preferences Window', () =>
                 }));
             },
             getOriginalUserPreferences: () => { return testPreferences; },
-            notifyWindowReadyToShow: () => {},
+            notifyWindowReadyToShow: () => { windowReady = true; },
             showDialog: () => { return new Promise((resolve) => resolve({ response: 0 })); },
         };
 
