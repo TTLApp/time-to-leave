@@ -247,17 +247,6 @@ html[data-theme="light"].wait {
   -webkit-user-drag: none;
 }
 
-@media (width < 600px) {
-  .title-header {
-    display: block;
-    text-align: center;
-  }
-  
-  .title-header > img {
-    display: none;
-  }
-}
-
 .error-tr {
   border-bottom: 2px solid var(--error) !important;
 }
@@ -273,6 +262,26 @@ html[data-theme="light"].wait {
   
   text-align: left;
   font-size: 400%;
+}
+
+@media (width < 600px) {
+  .title-header-text {
+    display: flex;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .title-header > img {
+    display: none;
+  }
+}
+
+@media (width < 423px) {
+  .title-header-day > img {
+    display: none;
+  }
 }
 
 #calendar.container {
