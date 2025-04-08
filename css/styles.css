@@ -220,23 +220,30 @@ html[data-theme="light"].wait {
 }
 
 .title-header {
+  display: grid;
   padding-top: 5px;
   height: 120%;
   width: 90%;
   margin: auto;
   user-select: none;
+  align-items: baseline;
 }
 
-.title-header-img {
-  float: right;
-  margin-right: -5px;
-  width: 5%;
-}
-
-.title-header-img img {
-  float: right;
+.title-header > img {
+  grid-column: 100;
   user-select: none;
+  align-self: anchor-center;
   -webkit-user-drag: none;
+}
+
+@media (width < 600px) {
+  .title-header {
+    display: block;
+    text-align: center;
+  }
+  .title-header > img {
+    display: none;
+  }
 }
 
 .error-tr {
@@ -244,10 +251,10 @@ html[data-theme="light"].wait {
 }
 
 .title-header-text {
+  grid-column: 1;
+  align-self: anchor-center;
   text-align: left;
-  margin-bottom: auto;
   font-size: 400%;
-  float: left;
 }
 
 #calendar.container {
