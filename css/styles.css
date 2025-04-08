@@ -229,10 +229,21 @@ html[data-theme="light"].wait {
   align-items: baseline;
 }
 
-.title-header > img {
+.title-header-day {
+  display: grid;
+  padding-bottom: 1rem;
+}
+
+.title-header > img, .title-header-day > img {
   grid-column: 100;
   user-select: none;
+
+  /* stylelint-disable declaration-property-value-no-unknown */
+
   align-self: anchor-center;
+  
+  /* stylelint-enable declaration-property-value-no-unknown */
+
   -webkit-user-drag: none;
 }
 
@@ -241,6 +252,7 @@ html[data-theme="light"].wait {
     display: block;
     text-align: center;
   }
+  
   .title-header > img {
     display: none;
   }
@@ -252,7 +264,13 @@ html[data-theme="light"].wait {
 
 .title-header-text {
   grid-column: 1;
+  
+  /* stylelint-disable declaration-property-value-no-unknown */
+  
   align-self: anchor-center;
+  
+  /* stylelint-enable declaration-property-value-no-unknown */
+  
   text-align: left;
   font-size: 400%;
 }
