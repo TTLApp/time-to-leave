@@ -419,7 +419,9 @@ html[data-theme="light"].wait {
 }
 
 .leave-by-text,
+.leave-by-time,
 .month-total-text,
+.month-total-time,
 .waived-day-text {
   text-align: right !important;
   margin-top: auto;
