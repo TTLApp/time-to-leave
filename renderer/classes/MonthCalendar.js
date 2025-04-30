@@ -89,16 +89,16 @@ class MonthCalendar extends BaseCalendar
         const rightBut = `<input id="next-month" type="image" src="../assets/right-arrow.svg" alt="${this._getTranslation('$MonthCalendar.next-month')}" title="${this._getTranslation('$MonthCalendar.next-month')}" height="24" width="24"></input>`;
         const title = 'Time to Leave';
         return '<div class="title-header">'+
-                    '<div class="title-header-img"><img src="../assets/ttl.svg" height="64" width="64"></div>' +
                     `<div class="title-header-text">${title}</div>` +
+                    '<img src="../assets/ttl.svg" height="64" width="64">' +
                     '<div class="title-header-msg"></div>' +
                '</div>' +
                 '<table class="table-header"><tr>' +
-                    '<th class="th but-switch-view" colspan="2">' + switchView + '</th>' +
-                    '<th class="th but-left" colspan="2">' + leftBut + '</th>' +
-                    '<th class="th th-month-name" colspan="18"><div class="div-th-month-name" id="month-year"></div></th>' +
-                    '<th class="th but-right" colspan="2">' + rightBut + '</th>' +
-                    '<th class="th but-today" colspan="2">' + todayBut + '</th>' +
+                    '<th class="th but-switch-view">' + switchView + '</th>' +
+                    '<th class="th but-left">' + leftBut + '</th>' +
+                    '<th class="th th-month-name"><div class="div-th-month-name" id="month-year"></div></th>' +
+                    '<th class="th but-right">' + rightBut + '</th>' +
+                    '<th class="th but-today">' + todayBut + '</th>' +
                 '</tr></table>';
     }
 

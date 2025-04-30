@@ -221,23 +221,30 @@ html[data-theme="light"].wait {
 }
 
 .title-header {
-  justify-content: stretch;
-  width: 100%;
-  vertical-align: middle;
-  z-index: -1;
-}
-
-.title-header-img {
-  float: right;
-  vertical-align: middle;
-  height: 4rem;
-  margin-top: 0.5rem;
-  padding-right: var(--bs-gutter-x);
-  padding-left: var(--bs-gutter-x);
-}
-
-.title-header-img img {
+  display: grid;
+  padding-top: 5px;
+  height: 120%;
+  width: 90%;
+  margin: auto;
   user-select: none;
+  align-items: baseline;
+}
+
+.title-header-day {
+  display: grid;
+  padding-bottom: 1rem;
+}
+
+.title-header > img, .title-header-day > img {
+  grid-column: 100;
+  user-select: none;
+
+  /* stylelint-disable declaration-property-value-no-unknown */
+
+  align-self: anchor-center;
+  
+  /* stylelint-enable declaration-property-value-no-unknown */
+
   -webkit-user-drag: none;
   vertical-align: middle;
 }
@@ -409,7 +416,9 @@ html[data-theme="light"].wait {
 }
 
 .leave-by-text,
+.leave-by-time,
 .month-total-text,
+.month-total-time,
 .waived-day-text {
   text-align: right !important;
   margin-top: auto;
@@ -1148,7 +1157,7 @@ html[data-view='day'] #calendar-table-body .second-group {
 
 @media (width >= 768px) {
   html[data-view='day'] #calendar-table-body .second-group {
-    width: 67%;
+   width: 80%;
   }
 }
 
