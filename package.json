@@ -58,7 +58,7 @@
     "prettier": "3.5.3",
     "sinon": "20.0.0",
     "stylelint": "16.19.1",
-    "stylelint-config-standard": "37.0.0"
+    "stylelint-config-standard": "38.0.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "6.7.2",
