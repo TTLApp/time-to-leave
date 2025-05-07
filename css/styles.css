@@ -416,12 +416,18 @@ html[data-theme="light"].wait {
 }
 
 .leave-by-text,
-.leave-by-time,
 .month-total-text,
 .month-total-time,
 .waived-day-text {
   text-align: right !important;
   margin-top: auto;
+  font-size: 80%;
+  font-variant-caps: all-petite-caps;
+}
+
+#leave-by-time {
+  margin-top: 0.5ch;
+  text-align: right;
   font-size: 80%;
   font-variant-caps: all-petite-caps;
 }
@@ -442,7 +448,6 @@ html[data-theme="light"].wait {
   font-weight: bold;
 }
 
-.leave-by-time,
 .month-total-time {
   text-align: left;
 }
@@ -1079,12 +1084,11 @@ html[data-view='month'] .summary {
   height: 28px;
 }
 
-html[data-view='month'] .leave-by-time {
+html[data-view='month'] #leave-by-time {
   width: 80px;
 }
 
-html[data-view='month'] .leave-by-time > div {
-  margin-top: 2px;
+html[data-view='month'] #leave-by-time > div {
   text-align: center;
 }
 
@@ -1297,10 +1301,6 @@ html[data-view='day'] .summary {
 
 html[data-view='day'] .summary .leave-by-text {
   margin: auto 20px auto auto;
-}
-
-html[data-view='day'] .summary .leave-by-time {
-  margin-right: auto;
 }
 
 html[data-view='day'] .month-total-row {
