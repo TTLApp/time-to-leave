@@ -1128,6 +1128,13 @@ html[data-view='day'] .th-month-name {
   font-size: 115%;
 }
 
+html[data-view='day'] #leave-by-time {
+  font-size: 80%;
+  text-align: right;
+  margin: 0;
+  font-variation-caps: all-petite-caps;
+}
+
 html[data-view='day'] #calendar input[type="date" i]::-webkit-calendar-picker-indicator {
   background-image: var(--day-calendar-select-icon);
   height: 10px;
