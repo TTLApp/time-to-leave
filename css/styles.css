@@ -1105,23 +1105,8 @@ html[data-view='month'] #overall-balance {
 
 /** Flexible Day view related styles **/
 
-html[data-view='day'] .title-header {
-  width: 100%;
-}
-
-html[data-view='day'] .title-header-text {
-  font-size: 300%;
-  text-align: left;
-  padding-left: 30px;
-}
-
-html[data-view='day'] .title-header-day > img {
-  position: relative;
-  right: 30px;
-}
-
-html[data-view='day'] .table-header {
-  width: 100%;
+html[data-view='day'] #calendar.container {
+  width: calc(100vw - 30px)
 }
 
 html[data-view='day'] .th-month-name {
@@ -1192,9 +1177,13 @@ html[data-view='day'] #calendar-table-body .row-entry-pair,
 html[data-view='day'] #calendar-table-body .row-controls {
   display: inline-flex;
   border-bottom: 1px solid var(--table-border);
-  width: 90% !important;
+  width: 100% !important;
   margin: auto;
   padding: 2px 0;
+}
+
+html[data-view='day'] #calendar .table-header {
+  width: 100%;
 }
 
 html[data-view='day'] #calendar-table-body .row-entry-pair input {
@@ -1274,7 +1263,7 @@ html[data-view='day'] .table-body {
 
 html[data-view='day'] .row-total {
   display: inline-flex;
-  width: 90% !important;
+  width: 100% !important;
   margin: auto;
   border-bottom: none !important;
   padding: 10px 0;
