@@ -256,8 +256,6 @@ html[data-theme="light"].wait {
   font-weight: 300;
   vertical-align: middle;
   -webkit-user-drag: none;
-  padding-right: var(--bs-gutter-x);
-  padding-left: var(--bs-gutter-x);
 }
 
 @media (width <= 521px) {
