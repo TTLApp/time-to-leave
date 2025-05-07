@@ -93,13 +93,13 @@ class DayCalendar extends BaseCalendar
         const summaryStr = this._getTranslation('$DayCalendar.leave-by');
         let code = '<div class="summary" id="summary-unfinished-day">' +
                      '<div class="leave-by-text">' + summaryStr + '</div>' +
-                     '<div class="leave-by-time">' + leaveByCode + '</div>' +
+                     '<div id="leave-by-time">' + leaveByCode + '</div>' +
                    '</div>';
         const finishedSummaryStr = this._getTranslation('$BaseCalendar.day-done-balance');
         const dayBalance = '<input type="text" id="leave-day-balance" size="5" disabled>';
         code += '<div class="summary hidden" id="summary-finished-day">' +
                     '<div class="leave-by-text">' + finishedSummaryStr + '</div>' +
-                    '<div class="leave-by-time">' + dayBalance + '</div>' +
+                    '<div id="leave-by-time">' + dayBalance + '</div>' +
                 '</div>';
         return code;
     }
