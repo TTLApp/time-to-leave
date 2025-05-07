@@ -258,7 +258,7 @@ html[data-theme="light"].wait {
   -webkit-user-drag: none;
 }
 
-@media (width <= 521px) {
+@media (width <= 480px) {
   .title-header-text {
     float: none;
     margin-left: auto;
@@ -266,7 +266,7 @@ html[data-theme="light"].wait {
     text-align: center;
   }
 
-  .title-header-img {
+  .title-header > img {
     display: none;
   }
 }
@@ -1111,6 +1111,13 @@ html[data-view='day'] .title-header {
 
 html[data-view='day'] .title-header-text {
   font-size: 300%;
+  text-align: left;
+  padding-left: 30px;
+}
+
+html[data-view='day'] .title-header-day > img {
+  position: relative;
+  right: 30px;
 }
 
 html[data-view='day'] .table-header {
