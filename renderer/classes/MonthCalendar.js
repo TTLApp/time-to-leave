@@ -121,13 +121,13 @@ class MonthCalendar extends BaseCalendar
         const leaveByCode = '<input type="text" id="leave-by" size="5" disabled>';
         return  '<div class="summary" id="summary-unfinished-day">' +
                     `<div class="leave-by-text" colspan="7">${this._getTranslation('$MonthCalendar.leave-by')}</div>` +
-                    '<div class="leave-by-time">' +
+                    '<div id="leave-by-time">' +
                         leaveByCode +
                     '</div>' +
                 '</div>' +
                 '<div class="summary hidden" id="summary-finished-day">' +
                     `<div class="leave-by-text" colspan="7">${this._getTranslation('$BaseCalendar.day-done-balance')}</div>` +
-                    '<div class="leave-by-time">' +
+                    '<div id="leave-by-time">' +
                         '<div id="leave-day-balance"></div>' +
                     '</div>' +
                 '</div>';
