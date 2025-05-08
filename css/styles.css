@@ -269,6 +269,10 @@ html[data-theme="light"].wait {
   .title-header > img {
     display: none;
   }
+  
+  .title-header-day > img {
+    display: none;
+  }
 }
 
 .error-tr {
