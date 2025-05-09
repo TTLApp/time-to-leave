@@ -97,6 +97,7 @@ describe('window-aux.cjs Testing', function()
     {
         it('Does not crash', async() =>
         {
+            this.timeout(3000); // allow time for Windows' slower loading
             const testWindow = new BrowserWindow(browserWindowOptions);
             testWindow.loadFile(mockHtmlPath);
 
@@ -115,7 +116,8 @@ describe('window-aux.cjs Testing', function()
             });
             testWindow.webContents.on('did-fail-load', (event, code, desc, url, isMainFrame) =>
             {
-                console.log('did-fail-load: ', event,  code, desc, url, isMainFrame);
+                console.error('did-fail-load: ', event,  code, desc, url, isMainFrame);
+                assert.fail(`Failed to load: ${desc}`);
             });
 
             await new Promise(r => setTimeout(r, timeoutValue));
