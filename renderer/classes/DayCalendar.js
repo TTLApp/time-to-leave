@@ -55,9 +55,9 @@ class DayCalendar extends BaseCalendar
         const leftBut = `<input id="prev-day" type="image" src="../assets/left-arrow.svg" alt="${this._getTranslation('$DayCalendar.previous-day')}" title="${this._getTranslation('$DayCalendar.previous-day')}" height="24" width="24"></input>`;
         const rightBut = `<input id="next-day" type="image" src="../assets/right-arrow.svg" alt="${this._getTranslation('$DayCalendar.next-day')}" title="${this._getTranslation('$DayCalendar.next-day')}" height="24" width="24"></input>`;
         const title = 'Time to Leave';
-        return '<div class="title-header">'+
-                    '<div class="title-header-img"><img src="../assets/ttl.svg" height="64" width="64"></div>' +
+        return '<div class="title-header-day">'+
                     `<div class="title-header-text">${title}</div>` +
+                    '<img src="../assets/ttl.svg" height="64" width="64">' +
                     '<div class="title-header-msg"></div>' +
                '</div>' +
                 '<table class="table-header"><tr>' +
@@ -93,13 +93,13 @@ class DayCalendar extends BaseCalendar
         const summaryStr = this._getTranslation('$DayCalendar.leave-by');
         let code = '<div class="summary" id="summary-unfinished-day">' +
                      '<div class="leave-by-text">' + summaryStr + '</div>' +
-                     '<div class="leave-by-time">' + leaveByCode + '</div>' +
+                     '<div id="leave-by-time">' + leaveByCode + '</div>' +
                    '</div>';
         const finishedSummaryStr = this._getTranslation('$BaseCalendar.day-done-balance');
         const dayBalance = '<input type="text" id="leave-day-balance" size="5" disabled>';
         code += '<div class="summary hidden" id="summary-finished-day">' +
                     '<div class="leave-by-text">' + finishedSummaryStr + '</div>' +
-                    '<div class="leave-by-time">' + dayBalance + '</div>' +
+                    '<div id="leave-by-time">' + dayBalance + '</div>' +
                 '</div>';
         return code;
     }
