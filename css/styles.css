@@ -167,6 +167,7 @@ html[data-theme="cadent-star"] body {
 body {
   background-color: var(--page-bground);
   color: var(--page-color);
+  min-width: 400px;
 }
 
 .container {
@@ -220,34 +221,63 @@ html[data-theme="light"].wait {
 }
 
 .title-header {
+  display: grid;
   padding-top: 5px;
   height: 120%;
   width: 90%;
   margin: auto;
   user-select: none;
+  align-items: baseline;
 }
 
-.title-header-img {
-  float: right;
-  margin-right: -5px;
-  width: 5%;
+.title-header-day {
+  display: grid;
+  padding-bottom: 1rem;
 }
 
-.title-header-img img {
-  float: right;
+.title-header > img, .title-header-day > img {
+  grid-column: 100;
   user-select: none;
+
+  /* stylelint-disable declaration-property-value-no-unknown */
+
+  align-self: anchor-center;
+  
+  /* stylelint-enable declaration-property-value-no-unknown */
+
   -webkit-user-drag: none;
+  vertical-align: middle;
+}
+
+.title-header-text {
+  user-select: none;
+  float: left;
+  font-size: 3em;
+  font-weight: 300;
+  vertical-align: middle;
+  -webkit-user-drag: none;
+}
+
+@media (width <= 480px) {
+  .title-header-text {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .title-header > img {
+    display: flex;
+    padding-left: 1vh;
+  }
+  
+  .title-header-day > img {
+    display: flex;
+  }
 }
 
 .error-tr {
   border-bottom: 2px solid var(--error) !important;
-}
-
-.title-header-text {
-  text-align: left;
-  margin-bottom: auto;
-  font-size: 400%;
-  float: left;
 }
 
 #calendar.container {
@@ -262,7 +292,6 @@ html[data-theme="light"].wait {
 }
 
 #calendar .table-header {
-  margin-left: auto;
   margin-right: auto;
   table-layout: fixed;
   width: 90%;
@@ -329,10 +358,6 @@ html[data-theme="light"].wait {
   text-align: right;
 }
 
-.but-switch-view input {
-  width: 85%;
-}
-
 #calendar input {
   color: var(--page-color);
   border: none;
@@ -395,6 +420,7 @@ html[data-theme="light"].wait {
 
 .leave-by-text,
 .month-total-text,
+.month-total-time,
 .waived-day-text {
   text-align: right !important;
   margin-top: auto;
@@ -402,11 +428,29 @@ html[data-theme="light"].wait {
   font-variant-caps: all-petite-caps;
 }
 
+#leave-by-time {
+  margin-top: 0.5ch;
+  text-align: right;
+  font-size: 80%;
+  font-variant-caps: all-petite-caps;
+}
+
+@media (width <= 556px) {
+  .leave-by-text {
+    font-size: 75%;
+  }
+}
+
+@media (width < 530px) {
+  .leave-by-text {
+    line-height: 0.80rem;
+  }
+}
+
 .month-total-text {
   font-weight: bold;
 }
 
-.leave-by-time,
 .month-total-time {
   text-align: left;
 }
@@ -1043,12 +1087,11 @@ html[data-view='month'] .summary {
   height: 28px;
 }
 
-html[data-view='month'] .leave-by-time {
+html[data-view='month'] #leave-by-time {
   width: 80px;
 }
 
-html[data-view='month'] .leave-by-time > div {
-  margin-top: 2px;
+html[data-view='month'] #leave-by-time > div {
   text-align: center;
 }
 
@@ -1067,21 +1110,19 @@ html[data-view='month'] #overall-balance {
 
 /** Flexible Day view related styles **/
 
-html[data-view='day'] .title-header {
-  width: 100%;
-  margin-bottom: 80px;
-}
-
-html[data-view='day'] .title-header-text {
-  font-size: 300%;
-}
-
-html[data-view='day'] .table-header {
-  width: 100%;
+html[data-view='day'] #calendar.container {
+  width: calc(100vw - 30px)
 }
 
 html[data-view='day'] .th-month-name {
   font-size: 115%;
+}
+
+html[data-view='day'] #leave-by-time {
+  font-size: 80%;
+  text-align: right;
+  margin: 0;
+  font-variant-caps: all-petite-caps;
 }
 
 html[data-view='day'] #calendar input[type="date" i]::-webkit-calendar-picker-indicator {
@@ -1122,7 +1163,7 @@ html[data-view='day'] #calendar-table-body .second-group {
 
 @media (width >= 768px) {
   html[data-view='day'] #calendar-table-body .second-group {
-    width: 67%;
+   width: 80%;
   }
 }
 
@@ -1141,9 +1182,13 @@ html[data-view='day'] #calendar-table-body .row-entry-pair,
 html[data-view='day'] #calendar-table-body .row-controls {
   display: inline-flex;
   border-bottom: 1px solid var(--table-border);
-  width: 90% !important;
+  width: 100% !important;
   margin: auto;
   padding: 2px 0;
+}
+
+html[data-view='day'] #calendar .table-header {
+  width: 100%;
 }
 
 html[data-view='day'] #calendar-table-body .row-entry-pair input {
@@ -1223,7 +1268,7 @@ html[data-view='day'] .table-body {
 
 html[data-view='day'] .row-total {
   display: inline-flex;
-  width: 90% !important;
+  width: 100% !important;
   margin: auto;
   border-bottom: none !important;
   padding: 10px 0;
@@ -1254,18 +1299,14 @@ html[data-view='day'] .non-working-day {
 }
 
 html[data-view='day'] .summary {
-  padding: 5px 0;
+  line-height: normal;
   display: flex;
   border-top: 4px solid var(--table-total-border);
   border-bottom: none !important;
 }
 
 html[data-view='day'] .summary .leave-by-text {
-  margin: 2px 20px auto auto;
-}
-
-html[data-view='day'] .summary .leave-by-time {
-  margin-right: auto;
+  margin: auto 20px auto auto;
 }
 
 html[data-view='day'] .month-total-row {
