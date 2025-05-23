@@ -267,11 +267,12 @@ html[data-theme="light"].wait {
   }
 
   .title-header > img {
-    display: none;
+    display: flex;
+    padding-left: 1vh;
   }
   
   .title-header-day > img {
-    display: none;
+    display: flex;
   }
 }
 
