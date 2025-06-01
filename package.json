@@ -63,7 +63,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "6.7.2",
     "bootstrap": "5.3.6",
-    "date-holidays": "3.24.2",
+    "date-holidays": "3.24.3",
     "electron-store": "10.0.1",
     "esm": "3.2.25",
     "i18next": "25.1.1",
