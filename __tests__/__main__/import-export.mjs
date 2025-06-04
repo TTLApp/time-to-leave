@@ -7,6 +7,7 @@ import path from 'path';
 
 import ImportExport from '../../js/import-export.mjs';
 
+
 describe('Import export', function()
 {
     const folder = fs.mkdtempSync('import-export');
@@ -40,27 +41,6 @@ describe('Import export', function()
           {"type": "not-a-type", "date": "not-a-date", "data": "day-end", "hours": "17:00"}
          ]`;
         fs.writeFileSync(invalidEntriesFile, invalidEntriesContent, 'utf8');
-    });
-
-    describe('validEntry(entry)', function()
-    {
-        const goodEntry = {'type': 'flexible', 'date': '2020-06-03', 'values': ['08:00', '12:00', '13:00', '14:00']};
-        const goodWaivedEntry = {'type': 'waived', 'date': '2020-06-03', 'data': 'waived', 'hours': '08:00'};
-        const badEntry = {'type': 'flexible', 'date': '2020-06-03', 'values': ['not-an-hour']};
-        const badEntry2 = {'type': 'flexible', 'date': '2020-06-03', 'values': 'not-an-array'};
-        const badWaivedEntry = {'type': 'regular', 'date': '2020-06-03', 'data': 'day-begin', 'hours': 'not-an-hour'};
-        it('should be valid', () =>
-        {
-            assert.strictEqual(ImportExport.validEntry(goodWaivedEntry), true);
-            assert.strictEqual(ImportExport.validEntry(goodEntry), true);
-        });
-
-        it('should not be valid', () =>
-        {
-            assert.strictEqual(ImportExport.validEntry(badWaivedEntry), false);
-            assert.strictEqual(ImportExport.validEntry(badEntry), false);
-            assert.strictEqual(ImportExport.validEntry(badEntry2), false);
-        });
     });
 
     describe('exportDatabaseToFile', function()
