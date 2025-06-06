@@ -186,7 +186,7 @@ describe('Test Preferences Window', () =>
             changeItemInputValue('enable-prefill-break-time', true);
             checkRenderedItem('enable-prefill-break-time', isCheckBox);
         });
-        
+
         it('Change break-time-interval from 00:30 to 00:15', () =>
         {
             changeItemValue('break-time-interval', '00:15');
@@ -211,13 +211,13 @@ describe('Test Preferences Window', () =>
             checkRenderedItem('notification', isCheckBox);
             checkRenderedItem('repetition', isCheckBox);
         });
-        
+
         it('Change notifications-interval to 10', () =>
         {
             changeItemValue('notifications-interval', '10');
             checkRenderedItem('notifications-interval');
         });
-        
+
         it('Change notifications-interval to 10', () =>
         {
             changeItemValue('notifications-interval', '99');
