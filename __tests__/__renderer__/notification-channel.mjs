@@ -3,10 +3,9 @@
 import '../../__mocks__/jquery.mjs';
 
 import assert from 'assert';
-
 import { searchLeaveByElement } from '../../renderer/notification-channel.js';
 
-describe('searchLeaveByElement', () =>
+describe('searchLeaveByElement()', () =>
 {
     beforeEach(() =>
     {
@@ -14,28 +13,29 @@ describe('searchLeaveByElement', () =>
         $('body').empty();
     });
 
-    it('Should get content of #leave-by', done =>
+    it('Should get content of #leave-by with valid times', done =>
     {
-        $('body').append('<input id="leave-by" value="12:12" />');
-        // Mock window.electronAPI
-        window.electronAPI = {
-            sendLeaveBy: (channel, value) =>
-            {
-                assert.strictEqual(channel, 'RECEIVE_LEAVE_BY');
-                assert.strictEqual(value, '12:12');
-                done();
-            }
-        };
-        searchLeaveByElement();
+        for (let i = 0; i < 2; i++)
+        {
+            $('body').append(`<input id="leave-by" value="${i}${i}:${i}${i}" />`);
+            // Mock window.rendererApi.sendLeaveBy
+            window.rendererApi = {
+                sendLeaveBy: (value) =>
+                {
+                    assert.strictEqual(value, `${i}${i}:${i}${i}`);
+                    done();
+                }
+            };
+            searchLeaveByElement();
+        }
     });
-
-    it('Should handle empty value in #leave-by', done =>
+    it('Should return empty if invalid', done =>
     {
-        $('body').append('<input id="leave-by" value="" />');
-        window.electronAPI = {
-            sendLeaveBy: (channel, value) =>
+        $('body').append('<input id="leave-by" value="Beans" />');
+        // Mock window.rendererApi.sendLeaveBy
+        window.rendererApi = {
+            sendLeaveBy: (value) =>
             {
-                assert.strictEqual(channel, 'RECEIVE_LEAVE_BY');
                 assert.strictEqual(value, '');
                 done();
             }
