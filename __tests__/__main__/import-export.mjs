@@ -7,7 +7,6 @@ import path from 'path';
 
 import ImportExport from '../../js/import-export.mjs';
 
-
 describe('Import export', function()
 {
     const folder = fs.mkdtempSync('import-export');
