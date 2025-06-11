@@ -58,7 +58,7 @@ const calendarApi = {
     getStoreContents: () => getStoreContents(),
     setStoreData: (key, contents) => setStoreData(key, contents),
     deleteStoreData: (key) => deleteStoreData(key),
-    computeAllTimeBalanceUntilPromise: (targetDate) => computeAllTimeBalanceUntilPromise(targetDate),
+    computeAllTimeBalanceUntilPromise: (targetDate) => computeAllTimeBalanceUntilPromise(targetDate)
 };
 
 export {
