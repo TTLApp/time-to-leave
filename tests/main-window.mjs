@@ -44,6 +44,7 @@ describe('Application launch', function()
     {
         // TODO: Investigate why this takes such a long time (10s)
         const window = await electronApp.firstWindow();
+        await window.waitForLoadState('domcontentloaded');
 
         const monthYearLocator = window.locator('#month-year');
         const monthYearText = await monthYearLocator.evaluate(node => node.innerText);
