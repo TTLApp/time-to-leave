@@ -57,7 +57,7 @@ class DayCalendar extends BaseCalendar
         const title = 'Time to Leave';
         return '<div class="title-header-day">'+
                     `<div class="title-header-text">${title}</div>` +
-                    '<img src="../assets/ttl.svg" height="64" width="64">' +
+                    `<img src="../assets/ttl.svg" alt="${title}" height="64" width="64" role="presentation">` +
                     '<div class="title-header-msg"></div>' +
                '</div>' +
                 '<table class="table-header"><tr>' +

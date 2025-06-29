@@ -90,7 +90,7 @@ class MonthCalendar extends BaseCalendar
         const title = 'Time to Leave';
         return '<div class="title-header">'+
                     `<div class="title-header-text">${title}</div>` +
-                    '<img src="../assets/ttl.svg" height="64" width="64">' +
+                    `<img src="../assets/ttl.svg" alt="${title}" height="64" width="64" role="presentation">` +
                     '<div class="title-header-msg"></div>' +
                '</div>' +
                 '<table class="table-header"><tr>' +
@@ -204,7 +204,7 @@ class MonthCalendar extends BaseCalendar
                 `<div class="weekday waiver-trigger" title="${this._getTranslation('$MonthCalendar.add-waiver-day')}">` + getDayAbbr(this._languageData.data, weekDay) + '</div>' +
                 '<div class="day">' +
                     '<span class="day-number"> ' + day + ' </span>' +
-                    '<img src="../assets/waiver.svg" height="16" class="waiver-img">' +
+                    `<img src="../assets/waiver.svg" alt="${this._getTranslation('$MonthCalendar.add-waiver-day')}" height="16" class="waiver-img" role="presentation">` +
                 '</div>' +
                 '<div class="sign-cell minus-sign">' +
                     `<span title="${this._getTranslation('$MonthCalendar.remove-entry')}">-</span>` +
