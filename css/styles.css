@@ -20,7 +20,7 @@ html[data-theme="light"] {
   --input-bground: transparent;
   --table-header-bground: var(--table-bground);
   --table-border: rgb(203 203 203);
-  --table-total-border: rgb(164 158 207);
+  --table-total-border: rgb(117 108 177);
   --table-cell-offtime-bground: rgb(245 245 245);
   --table-cell-offtime-color: rgb(133 133 133);
   --table-cell-total-bground: var(--table-cell-offtime-bground);
