@@ -3,25 +3,43 @@
 import '../../__mocks__/jquery.mjs';
 
 import assert from 'assert';
-
 import { searchLeaveByElement } from '../../renderer/notification-channel.js';
-import IpcConstants from '../../js/ipc-constants.mjs';
 
-describe('Notifications channel',  () =>
+describe('searchLeaveByElement()', () =>
 {
-    it('Should get content of #leave-by element', done =>
+    beforeEach(() =>
     {
-        $('body').append('<input id="leave-by" value="12:12" />');
-        // Way to get the file considered for coverage
-        searchLeaveByElement({
-            sender: {
-                send: (channel, value) =>
+        // Clean up body before each test
+        $('body').empty();
+    });
+
+    it('Should get content of #leave-by with valid times', done =>
+    {
+        for (let i = 0; i < 2; i++)
+        {
+            $('body').append(`<input id="leave-by" value="${i}${i}:${i}${i}" />`);
+            // Mock window.rendererApi.sendLeaveBy
+            window.rendererApi = {
+                sendLeaveBy: (value) =>
                 {
-                    assert.strictEqual(channel, IpcConstants.ReceiveLeaveBy);
-                    assert.strictEqual(value, '12:12');
+                    assert.strictEqual(value, `${i}${i}:${i}${i}`);
                     done();
                 }
+            };
+            searchLeaveByElement();
+        }
+    });
+    it('Should return empty if invalid', done =>
+    {
+        $('body').append('<input id="leave-by" value="Beans" />');
+        // Mock window.rendererApi.sendLeaveBy
+        window.rendererApi = {
+            sendLeaveBy: (value) =>
+            {
+                assert.strictEqual(value, '');
+                done();
             }
-        });
+        };
+        searchLeaveByElement();
     });
 });
