@@ -2,7 +2,7 @@
 
 import assert from 'assert';
 
-import { validateJSON } from '../../js/validate-json.js';
+import { validateJSON } from '../../js/validate-json.mjs';
 
 describe('Validate json', function()
 {
