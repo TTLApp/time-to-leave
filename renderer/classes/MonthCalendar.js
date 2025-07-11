@@ -437,14 +437,20 @@ class MonthCalendar extends BaseCalendar
             removeEntries(element);
         });
 
-        $('.time-cells').mousewheel(function(e, delta)
+        // Use native addEventListener with passive: false to kill warnings
+        $('.time-cells').each(function()
         {
-            const currentScroll = this.scrollLeft;
-            this.scrollLeft -= (delta * 30);
-            if (currentScroll !== this.scrollLeft)
+            this.addEventListener('mousewheel', function(e)
             {
-                e.preventDefault();
-            }
+                // jQuery Mousewheel passes delta as second arg, but native event uses wheelDelta
+                const delta = e.wheelDelta ? e.wheelDelta / 120 : 0;
+                const currentScroll = this.scrollLeft;
+                this.scrollLeft -= (delta * 30);
+                if (currentScroll !== this.scrollLeft)
+                {
+                    e.preventDefault();
+                }
+            }, { passive: false });
         });
     }
 
