@@ -45,7 +45,7 @@
             </div>
             <div class="flex-box">
                 <p data-i18n="$Preferences.hideNonWorkingDay">Hide non-working days (Month View)</p>
-                <label id='non-working-label' class="switch"><input type="checkbox" name="hide-non-working-days"><span class="slider round"></span></label>
+                <label id='non-working-label' class="switch" aria-label="hide non-working days"><input type="checkbox" name="hide-non-working-days"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
                 <p data-i18n="$Preferences.hoursPerDay">Hours per day</p>
@@ -53,7 +53,7 @@
             </div>
             <div class="flex-box">
                 <p><i class="fas fa-utensils"></i><span data-i18n="$Preferences.enablePrefillBreakTime">Enable prefilling of break time</span></p>
-                <label class="switch"><input type="checkbox" id='enable-prefill-break-time' name="enable-prefill-break-time"><span class="slider round"></span></label>
+                <label class="switch"><input type="checkbox" id='enable-prefill-break-time' name="enable-prefill-break-time" aria-label="enable prefilling break times"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
                 <p data-i18n="$Preferences.breakTimeInterval">Break time interval</p>
@@ -66,15 +66,15 @@
             <div class="section-title" data-i18n="$Preferences.notification">Notification</div>
             <div class="flex-box">
                 <p><i class="far fa-bell"></i> <span data-i18n="$Preferences.notification">Notification</span></p>
-                <label class="switch"><input type="checkbox" id="notification" name="notification"><span class="slider round"></span></label>
+                <label class="switch" for="notification" aria-label="notification"><input type="checkbox" id="notification" name="notification"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
                 <p><i class="fas fa-redo"></i> <span data-i18n="$Preferences.allowRecurringNotifications">Allow recurring notifications</span></p>
-                <label class="switch"><input type="checkbox" id="repetition" name="repetition"><span class="slider round"></span></label>
+                <label class="switch" for="repetition" aria-label="Allow recurring notifications" ><input type="checkbox" id="repetition" name="repetition" aria-label="Allow recurring notifications"><span class="slider round"></span></label>
             </div>
             <div class="flex-box mb-2">
                 <p><i class="fas fa-stopwatch"></i><span data-i18n="$Preferences.minutesBetweenNotifications">Minutes between notifications</span></p>
-                <input type="number" name="notifications-interval" id="notifications-interval" min="1" max="30" value="5" required onblur="this.value = this.checkValidity() ? this.value : 5">
+                <input type="number" name="notifications-interval" id="notifications-interval" aria-label="notification interval" min="1" max="30" value="5" required onblur="this.value = this.checkValidity() ? this.value : 5">
             </div>
             
         </section>
@@ -83,20 +83,20 @@
             <div class="section-title" data-i18n="$Preferences.appBehavior">App Behavior</div>
             <div class="flex-box">
                 <p><i class="fas fa-globe"></i><span data-i18n="$Preferences.language">Language</span></p>
-                <select class="selects-right" id="language" name="language">
+                <select class="selects-right" id="language" name="language" aria-label="language">
                 </select>
             </div>
             <div class="flex-box">
                 <p><i class="far fa-play-circle"></i><span data-i18n="$Preferences.startOnLogin">Start on Login</span></p>
-                <label id='start-at-login' class="switch"><input type="checkbox" name="start-at-login"><span class="slider round"></span></label>
+                <label id='start-at-login' class="switch" aria-label="start at login"><input type="checkbox" name="start-at-login"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
                 <p></i><span data-i18n="$Preferences.minimizeToTray">Minimize button should minimize to tray</span></p>
-                <label id='minimize-to-tray' class="switch"><input type="checkbox" name="minimize-to-tray"><span class="slider round"></span></label>
+                <label id='minimize-to-tray' class="switch"><input type="checkbox" name="minimize-to-tray" aria-label="minimize to tray"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
                 <p><span  data-i18n="$Preferences.closeMinimizeToTray">Close button should minimize to tray</span></p>
-                <label id='close-to-tray' class="switch"><input type="checkbox" name="close-to-tray"><span class="slider round"></span></label>
+                <label id='close-to-tray' class="switch" aria-label="close to tray"><input type="checkbox" name="close-to-tray"><span class="slider round"></span></label>
             </div>
         </section>
 
@@ -104,22 +104,22 @@
             <div class="section-title" data-i18n="$Preferences.view">View</div>
             <div class="flex-box">
                 <p><i class="fas fa-calendar-day"></i><span data-i18n="$Preferences.countTodayOnTotals">Count Today in Totals</span></p>
-                <label id='count-today' class="switch"><input type="checkbox" name="count-today"><span class="slider round"></span></label>
+                <label id='count-today' class="switch" aria-label="count today in totals"><input type="checkbox" name="count-today"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
                 <p><i class="fas fa-sign-in-alt"></i><span data-i18n="$Preferences.overallBalanceStart">Overall Balance Start Date</span></p>
-                <label id='overall-balance-start-date'><input type="date" class="date-right" name="overall-balance-start-date"></label>
+                <label id='overall-balance-start-date' aria-label="overall balance start date"><input type="date" class="date-right" name="overall-balance-start-date"></label>
             </div>
             <div class="flex-box">
                 <p><i class="fas fa-eye"></i><span data-i18n="$Preferences.view">View</span></p>
-                <select class="selects-right" id="view" name="view">
+                <select class="selects-right" id="view" name="view" aria-label="default view">
                     <option value="month" data-i18n="$Preferences.month" selected>Month</option>
                     <option value="day" data-i18n="$Preferences.day">Day</option>
                 </select>
             </div>
             <div class="flex-box">
                 <p><i class="fas fa-swatchbook"></i><span data-i18n="$Preferences.themes">Themes</span></p>
-                <select class="selects-right" id="theme" name="theme">
+                <select class="selects-right" id="theme" name="theme" aria-label="theme">
                     <option value="system-default" data-i18n="$Preferences.systemDefault" selected>System Default</option>
                     <option value="light" data-i18n="$Preferences.light">Light</option>
                     <option value="dark" data-i18n="$Preferences.dark">Dark</option>
