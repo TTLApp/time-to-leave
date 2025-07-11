@@ -1,4 +1,3 @@
-/*eslint-disable no-prototype-builtins*/
 'use strict';
 
 import { assert } from 'console';
@@ -6,7 +5,7 @@ import Store from 'electron-store';
 import fs from 'fs';
 
 import { generateKey } from './date-db-formatter.mjs';
-import TimeMath from './time-math.mjs';
+import { validateJSON } from './validate-json.mjs';
 
 /**
  * Returns the database as an array of:
@@ -55,45 +54,8 @@ function _getWaivedEntries()
     return output;
 }
 
-function _validateDate(dateStr)
-{
-    const date = new Date(dateStr);
-    return date instanceof Date && !Number.isNaN(date.getTime());
-}
-
 class ImportExport
 {
-    static validEntry(entry)
-    {
-        if (entry.hasOwnProperty('type') && ['waived', 'flexible'].indexOf(entry.type) !== -1)
-        {
-            const validatedDate = entry.hasOwnProperty('date') && _validateDate(entry.date);
-            let hasExpectedProperties;
-            let validatedTime = true;
-            if (entry.type === 'flexible')
-            {
-                hasExpectedProperties = entry.hasOwnProperty('values') && Array.isArray(entry.values) && entry.values.length > 0;
-                if (hasExpectedProperties)
-                {
-                    for (const value of entry.values)
-                    {
-                        validatedTime &= (TimeMath.validateTime(value) || value === '--:--');
-                    }
-                }
-            }
-            else
-            {
-                hasExpectedProperties = entry.hasOwnProperty('data');
-                validatedTime = entry.hasOwnProperty('hours') && TimeMath.validateTime(entry.hours);
-            }
-            if (hasExpectedProperties && validatedDate && validatedTime)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     static exportDatabaseToFile(filename)
     {
         let information = _getEntries();
@@ -122,7 +84,7 @@ class ImportExport
             for (let i = 0; i < information.length; ++i)
             {
                 const entry = information[i];
-                if (!ImportExport.validEntry(entry))
+                if (!validateJSON([entry]))
                 {
                     failedEntries += 1;
                     continue;
