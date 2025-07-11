@@ -47,20 +47,20 @@
                             </tr>
                             <tr>
                                 <th data-i18n="$WorkdayWaiver.from">From</th>
-                                <td><input id="start-date" type="date"></td>
+                                <td><input id="start-date" type="date" aria-label="starting date"></td>
                                 <th data-i18n="$WorkdayWaiver.to">to</th>
-                                <td><input id="end-date" type="date"></td>
+                                <td><input id="end-date" type="date" aria-label="ending date"></td>
                             </tr>
                             <tr>
                                 <th data-i18n="$WorkdayWaiver.hours">Hours</th>
                                 <td>
-                                    <input data-i18n="[placeholder]$Preferences.hours-per-day;[oninvalid]$Generic.hours-on-invalid" type="text" id="hours" maxlength=5 pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" size=5 required oninput="this.setCustomValidity('');this.reportValidity()" onblur="this.value = this.checkValidity() ? this.value : '08:00';this.setCustomValidity('')">
+                                    <input data-i18n="[placeholder]$Preferences.hours-per-day;[oninvalid]$Generic.hours-on-invalid" type="text" id="hours" aria-label="hours" maxlength=5 pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" size=5 required oninput="this.setCustomValidity('');this.reportValidity()" onblur="this.value = this.checkValidity() ? this.value : '08:00';this.setCustomValidity('')">
                                 </td>
                             </tr>
                             <tr>
                                 <th data-i18n="$WorkdayWaiver.reason">Reason</th>
                                 <td colspan="3">
-                                    <input data-i18n="[placeholder]$WorkdayWaiver.waiver-reason" id="reason" type="text" maxlength="30" size="60">
+                                    <input data-i18n="[placeholder]$WorkdayWaiver.waiver-reason" id="reason" aria-label="reason" type="text" maxlength="30" size="60">
                                 </td>
                             </tr>
                         </tbody>
