@@ -1,6 +1,16 @@
-## 4.0.0
+## 4.0.1 (in development)
 
 <!--- Begin changes - Do not remove -->
+
+<!--- End changes - Do not remove -->
+
+Who built 4.0.1:
+
+<!--- Begin users - Do not remove -->
+
+<!--- End users - Do not remove -->
+
+## 4.0.0
 
 - Change [#935]: Remove support for migrating from fixed into flexible database (introduced in 2.0.0)
 - Enhancement [#646]: Title bar color now follows Windows mode (dark or light)
@@ -31,11 +41,7 @@
 - Translation [#1073]: Improved French (fr-fr) translation.
 - Translation: Time to Leave is now available in Simplified Chinese (zh-CN)!
 
-<!--- End changes - Do not remove -->
-
 Who built 4.0.0:
-
-<!--- Begin users - Do not remove -->
 
 - Atomic-Germ
 - BamButz
@@ -53,8 +59,6 @@ Who built 4.0.0:
 - paulleflon
 - tupaschoal
 - yarrumevets
-
-<!--- End users - Do not remove -->
 
 ## 3.0.0
 

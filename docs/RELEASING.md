@@ -2,9 +2,10 @@ Guide on how to release Time to Leave:
 
 First, make sure the `changelog.md` displays the correct new version (`## X.Y.Z (in development)`).
 
-1. Update `package.json` to the release version (no -dev)
+1. Update `package.json` and `package-lock.json` to the release version (no -dev)
+2. Update `changelog.md` to the release version (remove the "(in development)" and the "do not remove" sections)
 2. `git commit -am "Release vX.Y.Z"`
-3. `git tag -a stable/vX.Y.Z`
+3. `git tag -a stable/vX.Y.Z` you might want to copy and paste the corresponding part of the changelog here for future-keeping.
 4. `git push origin main stable/vX.Y.Z`
 
 This will trigger the release action which creates a draft for the release notes.
@@ -16,7 +17,7 @@ If something goes wrong:
 
 Try again :)
 
-After publushing the release:
+After publishing the release:
 
 1. Bump `changelog.md` to developer version (version + 1)-dev. Use the following template:
 
