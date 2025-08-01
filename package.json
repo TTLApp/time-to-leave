@@ -66,7 +66,7 @@
     "date-holidays": "3.24.4",
     "electron-store": "10.1.0",
     "esm": "3.2.25",
-    "i18next": "25.3.0",
+    "i18next": "25.3.2",
     "i18next-fs-backend": "2.6.0",
     "is-online": "11.0.0",
     "jquery": "3.7.1",
