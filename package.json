@@ -48,7 +48,7 @@
     "electronmon": "2.0.3",
     "electron-mocha": "13.1.0",
     "electron-winstaller": "5.4.0",
-    "eslint": "9.30.0",
+    "eslint": "9.32.0",
     "globals": "16.3.0",
     "husky": "9.1.7",
     "jsdom": "26.1.0",
