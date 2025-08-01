@@ -1,4 +1,4 @@
-## 3.0.1 (in development)
+## 4.0.0
 
 <!--- Begin changes - Do not remove -->
 
@@ -33,7 +33,7 @@
 
 <!--- End changes - Do not remove -->
 
-Who built 3.0.1:
+Who built 4.0.0:
 
 <!--- Begin users - Do not remove -->
 
