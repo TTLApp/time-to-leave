@@ -31,6 +31,11 @@ function showDialog(dialogOptions)
     return ipcRenderer.invoke(IpcConstants.ShowDialog, dialogOptions);
 }
 
+function sendLeaveBy(leaveByValue)
+{
+    return ipcRenderer.send(IpcConstants.ReceiveLeaveBy, leaveByValue);
+}
+
 const rendererApi = {
     getLanguageDataPromise,
     getOriginalUserPreferences,
@@ -38,6 +43,7 @@ const rendererApi = {
     notifyWindowReadyToShow,
     showDay,
     showDialog,
+    sendLeaveBy
 };
 
 export {
