@@ -877,6 +877,7 @@ input[type="number"] {
   background-image: var(--delete-icon);
   background-repeat: no-repeat;
   background-position: center;
+  margin: 0.1em 0;
 }
 
 /** Flexible view related styles **/
