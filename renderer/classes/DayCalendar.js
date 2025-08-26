@@ -63,7 +63,7 @@ class DayCalendar extends BaseCalendar
                 '<table class="table-header"><tr>' +
                     '<th class="th but-switch-view" colspan="2">' + switchView + '</th>' +
                     '<th class="th but-left">' + leftBut + '</th>' +
-                    '<th class="th th-month-name" colspan="18"><div class="div-th-month-name"><span id="header-date"></span></span><input type="date" id="input-calendar-date" required></div></th>' +
+                    '<th class="th th-month-name" colspan="18"><div class="div-th-month-name"><span id="header-date"></span></span><input type="date" id="input-calendar-date" aria-label="today\'s date" required></div></th>' +
                     '<th class="th but-right">' + rightBut + '</th>' +
                     '<th class="th but-today" colspan="2">' + todayBut + '</th>' +
                 '</tr></table>';
@@ -89,14 +89,14 @@ class DayCalendar extends BaseCalendar
      */
     _getSummaryRowCode()
     {
-        const leaveByCode = '<input type="text" id="leave-by" size="5" disabled>';
+        const leaveByCode = '<input type="text" id="leave-by" size="5" aria-label="you should leave by" disabled>';
         const summaryStr = this._getTranslation('$DayCalendar.leave-by');
         let code = '<div class="summary" id="summary-unfinished-day">' +
                      '<div class="leave-by-text">' + summaryStr + '</div>' +
                      '<div id="leave-by-time">' + leaveByCode + '</div>' +
                    '</div>';
         const finishedSummaryStr = this._getTranslation('$BaseCalendar.day-done-balance');
-        const dayBalance = '<input type="text" id="leave-day-balance" size="5" disabled>';
+        const dayBalance = '<input type="text" id="leave-day-balance" size="5" aria-label="total hours worked today" disabled>';
         code += '<div class="summary hidden" id="summary-finished-day">' +
                     '<div class="leave-by-text">' + finishedSummaryStr + '</div>' +
                     '<div id="leave-by-time">' + dayBalance + '</div>' +
@@ -650,8 +650,8 @@ class DayCalendar extends BaseCalendar
             return '<div class="row-entry-pair">' +
                     `<div class="th th-label first-group">${translatedEntry} #` + entryIndex + '</div>' +
                     '<div class="second-group">' +
-                        '<input type="time" data-date="' + dateKey + '">' +
-                        '<input type="time" data-date="' + dateKey + '">' +
+                        '<input type="time" aria-label="time clocked in" data-date="' + dateKey + '">' +
+                        '<input type="time" aria-label="time clocked out" data-date="' + dateKey + '">' +
                     '</div>' +
                     '<div class="third-group">' +
                         (shouldPrintMinusSign ? minusSignCode : '') +
