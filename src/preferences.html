@@ -28,19 +28,19 @@
         <section>
             <div class="section-title" data-i18n="$Preferences.workingDays">Working days</div>
             <div class="weekdays-selector">
-                <input type="checkbox" id="sunday" name="working-days-sunday" class="weekday" />
+                <input type="checkbox" id="sunday" name="working-days-sunday" class="weekday" aria-label="$Preferences.sun"/>
                 <label for="sunday" data-i18n="$Preferences.sun">Sun</label>
-                <input type="checkbox" id="monday" name="working-days-monday" class="weekday" />
+                <input type="checkbox" id="monday" name="working-days-monday" class="weekday" aria-label="$Preferences.mon"/>
                 <label for="monday" data-i18n="$Preferences.mon">Mon</label>
-                <input type="checkbox" id="tuesday" name="working-days-tuesday" class="weekday" />
+                <input type="checkbox" id="tuesday" name="working-days-tuesday" class="weekday" aria-label="$Preferences.tue"/>
                 <label for="tuesday" data-i18n="$Preferences.tue">Tue</label>
-                <input type="checkbox" id="wednesday" name="working-days-wednesday" class="weekday" />
+                <input type="checkbox" id="wednesday" name="working-days-wednesday" class="weekday" aria-label="$Preferences.wed"/>
                 <label for="wednesday" data-i18n="$Preferences.wed">Wed</label>
-                <input type="checkbox" id="thursday" name="working-days-thursday" class="weekday" />
+                <input type="checkbox" id="thursday" name="working-days-thursday" class="weekday" aria-label="$Preferences.thu"/>
                 <label for="thursday" data-i18n="$Preferences.thu">Thu</label>
-                <input type="checkbox" id="friday" name="working-days-friday" class="weekday" />
+                <input type="checkbox" id="friday" name="working-days-friday" class="weekday" aria-label="$Preferences.fri"/>
                 <label for="friday" data-i18n="$Preferences.fri">Fri</label>
-                <input type="checkbox" id="saturday" name="working-days-saturday" class="weekday" />
+                <input type="checkbox" id="saturday" name="working-days-saturday" class="weekday" aria-label="$Preferences.sat"/>
                 <label for="saturday" data-i18n="$Preferences.sat">Sat</label>
             </div>
             <div class="flex-box">
@@ -49,7 +49,7 @@
             </div>
             <div class="flex-box">
                 <p data-i18n="$Preferences.hoursPerDay">Hours per day</p>
-                <input data-i18n="[placeholder]$Preferences.hours-per-day;[oninvalid]$Generic.hours-on-invalid" title="X, XX, XX.X, X.XX, X:XX, XX.XX, XX:XX" type="text" name="hours-per-day" id="hours-per-day" maxlength=5 pattern="^((0|1)?[0-9]|2[0-3])(\.[0-9][0-9]?|:[0-5][0-9])?$" value="08:00" size=5 required>
+                <input data-i18n="[placeholder]$Preferences.hours-per-day;[oninvalid]$Generic.hours-on-invalid" title="X, XX, XX.X, X.XX, X:XX, XX.XX, XX:XX" type="text" name="hours-per-day" id="hours-per-day" maxlength=5 pattern="^((0|1)?[0-9]|2[0-3])(\.[0-9][0-9]?|:[0-5][0-9])?$" value="08:00" size=5 aria-label="working hours per day" required>
             </div>
             <div class="flex-box">
                 <p><i class="fas fa-utensils"></i><span data-i18n="$Preferences.enablePrefillBreakTime">Enable prefilling of break time</span></p>
@@ -57,7 +57,7 @@
             </div>
             <div class="flex-box">
                 <p data-i18n="$Preferences.breakTimeInterval">Break time interval</p>
-                <input data-i18n="[placeholder]$Preferences.break-time-interval" title="X, XX, XX.X, X.XX, X:XX, XX.XX, XX:XX" type="text" name="break-time-interval" id="break-time-interval" maxlength=5 pattern="^((0|1)?[0-9]|2[0-3])(\.[0-9][0-9]?|:[0-5][0-9])?$" value="00:30" size=5 required">
+                <input data-i18n="[placeholder]$Preferences.break-time-interval" title="X, XX, XX.X, X.XX, X:XX, XX.XX, XX:XX" type="text" name="break-time-interval" id="break-time-interval" maxlength=5 pattern="^((0|1)?[0-9]|2[0-3])(\.[0-9][0-9]?|:[0-5][0-9])?$" value="00:30" size=5 aria-label="interval between breaks" required">
             </div>
             
         </section>
@@ -66,7 +66,7 @@
             <div class="section-title" data-i18n="$Preferences.notification">Notification</div>
             <div class="flex-box">
                 <p><i class="far fa-bell"></i> <span data-i18n="$Preferences.notification">Notification</span></p>
-                <label class="switch" for="notification" aria-label="notification"><input type="checkbox" id="notification" name="notification"><span class="slider round"></span></label>
+                <label class="switch" for="notification" aria-label="notification"><input type="checkbox" id="notification" name="notification" aria-label="Enable notifications"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
                 <p><i class="fas fa-redo"></i> <span data-i18n="$Preferences.allowRecurringNotifications">Allow recurring notifications</span></p>
@@ -88,7 +88,7 @@
             </div>
             <div class="flex-box">
                 <p><i class="far fa-play-circle"></i><span data-i18n="$Preferences.startOnLogin">Start on Login</span></p>
-                <label id='start-at-login' class="switch" aria-label="start at login"><input type="checkbox" name="start-at-login"><span class="slider round"></span></label>
+                <label id='start-at-login' class="switch" aria-label="start at login"><input type="checkbox" name="start-at-login"><span class="slider round" aria-label="Start Time to Leave on login"></span></label>
             </div>
             <div class="flex-box">
                 <p></i><span data-i18n="$Preferences.minimizeToTray">Minimize button should minimize to tray</span></p>
@@ -96,7 +96,7 @@
             </div>
             <div class="flex-box">
                 <p><span  data-i18n="$Preferences.closeMinimizeToTray">Close button should minimize to tray</span></p>
-                <label id='close-to-tray' class="switch" aria-label="close to tray"><input type="checkbox" name="close-to-tray"><span class="slider round"></span></label>
+                <label id='close-to-tray' class="switch" aria-label="close to tray"><input type="checkbox" name="close-to-tray" aria-label="close to tray"><span class="slider round"></span></label>
             </div>
         </section>
 
@@ -104,11 +104,11 @@
             <div class="section-title" data-i18n="$Preferences.view">View</div>
             <div class="flex-box">
                 <p><i class="fas fa-calendar-day"></i><span data-i18n="$Preferences.countTodayOnTotals">Count Today in Totals</span></p>
-                <label id='count-today' class="switch" aria-label="count today in totals"><input type="checkbox" name="count-today"><span class="slider round"></span></label>
+                <label id='count-today' class="switch" aria-label="count today in totals"><input type="checkbox" name="count-today" aria-label="count today in totals"><span class="slider round"></span></label>
             </div>
             <div class="flex-box">
                 <p><i class="fas fa-sign-in-alt"></i><span data-i18n="$Preferences.overallBalanceStart">Overall Balance Start Date</span></p>
-                <label id='overall-balance-start-date' aria-label="overall balance start date"><input type="date" class="date-right" name="overall-balance-start-date"></label>
+                <label id='overall-balance-start-date' aria-label="overall balance start date"><input type="date" class="date-right" name="overall-balance-start-date" aria-label="overall balance start date"></label>
             </div>
             <div class="flex-box">
                 <p><i class="fas fa-eye"></i><span data-i18n="$Preferences.view">View</span></p>
