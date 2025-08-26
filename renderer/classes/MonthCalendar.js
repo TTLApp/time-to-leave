@@ -90,7 +90,7 @@ class MonthCalendar extends BaseCalendar
         const title = 'Time to Leave';
         return '<div class="title-header">'+
                     `<div class="title-header-text">${title}</div>` +
-                    `<img src="../assets/ttl.svg" alt="${title}" height="64" width="64" role="presentation">` +
+                    `<img src="../assets/ttl.svg" alt="${title} logo" height="64" width="64" aria-hidden>` +
                     '<div class="title-header-msg"></div>' +
                '</div>' +
                 '<table class="table-header"><tr>' +
