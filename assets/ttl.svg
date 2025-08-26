@@ -2,19 +2,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1400" viewBox="0 0 370.41666 370.41668" version="1.1" id="Time-to-Leave">
   <desc>Official logo for the Time-to-Leave app.</desc>
   <title>Time to Leave</title>
-  <defs id="defs1961">
-    <rect x="261.56845" y="301.95734" width="4.2763124" height="22.45064" id="rect1252-0-9"/>
-    <rect x="261.56845" y="301.95734" width="4.2763124" height="22.45064" id="rect2539"/>
-    <clipPath clipPathUnits="userSpaceOnUse" id="clipPath952-2">
-      <rect style="opacity:0.999;fill:#ff0000;stroke:none;stroke-width:5.78663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="rect954-8" width="15.869724" height="26.607813" x="-149.08725" y="-73.323685"/>
-    </clipPath>
-  </defs>
   <g id="layer1">
     <g id="g1096" transform="translate(22.854396,-39.265177)">
       <g id="g1100">
         <circle style="opacity:0.999;fill:#ffffff;stroke:none;stroke-width:34.6492;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="circle2563" cx="161.57236" cy="224.47229" r="141.82341"/>
         <g id="g2584" transform="matrix(3.4649203,0,0,3.4649203,-15222.02,2168.8387)">
-          <path id="path2569" style="stroke-width:0.810474" d="m 4447.5011,-565.77271 v 0.003 l -9.4921,8.53425 2.2738,2.52891 c 1.1921,1.32592 3.2514,1.43454 4.6376,0.18822 l 10.5465,-9.48233 c 1.3862,-1.24632 1.4957,-3.30636 0.2493,-4.69255 -1.2463,-1.38619 -3.3063,-1.49565 -4.6925,-0.24933 z"/>
           <path d="m -136.31166,-47.985794 h 13.14719 c 1.72792,0 3.08019,-1.352283 3.08019,-3.0802 0,-1.727917 -1.35227,-3.0802 -3.08019,-3.0802 h -10.067 v -15.851762 c 0,-1.72791 -1.35228,-3.0802 -3.08019,-3.0802 -1.72792,0 -3.08021,1.35229 -3.08021,3.0802 v 19.007088 c 0,1.652791 1.35229,3.005074 3.08021,3.005074 z" id="path2571" style="stroke-width:0.751269" clip-path="url(#clipPath952-2)" transform="matrix(0.80223198,-0.72128291,0.72128291,0.80223198,4586.6211,-616.8637)"/>
         </g>
         <path id="circle2587" style="color: rgb(0, 0, 0); font-style: normal; font-variant-emoji: normal; font-weight: normal; font-width: normal; font-size: medium; line-height: normal; font-family: sans-serif; font-variant-ligatures: normal; font-variant-position: normal; font-variant-caps: normal; font-variant-numeric: normal; font-variant-alternates: normal; font-variant-east-asian: normal; font-feature-settings: normal; font-variation-settings: normal; text-indent: 0px; text-align: start; text-decoration: none; text-decoration-style: solid; text-decoration-color: rgb(0, 0, 0); letter-spacing: normal; word-spacing: normal; text-transform: none; writing-mode: lr-tb; direction: ltr; text-orientation: mixed; dominant-baseline: auto; baseline-shift: baseline; text-anchor: start; white-space: normal; shape-margin: 0px; inline-size: 0px; clip-rule: nonzero; display: inline; overflow: visible; opacity: 0.999; isolation: auto; mix-blend-mode: normal; color-interpolation: srgb; color-interpolation-filters: linearrgb; vector-effect: none; fill-opacity: 1; fill-rule: nonzero; stroke: none; stroke-width: 3.94418; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 4; stroke-dasharray: none; stroke-dashoffset: 0px; stroke-opacity: 1; image-rendering: auto; shape-rendering: auto; text-rendering: auto; stop-color: rgb(0, 0, 0); fill: rgb(117, 108, 177);" d="m 161.57572,43.313034 c -99.818382,0 -181.164017,81.338556 -181.164017,181.157076 0,99.81865 81.338297,181.16388 181.157077,181.16388 99.81851,0 181.16402,-81.34523 181.16402,-181.16388 0,-15.65284 -2.00785,-30.84693 -5.76594,-45.3484 -6.38824,-20.89141 -44.67776,-10.51537 -39.13589,6.42897 3.33942,13.97921 5.65474,22.85971 5.46145,38.91943 -0.9311,77.25596 -63.22096,141.72338 -141.72364,141.72338 -78.502933,0 -141.71657,-63.22058 -141.71657,-141.72338 0,-78.50267 63.220964,-141.716445 141.72351,-141.716573 H 344.29617 V 43.313034 Z"/>
