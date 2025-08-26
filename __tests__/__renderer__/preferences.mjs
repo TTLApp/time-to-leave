@@ -217,7 +217,7 @@ describe('Test Preferences Window', () =>
             changeItemValue('notifications-interval', '10');
             checkRenderedItem('notifications-interval');
         });
-        
+
         it('Change notifications-interval to 10', () =>
         {
             changeItemValue('notifications-interval', '99');
