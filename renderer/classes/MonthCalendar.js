@@ -90,7 +90,7 @@ class MonthCalendar extends BaseCalendar
         const title = 'Time to Leave';
         return '<div class="title-header">'+
                     `<div class="title-header-text">${title}</div>` +
-                    '<img src="../assets/ttl.svg" height="64" width="64">' +
+                    `<img src="../assets/ttl.svg" alt="${title} logo" height="64" width="64" aria-hidden>` +
                     '<div class="title-header-msg"></div>' +
                '</div>' +
                 '<table class="table-header"><tr>' +
@@ -118,7 +118,7 @@ class MonthCalendar extends BaseCalendar
      */
     _getSummaryRowCode()
     {
-        const leaveByCode = '<input type="text" id="leave-by" size="5" disabled>';
+        const leaveByCode = '<input type="text" id="leave-by" size="5" aria-label="leave by" disabled>';
         return  '<div class="summary" id="summary-unfinished-day">' +
                     `<div class="leave-by-text" colspan="7">${this._getTranslation('$MonthCalendar.leave-by')}</div>` +
                     '<div id="leave-by-time">' +
@@ -144,7 +144,7 @@ class MonthCalendar extends BaseCalendar
                     `<div class="month-total-text" title="${this._getTranslation('$MonthCalendar.working-days-title')}">${this._getTranslation('$MonthCalendar.working-days')}</div>` +
                     `<div class="month-total-time" title="${this._getTranslation('$MonthCalendar.working-days-title')}"><span id="month-working-days"></span></div>` +
                     `<div class="month-total-text" title="${this._getTranslation('$BaseCalendar.month-balance-title')}">${this._getTranslation('$BaseCalendar.month-balance')}</div>` +
-                    `<div class="month-total-time" title="${this._getTranslation('$BaseCalendar.month-balance-title')}"><input type="text" id="month-balance"     size="8" disabled></div>` +
+                    `<div class="month-total-time" title="${this._getTranslation('$BaseCalendar.month-balance-title')}"><input type="text" id="month-balance" size="8" aria-label="total hours this month" disabled></div>` +
                     `<div class="month-total-text" title="${this._getTranslation('$BaseCalendar.overall-balance-title')}">${this._getTranslation('$BaseCalendar.overall-balance')}</div>` +
                     `<div class="month-total-time" title="${this._getTranslation('$BaseCalendar.overall-balance-title')}"><input type="text" id="overall-balance" size="8" placeholder="..." disabled></div>` +
                 '</div>';
@@ -159,7 +159,7 @@ class MonthCalendar extends BaseCalendar
                     '</div>';
         }
         return  '<div class="row-time">' +
-                    '<div class="ti" colspan="4"><input type="time" data-date="' + dateKey + '"></div>' +
+                    '<div class="ti" colspan="4"><input type="time" aria-label="time entry" data-date="' + dateKey + '"></div>' +
                 '</div>';
     }
 
@@ -204,7 +204,7 @@ class MonthCalendar extends BaseCalendar
                 `<div class="weekday waiver-trigger" title="${this._getTranslation('$MonthCalendar.add-waiver-day')}">` + getDayAbbr(this._languageData.data, weekDay) + '</div>' +
                 '<div class="day">' +
                     '<span class="day-number"> ' + day + ' </span>' +
-                    '<img src="../assets/waiver.svg" height="16" class="waiver-img">' +
+                    `<img src="../assets/waiver.svg" alt="${this._getTranslation('$MonthCalendar.add-waiver-day')}" height="16" class="waiver-img" role="presentation">` +
                 '</div>' +
                 '<div class="sign-cell minus-sign">' +
                     `<span title="${this._getTranslation('$MonthCalendar.remove-entry')}">-</span>` +
