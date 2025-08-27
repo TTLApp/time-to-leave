@@ -21,8 +21,8 @@ html[data-theme="light"] {
   --table-header-bground: var(--table-bground);
   --table-border: rgb(203 203 203);
   --table-total-border: rgb(117 108 177);
-  --table-cell-offtime-bground: rgb(245 245 245);
-  --table-cell-offtime-color: rgb(133 133 133);
+  --table-cell-offtime-bground: rgb(230 230 230);
+  --table-cell-offtime-color: rgb(90 90 90);
   --table-cell-total-bground: var(--table-cell-offtime-bground);
   --table-cell-total-color: var(--table-cell-offtime-color);
   --table-header-label-bground: var(--table-bground);
@@ -58,15 +58,15 @@ html[data-theme="dark"] {
   --table-header-bground: var(--table-bground);
   --table-border: rgb(90 90 90);
   --input-bground: transparent;
-  --table-total-border: rgb(95 92 121);
-  --table-cell-offtime-bground: rgb(71 71 71);
-  --table-cell-offtime-color: rgb(151 151 151);
+  --table-total-border: rgb(117 108 177);
+  --table-cell-offtime-bground: rgb(75 75 75);
+  --table-cell-offtime-color: rgb(200 200 200);
   --table-cell-total-bground: var(--table-cell-offtime-bground);
   --table-cell-total-color: var(--table-cell-offtime-color);
   --table-header-label-bground: var(--table-bground);
   --table-header-label-shadow: var(--table-border);
-  --error: red;
-  --punch-bground: rgb(164 158 207);
+  --error: rgb(255 90 90);
+  --punch-bground: var(--table-total-border);
   --punch-color: white;
   --punch-disable-bground: rgb(134 134 134);
   --slider-background-color: var(--table-cell-offtime-bground);
@@ -153,7 +153,11 @@ html[data-theme="cadent-star"] ::-webkit-scrollbar-track {
 }
 
 html[data-theme="dark"] .text-danger {
-  color: rgb(226 93 90);
+  color: var(--error) !important;
+}
+
+html[data-theme="dark"] .text-success {
+  color: rgb(0 165 0) !important;
 }
 
 html[data-theme="cadent-star"] .text-danger {
