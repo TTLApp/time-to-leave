@@ -25,7 +25,7 @@
             <p class="header-help" data-i18n="$WorkdayWaiver.header-help">
                 Changes take effect when closing this window</p>
         </div>
-        <ul class="nav nav-tabs window-tab" role="tablist">
+        <ul class="nav nav-tabs window-tab" role="navigation">
             <li class="nav-item">
                 <a class="nav-link active" id="add-waiver-tab" data-bs-toggle="tab" data-bs-target="#add-waiver" href="#add-waiver" role="tab" aria-controls="add-waiver" aria-selected="true" data-i18n="$WorkdayWaiver.add-waiver">Add Waiver</a>
             </li>
@@ -38,28 +38,28 @@
             <div class="tab-pane fade show active" id="add-waiver" role="tabpanel" aria-labelledby="add-waiver-tab">
                 <form>
                     <table>
-                        <caption hidden>Add a workday waiver</caption>
+                        <caption data-i18n="$WorkdayWaiver.add-waiver" hidden>Add Waiver</caption>
                         <tbody>
                             <tr>
                                 <td></td>
-                                <th scope="col" data-i18n="$WorkdayWaiver.start-date">Start date</th>
+                                <th data-i18n="$WorkdayWaiver.start-date">Start date</th>
                                 <td></td>
-                                <th scope="col" data-i18n="$WorkdayWaiver.end-date">End date</th>
+                                <th data-i18n="$WorkdayWaiver.end-date">End date</th>
                             </tr>
                             <tr>
-                                <th scope="row" data-i18n="$WorkdayWaiver.from">From</th>
+                                <th data-i18n="$WorkdayWaiver.from">From</th>
                                 <td><input id="start-date" type="date" aria-label="starting date"></td>
-                                <th scope="row" data-i18n="$WorkdayWaiver.to">to</th>
+                                <th data-i18n="$WorkdayWaiver.to">to</th>
                                 <td><input id="end-date" type="date" aria-label="ending date"></td>
                             </tr>
                             <tr>
-                                <th scope="row" data-i18n="$WorkdayWaiver.hours">Hours</th>
+                                <th data-i18n="$WorkdayWaiver.hours">Hours</th>
                                 <td>
                                     <input data-i18n="[placeholder]$Preferences.hours-per-day;[oninvalid]$Generic.hours-on-invalid" type="text" id="hours" aria-label="hours" maxlength=5 pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" size=5 required oninput="this.setCustomValidity('');this.reportValidity()" onblur="this.value = this.checkValidity() ? this.value : '08:00';this.setCustomValidity('')">
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row" data-i18n="$WorkdayWaiver.reason">Reason</th>
+                                <th data-i18n="$WorkdayWaiver.reason">Reason</th>
                                 <td colspan="3">
                                     <input data-i18n="[placeholder]$WorkdayWaiver.waiver-reason" id="reason" aria-label="reason" type="text" maxlength="30" size="60">
                                 </td>
@@ -75,36 +75,35 @@
             <div class="tab-pane fade" id="holiday" role="tabpanel" aria-labelledby="holiday-tab">
                 <form>
                     <table>
-                        <caption hidden>Holidays</caption>
+                        <caption data-i18n="$WorkdayWaiver.nav-holiday" hidden>Holiday</caption>
                         <tbody>
                             <tr id="holiday-year">
-                                <th scope="row" data-i18n="$WorkdayWaiver.year">Year</th>
+                                <th data-i18n="$WorkdayWaiver.year">Year</th>
                                 <td><select id="year" name="year"></select></td>
                             </tr>
                             <tr id="holiday-country">
-                                <th scope="row" data-i18n="$WorkdayWaiver.country">Country:</th>
+                                <th data-i18n="$WorkdayWaiver.country">Country:</th>
                                 <td><select id="country" name="country"></select></td>
                             </tr>
                             <tr id="holiday-state">
-                                <th scope="row" data-i18n="$WorkdayWaiver.state">State:</th>
+                                <th data-i18n="$WorkdayWaiver.state">State:</th>
                                 <td><select id="state" name="state"></select></td>
                             </tr>
                             <tr id="holiday-city">
-                                <th scope="row" data-i18n="$WorkdayWaiver.city">City:</th>
+                                <th data-i18n="$WorkdayWaiver.city">City:</th>
                                 <td><select id="city" name="city"></select></td>
                             </tr>
                         </tbody>
                     </table>
                     <hr>
                     <table id="holiday-list-table">
-                        <caption hidden>Holiday list</caption>
                         <thead>
                             <tr>
-                                <th scope="col" class="list-date-header" data-i18n="$WorkdayWaiver.date">Date</th>
-                                <th scope="col" data-i18n="$WorkdayWaiver.holiday">Holiday</th>
-                                <th scope="col" data-i18n="$WorkdayWaiver.on-working-day">On working day</th>
-                                <th scope="col" data-i18n="$WorkdayWaiver.conflicts">Conflicts?</th>
-                                <th scope="col" data-i18n="$WorkdayWaiver.import">Import?</th>
+                                <th class="list-date-header" data-i18n="$WorkdayWaiver.date">Date</th>
+                                <th data-i18n="$WorkdayWaiver.holiday">Holiday</th>
+                                <th data-i18n="$WorkdayWaiver.on-working-day">On working day</th>
+                                <th data-i18n="$WorkdayWaiver.conflicts">Conflicts?</th>
+                                <th data-i18n="$WorkdayWaiver.import">Import?</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -127,13 +126,12 @@
         <section>
             <div class="section-title" data-i18n="$WorkdayWaiver.waived-workday-list">Waived workday list</div>
             <table id="waiver-list-table">
-                <caption hidden>Waived workday list</caption>
                 <thead>
                     <tr>
                         <td></td>
-                        <th scope="col" class="list-date-header" data-i18n="$WorkdayWaiver.day">Day</th>
-                        <th scope="col" data-i18n="$WorkdayWaiver.waiver-reason">Waiver Reason</th>
-                        <th scope="col" data-i18n="$WorkdayWaiver.hours-waived">Hours Waived</th>
+                        <th class="list-date-header" data-i18n="$WorkdayWaiver.day">Day</th>
+                        <th data-i18n="$WorkdayWaiver.waiver-reason">Waiver Reason</th>
+                        <th data-i18n="$WorkdayWaiver.hours-waived">Hours Waived</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
