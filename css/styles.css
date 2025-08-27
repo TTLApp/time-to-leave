@@ -93,18 +93,18 @@ html[data-theme="cadent-star"] {
   --page-color: black;
   --table-bground: rgb(255 238 227 / 30%);
   --input-bground: transparent;
-  --table-header-bground: rgb(255 238 227 / 90%);
+  --table-header-bground: transparent;
   --table-border: #28292f;
   --table-total-border: rgb(121 121 121);
   --table-cell-offtime-bground: rgb(0 0 0 / 10%);
   --table-cell-offtime-color: rgb(0 0 0 / 50%);
   --table-cell-total-bground: transparent;
   --table-cell-total-color: var(--table-cell-offtime-color);
-  --table-header-label-bground: rgb(255 238 227 / 90%);
+  --table-header-label-bground: transparent;
   --table-header-label-shadow: var(--table-border);
   --error: red;
-  --punch-bground: var(--table-total-border);
-  --punch-color: rgb(228 228 228);
+  --punch-bground: rgb(117 108 177);
+  --punch-color: white;
   --punch-disable-bground: rgb(134 134 134);
   --slider-background-color: rgb(220 220 220);
   --slider-checked-color: var(--table-total-border);
@@ -742,6 +742,10 @@ input[type="number"] {
 #preferences-window .weekdays-selector input[type="checkbox"]:checked + label {
   background: var(--weekday-selected);
   color: #fff;
+}
+
+html[data-theme="cadent-star"] #preferences-window .weekdays-selector input[type="checkbox"]:checked + label {
+  background: #707070;
 }
 
 #preferences-window input[type="text"]:invalid {
