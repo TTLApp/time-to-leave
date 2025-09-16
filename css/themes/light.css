@@ -1,0 +1,59 @@
+/* Light */
+
+html,
+html[data-theme="light"] {
+
+   /* Purple palette */
+  --purple-base: rgb(117 108 177);
+  --purple-light: rgb(147 138 207);
+  --purple-lighter: rgb(177 168 237);
+  --purple-dark: rgb(87 78 147);
+  --purple-darker: rgb(57 48 117);
+
+  /* Base Colors */
+  --page-bground: white;
+  --page-color: black;
+  
+  /* Table Colors */
+  --table-bground: white;
+  --input-bground: transparent;
+  --table-header-bground: var(--table-bground);
+  --table-border: rgb(203 203 203);
+  --table-total-border: var(--purple-base);
+  --table-cell-offtime-bground: rgb(245 245 245);
+  --table-cell-offtime-color: var(--purple-darker);
+  --table-cell-total-bground: var(--table-cell-offtime-bground);
+  --table-cell-total-color: var(--purple-darker);
+  --table-header-label-bground: var(--table-bground);
+  --table-header-label-shadow: var(--table-border);
+  
+  /* Status Colors */
+  --error: rgb(220 53 69);
+  --reset-color: rgb(220 53 69);
+  --punch-bground: var(--purple-base);
+  --punch-color: white;
+  --punch-invert: 1;
+  --punch-disable-bground: rgb(134 134 134);
+  
+  /* Control Colors */
+  --slider-background-color: rgb(220 220 220);
+  --slider-checked-color: var(--purple-base);
+  --slider-unchecked-color: white;
+  --weekday-background: var(--slider-background-color);
+  --weekday-selected: var(--purple-base);
+  
+  /* System States */
+  --svg-invert: 0;
+  --disabled-input-bground: rgb(175 175 175);
+  --title-color: var(--purple-darker);
+  --input-border: var(--purple-dark);
+  --tab-font-color: var(--purple-darker);
+  --tab-waiver-color: white;
+  --tab-waiver-border: var(--purple-light);
+  --outline: 2px dashed #7579e7;
+}
+
+  /* Theme Specific Overrides */
+html[data-theme="light"].wait {
+  filter: brightness(0.75);
+}

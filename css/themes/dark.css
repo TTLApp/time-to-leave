@@ -1,0 +1,62 @@
+/* Dark Theme */
+
+html[data-theme="dark"] {
+   /* Purple palette (same as light theme) */
+  --purple-base: rgb(117 108 177);
+  --purple-light: rgb(147 138 207);
+  --purple-lighter: rgb(177 168 237);
+  --purple-dark: rgb(87 78 147);
+  --purple-darker: rgb(57 48 117);
+
+  /* Base Colors */
+  --page-bground: rgb(39 39 39);
+  --page-color: white;
+  
+  /* Table Colors */
+  --table-bground: rgb(39 39 39);
+  --table-header-bground: var(--table-bground);
+  --table-border: rgb(90 90 90);
+  --input-bground: transparent;
+  --table-total-border: var(--purple-base);
+  --table-cell-offtime-bground: rgb(71 71 71);
+  --table-cell-offtime-color: var(--purple-lighter);
+  --table-cell-total-bground: var(--table-cell-offtime-bground);
+  --table-cell-total-color: var(--purple-lighter);
+  --table-header-label-bground: var(--table-bground);
+  --table-header-label-shadow: var(--table-border);
+  
+  /* Status Colors */
+  --error: rgb(255 99 109);
+  --punch-bground: var(--purple-base);
+  --punch-color: white;
+  --punch-invert: 1;
+  --punch-disable-bground: rgb(134 134 134);
+  --slider-background-color: var(--table-cell-offtime-bground);
+  --slider-checked-color: var(--purple-base);
+  --slider-unchecked-color: white;
+  --weekday-background: var(--slider-background-color);
+  --weekday-selected: var(--purple-base);
+  
+  /* System Colors
+   * Invert SVGs, darker disabled inputs, lighter titles
+   */
+  --svg-invert: 1;
+  --disabled-input-bground: rgb(80 80 80);
+  --title-color: var(--purple-lighter);
+  --input-border: var(--purple-light);
+  --tab-font-color: var(--purple-lighter);
+  --tab-waiver-color: var(--purple-lighter);
+  --tab-waiver-border: var(--purple-base);
+  
+  /* Focus */
+  --outline: 2px dashed white;
+}
+
+/* Theme Specific Overrides */
+html[data-theme="dark"] .text-danger {
+  color: rgb(226 93 90);
+}
+
+html[data-theme="dark"].wait {
+  filter: opacity(0.95);
+}

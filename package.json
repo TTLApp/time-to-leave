@@ -31,6 +31,8 @@
     "preinstall": "npx force-resolutions",
     "prepare": "husky configs/husky",
     "pretest": "npm run clean",
+    "refresh-icons": "scripts/convert_svg_to_icns.py",
+    "refresh-themes": "scripts/refresh_themes.py",
     "start": "electronmon .",
     "test": "npm-run-all test:*",
     "test:mocha": "c8 --config configs/.c8rc.json -o ./coverage_mocha -- mocha --config configs/.mocharc.cjs",
@@ -58,7 +60,8 @@
     "prettier": "3.6.2",
     "sinon": "21.0.0",
     "stylelint": "16.23.0",
-    "stylelint-config-standard": "39.0.0"
+    "stylelint-config-standard": "39.0.0",
+    "svg2png": "4.1.1"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "7.0.0",
