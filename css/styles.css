@@ -405,6 +405,7 @@ input[type="submit"]:active,
   outline-offset: 2px;
   border-radius: 3px;
 }
+
 .error-message {
   color: #dc3545;
   font-size: 0.875rem;
@@ -1017,6 +1018,7 @@ input[type="number"]::-webkit-inner-spin-button {
     appearance: none;
     margin: 0;
 }
+
 input[type="number"] {
     appearance: textfield;
     border: 1px solid #ccc;

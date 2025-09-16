@@ -196,7 +196,7 @@ describe('Theme Functions', function()
                     const variablePattern = new RegExp(`${variable.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')}\\s*:\\s*([^;]+);`);
                     const match = themeContent.match(variablePattern);
                     assert.ok(match, `Theme '${themeName}' should define CSS variable '${variable}'`);
-                    
+
                     const value = match[1].trim();
                     assert.ok(value.length > 0,
                         `Theme '${themeName}' variable '${variable}' should have a non-empty value, got: '${value}'`);
