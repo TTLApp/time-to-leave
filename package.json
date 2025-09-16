@@ -31,6 +31,7 @@
     "preinstall": "npx force-resolutions",
     "prepare": "husky configs/husky",
     "pretest": "npm run clean",
+    "refresh-themes": "scripts/refresh_themes.py",
     "start": "electronmon .",
     "test": "npm-run-all test:*",
     "test:mocha": "c8 --config configs/.c8rc.json -o ./coverage_mocha -- mocha --config configs/.mocharc.cjs",
