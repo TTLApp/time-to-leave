@@ -64,7 +64,7 @@
     "@fortawesome/fontawesome-free": "7.0.0",
     "bootstrap": "5.3.8",
     "date-holidays": "3.26.1",
-    "electron-store": "10.1.0",
+    "electron-store": "11.0.0",
     "esm": "3.2.25",
     "i18next": "25.3.2",
     "i18next-fs-backend": "2.6.0",
