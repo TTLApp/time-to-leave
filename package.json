@@ -61,7 +61,7 @@
     "stylelint-config-standard": "39.0.0"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "7.0.0",
+    "@fortawesome/fontawesome-free": "7.0.1",
     "bootstrap": "5.3.8",
     "date-holidays": "3.26.1",
     "electron-store": "11.0.0",
