@@ -1,11 +1,14 @@
 'use strict';
 
-import IpcConstants from '../js/ipc-constants.mjs';
-
-const searchLeaveByElement = (event) =>
+const searchLeaveByElement = () =>
 {
     const leaveByElement = $('#leave-by').val();
-    event.sender.send(IpcConstants.ReceiveLeaveBy, leaveByElement);
+    // If leaveByElement is invalid (does not match the time format HH:MM), do nothing
+    if (!leaveByElement.match(/^\d{1,2}:\d{2}$/))
+    {
+        return;
+    }
+    window.rendererApi.sendLeaveBy(leaveByElement);
 };
 
 export {
