@@ -19,7 +19,7 @@ jobs:
       run: |
         python scripts/check_languages.py -output missing.md -report_summary -report_key_mismatch -report_missing_translations
     - name: Update comment
-      uses: peter-evans/create-or-update-comment@v4
+      uses: peter-evans/create-or-update-comment@v5
       with:
         # Update the comment in issue 475
         # https://github.com/TTLApp/time-to-leave/issues/475#issuecomment-808787273
