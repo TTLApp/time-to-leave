@@ -85,11 +85,16 @@ class Notification
             {
                 const dismissForTodayText = i18NextConfig.getCurrentTranslation('$Notification.dismiss-for-today');
                 const dismissBtn = {type: 'button', text: dismissForTodayText, action: 'dismiss', title: 'dismiss'};
-                return Notification.createNotification(i18NextConfig.getCurrentTranslation('$Notification.time-to-leave'), [dismissBtn])
+                const [hours, minutes] = timeToLeave.split(':');
+                const timeDate = new Date();
+                timeDate.setHours(Number(hours), Number(minutes), 0, 0);
+                const localizedTime = timeDate.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+                const message = i18NextConfig.getCurrentTranslation('$Notification.time-to-leave', { time: localizedTime });
+                return Notification.createNotification(message, [dismissBtn])
                     .addListener('action', (response) =>
                     {
                         // Actions are only supported on macOS
-                        if ( response && dismissBtn.title.toLowerCase() === response.toLowerCase())
+                        if (response && dismissBtn.title.toLowerCase() === response.toLowerCase())
                         {
                             dismissToday = dateToday;
                         }
