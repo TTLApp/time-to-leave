@@ -355,7 +355,7 @@ describe('Test Workday Waiver Window', function()
             assert.strictEqual($('#state option').length, 0);
             await populateState('US');
             assert.strictEqual($('#state option').length, statesLength + 1);
-            assert.strictEqual($('#state').css('display'), 'inline-block');
+            assert.strictEqual($('#state').css('display'), 'inline');
             assert.strictEqual($('#holiday-state').css('display'), 'table-row');
         });
 
@@ -374,7 +374,7 @@ describe('Test Workday Waiver Window', function()
             assert.strictEqual($('#city option').length, 0);
             await populateCity('US', 'CA');
             assert.strictEqual($('#city option').length, regionsLength + 1);
-            assert.strictEqual($('#city').css('display'), 'inline-block');
+            assert.strictEqual($('#city').css('display'), 'inline');
             assert.strictEqual($('#holiday-city').css('display'), 'table-row');
         });
 

@@ -10,16 +10,16 @@ jobs:
     if: github.repository == 'TTLApp/time-to-leave'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Setup python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: '3.9'
     - name: Write missing translation to file
       run: |
         python scripts/check_languages.py -output missing.md -report_summary -report_key_mismatch -report_missing_translations
     - name: Update comment
-      uses: peter-evans/create-or-update-comment@v4
+      uses: peter-evans/create-or-update-comment@v5
       with:
         # Update the comment in issue 475
         # https://github.com/TTLApp/time-to-leave/issues/475#issuecomment-808787273

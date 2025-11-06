@@ -39,7 +39,7 @@ jobs:
           echo "COMMENT_AUTHOR_ASSOCIATION: $COMMENT_AUTHOR_ASSOCIATION"
       - name: Clone git repo
         if: steps.check.outputs.triggered == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Configure Git Agent
         if: steps.check.outputs.triggered == 'true'
         run: |
