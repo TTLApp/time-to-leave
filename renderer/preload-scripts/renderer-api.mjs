@@ -26,14 +26,14 @@ function notifyWindowReadyToShow()
     ipcRenderer.send(IpcConstants.WindowReadyToShow);
 }
 
+function sendLeaveBy(leaveByValue)
+{
+    ipcRenderer.send(IpcConstants.ReceiveLeaveBy, leaveByValue);
+}
+
 function showDialog(dialogOptions)
 {
     return ipcRenderer.invoke(IpcConstants.ShowDialog, dialogOptions);
-}
-
-function sendLeaveBy(leaveByValue)
-{
-    return ipcRenderer.send(IpcConstants.ReceiveLeaveBy, leaveByValue);
 }
 
 const rendererApi = {
@@ -41,9 +41,9 @@ const rendererApi = {
     getOriginalUserPreferences,
     getWaiverStoreContents,
     notifyWindowReadyToShow,
+    sendLeaveBy,
     showDay,
     showDialog,
-    sendLeaveBy
 };
 
 export {

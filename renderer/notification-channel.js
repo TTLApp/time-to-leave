@@ -1,10 +1,11 @@
 'use strict';
 
+import TimeMath from '../js/time-math.mjs';
+
 const searchLeaveByElement = () =>
 {
     const leaveByElement = $('#leave-by').val();
-    // If leaveByElement is invalid (does not match the time format HH:MM), do nothing
-    if (!leaveByElement.match(/^\d{1,2}:\d{2}$/))
+    if (!TimeMath.validateTime(leaveByElement))
     {
         return;
     }

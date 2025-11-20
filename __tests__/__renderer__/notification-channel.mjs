@@ -19,14 +19,17 @@ describe('searchLeaveByElement()', () =>
         for (let i = 0; i < 2; i++)
         {
             $('#leave-by').val(`${i}${i}:${i}${i}`);
+            let called = false;
             // Mock window.rendererApi.sendLeaveBy
             window.rendererApi = {
                 sendLeaveBy: (value) =>
                 {
+                    called = true;
                     assert.strictEqual(value, `${i}${i}:${i}${i}`);
                 }
             };
             searchLeaveByElement();
+            assert.strictEqual(called, true);
         }
         done();
     });
