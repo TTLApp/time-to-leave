@@ -10,11 +10,11 @@ jobs:
         with:
           python-version: '3.9'
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           path: pr
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           path: main
           ref: main
