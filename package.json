@@ -67,7 +67,7 @@
     "electron-store": "11.0.2",
     "esm": "3.2.25",
     "i18next": "25.6.3",
-    "i18next-fs-backend": "2.6.0",
+    "i18next-fs-backend": "2.6.1",
     "is-online": "12.0.2",
     "jquery": "3.7.1",
     "jquery-mousewheel": "3.2.2",
