@@ -1,11 +1,15 @@
 'use strict';
 
-import IpcConstants from '../js/ipc-constants.mjs';
+import TimeMath from '../js/time-math.mjs';
 
-const searchLeaveByElement = (event) =>
+const searchLeaveByElement = () =>
 {
     const leaveByElement = $('#leave-by').val();
-    event.sender.send(IpcConstants.ReceiveLeaveBy, leaveByElement);
+    if (!TimeMath.validateTime(leaveByElement))
+    {
+        return;
+    }
+    window.rendererApi.sendLeaveBy(leaveByElement);
 };
 
 export {
