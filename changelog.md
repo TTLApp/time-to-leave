@@ -2,11 +2,15 @@
 
 <!--- Begin changes - Do not remove -->
 
+- Fix [#1162]: Notifications failing with "event.sender.send is not a function"
+
 <!--- End changes - Do not remove -->
 
 Who built 4.0.1:
 
 <!--- Begin users - Do not remove -->
+
+- Atomic-Germ
 
 <!--- End users - Do not remove -->
 
