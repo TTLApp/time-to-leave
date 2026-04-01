@@ -56,7 +56,7 @@ jobs:
 
           npm run test
       - name: '        CodeCov'
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage_c8/coverage-final.json,coverage_mocha/coverage-final.json
