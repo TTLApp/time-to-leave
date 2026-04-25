@@ -35,24 +35,12 @@ class MonthCalendar extends BaseCalendar
 
     /**
      * Returns a date object for which the all time balance will be calculated.
-     * If current month, returns the actual day. If not, first day of following month.
+     * Overall balance is anchored to the current day even while browsing other months.
      * @return {Date}
      */
     _getTargetDayForAllTimeBalance()
     {
-        const targetYear = this._getCalendarYear(),
-            targetMonth = this._getCalendarMonth(),
-            // If we are not displaying the current month we need to compute the balance including the
-            // last day of the month. To do so we move to the first day of the following month
-            isCurrentMonth = targetYear === this._getTodayYear() && targetMonth === this._getTodayMonth(),
-            targetDate = isCurrentMonth ?
-                new Date(targetYear, targetMonth, this._getTodayDate()) :
-                new Date(targetYear, targetMonth + 1, 1);
-        if (isCurrentMonth && this._getCountToday())
-        {
-            targetDate.setDate(targetDate.getDate() + 1);
-        }
-        return targetDate;
+        return this._getCurrentDayTargetForAllTimeBalance();
     }
 
     /*
