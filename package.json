@@ -49,7 +49,7 @@
     "electron-mocha": "13.1.0",
     "electron-winstaller": "5.4.0",
     "eslint": "10.3.0",
-    "globals": "17.4.0",
+    "globals": "17.6.0",
     "husky": "9.1.7",
     "jsdom": "29.1.1",
     "mocha": "11.7.5",
