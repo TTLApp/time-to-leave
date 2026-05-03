@@ -206,6 +206,33 @@ describe('MonthCalendar class Tests', () =>
         assert.strictEqual(calendar._getCalendarYear(), today.getFullYear());
     });
 
+    describe('MonthCalendar overall balance target date', () =>
+    {
+        it('Stays anchored to today while browsing other months', () =>
+        {
+            const expectedTargetDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+            calendar._prevMonth();
+            assert.strictEqual(calendar._getTargetDayForAllTimeBalance().getTime(), expectedTargetDate.getTime());
+
+            calendar._goToCurrentDate();
+            calendar._nextMonth();
+            assert.strictEqual(calendar._getTargetDayForAllTimeBalance().getTime(), expectedTargetDate.getTime());
+        });
+
+        it('Includes today when count-today is enabled', async() =>
+        {
+            const preferences = structuredClone(getDefaultPreferences());
+            preferences['count-today'] = true;
+            const anchoredCalendar = await CalendarFactory.getInstance(preferences, languageData);
+            const expectedTargetDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+
+            anchoredCalendar._prevMonth();
+
+            assert.strictEqual(anchoredCalendar._getTargetDayForAllTimeBalance().getTime(), expectedTargetDate.getTime());
+        });
+    });
+
     describe('MonthCalendar RefreshOnDayChange', () =>
     {
         it('MonthCalendar refresh set correctly', () =>

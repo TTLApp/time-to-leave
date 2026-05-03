@@ -21,8 +21,14 @@ const testPreferences = structuredClone(getDefaultPreferences());
 describe('Test Calendar Window', () =>
 {
     let handleToggleMainWindowWaitCallback = undefined;
+    let waitUntilHandlersSetup = undefined;
     before(async() =>
     {
+        waitUntilHandlersSetup = new Promise(resolve =>
+        {
+            window.__resolveCalendarHandlersSetup = resolve;
+        });
+
         // Mocking APIs
         window.rendererApi = {
             getLanguageDataPromise: () =>
@@ -37,7 +43,11 @@ describe('Test Calendar Window', () =>
         };
 
         window.calendarApi = {
-            handleToggleMainWindowWait: (callback) => { handleToggleMainWindowWaitCallback = callback; },
+            handleToggleMainWindowWait: (callback) =>
+            {
+                handleToggleMainWindowWaitCallback = callback;
+                window.__resolveCalendarHandlersSetup();
+            },
             handleCalendarReload: () => {},
             handleRefreshOnDayChange: () => {},
             handlePreferencesSaved: () => {},
@@ -50,6 +60,8 @@ describe('Test Calendar Window', () =>
         // Using dynamic imports because when the file is imported a $() callback is triggered and
         // methods must be mocked before-hand
         await import('../../src/calendar.js');
+        await waitUntilHandlersSetup;
+        delete window.__resolveCalendarHandlersSetup;
     });
 
     beforeEach(async function()

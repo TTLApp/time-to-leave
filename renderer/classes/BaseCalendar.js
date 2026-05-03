@@ -38,12 +38,26 @@ class BaseCalendar
 
     /**
      * Returns a date object for which the all time balance will be calculated.
-     * If current month, returns the actual day. If not, first day of following month.
      * @return {Date}
      */
     _getTargetDayForAllTimeBalance()
     {
         throw Error('Please implement this.');
+    }
+
+    /**
+     * Returns the current-day target date for overall balance calculations.
+     * If "count today" is active, returns the following day so today is included.
+     * @return {Date}
+     */
+    _getCurrentDayTargetForAllTimeBalance()
+    {
+        const targetDate = new Date(this._getTodayYear(), this._getTodayMonth(), this._getTodayDate());
+        if (this._getCountToday())
+        {
+            targetDate.setDate(targetDate.getDate() + 1);
+        }
+        return targetDate;
     }
 
     /**
