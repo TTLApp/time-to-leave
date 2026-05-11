@@ -710,18 +710,12 @@ class DayCalendar extends BaseCalendar
 
     /**
      * Returns a date object for which the all time balance will be calculated.
-     * For DayCalendar, it's the day of CalendarDate => the day being displayed.
-     * If "count_today" is active, the following day.
+     * Overall balance is anchored to the current day even while browsing other days.
      * @return {Date}
      */
     _getTargetDayForAllTimeBalance()
     {
-        const targetDate = new Date(this._getCalendarYear(), this._getCalendarMonth(), this._getCalendarDate());
-        if (this._getCountToday())
-        {
-            targetDate.setDate(targetDate.getDate() + 1);
-        }
-        return targetDate;
+        return this._getCurrentDayTargetForAllTimeBalance();
     }
 }
 
