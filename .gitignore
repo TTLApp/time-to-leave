@@ -97,6 +97,7 @@ typings/
 release-builds
 packages/
 *.ttldb
+*.xlsx
 .vscode/settings.json
 *.pyc
 scripts/release_*.md

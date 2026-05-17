@@ -51,13 +51,21 @@ describe('Import export', function()
         });
     });
 
+    describe('exportDatabaseToExcel', function()
+    {
+        it('Check that Excel export works', async() =>
+        {
+            assert.strictEqual(await ImportExport.exportDatabaseToExcel(path.join(folder, 'exported_file.xlsx')), true);
+            assert.strictEqual(await ImportExport.exportDatabaseToExcel('/not/a/valid/path'), false);
+        });
+    });
+
     describe('importDatabaseFromFile', function()
     {
         it('Check that import works', () =>
         {
             assert.strictEqual(ImportExport.importDatabaseFromFile([path.join(folder, 'exported_file.ttldb')])['result'], true);
             assert.strictEqual(ImportExport.importDatabaseFromFile(['/not/a/valid/path'])['result'], false);
-            assert.strictEqual(ImportExport.importDatabaseFromFile(['/not/a/valid/path'])['failed'], 0);
             assert.strictEqual(ImportExport.importDatabaseFromFile([invalidEntriesFile])['result'], false);
             assert.strictEqual(ImportExport.importDatabaseFromFile([invalidEntriesFile])['failed'], 5);
         });

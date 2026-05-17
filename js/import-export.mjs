@@ -3,6 +3,7 @@
 import { assert } from 'console';
 import Store from 'electron-store';
 import fs from 'fs';
+import ExcelJS from 'exceljs'; // Import ExcelJS library
 
 import { generateKey } from './date-db-formatter.mjs';
 import { validateJSON } from './validate-json.mjs';
@@ -60,6 +61,17 @@ class ImportExport
     {
         let information = _getEntries();
         information = information.concat(_getWaivedEntries());
+
+        // Normalize date format to YYYY-MM-DD
+        information.forEach(entry =>
+        {
+            const [year, month, day] = entry.date.split(/[-/]/).map(part => part.padStart(2, '0'));
+            entry.date = `${year}-${month}-${day}`;
+        });
+
+        // Sort the entries by date in ascending order
+        information.sort((a, b) => new Date(a.date) - new Date(b.date));
+
         try
         {
             fs.writeFileSync(filename, JSON.stringify(information, null,'\t'), 'utf-8');
@@ -71,12 +83,68 @@ class ImportExport
         return true;
     }
 
+    static async exportDatabaseToExcel(filename)
+    {
+        let information = _getEntries();
+        information = information.concat(_getWaivedEntries());
+
+        // Normalize date format to YYYY-MM-DD
+        information.forEach(entry =>
+        {
+            const [year, month, day] = entry.date.split(/[-/]/).map(part => part.padStart(2, '0'));
+            entry.date = `${year}-${month}-${day}`;
+        });
+
+        // Sort the entries by date in ascending order
+        information.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+        // Create a new workbook and worksheet
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('Database Export');
+
+        // Add header row
+        worksheet.columns = [
+            { header: 'Type', key: 'type', width: 15 },
+            { header: 'Date', key: 'date', width: 15 },
+            { header: 'Values/Data', key: 'values', width: 30 },
+            { header: 'Hours', key: 'hours', width: 10 }
+        ];
+
+        // Add data rows
+        information.forEach(entry =>
+        {
+            worksheet.addRow({
+                type: entry.type,
+                date: entry.date,
+                values: entry.values ? entry.values.join(', ') : entry.data,
+                hours: entry.hours || ''
+            });
+        });
+
+        try
+        {
+            // Write to Excel file
+            await workbook.xlsx.writeFile(filename);
+            console.log(`Excel file successfully written to ${filename}`);
+        }
+        catch (error)
+        {
+            console.error(`Failed to write Excel file: ${error.message}`);
+            return false;
+        }
+        return true;
+    }
+
     static importDatabaseFromFile(filename)
     {
         const calendarStore = new Store({name: 'flexible-store'});
         const waivedWorkdays = new Store({name: 'waived-workdays'});
         try
         {
+            if (!filename[0].endsWith('.ttldb'))
+            {
+                throw new Error('Unsupported file type. Only .ttldb files are allowed.');
+            }
             const information = JSON.parse(fs.readFileSync(filename[0], 'utf-8'));
             let failedEntries = 0;
             const entries = {};
@@ -86,6 +154,7 @@ class ImportExport
                 const entry = information[i];
                 if (!validateJSON([entry]))
                 {
+                    console.warn(`Validation failed for entry: ${JSON.stringify(entry)}`);
                     failedEntries += 1;
                     continue;
                 }
@@ -109,11 +178,13 @@ class ImportExport
 
             if (failedEntries !== 0)
             {
+                console.warn(`Import completed with ${failedEntries} failed entries.`);
                 return {'result': false, 'total': information.length, 'failed': failedEntries};
             }
         }
-        catch
+        catch (error)
         {
+            console.error(`Failed to import database: ${error.message}`);
             return {'result': false, 'total': 0, 'failed': 0};
         }
         return {'result': true};

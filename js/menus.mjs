@@ -160,6 +160,28 @@ function getEditMenuTemplate(mainWindow)
             }
         },
         {
+            label: i18NextConfig.getCurrentTranslation('$Menu.export-database-excel'),
+            click()
+            {
+                const options = {
+                    title: i18NextConfig.getCurrentTranslation('$Menu.export-db-to-file'),
+                    defaultPath: `time_to_leave_${getCurrentDateTimeStr()}.xlsx`,
+                    buttonLabel: i18NextConfig.getCurrentTranslation('$Menu.export'),
+                    filters: [{ name: 'Excel Files', extensions: ['xlsx'] }]
+                };
+                const response = dialog.showSaveDialogSync(options);
+                if (response)
+                {
+                    ImportExport.exportDatabaseToExcel(response);
+                    WindowAux.showDialog({
+                        message: i18NextConfig.getCurrentTranslation('$Menu.database-export'),
+                        type: 'info',
+                        detail: i18NextConfig.getCurrentTranslation('$Menu.database-was-exported')
+                    });
+                }
+            }
+        },
+        {
             label: i18NextConfig.getCurrentTranslation('$Menu.import-database'),
             click()
             {

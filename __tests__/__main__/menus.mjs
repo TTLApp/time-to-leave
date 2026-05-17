@@ -371,9 +371,9 @@ describe('menus.js', () =>
             showMessageBoxStub.resetHistory();
         });
 
-        it('Should have 10 options', () =>
+        it('Should have 11 options', () =>
         {
-            assert.strictEqual(getEditMenuTemplate().length, 10);
+            assert.strictEqual(getEditMenuTemplate().length, 11);
         });
 
         it('Each element should be a separator or valid field', () =>
