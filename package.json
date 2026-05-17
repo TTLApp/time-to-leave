@@ -45,9 +45,9 @@
     "@eslint/js": "9.39.2",
     "c8": "11.0.0",
     "electron": "41.5.0",
-    "electronmon": "2.0.4",
     "electron-mocha": "13.1.0",
     "electron-winstaller": "5.4.0",
+    "electronmon": "2.0.4",
     "eslint": "10.3.0",
     "globals": "17.6.0",
     "husky": "9.1.7",
@@ -66,6 +66,7 @@
     "date-holidays": "3.27.0",
     "electron-store": "11.0.2",
     "esm": "3.2.25",
+    "exceljs": "4.4.0",
     "i18next": "26.0.8",
     "i18next-fs-backend": "2.6.5",
     "is-online": "12.0.2",
@@ -77,6 +78,8 @@
     "node": ">=20.18.0"
   },
   "electronmon": {
-    "patterns": ["!__tests__/**"]
+    "patterns": [
+      "!__tests__/**"
+    ]
   }
 }

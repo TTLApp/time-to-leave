@@ -1,1 +1,6 @@
-{}
+{
+  "$Menu": {
+    "export-db-to-excel": "$Menu.export-db-to-excel",
+    "export-db-to-json": "$Menu.export-db-to-json"
+  }
+}
