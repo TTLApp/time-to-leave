@@ -47,7 +47,7 @@
     "electron": "42.3.0",
     "electronmon": "2.0.4",
     "electron-mocha": "13.1.0",
-    "electron-winstaller": "5.4.0",
+    "electron-winstaller": "5.4.3",
     "eslint": "10.4.1",
     "globals": "17.7.0",
     "husky": "9.1.7",
