@@ -3,6 +3,7 @@
 <!--- Begin changes - Do not remove -->
 
 - Fix [#1162]: Notifications failing with "event.sender.send is not a function"
+- Fix [#1240]: Overall balance updates when changing months/days
 
 <!--- End changes - Do not remove -->
 
