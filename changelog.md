@@ -12,6 +12,7 @@ Who built 4.0.1:
 <!--- Begin users - Do not remove -->
 
 - Atomic-Germ
+- rbalogic
 
 <!--- End users - Do not remove -->
 
