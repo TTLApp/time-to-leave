@@ -12,7 +12,7 @@ import { rootDir } from '../../js/app-config.mjs';
 import {
     getDefaultPreferences,
     getPreferencesFilePath,
-    savePreferences,
+    savePreferences
 } from '../../js/user-preferences.mjs';
 import { preferencesApi } from '../../renderer/preload-scripts/preferences-api.mjs';
 import i18nTranslator from '../../renderer/i18n-translator.js';
@@ -181,6 +181,18 @@ describe('Test Preferences Window', () =>
             checkRenderedItem('hours-per-day');
         });
 
+        it('Change pre-filling break time to true', () =>
+        {
+            changeItemInputValue('enable-prefill-break-time', true);
+            checkRenderedItem('enable-prefill-break-time', isCheckBox);
+        });
+
+        it('Change break-time-interval from 00:30 to 00:15', () =>
+        {
+            changeItemValue('break-time-interval', '00:15');
+            checkRenderedItem('break-time-interval');
+        });
+
         it('Change repetition to false', () =>
         {
             changeItemInputValue('repetition', false);
@@ -203,6 +215,12 @@ describe('Test Preferences Window', () =>
         it('Change notifications-interval to 10', () =>
         {
             changeItemValue('notifications-interval', '10');
+            checkRenderedItem('notifications-interval');
+        });
+
+        it('Change notifications-interval to 10', () =>
+        {
+            changeItemValue('notifications-interval', '99');
             checkRenderedItem('notifications-interval');
         });
 
