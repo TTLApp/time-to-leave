@@ -10,19 +10,21 @@ function handleSquirrelEvent(application)
         return false;
     }
 
-    const appFolder = path.resolve(process.execPath, '..');
-    const rootAtomFolder = path.resolve(appFolder, '..');
-    const updateDotExe = path.resolve(path.join(rootAtomFolder, 'Update.exe'));
     const exeName = path.basename(process.execPath);
 
-    const spawn = function(command, args)
+    const spawn = function(args)
     {
+        const appFolder = path.resolve(process.execPath, '..');
+        const rootAtomFolder = path.resolve(appFolder, '..');
+        const updateDotExe = path.resolve(path.join(rootAtomFolder, 'Update.exe'));
+
         let spawnedProcess;
 
         try
         {
-            spawnedProcess = ChildProcess.spawn(command, args, {
-                detached: true
+            spawnedProcess = ChildProcess.spawn(updateDotExe, args, {
+                detached: true,
+                shell: false
             });
         }
         catch
@@ -35,7 +37,7 @@ function handleSquirrelEvent(application)
 
     const spawnUpdate = function(args)
     {
-        return spawn(updateDotExe, args);
+        return spawn(args);
     };
 
     const squirrelEvent = process.argv[1];
