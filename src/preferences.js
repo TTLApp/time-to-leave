@@ -178,7 +178,8 @@ function setupListeners()
         changeValue(this.name, this.checked);
     });
 
-    $('#break-time-interval').on('input', function() {
+    $('#break-time-interval').on('input', function()
+    {
         this.reportValidity();
     });
 
@@ -190,7 +191,7 @@ function setupListeners()
     $('#hours-per-day').on('input', function()
     {
         this.setCustomValidity('');
-        this.reportValidity()
+        this.reportValidity();
     });
 
     $('#hours-per-day').on('blur', function()
@@ -209,7 +210,8 @@ function setupListeners()
         }
     });
 
-    $('#notifications-interval').on('blur change', function() {
+    $('#notifications-interval').on('blur change', function()
+    {
         this.value = this.checkValidity() ? this.value : 5;
     });
 
