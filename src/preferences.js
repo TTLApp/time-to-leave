@@ -205,7 +205,7 @@ function setupListeners()
         {
             const entry = convertTimeFormat(this.value);
             this.value = entry;
-            changeValue(this.name, entry); 
+            changeValue(this.name, entry);
         }
     });
 
