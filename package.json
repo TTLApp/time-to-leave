@@ -55,7 +55,7 @@
     "mocha": "11.8.0",
     "npm-run-all": "4.1.5",
     "playwright": "1.62.1",
-    "prettier": "3.9.6",
+    "prettier": "3.9.7",
     "sinon": "22.1.0",
     "stylelint": "17.15.0",
     "stylelint-config-standard": "40.0.0"
