@@ -2,6 +2,7 @@
 
 import { applyTheme } from '../renderer/themes.js';
 import i18nTranslator from '../renderer/i18n-translator.js';
+import TimeMath from '../js/time-math.mjs';
 
 // Global values for preferences page
 let preferences;
@@ -60,46 +61,6 @@ function changeValue(type, newVal)
 {
     preferences[type] = newVal;
     window.preferencesApi.notifyNewPreferences(preferences);
-}
-
-function convertTimeFormat(entry)
-{
-    const colonIdx = entry.indexOf(':');
-    const containsColon = colonIdx !== -1;
-    const periodIdx = entry.indexOf('.');
-    const containsPeriod = periodIdx !== -1;
-    const singleStartDigit = (containsColon && colonIdx <= 1) || (containsPeriod && periodIdx <= 1);
-    if (containsColon)
-    {
-        /* istanbul ignore else */
-        if (singleStartDigit)
-        {
-            entry = '0'.concat(entry);
-        }
-    }
-    else if (containsPeriod)
-    {
-        let minutes = parseFloat('0'.concat(entry.substring(periodIdx)));
-        minutes *= 60;
-        minutes = Math.floor(minutes).toString();
-        minutes = minutes.length < 2 ? '0'.concat(minutes) : minutes.substring(0, 2);
-        entry = entry.substring(0, periodIdx).concat(':').concat(minutes);
-        /* istanbul ignore else */
-        if (singleStartDigit)
-        {
-            entry = '0'.concat(entry);
-        }
-    }
-    else
-    {
-        /* istanbul ignore else */
-        if (entry.length < 2)
-        {
-            entry = '0'.concat(entry);
-        }
-        entry = entry.concat(':00');
-    }
-    return entry;
 }
 
 function renderWindowTheme()
@@ -204,7 +165,7 @@ function setupListeners()
     {
         if (this.checkValidity() === true)
         {
-            const entry = convertTimeFormat(this.value);
+            const entry = TimeMath.convertTimeFormat(this.value);
             this.value = entry;
             changeValue(this.name, entry);
         }
@@ -308,7 +269,6 @@ $(() =>
 });
 
 export {
-    convertTimeFormat,
     resetContent,
     populateLanguages,
     listenerLanguage,
