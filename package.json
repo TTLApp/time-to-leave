@@ -57,7 +57,7 @@
     "playwright": "1.62.1",
     "prettier": "3.9.6",
     "sinon": "22.1.0",
-    "stylelint": "17.14.1",
+    "stylelint": "17.15.0",
     "stylelint-config-standard": "40.0.0"
   },
   "dependencies": {
