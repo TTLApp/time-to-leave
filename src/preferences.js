@@ -178,20 +178,38 @@ function setupListeners()
         changeValue(this.name, this.checked);
     });
 
-    $('#break-time-interval').on('change', function()
+    $('#break-time-interval').on('input', function() {
+        this.reportValidity();
+    });
+
+    $('#break-time-interval').on('blur', function()
     {
         this.value = this.checkValidity() ? this.value : '00:30';
     });
 
-    $('#hours-per-day').on('change', function()
+    $('#hours-per-day').on('input', function()
     {
         this.setCustomValidity('');
-        this.reportValidity();
-        this.value = this.checkValidity() ? this.value : '08:00'; this.setCustomValidity('');
+        this.reportValidity()
     });
 
-    $('#notifications-interval').on('change', function()
+    $('#hours-per-day').on('blur', function()
     {
+        this.value = this.checkValidity() ? this.value : '08:00';
+        this.setCustomValidity('');
+    });
+
+    $('#hours-per-day, #break-time-interval').on('change', function()
+    {
+        if (this.checkValidity() === true)
+        {
+            const entry = convertTimeFormat(this.value);
+            this.value = entry;
+            changeValue(this.name, entry); 
+        }
+    });
+
+    $('#notifications-interval').on('blur change', function() {
         this.value = this.checkValidity() ? this.value : 5;
     });
 
