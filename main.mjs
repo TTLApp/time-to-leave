@@ -123,7 +123,7 @@ else
     });
 }
 
-app.on('ready', () =>
+app.whenReady().then(() =>
 {
     i18NextConfig.setupI18n(createMenu).then(() =>
     {
