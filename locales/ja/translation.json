@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "休憩時間の事前入力を有効にする",
         "breakTimeInterval": "休憩時間の間隔",
         "language": "言語",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "ライト",
         "minimizeToTray": "最小化ボタンを最小化",
         "minutesBetweenNotifications": "通知間の時間（分）",

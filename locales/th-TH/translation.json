@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "เปิดใช้งานการบรรจุเวลาพักล่วงหน้า",
         "breakTimeInterval": "ช่วงเวลาพัก",
         "language": "ภาษา",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "สว่าง",
         "minimizeToTray": "ปุ่มย่อจะย่อไปยังถาด",
         "minutesBetweenNotifications": "เตือนซ้ำทุก ๆ (นาที)",

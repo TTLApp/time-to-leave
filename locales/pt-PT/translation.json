@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "Ativar o preenchimento automático do intervalo",
         "breakTimeInterval": "Hora de intervalo para pausa",
         "language": "Idioma",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "Claro",
         "minimizeToTray": "Botão de Minimizar deve minimizar para o Tray",
         "minutesBetweenNotifications": "Minutos entre notificações",

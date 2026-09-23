@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "휴식 시간 미리 채우기 기능 사용",
         "breakTimeInterval": "휴식 시간 간격",
         "language": "언어",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "밝음",
         "minimizeToTray": "최소화 시 시스템 트레이로 이동",
         "minutesBetweenNotifications": "알림 사이 간격(분)",

@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "فعال کردن از قبل پر کردن زمان استراحت",
         "breakTimeInterval": "میزان استراحت",
         "language": "زبان",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "روشن",
         "minimizeToTray": "هنگام کلیک روی دکمه مینیمایز در قسمت آیکن ها قرار بگیرد",
         "minutesBetweenNotifications": "فاصله بین اعلان ها (دقیقه)",

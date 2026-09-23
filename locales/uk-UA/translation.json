@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "Увімкнути попереднє заповнення часу перерви",
         "breakTimeInterval": "Тривалість перерви",
         "language": "Мова",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "Яскрава",
         "minimizeToTray": "Згорнути кнопку «Мінімізувати»",
         "minutesBetweenNotifications": "Хвилини між повідомленнями",

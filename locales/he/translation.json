@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "הפעל מילוי מוקדם של זמן הפסקה",
         "breakTimeInterval": "מרווח זמן הפסקה",
         "language": "שפה",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "בהיר",
         "minimizeToTray": "כפתור מזעור צריך למזער למגש",
         "minutesBetweenNotifications": "דקות בין התראות",
