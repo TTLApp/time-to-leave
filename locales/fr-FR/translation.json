@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "Activer le pré-remplissage du temps de pause",
         "breakTimeInterval": "Intervalle de temps de pause",
         "language": "Langue",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "Clair",
         "minimizeToTray": "Le bouton Minimiser doit réduire l'application dans la barre d'état",
         "minutesBetweenNotifications": "Minutes entre chaque notification",

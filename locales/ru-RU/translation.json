@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "Включить предзаполнение перерыва",
         "breakTimeInterval": "Длительность перерыва",
         "language": "Язык",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "Светлый",
         "minimizeToTray": "Кнопка «Уменьшить» должна быть свернута",
         "minutesBetweenNotifications": "Промежуток между уведомлениями (в минутах)",

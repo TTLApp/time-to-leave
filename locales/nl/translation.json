@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "Vooraf invullen van pauzetijden inschakelen",
         "breakTimeInterval": "Pauze tijdsinterval",
         "language": "Taal",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "Licht",
         "minimizeToTray": "Minimaliseerknop moet minimaliseren",
         "minutesBetweenNotifications": "Aantal minuten tussen meldingen",

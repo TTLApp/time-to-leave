@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "Tillåt förifyllnad av pauser",
         "breakTimeInterval": "Interval för pauser",
         "language": "Språk",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "Ljust",
         "minimizeToTray": "Knapp för minimering borde minimera till brickan",
         "minutesBetweenNotifications": "Minuter mellan notifieringar",

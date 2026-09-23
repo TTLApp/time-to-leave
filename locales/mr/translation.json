@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "ब्रेक वेळेची प्रीफिलिंग सक्षम करा",
         "breakTimeInterval": "ब्रेक वेळ मध्यांतर",
         "language": "भाषा",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "प्रकाश",
         "minimizeToTray": "ट्रेमध्ये मिनिमाइझ बटण कमीतकमी केले पाहिजे",
         "minutesBetweenNotifications": "सूचना दरम्यान मिनिटे",

@@ -6,6 +6,7 @@ import { appConfig } from './js/app-config.mjs';
 import { createWindow, createMenu, getMainWindow, triggerStartupDialogs } from './js/main-window.mjs';
 import Notification from './js/notification.mjs';
 import { handleSquirrelEvent } from './js/squirrel.mjs';
+import { getUserLanguage } from './js/user-preferences.mjs';
 import Windows from './js/windows.mjs';
 import { setupCalendarStore } from './main/calendar-aux.mjs';
 import { setupWorkdayWaiverHandlers } from './main/workday-waiver-aux.mjs';
@@ -24,6 +25,23 @@ if (appConfig.win32)
     {
         // squirrel event handled and app will exit in 1000ms, so don't do anything else
         app.quit();
+    }
+}
+
+const userLanguage = getUserLanguage();
+app.commandLine.appendSwitch('lang', userLanguage);
+
+// Restore auxiliary windows that were open when the language change was confirmed.
+function reopenWindowsFromLaunchArguments()
+{
+    const mainWindow = getMainWindow();
+    if (process.argv.includes('--reopen-preferences'))
+    {
+        Windows.openPreferencesWindow(mainWindow);
+    }
+    if (process.argv.includes('--reopen-waiver'))
+    {
+        Windows.openWaiverManagerWindow(mainWindow);
     }
 }
 
@@ -136,6 +154,7 @@ app.whenReady().then(() =>
         createWindow();
         createMenu();
         setupCalendarStore();
+        reopenWindowsFromLaunchArguments();
         i18NextConfig.setLanguageChangedCallback(createMenu);
         triggerStartupDialogs();
         setInterval(refreshOnDayChange, 60 * 60 * 1000);

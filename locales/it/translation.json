@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "Abilita precompilazione della pausa",
         "breakTimeInterval": "Intervallo di pausa",
         "language": "Linguaggio",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "Chiaro",
         "minimizeToTray": "Il pulsante di riduzione a icona deve ridurre a icona nella tray",
         "minutesBetweenNotifications": "Minuti fra le notifiche",

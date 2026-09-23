@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "Pausenzeit-Prefill verwenden",
         "breakTimeInterval": "Pausenzeitintervall",
         "language": "Sprache",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "Hell",
         "minimizeToTray": "Minimieren Button minimiert Fenster in den Tray",
         "minutesBetweenNotifications": "Minuten zwischen Benachrichtigungen",
