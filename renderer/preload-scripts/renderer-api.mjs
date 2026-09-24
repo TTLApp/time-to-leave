@@ -26,6 +26,11 @@ function notifyWindowReadyToShow()
     ipcRenderer.send(IpcConstants.WindowReadyToShow);
 }
 
+function sendLeaveBy(leaveByValue)
+{
+    ipcRenderer.send(IpcConstants.ReceiveLeaveBy, leaveByValue);
+}
+
 function showDialog(dialogOptions)
 {
     return ipcRenderer.invoke(IpcConstants.ShowDialog, dialogOptions);
@@ -36,6 +41,7 @@ const rendererApi = {
     getOriginalUserPreferences,
     getWaiverStoreContents,
     notifyWindowReadyToShow,
+    sendLeaveBy,
     showDay,
     showDialog,
 };

@@ -313,6 +313,34 @@ describe('DayCalendar class Tests', () =>
         assert.strictEqual(calendar._getCalendarYear(), today.getFullYear());
     });
 
+    describe('DayCalendar overall balance target date', () =>
+    {
+        it('Stays anchored to today while browsing other days', () =>
+        {
+            const expectedTargetDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+            calendar._prevDay();
+            assert.strictEqual(calendar._getTargetDayForAllTimeBalance().getTime(), expectedTargetDate.getTime());
+
+            calendar._goToCurrentDate();
+            calendar._nextDay();
+            assert.strictEqual(calendar._getTargetDayForAllTimeBalance().getTime(), expectedTargetDate.getTime());
+        });
+
+        it('Includes today when count-today is enabled', async() =>
+        {
+            const preferences = structuredClone(getDefaultPreferences());
+            preferences['view'] = 'day';
+            preferences['count-today'] = true;
+            const anchoredCalendar = await CalendarFactory.getInstance(preferences, languageData);
+            const expectedTargetDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+
+            anchoredCalendar._prevDay();
+
+            assert.strictEqual(anchoredCalendar._getTargetDayForAllTimeBalance().getTime(), expectedTargetDate.getTime());
+        });
+    });
+
     describe('DayCalendar RefreshOnDayChange', () =>
     {
         it('DayCalendar refresh set correctly', () =>

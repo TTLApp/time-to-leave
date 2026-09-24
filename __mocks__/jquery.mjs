@@ -1,9 +1,10 @@
 // Helper file sets global window and $ for renderer imports
-import jQuery from 'jquery';
+import { createRequire } from 'module';
 import jsdom from 'jsdom';
 
+const require = createRequire(import.meta.url);
 global.window = new jsdom.JSDOM().window;
-global.$ = jQuery(window);
+window.$ = global.$ = require('jquery');
 
 // Mocking matchMedia since it's not usually defined but we use it
 window.matchMedia = window.matchMedia || function()

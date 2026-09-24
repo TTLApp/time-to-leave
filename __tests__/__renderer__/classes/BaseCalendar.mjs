@@ -244,6 +244,24 @@ describe('BaseCalendar.js', () =>
             }, 50);
         });
 
+        it('Should restore last known overall balance before async refresh completes', () =>
+        {
+            $('body').append('<span id="overall-balance" value="">...</span>');
+            mocks._computeAllTimeBalanceUntilAsyn = stub(TimeBalance, 'computeAllTimeBalanceUntilAsync')
+                .returns(new Promise(() => {}));
+            mocks._isNegative = stub(TimeMath, 'isNegative').returns(false);
+            const preferences = {view: 'day'};
+            const languageData = {hello: 'hola'};
+            const calendar = new ExtendedClass(preferences, languageData);
+
+            calendar._lastOverallBalance = '01:23';
+            calendar._restoreOverallBalance();
+
+            assert.strictEqual($('#overall-balance').val(), '01:23');
+            assert.strictEqual($('#overall-balance').html(), '01:23');
+            assert.strictEqual($('#overall-balance').hasClass('text-success'), true);
+        });
+
     });
 
     describe('_addTodayEntries', () =>

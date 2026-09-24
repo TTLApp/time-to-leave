@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 echo "Running pre-commit hook with lint checks."
 
 pids=""
