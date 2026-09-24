@@ -68,7 +68,7 @@ function addRowToListTable(day, reason, hours)
     reasonCell.innerHTML = reason;
     hoursCell.innerHTML = hours;
     const id = 'delete-' + day;
-    delButtonCell.innerHTML = '<input class="delete-btn" data-day="' + day + '" id="' + id + '" type="button"></input>';
+    delButtonCell.innerHTML = '<input class="delete-btn" data-day="' + day + '" id="' + id + '" type="button" aria-label="delete"></input>';
 
     $('#'+ id).on('click', deleteEntryOnClick);
 }
