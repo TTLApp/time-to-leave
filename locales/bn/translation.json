@@ -131,6 +131,8 @@
         "enablePrefillBreakTime": "বিরতির সময়ের প্রিফিলিং সক্ষম করুন",
         "breakTimeInterval": "বিরতির সময়ের ব্যবধান",
         "language": "ভাষা",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "আলো",
         "minimizeToTray": "মিনিমাইজ বাটন মিনিমাইজ টু ট্রে করা উচিত",
         "minutesBetweenNotifications": "বিজ্ঞপ্তির মধ্যে মিনিট",

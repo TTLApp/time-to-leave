@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "Habilitar el llenado previo del tiempo de descanso",
         "breakTimeInterval": "Intervalo de tiempo de descanso",
         "language": "Languaje",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "Claro",
         "minimizeToTray": "El botón de minimizar debería minimizar a la bandeja",
         "minutesBetweenNotifications": "Minutos entre las notificaciones",

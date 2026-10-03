@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "啓用休息時間的預填",
         "breakTimeInterval": "休息間隔",
         "language": "語言",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "淺色",
         "minimizeToTray": "當按下最小化按鈕時將程式最小化到任務欄",
         "minutesBetweenNotifications": "通知間隔分鐘數",

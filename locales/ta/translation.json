@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "இடைவேளையின் நேரத்தை நிரப்புவதை இயக்கவும்",
         "breakTimeInterval": "இடைவெளி நேர இடைவெளி",
         "language": "மொழி: தமிழ்",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "ஒளி",
         "minimizeToTray": "மினிமைஸ் பட்டன் ட்ரேவை சிறிதாக்க வேண்டும்",
         "minutesBetweenNotifications": "அறிவிப்புகளுக்கு இடையிலான நிமிடங்கள்",

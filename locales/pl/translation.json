@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "Włącz wypełnianie czasu przerwy",
         "breakTimeInterval": "Interwał przerwy",
         "language": "Język (Language)",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "Jasny",
         "minimizeToTray": "Zminimalizuj do zasobnika systemowego przyciskiem minmalizacji",
         "minutesBetweenNotifications": "Czas między przypomnieniami (w minutach)",

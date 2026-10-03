@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "Aktifkan pengisian awal waktu istirahat",
         "breakTimeInterval": "Interval waktu istirahat",
         "language": "Bahasa",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "Terang",
         "minimizeToTray": "Tombol Minimalkan harus meminimalkan tray",
         "minutesBetweenNotifications": "Menit antar pemberitahuan",

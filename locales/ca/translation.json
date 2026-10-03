@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "Activa el temps de pausa per omplir prèviament",
         "breakTimeInterval": "Interval de temps de descans",
         "language": "Llenguatge",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "Clar",
         "minimizeToTray": "El botó de minimitzar hauria de minimitzar a la safata",
         "minutesBetweenNotifications": "Minuts entre les notificacions",

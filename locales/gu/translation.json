@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "વિરામ સમયની પ્રીફિલિંગ સક્ષમ કરો",
         "breakTimeInterval": "સમય અંતરાલ તોડી",
         "language": "ભાષા",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "પ્રકાશ",
         "minimizeToTray": "ટ્રેમાં ન્યૂનતમ બટન કરવું જોઈએ",
         "minutesBetweenNotifications": "સૂચનાઓ વચ્ચે મિનિટ",

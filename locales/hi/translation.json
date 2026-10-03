@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "ब्रेक टाइम की पूर्व-भरण सक्षम करें",
         "breakTimeInterval": "ब्रेक टाइम अंतराल",
         "language": "भाषा: हिन्दी",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "रोशनी",
         "minimizeToTray": "बटन को कम से कम ट्रे में रखना चाहिए",
         "minutesBetweenNotifications": "सूचनाओं के बीच मिनट",

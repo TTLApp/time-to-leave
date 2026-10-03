@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "Mola süresinin önceden doldurulmasını etkinleştir ",
         "breakTimeInterval": "Mola zaman aralığı",
         "language": "Dil",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "Aydınlık",
         "minimizeToTray": "Küçült düğmesi simge durumuna küçültülmelidir",
         "minutesBetweenNotifications": "Bildirimler arasındaki dakikalar",

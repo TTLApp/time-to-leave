@@ -130,6 +130,8 @@
         "enablePrefillBreakTime": "Ενεργοποίηση προσυπολογισμού χρόνου διακοπής",
         "breakTimeInterval": "Χρονικό διάστημα διακοπής",
         "language": "Γλώσσα",
+        "language-change-title": "Language Change",
+        "language-change-restart": "Restart to apply language change?",
         "light": "Φωτεινό",
         "minimizeToTray": "Το κουμπί Ελαχιστοποίηση θα ελαχιστοποιεί στη γραμμή εργασιών",
         "minutesBetweenNotifications": "Λεπτά μεταξύ ειδοποιήσεων",
