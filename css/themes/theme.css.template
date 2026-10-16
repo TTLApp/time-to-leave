@@ -1,0 +1,74 @@
+/* Theme Template
+ * WCAG 2.1 accessibility guidelines:
+ * - Normal text & UI components: minimum contrast ratio of 4.5:1 (WCAG AA)
+ * - Large text, interactive elements, focus indicators: minimum contrast ratio of 3:1 (WCAG AA)
+ */
+
+html[data-theme="your-theme-name"] {
+
+  /* Define your theme's primary color palette here.
+   * Hard-coded because calculated values take processing time.
+   */
+  --primary-base: /* primary color */;
+  --primary-light: /* lighter variant */;
+  --primary-lighter: /* still lighter variant */;
+  --primary-dark: /* darker variant */;
+  --primary-darker: /* still darker variant */;
+  
+  /* Base Colors
+   * WAI: Background/foreground should maintain 4.5:1 contrast ratio minimum
+   */
+  --page-bground: ;
+  --page-color: ;
+  
+  /* Table Colors */
+  --table-bground: ;
+  --input-bground: /* Input field background, usually var(--table-bground) */;
+  --table-header-bground: ;
+  --table-border: ;
+  --table-total-border: /* Border for totals - consider using primary color */;
+  --table-cell-offtime-bground: ;
+  --table-cell-offtime-color: ;
+  --table-cell-total-bground: ;
+  --table-cell-total-color: ;
+  --table-header-label-bground: ;
+  --table-header-label-shadow: /* optionsal shadow for depth */;
+  
+  /* Status Colors */
+  --error: /* Error state - typically red, WAI 4.5:1 contrast */;
+  --reset-color: ;
+  --punch-bground: /* Background for punch button */;
+  --punch-color: /* Text color for punch button, usually purple - WAI 4.5:1 contrast */;
+  --punch-disable-bground: /* Disabled punch button color */;
+  --slider-background-color: ;
+  --slider-checked-color: ;
+  --slider-unchecked-color: ;
+  --weekday-background: ;
+  --weekday-selected: ;
+  
+  /* System Colors
+   * Invert SVGs, darker disabled inputs, lighter titles
+   * WAI: Ensure state changes are communicated by more than just color
+   */
+  --svg-invert: /* 0 for dark icons, 1 for light icons */;
+  --disabled-input-bground: ;
+  --title-color: /* Color for titles - WAI 4.5:1 contrast */;
+  --input-border: /* Input border color - WAI 3:1 contrast */;
+  --tab-font-color: /* Tab text color - WAI 4.5:1 contrast */;
+  --tab-waiver-color: /* Waiver tab color */;
+  --tab-waiver-border: /* Waiver tab border color */;
+  
+  /* Focus States
+   * WAI: Focus indicators must have 3:1 contrast against all adjacent colors
+   */
+  --outline: /* Focus outline - minimum 2px, ensure 3:1 contrast */;
+}
+
+/* Theme Specific Overrides */
+html[data-theme="your-theme-name"].wait {
+  /* Define wait state appearance */
+}
+
+html[data-theme="your-theme-name"] .text-danger {
+  /* Error text styling - ensure 4.5:1 contrast */
+}
