@@ -13,7 +13,7 @@ function getInstallerConfig()
     console.log('creating windows installer');
 
     return Promise.resolve({
-        appDirectory: 'release-builds/Time to Leave-win32-ia32',
+        appDirectory: 'release-builds/Time to Leave-win32-x64',
         outputDirectory: 'packages',
         exe: 'Time To Leave.exe',
         setupIcon: 'assets/icon-win.ico',

@@ -9,10 +9,11 @@ import { stub } from 'sinon';
 import path from 'path';
 
 import { rootDir } from '../../js/app-config.mjs';
+import TimeMath from '../../js/time-math.mjs';
 import {
     getDefaultPreferences,
     getPreferencesFilePath,
-    savePreferences,
+    savePreferences
 } from '../../js/user-preferences.mjs';
 import { preferencesApi } from '../../renderer/preload-scripts/preferences-api.mjs';
 import i18nTranslator from '../../renderer/i18n-translator.js';
@@ -90,7 +91,6 @@ function resetPreferenceFile()
 const testPreferences = Object.assign({}, getDefaultPreferences());
 
 // Functions from preferences.js that will be imported dynamically
-let convertTimeFormat;
 let listenerLanguage;
 let populateLanguages;
 let renderPreferencesWindow;
@@ -127,13 +127,12 @@ describe('Test Preferences Window', () =>
 
         // Using dynamic imports because when the file is imported a $() callback is triggered and
         // methods must be mocked before-hand
-        const file = await import('../../src/preferences.js');
-        convertTimeFormat = file.convertTimeFormat;
-        listenerLanguage = file.listenerLanguage;
-        populateLanguages = file.populateLanguages;
-        renderPreferencesWindow = file.renderPreferencesWindow;
-        setupListeners = file.setupListeners;
-        resetContent = file.resetContent;
+        const preferencesFile = await import('../../src/preferences.js');
+        listenerLanguage = preferencesFile.listenerLanguage;
+        populateLanguages = preferencesFile.populateLanguages;
+        renderPreferencesWindow = preferencesFile.renderPreferencesWindow;
+        setupListeners = preferencesFile.setupListeners;
+        resetContent = preferencesFile.resetContent;
     });
 
     describe('Changing values of items in window', () =>
@@ -181,6 +180,18 @@ describe('Test Preferences Window', () =>
             checkRenderedItem('hours-per-day');
         });
 
+        it('Change pre-filling break time to true', () =>
+        {
+            changeItemInputValue('enable-prefill-break-time', true);
+            checkRenderedItem('enable-prefill-break-time', isCheckBox);
+        });
+
+        it('Change break-time-interval from 00:30 to 00:15', () =>
+        {
+            changeItemValue('break-time-interval', '00:15');
+            checkRenderedItem('break-time-interval');
+        });
+
         it('Change repetition to false', () =>
         {
             changeItemInputValue('repetition', false);
@@ -203,6 +214,12 @@ describe('Test Preferences Window', () =>
         it('Change notifications-interval to 10', () =>
         {
             changeItemValue('notifications-interval', '10');
+            checkRenderedItem('notifications-interval');
+        });
+
+        it('Change notifications-interval to 10', () =>
+        {
+            changeItemValue('notifications-interval', '99');
             checkRenderedItem('notifications-interval');
         });
 
@@ -262,42 +279,42 @@ describe('Test Preferences Window', () =>
     {
         it('should convert single digit hour to HH:MM format', () =>
         {
-            assert.strictEqual(convertTimeFormat('6'), '06:00');
+            assert.strictEqual(TimeMath.convertTimeFormat('6'), '06:00');
         });
 
         it('should convert double digit hour to HH:MM format', () =>
         {
-            assert.strictEqual(convertTimeFormat('12'), '12:00');
+            assert.strictEqual(TimeMath.convertTimeFormat('12'), '12:00');
         });
 
         it('should convert H.M format to HH:MM format', () =>
         {
-            assert.strictEqual(convertTimeFormat('6.5'), '06:30');
+            assert.strictEqual(TimeMath.convertTimeFormat('6.5'), '06:30');
         });
 
         it('should convert H.MM format to HH:MM format', () =>
         {
-            assert.strictEqual(convertTimeFormat('6.50'), '06:30');
+            assert.strictEqual(TimeMath.convertTimeFormat('6.50'), '06:30');
         });
 
         it('should convert HH.M format to HH:MM format', () =>
         {
-            assert.strictEqual(convertTimeFormat('12.5'), '12:30');
+            assert.strictEqual(TimeMath.convertTimeFormat('12.5'), '12:30');
         });
 
         it('should convert HH.MM format to HH:MM format', () =>
         {
-            assert.strictEqual(convertTimeFormat('12.50'), '12:30');
+            assert.strictEqual(TimeMath.convertTimeFormat('12.50'), '12:30');
         });
 
         it('should convert H:MM format to HH:MM format', () =>
         {
-            assert.strictEqual(convertTimeFormat('6:30'), '06:30');
+            assert.strictEqual(TimeMath.convertTimeFormat('6:30'), '06:30');
         });
 
         it('should convert HH:MM format to HH:MM format', () =>
         {
-            assert.strictEqual(convertTimeFormat('12:30'), '12:30');
+            assert.strictEqual(TimeMath.convertTimeFormat('12:30'), '12:30');
         });
     });
 

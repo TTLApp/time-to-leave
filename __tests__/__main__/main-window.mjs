@@ -194,8 +194,6 @@ describe('main-window.mjs', () =>
                 assert.strictEqual(windowSize.length, 2);
 
                 // First, check the month view sizes
-                // For some reason the default height is changing on CI so we'll allow a range
-
                 assert.strictEqual(Math.abs(windowSize[0] - 1010) < 5, true, `Width was ${windowSize[0]}`);
                 assert.strictEqual(windowSize[1] >= 600 && windowSize[1] <= 1100, true, `Height was ${windowSize[1]}`);
                 mainWindow.webContents.on('content-bounds-updated', () =>
