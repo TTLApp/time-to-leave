@@ -3,6 +3,7 @@
 <!--- Begin changes - Do not remove -->
 
 - Change [#1428]: Move to 64-bit installers on Windows.
+- Fix [#10, #949]: Use locale to set 12/24 hour configuration and calendar language
 - Fix [#1162]: Notifications failing with "event.sender.send is not a function"
 - Fix [#1215]: Time-based inputs on preference window not validating and resetting properly
 - Fix [#1240]: Overall balance updates when changing months/days
