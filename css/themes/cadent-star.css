@@ -1,0 +1,73 @@
+/* Cadent Star - Colorful Gradient Theme
+ */
+
+html[data-theme="cadent-star"] {
+  /* Purples */
+  --purple-base: rgb(121 121 121);
+  --purple-light: rgb(151 151 151);
+  --purple-lighter: rgb(181 181 181);
+  --purple-dark: rgb(91 91 91);
+  --purple-darker: rgb(51 51 51);
+
+  /* Base Colors */
+  --page-bground: transparent;
+  --page-color: black;
+  
+  /* Table Colors */
+  --table-bground: rgb(255 238 227 / 30%);
+  --table-header-bground: rgb(255 238 227 / 90%);
+  --table-border: #28292f;
+  --input-bground: transparent;
+  --table-total-border: var(--purple-base);
+  --table-cell-offtime-bground: rgb(0 0 0 / 10%);
+  --table-cell-offtime-color: rgb(0 0 0 / 50%);
+  --table-cell-total-bground: transparent;
+  --table-cell-total-color: var(--table-cell-offtime-color);
+  --table-header-label-bground: rgb(255 238 227 / 90%);
+  --table-header-label-shadow: var(--table-border);
+  
+  /* Status Colors */
+  --error: rgb(226 93 90);
+  --punch-bground: var(--purple-base);
+  --punch-color: rgb(228 228 228);
+  --punch-invert: 0;  /* No invert needed for colored text */
+  --punch-disable-bground: rgb(134 134 134);
+  --slider-background-color: rgb(220 220 220);
+  --slider-checked-color: var(--purple-base);
+  --slider-unchecked-color: white;
+  --weekday-background: var(--slider-background-color);
+  --weekday-selected: var(--purple-base);
+  
+  /* States */
+  --svg-invert: 0;
+  --disabled-input-bground: transparent;
+  --title-color: var(--purple-darker);
+  --input-border: transparent;
+  --tab-font-color: black;
+  --tab-waiver-color: transparent;
+  --tab-waiver-border: black;
+
+  /* Focus */
+  --outline: 2px dashed black;
+}
+
+/* Cadent Star Specific Overrides */
+html[data-theme="cadent-star"] body {
+  background-image: linear-gradient(to right, #ff9aa2, #ffb7b2, #ffdac1, #e2f0cb, #b5ead7, #c7ceea);
+}
+
+html[data-theme="cadent-star"] ::-webkit-scrollbar-thumb {
+  background-color: #ff9aa2;
+}
+
+html[data-theme="cadent-star"] ::-webkit-scrollbar-track {
+  background-color: #c7ceea;
+}
+
+html[data-theme="cadent-star"] .text-danger {
+  color: rgb(226 93 90);
+}
+
+html[data-theme="cadent-star"].wait {
+  filter: opacity(0.75);
+}

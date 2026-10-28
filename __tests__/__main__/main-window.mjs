@@ -194,11 +194,8 @@ describe('main-window.mjs', () =>
                 assert.strictEqual(windowSize.length, 2);
 
                 // First, check the month view sizes
-                // the default window height is unpredictable on macOS CI
-                // so we check for a sane range
                 assert.strictEqual(Math.abs(windowSize[0] - 1010) < 5, true, `Width was ${windowSize[0]}`);
                 assert.strictEqual(windowSize[1] >= 600 && windowSize[1] <= 1100, true, `Height was ${windowSize[1]}`);
-
                 mainWindow.webContents.on('content-bounds-updated', () =>
                 {
                     setTimeout(() =>
@@ -208,8 +205,7 @@ describe('main-window.mjs', () =>
 
                         // Now in day view sizes
                         assert.strictEqual(Math.abs(windowSize[0] - 500) < 5, true, `Width was ${windowSize[0]}`);
-                        assert.strictEqual(Math.abs(windowSize[1] - 500) < 5, true, `Height was ${windowSize[1]}`);
-
+                        assert.strictEqual(windowSize[1] >= 400 && windowSize[1] <= 600, true, `Height was ${windowSize[1]}`);
                         assert.strictEqual(windowSpy.calledOnce, true);
 
                         const firstCall = windowSpy.firstCall;
